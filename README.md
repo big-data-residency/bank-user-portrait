@@ -1,5 +1,6 @@
 # bank-user-portrait
 git操作方式：
+	
 	将本地数据更新和远端同步：git pull
 	
 	查看本地和远端所有分支：git branch -a
