@@ -14,4 +14,4 @@ git操作方式：
 		4.将本地dev分支合并到自己的分支：git merge dev
 		5.上步之后往往会有冲突，在本地解决冲突并提交：git add .       git commit -m "解决冲突"
 		6.将自己本地的分支推到远端：git push origin
-		7.在远端提交pull requdst
+		7.在远端提交pull request
