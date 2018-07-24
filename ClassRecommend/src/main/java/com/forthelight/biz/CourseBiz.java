@@ -1,12 +1,11 @@
-package com.forthelight.dao;
+package com.forthelight.biz;
 
 import java.util.List;
 
 import com.forthelight.domain.Course;
 import com.forthelight.domain.Teacher;
 
-public interface CourseDao {
-
+public interface CourseBiz {
 	Course findById(int id);
 
 	List<Course> findByCode(Course course);
@@ -24,5 +23,4 @@ public interface CourseDao {
 	int delete(Course course);
 
 	int insert(Course course);
-
 }
