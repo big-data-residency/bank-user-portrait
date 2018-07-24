@@ -1,0 +1,34 @@
+html{
+    height: 100vh;
+}
+body{
+    background-image: linear-gradient(to top, #30cfd0, #330867);
+    /*height: 100vh;*/
+}
+
+.form-group>label>p{
+    font-size: 18px;
+}
+
+.form-blur{
+    background: rgb(255,255,255);
+    /*transform: rotateY(120deg);*/
+}
+.loginForm-wrapper{
+    background: rgb(255,255,255);
+}
+.registerForm-wrapper{
+    background: rgb(255,255,255);
+}
+.animate-bg{
+    height: 100vh;
+}
+.container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+canvas{
+    z-index: -1;
+}
