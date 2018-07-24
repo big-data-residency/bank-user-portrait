@@ -14,93 +14,105 @@
 		autoMapping="true">
 		<id property="id" column="id" />
 
-		<association property="college" column="collegeid"
-			javaType="College" autoMapping="true">
+		<association property="college" column="collegeid" javaType="College" >
 			<id property="id" column="cid" />
 			<result property="deleteStatus" column="cdeleteStatus" />
 		</association>
 
 		<association property="major" column="majorid"
-			javaType="Major" autoMapping="true">
+			javaType="Major" >
 			<id property="id" column="mid" />
 			<result property="collegeid" column="mcollegeid" />
 			<result property="deleteStatus" column="mdeleteStatus" />
 		</association>
 
 		<association property="teacher" column="teacherid"
-			javaType="Teacher" autoMapping="true">
+			javaType="Teacher" >
 			<id property="id" column="tid" />
 			<result property="collegeid" column="tcollegeid" />
 			<result property="deleteStatus" column="tdeleteStatus" />
 		</association>
+		
+		<collection property="courseTimes" column = "id" ofType="CourseTime"  >
+		    <id property="id" column="ctid" />
+		    <result property="deleteStatus" column="ctdeleteStatus" />
+		</collection>
+		
 	</resultMap>
 
 	<select id="findById" parameterType="int"
 		resultMap="CourseResultMap">
-		select *, College.id cid , Major.id mid , Teacher.id tid , 
-		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus
+		select *, College.id cid , Major.id mid , Teacher.id tid , CourseTime.id ctid ,
+		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus , CourseTime.deleteStatus ctdeleteStatus
 		from Course inner join 
-		( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
-		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id
+		( ( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
+		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id) 
+		inner join CourseTime on CourseTime.classId = Course.id )
 		where Course.id = #{id} and 
 		College.deleteStatus = 0 and Major.deleteStatus = 0 and Teacher.deleteStatus = 0 and Course.deleteStatus = 0
 	</select>
 	
-	<select id="findByCode" parameterType="String"
+	<select id="findByCode" parameterType="Course"
 		resultMap="CourseResultMap">
-		select *, College.id cid , Major.id mid , Teacher.id tid , 
-		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus
+		select *, College.id cid , Major.id mid , Teacher.id tid , CourseTime.id ctid ,
+		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus , CourseTime.deleteStatus ctdeleteStatus
 		from Course inner join 
-		( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
-		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id
+		( ( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
+		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id)
+		inner join CourseTime on CourseTime.classId = Course.id )
 		where Course.courseCode = #{courseCode} and 
 		College.deleteStatus = 0 and Major.deleteStatus = 0 and Teacher.deleteStatus = 0 and Course.deleteStatus = 0
 	</select>
 	
-	<select id="findByCourseName" parameterType="String" resultMap="CourseResultMap" >
-	    select *, College.id cid , Major.id mid , Teacher.id tid , 
-		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus
+	<select id="findByCourseName" parameterType="Course" resultMap="CourseResultMap" >
+	    select *, College.id cid , Major.id mid , Teacher.id tid , CourseTime.id ctid ,
+		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus , CourseTime.deleteStatus ctdeleteStatus
 		from Course inner join 
-		( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
-		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id
+		( ( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
+		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id)
+		inner join CourseTime on CourseTime.classId = Course.id )
 		where Course.courseName = #{courseName} and
 		College.deleteStatus = 0 and Major.deleteStatus = 0 and Teacher.deleteStatus = 0 and Course.deleteStatus = 0
 	</select>
 	
 	<select id="findByTeacherName" parameterType="Teacher" resultMap="CourseResultMap" >
-	    select *, College.id cid , Major.id mid , Teacher.id tid , 
-		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus
+	    select *, College.id cid , Major.id mid , Teacher.id tid , CourseTime.id ctid ,
+		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus , CourseTime.deleteStatus ctdeleteStatus
 		from Course inner join 
-		( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
-		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id
+		( ( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
+		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id)
+		inner join CourseTime on CourseTime.classId = Course.id )
 		where Teacher.teacherName = #{teacherName} and
 		College.deleteStatus = 0 and Major.deleteStatus = 0 and Teacher.deleteStatus = 0 and Course.deleteStatus = 0
 	</select>
 	
-	<select id="findByLevel" parameterType="String" resultMap="CourseResultMap" >
-	    select *, College.id cid , Major.id mid , Teacher.id tid , 
-		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus
+	<select id="findByLevel" parameterType="Course" resultMap="CourseResultMap" >
+	    select *, College.id cid , Major.id mid , Teacher.id tid , CourseTime.id ctid ,
+		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus, CourseTime.deleteStatus ctdeleteStatus
 		from Course inner join 
-		( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
+		( ( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
 		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id
+		inner join CourseTime on CourseTime.classId = Course.id )
 		where Course.Level = #{level} and
 		College.deleteStatus = 0 and Major.deleteStatus = 0 and Teacher.deleteStatus = 0 and Course.deleteStatus = 0
 	</select> 
 	
-	<select id="findAll" parameterType="String" resultMap="CourseResultMap" >
-	    select *, College.id cid , Major.id mid , Teacher.id tid , 
-		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus
+	<select id="findAll" resultMap="CourseResultMap" >
+	    select *, College.id cid , Major.id mid , Teacher.id tid , CourseTime.id ctid ,
+		College.deleteStatus cdeleteStatus , Major.deleteStatus mdeleteStatus , Teacher.deleteStatus tdeleteStatus, CourseTime.deleteStatus ctdeleteStatus
 		from Course inner join 
-		( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
-		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id where
-		College.deleteStatus = 0 and Major.deleteStatus = 0 and Teacher.deleteStatus = 0 and Course.deleteStatus = 0
+		( ( ( College inner join Major on collegeid = College.id ) inner join Teacher on Teacher.Collegeid = College.id )
+		on Course.teacherId = Teacher.id and Course.collegeId = College.id and Course.majorId = Major.id 
+		inner join CourseTime on CourseTime.classId = Course.id )
+		where College.deleteStatus = 0 and Major.deleteStatus = 0 and Teacher.deleteStatus = 0 and Course.deleteStatus = 0
 	</select>
 	
 	<update id="update" parameterType="Course" >
 	    update Course set CourseCode = #{courseCode} , CourseName = #{courseName} , teacherId = #{teacher}.getId() ,
-	    studentNumber = #{studentNumber} , startWeek = #{startWeek} , endWeek = #{endWeek} , startLesson = #{startLesson} ,
-	    endLesson = #{endLesson} , isSingleWeek = #{isSingleWeek} , credit = #{credit} , examiningForm = #{examingForm} ,
-	    collegeid = #{college}.getId() , majorid = #{major}.getId() , teacherid = #{teacher}.getId()
+	    studentNumber = #{studentNumber} , startWeek = #{startWeek} , endWeek = #{endWeek} , isSingleWeek = #{isSingleWeek} , 
+	    credit = #{credit} , examiningForm = #{examiningForm} , collegeid = #{college}.getId() , majorid = #{major}.getId() , 
+	    teacherid = #{teacher}.getId() , level = #{level} , hasMidExam = #{hasMidExam} , finalExam = #{finalExam} ,
+	    midExamWeight = #{midExamWeight} , finalExamWeight = #{finalExamWeight} , passingCourse = #{passingCourse}
 	    where id = #{id}
 	    <!-- level/levelId ?  -->
 	    <!-- examingForm? examiningForm? -->
@@ -111,7 +123,10 @@
 	</update>
 	
 	<insert id="insert" parameterType="Course" >
-	    insert into Course values(null,#{courseCode},#{courseName},#{teacher}.getId(),#{studentNumber},)
+	    insert into Course values(null , #{courseCode} , #{courseName} , #{teacher}.getId() , #{studentNumber} , 
+	    #{startWeek} , #{endWeek} , #{isSingleWeek} , #{credit} , #{eaxminingForm} , #{college}.getId() , 
+	    #{major}.getId() , #{level} , #{hasMidExam} , #{finalExamWeight} , #{midExamWeight} , #{passingCourse})
+	    where id = #{id}
 	</insert>
 
 </mapper>

@@ -1,12 +1,10 @@
-package com.forthelight.dao;
+package com.forthelight.biz;
 
 import java.util.List;
 
-import com.forthelight.domain.Course;
 import com.forthelight.domain.Teacher;
 
-public interface TeacherDao {
-
+public interface TeacherBiz {
 	Teacher findById(int id);
 
 	List<Teacher> findByName(Teacher teacher);
@@ -20,4 +18,5 @@ public interface TeacherDao {
 	int delete(Teacher teacher);
 
 	int insert(Teacher teacher);
+
 }
