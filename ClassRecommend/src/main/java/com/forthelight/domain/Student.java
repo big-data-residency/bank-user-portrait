@@ -1,9 +1,10 @@
 package com.forthelight.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Student {
+public class Student implements Serializable {
 	private Integer id;
 	private String studentName;
 	private String gender;

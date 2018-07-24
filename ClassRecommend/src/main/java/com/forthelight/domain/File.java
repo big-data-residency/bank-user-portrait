@@ -1,8 +1,9 @@
 package com.forthelight.domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class File {
+public class File implements Serializable {
 	private Integer id;
 	private String fileName;
 	private String filePath;

@@ -1,15 +1,16 @@
 package com.forthelight.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Tag {
+public class Tag implements Serializable {
 	private Integer id;
 	private String tagName;
 	private int deleteStatus;
-	
+
 	private Set<StudentCommentCourse> comments = new HashSet<StudentCommentCourse>();
-	
+
 	public Tag() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -46,6 +47,5 @@ public class Tag {
 	public void setComments(Set<StudentCommentCourse> comments) {
 		this.comments = comments;
 	}
-	
-	
+
 }

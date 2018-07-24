@@ -1,21 +1,34 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Teacher implements Serializable {
     private Integer id;
     private String teacherName;
-    private Integer gender;
+    private String gender;
     private String telPhone;
     private String email;
     private String officeAddress;
-    private College college;
     private Integer deleteStatus;
+    
+    private College college;
+    Set<Course> courses = new HashSet<Course>();
     
 	public Teacher() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -28,10 +41,10 @@ public class Teacher implements Serializable {
 	public void setTeacherName(String teacherName) {
 		this.teacherName = teacherName;
 	}
-	public Integer getGender() {
+	public String getGender() {
 		return gender;
 	}
-	public void setGender(Integer gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 	public String getTelPhone() {
