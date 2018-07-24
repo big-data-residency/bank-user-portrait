@@ -1,155 +1,176 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 
 public class Course implements Serializable {
-    private Integer id;
-    private String courseCode;
-    private String courseName;
-    private Integer teacherId;
-    private Integer studentNumber;
-    private Integer startWeek;
-    private Integer endWeek;
-    private Integer lessonDay;
-    private String startLesson;
-    private Integer isSingleWeek;
-    private Integer credit;
-    private Integer examingForm;
-    private String level;
-    private Integer deleteStatus;
+	private Integer id;
+	private String courseCode;
+	private String courseName;
+	private Integer teacherId;
+	private Integer studentNumber;
+	private Integer startWeek;
+	private Integer endWeek;
+	private Integer lessonDay;
+	private String startLesson;
+	private String endLesson;
+	private Integer isSingleWeek;
+	private Integer credit;
+	private Integer examingForm;
+	private String level;
+	private Integer deleteStatus;
 
-    private College college;
-    private Major major;
+	private College college;
+	private Major major;
+	private Teacher teacher;
 
-    public Course() {
-    }
+	public Course() {
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getCourseCode() {
-        return courseCode;
-    }
+	public String getCourseCode() {
+		return courseCode;
+	}
 
-    public void setCourseCode(String courseCode) {
-        this.courseCode = courseCode;
-    }
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
 
-    public String getCourseName() {
-        return courseName;
-    }
+	public String getCourseName() {
+		return courseName;
+	}
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
 
-    public Integer getTeacherId() {
-        return teacherId;
-    }
+	public Integer getTeacherId() {
+		return teacherId;
+	}
 
-    public void setTeacherId(Integer teacherId) {
-        this.teacherId = teacherId;
-    }
+	public void setTeacherId(Integer teacherId) {
+		this.teacherId = teacherId;
+	}
 
-    public Integer getStudentNumber() {
-        return studentNumber;
-    }
+	public Integer getStudentNumber() {
+		return studentNumber;
+	}
 
-    public void setStudentNumber(Integer studentNumber) {
-        this.studentNumber = studentNumber;
-    }
+	public void setStudentNumber(Integer studentNumber) {
+		this.studentNumber = studentNumber;
+	}
 
-    public Integer getStartWeek() {
-        return startWeek;
-    }
+	public Integer getStartWeek() {
+		return startWeek;
+	}
 
-    public void setStartWeek(Integer startWeek) {
-        this.startWeek = startWeek;
-    }
+	public void setStartWeek(Integer startWeek) {
+		this.startWeek = startWeek;
+	}
 
-    public Integer getEndWeek() {
-        return endWeek;
-    }
+	public Integer getEndWeek() {
+		return endWeek;
+	}
 
-    public void setEndWeek(Integer endWeek) {
-        this.endWeek = endWeek;
-    }
+	public void setEndWeek(Integer endWeek) {
+		this.endWeek = endWeek;
+	}
 
-    public Integer getLessonDay() {
-        return lessonDay;
-    }
+	public Integer getLessonDay() {
+		return lessonDay;
+	}
 
-    public void setLessonDay(Integer lessonDay) {
-        this.lessonDay = lessonDay;
-    }
+	public void setLessonDay(Integer lessonDay) {
+		this.lessonDay = lessonDay;
+	}
 
-    public String getStartLesson() {
-        return startLesson;
-    }
+	public String getStartLesson() {
+		return startLesson;
+	}
 
-    public void setStartLesson(String startLesson) {
-        this.startLesson = startLesson;
-    }
+	public void setStartLesson(String startLesson) {
+		this.startLesson = startLesson;
+	}
 
-    public Integer getIsSingleWeek() {
-        return isSingleWeek;
-    }
+	public String getEndLesson() {
+		return endLesson;
+	}
 
-    public void setIsSingleWeek(Integer isSingleWeek) {
-        this.isSingleWeek = isSingleWeek;
-    }
+	public void setEndLesson(String endLesson) {
+		this.endLesson = endLesson;
+	}
 
-    public Integer getCredit() {
-        return credit;
-    }
+	public Integer getIsSingleWeek() {
+		return isSingleWeek;
+	}
 
-    public void setCredit(Integer credit) {
-        this.credit = credit;
-    }
+	public void setIsSingleWeek(Integer isSingleWeek) {
+		this.isSingleWeek = isSingleWeek;
+	}
 
-    public Integer getExamingForm() {
-        return examingForm;
-    }
+	public Integer getCredit() {
+		return credit;
+	}
 
-    public void setExamingForm(Integer examingForm) {
-        this.examingForm = examingForm;
-    }
+	public void setCredit(Integer credit) {
+		this.credit = credit;
+	}
 
-    public String getLevel() {
-        return level;
-    }
+	public Integer getExamingForm() {
+		return examingForm;
+	}
 
-    public void setLevel(String level) {
-        this.level = level;
-    }
+	public void setExamingForm(Integer examingForm) {
+		this.examingForm = examingForm;
+	}
 
-    public Integer getDeleteStatus() {
-        return deleteStatus;
-    }
+	public String getLevel() {
+		return level;
+	}
 
-    public void setDeleteStatus(Integer deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
+	public void setLevel(String level) {
+		this.level = level;
+	}
 
-    public College getCollege() {
-        return college;
-    }
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
 
-    public void setCollege(College college) {
-        this.college = college;
-    }
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
 
-    public Major getMajor() {
-        return major;
-    }
+	public College getCollege() {
+		return college;
+	}
 
-    public void setMajor(Major major) {
-        this.major = major;
-    }
+	public void setCollege(College college) {
+		this.college = college;
+	}
+
+	public Major getMajor() {
+		return major;
+	}
+
+	public void setMajor(Major major) {
+		this.major = major;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
 }

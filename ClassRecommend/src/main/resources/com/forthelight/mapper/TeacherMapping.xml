@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.forthelight.dao.TeacherDao">
+
+	<select id="getCoursesByTeacherId" parameterType="int"
+		resultType="Course">
+		select * from course where teacherId = #{id}
+	</select>
+
+
+	<resultMap type="Teacher" id="TeacherResultMap"
+		autoMapping="true">
+		<id property="id" column="id" jdbcType="INTEGER" />
+		
+		<association property="college" column="collegeid"
+			javaType="College" autoMapping="true">
+			<id property="cid" column="id" />
+			<result property="cdelete" column="deleteStatus" />
+		</association>
+		
+		<collection property="courses" column="id" ofType="Course"
+			select="getCoursesByTeacherId" />
+	</resultMap>
+
+
+
+	<select id="findById" parameterType="int"
+		resultMap="TeacherResultMap">
+		select *, College.id cid , College.deleteStatus cdelete from
+		teacher inner join college on
+		collegeid = college.id
+		where teacher.id = #{id} and teacher.deleteStatus=0 and college.deleteStatus=0
+	</select>
+
+	<select id="findByName" parameterType="String"
+		resultMap="TeacherResultMap">
+		select *, College.id cid , College.deleteStatus cdelete from
+		teacher inner join college on
+		collegeid = college.id
+		where teacher.teacherName = #{teacherName} and teacher.deleteStatus = 0 and college.deleteStatus = 0
+	</select>
+	
+	<select id="findAll" resultMap="TeacherResultMap">
+		select *, College.id cid , College.deleteStatus cdelete from
+		teacher inner join college on
+		collegeid = college.id
+	</select>
+	
+	<select id="OrderByStart" resultMap="TeacherResultMap" >
+	    select *, College.id cid , College.deleteStatus cdelete from 
+	    (((teacher inner join college on collegeid = college.id) inner join Course on teacherid = Teacher.id )
+	    inner join Student_select_course on Course.id = Student_select_course.Courseid )
+	    inner join Student_comment_course on Student_comment_course.selectid = Student_select_course.id
+	    group by Teacher.id order by sum(likeNumber) desc
+	</select>
+
+	<update id="update" parameterType="Teacher">
+		update teacher set teacherName = #{teacherName}, gender = #{gender} ,
+		telPhone = #{telPhone} , email = #{email} ,
+		officeAddress = #{officeAddress} , collegeid = #{college}.getId()
+		where id = #{id}
+	</update>
+
+	<update id="delete" parameterType="int">
+		update teacher set deleteType = 1 where id = #{id}
+	</update>
+
+	<insert id="insert" parameterType="Teacher">
+		insert into teacher values
+		(null,#{teacherName},#{gender},#{telPhone},#{email},#{officeAddress},#{college}.getId(),0)
+	</insert>
+
+</mapper>
