@@ -28,17 +28,17 @@
 	</bean>
 
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.forthelight.ssm.dao" />
+		<property name="basePackage" value="com.forthelight.dao" />
 	</bean>
 
 	<bean id="sqlSessionFactory"  class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
-			value="classpath:com/forthelight/ssm/mapper/*.xml" />
+			value="classpath:com/forthelight/mapper/*.xml" />
 		<property name="configLocation"
 			value="classpath:mybatis/mybatis-config.xml" />
 	</bean>
 
-	<context:component-scan	base-package="com.forthelight.ssm.biz" />
+	<context:component-scan	base-package="com.forthelight.biz" />
 
 </beans>

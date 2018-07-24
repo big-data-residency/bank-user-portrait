@@ -13,7 +13,7 @@
 
    <mvc:annotation-driven /> 
 
-   <context:component-scan base-package="com.forthelight.ssm.controller"/>
+   <context:component-scan base-package="com.forthelight.controller"/>
 
    <!-- 对模型视图添加前后缀 -->
    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
