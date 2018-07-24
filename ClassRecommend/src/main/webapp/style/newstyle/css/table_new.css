@@ -1,0 +1,123 @@
+/*新的搜索栏*/
+/*----*/
+.banner{
+background:url(..//images/banner_search.jpg) no-repeat 0px 0px;
+min-height:250px;
+background-size:contain;
+}
+.header{
+padding:3em 0;
+}
+.logo{
+float:left;
+}
+.logo a{
+display:inline-block;
+}
+.top-menu{
+float:right;
+}
+.top-menu ul li{
+display:inline-block;
+}
+.top-menu ul li a{
+color:#fff;
+font-size:1.1em;
+padding:1em 1em 0em 1em;
+text-decoration:none;
+display:block;
+font-weight:400;
+}
+.top-menu ul li a:hover{
+color:#0199e6;
+}
+.banner-text{
+margin-top:6%;
+text-align:center;
+}
+.banner-text h1{
+font-size:3.2em;
+color:#fff;
+font-weight:500;
+margin-bottom:0.5em;
+font-family: 'Raleway', sans-serif;
+}
+.banner-text h1 span{
+color:#0199e6;
+font-weight:700;
+}
+.banner-text h1 label{
+font-weight:700;
+}
+.banner-form form{
+background:rgba(0, 0, 0, 0.36);
+padding:2em;
+width: 88%;
+margin:4em auto 0 auto;
+}
+.banner-form form input[type="text"] {
+width: 25%;
+padding: 12px 14px;
+border: 1px solid #0199e6;
+font-size: 1.2em;
+color: #fff;
+outline: none;
+font-weight: 400;
+display:inline-block;
+background:transparent;
+border-left:3px solid #0199e6;
+border-radius:3px;
+margin-right:1em;
+}
+.banner-form form input[type="submit"] {
+width: 18%;
+padding: 12px 14px;
+border: 1px solid #0199e6;
+font-size: 1.2em;
+color: #fff;
+outline: none;
+font-weight: 600;
+background:#0199e6;
+border-radius:3px;
+border-left:5px solid #0199e6;
+border-right:5px solid #0199e6;
+transition:0.5s all;
+	-webkit-transition:0.5s all;
+	-moz-transition:0.5s all;
+	-o-transition:0.5s all;
+	-ms-transition:0.5s all;
+}
+.banner-form form input[type="submit"]:hover{
+background:transparent;
+border: 1px solid #0199e6;
+border-left:8px solid #0199e6;
+border-right:8px solid #0199e6;
+}
+.register{
+float:right;
+position:relative;
+width:45%;
+margin-top:1.5em;
+}
+.register span{
+background:url(../../../images/arrow.png) no-repeat 0px 0px;
+width:35px;
+height:26px;
+display:inline-block;
+text-align:right;
+position:absolute;
+right: 49%;
+bottom: 9px;
+}
+.register h3{
+font-size:1.2em;
+color:#fff;
+font-weight:200;
+}
+.clearfix:before,
+.clearfix:after,
+.container:before,
+.container:after,
+.container-fluid:before,
+.container-fluid:after,
+/*结束*/
