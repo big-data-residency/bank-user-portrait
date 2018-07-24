@@ -7,5 +7,9 @@
 		<typeAlias type="com.forthelight.domain.File" alias="File" />
 		<typeAlias type="com.forthelight.domain.StudentCommentCourse" alias="StudentCommentCourse" />
 		<typeAlias type="com.forthelight.domain.Tag" alias="Tag" />
+		<typeAlias type="com.forthelight.domain.College" alias="College" />
+		<typeAlias type="com.forthelight.domain.Course" alias="Course" />
+		<typeAlias type="com.forthelight.domain.Major" alias="Major" />
+		<typeAlias type="com.forthelight.domain.Teacher" alias="Teacher" />
 	</typeAliases>
 </configuration>
