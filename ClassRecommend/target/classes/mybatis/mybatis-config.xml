@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.forthelight.domain.Student" alias="Student" />
+		<typeAlias type="com.forthelight.domain.File" alias="File" />
+		<typeAlias type="com.forthelight.domain.StudentCommentCourse" alias="StudentCommentCourse" />
+		<typeAlias type="com.forthelight.domain.Tag" alias="Tag" />
+		<typeAlias type="com.forthelight.domain.College" alias="College" />
+		<typeAlias type="com.forthelight.domain.Course" alias="Course" />
+		<typeAlias type="com.forthelight.domain.Major" alias="Major" />
+		<typeAlias type="com.forthelight.domain.Teacher" alias="Teacher" />
+		<typeAlias type="com.forthelight.domain.CourseTime" alias="CourseTime" />
+	</typeAliases>
+</configuration>
