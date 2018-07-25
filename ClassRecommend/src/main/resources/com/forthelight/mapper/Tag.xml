@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.forthelight.dao.TagDao">
+
+	<resultMap type="Tag" id="TagResultMap" autoMapping="true">
+
+		<id property="id" column="id" />
+		
+		<collection property="comments" column="id" ofType="StudentCommentCourse" 
+		select="com.forthelight.dao.StudentCommentCourseDao.findBySelectId" autoMapping="true">
+		</collection>
+		
+	</resultMap>
+
+
+
+
+	<select id="findById" parameterType="int" resultMap="TagResultMap">
+	    select * from Tag
+	    where id = #{id} and deleteStatus = 0
+	</select>
+
+	<select id="findByName" parameterType="String" resultMap="TagResultMap">
+	    select * from Tag
+	    where tagName = #{tagName} and deleteStatus = 0
+	</select>
+	
+	<select id="findAll" resultMap="TagResultMap">
+	    select * from Tag
+	    where deleteStatus = 0
+	</select>
+	
+	<update id="update" parameterType="Tag" >
+        update Tag set tagName = #{tagName}	
+	</update>
+	
+	<update id="delete" parameterType="int" >
+	    update Tag set deleteStatus = 1
+	    where id = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="Tag" >
+	    insert into Tag values
+	    ( null , #{tagName} )
+	</insert>
+	
+
+</mapper>
