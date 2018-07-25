@@ -11,6 +11,5 @@
 		<typeAlias type="com.forthelight.domain.Course" alias="Course" />
 		<typeAlias type="com.forthelight.domain.Major" alias="Major" />
 		<typeAlias type="com.forthelight.domain.Teacher" alias="Teacher" />
-		<typeAlias type="com.forthelight.domain.CourseTime" alias="CourseTime" />
 	</typeAliases>
 </configuration>
