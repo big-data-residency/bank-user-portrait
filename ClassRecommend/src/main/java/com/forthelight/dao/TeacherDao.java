@@ -9,7 +9,7 @@ public interface TeacherDao {
 
 	Teacher findById(int id);
 
-	List<Teacher> findByName(Teacher teacher);
+	List<Teacher> findByName(String teacherName);
 
 	List<Teacher> findAll();
 
@@ -17,7 +17,9 @@ public interface TeacherDao {
 
 	int update(Teacher teacher);
 
-	int delete(Teacher teacher);
+	int delete(int id);
 
 	int insert(Teacher teacher);
+
+	List<Teacher> findByCollegeId(int collegeId);
 }
