@@ -13,5 +13,4 @@ public interface CollegeDao {
 	int update(College college);
 	int delete(int id);
 	int insert(College college);
-
 }

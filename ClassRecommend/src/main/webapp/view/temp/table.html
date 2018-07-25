@@ -6,28 +6,29 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>用户信息</title>
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-		<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-		<link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+		<link rel="stylesheet" href="../../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
+		<link rel="stylesheet" type="text/css" href="../../style/bower_components/bootstrap/less/buttons.less"/>
+		<link rel="stylesheet" type="text/css" href="../../style/bower_components/bootstrap/less/button-groups.less"/>
+		<link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
+		<link rel="stylesheet" href="../../style/dist/css/skins/skin-blue.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-		<script src="/items/js/deleteAlert.js"></script>
-		<style type="text/css">
-			.delete:hover {
-				cursor: pointer;
-			}
-			
-			.delete {
-				color: #3366BB;
-			}
-		</style>
-		<script>
-			function deleteAlert() {
-				var x;
-				var r = confirm("是否确定删除？");
-			}
-		</script>
+		
+		<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
+		<link rel="stylesheet" type="text/css" href="../../style/newstyle/js/table_wow.min.js"/>
+		
+		<style type="text/css">.delete:hover {
+	cursor: pointer;
+}
+
+.delete {
+	color: #3366BB;
+}</style>
+		<script>function deleteAlert() {
+	var x;
+	var r = confirm("是否确定删除？");
+}</script>
 	</head>
 
 	<body class="hold-transition skin-blue sidebar-mini">
@@ -67,7 +68,7 @@
 												<a href="#">
 													<div class="pull-left">
 
-														<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+														<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 													</div>
 
 													<h4>
@@ -155,14 +156,14 @@
 
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-									<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+									<img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
 
 									<span class="hidden-xs">Alexander Pierce</span>
 								</a>
 								<ul class="dropdown-menu">
 
 									<li class="user-header">
-										<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+										<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
 										<p>
 											Alexander Pierce - Web Developer
@@ -210,7 +211,7 @@
 
 					<div class="user-panel">
 						<div class="pull-left image">
-							<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+							<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 						</div>
 						<div class="pull-left info">
 							<p>Alexander Pierce</p>
@@ -260,12 +261,8 @@
 			</aside>
 
 			<div class="content-wrapper">
-				<section class="content-header">
-					<h2>用户信息</h2>
-				</section>
-
 				<section class="content container-fluid">
-					<div class="box-header">
+					<!--<div class="box-header">
 
 						<div class="box-tools">
 							<div class="input-group input-group-sm" style="width: 150px;">
@@ -275,8 +272,39 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>-->
 					
+		<!--new search-->
+<div class="banner">
+	 <div class="container">
+		 <div class="banner-text wow fadeInUp" data-wow-delay="0.5s">
+			 <h1>Get the Best <span>Recommender</span> for Your <label>GPA</label></h1>
+		 <div class="banner-form">
+			 <form>
+				 <input class="wow fadeInRight" data-wow-delay="0.5s" type="text" placeholder="Name" required/>
+				 <input class="wow fadeInRight" data-wow-delay="0.5s" type="text" placeholder="E-mail" required/>
+				 <input class="wow fadeInLeft" data-wow-delay="0.5s" type="text" placeholder="Phone" required/>
+				 <input class="wow fadeInLeft" data-wow-delay="0.5s" type="submit" value="GET STARTED"/>
+			 </form>
+	 </div>
+</div>
+<section class="content-header">
+<h2 style="margin-bottom: 30px;margin-top: 50px;font-weight:bold;text-align: left;">用户信息</h2>
+				</section>
+				
+		<!--	<div class="clearfix"> </div>-->
+			<div class=" newsletter">
+				   <div class="social">
+					<ul>
+						<li><a href="#" class="link dblue" target="_parent"><span >A</span></a></li>
+						<li><a href="#" class="link lblue" target="_parent"><span >B</span></a></li>
+						<li><a href="#" class="link orange" target="_parent"><span>C</span></a></li>
+						<li><a href="#" class="link yellow" target="_parent"><span >D</span></a></li>
+						<li><a href="#" class="link dgreen" target="_parent"><span >E</span></a></li>
+					</ul>
+				</div>
+					<div class="clearfix"> </div>
+				</div>
 					<div class="CustomerInfoChange">
 						<table class="table table-hover">
 							<thead>
@@ -327,7 +355,15 @@
 							</tbody>
 						</table>
 					</div>
-					<button type="button" class="btn btn-outline-primary"><a href="update.html" >添加新用户</a></button>
+					<div align="center">
+					<button type="button" class="btnbtn btn-outline-primary ">
+						<a href="update.html" > 
+							<span class="step size-16">
+      						<i class="icon ion-android-add-circle"></i>
+							</span>
+      					&nbsp;添加新用户
+						</a></button> 
+					 </div>
 				</section>
 				<!-- /.content -->
 			</div>
@@ -340,7 +376,7 @@
 					Anything you want
 				</div>
 				<!-- Default to the left -->
-				<strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+				<strong>Copyright &copy; 2018 <a href="#">EAMIS-RECOMMENDER</a>.</strong> All rights reserved.
 			</footer>
 
 			<!-- Control Sidebar -->
@@ -429,11 +465,11 @@
 		<!-- REQUIRED JS SCRIPTS -->
 
 		<!-- jQuery 3 -->
-		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
 		<!-- Bootstrap 3.3.7 -->
-		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<!-- AdminLTE App -->
-		<script src="dist/js/adminlte.min.js"></script>
+		<script src="../../style/dist/js/adminlte.min.js"></script>
 
 		<!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
