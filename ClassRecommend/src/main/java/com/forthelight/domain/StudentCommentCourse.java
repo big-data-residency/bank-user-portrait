@@ -1,8 +1,6 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 public class StudentCommentCourse implements Serializable {
 	private Integer id;
@@ -10,12 +8,10 @@ public class StudentCommentCourse implements Serializable {
 	private int gradeScore;
 	private int contentScore;
 	private int likeNumber;
-	private int Anonymous;
 	private int deleteStatus;
 
 	private Student student;
 	private Course course;
-	private Set<Tag> tags = new HashSet<Tag>();
 
 	public StudentCommentCourse() {
 		super();
@@ -62,14 +58,6 @@ public class StudentCommentCourse implements Serializable {
 		this.likeNumber = likeNumber;
 	}
 
-	public int getAnonymous() {
-		return Anonymous;
-	}
-
-	public void setAnonymous(int anonymous) {
-		Anonymous = anonymous;
-	}
-
 	public int getDeleteStatus() {
 		return deleteStatus;
 	}
@@ -92,14 +80,6 @@ public class StudentCommentCourse implements Serializable {
 
 	public void setCourse(Course course) {
 		this.course = course;
-	}
-
-	public Set<Tag> getTags() {
-		return tags;
-	}
-
-	public void setTags(Set<Tag> tags) {
-		this.tags = tags;
 	}
 
 }

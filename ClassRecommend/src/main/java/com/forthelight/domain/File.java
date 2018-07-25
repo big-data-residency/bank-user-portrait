@@ -8,12 +8,11 @@ public class File implements Serializable {
 	private String fileName;
 	private String filePath;
 	private Timestamp updateTime;
-	private int downloadNum;
-	private int deleteStatus;
-
 	private Student student;
+	private int deleteStatus;
+	
 	private Course course;
-
+	
 	public File() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -67,14 +66,6 @@ public class File implements Serializable {
 		this.deleteStatus = deleteStatus;
 	}
 
-	public int getDownloadNum() {
-		return downloadNum;
-	}
-
-	public void setDownloadNum(int downloadNum) {
-		this.downloadNum = downloadNum;
-	}
-
 	public Course getCourse() {
 		return course;
 	}
@@ -82,5 +73,5 @@ public class File implements Serializable {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-
+	
 }
