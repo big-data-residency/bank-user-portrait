@@ -9,22 +9,23 @@ public class Course implements Serializable {
 	private Integer id;
 	private String courseCode;
 	private String courseName;
-	private Integer teacherId;
 	private Integer studentNumber;
 	private Integer startWeek;
 	private Integer endWeek;
-	private Integer lessonDay;
-	private String startLesson;
-	private String endLesson;
 	private Integer isSingleWeek;
 	private Integer credit;
-	private Integer examingForm;
+	private Integer examiningForm;
 	private String level;
 	private Integer deleteStatus;
+	private int hasMidExam;
+	private int finalExamWeight;
+	private int midExamWeight;
+	private int passingCourse;
 
 	private College college;
 	private Major major;
 	private Teacher teacher;
+	private Set<CourseTime> courseTimes = new HashSet<CourseTime>();
 
 	public Course() {
 	}
@@ -53,14 +54,6 @@ public class Course implements Serializable {
 		this.courseName = courseName;
 	}
 
-	public Integer getTeacherId() {
-		return teacherId;
-	}
-
-	public void setTeacherId(Integer teacherId) {
-		this.teacherId = teacherId;
-	}
-
 	public Integer getStudentNumber() {
 		return studentNumber;
 	}
@@ -85,30 +78,6 @@ public class Course implements Serializable {
 		this.endWeek = endWeek;
 	}
 
-	public Integer getLessonDay() {
-		return lessonDay;
-	}
-
-	public void setLessonDay(Integer lessonDay) {
-		this.lessonDay = lessonDay;
-	}
-
-	public String getStartLesson() {
-		return startLesson;
-	}
-
-	public void setStartLesson(String startLesson) {
-		this.startLesson = startLesson;
-	}
-
-	public String getEndLesson() {
-		return endLesson;
-	}
-
-	public void setEndLesson(String endLesson) {
-		this.endLesson = endLesson;
-	}
-
 	public Integer getIsSingleWeek() {
 		return isSingleWeek;
 	}
@@ -125,12 +94,12 @@ public class Course implements Serializable {
 		this.credit = credit;
 	}
 
-	public Integer getExamingForm() {
-		return examingForm;
+	public Integer getExaminingForm() {
+		return examiningForm;
 	}
 
-	public void setExamingForm(Integer examingForm) {
-		this.examingForm = examingForm;
+	public void setExaminingForm(Integer examiningForm) {
+		this.examiningForm = examiningForm;
 	}
 
 	public String getLevel() {
@@ -171,6 +140,46 @@ public class Course implements Serializable {
 
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
+	}
+
+	public int getHasMidExam() {
+		return hasMidExam;
+	}
+
+	public void setHasMidExam(int hasMidExam) {
+		this.hasMidExam = hasMidExam;
+	}
+
+	public int getFinalExamWeight() {
+		return finalExamWeight;
+	}
+
+	public void setFinalExamWeight(int finalExamWeight) {
+		this.finalExamWeight = finalExamWeight;
+	}
+
+	public int getMidExamWeight() {
+		return midExamWeight;
+	}
+
+	public void setMidExamWeight(int midExamWeight) {
+		this.midExamWeight = midExamWeight;
+	}
+
+	public int getPassingCourse() {
+		return passingCourse;
+	}
+
+	public void setPassingCourse(int passingCourse) {
+		this.passingCourse = passingCourse;
+	}
+
+	public Set<CourseTime> getCourseTimes() {
+		return courseTimes;
+	}
+
+	public void setCourseTimes(Set<CourseTime> courseTimes) {
+		this.courseTimes = courseTimes;
 	}
 
 }

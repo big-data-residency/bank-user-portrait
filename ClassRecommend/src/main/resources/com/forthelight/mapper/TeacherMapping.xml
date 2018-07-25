@@ -10,18 +10,15 @@
 	</select>
 
 
-	<resultMap type="Teacher" id="TeacherResultMap"
-		autoMapping="true">
+	<resultMap type="Teacher" id="TeacherResultMap" autoMapping="true">
 		<id property="id" column="id" jdbcType="INTEGER" />
 		
-		<association property="college" column="collegeid"
-			javaType="College" autoMapping="true">
+		<association property="college" column="collegeid" javaType="College" >
 			<id property="cid" column="id" />
 			<result property="cdelete" column="deleteStatus" />
 		</association>
 		
-		<collection property="courses" column="id" ofType="Course"
-			select="getCoursesByTeacherId" />
+		<collection property="courses" column="id" ofType="Course" select="getCoursesByTeacherId"  />
 	</resultMap>
 
 
@@ -34,7 +31,7 @@
 		where teacher.id = #{id} and teacher.deleteStatus=0 and college.deleteStatus=0
 	</select>
 
-	<select id="findByName" parameterType="String"
+	<select id="findByName" parameterType="Teacher"
 		resultMap="TeacherResultMap">
 		select *, College.id cid , College.deleteStatus cdelete from
 		teacher inner join college on
@@ -45,15 +42,16 @@
 	<select id="findAll" resultMap="TeacherResultMap">
 		select *, College.id cid , College.deleteStatus cdelete from
 		teacher inner join college on
-		collegeid = college.id
+		collegeid = college.id where teacher.deleteStatus = 0 and college.deleteStatus = 0
 	</select>
 	
-	<select id="OrderByStart" resultMap="TeacherResultMap" >
+	<select id="OrderByLike" resultMap="TeacherResultMap" >
 	    select *, College.id cid , College.deleteStatus cdelete from 
 	    (((teacher inner join college on collegeid = college.id) inner join Course on teacherid = Teacher.id )
 	    inner join Student_select_course on Course.id = Student_select_course.Courseid )
 	    inner join Student_comment_course on Student_comment_course.selectid = Student_select_course.id
-	    group by Teacher.id order by sum(likeNumber) desc
+	    group by Teacher.id having teacher.deleteStatus = 0 and college.deleteStatus = 0 
+	    order by sum(likeNumber) desc
 	</select>
 
 	<update id="update" parameterType="Teacher">
@@ -63,7 +61,7 @@
 		where id = #{id}
 	</update>
 
-	<update id="delete" parameterType="int">
+	<update id="delete" parameterType="Teacher">
 		update teacher set deleteType = 1 where id = #{id}
 	</update>
 
