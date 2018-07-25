@@ -27,6 +27,8 @@
 		
 	</resultMap>
 
+
+
 	<select id="findById" parameterType="int" resultMap="CollegeResultMap">
 	    select * from College
 	    where id = #{id} and deleteStatus = 0
@@ -53,13 +55,13 @@
 	</update>
 	
 	<update id="delete" parameterType="int">
-	    update College set deleteType = 1 
+	    update College set deleteStatus = 1 
 	    where id = #{id}
 	</update>
 	
 	<insert id="insert" parameterType="College" >
 	    insert into College values
-	    ( null , #{collegeName} , #{type} )
+	    ( null , #{collegeName} , #{type} , 0 )
 	</insert>
 	
 </mapper>

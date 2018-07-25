@@ -5,6 +5,7 @@ import java.util.List;
 import com.forthelight.domain.Tag;
 
 public interface TagDao {
+	
 	Tag findById(int id);
 
 	Tag findByName(String Tagname);
@@ -16,5 +17,6 @@ public interface TagDao {
 	int delete(int id);
 
 	int insert(Tag tag);
+	
 
 }

@@ -1,9 +1,11 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
+import java.util.List;
+
+@SuppressWarnings("serial")
 public class StudentCommentCourse implements Serializable {
 	private Integer id;
 	private String comment;
@@ -15,7 +17,7 @@ public class StudentCommentCourse implements Serializable {
 
 	private Student student;
 	private Course course;
-	private Set<Tag> tags = new HashSet<Tag>();
+	private List<Tag> tags = new ArrayList<Tag>();
 
 	public StudentCommentCourse() {
 		super();
@@ -94,11 +96,11 @@ public class StudentCommentCourse implements Serializable {
 		this.course = course;
 	}
 
-	public Set<Tag> getTags() {
+	public List<Tag> getTags() {
 		return tags;
 	}
 
-	public void setTags(Set<Tag> tags) {
+	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
 

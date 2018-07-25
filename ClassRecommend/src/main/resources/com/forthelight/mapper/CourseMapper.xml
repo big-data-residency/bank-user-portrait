@@ -6,25 +6,26 @@
 <mapper namespace="com.forthelight.dao.CourseDao">
 
 	<resultMap type="Course" id="CourseResultMap" autoMapping="true">
+	
 		<id property="id" column="id" />
 
 		<association property="college" column="collegeid" javaType="College" 
-		select="com.forthelight.dao.CollegeDao.findById" autoMapping="true">
+		    select="com.forthelight.dao.CollegeDao.findById" autoMapping="true">
 			<id property="id" column="id" />
 		</association>
 
-		<association property="major" column="majorid" javaType="Major" 
-		select="com.forthelight.dao.MajorDao.findById" autoMapping="true" >
+		<association property="major" column="majorid" javaType="Major"
+		    select="com.forthelight.dao.MajorDao.findById" autoMapping="true" >
 			<id property="id" column="id" />
 		</association>
 
-		<association property="teacher" column="teacherid" javaType="Teacher" 
-		select="com.forthelight.dao.TeacherDao.findById" autoMapping="true" >
+		<association property="teacher" column="teacherid" javaType="Teacher"
+		    select="com.forthelight.dao.TeacherDao.findById" autoMapping="true" >
 			<id property="id" column="id" />
 		</association>
 		
-		<collection property="courseTimes" column = "id" ofType="CourseTime" 
-		select="com.forthelight.dao.CourseTimeDao.findByClassId" autoMapping="true" >
+		<collection property="courseTimes" column = "id" ofType="Course" 
+		    select="com.forthelight.dao.CourseTimeDao.findByClassId" autoMapping="true" >
 		</collection>
 		
 	</resultMap>
@@ -32,14 +33,12 @@
 
 
 
-	<select id="findById" parameterType="int"
-		resultMap="CourseResultMap">
+	<select id="findById" parameterType="int" resultMap="CourseResultMap">
 		select * from Course 
 		where Course.id = #{id} and deleteStatus = 0
 	</select>
 	
-	<select id="findByCode" parameterType="String"
-		resultMap="CourseResultMap">
+	<select id="findByCode" parameterType="String" resultMap="CourseResultMap">
 		select * from Course
 		where courseCode = #{courseCode} and deleteStatus = 0
 	</select>
@@ -68,32 +67,47 @@
 	    update Course 
 	    set CourseCode = #{courseCode} , CourseName = #{courseName} , teacherId = #{teacher}.getId() ,
 	    studentNumber = #{studentNumber} , startWeek = #{startWeek} , endWeek = #{endWeek} , isSingleWeek = #{isSingleWeek} , 
-	    credit = #{credit} , examiningForm = #{examiningForm} , collegeid = #{college}.getId() , majorid = #{major}.getId() , 
-	    teacherid = #{teacher}.getId() , level = #{level} , hasMidExam = #{hasMidExam} , finalExam = #{finalExam} ,
+	    credit = #{credit} , examiningForm = #{examiningForm} , collegeId = #{college}.getId() , majorId = #{major}.getId() , 
+	    teacherId = #{teacher}.getId() , level = #{level} , hasMidExam = #{hasMidExam} , finalExam = #{finalExam} ,
 	    midExamWeight = #{midExamWeight} , finalExamWeight = #{finalExamWeight} , passingCourse = #{passingCourse}
 	    where id = #{id}
 	</update>
 	
 	<update id="delete" parameterType="int" >
-	    update Course set deleteStatus = 1 where id = #{id}
+	    update Course set deleteStatus = 1 
+	    where id = #{id}
 	</update>
 	
 	<insert id="insert" parameterType="Course" >
 	    insert into Course values 
 	    ( null , #{courseCode} , #{courseName} , #{teacher}.getId() , #{studentNumber} , 
 	    #{startWeek} , #{endWeek} , #{isSingleWeek} , #{credit} , #{eaxminingForm} , #{college}.getId() , 
-	    #{major}.getId() , #{level} , #{hasMidExam} , #{finalExamWeight} , #{midExamWeight} , #{passingCourse} )
-	    where id = #{id}
+	    #{major}.getId() , #{level} , 0 , #{hasMidExam} , #{finalExamWeight} , #{midExamWeight} , #{passingCourse} )
 	</insert>
 	
-	<select id="findByTeacherId" parameterType="int" resultType="Course" >
+	<select id="findByTeacherId" parameterType="int" resultMap="CourseResultMap" >
 	    select * from Course 
-	    where teacherId = #{teacherId}
+	    where teacherId = #{teacherId} and deleteStatus = 0
 	</select>
 	
-	<select id="findByCollegeId" parameterType="int" resultType="Course" >
+	<select id="findByCollegeId" parameterType="int" resultMap="CourseResultMap" >
 	    select * from Course
-	    where collegeId = #{collegeId}
+	    where collegeId = #{collegeId} and deleteStatus = 0
+	</select>
+	
+	<select id="findByCourseTimeId" parameterType="int" resultMap="CourseResultMap" >
+	    select * from Course
+	    where id in ( select classId from Course_time where id = #{courseTimeId} and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+	<select id="findByMajorId" parameterType="int" resultMap="CourseResultMap" >
+	    select * from Course
+	    where majorId = #{majorId}
+	</select>
+	
+	<select id="findByStudentId" parameterType="int" resultMap="CourseResultMap" >
+	    select * from Course
+	    where id in ( select courseId from student_select_course where studentId = #{studentId} and deleteStatus = 0 ) and deleteStatus = 0
 	</select>
 
 </mapper>

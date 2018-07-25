@@ -44,8 +44,9 @@
 	
 	<insert id="insert" parameterType="Tag" >
 	    insert into Tag values
-	    ( null , #{tagName} )
+	    ( null , #{tagName} , 0 )
 	</insert>
+	
 	
 
 </mapper>

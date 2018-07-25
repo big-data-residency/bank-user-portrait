@@ -1,19 +1,20 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
+@SuppressWarnings("serial")
 public class College implements Serializable {
 	private Integer id;
 	private String collegeName;
 	private int type;
 	private Integer deleteStatus;
 
-	private Set<Major> majors = new HashSet<>();
-	private Set<Student> students = new HashSet<>();
-	private Set<Teacher> teachers = new HashSet<>();
-	private Set<Course> courses = new HashSet<>();
+	private List<Major> majors = new ArrayList<Major>();
+	private List<Student> students = new ArrayList<Student>();
+	private List<Teacher> teachers = new ArrayList<Teacher>();
+	private List<Course> courses = new ArrayList<Course>();
 
 	public College() {
 	}
@@ -42,38 +43,6 @@ public class College implements Serializable {
 		this.deleteStatus = deleteStatus;
 	}
 
-	public Set<Major> getMajors() {
-		return majors;
-	}
-
-	public void setMajors(Set<Major> majors) {
-		this.majors = majors;
-	}
-
-	public Set<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(Set<Student> students) {
-		this.students = students;
-	}
-
-	public Set<Teacher> getTeachers() {
-		return teachers;
-	}
-
-	public void setTeachers(Set<Teacher> teachers) {
-		this.teachers = teachers;
-	}
-
-	public Set<Course> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(Set<Course> courses) {
-		this.courses = courses;
-	}
-
 	public int getType() {
 		return type;
 	}
@@ -81,5 +50,39 @@ public class College implements Serializable {
 	public void setType(int type) {
 		this.type = type;
 	}
+
+	public List<Major> getMajors() {
+		return majors;
+	}
+
+	public void setMajors(List<Major> majors) {
+		this.majors = majors;
+	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+	public List<Teacher> getTeachers() {
+		return teachers;
+	}
+
+	public void setTeachers(List<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
+	
 
 }

@@ -24,9 +24,15 @@ public interface CourseDao {
 	int delete(int id);
 
 	int insert(Course course);
-	
+
 	List<Course> findByTeacherId(int teacherId);
-	
+
 	List<Course> findByCollegeId(int collegeId);
+
+	List<Course> findByCourseTimeId(int courseTimeId);
+
+	List<Course> findByMajorId(int majorId);
+	
+	List<Course> findByStudentId(int studentId);
 
 }

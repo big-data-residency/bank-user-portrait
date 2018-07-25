@@ -57,7 +57,7 @@
 
 	<update id="delete" parameterType="int">
 		update teacher 
-		set deleteType = 1 
+		set deleteStatus = 1 
 		where id = #{id}
 	</update>
 
@@ -67,8 +67,9 @@
 		#{officeAddress} , #{college}.getId() , 0 )
 	</insert>
 	
-	<select id="findByCollegeId" parameterType="int" resultType="Teacher" >
-	    select * from Teacher where collegeId = #{collegeId}
+	<select id="findByCollegeId" parameterType="int" resultMap="TeacherResultMap" >
+	    select * from Teacher 
+	    where collegeId = #{collegeId} and deleteStatus = 0
 	</select>
 
 </mapper>
