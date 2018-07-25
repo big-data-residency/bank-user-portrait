@@ -51,7 +51,7 @@
 		update teacher 
 		set teacherName = #{teacherName}, gender = #{gender} ,
 		telPhone = #{telPhone} , email = #{email} ,
-		officeAddress = #{officeAddress} , collegeid = #{college}.getId()
+		officeAddress = #{officeAddress} , collegeId = #{college.id}
 		where id = #{id}
 	</update>
 
@@ -64,7 +64,7 @@
 	<insert id="insert" parameterType="Teacher">
 		insert into teacher values
 		( null , #{teacherName} , #{gender} , #{telPhone} , #{email} , 
-		#{officeAddress} , #{college}.getId() , 0 )
+		#{officeAddress} , #{college.id} , 0 )
 	</insert>
 	
 	<select id="findByCollegeId" parameterType="int" resultMap="TeacherResultMap" >

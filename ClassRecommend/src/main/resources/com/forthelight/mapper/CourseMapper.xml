@@ -65,11 +65,11 @@
 	
 	<update id="update" parameterType="Course" >
 	    update Course 
-	    set CourseCode = #{courseCode} , CourseName = #{courseName} , teacherId = #{teacher}.getId() ,
+	    set CourseCode = #{courseCode} , CourseName = #{courseName} , teacherId = #{teacher.id} ,
 	    studentNumber = #{studentNumber} , startWeek = #{startWeek} , endWeek = #{endWeek} , isSingleWeek = #{isSingleWeek} , 
-	    credit = #{credit} , examiningForm = #{examiningForm} , collegeId = #{college}.getId() , majorId = #{major}.getId() , 
-	    teacherId = #{teacher}.getId() , level = #{level} , hasMidExam = #{hasMidExam} , finalExam = #{finalExam} ,
-	    midExamWeight = #{midExamWeight} , finalExamWeight = #{finalExamWeight} , passingCourse = #{passingCourse}
+	    credit = #{credit} , examiningForm = #{examiningForm} , collegeId = #{college.id} , majorId = #{major.id} , 
+	    level = #{level} , hasMidExam = #{hasMidExam} ,midExamWeight = #{midExamWeight} , finalExamWeight = #{finalExamWeight} ,
+	    passingCourse = #{passingCourse}
 	    where id = #{id}
 	</update>
 	
@@ -80,9 +80,9 @@
 	
 	<insert id="insert" parameterType="Course" >
 	    insert into Course values 
-	    ( null , #{courseCode} , #{courseName} , #{teacher}.getId() , #{studentNumber} , 
-	    #{startWeek} , #{endWeek} , #{isSingleWeek} , #{credit} , #{eaxminingForm} , #{college}.getId() , 
-	    #{major}.getId() , #{level} , 0 , #{hasMidExam} , #{finalExamWeight} , #{midExamWeight} , #{passingCourse} )
+	    ( null , #{courseCode} , #{courseName} , #{teacher.id} , #{studentNumber} , 
+	    #{startWeek} , #{endWeek} , #{isSingleWeek} , #{credit} , #{examiningForm} , #{college.id} , 
+	    #{major.id} , #{level} , 0 , #{hasMidExam} , #{finalExamWeight} , #{midExamWeight} , #{passingCourse} )
 	</insert>
 	
 	<select id="findByTeacherId" parameterType="int" resultMap="CourseResultMap" >

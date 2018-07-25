@@ -15,14 +15,10 @@ public class CollegeDaoTest {
 
     @Test
     public void testFindById(){
+    	
         College college = collegeDao.findById(1);
         System.out.println(college.getCollegeName());
+        
+        
     }
 }
-
-
-//public class CollegeDaoTest {
-//    public static void main(String[] args) {
-//
-//    }
-//}

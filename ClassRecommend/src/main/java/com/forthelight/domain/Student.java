@@ -20,6 +20,7 @@ public class Student implements Serializable {
 	private College college;
 	private Major major;
 	private List<Course> courses = new ArrayList<Course>();
+	private List<File> files = new ArrayList<File>();
 
 	public Student() {
 		super();
@@ -120,6 +121,14 @@ public class Student implements Serializable {
 
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
+	}
+
+	public List<File> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<File> files) {
+		this.files = files;
 	}
 
 }

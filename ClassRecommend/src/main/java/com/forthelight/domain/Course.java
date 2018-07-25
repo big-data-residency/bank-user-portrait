@@ -181,5 +181,6 @@ public class Course implements Serializable {
 	public void setCourseTimes(List<CourseTime> courseTimes) {
 		this.courseTimes = courseTimes;
 	}
+	
 
 }

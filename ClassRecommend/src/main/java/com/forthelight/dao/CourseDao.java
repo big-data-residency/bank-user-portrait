@@ -9,7 +9,7 @@ public interface CourseDao {
 
 	Course findById(int id);
 
-	List<Course> findByCode(String courseCode);
+	Course findByCode(String courseCode);
 
 	List<Course> findByCourseName(String courseName);
 
