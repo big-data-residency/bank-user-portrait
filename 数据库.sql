@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 100131
  Source Host           : localhost:3306
- Source Schema         : classrecommend
+ Source Schema         : eamis_helper
 
  Target Server Type    : MySQL
  Target Server Version : 100131
  File Encoding         : 65001
 
- Date: 24/07/2018 16:19:39
+ Date: 24/07/2018 23:03:13
 */
 
 SET NAMES utf8mb4;
@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `college`;
 CREATE TABLE `college`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `CollegeName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Type` int(11) NULL DEFAULT NULL COMMENT '学院分类 1234=文理工商',
   `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -31,12 +32,12 @@ CREATE TABLE `college`  (
 -- ----------------------------
 -- Records of college
 -- ----------------------------
-INSERT INTO `college` VALUES (1, '计算机与控制工程学院', 0);
-INSERT INTO `college` VALUES (2, '金融学院', 0);
-INSERT INTO `college` VALUES (3, '历史学院', 0);
-INSERT INTO `college` VALUES (4, '法学院', 0);
-INSERT INTO `college` VALUES (5, '哲学院', 0);
-INSERT INTO `college` VALUES (6, '公选课', 0);
+INSERT INTO `college` VALUES (1, '计算机与控制工程学院', NULL, 0);
+INSERT INTO `college` VALUES (2, '金融学院', NULL, 0);
+INSERT INTO `college` VALUES (3, '历史学院', NULL, 0);
+INSERT INTO `college` VALUES (4, '法学院', NULL, 0);
+INSERT INTO `college` VALUES (5, '哲学院', NULL, 0);
+INSERT INTO `college` VALUES (6, '公选课', NULL, 0);
 
 -- ----------------------------
 -- Table structure for comment_tag
@@ -66,9 +67,6 @@ CREATE TABLE `course`  (
   `StudentNumber` int(11) NULL DEFAULT NULL COMMENT '课程人数',
   `StartWeek` int(11) NULL DEFAULT NULL,
   `EndWeek` int(11) NULL DEFAULT NULL,
-  `LessonDay` int(11) NULL DEFAULT NULL,
-  `StartLesson` int(11) NULL DEFAULT NULL,
-  `EndLesson` int(11) NULL DEFAULT NULL,
   `IsSingleWeek` int(11) NULL DEFAULT 0 COMMENT '单双周标记：0 is 常规课程，1 is 单周课程，2 is 双周课程',
   `Credit` double NULL DEFAULT 0 COMMENT '学分数',
   `ExaminingForm` int(11) NULL DEFAULT 0 COMMENT '考试方式：0 is 闭卷考试，1 is 开卷考试，2 is 论文结课，3 is 其他',
@@ -76,6 +74,10 @@ CREATE TABLE `course`  (
   `MajorID` int(11) NULL DEFAULT NULL COMMENT '所属专业ID，若为空则为所属学院的任意专业',
   `Level` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '对应ABCDE类课',
   `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
+  `HasMidExam` int(11) NULL DEFAULT 0 COMMENT '是否有期中考试 0=没有 1=有',
+  `FinalExamWeight` int(11) NULL DEFAULT NULL,
+  `MidExamWeight` int(11) NULL DEFAULT NULL,
+  `PassingCourse` int(11) NULL DEFAULT 0 COMMENT '是否是通过制 0=否 1=是 默认0',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `TeacherID`(`TeacherID`) USING BTREE,
   INDEX `CollegeID`(`CollegeID`) USING BTREE,
@@ -89,7 +91,22 @@ CREATE TABLE `course`  (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES (1, 's', '计算方法', 5, 100, 3, 16, NULL, 4, 5, 0, 3, 0, 1, NULL, NULL, 0);
+INSERT INTO `course` VALUES (1, 's', '计算方法', 5, 100, 3, 16, 0, 3, 0, 1, NULL, NULL, 0, 0, NULL, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for course_time
+-- ----------------------------
+DROP TABLE IF EXISTS `course_time`;
+CREATE TABLE `course_time`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ClassId` int(11) NULL DEFAULT NULL,
+  `StartLesson` int(11) NULL DEFAULT NULL,
+  `EndLesson` int(11) NULL DEFAULT NULL,
+  `LessonDay` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `ClassId`(`ClassId`) USING BTREE,
+  CONSTRAINT `course_time_ibfk_1` FOREIGN KEY (`ClassId`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for file
@@ -148,7 +165,8 @@ CREATE TABLE `student`  (
   `CollegeID` int(11) NULL DEFAULT NULL,
   `MajorID` int(11) NULL DEFAULT NULL,
   `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
-  PRIMARY KEY (`id`) USING BTREE,
+  `Privilege` int(11) NOT NULL DEFAULT 0 COMMENT '0=普通用户 1=管理员',
+  PRIMARY KEY (`id`, `Privilege`) USING BTREE,
   INDEX `CollegeID`(`CollegeID`) USING BTREE,
   INDEX `MajorID`(`MajorID`) USING BTREE,
   CONSTRAINT `student_ibfk_1` FOREIGN KEY (`CollegeID`) REFERENCES `college` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -158,8 +176,8 @@ CREATE TABLE `student`  (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, '蝙蝠侠', 1, 'Batman', 'batman', NULL, 2016, 1, 2, 0);
-INSERT INTO `student` VALUES (2, '超人', 1, 'Superman', 'superman', NULL, 2017, 1, 1, 0);
+INSERT INTO `student` VALUES (1, '蝙蝠侠', 1, 'Batman', 'batman', NULL, 2016, 1, 2, 0, 0);
+INSERT INTO `student` VALUES (2, '超人', 1, 'Superman', 'superman', NULL, 2017, 1, 1, 0, 0);
 
 -- ----------------------------
 -- Table structure for student_comment_course
@@ -173,6 +191,7 @@ CREATE TABLE `student_comment_course`  (
   `ContentScore` int(11) NULL DEFAULT NULL,
   `LikeNumber` int(11) NULL DEFAULT 0,
   `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
+  `Anonymous` int(11) NULL DEFAULT 0 COMMENT '0=不匿名，1=匿名 默认不匿名',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE,
   INDEX `SelectID`(`SelectID`) USING BTREE,

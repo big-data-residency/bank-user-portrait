@@ -12,4 +12,7 @@
 		<typeAlias type="com.forthelight.domain.Major" alias="Major" />
 		<typeAlias type="com.forthelight.domain.Teacher" alias="Teacher" />
 	</typeAliases>
+<mappers>
+    <package name="com.forthelight.dao"/>
+</mappers>
 </configuration>
