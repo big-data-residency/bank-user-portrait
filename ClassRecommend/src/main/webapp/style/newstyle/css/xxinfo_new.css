@@ -1,0 +1,15 @@
+h5 {
+    color: #142950;
+    background: url(../images/section-bg.png) no-repeat;
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    height: 93px;
+    width: 610px;
+    line-height: 93px;
+    font-size: 35px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+h5:hover {
+background: url(../images/section-bg-hover.png) no-repeat; color:#1f3862; text-shadow: 2px 2px 0 #ffffff;
+}
