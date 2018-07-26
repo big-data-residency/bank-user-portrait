@@ -13,9 +13,9 @@ public interface CourseDao {
 
 	List<Course> findByCourseName(String courseName);
 
-	List<Course> findByTeacherName(Teacher teacher);
+	List<Course> findByTeacherName(String teacherName);
 
-	List<Course> findByLevel(String leve);
+	List<Course> findByLevel(String level);
 
 	List<Course> findAll();
 

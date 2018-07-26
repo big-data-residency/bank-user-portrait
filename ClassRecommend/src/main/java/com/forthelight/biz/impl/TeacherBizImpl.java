@@ -10,12 +10,12 @@ import com.forthelight.domain.Teacher;
 
 public class TeacherBizImpl implements TeacherBiz {
 	
-	@Autowired
+//	@Autowired
 	private TeacherDao teacherDao;
+
 
 	@Override
 	public Teacher findById(int id) {
-		// TODO Auto-generated method stub
 		return teacherDao.findById(id);
 	}
 

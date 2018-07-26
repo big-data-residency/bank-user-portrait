@@ -27,8 +27,7 @@ public class CollegeDaoTest {
     @Test
     public void testFindByName(){
     	
-        College college = collegeDao.findByName("计算机与控制工程学院");
-        System.out.println(college.getId());
+        collegeDao.findByName("计算机与控制工程学院");
         
     }
     

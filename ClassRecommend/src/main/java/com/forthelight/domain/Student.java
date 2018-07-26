@@ -17,10 +17,10 @@ public class Student implements Serializable {
 	private int privilege;
 	private int deleteStatus;
 
-	private College college;
-	private Major major;
-	private List<Course> courses = new ArrayList<Course>();
-	private List<File> files = new ArrayList<File>();
+	private transient College college;
+	private transient Major major;
+	private transient List<Course> courses = new ArrayList<Course>();
+	private transient List<File> files = new ArrayList<File>();
 
 	public Student() {
 		super();

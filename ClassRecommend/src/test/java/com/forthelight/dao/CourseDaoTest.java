@@ -49,7 +49,7 @@ public class CourseDaoTest {
     public void testFindByTeacherName(){
     	Teacher teacher = new Teacher();
     	teacher.setTeacherName("刘晓光");
-        List<Course> courses = courseDao.findByTeacherName(teacher);
+        List<Course> courses = courseDao.findByTeacherName(teacher.getTeacherName());
         System.out.println(courses);
     }
     

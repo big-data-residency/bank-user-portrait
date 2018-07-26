@@ -21,4 +21,5 @@ public interface TeacherBiz {
 	int insert(Teacher teacher);
 
 	List<Teacher> findByCollegeId(int collegeId);
+
 }
