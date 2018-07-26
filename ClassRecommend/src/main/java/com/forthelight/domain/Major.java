@@ -1,76 +1,79 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
+import java.util.List;
+
+@SuppressWarnings("serial")
 public class Major implements Serializable {
-    private Integer id;
-    private String majorName;
-    private Integer collegeId;
-    private Integer deleteStatus;
+	private Integer id;
+	private String majorName;
+	private Integer collegeId;
+	private Integer deleteStatus;
 
-    private College college;
+	private College college;
 
-    private Set<Student> students = new HashSet<>();
-    private Set<Course> courses = new HashSet<>();
+	private List<Student> students = new ArrayList<Student>();
+	private List<Course> courses = new ArrayList<Course>();
 
-    public Major() {
-    }
+	public Major() {
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getMajorName() {
-        return majorName;
-    }
+	public String getMajorName() {
+		return majorName;
+	}
 
-    public void setMajorName(String majorName) {
-        this.majorName = majorName;
-    }
+	public void setMajorName(String majorName) {
+		this.majorName = majorName;
+	}
 
-    public Integer getCollegeId() {
-        return collegeId;
-    }
+	public Integer getCollegeId() {
+		return collegeId;
+	}
 
-    public void setCollegeId(Integer collegeId) {
-        this.collegeId = collegeId;
-    }
+	public void setCollegeId(Integer collegeId) {
+		this.collegeId = collegeId;
+	}
 
-    public Integer getDeleteStatus() {
-        return deleteStatus;
-    }
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
 
-    public void setDeleteStatus(Integer deleteStatus) {
-        this.deleteStatus = deleteStatus;
-    }
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
 
-    public College getCollege() {
-        return college;
-    }
+	public College getCollege() {
+		return college;
+	}
 
-    public void setCollege(College college) {
-        this.college = college;
-    }
+	public void setCollege(College college) {
+		this.college = college;
+	}
 
-    public Set<Student> getStudents() {
-        return students;
-    }
+	public List<Student> getStudents() {
+		return students;
+	}
 
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
 
-    public Set<Course> getCourses() {
-        return courses;
-    }
+	public List<Course> getCourses() {
+		return courses;
+	}
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
-    }
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+
 }
