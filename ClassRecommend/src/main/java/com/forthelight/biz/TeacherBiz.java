@@ -1,9 +1,10 @@
-package com.forthelight.dao;
+package com.forthelight.biz;
 
 import java.util.List;
+
 import com.forthelight.domain.Teacher;
 
-public interface TeacherDao {
+public interface TeacherBiz {
 
 	Teacher findById(int id);
 
