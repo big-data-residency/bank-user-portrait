@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.forthelight.domain.College;
 
+
 public interface CollegeDao {
 	
 	College findById(int id);

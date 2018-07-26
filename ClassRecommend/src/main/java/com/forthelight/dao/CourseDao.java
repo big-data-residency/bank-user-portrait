@@ -15,7 +15,7 @@ public interface CourseDao {
 
 	List<Course> findByTeacherName(Teacher teacher);
 
-	List<Course> findByLevel(String level);
+	List<Course> findByLevel(String leve);
 
 	List<Course> findAll();
 
@@ -24,7 +24,7 @@ public interface CourseDao {
 	int delete(int id);
 
 	int insert(Course course);
-
+	
 	List<Course> findByTeacherId(int teacherId);
 
 	List<Course> findByCollegeId(int collegeId);
