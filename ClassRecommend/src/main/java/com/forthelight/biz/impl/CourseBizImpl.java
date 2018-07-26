@@ -33,9 +33,8 @@ public class CourseBizImpl implements CourseBiz {
 	}
 
 	@Override
-	public List<Course> findByTeacherName(Teacher teacher) {
-		// TODO Auto-generated method stub
-		return courseDao.findByTeacherName(teacher);
+	public List<Course> findByTeacherName(String teacherName) {
+		return courseDao.findByTeacherName(teacherName);
 	}
 
 	@Override
