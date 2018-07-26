@@ -9,24 +9,20 @@ public interface CourseDao {
 
 	Course findById(int id);
 
-	List<Course> findByCode(String courseCode);
+	List<Course> findByCode(Course course);
 
-	List<Course> findByCourseName(String courseName);
+	List<Course> findByCourseName(Course course);
 
 	List<Course> findByTeacherName(Teacher teacher);
 
-	List<Course> findByLevel(String level);
+	List<Course> findByLevel(Course course);
 
 	List<Course> findAll();
 
 	int update(Course course);
 
-	int delete(int id);
+	int delete(Course course);
 
 	int insert(Course course);
-	
-	List<Course> findByTeacherId(int teacherId);
-	
-	List<Course> findByCollegeId(int collegeId);
 
 }

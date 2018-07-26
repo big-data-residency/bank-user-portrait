@@ -8,7 +8,7 @@ import com.forthelight.domain.Teacher;
 
 public class TeacherBizImpl implements TeacherBiz {
 
-	private TeacherDao teacherDao ;
+	private TeacherDao teacherDao;
 
 	@Override
 	public Teacher findById(int id) {
