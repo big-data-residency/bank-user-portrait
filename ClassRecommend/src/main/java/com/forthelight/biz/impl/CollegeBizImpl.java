@@ -2,14 +2,15 @@ package com.forthelight.biz.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.forthelight.biz.CollegeBiz;
 import com.forthelight.dao.CollegeDao;
 import com.forthelight.domain.College;
+import org.springframework.stereotype.Service;
 
 public class CollegeBizImpl implements CollegeBiz {
-	
 	@Autowired
 	private CollegeDao collegeDao;
 

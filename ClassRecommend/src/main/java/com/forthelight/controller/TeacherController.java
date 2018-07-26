@@ -30,7 +30,7 @@ public class TeacherController {
         }
         else{
             List<Course> courses = teacher.getCourses();
-            // TODO::
+            System.out.println("===");
         }
 
         return gson.toJson(rsp);

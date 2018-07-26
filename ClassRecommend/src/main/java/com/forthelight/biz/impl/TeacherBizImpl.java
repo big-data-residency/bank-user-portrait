@@ -7,14 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.forthelight.biz.TeacherBiz;
 import com.forthelight.dao.TeacherDao;
 import com.forthelight.domain.Teacher;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TeacherBizImpl implements TeacherBiz {
-	
-//	@Autowired
-	private TeacherDao teacherDao;
+	private final TeacherDao teacherDao;
+
+    @Autowired
+    public TeacherBizImpl(TeacherDao teacherDao) {
+        this.teacherDao = teacherDao;
+    }
 
 
-	@Override
+    @Override
 	public Teacher findById(int id) {
 		return teacherDao.findById(id);
 	}
