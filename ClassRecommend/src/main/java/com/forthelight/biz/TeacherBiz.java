@@ -5,6 +5,7 @@ import java.util.List;
 import com.forthelight.domain.Teacher;
 
 public interface TeacherBiz {
+	
 	Teacher findById(int id);
 
 	List<Teacher> findByName(Teacher teacher);
