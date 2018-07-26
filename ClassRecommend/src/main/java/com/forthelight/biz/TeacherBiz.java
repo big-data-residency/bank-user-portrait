@@ -5,9 +5,10 @@ import java.util.List;
 import com.forthelight.domain.Teacher;
 
 public interface TeacherBiz {
+
 	Teacher findById(int id);
 
-	List<Teacher> findByName(Teacher teacher);
+	List<Teacher> findByName(String teacherName);
 
 	List<Teacher> findAll();
 
@@ -15,8 +16,9 @@ public interface TeacherBiz {
 
 	int update(Teacher teacher);
 
-	int delete(Teacher teacher);
+	int delete(int id);
 
 	int insert(Teacher teacher);
 
+	List<Teacher> findByCollegeId(int collegeId);
 }

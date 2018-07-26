@@ -8,19 +8,30 @@ import com.forthelight.domain.Teacher;
 public interface CourseBiz {
 	Course findById(int id);
 
-	List<Course> findByCode(Course course);
+	Course findByCode(String courseCode);
 
-	List<Course> findByCourseName(Course course);
+	List<Course> findByCourseName(String courseName);
 
 	List<Course> findByTeacherName(Teacher teacher);
 
-	List<Course> findByLevel(Course course);
+	List<Course> findByLevel(String leve);
 
 	List<Course> findAll();
 
 	int update(Course course);
 
-	int delete(Course course);
+	int delete(int id);
 
 	int insert(Course course);
+
+	List<Course> findByTeacherId(int teacherId);
+
+	List<Course> findByCollegeId(int collegeId);
+
+	List<Course> findByCourseTimeId(int courseTimeId);
+
+	List<Course> findByMajorId(int majorId);
+
+	List<Course> findByStudentId(int studentId);
+
 }

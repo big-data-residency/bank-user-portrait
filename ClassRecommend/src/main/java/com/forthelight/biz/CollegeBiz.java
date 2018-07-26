@@ -1,12 +1,11 @@
-package com.forthelight.dao;
+package com.forthelight.biz;
 
 import java.util.List;
 
 import com.forthelight.domain.College;
 
+public interface CollegeBiz {
 
-public interface CollegeDao {
-	
 	College findById(int id);
 
 	College findByName(String collegeName);
