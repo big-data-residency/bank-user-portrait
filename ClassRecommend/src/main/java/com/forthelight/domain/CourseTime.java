@@ -10,6 +10,7 @@ public class CourseTime implements Serializable {
 	private int startLesson;
 	private int endLesson;
 	private int lessonDay;
+	private Integer deleteStatus;
 
 	private List<Course> courses = new ArrayList<Course>();
 
@@ -58,4 +59,11 @@ public class CourseTime implements Serializable {
 		this.courses = courses;
 	}
 
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
 }
