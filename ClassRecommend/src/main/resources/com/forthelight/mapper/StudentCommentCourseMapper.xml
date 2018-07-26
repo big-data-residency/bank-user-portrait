@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.forthelight.dao.StudentCommentCourseDao">
+
+	<resultMap id="StudentCommentCourseResultMap" type="StudentCommentCourse" autoMapping="true">
+	
+		<id column="id" property="id" />
+		
+		<association property="student" column="studentId" javaType="Student" autoMapping="true"
+			select="com.forthelight.dao.StudentDao.findById" />
+			
+		<association property="course" column="courseId" javaType="Course" autoMapping="true"
+			select="com.forthelight.dao.CourseDao.findById" />
+			
+		<collection property="tags" ofType="Tag" column="tagId" autoMapping="true"
+			select="com.forthelight.dao.TagDao.findByTagId" />
+			
+	</resultMap>
+
+
+
+
+	<select id="findById" parameterType="int" resultMap="StudentCommentCourseResultMap">
+		SELECT * FROM student_comment_course
+		JOIN student_select_course ON student_comment_course.SelectID =
+		student_select_course.id
+		JOIN comment_tag on student_comment_course.id = comment_tag.CommentID
+		WHERE student_comment_course.id=#{id} AND
+		student_comment_course.DeleteStatus=0 AND
+		student_select_course.DeleteStatus=0 AND comment_tag.DeleteStatus=0;
+	</select>
+	
+	<select id="findByTagId" parameterType="int" resultMap="StudentCommentCourseResultMap" >
+	    select * from student_comment_course
+	    where id in ( select commentId from comment_tag where tagId = #{tagId} )
+	</select>
+
+</mapper>

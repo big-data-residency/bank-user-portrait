@@ -1,10 +1,10 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
+import java.util.ArrayList;
+import java.util.List;
 
+@SuppressWarnings("serial")
 public class Course implements Serializable {
 	private Integer id;
 	private String courseCode;
@@ -25,7 +25,7 @@ public class Course implements Serializable {
 	private College college;
 	private Major major;
 	private Teacher teacher;
-	private Set<CourseTime> courseTimes = new HashSet<CourseTime>();
+	private List<CourseTime> courseTimes = new ArrayList<CourseTime>();
 
 	public Course() {
 	}
@@ -174,12 +174,13 @@ public class Course implements Serializable {
 		this.passingCourse = passingCourse;
 	}
 
-	public Set<CourseTime> getCourseTimes() {
+	public List<CourseTime> getCourseTimes() {
 		return courseTimes;
 	}
 
-	public void setCourseTimes(Set<CourseTime> courseTimes) {
+	public void setCourseTimes(List<CourseTime> courseTimes) {
 		this.courseTimes = courseTimes;
 	}
+	
 
 }

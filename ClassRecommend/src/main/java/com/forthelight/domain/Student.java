@@ -1,9 +1,11 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
+import java.util.List;
+
+@SuppressWarnings("serial")
 public class Student implements Serializable {
 	private Integer id;
 	private String studentName;
@@ -17,7 +19,8 @@ public class Student implements Serializable {
 
 	private College college;
 	private Major major;
-	Set<Course> courses = new HashSet<Course>();
+	private List<Course> courses = new ArrayList<Course>();
+	private List<File> files = new ArrayList<File>();
 
 	public Student() {
 		super();
@@ -112,12 +115,20 @@ public class Student implements Serializable {
 		this.major = major;
 	}
 
-	public Set<Course> getCourses() {
+	public List<Course> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(Set<Course> courses) {
+	public void setCourses(List<Course> courses) {
 		this.courses = courses;
+	}
+
+	public List<File> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<File> files) {
+		this.files = files;
 	}
 
 }
