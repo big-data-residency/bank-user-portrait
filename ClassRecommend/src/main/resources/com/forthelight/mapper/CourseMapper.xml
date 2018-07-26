@@ -24,7 +24,7 @@
 			<id property="id" column="id" />
 		</association>
 		
-		<collection property="courseTimes" column = "id" ofType="Course" 
+		<collection property="courseTimes" column = "id" ofType="CourseTime" 
 		    select="com.forthelight.dao.CourseTimeDao.findByClassId" autoMapping="true" >
 		</collection>
 		
