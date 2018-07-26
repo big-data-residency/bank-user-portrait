@@ -10,7 +10,7 @@
 		<id property="id" column="id" />
 		
 		<collection property="comments" column="id" ofType="StudentCommentCourse" 
-		select="com.forthelight.dao.StudentCommentCourseDao.findBySelectId" autoMapping="true">
+		select="com.forthelight.dao.StudentCommentCourseDao.findByTagId" autoMapping="true">
 		</collection>
 		
 	</resultMap>
@@ -35,6 +35,7 @@
 	
 	<update id="update" parameterType="Tag" >
         update Tag set tagName = #{tagName}	
+        where id = #{id}
 	</update>
 	
 	<update id="delete" parameterType="int" >

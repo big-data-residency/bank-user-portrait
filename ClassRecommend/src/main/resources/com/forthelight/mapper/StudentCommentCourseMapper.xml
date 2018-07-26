@@ -32,5 +32,10 @@
 		student_comment_course.DeleteStatus=0 AND
 		student_select_course.DeleteStatus=0 AND comment_tag.DeleteStatus=0;
 	</select>
+	
+	<select id="findByTagId" parameterType="int" resultMap="StudentCommentCourseResultMap" >
+	    select * from student_comment_course
+	    where id in ( select commentId from comment_tag where tagId = #{tagId} )
+	</select>
 
 </mapper>
