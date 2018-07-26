@@ -32,8 +32,9 @@ font-weight:400;
 color:#0199e6;
 }
 .banner-text{
-margin-top:6%;
+margin-top:4%;
 text-align:center;
+    padding-right: 60px;
 }
 .banner-text h1{
 font-size:3.2em;
@@ -52,11 +53,11 @@ font-weight:700;
 .banner-form form{
 background:rgba(0, 0, 0, 0.36);
 padding:2em;
-width: 88%;
-margin:4em auto 0 auto;
+width: 90%;
+    margin-left: 10px;
 }
 .banner-form form input[type="text"] {
-width: 25%;
+width: 15%;
 padding: 12px 14px;
 border: 1px solid #0199e6;
 font-size: 1.2em;
