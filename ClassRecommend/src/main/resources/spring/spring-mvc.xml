@@ -11,7 +11,20 @@
 			http://www.springframework.org/schema/mvc
 			http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-	<mvc:annotation-driven />
+    <!-- 解决json传输中文在浏览器变？ -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>
+							text/html;charset=utf-8
+						</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<context:component-scan
 		base-package="com.forthelight.controller" />

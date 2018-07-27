@@ -9,15 +9,11 @@ import com.forthelight.dao.TeacherDao;
 import com.forthelight.domain.Teacher;
 import org.springframework.stereotype.Service;
 
-@Service
+
+@Service("teacherBiz")
 public class TeacherBizImpl implements TeacherBiz {
-	private final TeacherDao teacherDao;
-
     @Autowired
-    public TeacherBizImpl(TeacherDao teacherDao) {
-        this.teacherDao = teacherDao;
-    }
-
+	private TeacherDao teacherDao;
 
     @Override
 	public Teacher findById(int id) {

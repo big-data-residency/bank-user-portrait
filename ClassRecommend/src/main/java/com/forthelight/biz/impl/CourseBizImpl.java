@@ -8,7 +8,9 @@ import com.forthelight.biz.CourseBiz;
 import com.forthelight.dao.CourseDao;
 import com.forthelight.domain.Course;
 import com.forthelight.domain.Teacher;
+import org.springframework.stereotype.Service;
 
+@Service("courseBiz")
 public class CourseBizImpl implements CourseBiz {
 	
 	@Autowired

@@ -1,4 +1,4 @@
-package com.forthelight.biz.impl;
+package com.forthelight.biz;
 
 import com.forthelight.dao.StudentDao;
 import com.forthelight.domain.Student;
@@ -12,14 +12,13 @@ import static org.junit.Assert.*;
 
 @ContextConfiguration("classpath:applicationContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class StudentBizImplTest {
-
+public class StudentBizTest {
     @Autowired
     private StudentDao studentDao;
 
     @Test
     public void loginValidate() {
-        Student student = studentDao.findByStudentNumber("1611111");
+        Student student = studentDao.findByStudentNumber("Batman");
         if (student != null && student.getPassword() != null){
             if (student.getPassword().equals("batman")){
                 System.out.println("登录成功");
@@ -29,13 +28,5 @@ public class StudentBizImplTest {
         } else {
             System.out.println("用户不存在");
         }
-    }
-
-    @Test
-    public void findByStudentNumber() {
-    }
-
-    @Test
-    public void insert() {
     }
 }

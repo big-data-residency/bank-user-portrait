@@ -3,6 +3,7 @@ package com.forthelight.dao;
 import java.util.List;
 
 import com.forthelight.domain.Student;
+import org.springframework.stereotype.Component;
 
 public interface StudentDao {
 

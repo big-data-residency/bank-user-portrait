@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.forthelight.biz.StudentBiz;
 import com.forthelight.dao.StudentDao;
 import com.forthelight.domain.Student;
+import org.springframework.stereotype.Service;
 
+@Service("studentBiz")
 public class StudentBizImpl implements StudentBiz {
 	@Autowired
-	private StudentDao studentDao;
+	StudentDao studentDao;
 
 	@Override
 	public Student findById(int id) {

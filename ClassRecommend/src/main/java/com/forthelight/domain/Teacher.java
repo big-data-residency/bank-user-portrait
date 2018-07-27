@@ -17,8 +17,8 @@ public class Teacher implements Serializable {
 	private String officeAddress;
 	private Integer deleteStatus;
 
-	private College college;
-	private List<Course> courses = new ArrayList<Course>();
+	private transient College college;
+	private transient List<Course> courses = new ArrayList<Course>();
 
 	public Teacher() {
 		super();

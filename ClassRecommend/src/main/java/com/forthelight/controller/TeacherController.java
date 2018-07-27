@@ -6,6 +6,7 @@ import com.forthelight.dao.TeacherDao;
 import com.forthelight.domain.Course;
 import com.forthelight.domain.Teacher;
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,12 @@ import java.util.Map;
 
 @Controller
 public class TeacherController {
-    private TeacherBiz teacherBiz = new TeacherBizImpl();
+    private TeacherBiz teacherBiz;
+
+    @Autowired
+    public void setTeacherBiz(TeacherBiz teacherBiz) {
+        this.teacherBiz = teacherBiz;
+    }
 
     @RequestMapping("/teacherInfo/{teacherId}")
     public String getTeacherInfo(@PathVariable Integer teacherId){
@@ -30,7 +36,8 @@ public class TeacherController {
         }
         else{
             List<Course> courses = teacher.getCourses();
-            System.out.println("===");
+            rsp.put("teacher", gson.toJson(teacher));
+            rsp.put("courses", gson.toJson(courses));
         }
 
         return gson.toJson(rsp);

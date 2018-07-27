@@ -4,6 +4,8 @@ import com.forthelight.biz.StudentBiz;
 import com.forthelight.biz.impl.StudentBizImpl;
 import com.forthelight.domain.Student;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,12 +18,21 @@ import java.util.Map;
 
 @Controller
 public class StudentController {
-    private StudentBiz studentBiz = new StudentBizImpl();
+    private StudentBiz studentBiz;
 
-    @RequestMapping("/login")
+    @Autowired
+    public void setStudentBiz(StudentBiz studentBiz) {
+        this.studentBiz = studentBiz;
+    }
+
+    @RequestMapping(value = "/login", produces = "text/json; charset=utf-8")
     @ResponseBody
     public String login(HttpServletRequest request, HttpServletResponse response){
-        Gson gson = new Gson();
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
         Map<String, String> rsp = new HashMap<>();
         String studentNumber = request.getParameter("studentNumber");
         String password = request.getParameter("password");
@@ -66,6 +77,6 @@ public class StudentController {
             }
         }
 
-        return gson.toJson(rsp);
+        return String.valueOf(rsp);
     }
 }
