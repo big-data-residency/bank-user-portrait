@@ -13,7 +13,10 @@ public interface StudentBiz {
 	int insert(Student student);
 
 	List<Student> findByCollegeId(int collegeId);
+
 	String loginValidate(String studentNumber, String password);
+
 	Student findByStudentNumber(String studentNumber);
 
+	List<Student> findByCourseId(int courseId);
 }

@@ -10,4 +10,6 @@ public interface FileBiz {
 	List<File> findByStudentId(int studentId);
 
 	List<File> findByCourseId(int courseId);
+
+	int uploadsNumberOfCourse(int courseId);
 }

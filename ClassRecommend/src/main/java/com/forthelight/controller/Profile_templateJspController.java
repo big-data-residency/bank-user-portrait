@@ -1,7 +1,5 @@
 package com.forthelight.controller;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +13,6 @@ import com.forthelight.biz.StudentCommentCourseBiz;
 import com.forthelight.biz.TagBiz;
 import com.forthelight.biz.TeacherBiz;
 import com.forthelight.domain.College;
-import com.forthelight.domain.CommentWithStudent;
-import com.forthelight.domain.CompareByCommentTime;
 import com.forthelight.domain.Course;
 import com.forthelight.domain.StudentCommentCourse;
 import com.forthelight.domain.Teacher;

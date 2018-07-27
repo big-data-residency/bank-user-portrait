@@ -3,6 +3,7 @@ package com.forthelight.dao;
 import java.util.List;
 
 import com.forthelight.domain.Course;
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 public interface CourseDao {
@@ -40,5 +41,7 @@ public interface CourseDao {
 	int likeNumber(int id);
 	
 	int oneTagNumber(int tagId , int id);
+	
+	List<Tag> tagList(int courseId);
 
 }

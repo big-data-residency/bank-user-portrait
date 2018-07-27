@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.forthelight.biz.CourseBiz;
 import com.forthelight.dao.CourseDao;
 import com.forthelight.domain.Course;
+import com.forthelight.domain.Student;
+import com.forthelight.domain.Tag;
 
 
 @Service("courseBiz")
@@ -116,5 +118,12 @@ public class CourseBizImpl implements CourseBiz {
 		// TODO Auto-generated method stub
 		return courseDao.oneTagNumber(tagId, id);
 	}
+
+	@Override
+	public List<Tag> tagList(int courseId) {
+		// TODO Auto-generated method stub
+		return courseDao.tagList(courseId);
+	}
+		
 
 }
