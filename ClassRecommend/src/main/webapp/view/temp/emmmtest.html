@@ -10,6 +10,7 @@
     <el-button v-on:click="myfun">Get请求</el-button>
     <p v-if="visible===true">正确</p>
     <p v-else>错误</p>
+    <p>{{wtf}}</p>
     <el-input v-model="wtf" placeholder="请输入内容"></el-input>
     <p>{{wtf}}</p>
 </div>
@@ -30,7 +31,7 @@
             visible:false
         },
         methods:{
-            myfun:function () {
+            myfun() {
                 $.getJSON('login',
                     {
                         StudentNumber:11,
@@ -41,6 +42,9 @@
                     }
                     );
             },
+        },
+        mounted(){
+        	this.myfun();
         }
     })
 </script>

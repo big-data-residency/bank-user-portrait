@@ -27,6 +27,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
     <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/coursedetails_new.css"/>
   
+  	
+  	<link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+    <link rel="stylesheet" href="../../style/newstyle/css/star.css">
+  
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,13 +45,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
 	<script src='https://cdn.bootcss.com/echarts/3.7.2/echarts.simple.js'></script>
-    	<script type="text/javascript" src="../../style/newstyle/js/echarts-wordcloud.js" ></script>
+    <script type="text/javascript" src="../../style/newstyle/js/echarts-wordcloud.js" ></script>
 
 </head>
 
 
 <body class="hold-transition skin-blue fixed">
-<div class="wrapper">
+<div class="wrapper" id = "classvue">
 
     <!-- Main Header -->
     <header class="main-header">
@@ -929,62 +934,164 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
                     </div>
                   </div>
-                 
-                  <div class="pull-left rating-stars">
-      					<ul>
-      						<div> 手下留情  :
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li></div>
-     </ul>
-      </div>
-                  <div class="pull-left rating-stars">
-                	
-      					<ul>
-      						<div> 课堂有趣  :
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li></div>
-     </ul>
-      </div>
-                <div class="pull-left rating-stars">
-      					<ul>
-      						<div> 划水度 ：
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-     </div>
-      					</ul>
-      </div>
-                <div class="pull-left rating-stars">
-      					<ul>
-      						<div>满满干活 :
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
-    </div>
-      					</ul>
-      </div>
+                  
+                   <div class="form-group">
+                    <label for="inputSkills" class="col-sm-2 control-label">得分区间</label>
+
+                  
+                  
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                      90~100
+                    </label>
+                    
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                     80~89
+                    </label>
+                    
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                      70~79
+                    </label>
+                    
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                      60~69
+                    </label>
+                    
+                    <label>
+                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                      60以下
+                    </label>
+                  </div>
+                   </div>
+
+ <div class="form-group">
+    <label for="inputSkills" class="col-sm-2 control-label">手下留情</label>
+
+ <div class='rating-stars text-center'>
+    <ul id='stars'>
+    
+      <li class='star' title='Poor' data-value='1'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Fair' data-value='2'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Good' data-value='3'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Excellent' data-value='4'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='WOW!!!' data-value='5'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      
+    </ul>
+  </div>
+  </div>
+  
+<div class="form-group">
+    <label for="inputSkills" class="col-sm-2 control-label">课堂有趣</label>
+ 
+ <div class='rating-stars text-center'>
+    <ul id='stars'>
+    
+      <li class='star' title='Poor' data-value='1'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Fair' data-value='2'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Good' data-value='3'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Excellent' data-value='4'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='WOW!!!' data-value='5'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      
+    </ul>
+  </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputSkills" class="col-sm-2 control-label">划水程度</label>
+
+ <div class='rating-stars text-center'>
+    <ul id='stars'>
+    
+      <li class='star' title='Poor' data-value='1'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Fair' data-value='2'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Good' data-value='3'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Excellent' data-value='4'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='WOW!!!' data-value='5'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      
+    </ul>
+  </div>
+  </div>
+  
+<div class="form-group">
+    <label for="inputSkills" class="col-sm-2 control-label">干货满满</label>
+
+ <div class='rating-stars text-center'>
+    <ul id='stars'>
+    
+      <li class='star' title='Poor' data-value='1'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Fair' data-value='2'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Good' data-value='3'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='Excellent' data-value='4'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      <li class='star' title='WOW!!!' data-value='5'>
+        <i class='fa fa-star fa-fw'></i>
+      </li>
+      
+    </ul>
+  </div>
+  </div>
+
+
+
+
+
+
+    
                  
                  
                  
                  
                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                 	<label for="inputSkills" class="col-sm-2 control-label">是否匿名</label>
+
+                    <!--<div class="col-sm-offset-2 col-sm-10">-->
                       <div class="checkbox">
                         <label>
                           <input type="checkbox"> 匿名
                         </label>
                       </div>
-                    </div>
+                    <!--</div>-->
                   </div>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
@@ -1110,6 +1217,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../style/dist/js/adminlte.min.js"></script>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script  src="../../style/newstyle/js/star.js"></script>
+
+<script>
+	var Vue = new Vue({
+        el: '#classvue',
+        data:{
+            wtf:'123',
+            visible:false
+            comments:[{
+            	id:'',
+            	name:'',
+            	like:'',
+            	        
+            }],
+            ClassInfo:{
+            	likenum:'',
+            	uploadsnum:'',
+            	commentsnum:'',
+            }
+            
+            
+        },
+        methods:{
+            myfun () {
+                $.getJSON('login',
+                    {
+                        StudentNumber:11,
+                        Password:'wzy',
+                    },function (json) {
+                    alert("State"+json.success);
+                    alert("data"+json.data);
+                    for(var j=0;j<this.comments.length;j++)
+                    comments[j].abc=0;
+                    }
+                    );
+            },
+        }
+    })
+
+</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
