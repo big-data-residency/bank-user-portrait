@@ -3,11 +3,13 @@ package com.forthelight.biz.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.forthelight.biz.CollegeBiz;
 import com.forthelight.dao.CollegeDao;
 import com.forthelight.domain.College;
 
+@Service
 public class CollegeBizImpl implements CollegeBiz {
 	
 	@Autowired

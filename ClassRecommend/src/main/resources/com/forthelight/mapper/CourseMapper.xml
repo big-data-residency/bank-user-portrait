@@ -109,5 +109,27 @@
 	    select * from Course
 	    where id in ( select courseId from student_select_course where studentId = #{studentId} and deleteStatus = 0 ) and deleteStatus = 0
 	</select>
+	
+	<select id="orderByLike" resultMap="CourseResultMap" >
+	    select * from 
+	    ( ( Course inner join student_select_course on Course.id = courseId ) )
+	    inner join student_comment_course on selectId = student_select_course.id
+	    group by Course.id 
+	    order by LikeNumber desc
+	</select>
+	
+	<select id="likeNumber" parameterType="int" resultType="int" >
+	    select sum(likeNumber) from student_comment_course
+	    where selectId in ( select id from student_select_course where courseId = #{id}
+	     and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+	<select id="oneTagNumber"  resultType="int" >
+	    select count(*) from comment_tag
+	    where tagId = #{arg0} and commentId in ( select id from student_comment_course 
+	    where selectId in ( select id from student_select_course where courseId = #{arg1} 
+	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
 
 </mapper>

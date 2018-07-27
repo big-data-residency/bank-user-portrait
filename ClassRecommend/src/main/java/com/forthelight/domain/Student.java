@@ -1,6 +1,7 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class Student implements Serializable {
 	private int grade;
 	private int privilege;
 	private int deleteStatus;
+	private Timestamp commentTime;
 
 	private College college;
 	private Major major;
@@ -130,5 +132,14 @@ public class Student implements Serializable {
 	public void setFiles(List<File> files) {
 		this.files = files;
 	}
+
+	public Timestamp getCommentTime() {
+		return commentTime;
+	}
+
+	public void setCommentTime(Timestamp commentTime) {
+		this.commentTime = commentTime;
+	}
+	
 
 }

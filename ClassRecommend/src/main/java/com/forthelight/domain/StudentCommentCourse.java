@@ -1,6 +1,7 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class StudentCommentCourse implements Serializable {
 	private int likeNumber;
 	private int Anonymous;
 	private int deleteStatus;
+	private Timestamp commentTime;
 
 	private Student student;
 	private Course course;
@@ -103,5 +105,23 @@ public class StudentCommentCourse implements Serializable {
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
 	}
+
+	public Timestamp getCommentTime() {
+		return commentTime;
+	}
+
+	public void setCommentTime(Timestamp commentTime) {
+		this.commentTime = commentTime;
+	}
+
+	@Override
+	public String toString() {
+		return "StudentCommentCourse [id=" + id + ", comment=" + comment + ", gradeScore=" + gradeScore
+				+ ", contentScore=" + contentScore + ", likeNumber=" + likeNumber + ", Anonymous=" + Anonymous
+				+ ", deleteStatus=" + deleteStatus + ", commentTime=" + commentTime + ", student=" + student
+				+ ", course=" + course + ", tags=" + tags + "]";
+	}
+	
+	
 
 }

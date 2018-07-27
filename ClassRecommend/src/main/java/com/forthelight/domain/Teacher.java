@@ -13,6 +13,7 @@ public class Teacher implements Serializable {
 	private String email;
 	private String officeAddress;
 	private Integer deleteStatus;
+	private String level;
 
 	private College college;
 	private List<Course> courses = new ArrayList<Course>();
@@ -92,6 +93,14 @@ public class Teacher implements Serializable {
 
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 }
