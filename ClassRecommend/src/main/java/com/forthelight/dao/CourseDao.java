@@ -34,5 +34,11 @@ public interface CourseDao {
 	List<Course> findByMajorId(int majorId);
 	
 	List<Course> findByStudentId(int studentId);
+	
+	List<Course> orderByLike();
+	
+	int likeNumber(int id);
+	
+	int oneTagNumber(int tagId , int id);
 
 }

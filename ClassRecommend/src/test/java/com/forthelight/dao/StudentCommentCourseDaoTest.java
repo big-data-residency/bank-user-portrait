@@ -13,6 +13,7 @@ import com.forthelight.domain.StudentCommentCourse;
 @ContextConfiguration("classpath:applicationContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class StudentCommentCourseDaoTest {
+	
 	@Autowired
 	private StudentCommentCourseDao studentCommentCourseDao;
 	
@@ -26,5 +27,19 @@ public class StudentCommentCourseDaoTest {
 	public void TestFindByTagId() {
 		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseDao.findByTagId(1);
 		System.out.println(studentCommentCourses);
+	}
+	
+	@Test
+	public void TestFindByCourseId() {
+		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseDao.findByCourseId(3);
+		System.out.println(studentCommentCourses);
+
+	}
+	
+	@Test
+	public void TestorderByLikeNumber() {
+		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseDao.orderByLikeNumber(1);
+		System.out.println(studentCommentCourses);
+
 	}
 }

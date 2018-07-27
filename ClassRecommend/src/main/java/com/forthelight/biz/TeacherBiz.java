@@ -22,4 +22,10 @@ public interface TeacherBiz {
 
 	List<Teacher> findByCollegeId(int collegeId);
 
+	int likeNumber(int id);
+
+	String college(int collegeId);
+
+	List<String> tagList(int teacherId);
+
 }

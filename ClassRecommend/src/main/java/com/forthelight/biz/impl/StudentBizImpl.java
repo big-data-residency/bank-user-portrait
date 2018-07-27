@@ -3,11 +3,11 @@ package com.forthelight.biz.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.forthelight.biz.StudentBiz;
 import com.forthelight.dao.StudentDao;
 import com.forthelight.domain.Student;
-import org.springframework.stereotype.Service;
 
 @Service("studentBiz")
 public class StudentBizImpl implements StudentBiz {

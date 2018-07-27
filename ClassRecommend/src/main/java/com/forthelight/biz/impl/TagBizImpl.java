@@ -3,11 +3,13 @@ package com.forthelight.biz.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.forthelight.biz.TagBiz;
 import com.forthelight.dao.TagDao;
 import com.forthelight.domain.Tag;
 
+@Service
 public class TagBizImpl implements TagBiz {
 
 	@Autowired

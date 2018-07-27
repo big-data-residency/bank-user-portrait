@@ -110,4 +110,22 @@ public class CourseDaoTest {
         List<Course> courses = courseDao.findByStudentId(1);
         System.out.println(courses);
     }
+    
+    @Test
+    public void testOrderByLike() {
+    	List<Course> courses = courseDao.orderByLike();
+    	System.out.println(courses);
+    }
+    
+    @Test
+    public void testLikeNumber() {
+    	int likeNumber = courseDao.likeNumber(3);
+    	System.out.println(likeNumber);
+    }
+    
+    @Test
+    public void testOneTagNumber() {
+    	int number = courseDao.oneTagNumber(2, 1);
+    	System.out.println(number);
+    }
 }
