@@ -46,5 +46,12 @@
 		SELECT * FROM student WHERE DeleteStatus=0 AND StudentNumber=#{studentNumber};
 	</select>
 	
+	<select id="findByCourseId" parameterType="int" resultMap="StudentResultMap" >
+	    select * from student
+	    where id in 
+	    ( select studentId from student_select_course where courseId = #{courseId} and deleteStatus = 0 )
+	    and deleteStatus = 0
+	</select>
+	
 	
 </mapper>

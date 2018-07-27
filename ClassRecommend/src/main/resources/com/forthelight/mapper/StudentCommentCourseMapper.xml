@@ -49,5 +49,22 @@
 	    order by likeNumber desc
 	</select>
 	
+	<select id="commentNumberOfCourse" parameterType="int" resultType="int" >
+	    select count(*) from student_comment_course
+	    where selectId in ( select id from student_select_course where courseId = #{courseId} 
+	    and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+	<select id="getSelectIdByStudentIdAndCourseId" resultType="int" >
+	    select id from student_select_course
+	    where studentId = #{arg0} and courseId = #{arg1} and deleteStatus = 0
+	</select>
+	
+	<insert id="insert" parameterType="StudentCommentCourse" >
+	    insert into student_comment_course values
+	    ( null , #{selectId} , #{comment} , #{gradeScore}, #{contentScore} , #{likeNumber} , 0 , 
+	    #{anonymous} , #{commentTime} ,  #{bearScore} , #{interestingScore} ,  #{easyScore} , #{knowledgeScore} )
+	</insert>
+	
 
 </mapper>

@@ -39,4 +39,22 @@ public class StudentCommentCourseBizImpl implements StudentCommentCourseBiz {
 		return studentCommentCourseDao.orderByLikeNumber(teacherId);
 	}
 
+	@Override
+	public int commentNumberOfCourse(int courseId) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.commentNumberOfCourse(courseId);
+	}
+
+	@Override
+	public int getSelectIdByStudentIdAndCourseId(int studentId, int courseId) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.getSelectIdByStudentIdAndCourseId(studentId, courseId);
+	}
+
+	@Override
+	public int insert(StudentCommentCourse studentCommentCourse) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.insert(studentCommentCourse);
+	}
+
 }

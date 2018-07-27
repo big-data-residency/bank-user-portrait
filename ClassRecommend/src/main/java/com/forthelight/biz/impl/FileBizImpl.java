@@ -33,4 +33,10 @@ public class FileBizImpl implements FileBiz {
 		return fileDao.findByCourseId(courseId);
 	}
 
+	@Override
+	public int uploadsNumberOfCourse(int courseId) {
+		// TODO Auto-generated method stub
+		return fileDao.uploadsNumberOfCourse(courseId);
+	}
+
 }
