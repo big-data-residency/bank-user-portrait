@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import com.forthelight.biz.CourseBiz;
 import com.forthelight.dao.CourseDao;
 import com.forthelight.domain.Course;
-import com.forthelight.domain.Teacher;
 
-@Service
+
+@Service("courseBiz")
 public class CourseBizImpl implements CourseBiz {
 	
 	@Autowired
@@ -35,9 +35,8 @@ public class CourseBizImpl implements CourseBiz {
 	}
 
 	@Override
-	public List<Course> findByTeacherName(Teacher teacher) {
-		// TODO Auto-generated method stub
-		return courseDao.findByTeacherName(teacher);
+	public List<Course> findByTeacherName(String teacherName) {
+		return courseDao.findByTeacherName(teacherName);
 	}
 
 	@Override

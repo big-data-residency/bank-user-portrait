@@ -1,11 +1,15 @@
 package com.forthelight.dao;
 
+import com.forthelight.domain.Course;
 import com.forthelight.domain.Student;
+import com.google.gson.Gson;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -37,5 +41,15 @@ public class StudentDaoTest {
     @Test
     public void findByCollegeId() {
         studentDao.findByCollegeId(1);
+    }
+
+    @Test
+    public void findByStudentNumber() {
+        Student student = studentDao.findByStudentNumber("1611111");
+        List<Course> courses = student.getCourses();
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(student));
+        System.out.println(gson.toJson(courses));
+
     }
 }

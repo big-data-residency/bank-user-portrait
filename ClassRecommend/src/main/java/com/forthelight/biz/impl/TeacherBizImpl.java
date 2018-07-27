@@ -9,15 +9,14 @@ import com.forthelight.biz.TeacherBiz;
 import com.forthelight.dao.TeacherDao;
 import com.forthelight.domain.Teacher;
 
-@Service
+
+@Service("teacherBiz")
 public class TeacherBizImpl implements TeacherBiz {
-	
-	@Autowired
+    @Autowired
 	private TeacherDao teacherDao;
 
-	@Override
+    @Override
 	public Teacher findById(int id) {
-		// TODO Auto-generated method stub
 		return teacherDao.findById(id);
 	}
 

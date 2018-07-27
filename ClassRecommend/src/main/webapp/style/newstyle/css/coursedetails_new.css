@@ -1,0 +1,26 @@
+.rating-stars{
+   width:100%;
+    padding-top: 72px;
+}
+.rating-stars ul{
+    list-style-type: none;
+}
+.rating-stars ul li{
+    display: inline;
+}
+.rating-stars ul li a{
+    color: #716969;
+    font-size: 15px;
+}
+.rating-stars ul li a:hover,.rating-stars ul li a.active,.rating-stars ul li a:focus{
+    color: #fb4c29 !important;
+    transition: 0.5s all;
+}
+.rating-stars ul li a {
+        font-size: 30px;
+}
+.rating-stars {
+        width: 100%;
+        padding-top: 20px;
+}
+

@@ -49,19 +49,9 @@ public class CourseDaoTest {
     public void testFindByTeacherName(){
     	Teacher teacher = new Teacher();
     	teacher.setTeacherName("刘晓光");
-        List<Course> courses = courseDao.findByTeacherName(teacher);
+        List<Course> courses = courseDao.findByTeacherName(teacher.getTeacherName());
         System.out.println(courses);
     }
-    
-    
-/*    @Test
-    public void testInsert(){
-    	Course course = new Course();
-    	course.setCourseName("算法导论");
-    	course.setLevel("A");
-        int result = courseDao.insert(course);
-        System.out.println(result);
-    }*/
     
     @Test
     public void testFindByLevel(){

@@ -13,7 +13,7 @@ public interface CourseBiz {
 
 	List<Course> findByCourseName(String courseName);
 
-	List<Course> findByTeacherName(Teacher teacher);
+	List<Course> findByTeacherName(String teacher);
 
 	List<Course> findByLevel(String leve);
 

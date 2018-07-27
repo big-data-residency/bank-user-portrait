@@ -27,4 +27,5 @@ public interface TeacherBiz {
 	String college(int collegeId);
 
 	List<String> tagList(int teacherId);
+
 }

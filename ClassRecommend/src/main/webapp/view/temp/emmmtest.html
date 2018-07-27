@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+<body>
+<div id="app">
+    <el-button v-on:click="myfun">Get请求</el-button>
+    <p v-if="visible===true">正确</p>
+    <p v-else>错误</p>
+    <el-input v-model="wtf" placeholder="请输入内容"></el-input>
+    <p>{{wtf}}</p>
+</div>
+</body>
+<!-- import Vue before Element -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    var Vue = new Vue({
+        el: '#app',
+        data:{
+            wtf:'123',
+            visible:false
+        },
+        methods:{
+            myfun:function () {
+                $.getJSON('login',
+                    {
+                        StudentNumber:11,
+                        Password:'wzy',
+                    },function (json) {
+                    alert("State"+json.success);
+                    alert("data"+json.data);
+                    }
+                    );
+            },
+        }
+    })
+</script>
+</html>

@@ -22,10 +22,10 @@ public class Course implements Serializable {
 	private int midExamWeight;
 	private int passingCourse;
 
-	private College college;
-	private Major major;
-	private Teacher teacher;
-	private List<CourseTime> courseTimes = new ArrayList<CourseTime>();
+	private transient College college;
+	private transient Major major;
+	private transient Teacher teacher;
+	private transient List<CourseTime> courseTimes = new ArrayList<CourseTime>();
 
 	public Course() {
 	}

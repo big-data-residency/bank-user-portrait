@@ -5,23 +5,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="com.forthelight.dao.StudentDao">
-
 	<resultMap id="StudentResultMap" type="Student" autoMapping="true">
-	
 		<id column="id" property="id" />
-		
 		<association property="college" column="collegeId" autoMapping="true" javaType="College"
 			select="com.forthelight.dao.CollegeDao.findById" />
-			
 		<association property="major" column="MajorID" javaType="Major" autoMapping="true"
 			select="com.forthelight.dao.MajorDao.findById" />
-			
 		<collection property="courses" column="id" ofType="Course" autoMapping="true"
 			select="com.forthelight.dao.CourseDao.findByStudentId" />
-			
 		<collection property="files" column="id" ofType="File" autoMapping="true"
 			select="com.forthelight.dao.FileDao.findByStudentId" />
-			
 	</resultMap>
 
 
@@ -47,6 +40,10 @@
 	<select id="findByCollegeId" parameterType="int" resultMap="StudentResultMap" >
 	    select * from Student
 	    where collegeId = #{collegeId} and deleteStatus = 0
+	</select>
+
+	<select id="findByStudentNumber" parameterType="String" resultMap="StudentResultMap">
+		SELECT * FROM student WHERE DeleteStatus=0 AND StudentNumber=#{studentNumber};
 	</select>
 	
 	
