@@ -31,7 +31,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   	<link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
 
     <link rel="stylesheet" href="../../style/newstyle/css/star.css">
-  
+  	
+  	
+  	 <link rel="stylesheet" href="../../style/newstyle/css/style.css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -391,8 +394,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="tab-content">
 				<div class="active tab-pane" id="bigdata">
 					<div class="post" style="height:400px;">
-						<div id="main" style="width: 500px;height:244px;">
-					</div>		
+						<div id="main" style="width: 500px;height:244px;"></div>		
 						
 					<style>
 						#main {
@@ -794,13 +796,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 													chart.resize();
 												}
 											</script>
+					</div>
 				</div>
-			</div>
            
-            
-            
-            
-            	<div class="tab-pane" id="activity">
+                     
+              	<div class="tab-pane" id="activity">
               
                 <!-- Post -->
                 <div class="post">
@@ -935,43 +935,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                   </div>
                   
-                   <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">得分区间</label>
-
+                   <div class="form-group ">
                   
-                  
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                      90~100
-                    </label>
+                <label for="inputSkills" class="col-sm-2 control-label">得分区间
+                  <div class="radio " style="padding-left: 150px;">
+                    <label class="control control--radio">90~100
+      					<input type="radio" name="radio" checked="checked"/>
+      					<div class="control__indicator"></div>
+      						
+      					
+      					
+    				</label>
                     
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                     80~89
-                    </label>
+                    <label class="control control--radio">
+                    	80~89
+      					<input type="radio" name="radio" checked="checked"/>
+      					<div class="control__indicator"></div>
+    				</label>
                     
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                      70~79
-                    </label>
+                    <label class="control control--radio">70~79
+      					<input type="radio" name="radio" checked="checked"/>
+      					<div class="control__indicator"></div>
+    				</label>
                     
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                      60~69
-                    </label>
+                    <label class="control control--radio">60~69
+      					<input type="radio" name="radio" checked="checked"/>
+      					<div class="control__indicator"></div>
+    				</label>
                     
-                    <label>
-                      <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-                      60以下
-                    </label>
+                    <label class="control control--radio">60-
+      					<input type="radio" name="radio" checked="checked"/>
+      					<div class="control__indicator"></div>
+    				</label>
+    				
                   </div>
+                </label>
                    </div>
 
- <div class="form-group">
-    <label for="inputSkills" class="col-sm-2 control-label">手下留情</label>
+ 					<div class="form-group">
+    					<label for="inputSkills" class="col-sm-2 control-label">手下留情</label>
 
- <div class='rating-stars text-center'>
+ 	<div class='rating-stars '>
     <ul id='stars'>
     
       <li class='star' title='Poor' data-value='1'>
@@ -994,10 +998,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </div>
   </div>
   
-<div class="form-group">
+					<div class="form-group">
     <label for="inputSkills" class="col-sm-2 control-label">课堂有趣</label>
  
- <div class='rating-stars text-center'>
+ <div class='rating-stars '>
     <ul id='stars'>
     
       <li class='star' title='Poor' data-value='1'>
@@ -1020,10 +1024,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </div>
   </div>
   
-  <div class="form-group">
+  					<div class="form-group">
     <label for="inputSkills" class="col-sm-2 control-label">划水程度</label>
 
- <div class='rating-stars text-center'>
+ <div class='rating-stars '>
     <ul id='stars'>
     
       <li class='star' title='Poor' data-value='1'>
@@ -1046,10 +1050,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </div>
   </div>
   
-<div class="form-group">
+					<div class="form-group">
     <label for="inputSkills" class="col-sm-2 control-label">干货满满</label>
 
- <div class='rating-stars text-center'>
+ <div class='rating-stars '>
     <ul id='stars'>
     
       <li class='star' title='Poor' data-value='1'>
@@ -1069,28 +1073,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </li>
       
     </ul>
+  
   </div>
-  </div>
-
-
-
-
-
-
-    
+ </div>
+ 
+				<!--</form>-->
+										                                       
                  
-                 
-                 
-                 
-                 <div class="form-group">
+                <div class="form-group">
                  	<label for="inputSkills" class="col-sm-2 control-label">是否匿名</label>
 
                     <!--<div class="col-sm-offset-2 col-sm-10">-->
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> 匿名
-                        </label>
-                      </div>
+               <label for="inputSkills" class="col-sm-2 control-label">
+               	
+               	<div class="checkbox ">
+                        <label class="control control--checkbox">匿名
+      					<input type="checkbox" checked="checked"/>
+      					<div class="control__indicator text-center"></div>
+               			</label>
+               </div>
+               </label>
+
                     <!--</div>-->
                   </div>
                   <div class="form-group">
@@ -1098,8 +1101,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <button type="submit" class="btn btn-danger">Submit</button>
                     </div>
                   </div>
+                
                 </form>
-              </div>
+                
+                </div>
+              	
+              	</div>
               <!-- /.tab-pane -->
             </div>
             <!-- /.tab-content -->
@@ -1222,40 +1229,83 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script  src="../../style/newstyle/js/star.js"></script>
 
 <script>
-	var Vue = new Vue({
+	var Vue = new Vue({  
         el: '#classvue',
         data:{
-            wtf:'123',
-            visible:false
-            comments:[{
-            	id:'',
-            	name:'',
-            	like:'',
-            	        
-            }],
+        	
+            Comments'',
+            Basic:{
+            	tags:'',
+            }
             ClassInfo:{
             	likenum:'',
             	uploadsnum:'',
             	commentsnum:'',
             }
+            Mine:{
+            	comments:'',
+            	tags:'',
+            	bearScore:'',
+                interestingScore:'',
+                easyScore:'',
+                knowledgeScore:'',
+                gradeScore:'',
+                anonymous:'',
+            }
             
             
         },
         methods:{
-            myfun () {
-                $.getJSON('login',
-                    {
-                        StudentNumber:11,
-                        Password:'wzy',
-                    },function (json) {
-                    alert("State"+json.success);
-                    alert("data"+json.data);
-                    for(var j=0;j<this.comments.length;j++)
-                    comments[j].abc=0;
+            myfun() {
+                $.ajax({
+                    url:'http://localhost:8080/login',
+                    type:'GET',//请求类型
+                    data:{
+                      teacherId:'1',
+                      comments:'你很优秀',
+                      tags:'优秀',
+                      studentId:'1',
+                      courseId:'1',
+                      bearScore:'5',
+                      interestingScore:'5',
+                      easyScore:'5',
+                      knowledgeScore:'5',
+                      gradeScore:'5',
+                      anonymous:'0',
+                      
+                    },
+                    dataType:'json',
+                    success:function (res) {
+                        if(res.success){
+                            alert("dosomething");//请求数据成功之后的行为
+                        }else{
+                            alert("do other thing");
+                        }
+                        data.Comments = res.data.comments,
+                        data.Basic.tags = res.data.tags,
+                        data.ClassInfo.likenum = res.data.likeNumber
+            			data.ClassInfo.uploadsnum = res.data.uploadNumber
+            			data.ClassInfo.commentsnum = res.data.commentNumber
+                    },
+                    error:function (XMLHttpRequest) {
+                        alert("输出错误信息"+XMLHttpRequest.responseText);
                     }
-                    );
+                });
             },
+            jump(){
+                //本层跳转
+                location.href = "lesson/"+this.MyID;  //一般这个就可以了
+                // window.location.href = "lesson/"+this.MyID;
+                //上一层跳转
+                // parent.location.href = "lesson/"+this.MyID;
+                //顶层跳转
+                // top.location.href = "lesson/"+this.MyID;
+            }
+        },
+        mounted(){
+        	// this.myfun();
         }
+           
     })
 
 </script>
