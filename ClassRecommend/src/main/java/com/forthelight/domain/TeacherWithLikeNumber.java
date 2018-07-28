@@ -2,7 +2,7 @@ package com.forthelight.domain;
 
 public class TeacherWithLikeNumber {
 
-	private Teacher teacher;
+	private transient Teacher teacher;
 	private int likeNumber;
 
 	public TeacherWithLikeNumber() {

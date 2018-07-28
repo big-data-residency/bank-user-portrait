@@ -88,6 +88,7 @@ public class CourseController {
 		res.put("uploadsNumber", uploadsNumber);
 		res.put("commentNumber", commentNumber);
 		res.put("TagsNumber", TagsNumber);
+		res.put("commentNumber", commentNumber);
 		res.put("comments", comments);
 
 		return gson.toJson(res);
@@ -107,7 +108,7 @@ public class CourseController {
 
 		Map<String, Object> res = new HashMap<>();
 
-		String comment = request.getParameter("comment");
+		String comment = request.getParameter("comments");
 
 		String[] tagsIdStr = request.getParameterValues("tags");
 

@@ -12,10 +12,10 @@ public class Major implements Serializable {
 	private Integer collegeId;
 	private Integer deleteStatus;
 
-	private College college;
+	private transient College college;
 
-	private List<Student> students = new ArrayList<Student>();
-	private List<Course> courses = new ArrayList<Course>();
+	private transient List<Student> students = new ArrayList<Student>();
+	private transient List<Course> courses = new ArrayList<Course>();
 
 	public Major() {
 	}

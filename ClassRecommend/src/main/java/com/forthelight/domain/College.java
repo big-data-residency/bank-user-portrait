@@ -11,10 +11,10 @@ public class College implements Serializable {
 	private int type;
 	private Integer deleteStatus;
 
-	private List<Major> majors = new ArrayList<Major>();
-	private List<Student> students = new ArrayList<Student>();
-	private List<Teacher> teachers = new ArrayList<Teacher>();
-	private List<Course> courses = new ArrayList<Course>();
+	private transient List<Major> majors = new ArrayList<Major>();
+	private transient List<Student> students = new ArrayList<Student>();
+	private transient List<Teacher> teachers = new ArrayList<Teacher>();
+	private transient List<Course> courses = new ArrayList<Course>();
 
 	public College() {
 	}

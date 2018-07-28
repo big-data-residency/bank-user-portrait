@@ -85,8 +85,8 @@
 	    where id = #{collegeId} and deleteStatus = 0
 	</select>
 	
-	<select id="tagList" parameterType="int" resultType="String" >
-	    select tagName from tag
+	<select id="tagList" parameterType="int" resultType="Tag" >
+	    select * from tag
 	    where id in ( select tagId from comment_tag where commentId in
 	    ( select id from student_comment_course where selectId in 
 	    ( select id from student_select_course where courseId in
