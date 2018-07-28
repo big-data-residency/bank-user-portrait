@@ -17,6 +17,7 @@ public class Teacher implements Serializable {
 	private String officeAddress;
 	private Integer deleteStatus;
 	private String level;
+	private String teacherPortrait;
 
 	private transient College college;
 	private transient List<Course> courses = new ArrayList<Course>();
@@ -104,6 +105,14 @@ public class Teacher implements Serializable {
 
 	public void setLevel(String level) {
 		this.level = level;
+	}
+
+	public String getTeacherPortrait() {
+		return teacherPortrait;
+	}
+
+	public void setTeacherPortrait(String teacherPortrait) {
+		this.teacherPortrait = teacherPortrait;
 	}
 
 }

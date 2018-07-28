@@ -10,7 +10,7 @@ public class Tag implements Serializable {
 	private String tagName;
 	private int deleteStatus;
 
-	private List<StudentCommentCourse> comments = new ArrayList<StudentCommentCourse>();
+	private transient List<StudentCommentCourse> comments = new ArrayList<StudentCommentCourse>();
 
 	public Tag() {
 		super();
