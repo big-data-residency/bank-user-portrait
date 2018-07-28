@@ -20,7 +20,7 @@
 
 
 
-
+@
 	<select id="findById" resultMap="FileResultMap" parameterType="int">
 		SELECT * FROM file 
 		WHERE id=#{id} AND DeleteStatus=0;

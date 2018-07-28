@@ -33,7 +33,7 @@ public class StudentController {
 
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-        Map<String, String> rsp = new HashMap<>();
+        Map<String, Object> rsp = new HashMap<>();
         String studentNumber = request.getParameter("studentNumber");
         String password = request.getParameter("password");
 
