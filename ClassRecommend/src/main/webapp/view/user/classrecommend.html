@@ -1229,40 +1229,83 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script  src="../../style/newstyle/js/star.js"></script>
 
 <script>
-	var Vue = new Vue({
+	var Vue = new Vue({  
         el: '#classvue',
         data:{
-            wtf:'123',
-            visible:false
-            comments:[{
-            	id:'',
-            	name:'',
-            	like:'',
-            	        
-            }],
+        	
+            Comments'',
+            Basic:{
+            	tags:'',
+            }
             ClassInfo:{
             	likenum:'',
             	uploadsnum:'',
             	commentsnum:'',
             }
+            Mine:{
+            	comments:'',
+            	tags:'',
+            	bearScore:'',
+                interestingScore:'',
+                easyScore:'',
+                knowledgeScore:'',
+                gradeScore:'',
+                anonymous:'',
+            }
             
             
         },
         methods:{
-            myfun () {
-                $.getJSON('login',
-                    {
-                        StudentNumber:11,
-                        Password:'wzy',
-                    },function (json) {
-                    alert("State"+json.success);
-                    alert("data"+json.data);
-                    for(var j=0;j<this.comments.length;j++)
-                    comments[j].abc=0;
+            myfun() {
+                $.ajax({
+                    url:'http://localhost:8080/login',
+                    type:'GET',//请求类型
+                    data:{
+                      teacherId:'1',
+                      comments:'你很优秀',
+                      tags:'优秀',
+                      studentId:'1',
+                      courseId:'1',
+                      bearScore:'5',
+                      interestingScore:'5',
+                      easyScore:'5',
+                      knowledgeScore:'5',
+                      gradeScore:'5',
+                      anonymous:'0',
+                      
+                    },
+                    dataType:'json',
+                    success:function (res) {
+                        if(res.success){
+                            alert("dosomething");//请求数据成功之后的行为
+                        }else{
+                            alert("do other thing");
+                        }
+                        data.Comments = res.data.comments,
+                        data.Basic.tags = res.data.tags,
+                        data.ClassInfo.likenum = res.data.likeNumber
+            			data.ClassInfo.uploadsnum = res.data.uploadNumber
+            			data.ClassInfo.commentsnum = res.data.commentNumber
+                    },
+                    error:function (XMLHttpRequest) {
+                        alert("输出错误信息"+XMLHttpRequest.responseText);
                     }
-                    );
+                });
             },
+            jump(){
+                //本层跳转
+                location.href = "lesson/"+this.MyID;  //一般这个就可以了
+                // window.location.href = "lesson/"+this.MyID;
+                //上一层跳转
+                // parent.location.href = "lesson/"+this.MyID;
+                //顶层跳转
+                // top.location.href = "lesson/"+this.MyID;
+            }
+        },
+        mounted(){
+        	// this.myfun();
         }
+           
     })
 
 </script>
