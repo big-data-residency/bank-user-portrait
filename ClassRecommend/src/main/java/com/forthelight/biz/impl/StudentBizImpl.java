@@ -55,4 +55,10 @@ public class StudentBizImpl implements StudentBiz {
     public int insert(Student student) {
         return studentDao.insert(student);
     }
+
+	@Override
+	public List<Student> findByCourseId(int courseId) {
+		// TODO Auto-generated method stub
+		return studentDao.findByCourseId(courseId);
+	}
 }

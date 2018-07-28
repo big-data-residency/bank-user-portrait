@@ -93,5 +93,6 @@
 	    ( select courseId from course where teacherId = #{teacherId} 
 	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
 	</select>
+	
 
 </mapper>

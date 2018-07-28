@@ -13,5 +13,11 @@ public interface StudentCommentCourseBiz {
 	List<StudentCommentCourse> findByCourseId(int courseId);
 	
 	List<StudentCommentCourse> orderByLikeNumber(int teacherId);
+	
+	int commentNumberOfCourse(int courseId);
+	
+	int getSelectIdByStudentIdAndCourseId(int studentId, int courseId);
+	
+	int insert(StudentCommentCourse studentCommentCourse);
 
 }

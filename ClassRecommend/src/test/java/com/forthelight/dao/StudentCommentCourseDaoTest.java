@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.forthelight.domain.Course;
+import com.forthelight.domain.Student;
 import com.forthelight.domain.StudentCommentCourse;
 
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -41,5 +43,27 @@ public class StudentCommentCourseDaoTest {
 		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseDao.orderByLikeNumber(1);
 		System.out.println(studentCommentCourses);
 
+	}
+	
+	@Test
+	public void TestgetSelectIdBystudentIdAndCourseId() {
+		int selectId = studentCommentCourseDao.getSelectIdByStudentIdAndCourseId(2, 3);
+		System.out.println(selectId);
+	}
+	
+	@Test
+	public void Testinsert() {
+		
+		StudentCommentCourse studentCommentCourse = new StudentCommentCourse();
+		studentCommentCourse.setComment("优秀");
+		Student student = new Student();
+		student.setId(1);
+		Course course = new Course();
+		course.setId(1);
+		studentCommentCourse.setSelectId(studentCommentCourseDao.getSelectIdByStudentIdAndCourseId(1, 1));
+		studentCommentCourse.setStudent(student);
+		studentCommentCourse.setCourse(course);
+		int result = studentCommentCourseDao.insert(studentCommentCourse);
+		System.out.println(result);
 	}
 }

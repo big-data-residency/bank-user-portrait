@@ -1,6 +1,7 @@
 package com.forthelight.dao;
 
 import com.forthelight.domain.Course;
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 import java.util.List;
@@ -127,5 +128,11 @@ public class CourseDaoTest {
     public void testOneTagNumber() {
     	int number = courseDao.oneTagNumber(2, 1);
     	System.out.println(number);
+    }
+    
+    @Test
+    public void testTagList() {
+    	List<Tag> tags = courseDao.tagList(3);
+    	System.out.println(tags);
     }
 }
