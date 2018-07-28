@@ -10,7 +10,8 @@
 
     <el-button v-on:click="myfun">请求</el-button>
     <el-button v-on:click="jump">跳转</el-button>
-    
+    <el-button v-on:click="textout">输出参数</el-button>
+    <router-link to="/foo">Go to Foo</router-link>
     <p v-if="visible===true">正确</p>
     <p v-else>错误</p>
     <el-input v-model="wtf" placeholder="请输入内容"></el-input>
@@ -19,7 +20,7 @@
 </body>
 <!-- import Vue before Element -->
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <!-- import JavaScript -->
@@ -32,6 +33,7 @@
             wtf:'123',
             visible:false,
             MyID:1,
+            Param:'',
         },
         methods:{
             myfun() {
@@ -57,12 +59,15 @@
             },
             jump(){
                 //本层跳转
-                location.href = "lesson/"+this.MyID;  //一般这个就可以了
+                location.href = "testjump.html?SID=1";  //一般这个就可以了
                 // window.location.href = "lesson/"+this.MyID;
                 //上一层跳转
                 // parent.location.href = "lesson/"+this.MyID;
                 //顶层跳转
                 // top.location.href = "lesson/"+this.MyID;
+            },
+            textout(){
+                this.Param=this.$router.params.id;
             }
         },
         mounted(){
