@@ -64,12 +64,35 @@
 	<insert id="insert" parameterType="Teacher">
 		insert into teacher values
 		( null , #{teacherName} , #{gender} , #{telPhone} , #{email} , 
-		#{officeAddress} , #{college.id} , 0 )
+		#{officeAddress} , #{college.id} , 0 , #{level})
 	</insert>
 	
 	<select id="findByCollegeId" parameterType="int" resultMap="TeacherResultMap" >
 	    select * from Teacher 
 	    where collegeId = #{collegeId} and deleteStatus = 0
 	</select>
+	
+	<select id="likeNumber" parameterType="int" resultType="int" >
+	    select sum(likeNumber) from student_comment_course
+	    where selectId in ( select id from student_select_course where courseId in
+	    ( select id from Course where teacherId = #{id} 
+	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+	<select id="college" parameterType="int" resultType="String" >
+	    select collegeName
+	    from College
+	    where id = #{collegeId} and deleteStatus = 0
+	</select>
+	
+	<select id="tagList" parameterType="int" resultType="String" >
+	    select tagName from tag
+	    where id in ( select tagId from comment_tag where commentId in
+	    ( select id from student_comment_course where selectId in 
+	    ( select id from student_select_course where courseId in
+	    ( select courseId from course where teacherId = #{teacherId} 
+	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
 
 </mapper>

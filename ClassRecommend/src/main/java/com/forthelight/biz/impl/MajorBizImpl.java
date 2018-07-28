@@ -2,9 +2,12 @@ package com.forthelight.biz.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.forthelight.biz.MajorBiz;
 import com.forthelight.domain.Major;
 
+@Service
 public class MajorBizImpl implements MajorBiz {
 
 	@Override

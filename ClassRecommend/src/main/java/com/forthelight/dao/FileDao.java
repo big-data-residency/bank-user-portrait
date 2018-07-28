@@ -12,4 +12,5 @@ public interface FileDao {
 
 	List<File> findByCourseId(int courseId);
 
+	int uploadsNumberOfCourse(int courseId);
 }

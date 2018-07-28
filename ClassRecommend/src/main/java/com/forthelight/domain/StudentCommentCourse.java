@@ -1,6 +1,7 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -14,10 +15,16 @@ public class StudentCommentCourse implements Serializable {
 	private int likeNumber;
 	private int Anonymous;
 	private int deleteStatus;
+	private Timestamp commentTime;
+	private int bearScore;
+	private int interestingScore;
+	private int easyScore;
+	private int knowledgeScore;
+	private int selectId;
 
-	private Student student;
-	private Course course;
-	private List<Tag> tags = new ArrayList<Tag>();
+	private transient Student student;
+	private transient Course course;
+	private transient List<Tag> tags = new ArrayList<Tag>();
 
 	public StudentCommentCourse() {
 		super();
@@ -102,6 +109,54 @@ public class StudentCommentCourse implements Serializable {
 
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+
+	public Timestamp getCommentTime() {
+		return commentTime;
+	}
+
+	public void setCommentTime(Timestamp commentTime) {
+		this.commentTime = commentTime;
+	}
+
+	public int getBearScore() {
+		return bearScore;
+	}
+
+	public void setBearScore(int bearScore) {
+		this.bearScore = bearScore;
+	}
+
+	public int getInterestingScore() {
+		return interestingScore;
+	}
+
+	public void setInterestingScore(int interestingScore) {
+		this.interestingScore = interestingScore;
+	}
+
+	public int getEasyScore() {
+		return easyScore;
+	}
+
+	public void setEasyScore(int easyScore) {
+		this.easyScore = easyScore;
+	}
+
+	public int getKnowledgeScore() {
+		return knowledgeScore;
+	}
+
+	public void setKnowledgeScore(int knowledgeScore) {
+		this.knowledgeScore = knowledgeScore;
+	}
+
+	public int getSelectId() {
+		return selectId;
+	}
+
+	public void setSelectId(int selectId) {
+		this.selectId = selectId;
 	}
 
 }

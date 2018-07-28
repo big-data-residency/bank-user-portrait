@@ -20,4 +20,11 @@ public interface TeacherDao {
 	int insert(Teacher teacher);
 
 	List<Teacher> findByCollegeId(int collegeId);
+	
+	int likeNumber(int id);
+	
+	String college(int collegeId);
+	
+	List<String> tagList(int teacherId);
+	
 }

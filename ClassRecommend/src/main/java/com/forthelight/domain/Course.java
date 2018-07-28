@@ -26,6 +26,7 @@ public class Course implements Serializable {
 	private transient Major major;
 	private transient Teacher teacher;
 	private transient List<CourseTime> courseTimes = new ArrayList<CourseTime>();
+	private transient List<Student> students = new ArrayList<Student>();
 
 	public Course() {
 	}
@@ -181,6 +182,13 @@ public class Course implements Serializable {
 	public void setCourseTimes(List<CourseTime> courseTimes) {
 		this.courseTimes = courseTimes;
 	}
-	
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
 
 }

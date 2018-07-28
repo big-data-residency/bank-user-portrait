@@ -1,0 +1,207 @@
+body {
+  height: 100%;
+  overflow: hidden;
+  width: 100% !important;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+@font-face { 
+  font-family: harry; 
+  src: url(../font/HARRP___.TTF); 
+} 
+.head{
+  width: 400px;
+  margin: 0 auto;
+  top: 15%;
+  position: absolute;
+  left: 60%;
+  margin-left: -125px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  font-family: harry;
+  line-height:70px
+}
+
+.backRight {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  /*background: #3498db url(https://download.unsplash.com/photo-1429041966141-44d228a42775);*/
+ background-image: url(../images/background.jpg)
+	/*background-image: url(https://images.unsplash.com/photo-1487111023822-2e903e12f6f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e624dab57f73e309ec97a842647ec723&auto=format&fit=crop&w=634&q=80);*/
+  	background-size: 100%;
+  background-repeat:no-repeat;
+  /*background-size: cover;*/
+  /*background-position: 50% 50%;*/
+}
+
+.backLeft {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  /*background: #e74c3c url(https://download.unsplash.com/photo-1428279148693-1cf2163ed67d);*/
+ /*background:url(https://images.unsplash.com/photo-1470566528253-41c75fc933c8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=162739aa8db868f43c1d11f519452024&auto=format&fit=crop&w=1500&q=80);*/
+	 background: url(../images/background.jpg);
+	background-size: 100%;
+  background-repeat:no-repeat;
+  /*background-size: cover;*/
+  /*background-position: 50% 50%;*/  
+}
+
+#back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -999;
+}
+
+#slideBox {
+  width: 50%;
+  max-height: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin-left: 50%;
+  position: absolute;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.topLayer {
+  width: 200%;
+  height: 100%;
+  position: relative;
+  left: 0;
+  left: -100%;
+}
+
+.left {
+  /*width: 50%;*/
+  /*height: 100%;*/
+  background: #2C3034;
+  left: 0;
+  /*position: absolute;*/
+	float: left;
+}
+
+.right {
+  /*width: 50%;*/
+  /*height: 100%;*/
+  background: #f9f9f9;
+  right: 0;
+  /*position: absolute;*/
+  float: right;
+}
+
+.content {
+  /*width: 250px;*/
+  margin: 0 auto;
+  top: 30%;
+  left: 75% !important;
+  position: absolute;
+  left: 50%;
+  margin-left: -125px;
+}
+.content h2 {
+  color: black;
+  font-weight: bold;
+  font-size: 35px;
+}
+.content_l h2 {
+  color: black;
+  font-weight: bold;
+  font-size: 35px;
+}
+
+.content_l {
+  /*width: 250px;*/
+  margin: 0 auto;
+  top: 30%;
+  left: 20% !important;
+  position: absolute;
+  left: 50%;
+  margin-left: -125px;
+}
+button {
+  /*background: #03A9F4;*/
+  background: black;
+  padding: 10px 16px;
+  width: auto;
+  font-weight: 600;
+  text-transform:  uppercase;
+  font-size: 14px;
+  color: #fff;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+  border: 0;
+  outline: 0;
+  margin: 15px 15px 15px 0;
+  transition: all 0.25s;
+}
+
+button:hover {
+  background: #0288D1;
+
+  box-shadow: 0 4px 7px rgba(0,0,0,0.1), 0 3px 6px rgba(0,0,0,0.1);
+}
+.off {
+  background: none;
+  color: #03A9F4;
+  box-shadow: none;
+}
+
+.right .off:hover {
+  background: #eee;
+  /*color: #03A9F4;*/
+ color: white;
+  box-shadow: none;
+}
+.left .off:hover {
+  box-shadow: none;
+  color: #03A9F4;
+  background: #363A3D;
+}
+input {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid #45494C;
+  font-size: 14px;
+  color: #959595;
+  padding: 8px 0;
+  margin-top: 20px;
+}
+
+/*login part*/
+#large-header {
+  /*background-image: url("https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/img/demo-1-bg.jpg");*/
+}
+.main-title {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  color: #f9f1e9;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+.demo-1 .main-title {
+  text-transform: uppercase;
+  font-size: 4.2em;
+  letter-spacing: 0.1em;
+}
+.main-title .thin {
+  font-weight: 200;
+}
+@media only screen and (max-width: 768px) {
+  .demo-1 .main-title {
+    font-size: 3em;
+  }
+}
+
+
+/*end*/
