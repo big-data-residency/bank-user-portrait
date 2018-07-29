@@ -12,8 +12,8 @@ public class File implements Serializable {
 	private int downloadNum;
 	private int deleteStatus;
 
-	private Student student;
-	private Course course;
+	private transient Student student;
+	private transient Course course;
 
 	public File() {
 		super();

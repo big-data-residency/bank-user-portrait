@@ -31,10 +31,10 @@
 
 	<insert id="insert" parameterType="Student" >
 		INSERT INTO student 
-		(id, StudentName, Gender, NickName, Password, StudentNumber, Grade, CollegeID, MajorID, Privilege, DeleteStatus)
+		(id, StudentName, Gender, NickName, Password, StudentNumber, Grade, CollegeID, MajorID, Privilege, DeleteStatus, studentPortrait) 
 		VALUES 
 		(NULL, #{studentName}, #{gender}, #{nickName}, #{password}, #{studentNumber}, #{grade},#{college.id},
-		 #{major.id}, #{privilege}, 0);
+		 #{major.id}, #{privilege}, 0,  #{studentPortrait});
 	</insert>
 	
 	<select id="findByCollegeId" parameterType="int" resultMap="StudentResultMap" >

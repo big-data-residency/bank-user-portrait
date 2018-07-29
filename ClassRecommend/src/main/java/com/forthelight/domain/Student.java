@@ -8,6 +8,7 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class Student implements Serializable {
+
 	private Integer id;
 	private String studentName;
 	private String gender;
@@ -17,7 +18,7 @@ public class Student implements Serializable {
 	private int grade;
 	private int privilege;
 	private int deleteStatus;
-	private Timestamp commentTime;
+	private String studentPortrait;
 
 	private transient College college;
 	private transient Major major;
@@ -133,13 +134,12 @@ public class Student implements Serializable {
 		this.files = files;
 	}
 
-	public Timestamp getCommentTime() {
-		return commentTime;
+	public String getStudentPortrait() {
+		return studentPortrait;
 	}
 
-	public void setCommentTime(Timestamp commentTime) {
-		this.commentTime = commentTime;
+	public void setStudentPortrait(String studentPortrait) {
+		this.studentPortrait = studentPortrait;
 	}
-	
 
 }
