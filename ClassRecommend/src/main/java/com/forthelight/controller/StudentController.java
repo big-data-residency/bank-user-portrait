@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,24 +27,24 @@ public class StudentController {
         this.studentBiz = studentBiz;
     }
 
-    @RequestMapping(value = "/login", produces = "text/json; charset=utf-8")
+    @RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String login(HttpServletRequest request, HttpServletResponse response){
-        response.setContentType("text/json;charset:UTF-8");
         response.setCharacterEncoding("UTF-8");
+        response.setContentType("json");
 
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-        Map<String, String> rsp = new HashMap<>();
+        Map<String, Object> rsp = new HashMap<>();
         String studentNumber = request.getParameter("studentNumber");
         String password = request.getParameter("password");
 
         String validateResult = studentBiz.loginValidate(studentNumber, password);
-        if (validateResult.equals("登陆成功")){
-            rsp.put("success", "true");
+        if (validateResult.equals("登录成功")){
+            rsp.put("success", true);
             rsp.put("data", validateResult);
         } else {
-            rsp.put("success", "false");
+            rsp.put("success", false);
             rsp.put("data", validateResult);
         }
         return gson.toJson(rsp);
