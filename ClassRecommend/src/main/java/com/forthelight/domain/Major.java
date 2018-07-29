@@ -9,7 +9,6 @@ import java.util.List;
 public class Major implements Serializable {
 	private Integer id;
 	private String majorName;
-	private Integer collegeId;
 	private Integer deleteStatus;
 
 	private College college;
@@ -34,14 +33,6 @@ public class Major implements Serializable {
 
 	public void setMajorName(String majorName) {
 		this.majorName = majorName;
-	}
-
-	public Integer getCollegeId() {
-		return collegeId;
-	}
-
-	public void setCollegeId(Integer collegeId) {
-		this.collegeId = collegeId;
 	}
 
 	public Integer getDeleteStatus() {
