@@ -10,7 +10,9 @@
 
     <el-button v-on:click="myfun">请求</el-button>
     <el-button v-on:click="jump">跳转</el-button>
-    
+    <p>{{sus}}</p>
+    <hr/>
+    <p>{{dat}}</p>
     <p v-if="visible===true">正确</p>
     <p v-else>错误</p>
     <el-input v-model="wtf" placeholder="请输入内容"></el-input>
@@ -28,36 +30,45 @@
 <script>
     var Vue = new Vue({
         el: '#app',
-        data:{
-            wtf:'123',
-            visible:false,
-            MyID:1,
+        data: {
+            wtf: '123',
+            visible: false,
+            MyID: 1,
+            sus: 'ewq',
+            dat: '',
         },
-        methods:{
+        methods: {
             myfun() {
+                let _self = this;
                 $.ajax({
-                    url:'http://localhost:8080/login',
-                    type:'DELETE',//请求类型
-                    data:{
-                      name:123,
-                      number:'hlst',
+                    url: 'http://localhost:8080/login',
+                    type: 'GET',//请求类型
+                    data: {
+                        name: 123,
+                        number: 'hlst',
                     },
-                    dataType:'json',
-                    success:function (json) {
-                        if(json.success){
-                            alert("dosomething");//请求数据成功之后的行为
-                        }else{
-                            alert("do other thing");
+                    dataType: 'json',
+                    success(json) {
+                        if (json.success) {
+                            this.sus = json.success;
+                            this.dat = json.data;
+                        } else {
+                            console.log(json);
+                            Vue.sus = 'fdsfd';
+                            // alert(this.sus);
+                            // this.sus=json.success;
+                            // this.dat=json.data;
+                            // console.log(this.sus);
                         }
                     },
-                    error:function (XMLHttpRequest) {
-                        alert("输出错误信息"+XMLHttpRequest.responseText);
+                    error: function (XMLHttpRequest) {
+                        alert("输出错误信息" + XMLHttpRequest.responseText);
                     }
                 });
             },
-            jump(){
+            jump() {
                 //本层跳转
-                location.href = "lesson/"+this.MyID;  //一般这个就可以了
+                location.href = "lesson/" + this.MyID;  //一般这个就可以了
                 // window.location.href = "lesson/"+this.MyID;
                 //上一层跳转
                 // parent.location.href = "lesson/"+this.MyID;
@@ -65,8 +76,8 @@
                 // top.location.href = "lesson/"+this.MyID;
             }
         },
-        mounted(){
-        	// this.myfun();
+        mounted() {
+            // this.myfun();
         }
     })
 </script>

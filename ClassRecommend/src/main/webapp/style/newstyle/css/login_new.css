@@ -29,7 +29,7 @@ body {
   width: 50%;
   height: 100%;
   /*background: #3498db url(https://download.unsplash.com/photo-1429041966141-44d228a42775);*/
- background-image: url(../images/background.jpg)
+ /*background-image: url(../images/background.jpg);*/
 	/*background-image: url(https://images.unsplash.com/photo-1487111023822-2e903e12f6f0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=e624dab57f73e309ec97a842647ec723&auto=format&fit=crop&w=634&q=80);*/
   	background-size: 100%;
   background-repeat:no-repeat;
