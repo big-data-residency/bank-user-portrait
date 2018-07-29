@@ -66,4 +66,16 @@ public class StudentCommentCourseDaoTest {
 		int result = studentCommentCourseDao.insert(studentCommentCourse);
 		System.out.println(result);
 	}
+	
+	@Test
+	public void TestgetScoreByGrade() {
+		int grade = studentCommentCourseDao.getScoreByGrade("16",3);
+		System.out.println(grade);
+	}
+	
+	@Test
+	public void TestgetContentScoreByGrade() {
+		int contentScore = studentCommentCourseDao.getContentScoreByGrade("16");
+		System.out.println(contentScore);
+	}
 }

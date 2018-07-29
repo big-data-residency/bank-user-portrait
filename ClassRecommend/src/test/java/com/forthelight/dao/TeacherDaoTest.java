@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
@@ -83,7 +84,7 @@ public class TeacherDaoTest {
 	
 	@Test
 	public void TestTagList() {
-		List<String> tags = teacherDao.tagList(1);
+		List<Tag> tags = teacherDao.tagList(1);
 		System.out.println(tags);
 	}
 

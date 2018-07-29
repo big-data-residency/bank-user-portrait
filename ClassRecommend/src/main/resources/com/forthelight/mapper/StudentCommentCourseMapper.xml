@@ -66,5 +66,32 @@
 	    #{anonymous} , #{commentTime} ,  #{bearScore} , #{interestingScore} ,  #{easyScore} , #{knowledgeScore} )
 	</insert>
 	
+	<select id="getScoreByGrade"  resultType="int" >
+	    select sum(gradeScore) from student_comment_course
+	    where selectId in ( select id from student_select_course
+	    where studentId in ( select id from Student where studentNumber like '${arg0}%'
+	    and deleteStatus = 0 ) and deleteStatus = 0 and courseId = #{arg1} ) and deleteStatus = 0 
+	</select>
+	
+	<select id="numberOfGetScoreByGrade" resultType="int" >
+	    select count(*) from student_comment_course
+	    where selectId in ( select id from student_select_course
+	    where studentId in ( select id from Student where studentNumber like '${arg0}%'
+	    and deleteStatus = 0 ) and deleteStatus = 0 and courseId = #{arg1} ) and deleteStatus = 0 
+	</select>
+	
+	<select id="getContentScoreByGrade" resultType="int" >
+	    select sum(contentScore) from student_comment_course
+	    where selectId in ( select id from student_select_course
+	    where studentId in ( select id from Student where studentNumber like '${_parameter}%'
+	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 
+	</select>
+	
+	<select id="numberOfGetContentScoreByGrade" resultType="int" >
+	    select count(*) from student_comment_course
+	    where selectId in ( select id from student_select_course
+	    where studentId in ( select id from Student where studentNumber like '${_parameter}%'
+	    and deleteStatus = 0 ) and deleteStatus = 0  ) and deleteStatus = 0 
+	</select>
 
 </mapper>
