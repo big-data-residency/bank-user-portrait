@@ -10,4 +10,6 @@ public interface MajorDao {
 
 	List<Major> findByCollegeId(int collegeId);
 
+	Major findByName(String majorName);
+
 }
