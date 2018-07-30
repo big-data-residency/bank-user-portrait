@@ -57,7 +57,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id = "studentvue">
 
   <!-- Main Header -->
   <header class="main-header">
@@ -363,9 +363,7 @@ desired effect
 
               <hr>
 
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              
             </div>
             <!-- /.box-body -->
           </div>
@@ -375,7 +373,7 @@ desired effect
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+              <li class="active"><a href="#activity" data-toggle="tab">Mycomments</a></li>
               <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
               <li><a href="#settings" data-toggle="tab">Settings</a></li>
             </ul>
@@ -764,5 +762,60 @@ desired effect
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+
+
+<script>
+    var Vue = new Vue({
+        el: '#studentvue',
+        data:{
+            studentname:'',
+            studentid:'',
+            college:'',
+            department:'',
+            tags:'',
+            MyComments:'',
+            Timeline{
+            	name:'',
+            }
+            
+        },
+        methods:{
+            myfun() {
+                $.ajax({
+                    url:'http://localhost:8080/login',
+                    type:'GET',//请求类型
+                    data:{
+                      name:123,
+                      number:'hlst',
+                    },
+                    dataType:'json',
+                    success:function (json) {
+                        if(json.success){
+                            alert("dosomething");//请求数据成功之后的行为
+                        }else{
+                            alert("do other thing");
+                        }
+                    },
+                    error:function (XMLHttpRequest) {
+                        alert("输出错误信息"+XMLHttpRequest.responseText);
+                    }
+                });
+            },
+            jump(){
+                //本层跳转
+                location.href = "lesson/"+this.MyID;  //一般这个就可以了
+                // window.location.href = "lesson/"+this.MyID;
+                //上一层跳转
+                // parent.location.href = "lesson/"+this.MyID;
+                //顶层跳转
+                // top.location.href = "lesson/"+this.MyID;
+            }
+        },
+        mounted(){
+        	// this.myfun();
+        }
+    })
+</script>
+
 </body>
 </html>
