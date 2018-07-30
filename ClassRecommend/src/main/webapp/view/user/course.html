@@ -10,19 +10,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>EAMIS_HELPER</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
-    <link rel="stylesheet" href="../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="../style/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="../style/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="../../style/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  	<!-- bootstrap datepicker -->
+ 	<link rel="stylesheet" href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  	<!-- iCheck for checkboxes and radio inputs -->
+  	<!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
+  	<link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
+  	<!-- Bootstrap Color Picker -->
+  	<link rel="stylesheet" href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+  	<!-- Bootstrap time Picker -->
+  	<!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
+  	<!-- Select2 -->
+  <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">	
     <!-- Theme style -->
-    <link rel="stylesheet" href="../style/dist/css/AdminLTE.min.css">
+    
+    
+    <link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="../style/dist/css/skins/skin-blue.css">
-    <link rel="stylesheet" type="text/css" href="../style/newstyle/css/starter_new.css"/>
+    <link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/starter_new.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,6 +50,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+
+
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
+	<!--<link rel="stylesheet" type="text/css" href="../../style/newstyle/js/table_wow.min.js"/>
+-->
 
 
 <body class="hold-transition skin-blue fixed">
@@ -76,7 +97,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src="../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
                                             <h4>
@@ -161,14 +182,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">Alexander Pierce</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
                                     Alexander Pierce - Web Developer
@@ -218,7 +239,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Alexander Pierce</p>
@@ -266,13 +287,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper ">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <!--标题-->
             <h1>
-                Page Header
-                <small>Optional description</small>
+                Course
+                <small>Search</small>
             </h1>
             <!--面包屑-->
             <ol class="breadcrumb">
@@ -282,13 +303,245 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </section>
         <!-- Main content -->
         <section class="content container-fluid">
+        	<!--<section class="content-header">
+<h2 style="margin-bottom: 30px;margin-top: 50px;font-weight:bold;text-align: left;">用户信息</h2>
+				</section>-->
+				
+		<!--	<div class="clearfix"> </div>-->
+			<div class=" newsletter">
+				   <div class="social">
+					<ul>
+						<li><a href="#" class="link dblue" target="_parent"><span >A</span></a></li>
+						<li><a href="#" class="link lblue" target="_parent"><span >B</span></a></li>
+						<li><a href="#" class="link orange" target="_parent"><span>C</span></a></li>
+						<li><a href="#" class="link yellow" target="_parent"><span >D</span></a></li>
+						<li><a href="#" class="link dgreen" target="_parent"><span >E</span></a></li>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<div class="row">
+        <div class="col-md-12">
+			
+			
+			
+			 <div class="box box-warning">
+        <div class="box-header with-border">
+          <h3 class="box-title">是否通过制</h3>
+
+			<!--<label>是否通过制</label>-->
+                <label>
+                  <input type="checkbox" class=" flat-red " checked>
+                 	                
+                </label>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+           
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+          	
+          	<div class="col-md-3">
+              <div class="form-group">
+                 <label>课程编码</label>
+                <select class="form-control select2" style="width: 100%;">
+                  <option selected="selected">Alabama</option>
+                  <option>Alaska</option>
+                  <option>California</option>
+                  <option>Delaware</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Washington</option>
+                </select>
+              </div>
+              
+            </div>
+          	
+          	
+            <div class="col-md-3">
+              <div class="form-group">
+                 <label>授课老师</label>
+                <select class="form-control select2" style="width: 100%;">
+                  <option selected="selected">Alabama</option>
+                  <option>Alaska</option>
+                  <option>California</option>
+                  <option>Delaware</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Washington</option>
+                </select>
+              </div>
+              
+            </div>
+            <!-- /.col -->
+            
+            <div class="col-md-3">
+              <div class="form-group">
+                 <label>课程名称</label>
+                <select class="form-control select2" style="width: 100%;">
+                  <option selected="selected">Alabama</option>
+                  <option>Alaska</option>
+                  <option>California</option>
+                  <option>Delaware</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Washington</option>
+                </select>
+              </div>
+              
+            </div>
+            <!-- /.col -->
+            
+            <div class="col-md-3">
+              <div class="form-group">
+                 <label>考核方式</label>
+                <select class="form-control select2" style="width: 100%;">
+                  <option selected="selected">Alabama</option>
+                  <option>Alaska</option>
+                  <option>California</option>
+                  <option>Delaware</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Washington</option>
+                </select>
+              </div>
+              
+            </div>
+            <!-- /.col -->
+            
+            
+            
+            
+            <!-- /.col -->
+            
+            
+            <!-- /.col -->
+
+
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+          
+         
+        </div>
+        <!-- /.box-body -->
+        
+      </div>
+      <!-- /.box -->
+      
+      
+        <div class="row">
+        <div class="col-md-12">
+			
+			
+			
+			 <div class="box box-primary">
+			 	<div class="box-header">
+              <h3 class="box-title">课程列表</h3>
+            </div>
+			 	
+			 	  
+          <div class="CustomerInfoChange">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">编号</th>
+									<th scope="col">课程</th>
+									<th scope="col">老师</th>
+									<th scope="col">考核方式</th>
+									<th scope="col">通过制</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">1</th>
+									<td>Mark</td>
+									<td>Otto</td>
+									<td>@mdo</td>
+									<td>@mdo</td>
+									<td>
+										<a href="update.html">编辑</a>
+									</td>
+																	
+								<tr>
+									<th scope="row">2</th>
+									<td>Jacob</td>
+									<td>Thornton</td>
+									<td>@fat</td>
+									<td>@fat</td>
+									<td>
+										<a href="update.html">编辑</a>
+									</td>
+									
+								</tr>
+								<tr>
+									<th scope="row">3</th>
+									<td colspan="2">Larry the Bird</td>
+									<td>@twitter</td>
+									<td>@twitter</td>
+									<td>
+										<a href="update.html">编辑</a>
+									</td>
+									
+								</tr>
+							</tbody>
+						</table>
+					
+          			<div class="box-footer clearfix">
+              <ul class="pagination pagination-sm no-margin pull-right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>
+          </div>
+          
+			 	
+			 	
+			 </div>
+			 </div>
+			 </div>
+       
+       
+       
+           
+
+              
+
+            
+
+           
+
+         
+        </div>
+        <!-- /.col (right) -->
+      
+      
+      
+		</div>
+		</div>
+
+			
 
 
 
+		
+		
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
+
+
+
 
     <!-- Main Footer -->
     <footer class="main-footer">
@@ -382,11 +635,106 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="../style/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../style/dist/js/adminlte.min.js"></script>
+<script src="../../style/dist/js/adminlte.min.js"></script>
+
+
+<script src="../../style/bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+<script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<script src="../../style/bower_components/moment/min/moment.min.js"></script>
+<script src="../../style/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap datepicker -->
+<script src="../../style/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- bootstrap color picker -->
+<script src="../../style/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+<!-- bootstrap time picker -->
+<script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../style/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="../../style/newstyle/js/icheck.min.js"></script>
+<!-- FastClick -->
+<script src="../../style/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../style/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../style/dist/js/demo.js"></script>
+<!-- Page script -->
+
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    })
+
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass   : 'iradio_minimal-blue'
+    })
+    //Red color scheme for iCheck
+    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+      checkboxClass: 'icheckbox_minimal-red',
+      radioClass   : 'iradio_minimal-red'
+    })
+    //Flat red color scheme for iCheck
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass   : 'iradio_flat-green'
+    })
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    //Timepicker
+    $('.timepicker').timepicker({
+      showInputs: false
+    })
+  })
+</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
