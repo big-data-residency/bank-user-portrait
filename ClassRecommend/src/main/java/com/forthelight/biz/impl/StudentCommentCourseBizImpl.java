@@ -81,4 +81,10 @@ public class StudentCommentCourseBizImpl implements StudentCommentCourseBiz {
 		return studentCommentCourseDao.numberOfGetContentScoreByGrade(studentNumber);
 	}
 
+	@Override
+	public List<StudentCommentCourse> findByStudentId(int studentId) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.findByStudentId(studentId);
+	}
+
 }

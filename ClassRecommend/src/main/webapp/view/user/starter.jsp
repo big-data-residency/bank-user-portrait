@@ -333,7 +333,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       <div class="card-body p-b-20">
                           <div class="list-group">
                           <c:forEach var="top3teacherWithLikeNumber" items="${top3TeacherWithLikeNumbers}" varStatus="status" >
-                              <a class="list-group-item media" href="../temp/profile_template?id=${top3teacherWithLikeNumber.teacher.getId()}">
+                              <a class="list-group-item media" href="../temp/profile_template.html?id=${top3teacherWithLikeNumber.teacher.getId()}">
                                   <div class="pull-left">
                                       <img class="lg-item-img" src="../../style/newstyle/images/in1.jpg" alt="">
                                   </div>

@@ -66,4 +66,10 @@ public class StudentBizImpl implements StudentBiz {
     public Student findByName(String studentName) {
         return studentDao.findByName(studentName);
     }
+
+	@Override
+	public int update(Student student) {
+		// TODO Auto-generated method stub
+		return studentDao.update(student);
+	}
 }
