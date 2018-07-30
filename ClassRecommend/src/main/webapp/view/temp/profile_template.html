@@ -32,6 +32,14 @@
 
 	<!-- Google Font -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<style>
+		#main {
+			width: 100% !important;
+			height: 100% !important;
+			margin-bottom: 50px;
+			float: right;
+		}
+	</style>
 </head>
 
 <body class="hold-transition skin-blue fixed">
@@ -609,69 +617,70 @@
 		<section class="content">
 
 			<div class="row">
-				  <div class="col-md-3">
+				<div class="col-md-3">
 
 					<!-- Profile Image -->
 					<div class="box box-primary">
 						<div class="box-body box-profile">
 							<img class="profile-user-img img-responsive img-circle" src="../../style/dist/img/user4-128x128.jpg" alt="User profile picture">
 
-							<h3 class="profile-username text-center" id="teacherName"></h3>
+							<h3 class="profile-username text-center" >{{ teacher.teacherName }}</h3>
 
 							<p class="text-muted text-center"></p>
 
-						<!-- /.box-body -->
-					</div>
-					<!-- /.box -->
-
-					<!-- About Me Box -->
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title">Information</h3>
+							<!-- /.box-body -->
 						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<strong><i class="fa fa-fw fa-user"></i> basic info</strong>
-							<p class="text-muted">
-                                <b>Sex:</b> <p v-if=" teacher.gender == 1" > 男 </p>
-                                            <p v-else > 女 </p> <br>
+						<!-- /.box -->
+
+						<!-- About Me Box -->
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Information</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<strong><i class="fa fa-fw fa-user"></i> basic info</strong>
+								<p class="text-muted">
+									<b>Sex:</b> <p v-if=" teacher.gender == 1" > 男 </p>
+								<p v-else > 女 </p> <br>
 								<b>Phone: </b> {{ teacher.telPhone }}<br>
 								<b>Email: </b> {{ teacher.email }}
-							</p>
-							<hr>
-							<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+								</p>
+								<hr>
+								<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
-							<p class="text-muted">
-								南开大学{{ college.collegeName }}
-							</p>
+								<p class="text-muted">
+									南开大学{{ college.collegeName }}
+								</p>
 
-							<hr>
+								<hr>
 
-							<strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+								<strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-							<p class="text-muted">{{ teacher.officeAddress }}</p>
+								<p class="text-muted">{{ teacher.officeAddress }}</p>
 
-							<hr>
+								<hr>
 
-							<strong><i class="fa fa-pencil margin-r-5"></i> 标签</strong>
+								<strong><i class="fa fa-pencil margin-r-5"></i> 标签</strong>
 
-							<p v-for="(tag,index) in tags" >
+								<p v-for="(tag,index) in tags" >
 
-								<span v-if="index%5 == 0"><span class="label label-danger">{{ tag.tagName }}</span></span>
-                                <span v-if="index%5 == 1"><span class="label label-success">{{ tag.tagName }}</span></span>
-                                <span v-if="index%5 == 2"><span class="label label-info">{{ tag.tagName }}</span></span>
-                                <span v-if="index%5 == 3"><span class="label label-warning">{{ tag.tagName }}</span></span>
-                                <span v-if="index%5 == 4"><span class="label label-primary">{{ tag.tagName }}</span></span>
-							</p>
+									<span v-if="index%5 == 0"><span class="label label-danger">{{ tag.tagName }}</span></span>
+									<span v-if="index%5 == 1"><span class="label label-success">{{ tag.tagName }}</span></span>
+									<span v-if="index%5 == 2"><span class="label label-info">{{ tag.tagName }}</span></span>
+									<span v-if="index%5 == 3"><span class="label label-warning">{{ tag.tagName }}</span></span>
+									<span v-if="index%5 == 4"><span class="label label-primary">{{ tag.tagName }}</span></span>
+								</p>
 
-							<hr>
+								<hr>
+							</div>
+							<!-- /.box-body -->
 						</div>
-						<!-- /.box-body -->
+						<!-- /.box -->
 					</div>
-					<!-- /.box -->
 				</div>
-                  </div>
 				<!-- /.col -->
+
 				<div class="col-md-9">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs">
@@ -690,406 +699,7 @@
 							<div class="active tab-pane" id="bigdata">
 								<div class="post" style="height:400px;">
 									<div id="main" style="width: 500px;height:244px;"></div>
-									<style>
-										#main {
-											width: 100% !important;
-											height: 100% !important;
-											margin-bottom: 50px;
-											float: right;
-										}
-									</style>
-									<script>
-                                      var chart = echarts.init(document.getElementById('main'));
-                                      var keywords = {
-                                        "严肃": 22199,
-                                        "幽默": 10288,
-                                        "contoller": 620,
-                                        "优秀": 274470,
-                                        "gauge": 12311,
-                                        "detail": 1206,
-                                        "piecewise": 4885,
-                                        "textStyle": 32294,
-                                        "markPoint": 18574,
-                                        "pie": 38929,
-                                        "roseType": 969,
-                                        "label": 37517,
-                                        "emphasis": 12053,
-                                        "yAxis": 57299,
-                                        "name": 15418,
-                                        "type": 22905,
-                                        "gridIndex": 5146,
-                                        "normal": 49487,
-                                        "itemStyle": 33837,
-                                        "min": 4500,
-                                        "silent": 5744,
-                                        "animation": 4840,
-                                        "offsetCenter": 232,
-                                        "inverse": 3706,
-                                        "borderColor": 4812,
-                                        "markLine": 16578,
-                                        "line": 76970,
-                                        "radiusAxis": 6704,
-                                        "radar": 15964,
-                                        "data": 60679,
-                                        "dataZoom": 24347,
-                                        "tooltip": 43420,
-                                        "toolbox": 25222,
-                                        "geo": 16904,
-                                        "parallelAxis": 4029,
-                                        "parallel": 5319,
-                                        "max": 3393,
-                                        "bar": 43066,
-                                        "heatmap": 3110,
-                                        "map": 20285,
-                                        "animationDuration": 3425,
-                                        "animationDelay": 2431,
-                                        "splitNumber": 5175,
-                                        "axisLine": 12738,
-                                        "lineStyle": 19601,
-                                        "splitLine": 7133,
-                                        "axisTick": 8831,
-                                        "axisLabel": 17516,
-                                        "pointer": 590,
-                                        "color": 23426,
-                                        "title": 38497,
-                                        "formatter": 15214,
-                                        "slider": 7236,
-                                        "legend": 66514,
-                                        "grid": 28516,
-                                        "smooth": 1295,
-                                        "smoothMonotone": 696,
-                                        "sampling": 757,
-                                        "feature": 12815,
-                                        "saveAsImage": 2616,
-                                        "polar": 6279,
-                                        "calculable": 879,
-                                        "backgroundColor": 9419,
-                                        "excludeComponents": 130,
-                                        "show": 20620,
-                                        "text": 2592,
-                                        "icon": 2782,
-                                        "dimension": 478,
-                                        "inRange": 1060,
-                                        "animationEasing": 2983,
-                                        "animationDurationUpdate": 2259,
-                                        "animationDelayUpdate": 2236,
-                                        "animationEasingUpdate": 2213,
-                                        "xAxis": 89459,
-                                        "angleAxis": 5469,
-                                        "showTitle": 484,
-                                        "dataView": 2754,
-                                        "restore": 932,
-                                        "timeline": 10104,
-                                        "range": 477,
-                                        "value": 5732,
-                                        "precision": 878,
-                                        "target": 1433,
-                                        "zlevel": 5361,
-                                        "symbol": 8718,
-                                        "interval": 7964,
-                                        "symbolSize": 5300,
-                                        "showSymbol": 1247,
-                                        "inside": 8913,
-                                        "xAxisIndex": 3843,
-                                        "orient": 4205,
-                                        "boundaryGap": 5073,
-                                        "nameGap": 4896,
-                                        "zoomLock": 571,
-                                        "hoverAnimation": 2307,
-                                        "legendHoverLink": 3553,
-                                        "stack": 2907,
-                                        "throttle": 466,
-                                        "connectNulls": 897,
-                                        "clipOverflow": 826,
-                                        "startValue": 551,
-                                        "minInterval": 3292,
-                                        "opacity": 3097,
-                                        "splitArea": 4775,
-                                        "filterMode": 635,
-                                        "end": 409,
-                                        "left": 6475,
-                                        "funnel": 2238,
-                                        "lines": 6403,
-                                        "baseline": 431,
-                                        "align": 2608,
-                                        "coord": 897,
-                                        "nameTextStyle": 7477,
-                                        "width": 4338,
-                                        "shadowBlur": 4493,
-                                        "effect": 929,
-                                        "period": 225,
-                                        "areaColor": 631,
-                                        "borderWidth": 3654,
-                                        "nameLocation": 4418,
-                                        "position": 11723,
-                                        "containLabel": 1701,
-                                        "scatter": 10718,
-                                        "areaStyle": 5310,
-                                        "scale": 3859,
-                                        "pieces": 414,
-                                        "categories": 1000,
-                                        "selectedMode": 3825,
-                                        "itemSymbol": 273,
-                                        "effectScatter": 7147,
-                                        "fontStyle": 3376,
-                                        "fontSize": 3386,
-                                        "margin": 1034,
-                                        "iconStyle": 2257,
-                                        "link": 1366,
-                                        "axisPointer": 5245,
-                                        "showDelay": 896,
-                                        "graph": 22194,
-                                        "subtext": 1442,
-                                        "selected": 2881,
-                                        "barCategoryGap": 827,
-                                        "barGap": 1094,
-                                        "barWidth": 1521,
-                                        "coordinateSystem": 3622,
-                                        "barBorderRadius": 284,
-                                        "z": 4014,
-                                        "polarIndex": 1456,
-                                        "shadowOffsetX": 3046,
-                                        "shadowColor": 3771,
-                                        "shadowOffsetY": 2475,
-                                        "height": 1988,
-                                        "barMinHeight": 575,
-                                        "lang": 131,
-                                        "symbolRotate": 2752,
-                                        "symbolOffset": 2549,
-                                        "showAllSymbol": 942,
-                                        "transitionDuration": 993,
-                                        "bottom": 3724,
-                                        "fillerColor": 229,
-                                        "nameMap": 1249,
-                                        "barMaxWidth": 747,
-                                        "radius": 2103,
-                                        "center": 2425,
-                                        "magicType": 3276,
-                                        "labelPrecision": 248,
-                                        "option": 654,
-                                        "seriesIndex": 935,
-                                        "controlPosition": 121,
-                                        "itemGap": 3188,
-                                        "padding": 3481,
-                                        "shadowStyle": 347,
-                                        "boxplot": 1394,
-                                        "labelFormatter": 264,
-                                        "realtime": 631,
-                                        "dataBackgroundColor": 239,
-                                        "showDetail": 247,
-                                        "showDataShadow": 217,
-                                        "x": 684,
-                                        "valueDim": 499,
-                                        "onZero": 931,
-                                        "right": 3255,
-                                        "clockwise": 1035,
-                                        "itemWidth": 1732,
-                                        "trigger": 3840,
-                                        "axis": 379,
-                                        "selectedOffset": 670,
-                                        "startAngle": 1293,
-                                        "minAngle": 590,
-                                        "top": 4637,
-                                        "avoidLabelOverlap": 870,
-                                        "labelLine": 3785,
-                                        "sankey": 2933,
-                                        "endAngle": 213,
-                                        "start": 779,
-                                        "roam": 1738,
-                                        "fontWeight": 2828,
-                                        "fontFamily": 2490,
-                                        "subtextStyle": 2066,
-                                        "indicator": 853,
-                                        "sublink": 708,
-                                        "zoom": 1038,
-                                        "subtarget": 659,
-                                        "length": 1060,
-                                        "itemSize": 505,
-                                        "controlStyle": 452,
-                                        "yAxisIndex": 2529,
-                                        "edgeLabel": 1188,
-                                        "radiusAxisIndex": 354,
-                                        "scaleLimit": 1313,
-                                        "geoIndex": 535,
-                                        "regions": 1892,
-                                        "itemHeight": 1290,
-                                        "nodes": 644,
-                                        "candlestick": 3166,
-                                        "crossStyle": 466,
-                                        "edges": 369,
-                                        "links": 3277,
-                                        "layout": 846,
-                                        "barBorderColor": 721,
-                                        "barBorderWidth": 498,
-                                        "treemap": 3865,
-                                        "y": 367,
-                                        "valueIndex": 704,
-                                        "showLegendSymbol": 482,
-                                        "mapValueCalculation": 492,
-                                        "optionToContent": 264,
-                                        "handleColor": 187,
-                                        "handleSize": 271,
-                                        "showContent": 1853,
-                                        "angleAxisIndex": 406,
-                                        "endValue": 327,
-                                        "triggerOn": 1720,
-                                        "contentToOption": 169,
-                                        "buttonColor": 71,
-                                        "rotate": 1144,
-                                        "hoverLink": 335,
-                                        "outOfRange": 491,
-                                        "textareaColor": 58,
-                                        "textareaBorderColor": 58,
-                                        "textColor": 60,
-                                        "buttonTextColor": 66,
-                                        "category": 336,
-                                        "hideDelay": 786,
-                                        "alwaysShowContent": 1267,
-                                        "extraCssText": 901,
-                                        "effectType": 277,
-                                        "force": 1820,
-                                        "rippleEffect": 723,
-                                        "edgeSymbolSize": 329,
-                                        "showEffectOn": 271,
-                                        "gravity": 199,
-                                        "edgeLength": 193,
-                                        "layoutAnimation": 152,
-                                        "length2": 169,
-                                        "enterable": 957,
-                                        "dim": 83,
-                                        "readOnly": 143,
-                                        "levels": 444,
-                                        "textGap": 256,
-                                        "pixelRatio": 84,
-                                        "nodeScaleRatio": 232,
-                                        "draggable": 249,
-                                        "brushType": 158,
-                                        "radarIndex": 152,
-                                        "large": 182,
-                                        "edgeSymbol": 675,
-                                        "largeThreshold": 132,
-                                        "leafDepth": 73,
-                                        "childrenVisibleMin": 73,
-                                        "minSize": 35,
-                                        "maxSize": 35,
-                                        "sort": 90,
-                                        "funnelAlign": 61,
-                                        "source": 336,
-                                        "nodeClick": 200,
-                                        "curveness": 350,
-                                        "areaSelectStyle": 104,
-                                        "parallelIndex": 52,
-                                        "initLayout": 359,
-                                        "trailLength": 116,
-                                        "boxWidth": 20,
-                                        "back": 53,
-                                        "rewind": 110,
-                                        "zoomToNodeRatio": 80,
-                                        "squareRatio": 60,
-                                        "parallelAxisDefault": 358,
-                                        "checkpointStyle": 440,
-                                        "nodeWidth": 49,
-                                        "color0": 62,
-                                        "layoutIterations": 56,
-                                        "nodeGap": 54,
-                                        "color(Array": 76,
-                                        "<string>)": 76,
-                                        "repulsion": 276,
-                                        "tiled": 105,
-                                        "currentIndex": 145,
-                                        "axisType": 227,
-                                        "loop": 97,
-                                        "playInterval": 112,
-                                        "borderColor0": 23,
-                                        "gap": 43,
-                                        "autoPlay": 123,
-                                        "showPlayBtn": 25,
-                                        "breadcrumb": 119,
-                                        "colorMappingBy": 85,
-                                        "id": 18,
-                                        "blurSize": 85,
-                                        "minOpacity": 50,
-                                        "maxOpacity": 54,
-                                        "prevIcon": 12,
-                                        "children": 21,
-                                        "shape": 98,
-                                        "nextIcon": 12,
-                                        "showNextBtn": 17,
-                                        "stopIcon": 21,
-                                        "visibleMin": 83,
-                                        "visualDimension": 97,
-                                        "colorSaturation": 56,
-                                        "colorAlpha": 66,
-                                        "emptyItemWidth": 10,
-                                        "inactiveOpacity": 4,
-                                        "activeOpacity": 4,
-                                        "showPrevBtn": 19,
-                                        "playIcon": 26,
-                                        "ellipsis": 19,
-                                        "gapWidth": 19,
-                                        "borderColorSaturation": 10,
-                                        "handleIcon": 2,
-                                        "handleStyle": 6,
-                                        "borderType": 1,
-                                        "constantSpeed": 1,
-                                        "polyline": 2,
-                                        "blendMode": 1,
-                                        "dataBackground": 1,
-                                        "textAlign": 1,
-                                        "textBaseline": 1,
-                                        "brush": 3
-                                      };
 
-                                      var data = [];
-                                      for(var name in keywords) {
-                                        data.push({
-                                          name: name,
-                                          value: Math.sqrt(keywords[name])
-                                        })
-                                      }
-                                      var maskImage = new Image();
-
-                                      var option = {
-                                        series: [{
-                                          type: 'wordCloud',
-                                          sizeRange: [10, 100],
-                                          rotationRange: [-90, 90],
-                                          rotationStep: 45,
-                                          gridSize: 2,
-                                          shape: 'pentagon',
-                                          maskImage: maskImage,
-                                          drawOutOfBound: false,
-                                          textStyle: {
-                                            normal: {
-                                              color: function() {
-                                                return 'rgb(' + [
-                                                  Math.round(Math.random() * 160),
-                                                  Math.round(Math.random() * 160),
-                                                  Math.round(Math.random() * 160)
-                                                ].join(',') + ')';
-                                              }
-                                            },
-                                            emphasis: {
-                                              color: 'red'
-                                            }
-                                          },
-                                          data: data.sort(function(a, b) {
-                                            return b.value - a.value;
-                                          })
-                                        }]
-                                      };
-
-                                      maskImage.onload = function() {
-                                        option.series[0].maskImage
-                                        chart.setOption(option);
-                                      }
-
-                                      maskImage.src = '../../style/newstyle/images/wordcloud.png';
-
-                                      window.onresize = function() {
-                                        chart.resize();
-                                      }
-									</script>
 								</div>
 
 								<!--表格-->
@@ -1098,7 +708,7 @@
 										<table class="table table-striped">
 											<thead>
 											<tr>
-												<th>Id</th>
+												<th>编号</th>
 												<th>课程名</th>
 												<th>课程编号</th>
 												<th>学分</th>
@@ -1106,33 +716,12 @@
 											</tr>
 											</thead>
 											<tbody>
-											<tr>
-												<td>1</td>
-												<td>数据结构</td>
-												<td>comp1111</td>
-												<td>4</td>
-												<td>C类课</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Need for Speed IV</td>
-												<td>247-925-726</td>
-												<td>Wes Anderson umami biodiesel</td>
-												<td>$50.00</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td>Monsters DVD</td>
-												<td>735-845-642</td>
-												<td>Terry Richardson helvetica tousled street art master</td>
-												<td>$10.70</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td>Grown Ups Blue Ray</td>
-												<td>422-568-642</td>
-												<td>Tousled lomo letterpress</td>
-												<td>$25.99</td>
+											<tr v-for="(course,index) in courses" >
+												<td>{{ index+1 }}</td>
+												<td>{{ course.courseName }}</td>
+												<td>{{ course.courseCode }}</td>
+												<td>{{ course.credit }}</td>
+												<td>{{ course.level }}类课</td>
 											</tr>
 											</tbody>
 										</table>
@@ -1156,24 +745,24 @@
 
 							<!-- /.tab-pane -->
 							<div class=" tab-pane" id="activity">
-								<!-- Post -->
-								<div class="post">
+								<!-- CommentInfo -->
+								<div class="post" v-for="comment in comments" >
 									<div class="user-block">
 										<img class="img-circle img-bordered-sm" src="../../style/dist/img/user1-128x128.jpg" alt="user image">
 										<span class="username">
-                          <a href="#">周子祎</a>
+                          <a href="#">{{ comment.nickName }}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-										<span class="description">Shared publicly - 7:30 PM today</span>
+										<span class="description">Shared publicly - {{ comment.commentTime }}</span>
 									</div>
 									<!-- /.user-block -->
 									<p>
-										老师说： 你很优秀，你的学分绩并不影响你的优秀
+										{{ comment.commentContent }}
 									</p>
 									<ul class="list-inline">
 										<!--<li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>-->
 										<li>
-											<a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+											<a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like {{ comment.likeNumber }}</a>
 										</li>
 										<li class="pull-right">
 											<a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)
@@ -1183,89 +772,7 @@
 
 									<input class="form-control input-sm" type="text" placeholder="Type a comment">
 								</div>
-								<!-- /.post -->
-
-								<!-- Post -->
-								<div class="post clearfix">
-									<div class="user-block">
-										<img class="img-circle img-bordered-sm" src="../../style/dist/img/user7-128x128.jpg" alt="User Image">
-										<span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-										<span class="description">Sent you a message - 3 days ago</span>
-									</div>
-									<!-- /.user-block -->
-									<p>
-										Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.
-									</p>
-
-									<form class="form-horizontal">
-										<div class="form-group margin-bottom-none">
-											<div class="col-sm-9">
-												<input class="form-control input-sm" placeholder="Response">
-											</div>
-											<div class="col-sm-3">
-												<button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-											</div>
-										</div>
-									</form>
-								</div>
-								<!-- /.post -->
-
-								<!-- Post -->
-								<div class="post">
-									<div class="user-block">
-										<img class="img-circle img-bordered-sm" src="../../style/dist/img/user6-128x128.jpg" alt="User Image">
-										<span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-										<span class="description">Posted 5 photos - 5 days ago</span>
-									</div>
-									<!-- /.user-block -->
-									<div class="row margin-bottom">
-										<div class="col-sm-6">
-											<img class="img-responsive" src="../../style/dist/img/photo1.png" alt="Photo">
-										</div>
-										<!-- /.col -->
-										<div class="col-sm-6">
-											<div class="row">
-												<div class="col-sm-6">
-													<img class="img-responsive" src="../../style/dist/img/photo2.png" alt="Photo">
-													<br>
-													<img class="img-responsive" src="../../style/dist/img/photo3.jpg" alt="Photo">
-												</div>
-												<!-- /.col -->
-												<div class="col-sm-6">
-													<img class="img-responsive" src="../../style/dist/img/photo4.jpg" alt="Photo">
-													<br>
-													<img class="img-responsive" src="../../style/dist/img/photo1.png" alt="Photo">
-												</div>
-												<!-- /.col -->
-											</div>
-											<!-- /.row -->
-										</div>
-										<!-- /.col -->
-									</div>
-									<!-- /.row -->
-
-									<ul class="list-inline">
-										<li>
-											<a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
-										</li>
-										<li>
-											<a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-										</li>
-										<li class="pull-right">
-											<a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)
-											</a>
-										</li>
-									</ul>
-
-									<input class="form-control input-sm" type="text" placeholder="Type a comment">
-								</div>
-								<!-- /.post -->
+								<!-- /.CommentInfo -->
 							</div>
 							<!-- /.tab-pane -->
 							<div class="tab-pane" id="settings" >
@@ -1339,7 +846,7 @@
 					<!-- /.col -->
 				</div>
 				<!-- /.row -->
-            </div>
+			</div>
 		</section>
 		<!-- /.content -->
 	</div>
@@ -1574,216 +1081,177 @@ immediately after the control sidebar -->
 <script src="../../style/bower_components/morris.js/morris.min.js"></script>
 <!-- Page script -->
 
-<script>
-  $(function() {
-    /*
-     * DONUT CHART
-     * -----------
-     */
-
-    var donutData = [{
-      label: 'Series2',
-      data: 30,
-      color: '#3c8dbc'
-    },
-      {
-        label: 'Series3',
-        data: 20,
-        color: '#0073b7'
-      },
-      {
-        label: 'Series4',
-        data: 50,
-        color: '#00c0ef'
-      }
-    ]
-    $.plot('#donut-chart', donutData, {
-      series: {
-        pie: {
-          show: true,
-          radius: 1,
-          innerRadius: 0.5,
-          label: {
-            show: true,
-            radius: 2 / 3,
-            formatter: labelFormatter,
-            threshold: 0.1
-          }
-
-        }
-      },
-      legend: {
-        show: false
-      }
-    })
-    /*
-     * END DONUT CHART
-     */
-
-  })
-  // LINE CHART
-  var line = new Morris.Line({
-    element: 'line-chart',
-    resize: true,
-    data: [{
-      y: '2011 Q1',
-      item1: 2666
-    },
-      {
-        y: '2011 Q2',
-        item1: 2778
-      },
-      {
-        y: '2011 Q3',
-        item1: 4912
-      },
-      {
-        y: '2011 Q4',
-        item1: 3767
-      },
-      {
-        y: '2012 Q1',
-        item1: 6810
-      },
-      {
-        y: '2012 Q2',
-        item1: 5670
-      },
-      {
-        y: '2012 Q3',
-        item1: 4820
-      },
-      {
-        y: '2012 Q4',
-        item1: 15073
-      },
-      {
-        y: '2013 Q1',
-        item1: 10687
-      },
-      {
-        y: '2013 Q2',
-        item1: 8432
-      }
-    ],
-    xkey: 'y',
-    ykeys: ['item1'],
-    labels: ['Item 1'],
-    lineColors: ['#3c8dbc'],
-    hideHover: 'auto'
-  });
-
-  //BAR CHART
-  var bar = new Morris.Bar({
-    element: 'bar-chart',
-    resize: true,
-    data: [{
-      y: '2006',
-      a: 100,
-      b: 90
-    },
-      {
-        y: '2007',
-        a: 75,
-        b: 65
-      },
-      {
-        y: '2008',
-        a: 50,
-        b: 40
-      },
-      {
-        y: '2009',
-        a: 75,
-        b: 65
-      },
-      {
-        y: '2010',
-        a: 50,
-        b: 40
-      },
-      {
-        y: '2011',
-        a: 75,
-        b: 65
-      },
-      {
-        y: '2012',
-        a: 100,
-        b: 90
-      }
-    ],
-    barColors: ['#00a65a', '#f56954'],
-    xkey: 'y',
-    ykeys: ['a', 'b'],
-    labels: ['CPU', 'DISK'],
-    hideHover: 'auto'
-  });
-  /*
-   * Custom Label formatter
-   * ----------------------
-   */
-  function labelFormatter(label, series) {
-    return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' +
-      label +
-      '<br>' +
-      Math.round(series.percent) + '%</div>'
-  }
-</script>
-
 
 <!-- import Vue before Element -->
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script>
-    var teacherInfo = new Vue({
-      el:'#teacherInfo',
-      data:{
-        teacherIdStr:1,
-        teacher:{
-          teacherName:'',
+  var keywords='';
+  var donutData='';
+  var lineDate='';
+  var barDate='';
+  var teacherInfo = new Vue({
+    el:'#teacherInfo',
+    data:{
+      teacherIdStr:1,
+      teacher:'',
+      college:'',
+      courses:'',
+      comments:'',
+      tags:'',
+    },
+    methods:{
+      getTeacherInfo(){
+        var _self = this;
+        $.ajax({
+          url:'http://localhost:8080/ClassRecommend/teacherInfo',
+          type:'GET',
+          data:{
+            teacherIdStr:1
+          },
+          dataType:'json',
+          success:function (res) {
+            if (res.success) {
+              _self.teacher=res.data.teacher;
+              _self.college = res.data.college;
+              _self.courses = res.data.courses;
+              _self.comments = res.data.comments;
+              _self.tags = res.data.tags;
+              keywords = res.data.keywords;
+              donutData =res.data.tagsPercent;
+              lineDate = res.data.preExamScore;
+              barDate = res.data.preContentScore;
 
-        },
-        college:'',
-        tags:'',
-        tea:'',
-      },
-      methods:{
-        getTeacherInfo(){
-          $.ajax({
-            url:'http://localhost:8080/ClassRecommend/teacherInfo',
-            type:'GET',
-            data:{
-              teacherIdStr:1
-            },
-            dataType:'json',
-            success:function (res) {
-              if (res.success) {
-                // console.log(res.data);
-                // this.teacher=res.data.teacher;
-                // this.college = res.data.college;
-                // this.tags = res.data.tags;
-                // alert(this.teacher.teacherName);
-                // this.tea=this.teacher;
-                // alert(this.tea.teacherName);
-                // console.log(res.data.teacher);
 
-                $('#teacherName').html(res.data.teacher.teacherName)
 
+              var chart = echarts.init(document.getElementById('main'));
+              var data = [];
+              for(var name in keywords) {
+                data.push({
+                  name: name,
+                  value: Math.sqrt(keywords[name])
+                })
+              }
+              var maskImage = new Image();
+
+              var option = {
+                series: [{
+                  type: 'wordCloud',
+                  sizeRange: [10, 100],
+                  rotationRange: [-90, 90],
+                  rotationStep: 45,
+                  gridSize: 2,
+                  shape: 'pentagon',
+                  maskImage: maskImage,
+                  drawOutOfBound: false,
+                  textStyle: {
+                    normal: {
+                      color: function() {
+                        return 'rgb(' + [
+                          Math.round(Math.random() * 160),
+                          Math.round(Math.random() * 160),
+                          Math.round(Math.random() * 160)
+                        ].join(',') + ')';
+                      }
+                    },
+                    emphasis: {
+                      color: 'red'
+                    }
+                  },
+                  data: data.sort(function(a, b) {
+                    return b.value - a.value;
+                  })
+                }]
+              };
+
+              maskImage.onload = function() {
+                option.series[0].maskImage
+                chart.setOption(option);
+              }
+
+              maskImage.src = '../../style/newstyle/images/wordcloud.png';
+
+              window.onresize = function() {
+                chart.resize();
+              }
+
+              $(function() {
+                /*
+                 * DONUT CHART
+                 * -----------
+                 */
+                $.plot('#donut-chart', donutData, {
+                  series: {
+                    pie: {
+                      show: true,
+                      radius: 1,
+                      innerRadius: 0.5,
+                      label: {
+                        show: true,
+                        radius: 2 / 3,
+                        formatter: labelFormatter,
+                        threshold: 0.1
+                      }
+
+                    }
+                  },
+                  legend: {
+                    show: false
+                  }
+                })
+                /*
+                 * END DONUT CHART
+                 */
+
+              })
+
+
+
+              // LINE CHART
+              var line = new Morris.Line({
+                element: 'line-chart',
+                resize: true,
+                data: lineDate,
+                xkey: 'y',
+                ykeys: ['item1'],
+                labels: ['Item 1'],
+                lineColors: ['#3c8dbc'],
+                hideHover: 'auto'
+              });
+
+              //BAR CHART
+              var bar = new Morris.Bar({
+                element: 'bar-chart',
+                resize: true,
+                data: barDate,
+                barColors: ['#00a65a'],
+                xkey: 'y',
+                ykeys: ['a'],
+                labels: ['AverageScore'],
+                hideHover: 'auto'
+              });
+              /*
+               * Custom Label formatter
+               * ----------------------
+               */
+              function labelFormatter(label, series) {
+                return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' +
+                  label +
+                  '<br>' +
+                  Math.round(series.percent) + '%</div>'
               }
             }
-          })
-        }
-      },
-      mounted(){
-        this.getTeacherInfo();
+          }
+        })
       }
-    })
+    },
+    mounted(){
+      this.getTeacherInfo();
+    }
+  })
+
 </script>
 </body>
 

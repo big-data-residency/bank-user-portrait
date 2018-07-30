@@ -1818,42 +1818,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
         el: '#classvue',
         data:{
         	
-            Comments'',
+            Comments:'',
             Basic:{
-            	tags:'',
-            }
+            	tags:''
+            },
+
             ClassInfo:{
             	likenum:'',
             	uploadsnum:'',
             	commentsnum:'',
             }
-            Mine:{
-            	comments:'',
-            	tags:'',
-            	bearScore:'',
-                interestingScore:'',
-                easyScore:'',
-                knowledgeScore:'',
-                gradeScore:'',
-                anonymous:'',
-            }
-            
-            
         },
         methods:{
             myfun() {
                 $.ajax({
-                    url:'http://localhost:8080/login',
+                    url:'http://localhost:8080/ClassRecommend/courseCommnet',
                     type:'GET',//请求类型
                     data:{
                       teacherId:'1',
                       comments:'你很优秀',
                       tags:'优秀',
-                      studentId:'1',
-                      courseId:'1',
+                      studentId:'2',
+                      courseId:'3',
                       bearScore:'5',
                       interestingScore:'5',
-                      easyScore:'5',
+                      easyScore:'',
                       knowledgeScore:'5',
                       gradeScore:'5',
                       anonymous:'0',
@@ -1862,15 +1851,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     dataType:'json',
                     success:function (res) {
                         if(res.success){
-                            alert("dosomething");//请求数据成功之后的行为
+                            this.Comments = res.data.comments,
+                            this.Basic.tags = res.data.TagsNumber,
+                            this.ClassInfo.likenum = res.data.likeNumber
+                			this.ClassInfo.uploadsnum = res.data.uploadNumber
+                			this.ClassInfo.commentsnum = res.data.commentNumber
                         }else{
                             alert("do other thing");
                         }
-                        data.Comments = res.data.comments,
-                        data.Basic.tags = res.data.tags,
-                        data.ClassInfo.likenum = res.data.likeNumber
-            			data.ClassInfo.uploadsnum = res.data.uploadNumber
-            			data.ClassInfo.commentsnum = res.data.commentNumber
+
                     },
                     error:function (XMLHttpRequest) {
                         alert("输出错误信息"+XMLHttpRequest.responseText);
