@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.forthelight.dao.FileDao">
+
+	<resultMap id="FileResultMap" type="File" autoMapping="true">
+	
+		<id column="id" property="id" />
+		
+		<association property="student" column="studentId" autoMapping="true" javaType="Student"
+			select="com.forthelight.dao.StudentDao.findById" />
+			
+		<association property="course" column="courseId" javaType="Course" autoMapping="true"
+			select="com.forthelight.dao.CourseDao.findById" />
+			
+	</resultMap>
+
+
+
+
+
+	<select id="findById" resultMap="FileResultMap" parameterType="int">
+		SELECT * FROM file 
+		WHERE id=#{id} AND DeleteStatus=0;
+	</select>
+	
+	<select id="findByStudentId" resultMap="FileResultMap" parameterType="int">
+		SELECT * FROM file 
+		WHERE StudentID=#{studentId} AND DeleteStatus=0;
+	</select>
+	
+	<select id="findByCourseId" resultMap="FileResultMap" parameterType="int">
+		SELECT * FROM file 
+		WHERE CourseID=#{courseId} AND DeleteStatus=0;
+	</select>
+	
+	<select id="uploadsNumberOfCourse" parameterType="int" resultType="int" >
+	    select count(*) from file
+	    where courseId = #{courseId} and deleteStatus = 0
+	</select>
+
+</mapper>

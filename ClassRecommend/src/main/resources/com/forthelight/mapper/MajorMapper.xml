@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.forthelight.dao.MajorDao">
+
+	<resultMap id="MajorResultMap" type="Major" autoMapping="true">
+	
+		<id column="id" property="id" />
+		
+		<association property="college" column="collegeId" javaType="College" autoMapping="true"
+		    select="com.forthelight.dao.CollegeDao.findById" />
+			
+		<collection property="students" column="id" ofType="Student" autoMapping="true"
+			select="com.forthelight.dao.StudentDao.findByMajorId" />
+			
+		<collection property="courses" column="id" ofType="Course" autoMapping="true"
+			select="com.forthelight.dao.CourseDao.findByMajorId" />
+			
+	</resultMap>
+
+
+
+	<select id="findById" parameterType="int" resultMap="MajorResultMap">
+		SELECT * FROM major 
+		WHERE id=#{id} AND DeleteStatus=0;
+	</select>
+	
+	<select id="findByCollegeId" parameterType="int" resultMap="MajorResultMap" >
+	    select * from Major 
+	    where collegeId = #{collegeId} and deleteStatus = 0
+	</select>
+
+	<select id="findByName" resultMap="MajorResultMap" parameterType="String" >
+		SELECT * FROM major WHERE DeleteStatus=0 AND MajorName=#{majorName};
+	</select>
+	
+</mapper>

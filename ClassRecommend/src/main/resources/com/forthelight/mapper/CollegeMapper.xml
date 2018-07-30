@@ -4,7 +4,64 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forthelight.dao.CollegeDao">
-    <select id="findById" parameterType="int" resultType="College">
-        SELECT * FROM college WHERE id=#{id};
-    </select>
+
+	<resultMap type="College" id="CollegeResultMap" autoMapping="true">
+		
+		<id property="id" column="id" />
+		
+		<collection property="majors" column="id" ofType="Major"
+		select="com.forthelight.dao.MajorDao.findByCollegeId" autoMapping="true">
+		</collection>
+
+		<collection property="teachers" column="id" ofType="Teacher" 
+			select="com.forthelight.dao.TeacherDao.findByCollegeId" autoMapping="true">
+		</collection>
+		
+		<collection property="students" column="id" ofType="Student"
+		select ="com.forthelight.dao.StudentDao.findByCollegeId" autoMapping="true" >
+		</collection>
+		
+		<collection property="courses" column="id" ofType="Course"
+		select ="com.forthelight.dao.CourseDao.findByCollegeId" autoMapping="true" >
+		</collection>
+		
+	</resultMap>
+
+
+
+	<select id="findById" parameterType="int" resultMap="CollegeResultMap">
+	    select * from College
+	    where id = #{id} and deleteStatus = 0
+	</select>
+	
+	<select id="findByName" parameterType="String" resultMap="CollegeResultMap">
+	    select * from College
+	    where collegeName = #{collegeName} and deleteStatus = 0;
+	</select>
+	
+	<select id="findByType" parameterType="int" resultMap="CollegeResultMap">
+	    select * from College
+	    where type = #{type} and deleteStatus = 0
+	</select>
+
+	<select id="findAll"  resultMap="CollegeResultMap">
+	    select * from College
+	    where deleteStatus = 0
+	</select>
+	
+	<update id="update" parameterType="College" >
+	    update College set collegeName = #{collegeName} , type = #{type}
+	    where id = #{id}
+	</update>
+	
+	<update id="delete" parameterType="int">
+	    update College set deleteStatus = 1 
+	    where id = #{id}
+	</update>
+	
+	<insert id="insert" parameterType="College" >
+	    insert into College values
+	    ( null , #{collegeName} , #{type} , 0 )
+	</insert>
+	
 </mapper>

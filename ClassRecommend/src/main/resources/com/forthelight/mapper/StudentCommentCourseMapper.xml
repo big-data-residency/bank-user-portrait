@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.forthelight.dao.StudentCommentCourseDao">
+
+	<resultMap id="StudentCommentCourseResultMap" type="StudentCommentCourse" autoMapping="true">
+	
+		<id column="id" property="id" />
+		
+		<association property="student" column="studentId" javaType="Student" autoMapping="true"
+			select="com.forthelight.dao.StudentDao.findById" />
+			
+		<association property="course" column="courseId" javaType="Course" autoMapping="true"
+			select="com.forthelight.dao.CourseDao.findById" />
+			
+		<collection property="tags" ofType="Tag" column="tagId" autoMapping="true"
+			select="com.forthelight.dao.TagDao.findByTagId" />
+			
+	</resultMap>
+
+
+
+
+	<select id="findById" parameterType="int" resultMap="StudentCommentCourseResultMap">
+		SELECT * FROM student_comment_course
+		WHERE student_comment_course.id=#{id} AND DeleteStatus=0;
+	</select>
+	
+	<select id="findByTagId" parameterType="int" resultMap="StudentCommentCourseResultMap" >
+	    select * from student_comment_course
+	    where id in ( select commentId from comment_tag where tagId = #{tagId}
+	    and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+	<select id="findByCourseId" parameterType="int" resultMap="StudentCommentCourseResultMap" >
+	    select * from student_comment_course
+	    where selectId in ( select id from student_select_course where courseId = #{courseId}
+	    and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+	<select id="orderByLikeNumber" parameterType="int" resultMap="StudentCommentCourseResultMap" >
+	    select * from 
+	    student_comment_course inner join student_select_course 
+	    on selectId = student_select_course.id
+	    where courseId in ( select id from course where teacherId = #{teacherId} ) and 
+	    student_comment_course.deleteStatus = 0  and student_comment_course.deleteStatus = 0
+	    order by likeNumber desc
+	</select>
+	
+	<select id="commentNumberOfCourse" parameterType="int" resultType="int" >
+	    select count(*) from student_comment_course
+	    where selectId in ( select id from student_select_course where courseId = #{courseId} 
+	    and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+	<select id="getSelectIdByStudentIdAndCourseId" resultType="int" >
+	    select id from student_select_course
+	    where studentId = #{arg0} and courseId = #{arg1} and deleteStatus = 0
+	</select>
+	
+	<insert id="insert" parameterType="StudentCommentCourse" >
+	    insert into student_comment_course values
+	    ( null , #{selectId} , #{comment} , #{gradeScore}, #{contentScore} , #{likeNumber} , 0 , 
+	    #{anonymous} , #{commentTime} ,  #{bearScore} , #{interestingScore} ,  #{easyScore} , #{knowledgeScore} )
+	</insert>
+	
+	<select id="getScoreByGrade"  resultType="int" >
+	    select sum(gradeScore) from student_comment_course
+	    where selectId in ( select id from student_select_course
+	    where studentId in ( select id from Student where studentNumber like '${arg0}%'
+	    and deleteStatus = 0 ) and deleteStatus = 0 and courseId = #{arg1} ) and deleteStatus = 0 
+	</select>
+	
+	<select id="numberOfGetScoreByGrade" resultType="int" >
+	    select count(*) from student_comment_course
+	    where selectId in ( select id from student_select_course
+	    where studentId in ( select id from Student where studentNumber like '${arg0}%'
+	    and deleteStatus = 0 ) and deleteStatus = 0 and courseId = #{arg1} ) and deleteStatus = 0 
+	</select>
+	
+	<select id="getContentScoreByGrade" resultType="int" >
+	    select sum(contentScore) from student_comment_course
+	    where selectId in ( select id from student_select_course
+	    where studentId in ( select id from Student where studentNumber like '${_parameter}%'
+	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 
+	</select>
+	
+	<select id="numberOfGetContentScoreByGrade" resultType="int" >
+	    select count(*) from student_comment_course
+	    where selectId in ( select id from student_select_course
+	    where studentId in ( select id from Student where studentNumber like '${_parameter}%'
+	    and deleteStatus = 0 ) and deleteStatus = 0  ) and deleteStatus = 0 
+	</select>
+
+</mapper>

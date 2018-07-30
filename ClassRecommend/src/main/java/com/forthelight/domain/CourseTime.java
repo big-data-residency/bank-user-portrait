@@ -1,15 +1,18 @@
 package com.forthelight.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CourseTime {
+@SuppressWarnings("serial")
+public class CourseTime implements Serializable {
 	private Integer id;
 	private int startLesson;
 	private int endLesson;
 	private int lessonDay;
+	private Integer deleteStatus;
 
-	private Set<Course> courses = new HashSet<Course>();
+	private transient List<Course> courses = new ArrayList<Course>();
 
 	public CourseTime() {
 		super();
@@ -48,12 +51,19 @@ public class CourseTime {
 		this.lessonDay = lessonDay;
 	}
 
-	public Set<Course> getCourses() {
+	public List<Course> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(Set<Course> courses) {
+	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
 
+	public Integer getDeleteStatus() {
+		return deleteStatus;
+	}
+
+	public void setDeleteStatus(Integer deleteStatus) {
+		this.deleteStatus = deleteStatus;
+	}
 }

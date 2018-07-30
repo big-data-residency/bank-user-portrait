@@ -2,14 +2,14 @@ package com.forthelight.dao;
 
 import java.util.List;
 
-import com.forthelight.domain.Course;
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 public interface TeacherDao {
 
 	Teacher findById(int id);
 
-	List<Teacher> findByName(Teacher teacher);
+	List<Teacher> findByName(String teacherName);
 
 	List<Teacher> findAll();
 
@@ -17,7 +17,16 @@ public interface TeacherDao {
 
 	int update(Teacher teacher);
 
-	int delete(Teacher teacher);
+	int delete(int id);
 
 	int insert(Teacher teacher);
+
+	List<Teacher> findByCollegeId(int collegeId);
+	
+	int likeNumber(int id);
+	
+	String college(int collegeId);
+	
+	List<Tag> tagList(int teacherId);
+	
 }

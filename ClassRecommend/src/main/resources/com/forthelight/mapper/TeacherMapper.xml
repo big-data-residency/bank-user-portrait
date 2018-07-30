@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.forthelight.dao.TeacherDao">
+
+	<resultMap type="Teacher" id="TeacherResultMap" autoMapping="true">
+		<id property="id" column="id" jdbcType="INTEGER" />
+
+		<association property="college" column="collegeid" javaType="College" 
+		select="com.forthelight.dao.CollegeDao.findById" autoMapping="true">
+			<id property="id" column="id" />
+		</association>
+
+		<collection property="courses" column="id" ofType="Course" 
+		select="com.forthelight.dao.CourseDao.findByTeacherId" autoMapping="true">
+		</collection>
+
+	</resultMap>
+
+
+
+	<select id="findById" parameterType="int"
+		resultMap="TeacherResultMap">
+		select * from Teacher
+		where id = #{id} and deleteStatus=0
+	</select>
+
+	<select id="findByName" parameterType="String"
+		resultMap="TeacherResultMap">
+		select * from Teacher
+		where teacherName = #{teacherName} and deleteStatus = 0
+	</select>
+
+	<select id="findAll" resultMap="TeacherResultMap">
+		select * from Teacher
+		where deleteStatus = 0
+	</select>
+
+	<select id="OrderByLike" resultMap="TeacherResultMap">
+		select * from 
+		( ( Teacher inner join Course on Teacher.id = teacherId ) 
+		inner join student_select_course on Course.id = courseId )
+		inner join student_comment_course on selectId = student_select_course.id
+		group by teacher.id 
+		having teacher.deleteStatus = 0 and course.deleteStatus = 0 and student_select_course.deleteStatus = 0 and student_comment_course.deleteStatus = 0
+		order by sum(likeNumber) desc 
+	</select>
+
+	<update id="update" parameterType="Teacher">
+		update teacher 
+		set teacherName = #{teacherName}, gender = #{gender} ,
+		telPhone = #{telPhone} , email = #{email} ,
+		officeAddress = #{officeAddress} , collegeId = #{college.id}
+		where id = #{id}
+	</update>
+
+	<update id="delete" parameterType="int">
+		update teacher 
+		set deleteStatus = 1 
+		where id = #{id}
+	</update>
+
+	<insert id="insert" parameterType="Teacher">
+		insert into teacher values
+		( null , #{teacherName} , #{gender} , #{telPhone} , #{email} , 
+		#{officeAddress} , #{college.id} , 0 , #{level} , #{teacherPortrait} )
+	</insert>
+	
+	<select id="findByCollegeId" parameterType="int" resultMap="TeacherResultMap" >
+	    select * from Teacher 
+	    where collegeId = #{collegeId} and deleteStatus = 0
+	</select>
+	
+	<select id="likeNumber" parameterType="int" resultType="int" >
+	    select sum(likeNumber) from student_comment_course
+	    where selectId in ( select id from student_select_course where courseId in
+	    ( select id from Course where teacherId = #{id} 
+	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+	<select id="college" parameterType="int" resultType="String" >
+	    select collegeName
+	    from College
+	    where id = #{collegeId} and deleteStatus = 0
+	</select>
+	
+	<select id="tagList" parameterType="int" resultType="Tag" >
+	    select * from tag
+	    where id in ( select tagId from comment_tag where commentId in
+	    ( select id from student_comment_course where selectId in 
+	    ( select id from student_select_course where courseId in
+	    ( select courseId from course where teacherId = #{teacherId} 
+	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+	
+
+</mapper>

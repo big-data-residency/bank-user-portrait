@@ -17,7 +17,14 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
+    <!-- Morris charts -->
+  <link rel="stylesheet" href="../../bower_components/morris.js/morris.css">
+  
+  <!--echarts 引入-->
+	<script src='https://cdn.bootcss.com/echarts/3.7.2/echarts.simple.js'></script>
+	<script type="text/javascript" src="../../style/newstyle/js/echarts-wordcloud.js"></script>
 
+<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/coursedetails_new.css"/>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -500,12 +507,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Profile
+         		Course-Details
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
-        <li class="active">User profile</li>
+        <li class="active">CourseDetails</li>
       </ol>
     </section>
 
@@ -522,62 +529,56 @@
 
               <h3 class="profile-username text-center">信息安全数据基础</h3>
 
-              <p class="text-muted text-center">Software Engineer</p>
+              <p class="text-muted text-center">cmp1111</p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Followers</b> <a class="pull-right">1,322</a>
+                  <b>任课老师</b> <a class="pull-right">贾春福</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Following</b> <a class="pull-right">543</a>
+                  <b>学分</b> <a class="pull-right">3</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Friends</b> <a class="pull-right">13,287</a>
+                  <b>评论数</b> <a class="pull-right">13,287</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+              <a href="#" class="btn btn-primary btn-block"><b>评论</b></a>
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
 
-          <!-- About Me Box -->
+          <!-- 课程详情 Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
+              <h3 class="box-title">MORE Details</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+              <strong><i class="fa fa-book margin-r-5"></i> 开课时间</strong>
 
               <p class="text-muted">
-                B.S. in Computer Science from the University of Tennessee at Knoxville
+                &nbsp;&nbsp;&nbsp; 1-16周，6-7节课
               </p>
 
               <hr>
 
-              <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+              <strong><i class="fa fa-map-marker margin-r-5"></i> 课程人数 </strong>
 
-              <p class="text-muted">Malibu, California</p>
+              <p class="text-muted">&nbsp;&nbsp;&nbsp;50</p>
 
               <hr>
-
-              <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+              <strong><i class="fa fa-pencil margin-r-5"></i> 通过制</strong>
 
               <p>
-                <span class="label label-danger">UI Design</span>
-                <span class="label label-success">Coding</span>
-                <span class="label label-info">Javascript</span>
-                <span class="label label-warning">PHP</span>
-                <span class="label label-primary">Node.js</span>
+									<p class="text-muted">&nbsp;&nbsp;&nbsp;是</p>
               </p>
-
               <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              <strong><i class="fa fa-pencil margin-r-5"></i> 课程考核方式</strong>
+              <p>
+									<p class="text-muted">&nbsp;&nbsp;&nbsp;论文结课</p>
+              </p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -587,29 +588,24 @@
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-              <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-              <li><a href="#settings" data-toggle="tab">Settings</a></li>
+            	<li class="active"><a href="#bigdata" data-toggle="tab">BigData</a></li>
+              <li ><a href="#activity" data-toggle="tab">CommentsCycle</a></li>
             </ul>
             <div class="tab-content">
-              <div class="active tab-pane" id="activity">
+              <div class="tab-pane" id="activity">
                 <!-- Post -->
                 <div class="post">
                   <div class="user-block">
                     <img class="img-circle img-bordered-sm" src="../../style/dist/img/user1-128x128.jpg" alt="user image">
                         <span class="username">
-                          <a href="#">Jonathan Burke Jr.</a>
+                          <a href="#">胖成球</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
                     <span class="description">Shared publicly - 7:30 PM today</span>
                   </div>
                   <!-- /.user-block -->
                   <p>
-                    Lorem ipsum represents a long-held tradition for designers,
-                    typographers and the like. Some people hate it and argue for
-                    its demise, but others ignore the hate as they create awesome
-                    tools to help create filler text for everyone from bacon lovers
-                    to Charlie Sheen fans.
+                     启发式教学
                   </p>
                   <ul class="list-inline">
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
@@ -619,7 +615,6 @@
                       <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
                         (5)</a></li>
                   </ul>
-
                   <input class="form-control input-sm" type="text" placeholder="Type a comment">
                 </div>
                 <!-- /.post -->
@@ -707,107 +702,417 @@
                 <!-- /.post -->
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
-                <!-- The timeline -->
-                <ul class="timeline timeline-inverse">
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-red">
-                          10 Feb. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-envelope bg-blue"></i>
+              <div class="active tab-pane" id="bigdata">
+									<div class="post" style="height:400px;">
+											<div id="main" style="width: 500px;height:244px;"></div>
+											<style>
+												#main {
+													width: 100% !important;
+													height: 100% !important;
+													margin-bottom: 50px;
+													float: right;
+												}
+											</style>
+											<script>
+												var chart = echarts.init(document.getElementById('main'));
+												var keywords = {
+													"严肃": 22199,
+													"幽默": 10288,
+													"contoller": 620,
+													"优秀": 274470,
+													"gauge": 12311,
+													"detail": 1206,
+													"piecewise": 4885,
+													"textStyle": 32294,
+													"markPoint": 18574,
+													"pie": 38929,
+													"roseType": 969,
+													"label": 37517,
+													"emphasis": 12053,
+													"yAxis": 57299,
+													"name": 15418,
+													"type": 22905,
+													"gridIndex": 5146,
+													"normal": 49487,
+													"itemStyle": 33837,
+													"min": 4500,
+													"silent": 5744,
+													"animation": 4840,
+													"offsetCenter": 232,
+													"inverse": 3706,
+													"borderColor": 4812,
+													"markLine": 16578,
+													"line": 76970,
+													"radiusAxis": 6704,
+													"radar": 15964,
+													"data": 60679,
+													"dataZoom": 24347,
+													"tooltip": 43420,
+													"toolbox": 25222,
+													"geo": 16904,
+													"parallelAxis": 4029,
+													"parallel": 5319,
+													"max": 3393,
+													"bar": 43066,
+													"heatmap": 3110,
+													"map": 20285,
+													"animationDuration": 3425,
+													"animationDelay": 2431,
+													"splitNumber": 5175,
+													"axisLine": 12738,
+													"lineStyle": 19601,
+													"splitLine": 7133,
+													"axisTick": 8831,
+													"axisLabel": 17516,
+													"pointer": 590,
+													"color": 23426,
+													"title": 38497,
+													"formatter": 15214,
+													"slider": 7236,
+													"legend": 66514,
+													"grid": 28516,
+													"smooth": 1295,
+													"smoothMonotone": 696,
+													"sampling": 757,
+													"feature": 12815,
+													"saveAsImage": 2616,
+													"polar": 6279,
+													"calculable": 879,
+													"backgroundColor": 9419,
+													"excludeComponents": 130,
+													"show": 20620,
+													"text": 2592,
+													"icon": 2782,
+													"dimension": 478,
+													"inRange": 1060,
+													"animationEasing": 2983,
+													"animationDurationUpdate": 2259,
+													"animationDelayUpdate": 2236,
+													"animationEasingUpdate": 2213,
+													"xAxis": 89459,
+													"angleAxis": 5469,
+													"showTitle": 484,
+													"dataView": 2754,
+													"restore": 932,
+													"timeline": 10104,
+													"range": 477,
+													"value": 5732,
+													"precision": 878,
+													"target": 1433,
+													"zlevel": 5361,
+													"symbol": 8718,
+													"interval": 7964,
+													"symbolSize": 5300,
+													"showSymbol": 1247,
+													"inside": 8913,
+													"xAxisIndex": 3843,
+													"orient": 4205,
+													"boundaryGap": 5073,
+													"nameGap": 4896,
+													"zoomLock": 571,
+													"hoverAnimation": 2307,
+													"legendHoverLink": 3553,
+													"stack": 2907,
+													"throttle": 466,
+													"connectNulls": 897,
+													"clipOverflow": 826,
+													"startValue": 551,
+													"minInterval": 3292,
+													"opacity": 3097,
+													"splitArea": 4775,
+													"filterMode": 635,
+													"end": 409,
+													"left": 6475,
+													"funnel": 2238,
+													"lines": 6403,
+													"baseline": 431,
+													"align": 2608,
+													"coord": 897,
+													"nameTextStyle": 7477,
+													"width": 4338,
+													"shadowBlur": 4493,
+													"effect": 929,
+													"period": 225,
+													"areaColor": 631,
+													"borderWidth": 3654,
+													"nameLocation": 4418,
+													"position": 11723,
+													"containLabel": 1701,
+													"scatter": 10718,
+													"areaStyle": 5310,
+													"scale": 3859,
+													"pieces": 414,
+													"categories": 1000,
+													"selectedMode": 3825,
+													"itemSymbol": 273,
+													"effectScatter": 7147,
+													"fontStyle": 3376,
+													"fontSize": 3386,
+													"margin": 1034,
+													"iconStyle": 2257,
+													"link": 1366,
+													"axisPointer": 5245,
+													"showDelay": 896,
+													"graph": 22194,
+													"subtext": 1442,
+													"selected": 2881,
+													"barCategoryGap": 827,
+													"barGap": 1094,
+													"barWidth": 1521,
+													"coordinateSystem": 3622,
+													"barBorderRadius": 284,
+													"z": 4014,
+													"polarIndex": 1456,
+													"shadowOffsetX": 3046,
+													"shadowColor": 3771,
+													"shadowOffsetY": 2475,
+													"height": 1988,
+													"barMinHeight": 575,
+													"lang": 131,
+													"symbolRotate": 2752,
+													"symbolOffset": 2549,
+													"showAllSymbol": 942,
+													"transitionDuration": 993,
+													"bottom": 3724,
+													"fillerColor": 229,
+													"nameMap": 1249,
+													"barMaxWidth": 747,
+													"radius": 2103,
+													"center": 2425,
+													"magicType": 3276,
+													"labelPrecision": 248,
+													"option": 654,
+													"seriesIndex": 935,
+													"controlPosition": 121,
+													"itemGap": 3188,
+													"padding": 3481,
+													"shadowStyle": 347,
+													"boxplot": 1394,
+													"labelFormatter": 264,
+													"realtime": 631,
+													"dataBackgroundColor": 239,
+													"showDetail": 247,
+													"showDataShadow": 217,
+													"x": 684,
+													"valueDim": 499,
+													"onZero": 931,
+													"right": 3255,
+													"clockwise": 1035,
+													"itemWidth": 1732,
+													"trigger": 3840,
+													"axis": 379,
+													"selectedOffset": 670,
+													"startAngle": 1293,
+													"minAngle": 590,
+													"top": 4637,
+													"avoidLabelOverlap": 870,
+													"labelLine": 3785,
+													"sankey": 2933,
+													"endAngle": 213,
+													"start": 779,
+													"roam": 1738,
+													"fontWeight": 2828,
+													"fontFamily": 2490,
+													"subtextStyle": 2066,
+													"indicator": 853,
+													"sublink": 708,
+													"zoom": 1038,
+													"subtarget": 659,
+													"length": 1060,
+													"itemSize": 505,
+													"controlStyle": 452,
+													"yAxisIndex": 2529,
+													"edgeLabel": 1188,
+													"radiusAxisIndex": 354,
+													"scaleLimit": 1313,
+													"geoIndex": 535,
+													"regions": 1892,
+													"itemHeight": 1290,
+													"nodes": 644,
+													"candlestick": 3166,
+													"crossStyle": 466,
+													"edges": 369,
+													"links": 3277,
+													"layout": 846,
+													"barBorderColor": 721,
+													"barBorderWidth": 498,
+													"treemap": 3865,
+													"y": 367,
+													"valueIndex": 704,
+													"showLegendSymbol": 482,
+													"mapValueCalculation": 492,
+													"optionToContent": 264,
+													"handleColor": 187,
+													"handleSize": 271,
+													"showContent": 1853,
+													"angleAxisIndex": 406,
+													"endValue": 327,
+													"triggerOn": 1720,
+													"contentToOption": 169,
+													"buttonColor": 71,
+													"rotate": 1144,
+													"hoverLink": 335,
+													"outOfRange": 491,
+													"textareaColor": 58,
+													"textareaBorderColor": 58,
+													"textColor": 60,
+													"buttonTextColor": 66,
+													"category": 336,
+													"hideDelay": 786,
+													"alwaysShowContent": 1267,
+													"extraCssText": 901,
+													"effectType": 277,
+													"force": 1820,
+													"rippleEffect": 723,
+													"edgeSymbolSize": 329,
+													"showEffectOn": 271,
+													"gravity": 199,
+													"edgeLength": 193,
+													"layoutAnimation": 152,
+													"length2": 169,
+													"enterable": 957,
+													"dim": 83,
+													"readOnly": 143,
+													"levels": 444,
+													"textGap": 256,
+													"pixelRatio": 84,
+													"nodeScaleRatio": 232,
+													"draggable": 249,
+													"brushType": 158,
+													"radarIndex": 152,
+													"large": 182,
+													"edgeSymbol": 675,
+													"largeThreshold": 132,
+													"leafDepth": 73,
+													"childrenVisibleMin": 73,
+													"minSize": 35,
+													"maxSize": 35,
+													"sort": 90,
+													"funnelAlign": 61,
+													"source": 336,
+													"nodeClick": 200,
+													"curveness": 350,
+													"areaSelectStyle": 104,
+													"parallelIndex": 52,
+													"initLayout": 359,
+													"trailLength": 116,
+													"boxWidth": 20,
+													"back": 53,
+													"rewind": 110,
+													"zoomToNodeRatio": 80,
+													"squareRatio": 60,
+													"parallelAxisDefault": 358,
+													"checkpointStyle": 440,
+													"nodeWidth": 49,
+													"color0": 62,
+													"layoutIterations": 56,
+													"nodeGap": 54,
+													"color(Array": 76,
+													"<string>)": 76,
+													"repulsion": 276,
+													"tiled": 105,
+													"currentIndex": 145,
+													"axisType": 227,
+													"loop": 97,
+													"playInterval": 112,
+													"borderColor0": 23,
+													"gap": 43,
+													"autoPlay": 123,
+													"showPlayBtn": 25,
+													"breadcrumb": 119,
+													"colorMappingBy": 85,
+													"id": 18,
+													"blurSize": 85,
+													"minOpacity": 50,
+													"maxOpacity": 54,
+													"prevIcon": 12,
+													"children": 21,
+													"shape": 98,
+													"nextIcon": 12,
+													"showNextBtn": 17,
+													"stopIcon": 21,
+													"visibleMin": 83,
+													"visualDimension": 97,
+													"colorSaturation": 56,
+													"colorAlpha": 66,
+													"emptyItemWidth": 10,
+													"inactiveOpacity": 4,
+													"activeOpacity": 4,
+													"showPrevBtn": 19,
+													"playIcon": 26,
+													"ellipsis": 19,
+													"gapWidth": 19,
+													"borderColorSaturation": 10,
+													"handleIcon": 2,
+													"handleStyle": 6,
+													"borderType": 1,
+													"constantSpeed": 1,
+													"polyline": 2,
+													"blendMode": 1,
+													"dataBackground": 1,
+													"textAlign": 1,
+													"textBaseline": 1,
+													"brush": 3
+												};
 
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+												var data = [];
+												for(var name in keywords) {
+													data.push({
+														name: name,
+														value: Math.sqrt(keywords[name])
+													})
+												}
+												var maskImage = new Image();
 
-                      <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+												var option = {
+													series: [{
+														type: 'wordCloud',
+														sizeRange: [10, 100],
+														rotationRange: [-90, 90],
+														rotationStep: 45,
+														gridSize: 2,
+														shape: 'pentagon',
+														maskImage: maskImage,
+														drawOutOfBound: false,
+														textStyle: {
+															normal: {
+																color: function() {
+																	return 'rgb(' + [
+																		Math.round(Math.random() * 160),
+																		Math.round(Math.random() * 160),
+																		Math.round(Math.random() * 160)
+																	].join(',') + ')';
+																}
+															},
+															emphasis: {
+																color: 'red'
+															}
+														},
+														data: data.sort(function(a, b) {
+															return b.value - a.value;
+														})
+													}]
+												};
 
-                      <div class="timeline-body">
-                        Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                        weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                        jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                        quora plaxo ideeli hulu weebly balihoo...
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-primary btn-xs">Read more</a>
-                        <a class="btn btn-danger btn-xs">Delete</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-user bg-aqua"></i>
+												maskImage.onload = function() {
+													option.series[0].maskImage
+													chart.setOption(option);
+												}
 
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
+												maskImage.src = '../../style/newstyle/images/wordcloud.png';
 
-                      <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request
-                      </h3>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-comments bg-yellow"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                      <div class="timeline-body">
-                        Take me to your leader!
-                        Switzerland is small and neutral!
-                        We are more like Germany, ambitious and misunderstood!
-                      </div>
-                      <div class="timeline-footer">
-                        <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <!-- timeline time label -->
-                  <li class="time-label">
-                        <span class="bg-green">
-                          3 Jan. 2014
-                        </span>
-                  </li>
-                  <!-- /.timeline-label -->
-                  <!-- timeline item -->
-                  <li>
-                    <i class="fa fa-camera bg-purple"></i>
-
-                    <div class="timeline-item">
-                      <span class="time"><i class="fa fa-clock-o"></i> 2 days ago</span>
-
-                      <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                      <div class="timeline-body">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                        <img src="http://placehold.it/150x100" alt="..." class="margin">
-                      </div>
-                    </div>
-                  </li>
-                  <!-- END timeline item -->
-                  <li>
-                    <i class="fa fa-clock-o bg-gray"></i>
-                  </li>
-                </ul>
-              </div>
-              <!-- /.tab-pane -->
-          <!-- Donut chart -->
-          <div class="box box-primary">
+												window.onresize = function() {
+													chart.resize();
+												}
+											</script>
+										</div>
+										<!--table-->
+				      <div class="row">
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
             <div class="box-header with-border">
-              <i class="fa fa-bar-chart-o"></i>
-
-              <h3 class="box-title">Donut Chart</h3>
+              <h3 class="box-title">给分占比</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -815,62 +1120,109 @@
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
-            <div class="box-body">
-              <div id="donut-chart" style="height: 300px;"></div>
+            <div class="box-body chart-responsive">
+              <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
             </div>
-            <!-- /.box-body-->
+            <!-- /.box-body -->
+          </div>
           <!-- /.box -->
-                <!--<form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+        </div>
+        <!-- /.col (LEFT) -->
+        <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">内容分数分布 </h3>
 
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>    
+             
+            </div> 
+          <div class="pull-left rating-stars">
+      					<ul>
+      						<div> 手下留情  :
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li></div>
+     </ul>
+      </div>
+      
+                <div class="pull-left rating-stars">
+                	
+      					<ul>
+      						<div> 课堂有趣  :
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li></div>
+     </ul>
+      </div>
+                <div class="pull-left rating-stars">
+      					<ul>
+      						<div> 划水度 ：
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+     </div>
+      					</ul>
+      </div>
+                <div class="pull-left rating-stars">
+      					<ul>
+      						<div>满满干活 :
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#" class="active"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    <li><a href="#"><span class="glyphicon glyphicon-star star-stn" aria-hidden="true"></span></a></li>
+    </div>
+      					</ul>
+      </div>
+            <!--<div class="box-body chart-responsive">
+              <div class="chart" id="score-chart" style="height: 300px; position: relative;"></div>
+            </div>-->
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
 
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="Name">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
 
-                    <div class="col-sm-10">
-                      <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+        </div>
+        <!-- /.col (RIGHT) -->
+      </div>
+      <!-- /.row -->
+			          <!-- BAR CHART -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">成绩分布</h3>
 
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <div class="checkbox">
-                        <label>
-                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form>-->
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body chart-responsive">
+              <div class="chart" id="bar-chart" style="height: 300px;"></div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->							
+										
+										
+										
+        </div>
+										
+										
+              </div>
+
               </div>
               <!-- /.tab-pane -->
             </div>
@@ -890,7 +1242,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2018 <a href="https://adminlte.io">EAMIS-Recommender</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -1100,5 +1452,64 @@
 <script src="../../style/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../style/dist/js/demo.js"></script>
+
+<!-- Morris.js charts -->
+<script src="../../style/bower_components/raphael/raphael.min.js"></script>
+<script src="../../style/bower_components/morris.js/morris.min.js"></script>
+<!-- FastClick -->
+<script src="../../style/bower_components/fastclick/lib/fastclick.js"></script>
+
+<!-- page script -->
+<script>
+  $(function () {
+    "use strict";
+    //DONUT CHART
+    var donut = new Morris.Donut({
+      element: 'sales-chart',
+      resize: true,
+      colors: ["#3c8dbc", "#f56954", "#00a65a"],
+      data: [
+        {label: "期中考核占比", value: 12},
+        {label: "平时占比        ", value: 30},
+        {label: "最终考核占比", value: 20}
+      ],
+      hideHover: 'auto'
+    });
+    
+//      //DONUT CHART
+//  var donut = new Morris.Donut({
+//    element: 'score-chart',
+//    resize: true,
+//    colors: ["#3c8dbc", "#f56954", "#00a65a"],
+//    data: [
+//      {label: "5分", value: 12},
+//      {label: "4分        ", value: 30},
+//      {label: "3分", value: 20},
+//      {label: "2分", value: 20},
+//      {label: "1分", value: 3}
+//    ],
+//    hideHover: 'auto'
+//  });
+    //BAR CHART
+    var bar = new Morris.Bar({
+      element: 'bar-chart',
+      resize: true,
+      data: [
+        {y: '2006', a: 100, b: 90},
+        {y: '2007', a: 75, b: 65},
+        {y: '2008', a: 50, b: 40},
+        {y: '2009', a: 75, b: 65},
+        {y: '2010', a: 50, b: 40},
+        {y: '2011', a: 75, b: 65},
+        {y: '2012', a: 100, b: 90}
+      ],
+      barColors: ['#00a65a', '#f56954'],
+      xkey: 'y',
+      ykeys: ['a', 'b'],
+      labels: ['CPU', 'DISK'],
+      hideHover: 'auto'
+    });
+  });
+</script>
 </body>
 </html>
