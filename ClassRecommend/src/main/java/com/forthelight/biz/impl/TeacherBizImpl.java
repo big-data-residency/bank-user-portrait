@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.forthelight.biz.TeacherBiz;
 import com.forthelight.dao.TeacherDao;
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 
@@ -75,7 +76,7 @@ public class TeacherBizImpl implements TeacherBiz {
 	}
 
 	@Override
-	public List<String> tagList(int teacherId) {
+	public List<Tag> tagList(int teacherId) {
 		// TODO Auto-generated method stub
 		return teacherDao.tagList(teacherId);
 	}

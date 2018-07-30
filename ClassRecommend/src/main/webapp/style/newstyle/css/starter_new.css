@@ -233,3 +233,9 @@ p {
 }
 }
 /*结束*/
+/*下滑*/
+.abcen {
+    position: absolute;
+    bottom: 8%;
+}
+/**/

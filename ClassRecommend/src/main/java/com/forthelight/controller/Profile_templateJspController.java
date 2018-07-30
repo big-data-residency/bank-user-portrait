@@ -41,21 +41,21 @@ public class Profile_templateJspController {
 		int teacherId = Integer.parseInt(id);
 		Teacher teacher = teacherBiz.findById(teacherId);
 		College college = teacher.getCollege();
-		List<String> tags = teacherBiz.tagList(teacherId);
+		//List<String> tags = teacherBiz.tagList(teacherId);
 
 		List<Course> courses = courseBiz.findByTeacherId(teacherId);
 		System.out.println("courses===" + courses);
 
 		request.setAttribute("teacher", teacher);
 		request.setAttribute("college", college);
-		request.setAttribute("tags", tags);
+		//request.setAttribute("tags", tags);
 		request.setAttribute("courses", courses);
 
 		// ------------- 教师标签云信息传输 -----------------
 
 		JsonObject TagsNumber = new JsonObject();
 
-		for (String tag : tags) {
+		/*for (String tag : tags) {
 
 			int tagId = tagBiz.findByName(tag).getId();
 			int TagNumber = 0;
@@ -69,7 +69,7 @@ public class Profile_templateJspController {
 		}
 
 		request.setAttribute("TagsNumber", TagsNumber);
-
+*/
 		// --------------- 评论信息传输 --------------------
 
 		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseBiz.orderByLikeNumber(teacherId) ;

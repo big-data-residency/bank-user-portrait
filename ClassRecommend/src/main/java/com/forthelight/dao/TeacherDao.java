@@ -1,6 +1,8 @@
 package com.forthelight.dao;
 
 import java.util.List;
+
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 public interface TeacherDao {
@@ -25,6 +27,6 @@ public interface TeacherDao {
 	
 	String college(int collegeId);
 	
-	List<String> tagList(int teacherId);
+	List<Tag> tagList(int teacherId);
 	
 }
