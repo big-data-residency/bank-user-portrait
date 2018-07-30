@@ -20,4 +20,6 @@ public interface StudentDao {
 	List<Student> findByCourseId(int courseId);
 
 	Student findByName(String studentName);
+	
+	int update (Student student);
 }
