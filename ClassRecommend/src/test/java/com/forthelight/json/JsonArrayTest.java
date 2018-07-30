@@ -25,7 +25,7 @@ public class JsonArrayTest {
 	
 	@Test
 	public void testjsonArray() {
-		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseBiz.orderByLikeNumber(teacherId) ;
+		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseBiz.orderByLikeNumber(1) ;
 		
 		JsonArray commentses = new JsonArray();
 		for(StudentCommentCourse  studentCommentCourse : studentCommentCourses ) {
@@ -34,4 +34,4 @@ public class JsonArrayTest {
 		}
 		
 	}
-
+}

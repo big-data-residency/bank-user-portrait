@@ -22,7 +22,7 @@ public class StudentCommentCourseDaoTest {
 	@Test
 	public void TestFindById() {
 		StudentCommentCourse studentCommentCourse = studentCommentCourseDao.findById(1);
-		System.out.println(studentCommentCourse);
+		System.out.println(studentCommentCourse.getCommentTime());
 	}
 	
 	@Test
