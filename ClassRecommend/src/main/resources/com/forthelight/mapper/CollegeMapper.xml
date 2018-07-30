@@ -36,7 +36,7 @@
 	
 	<select id="findByName" parameterType="String" resultMap="CollegeResultMap">
 	    select * from College
-	    where collegeName = #{collegeName} and deleteStatus = 0
+	    where collegeName = #{collegeName} and deleteStatus = 0;
 	</select>
 	
 	<select id="findByType" parameterType="int" resultMap="CollegeResultMap">
