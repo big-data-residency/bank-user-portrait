@@ -32,5 +32,9 @@
 	    select * from Major 
 	    where collegeId = #{collegeId} and deleteStatus = 0
 	</select>
+
+	<select id="findByName" resultMap="MajorResultMap" parameterType="String" >
+		SELECT * FROM major WHERE DeleteStatus=0 AND MajorName=#{majorName};
+	</select>
 	
 </mapper>

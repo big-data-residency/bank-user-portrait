@@ -10,4 +10,5 @@ public interface MajorBiz {
 
 	List<Major> findByCollegeId(int collegeId);
 
+	Major findByName(String majorName);
 }

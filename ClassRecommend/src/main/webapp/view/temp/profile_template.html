@@ -32,6 +32,14 @@
 
 	<!-- Google Font -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	<style>
+		#main {
+			width: 100% !important;
+			height: 100% !important;
+			margin-bottom: 50px;
+			float: right;
+		}
+	</style>
 </head>
 
 <body class="hold-transition skin-blue fixed">
@@ -609,69 +617,70 @@
 		<section class="content">
 
 			<div class="row">
-				  <div class="col-md-3">
+				<div class="col-md-3">
 
 					<!-- Profile Image -->
 					<div class="box box-primary">
 						<div class="box-body box-profile">
 							<img class="profile-user-img img-responsive img-circle" src="../../style/dist/img/user4-128x128.jpg" alt="User profile picture">
 
-							<h3 class="profile-username text-center" id="teacherName"></h3>
+							<h3 class="profile-username text-center" >{{ teacher.teacherName }}</h3>
 
 							<p class="text-muted text-center"></p>
 
-						<!-- /.box-body -->
-					</div>
-					<!-- /.box -->
-
-					<!-- About Me Box -->
-					<div class="box box-primary">
-						<div class="box-header with-border">
-							<h3 class="box-title">Information</h3>
+							<!-- /.box-body -->
 						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<strong><i class="fa fa-fw fa-user"></i> basic info</strong>
-							<p class="text-muted">
-                                <b>Sex:</b> <p v-if=" teacher.gender == 1" > 男 </p>
-                                            <p v-else > 女 </p> <br>
+						<!-- /.box -->
+
+						<!-- About Me Box -->
+						<div class="box box-primary">
+							<div class="box-header with-border">
+								<h3 class="box-title">Information</h3>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+								<strong><i class="fa fa-fw fa-user"></i> basic info</strong>
+								<p class="text-muted">
+									<b>Sex:</b> <p v-if=" teacher.gender == 1" > 男 </p>
+								<p v-else > 女 </p> <br>
 								<b>Phone: </b> {{ teacher.telPhone }}<br>
 								<b>Email: </b> {{ teacher.email }}
-							</p>
-							<hr>
-							<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+								</p>
+								<hr>
+								<strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
-							<p class="text-muted">
-								南开大学{{ college.collegeName }}
-							</p>
+								<p class="text-muted">
+									南开大学{{ college.collegeName }}
+								</p>
 
-							<hr>
+								<hr>
 
-							<strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+								<strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-							<p class="text-muted">{{ teacher.officeAddress }}</p>
+								<p class="text-muted">{{ teacher.officeAddress }}</p>
 
-							<hr>
+								<hr>
 
-							<strong><i class="fa fa-pencil margin-r-5"></i> 标签</strong>
+								<strong><i class="fa fa-pencil margin-r-5"></i> 标签</strong>
 
-							<p v-for="(tag,index) in tags" >
+								<p v-for="(tag,index) in tags" >
 
-								<span v-if="index%5 == 0"><span class="label label-danger">{{ tag.tagName }}</span></span>
-                                <span v-if="index%5 == 1"><span class="label label-success">{{ tag.tagName }}</span></span>
-                                <span v-if="index%5 == 2"><span class="label label-info">{{ tag.tagName }}</span></span>
-                                <span v-if="index%5 == 3"><span class="label label-warning">{{ tag.tagName }}</span></span>
-                                <span v-if="index%5 == 4"><span class="label label-primary">{{ tag.tagName }}</span></span>
-							</p>
+									<span v-if="index%5 == 0"><span class="label label-danger">{{ tag.tagName }}</span></span>
+									<span v-if="index%5 == 1"><span class="label label-success">{{ tag.tagName }}</span></span>
+									<span v-if="index%5 == 2"><span class="label label-info">{{ tag.tagName }}</span></span>
+									<span v-if="index%5 == 3"><span class="label label-warning">{{ tag.tagName }}</span></span>
+									<span v-if="index%5 == 4"><span class="label label-primary">{{ tag.tagName }}</span></span>
+								</p>
 
-							<hr>
+								<hr>
+							</div>
+							<!-- /.box-body -->
 						</div>
-						<!-- /.box-body -->
+						<!-- /.box -->
 					</div>
-					<!-- /.box -->
 				</div>
-                  </div>
 				<!-- /.col -->
+
 				<div class="col-md-9">
 					<div class="nav-tabs-custom">
 						<ul class="nav nav-tabs">
@@ -690,107 +699,7 @@
 							<div class="active tab-pane" id="bigdata">
 								<div class="post" style="height:400px;">
 									<div id="main" style="width: 500px;height:244px;"></div>
-									<style>
-										#main {
-											width: 100% !important;
-											height: 100% !important;
-											margin-bottom: 50px;
-											float: right;
-										}
-									</style>
-									<script>
-option = {
-    title: {
-        text: '多雷达图'
-    },
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        x: 'center',
-        data:['某软件','某主食手机','某水果手机','降水量','蒸发量']
-    },
-    radar: [
-        {
-            indicator: [
-                {text: '品牌', max: 100},
-                {text: '内容', max: 100},
-                {text: '可用性', max: 100},
-                {text: '功能', max: 100}
-            ],
-            center: ['25%','40%'],
-            radius: 80
-        },
-        {
-            indicator: [
-                {text: '外观', max: 100},
-                {text: '拍照', max: 100},
-                {text: '系统', max: 100},
-                {text: '性能', max: 100},
-                {text: '屏幕', max: 100}
-            ],
-            radius: 80,
-            center: ['50%','60%'],
-        },
-        {
-            indicator: (function (){
-                var res = [];
-                for (var i = 1; i <= 12; i++) {
-                    res.push({text:i+'月',max:100});
-                }
-                return res;
-            })(),
-            center: ['75%','40%'],
-            radius: 80
-        }
-    ],
-    series: [
-        {
-            type: 'radar',
-             tooltip: {
-                trigger: 'item'
-            },
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data: [
-                {
-                    value: [60,73,85,40],
-                    name: '某软件'
-                }
-            ]
-        },
-        {
-            type: 'radar',
-            radarIndex: 1,
-            data: [
-                {
-                    value: [85, 90, 90, 95, 95],
-                    name: '某主食手机'
-                },
-                {
-                    value: [95, 80, 95, 90, 93],
-                    name: '某水果手机'
-                }
-            ]
-        },
-        {
-            type: 'radar',
-            radarIndex: 2,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
-            data: [
-                {
-                    name: '降水量',
-                    value: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 75.6, 82.2, 48.7, 18.8, 6.0, 2.3],
-                },
-                {
-                    name:'蒸发量',
-                    value:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 35.6, 62.2, 32.6, 20.0, 6.4, 3.3]
-                }
-            ]
-        }
-    ]
-};
 
-									</script>
 								</div>
 
 								<!--表格-->
@@ -799,7 +708,7 @@ option = {
 										<table class="table table-striped">
 											<thead>
 											<tr>
-												<th>Id</th>
+												<th>编号</th>
 												<th>课程名</th>
 												<th>课程编号</th>
 												<th>学分</th>
@@ -807,33 +716,12 @@ option = {
 											</tr>
 											</thead>
 											<tbody>
-											<tr>
-												<td>1</td>
-												<td>数据结构</td>
-												<td>comp1111</td>
-												<td>4</td>
-												<td>C类课</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Need for Speed IV</td>
-												<td>247-925-726</td>
-												<td>Wes Anderson umami biodiesel</td>
-												<td>$50.00</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td>Monsters DVD</td>
-												<td>735-845-642</td>
-												<td>Terry Richardson helvetica tousled street art master</td>
-												<td>$10.70</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td>Grown Ups Blue Ray</td>
-												<td>422-568-642</td>
-												<td>Tousled lomo letterpress</td>
-												<td>$25.99</td>
+											<tr v-for="(course,index) in courses" >
+												<td>{{ index+1 }}</td>
+												<td>{{ course.courseName }}</td>
+												<td>{{ course.courseCode }}</td>
+												<td>{{ course.credit }}</td>
+												<td>{{ course.level }}类课</td>
 											</tr>
 											</tbody>
 										</table>
@@ -857,24 +745,24 @@ option = {
 
 							<!-- /.tab-pane -->
 							<div class=" tab-pane" id="activity">
-								<!-- Post -->
-								<div class="post">
+								<!-- CommentInfo -->
+								<div class="post" v-for="comment in comments" >
 									<div class="user-block">
 										<img class="img-circle img-bordered-sm" src="../../style/dist/img/user1-128x128.jpg" alt="user image">
 										<span class="username">
-                          <a href="#">周子祎</a>
+                          <a href="#">{{ comment.nickName }}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-										<span class="description">Shared publicly - 7:30 PM today</span>
+										<span class="description">Shared publicly - {{ comment.commentTime }}</span>
 									</div>
 									<!-- /.user-block -->
 									<p>
-										老师说： 你很优秀，你的学分绩并不影响你的优秀
+										{{ comment.commentContent }}
 									</p>
 									<ul class="list-inline">
 										<!--<li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>-->
 										<li>
-											<a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+											<a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like {{ comment.likeNumber }}</a>
 										</li>
 										<li class="pull-right">
 											<a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)
@@ -884,89 +772,7 @@ option = {
 
 									<input class="form-control input-sm" type="text" placeholder="Type a comment">
 								</div>
-								<!-- /.post -->
-
-								<!-- Post -->
-								<div class="post clearfix">
-									<div class="user-block">
-										<img class="img-circle img-bordered-sm" src="../../style/dist/img/user7-128x128.jpg" alt="User Image">
-										<span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-										<span class="description">Sent you a message - 3 days ago</span>
-									</div>
-									<!-- /.user-block -->
-									<p>
-										Lorem ipsum represents a long-held tradition for designers, typographers and the like. Some people hate it and argue for its demise, but others ignore the hate as they create awesome tools to help create filler text for everyone from bacon lovers to Charlie Sheen fans.
-									</p>
-
-									<form class="form-horizontal">
-										<div class="form-group margin-bottom-none">
-											<div class="col-sm-9">
-												<input class="form-control input-sm" placeholder="Response">
-											</div>
-											<div class="col-sm-3">
-												<button type="submit" class="btn btn-danger pull-right btn-block btn-sm">Send</button>
-											</div>
-										</div>
-									</form>
-								</div>
-								<!-- /.post -->
-
-								<!-- Post -->
-								<div class="post">
-									<div class="user-block">
-										<img class="img-circle img-bordered-sm" src="../../style/dist/img/user6-128x128.jpg" alt="User Image">
-										<span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-                        </span>
-										<span class="description">Posted 5 photos - 5 days ago</span>
-									</div>
-									<!-- /.user-block -->
-									<div class="row margin-bottom">
-										<div class="col-sm-6">
-											<img class="img-responsive" src="../../style/dist/img/photo1.png" alt="Photo">
-										</div>
-										<!-- /.col -->
-										<div class="col-sm-6">
-											<div class="row">
-												<div class="col-sm-6">
-													<img class="img-responsive" src="../../style/dist/img/photo2.png" alt="Photo">
-													<br>
-													<img class="img-responsive" src="../../style/dist/img/photo3.jpg" alt="Photo">
-												</div>
-												<!-- /.col -->
-												<div class="col-sm-6">
-													<img class="img-responsive" src="../../style/dist/img/photo4.jpg" alt="Photo">
-													<br>
-													<img class="img-responsive" src="../../style/dist/img/photo1.png" alt="Photo">
-												</div>
-												<!-- /.col -->
-											</div>
-											<!-- /.row -->
-										</div>
-										<!-- /.col -->
-									</div>
-									<!-- /.row -->
-
-									<ul class="list-inline">
-										<li>
-											<a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a>
-										</li>
-										<li>
-											<a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-										</li>
-										<li class="pull-right">
-											<a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments (5)
-											</a>
-										</li>
-									</ul>
-
-									<input class="form-control input-sm" type="text" placeholder="Type a comment">
-								</div>
-								<!-- /.post -->
+								<!-- /.CommentInfo -->
 							</div>
 							<!-- /.tab-pane -->
 							<div class="tab-pane" id="settings" >
@@ -1040,7 +846,7 @@ option = {
 					<!-- /.col -->
 				</div>
 				<!-- /.row -->
-            </div>
+			</div>
 		</section>
 		<!-- /.content -->
 	</div>
@@ -1275,216 +1081,177 @@ immediately after the control sidebar -->
 <script src="../../style/bower_components/morris.js/morris.min.js"></script>
 <!-- Page script -->
 
-<script>
-  $(function() {
-    /*
-     * DONUT CHART
-     * -----------
-     */
-
-    var donutData = [{
-      label: 'Series2',
-      data: 30,
-      color: '#3c8dbc'
-    },
-      {
-        label: 'Series3',
-        data: 20,
-        color: '#0073b7'
-      },
-      {
-        label: 'Series4',
-        data: 50,
-        color: '#00c0ef'
-      }
-    ]
-    $.plot('#donut-chart', donutData, {
-      series: {
-        pie: {
-          show: true,
-          radius: 1,
-          innerRadius: 0.5,
-          label: {
-            show: true,
-            radius: 2 / 3,
-            formatter: labelFormatter,
-            threshold: 0.1
-          }
-
-        }
-      },
-      legend: {
-        show: false
-      }
-    })
-    /*
-     * END DONUT CHART
-     */
-
-  })
-  // LINE CHART
-  var line = new Morris.Line({
-    element: 'line-chart',
-    resize: true,
-    data: [{
-      y: '2011 Q1',
-      item1: 2666
-    },
-      {
-        y: '2011 Q2',
-        item1: 2778
-      },
-      {
-        y: '2011 Q3',
-        item1: 4912
-      },
-      {
-        y: '2011 Q4',
-        item1: 3767
-      },
-      {
-        y: '2012 Q1',
-        item1: 6810
-      },
-      {
-        y: '2012 Q2',
-        item1: 5670
-      },
-      {
-        y: '2012 Q3',
-        item1: 4820
-      },
-      {
-        y: '2012 Q4',
-        item1: 15073
-      },
-      {
-        y: '2013 Q1',
-        item1: 10687
-      },
-      {
-        y: '2013 Q2',
-        item1: 8432
-      }
-    ],
-    xkey: 'y',
-    ykeys: ['item1'],
-    labels: ['Item 1'],
-    lineColors: ['#3c8dbc'],
-    hideHover: 'auto'
-  });
-
-  //BAR CHART
-  var bar = new Morris.Bar({
-    element: 'bar-chart',
-    resize: true,
-    data: [{
-      y: '2006',
-      a: 100,
-      b: 90
-    },
-      {
-        y: '2007',
-        a: 75,
-        b: 65
-      },
-      {
-        y: '2008',
-        a: 50,
-        b: 40
-      },
-      {
-        y: '2009',
-        a: 75,
-        b: 65
-      },
-      {
-        y: '2010',
-        a: 50,
-        b: 40
-      },
-      {
-        y: '2011',
-        a: 75,
-        b: 65
-      },
-      {
-        y: '2012',
-        a: 100,
-        b: 90
-      }
-    ],
-    barColors: ['#00a65a', '#f56954'],
-    xkey: 'y',
-    ykeys: ['a', 'b'],
-    labels: ['CPU', 'DISK'],
-    hideHover: 'auto'
-  });
-  /*
-   * Custom Label formatter
-   * ----------------------
-   */
-  function labelFormatter(label, series) {
-    return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' +
-      label +
-      '<br>' +
-      Math.round(series.percent) + '%</div>'
-  }
-</script>
-
 
 <!-- import Vue before Element -->
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
 <script>
-    var teacherInfo = new Vue({
-      el:'#teacherInfo',
-      data:{
-        teacherIdStr:1,
-        teacher:{
-          teacherName:'',
+  var keywords='';
+  var donutData='';
+  var lineDate='';
+  var barDate='';
+  var teacherInfo = new Vue({
+    el:'#teacherInfo',
+    data:{
+      teacherIdStr:1,
+      teacher:'',
+      college:'',
+      courses:'',
+      comments:'',
+      tags:'',
+    },
+    methods:{
+      getTeacherInfo(){
+        var _self = this;
+        $.ajax({
+          url:'http://localhost:8080/ClassRecommend/teacherInfo',
+          type:'GET',
+          data:{
+            teacherIdStr:1
+          },
+          dataType:'json',
+          success:function (res) {
+            if (res.success) {
+              _self.teacher=res.data.teacher;
+              _self.college = res.data.college;
+              _self.courses = res.data.courses;
+              _self.comments = res.data.comments;
+              _self.tags = res.data.tags;
+              keywords = res.data.keywords;
+              donutData =res.data.tagsPercent;
+              lineDate = res.data.preExamScore;
+              barDate = res.data.preContentScore;
 
-        },
-        college:'',
-        tags:'',
-        tea:'',
-      },
-      methods:{
-        getTeacherInfo(){
-          $.ajax({
-            url:'http://localhost:8080/ClassRecommend/teacherInfo',
-            type:'GET',
-            data:{
-              teacherIdStr:1
-            },
-            dataType:'json',
-            success:function (res) {
-              if (res.success) {
-                // console.log(res.data);
-                // this.teacher=res.data.teacher;
-                // this.college = res.data.college;
-                // this.tags = res.data.tags;
-                // alert(this.teacher.teacherName);
-                // this.tea=this.teacher;
-                // alert(this.tea.teacherName);
-                // console.log(res.data.teacher);
 
-                $('#teacherName').html(res.data.teacher.teacherName)
 
+              var chart = echarts.init(document.getElementById('main'));
+              var data = [];
+              for(var name in keywords) {
+                data.push({
+                  name: name,
+                  value: Math.sqrt(keywords[name])
+                })
+              }
+              var maskImage = new Image();
+
+              var option = {
+                series: [{
+                  type: 'wordCloud',
+                  sizeRange: [10, 100],
+                  rotationRange: [-90, 90],
+                  rotationStep: 45,
+                  gridSize: 2,
+                  shape: 'pentagon',
+                  maskImage: maskImage,
+                  drawOutOfBound: false,
+                  textStyle: {
+                    normal: {
+                      color: function() {
+                        return 'rgb(' + [
+                          Math.round(Math.random() * 160),
+                          Math.round(Math.random() * 160),
+                          Math.round(Math.random() * 160)
+                        ].join(',') + ')';
+                      }
+                    },
+                    emphasis: {
+                      color: 'red'
+                    }
+                  },
+                  data: data.sort(function(a, b) {
+                    return b.value - a.value;
+                  })
+                }]
+              };
+
+              maskImage.onload = function() {
+                option.series[0].maskImage
+                chart.setOption(option);
+              }
+
+              maskImage.src = '../../style/newstyle/images/wordcloud.png';
+
+              window.onresize = function() {
+                chart.resize();
+              }
+
+              $(function() {
+                /*
+                 * DONUT CHART
+                 * -----------
+                 */
+                $.plot('#donut-chart', donutData, {
+                  series: {
+                    pie: {
+                      show: true,
+                      radius: 1,
+                      innerRadius: 0.5,
+                      label: {
+                        show: true,
+                        radius: 2 / 3,
+                        formatter: labelFormatter,
+                        threshold: 0.1
+                      }
+
+                    }
+                  },
+                  legend: {
+                    show: false
+                  }
+                })
+                /*
+                 * END DONUT CHART
+                 */
+
+              })
+
+
+
+              // LINE CHART
+              var line = new Morris.Line({
+                element: 'line-chart',
+                resize: true,
+                data: lineDate,
+                xkey: 'y',
+                ykeys: ['item1'],
+                labels: ['Item 1'],
+                lineColors: ['#3c8dbc'],
+                hideHover: 'auto'
+              });
+
+              //BAR CHART
+              var bar = new Morris.Bar({
+                element: 'bar-chart',
+                resize: true,
+                data: barDate,
+                barColors: ['#00a65a'],
+                xkey: 'y',
+                ykeys: ['a'],
+                labels: ['AverageScore'],
+                hideHover: 'auto'
+              });
+              /*
+               * Custom Label formatter
+               * ----------------------
+               */
+              function labelFormatter(label, series) {
+                return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' +
+                  label +
+                  '<br>' +
+                  Math.round(series.percent) + '%</div>'
               }
             }
-          })
-        }
-      },
-      mounted(){
-        this.getTeacherInfo();
+          }
+        })
       }
-    })
+    },
+    mounted(){
+      this.getTeacherInfo();
+    }
+  })
+
 </script>
 </body>
 

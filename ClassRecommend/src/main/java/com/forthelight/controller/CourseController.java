@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.forthelight.biz.CourseBiz;
@@ -58,6 +60,12 @@ public class CourseController {
 
 		String courseIdStr = request.getParameter("courseId");
 		int courseId = Integer.parseInt(courseIdStr);
+		
+		boolean success = false;
+		
+		if(courseIdStr != null) {
+			success = true;
+		}
 
 		Course course = courseBiz.findById(courseId);
 
@@ -81,15 +89,20 @@ public class CourseController {
 		List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
 
 		// ----------------------- 传输左边栏、第一二个标签Json数据 ----------------------------------
+		
+		Map<String, Object> data = new HashMap<>();
 
-		res.put("courseName", courseName);
-		res.put("teacherName", teacherName);
-		res.put("likeNumber", likeNumber);
-		res.put("uploadsNumber", uploadsNumber);
-		res.put("commentNumber", commentNumber);
-		res.put("TagsNumber", TagsNumber);
-		res.put("commentNumber", commentNumber);
-		res.put("comments", comments);
+		data.put("courseName", courseName);
+		data.put("teacherName", teacherName);
+		data.put("likeNumber", likeNumber);
+		data.put("uploadsNumber", uploadsNumber);
+		data.put("commentNumber", commentNumber);
+		data.put("TagsNumber", TagsNumber);
+		data.put("commentNumber", commentNumber);
+		data.put("comments", comments);
+		
+		res.put("data", data);
+		res.put("success", success);
 
 		return gson.toJson(res);
 
@@ -97,7 +110,7 @@ public class CourseController {
 	
 	
     // ### classrecommend.html 课程评论界面
-	@RequestMapping(value = "/courseCommnet", produces = "text/json; charset=utf-8")
+	@RequestMapping(value = "/courseCommnet",  method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
 	@ResponseBody
 	public String courseComment(HttpServletRequest request, HttpServletResponse response) {
 

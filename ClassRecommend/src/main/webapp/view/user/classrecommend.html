@@ -35,6 +35,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   	 <link rel="stylesheet" href="../../style/newstyle/css/style.css">
 
 
+	<script src='https://cdn.bootcss.com/echarts/3.7.2/echarts.simple.js'></script>
+		<script type="text/javascript" src="../../style/newstyle/js/echarts-wordcloud.js"></script>
+		<!-- Morris charts -->
+		<link rel="stylesheet" href="../../style/bower_components/morris.js/morris.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -396,7 +401,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				<div class="active tab-pane" id="bigdata">
 					<div class="post" style="height:400px;">
 						<div id="main" style="width: 500px;height:244px;"></div>		
-						
+					
+					
+					
+					
+					
+					
+					
 					<style>
 						#main {
 							width: 100% !important;
@@ -797,6 +808,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
 													chart.resize();
 												}
 											</script>
+					
+					
+					<div class="col-md-6">
+												<!-- LINE CHART -->
+												<div class="box box-info">
+													<div class="box-header with-border">
+														<h3 class="box-title">历年xx平均得分图</h3>
+
+														<div class="box-tools pull-right">
+															<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+															<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+														</div>
+													</div>
+													<div class="box-body chart-responsive">
+														<div class="chart" id="line-chart" style="height: 300px;width: 300px;"></div>
+													</div>
+													<!-- /.box-body -->
+												</div>
+												<!-- /.box -->
+											</div>
+											<div class="col-md-6">
+												<!-- BAR CHART -->
+												<div class="box box-success">
+													<div class="box-header with-border">
+														<h3 class="box-title">去年xx得分分布图</h3>
+
+														<div class="box-tools pull-right">
+															<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+															<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+														</div>
+													</div>
+													<div class="box-body chart-responsive">
+														<div class="chart" id="bar-chart" style="height: 300px;width: 300px;"></div>
+													</div>
+													<!-- /.box-body -->
+												</div>
+												<!-- /.box -->
+
+											</div>
+
+					
+					
+					
+					
+					
 					</div>
 				</div>
            
@@ -1410,7 +1468,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         </div>
                                     </div>
 
-<<<<<<< HEAD
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
                     </div>
@@ -1812,41 +1869,193 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src="../../style/newstyle/js/star.js"></script>
 
+<!-- FLOT CHARTS -->
+			<script src="../../style/bower_components/Flot/jquery.flot.js"></script>
+			<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+			<script src="../../style/bower_components/Flot/jquery.flot.resize.js"></script>
+			<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+			<script src="../../style/bower_components/Flot/jquery.flot.pie.js"></script>
+			<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+			<script src="../../style/bower_components/Flot/jquery.flot.categories.js"></script>
+			<!-- Morris.js charts -->
+			<script src="../../style/bower_components/raphael/raphael.min.js"></script>
+			<script src="../../style/bower_components/morris.js/morris.min.js"></script>
+
+
+<script>
+				$(function() {
+					
+				// LINE CHART
+				var line = new Morris.Line({
+					element: 'line-chart',
+					resize: true,
+					data: [{
+							y: '2011 Q1',
+							item1: 2666
+						},
+						{
+							y: '2011 Q2',
+							item1: 2778
+						},
+						{
+							y: '2011 Q3',
+							item1: 4912
+						},
+						{
+							y: '2011 Q4',
+							item1: 3767
+						},
+						{
+							y: '2012 Q1',
+							item1: 6810
+						},
+						{
+							y: '2012 Q2',
+							item1: 5670
+						},
+						{
+							y: '2012 Q3',
+							item1: 4820
+						},
+						{
+							y: '2012 Q4',
+							item1: 15073
+						},
+						{
+							y: '2013 Q1',
+							item1: 10687
+						},
+						{
+							y: '2013 Q2',
+							item1: 8432
+						}
+					],
+					xkey: 'y',
+					ykeys: ['item1'],
+					labels: ['Item 1'],
+					lineColors: ['#3c8dbc'],
+					hideHover: 'auto'
+				});
+
+				//BAR CHART
+				var bar = new Morris.Bar({
+					element: 'bar-chart',
+					resize: true,
+					data: [{
+							y: '2006',
+							a: 100,
+							b: 90
+						},
+						{
+							y: '2007',
+							a: 75,
+							b: 65
+						},
+						{
+							y: '2008',
+							a: 50,
+							b: 40
+						},
+						{
+							y: '2009',
+							a: 75,
+							b: 65
+						},
+						{
+							y: '2010',
+							a: 50,
+							b: 40
+						},
+						{
+							y: '2011',
+							a: 75,
+							b: 65
+						},
+						{
+							y: '2012',
+							a: 100,
+							b: 90
+						}
+					],
+					barColors: ['#00a65a', '#f56954'],
+					xkey: 'y',
+					ykeys: ['a', 'b'],
+					labels: ['CPU', 'DISK'],
+					hideHover: 'auto'
+				});
+				/*
+				 * Custom Label formatter
+				 * ----------------------
+				 */
+				function labelFormatter(label, series) {
+					return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' +
+						label +
+						'<br>' +
+						Math.round(series.percent) + '%</div>'
+				}
+			</script>
+
+
+
 <script>
 	var Vue = new Vue({  
         el: '#classvue',
         data:{
         	
-            Comments'',
+            Comments:'',
             Basic:{
-            	tags:'',
-            }
+            	tags:''
+            },
+
             ClassInfo:{
             	likenum:'',
             	uploadsnum:'',
             	commentsnum:'',
             }
-            Mine:{
-            	comments:'',
-            	tags:'',
-            	bearScore:'',
-                interestingScore:'',
-                easyScore:'',
-                knowledgeScore:'',
-                gradeScore:'',
-                anonymous:'',
-            }
-            
-            
         },
         methods:{
             myfun() {
                 $.ajax({
-                    url:'http://localhost:8080/login',
+                    url:'http://localhost:8080/ClassRecommend/courseCommnet',
                     type:'GET',//请求类型
                     data:{
                       teacherId:'1',
                       comments:'你很优秀',
+                      tags:'优秀',
+                      studentId:'2',
+                      courseId:'3',
+                      bearScore:'5',
+                      interestingScore:'5',
+                      easyScore:'',
+                      knowledgeScore:'5',
+                      gradeScore:'5',
+                      anonymous:'0',
+                      
+                    },
+                    dataType:'json',
+                    success:function (res) {
+                        if(res.success){
+                            this.Comments = res.data.comments,
+                            this.Basic.tags = res.data.TagsNumber,
+                            this.ClassInfo.likenum = res.data.likeNumber
+                			this.ClassInfo.uploadsnum = res.data.uploadNumber
+                			this.ClassInfo.commentsnum = res.data.commentNumber
+                        }else{
+                            alert("do other thing");
+                        }
+
+                    },
+                    error:function (XMLHttpRequest) {
+                        alert("输出错误信息"+XMLHttpRequest.responseText);
+                    }
+                });
+            },
+            myfunn(){
+            	$.ajax({
+            		type:"get",
+            		url:"http://localhost:8080/login",
+            		data:{
+            			comments:'你很优秀',
                       tags:'优秀',
                       studentId:'1',
                       courseId:'1',
@@ -1856,26 +2065,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       knowledgeScore:'5',
                       gradeScore:'5',
                       anonymous:'0',
-                      
-                    },
-                    dataType:'json',
+            		},
+            		dataType:'json',
                     success:function (res) {
                         if(res.success){
                             alert("dosomething");//请求数据成功之后的行为
                         }else{
                             alert("do other thing");
                         }
-                        data.Comments = res.data.comments,
-                        data.Basic.tags = res.data.tags,
-                        data.ClassInfo.likenum = res.data.likeNumber
-            			data.ClassInfo.uploadsnum = res.data.uploadNumber
-            			data.ClassInfo.commentsnum = res.data.commentNumber
+                        
                     },
                     error:function (XMLHttpRequest) {
                         alert("输出错误信息"+XMLHttpRequest.responseText);
                     }
-                });
-            },
+            	});
+            }
             jump(){
                 //本层跳转
                 location.href = "lesson/"+this.MyID;  //一般这个就可以了
