@@ -11,11 +11,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class HDFS {
-    private static String BaseUri = "hdfs://192.168.100.100:9000";
+    private static String BaseUri = "hdfs://192.168.100.100:9000/";
 
     public static FileSystem getFileSystem() throws IOException, URISyntaxException {
         Configuration conf = new Configuration();
-        FileSystem fileSystem = null;
+        FileSystem fileSystem;
         String hdfsUri = BaseUri;
         if (StringUtils.isBlank(hdfsUri)) {
             fileSystem = FileSystem.get(conf);
@@ -26,33 +26,37 @@ public class HDFS {
         return fileSystem;
     }
 
-    public static void copyToHDFS(String srcFile, String dstPath) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(new File(srcFile));
+    public static void copyToHDFS(String srcFile, String dstFile) throws IOException {
         Configuration conf = new Configuration();
-        FileSystem fileSystem = FileSystem.get(URI.create(BaseUri + dstPath), conf);
-        OutputStream outputStream = fileSystem.create(new Path(dstPath));
+        FileSystem fileSystem = FileSystem.get(URI.create(BaseUri + dstFile), conf);
+
+        FileInputStream fileInputStream = new FileInputStream(new File(srcFile));
+        OutputStream outputStream = fileSystem.create(new Path(fileSystem.getWorkingDirectory() + "/" + dstFile));
+
         IOUtils.copyBytes(fileInputStream, outputStream, 4096, true);
-        System.out.println(String.format("copy %s to %s success", srcFile, dstPath));
+        System.out.println(String.format("copy %s to %s success", srcFile, BaseUri + "/" + dstFile));
+
         fileInputStream.close();
         outputStream.close();
         fileSystem.close();
     }
 
-    public static void downloadFromHDFS(String srcFile, String dstPath) throws IOException {
-        String file = BaseUri + srcFile;
-        Configuration conf = new Configuration();
+    public static void downloadFromHDFS(String srcFile, String dstFile) throws IOException, URISyntaxException {
+        FileSystem fileSystem = getFileSystem();
 
-        FileSystem fileSystem = FileSystem.get(URI.create(file), conf);
+        String file = fileSystem.getWorkingDirectory() + "/" + srcFile;
         InputStream inputStream = fileSystem.open(new Path(file));
-        FileOutputStream fileOutputStream = new FileOutputStream(new File(dstPath));
+        FileOutputStream fileOutputStream = new FileOutputStream(new File(dstFile));
+
         IOUtils.copyBytes(inputStream, fileOutputStream, 2048, true);
-        System.out.println(String.format("downLoad %s to %s success", srcFile, dstPath));
+        System.out.println(String.format("downLoad %s to %s success", srcFile, dstFile));
+
         fileOutputStream.close();
         inputStream.close();
         fileSystem.close();
     }
 
-    public static void mkdirs(String path) throws IOException, URISyntaxException {
+    public static void mkDirs(String path) throws IOException, URISyntaxException {
         FileSystem fileSystem = getFileSystem();
 
         fileSystem.mkdirs(new Path(path));
@@ -76,7 +80,7 @@ public class HDFS {
         return false;
     }
 
-    public static void rmdir(String path) throws IOException, URISyntaxException {
+    public static void rmDir(String path) throws IOException, URISyntaxException {
         FileSystem fileSystem = getFileSystem();
         String hdfsUri = BaseUri;
         if (StringUtils.isNotBlank(hdfsUri)){
@@ -86,12 +90,9 @@ public class HDFS {
         fileSystem.close();
     }
 
-    public static void readFile(String filePath) throws IOException, InterruptedException {
-        String file = BaseUri + filePath;
-        Configuration conf = new Configuration();
-
-        FileSystem fileSystem = FileSystem.get(URI.create(file), conf, "root");
-        InputStream inputStream = fileSystem.open(new Path(file));
+    public static void readFile(String targetFile) throws IOException, URISyntaxException {
+        FileSystem fileSystem = getFileSystem();
+        InputStream inputStream = fileSystem.open(new Path(fileSystem.getWorkingDirectory() + "/" + targetFile));
         IOUtils.copyBytes(inputStream, System.out, 2048, false);
         fileSystem.close();
     }
