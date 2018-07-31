@@ -4,6 +4,7 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,21 +16,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- cropper -->
+    <link href="temp/avatarUpload/css/cropper.min.css" rel="stylesheet">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
+    <!-- 头像上传相关 -->
+    <link rel="stylesheet" href="temp/avatarUpload/css/sitelogo.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue.css">
+    <link rel="stylesheet" href="../../style/dist/css/skins/skin-purple-light.css">
     <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/starter_new.css"/>
-    
-    <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/fire.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-		
-		<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
-		<link rel="stylesheet" type="text/css" href="../../style/newstyle/js/table_wow.min.js"/>
-   
-
+    <!-- 多文件上传相关 -->
+    <link rel="stylesheet" href="temp/multifileUpload/easy-upload.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -79,11 +78,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <li>
                                 <!-- inner menu: contains the messages -->
                                 <ul class="menu">
-                                    <li><!-- start message -->
+                                    <li>
+                                        <!-- start message -->
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
-                                                <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle"
+                                                     alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
                                             <h4>
@@ -115,7 +116,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <li>
                                 <!-- Inner Menu: contains the notifications -->
                                 <ul class="menu">
-                                    <li><!-- start notification -->
+                                    <li>
+                                        <!-- start notification -->
                                         <a href="#">
                                             <i class="fa fa-users text-aqua"></i> 5 new members joined today
                                         </a>
@@ -138,7 +140,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <li>
                                 <!-- Inner menu: contains the tasks -->
                                 <ul class="menu">
-                                    <li><!-- Task item -->
+                                    <li>
+                                        <!-- Task item -->
                                         <a href="#">
                                             <!-- Task title and progress text -->
                                             <h3>
@@ -148,8 +151,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <!-- The progress bar -->
                                             <div class="progress xs">
                                                 <!-- Change the css width attribute to simulate progress -->
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
                                                     <span class="sr-only">20% Complete</span>
                                                 </div>
                                             </div>
@@ -251,7 +255,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="header">HEADER</li>
                 <!-- Optionally you can add icons to the links -->
                 <li class="active"><a href="#"><i class="fa fa-link"></i> <span>用户首页</span></a></li>
-                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>查看所有课程</span></a></li>
+                <li><a href="#"><i class="fa fa-link"></i> <span>查看所有课程</span></a></li>
                 <li><a href="#"><i class="fa fa-link"></i> <span>查看已修课程</span></a></li>
                 <li><a href="#"><i class="fa fa-link"></i> <span>推荐课程页面</span></a></li>
                 <li><a href="#"><i class="fa fa-link"></i> <span>修改个人信息</span></a></li>
@@ -273,13 +277,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper cb-slidesho" id="particles-js">
+    <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <!--标题-->
             <h1>
-                Class
-                <small>已修读课程</small>
+                Page Header
+                <small>Optional description</small>
             </h1>
             <!--面包屑-->
             <ol class="breadcrumb">
@@ -288,86 +292,89 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ol>
         </section>
         <!-- Main content -->
-        <section class="content container-fluid ">
+        <section class="content container-fluid">
+            <!-- 页面内容 -->
+            <div class="row">
+
+                <div class="col-md-6" id="crop-avatar">
+                    <div class="avatar-view">
+                        <img src="../../style/dist/img/user2-160x160.jpg" alt="头像">
+                    </div>
+                    <button type="button" class="btn btn-default" id="avatar-upload-btn">更换头像</button>
+                    <!-- data-toggle="modal" data-target="#swap-avatar-modal" -->
+                </div>
+            </div>
+
+            <!-- 创建modal窗口 -->
+            <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label"
+                 role="dialog" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <form id="avatar-form" class="avatar-form" method="post" enctype="multipart/form-data"
+                              action="http://localhost:8080/avatar_upload">
 
 
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">更换头像</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="row">
+
+                                    <div class="col-md-9">
+                                        <p>One fine body&hellip;</p>
+                                        <div class="avatar-upload">
+                                            <input class="avatar-src" name="avatar_src" type="hidden">
+                                            <input class="avatar-data" name="avatar_data" type="hidden">
+                                            <label for="avatarInput">头像上传</label>
+                                            <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+                                        </div>
+                                        <div class="avatar-wrapper"></div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="avatar-preview preview-lg"></div>
+                                        <div class="avatar-preview preview-md"></div>
+                                        <div class="avatar-preview preview-sm"></div>
+                                    </div>
+                                </div>
+
+                            </div>
 
 
-
-<div class="banner ">
-	 		<div class="container">
-		 		<div class="banner-text wow fadeInUp" data-wow-delay="0.5s">
-				 <h1>查看已修课程</h1>
-				 
-		 <div class="banner-form">
-			 <form>
-				 <input class="wow fadeInRight" data-wow-delay="0.5s" type="text" placeholder="id" required/>
-				 <input class="wow fadeInRight" data-wow-delay="0.5s" type="text" placeholder="teacher" required/>
-				 <input class="wow fadeInLeft" data-wow-delay="0.5s" type="text" placeholder="name" required/>
-				 <input class="wow fadeInLeft" data-wow-delay="0.5s" type="submit" value="GET STARTED"/>
-			 </form>
-	 </div>
-</div>
-<div class="CustomerInfoChange">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th scope="col">课程编号</th>
-									<th scope="col">课程名</th>
-									<th scope="col">修课时间</th>
-									<th scope="col">是否评价</th>
-									
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>信安数基</td>
-									<td>大二</td>
-									
-									<td>
-										<a href="update.html">评价</a>
-									</td>
-									
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									
-									<td>
-										<a href="update.html">评价</a>
-									</td>
-									
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td >Larry the Bird</td>
-									<td>@twitter</td>
-									
-									<td>
-										<a href="update.html">评价</a>
-									</td>
-									
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					
-
-
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            <hr/>
+            <form class="test" action="http://localhost:8080/testUpload" method="post" enctype="multipart/form-data">
+                <input type="file" name="testFile"/>
+                <button type="submit" class="btn btn-default">this is Button</button>
+            </form>
+            <hr/>
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div id="easyContainer"></div>
+                </div>
+            </div>
+            <hr/>
+            <button type="button" class="btn btn-primary" data-date=""
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
-
-		
-
-		
-		
-		
-		
     <!-- Main Footer -->
     <footer class="main-footer">
         <!-- To the right -->
@@ -412,10 +419,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <h4 class="control-sidebar-subheading">
                                 Custom Template Design
                                 <span class="pull-right-container">
-                    <span class="label label-danger pull-right">70%</span>
-                  </span>
+                                    <span class="label label-danger pull-right">70%</span>
+                                </span>
                             </h4>
-
                             <div class="progress progress-xxs">
                                 <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
                             </div>
@@ -452,7 +458,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </aside>
     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
+immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
@@ -460,19 +466,48 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="../style/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- cropper -->
+<script src="temp/avatarUpload/js/cropper.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../style/dist/js/adminlte.min.js"></script>
+<script src="../../style/dist/js/adminlte.min.js"></script>
+<!-- 头像上传相关 -->
+<script type="text/javascript" src="temp/avatarUpload/js/sitelogo.js"></script>
 
-
-<script type="text/javascript" src="../../style/newstyle/js/app.js"></script>
-<script type="text/javascript" src="../../style/newstyle/js/particles.js"></script>
-<script src="../../style/newstyle/js/fire.js"></script>
-
+<!-- 多文件上传相关 -->
+<script type="text/javascript" src="temp/multifileUpload/easyUpload.js"></script>
+<script type="text/javascript">
+    $('#easyContainer').easyUpload({
+        allowFileTypes: '*.jpg;*.doc;*.pdf', //允许上传文件类型，格式';*.doc;*.pdf'
+        allowFileSize: 100000, //允许上传文件大小(KB)
+        selectText: '选择文件', //选择文件按钮文案
+        multi: true, //是否允许多文件上传
+        multiNum: 5, //多文件上传时允许的文件数
+        showNote: true, //是否展示文件上传说明
+        note: '提示：最多上传5个文件，支持格式为doc、pdf、jpg', //文件上传说明
+        showPreview: false, //是否显示文件预览
+        url: '/fileUpload', //上传文件地址
+        fileName: 'files', //文件filename配置参数
+        formParam: {
+            // token: $.cookie('token_cookie')//不需要验证token时可以去掉
+        }, //文件filename以外的配置参数，格式：{key1:value1,key2:value2}
+        timeout: 30000, //请求超时时间
+        success: function (res) {
+            console.log('成功回调', res);
+        }, //上传成功回调函数
+        error: function (res) {
+            console.log('失败回调', res);
+        }, //上传失败回调函数
+        delete: function (res) {
+            console.log('删除回调', res);
+        } //删除文件回调函数
+    });
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+Both of these plugins are recommended to enhance the
+user experience. -->
 </body>
+
 </html>
