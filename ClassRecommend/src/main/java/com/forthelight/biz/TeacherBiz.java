@@ -2,6 +2,7 @@ package com.forthelight.biz;
 
 import java.util.List;
 
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 public interface TeacherBiz {
@@ -21,5 +22,11 @@ public interface TeacherBiz {
 	int insert(Teacher teacher);
 
 	List<Teacher> findByCollegeId(int collegeId);
+
+	int likeNumber(int id);
+
+	String college(int collegeId);
+
+	List<Tag> tagList(int teacherId);
 
 }

@@ -3,11 +3,11 @@ package com.forthelight.biz.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.forthelight.biz.StudentBiz;
 import com.forthelight.dao.StudentDao;
 import com.forthelight.domain.Student;
-import org.springframework.stereotype.Service;
 
 @Service("studentBiz")
 public class StudentBizImpl implements StudentBiz {
@@ -55,4 +55,21 @@ public class StudentBizImpl implements StudentBiz {
     public int insert(Student student) {
         return studentDao.insert(student);
     }
+
+	@Override
+	public List<Student> findByCourseId(int courseId) {
+		// TODO Auto-generated method stub
+		return studentDao.findByCourseId(courseId);
+	}
+
+    @Override
+    public Student findByName(String studentName) {
+        return studentDao.findByName(studentName);
+    }
+
+	@Override
+	public int update(Student student) {
+		// TODO Auto-generated method stub
+		return studentDao.update(student);
+	}
 }

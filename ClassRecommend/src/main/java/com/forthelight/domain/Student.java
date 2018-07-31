@@ -1,12 +1,14 @@
 package com.forthelight.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import java.util.List;
 
 @SuppressWarnings("serial")
 public class Student implements Serializable {
+
 	private Integer id;
 	private String studentName;
 	private String gender;
@@ -16,6 +18,7 @@ public class Student implements Serializable {
 	private int grade;
 	private int privilege;
 	private int deleteStatus;
+	private String studentPortrait;
 
 	private transient College college;
 	private transient Major major;
@@ -129,6 +132,14 @@ public class Student implements Serializable {
 
 	public void setFiles(List<File> files) {
 		this.files = files;
+	}
+
+	public String getStudentPortrait() {
+		return studentPortrait;
+	}
+
+	public void setStudentPortrait(String studentPortrait) {
+		this.studentPortrait = studentPortrait;
 	}
 
 }

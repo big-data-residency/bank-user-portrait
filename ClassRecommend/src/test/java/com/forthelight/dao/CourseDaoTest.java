@@ -1,6 +1,7 @@
 package com.forthelight.dao;
 
 import com.forthelight.domain.Course;
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 import java.util.List;
@@ -109,5 +110,29 @@ public class CourseDaoTest {
     
         List<Course> courses = courseDao.findByStudentId(1);
         System.out.println(courses);
+    }
+    
+    @Test
+    public void testOrderByLike() {
+    	List<Course> courses = courseDao.orderByLike();
+    	System.out.println(courses);
+    }
+    
+    @Test
+    public void testLikeNumber() {
+    	int likeNumber = courseDao.likeNumber(3);
+    	System.out.println(likeNumber);
+    }
+    
+    @Test
+    public void testOneTagNumber() {
+    	int number = courseDao.oneTagNumber(2, 1);
+    	System.out.println(number);
+    }
+    
+    @Test
+    public void testTagList() {
+    	List<Tag> tags = courseDao.tagList(3);
+    	System.out.println(tags);
     }
 }

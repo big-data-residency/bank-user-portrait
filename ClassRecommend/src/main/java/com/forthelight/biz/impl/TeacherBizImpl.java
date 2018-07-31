@@ -3,11 +3,12 @@ package com.forthelight.biz.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.forthelight.biz.TeacherBiz;
 import com.forthelight.dao.TeacherDao;
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
-import org.springframework.stereotype.Service;
 
 
 @Service("teacherBiz")
@@ -60,6 +61,24 @@ public class TeacherBizImpl implements TeacherBiz {
 	public List<Teacher> findByCollegeId(int collegeId) {
 		// TODO Auto-generated method stub
 		return teacherDao.findByCollegeId(collegeId);
+	}
+
+	@Override
+	public int likeNumber(int id) {
+		// TODO Auto-generated method stub
+		return teacherDao.likeNumber(id);
+	}
+
+	@Override
+	public String college(int collegeId) {
+		// TODO Auto-generated method stub
+		return teacherDao.college(collegeId);
+	}
+
+	@Override
+	public List<Tag> tagList(int teacherId) {
+		// TODO Auto-generated method stub
+		return teacherDao.tagList(teacherId);
 	}
 
 }

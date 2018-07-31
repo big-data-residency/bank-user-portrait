@@ -52,4 +52,19 @@ public class StudentDaoTest {
         System.out.println(gson.toJson(courses));
 
     }
+
+    @Test
+    public void findByName() {
+        Student student = studentDao.findByName("蝙蝠侠");
+        System.out.println(student.getStudentName());
+    }
+    
+    @Test
+	public void Testupdate() {
+		Student student = new Student();
+		student.setId(4);
+		student.setNickName("hhh");
+		int result = studentDao.update(student);
+		System.out.println(result);
+	}
 }

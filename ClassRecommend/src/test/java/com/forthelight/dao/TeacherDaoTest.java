@@ -2,12 +2,14 @@ package com.forthelight.dao;
 
 import java.util.List;
 
+import com.forthelight.domain.Tag;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
@@ -43,7 +45,7 @@ public class TeacherDaoTest {
 	@Test
 	public void TestOrderByLike() {
 		List<Teacher> teachers = teacherDao.OrderByLike();
-		System.out.println(teachers);
+		System.out.println("hot===="+teachers.get(0).getTeacherName());
 	}
 	
 /*	@Test
@@ -67,6 +69,24 @@ public class TeacherDaoTest {
 	public void TestInsert() {
 		int result = teacherDao.delete(7);
 		System.out.println(result);
+	}
+	
+	@Test
+	public void TestLikeNumber() {
+		int likeNumber = teacherDao.likeNumber(1);
+		System.out.println("==========="+likeNumber);
+	}
+	
+	@Test
+	public void TestCollege() {
+		String collegeName = teacherDao.college(1);
+		System.out.println(collegeName);
+	}
+	
+	@Test
+	public void TestTagList() {
+		List<Tag> tags = teacherDao.tagList(1);
+		System.out.println(tags);
 	}
 
 }

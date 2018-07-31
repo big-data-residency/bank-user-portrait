@@ -12,7 +12,7 @@ public class CourseTime implements Serializable {
 	private int lessonDay;
 	private Integer deleteStatus;
 
-	private List<Course> courses = new ArrayList<Course>();
+	private transient List<Course> courses = new ArrayList<Course>();
 
 	public CourseTime() {
 		super();

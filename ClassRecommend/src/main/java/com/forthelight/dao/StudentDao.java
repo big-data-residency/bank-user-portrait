@@ -16,4 +16,10 @@ public interface StudentDao {
 	List<Student> findByCollegeId(int collegeId);
 
 	Student findByStudentNumber(String studentNumber);
+	
+	List<Student> findByCourseId(int courseId);
+
+	Student findByName(String studentName);
+	
+	int update (Student student);
 }

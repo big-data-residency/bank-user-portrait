@@ -35,5 +35,10 @@
 		SELECT * FROM file 
 		WHERE CourseID=#{courseId} AND DeleteStatus=0;
 	</select>
+	
+	<select id="uploadsNumberOfCourse" parameterType="int" resultType="int" >
+	    select count(*) from file
+	    where courseId = #{courseId} and deleteStatus = 0
+	</select>
 
 </mapper>

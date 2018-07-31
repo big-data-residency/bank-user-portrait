@@ -3,11 +3,13 @@ package com.forthelight.biz.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.forthelight.biz.FileBiz;
 import com.forthelight.dao.FileDao;
 import com.forthelight.domain.File;
 
+@Service
 public class FileBizImpl implements FileBiz {
 	
 	@Autowired
@@ -29,6 +31,12 @@ public class FileBizImpl implements FileBiz {
 	public List<File> findByCourseId(int courseId) {
 		// TODO Auto-generated method stub
 		return fileDao.findByCourseId(courseId);
+	}
+
+	@Override
+	public int uploadsNumberOfCourse(int courseId) {
+		// TODO Auto-generated method stub
+		return fileDao.uploadsNumberOfCourse(courseId);
 	}
 
 }

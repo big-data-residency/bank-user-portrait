@@ -3,9 +3,12 @@ package com.forthelight.biz;
 import java.util.List;
 
 import com.forthelight.domain.Course;
+import com.forthelight.domain.Student;
+import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
 
 public interface CourseBiz {
+
 	Course findById(int id);
 
 	Course findByCode(String courseCode);
@@ -33,5 +36,13 @@ public interface CourseBiz {
 	List<Course> findByMajorId(int majorId);
 
 	List<Course> findByStudentId(int studentId);
+
+	List<Course> orderByLike();
+
+	int likeNumber(int id);
+
+	int oneTagNumber(int tagId, int id);
+
+	List<Tag> tagList(int courseId);
 
 }
