@@ -52,6 +52,17 @@
 	    ( select studentId from student_select_course where courseId = #{courseId} and deleteStatus = 0 )
 	    and deleteStatus = 0
 	</select>
+
+	<select id="findByName" parameterType="String" resultMap="StudentResultMap">
+		SELECT * FROM student WHERE deleteStatus=0 AND studentName=#{studentName};
+	</select>
+	
+	<update id="update" parameterType="Student"  >
+	    update student set
+	    gender = #{gender}, nickName = #{nickName}, password = #{password},
+	    collegeId = #{college.id}, majorId = #{major.id}, studentPortrait = #{studentPortrait}
+	    where id = #{id}
+	</update>
 	
 	
 </mapper>

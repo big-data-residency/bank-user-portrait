@@ -19,4 +19,14 @@ public interface StudentCommentCourseDao {
 	int getSelectIdByStudentIdAndCourseId(int studentId, int courseId);
 	
 	int insert(StudentCommentCourse studentCommentCourse);
+	
+	int getScoreByGrade(String studentNumber , int courseId);
+	
+	int numberOfGetScoreByGrade(String studentNumber , int courseId);
+	
+	int getContentScoreByGrade(String studentNumber);
+	
+	int numberOfGetContentScoreByGrade(String studentNumber);
+	
+	List<StudentCommentCourse> findByStudentId(int studentId);
 }

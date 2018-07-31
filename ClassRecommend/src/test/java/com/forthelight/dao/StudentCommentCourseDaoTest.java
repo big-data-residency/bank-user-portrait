@@ -22,7 +22,7 @@ public class StudentCommentCourseDaoTest {
 	@Test
 	public void TestFindById() {
 		StudentCommentCourse studentCommentCourse = studentCommentCourseDao.findById(1);
-		System.out.println(studentCommentCourse);
+		System.out.println(studentCommentCourse.getCommentTime());
 	}
 	
 	@Test
@@ -65,5 +65,25 @@ public class StudentCommentCourseDaoTest {
 		studentCommentCourse.setCourse(course);
 		int result = studentCommentCourseDao.insert(studentCommentCourse);
 		System.out.println(result);
+	}
+	
+	@Test
+	public void TestgetScoreByGrade() {
+		int grade = studentCommentCourseDao.getScoreByGrade("16",3);
+		System.out.println(grade);
+	}
+	
+	@Test
+	public void TestgetContentScoreByGrade() {
+		int contentScore = studentCommentCourseDao.getContentScoreByGrade("16");
+		System.out.println(contentScore);
+	}
+	
+	@Test
+	public void TestfindByStudentId() {
+		
+		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseDao.findByStudentId(2);
+		System.out.println(studentCommentCourses);
+		
 	}
 }

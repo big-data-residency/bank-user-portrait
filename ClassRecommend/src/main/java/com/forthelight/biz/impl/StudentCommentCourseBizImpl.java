@@ -57,4 +57,34 @@ public class StudentCommentCourseBizImpl implements StudentCommentCourseBiz {
 		return studentCommentCourseDao.insert(studentCommentCourse);
 	}
 
+	@Override
+	public int getScoreByGrade(String studentNumber, int courseId) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.getScoreByGrade(studentNumber, courseId);
+	}
+
+	@Override
+	public int numberOfGetScoreByGrade(String studentNumber, int courseId) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.numberOfGetScoreByGrade(studentNumber, courseId);
+	}
+
+	@Override
+	public int getContentScoreByGrade(String studentNumber) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.getContentScoreByGrade(studentNumber);
+	}
+
+	@Override
+	public int numberOfGetContentScoreByGrade(String studentNumber) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.numberOfGetContentScoreByGrade(studentNumber);
+	}
+
+	@Override
+	public List<StudentCommentCourse> findByStudentId(int studentId) {
+		// TODO Auto-generated method stub
+		return studentCommentCourseDao.findByStudentId(studentId);
+	}
+
 }

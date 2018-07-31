@@ -35,6 +35,19 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/images/*</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.html</url-pattern>
+        <url-pattern>*.ttf</url-pattern>
+        <url-pattern>*.woff2</url-pattern>
+        <url-pattern>*.woff</url-pattern>
+        <url-pattern>*.jpg</url-pattern>
+        <url-pattern>*.png</url-pattern>
+    </servlet-mapping>
+
 	<servlet>
 		<servlet-name>spring</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -45,20 +58,11 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>*.css</url-pattern>
-		<url-pattern>*.js</url-pattern>
-		<url-pattern>*.html</url-pattern>
-		<url-pattern>*.ttf</url-pattern>
-		<url-pattern>*.woff2</url-pattern>
-		<url-pattern>*.woff</url-pattern>
-		<url-pattern>*.jpg</url-pattern>
-		<url-pattern>*.png</url-pattern>
-	</servlet-mapping>
+
 
 	<servlet-mapping>
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
 </web-app>
