@@ -19,8 +19,9 @@
        folder instead of downloading all of them to reduce the load. -->
 		<link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
 
-
- <link rel="stylesheet" href="../../style/newstyle/css/star.css">
+		<link rel="stylesheet" href="../../style/newstyle/css/star.css">
+		<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/calendar.css"/>
+			
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -30,6 +31,11 @@
 
 		<!-- Google Font -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+	
+		<!--<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css'>-->
+		<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+
+	
 	</head>
 
 	<body class="hold-transition skin-blue sidebar-mini">
@@ -498,10 +504,12 @@
 				</section>
 
 				<!-- Main content -->
-				<section class="content">
-
-					<!-- Default box -->
-					<div class="box" style="width: 25%;display: inline-block;">
+				<section class="content">  
+					
+					
+					<div style="width: 25%;display: inline-block">
+						<!-- Default box --> 
+					<div class="box" style="display: inline-block;">
 						<div class="box-header with-border">
 							<h3 class="box-title">个人信息</h3>
 
@@ -528,8 +536,93 @@
 							MADE BY NKU_RECOMMENDER
 						</div>
 						<!-- /.box-footer-->
-					</div>
 					<!-- /.box -->
+
+					
+					</div>
+					
+					
+					
+					
+					<!---->
+					
+					<div class="box" style="display: inline-block;">
+						<div class="box-header with-border">
+							<h3 class="box-title">自定义添加</h3>
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+              <i class="fa fa-minus"></i></button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<div class="box-body">
+
+<!--<div class="component col l6 s12">-->
+					<!--<div class="body">-->
+	<form action="" method="post" id='search'>					
+				请输入课程编号或名称：
+				<div class="input-group input-group" style="margin-top: 20px;">
+   
+                <!-- /btn-group -->
+                
+                	 <input type="text" class="form-control" name="keywords" >
+                     <span class="input-group-btn" >
+                      <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                    </span>
+                
+                </form>
+               
+              </div>
+						
+        <!--<div class="search">
+          <div class="search-bar card">
+            <input id="search-bar" style="">
+            <i class="material-icons search-icon">search</i>
+          </div>
+        </div>-->
+        <div class="search-results" id="result">
+          <div class="search-result">
+                 高等数学
+            <i class="material-icons add-icon" id='add' onclick="data('高等数学')">add</i>
+          </div>
+          <div class="search-result">
+            Search Result
+            <i class="material-icons add-icon">add</i>
+          </div>
+          <div class="search-result ">
+            Search Result
+            <i class="material-icons add-icon">add</i>
+          </div>
+          <div class="search-result">
+            Search Result
+            <i class="material-icons add-icon">add</i>
+          </div>
+          <div class="search-result">
+            Search Result
+            <i class="material-icons add-icon">add</i>
+          </div>
+        </div>
+      <!--</div>-->
+ 				<!--</div>-->
+
+
+
+						</div>
+						
+						
+						<!-- /.box-body -->
+						<div class="box-footer">
+							MADE BY NKU_RECOMMENDER
+						</div>
+						<!-- /.box-footer-->
+					<!-- /.box -->
+					</div>
+					
+					</div>
+
+					
+					<!---->
 
 					<div class="box" style="width: 72%; float: right;display: inline-block;">
 						<div class="box-header with-border">
@@ -573,9 +666,10 @@
 		<hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
 
 		<!---->
+
 		<div style="display: inline-block;width: 15%;float: left;"><strong>学分要求：</strong></div>
 
-		<div style="display: inline-block;width:80%;float: left;">
+		<div style="display: inline-block;width:85%;float: left;">
 			<div class="form-group">
 				<div class="checkbox"><label><input type="checkbox"> <strong>课程类型:</strong>
           	    <div class="form-group">
@@ -589,126 +683,160 @@
 		</div>
 		</div>
 		</div>
+		<br />
+		
+
+		
+		<!--<div>-->
+		
+		
+		<div style="display: block;width: 100%;float: left;">
+			<hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />	
+		</div>
+			
+			
+			<div style="display: inline-block;width: 30%;float: left;"><strong>内容要求（多选）：</strong></div>
+
+		<!--</div>-->
+		
+		
+		
+		
+		<div style="display: inline-block;width: 80%; margin-left:10%">
+
+			<div class="form-group">
+				<label for="inputSkills" class="col-sm-2 control-label">手下留情</label>
+
+				<div class='rating-stars '>
+					<ul id='stars'>
+
+						<li class='star' title='Poor' data-value='1'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Fair' data-value='2'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Good' data-value='3'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Excellent' data-value='4'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='WOW!!!' data-value='5'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputSkills" class="col-sm-2 control-label">课堂有趣</label>
+
+				<div class='rating-stars '>
+					<ul id='stars'>
+
+						<li class='star' title='Poor' data-value='1'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Fair' data-value='2'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Good' data-value='3'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Excellent' data-value='4'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='WOW!!!' data-value='5'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputSkills" class="col-sm-2 control-label">划水程度</label>
+
+				<div class='rating-stars '>
+					<ul id='stars'>
+
+						<li class='star' title='Poor' data-value='1'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Fair' data-value='2'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Good' data-value='3'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Excellent' data-value='4'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='WOW!!!' data-value='5'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="inputSkills" class="col-sm-2 control-label">干货满满</label>
+
+				<div class='rating-stars '>
+					<ul id='stars'>
+
+						<li class='star' title='Poor' data-value='1'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Fair' data-value='2'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Good' data-value='3'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='Excellent' data-value='4'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+						<li class='star' title='WOW!!!' data-value='5'>
+							<i class='fa fa-star fa-fw'></i>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+
+			<!--</form>-->
 		</div>
 
-		<hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
-		<div style="display: inline-block;width: 30%;float: left;"><strong>内容要求（多选）：</strong></div>
-		<div style="display: inline-block;width: 80%; margin-left:10%" >
-			    <div class="form-group">
-    		<label for="inputSkills" class="col-sm-2 control-label">手下留情</label>
-
- 	 <div class='rating-stars '>
-    <ul id='stars'>
-    
-      <li class='star' title='Poor' data-value='1'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Fair' data-value='2'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Good' data-value='3'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Excellent' data-value='4'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='WOW!!!' data-value='5'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      
-    </ul>
-  </div>
-  </div>
-					
-          <div class="form-group">
-    <label for="inputSkills" class="col-sm-2 control-label">课堂有趣</label>
- 
- <div class='rating-stars '>
-    <ul id='stars'>
-    
-      <li class='star' title='Poor' data-value='1'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Fair' data-value='2'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Good' data-value='3'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Excellent' data-value='4'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='WOW!!!' data-value='5'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      
-    </ul>
-  </div>
-  </div>
-  
-  				<div class="form-group">
-    <label for="inputSkills" class="col-sm-2 control-label">划水程度</label>
-
- <div class='rating-stars '>
-    <ul id='stars'>
-    
-      <li class='star' title='Poor' data-value='1'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Fair' data-value='2'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Good' data-value='3'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Excellent' data-value='4'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='WOW!!!' data-value='5'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      
-    </ul>
-  </div>
-  </div>
-  
-					<div class="form-group">
-    <label for="inputSkills" class="col-sm-2 control-label">干货满满</label>
-
- <div class='rating-stars '>
-    <ul id='stars'>
-    
-      <li class='star' title='Poor' data-value='1'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Fair' data-value='2'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Good' data-value='3'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='Excellent' data-value='4'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      <li class='star' title='WOW!!!' data-value='5'>
-        <i class='fa fa-star fa-fw'></i>
-      </li>
-      
-    </ul>
-  
-  </div>
- </div>
- 
-				<!--</form>-->
-					</div>
+		<div style="display: block;width: 100%;float: left;">
+			<hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />	
+		<strong>已添加的必选课程：</strong>
+		<br /><br />
+		
+		</div id='tag'>
+			<button type="button" class="btn btn-info" >
+                	信安数基
+             </button>
+			
+			<div>
+			
+			
 
 
-	<div style="margin-left: 65%;margin-bottom: 5%; margin-top: 5%;">
-	<td>
-  <button type="button" class="btn btn-block btn-primary btn-lg"style="width: 200px;">Primary</button>
-   </td>
-</div>
+
+		<div style="margin-left: 65%;margin-bottom: 5%; margin-top: 5%;">
+			<td>
+				<button type="button" class="btn btn-block btn-primary btn-lg" style="width: 200px;">submit</button>
+			</td>
+			<!--</div>-->
+		</div>
+		</div>
 		<!-- /.box-body -->
+		
 		<div class="box-footer">
 			made by NKU_RECOMMENDER
 		</div>
@@ -717,6 +845,7 @@
 		<!-- /.box -->
 
 		</section>
+	
 		<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
@@ -948,5 +1077,49 @@
 			})
 		</script>
 	</body>
+	
+	<script type="text/javascript">
+//		$('#tag').hide();
+//		$('#add').click(function(){
+//			
+//			$('#tag').html()
+//			$('#tag').show();
+//			
+//			
+//		})
+	     function data(tmp){
+//	     $('#tag').html(tmp);
+//	     $('#tag').append(``)
+//	      $('#tag').show();
+		$('#tag').append(`<button type="button" class="btn btn-info" >tmp </button>`)
+          
+	     }
+		
+		
+		$('#search').submit(function(e){
+			e.preventDefault();
+			$.ajax({
+				url:'',
+				data:$('#search').serialize(),
+				type:'post',
+				beforeSend:function(){
+					$('#result').html('');
+				},
+				
+				success: function(res){
+					if(res.success){
+						for(var course of res.data.courses){
+							$('#result').append(`<div class="search-result"> ${course.courseName}
+            <i class="material-icons add-icon" id='add' onclick="data('${course.courseName}')">add</i>
+          </div>`)
+							
+							
+						}
+					}
+				}
+			})
+			
+		})
+	</script>
 
 </html>
