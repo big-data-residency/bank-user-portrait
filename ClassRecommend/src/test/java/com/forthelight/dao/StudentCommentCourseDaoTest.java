@@ -78,4 +78,12 @@ public class StudentCommentCourseDaoTest {
 		int contentScore = studentCommentCourseDao.getContentScoreByGrade("16");
 		System.out.println(contentScore);
 	}
+	
+	@Test
+	public void TestfindByStudentId() {
+		
+		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseDao.findByStudentId(2);
+		System.out.println(studentCommentCourses);
+		
+	}
 }

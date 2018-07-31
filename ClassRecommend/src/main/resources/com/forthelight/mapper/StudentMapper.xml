@@ -57,5 +57,12 @@
 		SELECT * FROM student WHERE deleteStatus=0 AND studentName=#{studentName};
 	</select>
 	
+	<update id="update" parameterType="Student"  >
+	    update student set
+	    gender = #{gender}, nickName = #{nickName}, password = #{password},
+	    collegeId = #{college.id}, majorId = #{major.id}, studentPortrait = #{studentPortrait}
+	    where id = #{id}
+	</update>
+	
 	
 </mapper>

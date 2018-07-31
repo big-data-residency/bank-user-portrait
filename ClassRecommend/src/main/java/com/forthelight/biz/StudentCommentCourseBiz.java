@@ -27,5 +27,7 @@ public interface StudentCommentCourseBiz {
 	int getContentScoreByGrade(String studentNumber);
 
 	int numberOfGetContentScoreByGrade(String studentNumber);
+	
+	List<StudentCommentCourse> findByStudentId(int studentId);
 
 }
