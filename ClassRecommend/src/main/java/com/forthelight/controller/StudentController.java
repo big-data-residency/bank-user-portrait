@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,13 +63,15 @@ public class StudentController {
 		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
 		Map<String, Object> rsp = new HashMap<>();
-		String studentNumber = request.getParameter("studentNumber");
+		String NickName = request.getParameter("NickName");
 		String password = request.getParameter("password");
 
-		String validateResult = studentBiz.loginValidate(studentNumber, password);
+		String validateResult = studentBiz.loginValidate(NickName, password);
 		if (validateResult.equals("登录成功")) {
 			rsp.put("success", true);
 			rsp.put("data", validateResult);
+			HttpSession session = request.getSession();
+			session.setAttribute("userid",);
 		} else {
 			rsp.put("success", false);
 			rsp.put("data", validateResult);

@@ -14,7 +14,7 @@ public interface StudentBiz {
 
 	List<Student> findByCollegeId(int collegeId);
 
-	String loginValidate(String studentNumber, String password);
+	String loginValidate(String NickName, String password);
 
 	Student findByStudentNumber(String studentNumber);
 

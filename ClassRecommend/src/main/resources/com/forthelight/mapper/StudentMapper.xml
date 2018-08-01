@@ -45,7 +45,11 @@
 	<select id="findByStudentNumber" parameterType="String" resultMap="StudentResultMap">
 		SELECT * FROM student WHERE DeleteStatus=0 AND StudentNumber=#{studentNumber};
 	</select>
-	
+
+	<select id="findByNickName" parameterType="String" resultMap="StudentResultMap">
+		SELECT * FROM student WHERE DeleteStatus=0 AND NickName=#{NickName};
+	</select>
+
 	<select id="findByCourseId" parameterType="int" resultMap="StudentResultMap" >
 	    select * from student
 	    where id in 
