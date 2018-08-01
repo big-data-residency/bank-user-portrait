@@ -14,12 +14,13 @@
    /*height: 50%;*/
     height: 70em;
     font-size: 4px;
-    color: cornsilk;
+    color: #48A3F5;
     background-color: currentColor;
     box-shadow: 0 0 0 6em;
     border-radius: 1em;
     position: relative;
     --b: 1em solid darkslategray;
+    float: right;
 }
 
 .desk * {
