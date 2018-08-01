@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sliding Login Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+    <link rel="stylesheet" href="../style/newstyle/css/login_new.css">
+    <!--right part-->
+    <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <link rel='stylesheet' href='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/css/demo.css'>
+</head>
+
+<body>
+
+<div id="back">
+    <div class="backRight"></div>
+    <div class="backLeft">
+        <div class="head">I solemnly swear that I am up to no good.</div>
+    </div>
+</div>
+
+<div id="slideBox">
+    <div class="topLayer">
+
+        <div id="page1" style="height: 100%;width: 50%;">
+            <iframe align="center" width="100%" height="100%" src="temp/footprint.html" frameborder="no" border="0"
+                    marginwidth="0" marginheight="0" scrolling="no">
+            </iframe>
+            <!--<div class="left">-->
+            <div class="content_l" id="registerForm-wrapper">
+                <h2>Sign Up</h2>
+                <form>
+                    <div class="form-group">
+                        姓名： <input type="text" placeholder="姓名" v-model="studentName"/>
+                        &nbsp;&nbsp;
+                        学号： <input type="text" placeholder="学号" v-model="studentNumber"/>
+                    </div>
+
+                    <div class="form-group">
+                        昵称 ：<input type="text" placeholder="昵称" v-model="nickName"/>
+                    </div>
+
+                    <div class="form-group" style="line-height:50px;">
+                        性别：
+                        <input id="man" type="radio" checked="checked" name="gender" value="1" v-model="gender"/>
+                        <label for="man">男</label>
+                        <input id="woman" type="radio" name="gender" value="2" v-model="gender"/>
+                        <label for="woman">女</label>
+                    </div>
+                    <div class="form-group">
+                        密码： <input type="password" placeholder="密码" v-model="password"/>
+                        &nbsp;&nbsp;
+                        重新确认： <input type="password" placeholder="密码" v-model="re_password"/>
+                    </div>
+                    <div class="form-group">
+                        年级： <input type="text" placeholder="年级" v-model="grade"/>
+                    </div>
+                    <div class="form-group">
+                        学院： <input type="text" placeholder="学院" v-model="collegeName"/>
+                        &nbsp;&nbsp;
+                        专业 ： <input type="text" placeholder="专业" v-model="majorName"/>
+                    </div>
+
+                </form>
+                <br/><br/>
+                <button id="goLeft" class="off">Login</button>
+                <button v-on:click="register">Sign up</button>
+            </div>
+
+            <!--</div>-->
+        </div>
+
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+
+            <!--<div class="right" >-->
+            <div class="content" style="float: right;" id="loginForm-wrapper">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" v-model="login_username"/>
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" v-model="login_password"/>
+                    </div>
+                    <br/>
+                </form>
+                <button id="goRight" class="off">Sign Up</button>
+                <button id="login" v-on:click="validate">Login</button>
+            </div>
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<!--</div>-->
+
+<!--Inspiration from: http://ertekinn.com/loginsignup/-->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<!-- Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+<script src="../style/newstyle/js/login_new.js"></script>
+<script src="../style/newstyle/js/login_right_new.js"></script>
+<script src='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/EasePack.min.js'></script>
+<script src='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/rAF.js'></script>
+<script src='https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/js/TweenLite.min.js'></script>
+
+<script type="text/javascript">
+    var login = new Vue({
+        el: '#loginForm-wrapper',
+        data: {
+            login_username: '',
+            login_password: ''
+        },
+        methods: {
+            validate() {
+                $.ajax({
+                    url: 'http://localhost:8080/login',
+                    type: 'POST',
+                    data: {
+                        studentNumber: login.login_username,
+                        password: login.login_password
+                    },
+                    dataType: 'json',
+                    success(res) {
+                        if (res.success) {
+                            location.href = "user/starter.html";
+                        }
+                        else {
+                            alert(res.data);
+                        }
+                    }
+                })
+            }
+        }
+    });
+
+    var register = new Vue({
+        el:'#registerForm-wrapper',
+        data:{
+            studentName:'',
+            studentNumber:'',
+            nickName:'',
+            gender:'1',
+            password:'',
+            re_password:'',
+            grade:'',
+            collegeName:'',
+            majorName:'',
+        },
+        methods:{
+            register(){
+                $.ajax({
+                    url:'http://localhost:8080/register',
+                    type:'POST',
+                    data:{
+                        studentName:register.studentName,
+                        studentNumber:register.studentNumber,
+                        nickName:register.nickName,
+                        gender:register.gender,
+                        password:register.password,
+                        re_password:register.re_password,
+                        grade:register.grade,
+                        collegeName:register.collegeName,
+                        majorName:register.majorName,
+                    },
+                    dataType:'json',
+                    success(res){
+                        console.log(res);
+                        alert(res.data);
+                        if(res.success){
+                            location.href = "";
+                        } else{
+                            console.log(res);
+                        }
+                    }
+                })
+            }
+        },
+    })
+</script>
+</body>
+
+</html>
