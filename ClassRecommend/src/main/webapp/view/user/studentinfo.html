@@ -10,10 +10,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>课程评测系统</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
+
   <link rel="stylesheet" href="../../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  
+
   <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
@@ -22,8 +22,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  
-  <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue-b.css">
+
+  <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -56,23 +56,22 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
-
-<div class="wrapper" >
+<body class="hold-transition skin-blue fixed">
+<div class="wrapper" id="classvue">
 
   <!-- Main Header -->
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="index2.html" class="logo navbar-fixed-top">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>H</b>elper</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>EAMIS-</b>Helper</span>
     </a>
 
     <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation">
+    <nav class="navbar navbar-fixed-top" role="navigation">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
@@ -96,7 +95,8 @@ desired effect
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle"
+                             alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -161,7 +161,8 @@ desired effect
                       <!-- The progress bar -->
                       <div class="progress xs">
                         <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
+                        <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                             role="progressbar"
                              aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">20% Complete</span>
                         </div>
@@ -178,14 +179,14 @@ desired effect
           </li>
           <!-- User Account Menu -->
           <li class="dropdown user user-menu">
-              <!-- Menu Toggle Button -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <!-- The user image in the navbar-->
-                <img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">Alexander Pierce</span>
-              </a>
-              <ul class="dropdown-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <!-- The user image in the navbar-->
+              <img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+              <span class="hidden-xs">Alexander Pierce</span>
+            </a>
+            <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
@@ -230,7 +231,7 @@ desired effect
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
+  <aside class="main-sidebar" style="position: fixed">
 
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -260,11 +261,14 @@ desired effect
       <!-- /.search form -->
 
       <!-- Sidebar Menu -->
-      <ul class="sideb,ar-menu" data-widget="tree">
+      <ul class="sidebar-menu" data-widget="tree">
         <li class="header">HEADER</li>
         <!-- Optionally you can add icons to the links -->
-        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>用户首页</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>查看所有课程</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>查看已修课程</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>推荐课程页面</span></a></li>
+        <li><a href="#"><i class="fa fa-link"></i> <span>修改个人信息</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
             <span class="pull-right-container">
@@ -281,7 +285,6 @@ desired effect
     </section>
     <!-- /.sidebar -->
   </aside>
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper active cb-slidesho">
     <!-- Content Header (Page header) -->
@@ -290,7 +293,11 @@ desired effect
         Your Information
         <small>学生具体信息</small>
       </h1>
-     
+      <!--面包屑-->
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li class="active">Here</li>
+      </ol>
     </section>
 
     <!-- Main content -->
@@ -300,242 +307,242 @@ desired effect
         | Your Page Content Here |
         -------------------------->
       <div>
-      <section class="content">
+        <section class="content">
 
 
-      <div class="row">
+          <div class="row">
 
-        <div class="col-md-3" id="studentInfo" >
-          <!-- Profile Image -->
-          <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../style/dist/img/user4-128x128.jpg" alt="User profile picture">
+            <div class="col-md-3" id="studentInfo" >
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive img-circle" src="../../style/dist/img/user4-128x128.jpg" alt="User profile picture">
 
-              <h3 class="profile-username text-center">ferewewertghfesfde{{ studentInfo.student.nickName }}</h3>
-              <a href="#" class="btn btn-primary btn-block"><b>Change Photo</b></a>
+                  <h3 class="profile-username text-center">{{ studentInfo.student.nickName }}</h3>
+                  <a href="#" class="btn btn-primary btn-block"><b>Change Photo</b></a>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
+
+              <!-- About Me Box -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">About Me</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <strong><i class="fa fa-book margin-r-5"></i> More information </strong>
+
+                  <p class="text-muted">
+                    {{ studentInfo.student.studentNumber }}  {{ studentInfo.student.studentName }}
+                  </p>
+
+                  <hr>
+
+                  <strong><i class="fa fa-file-text-o margin-r-5"></i> College And Major </strong>
+
+                  <p>南开大学{{ studentInfo.college.collegeName }}<br/>
+                    {{ studentInfo.major.majorName }}专业</p>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+            <!-- /.col -->
 
-          <!-- About Me Box -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">About Me</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> More information </strong>
+            <div class="col-md-9">
+              <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
+                  <li><a href="#timeline" data-toggle="tab">Coursetable</a></li>
+                  <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                </ul>
+                <div class="tab-content">
 
-              <p class="text-muted">
-                {{ studentInfo.student.studentNumber }}  {{ studentInfo.student.studentName }}
-              </p>
-
-              <hr>
-
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> College And Major </strong>
-
-              <p>南开大学{{ studentInfo.college.collegeName }}<br/>
-                {{ studentInfo.major.majorName }}专业</p>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-
-        <div class="col-md-9">
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-              <li><a href="#timeline" data-toggle="tab">Coursetable</a></li>
-              <li><a href="#settings" data-toggle="tab">Settings</a></li>
-            </ul>
-            <div class="tab-content">
-
-              <div class="active tab-pane" id="activity" >
-                <!-- Post -->
-                <div class="post" v-for=" comment in comments">
-                  <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../style/dist/img/user1-128x128.jpg" alt="user image">
+                  <div class="active tab-pane" id="activity" >
+                    <!-- Post -->
+                    <div class="post" v-for=" comment in comments">
+                      <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="../../style/dist/img/user1-128x128.jpg" alt="user image">
                         <span class="username">
                           <a href="#">{{ comment.courseName }}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
                         </span>
-                    <span class="description">Shared {{ comment.commentTime }}</span>
-                  </div>
-                  <!-- /.user-block -->
-                  <p>
-                    {{ comment.commentContent }}
-                  </p>
-                  <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like {{ comment.likeNumber }} </a>
-                    </li>
-                    <li class="pull-right">
-                      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-                        (5)</a></li>
-                  </ul>
+                        <span class="description">Shared {{ comment.commentTime }}</span>
+                      </div>
+                      <!-- /.user-block -->
+                      <p>
+                        {{ comment.commentContent }}
+                      </p>
+                      <ul class="list-inline">
+                        <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                        <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like {{ comment.likeNumber }} </a>
+                        </li>
+                        <li class="pull-right">
+                          <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                            (5)</a></li>
+                      </ul>
 
-                  <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                      <input class="form-control input-sm" type="text" placeholder="Type a comment">
+                    </div>
+                    <!-- /.post -->
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="timeline">
+                    <!-- The timeline -->
+
+                  </div>
+                  <!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="settings">
+                    <form  class="form-horizontal" id="editStudentInfo">
+                      <input hidden name="studentIdStr" id="studentIdStr" value="" >
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">NickName</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control"  placeholder="Name" name="nickName" id="NickName" >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">sex</label>
+                        <label class="col-sm-10">
+                          <input type="radio" checked="checked" name="gender" value="1"  />男 &nbsp;&nbsp;
+                          <input type="radio" name="gender" value="2" />女
+                        </label>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" class="form-control" placeholder="password" name="password" >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label control-label">College</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" :placeholder="studentInfo.college" name="college">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label control-label">Major</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" :placeholder="studentInfo.major" name="major" >
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                          <button type="submit" class="btn btn-danger">Submit</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+
                 </div>
-                <!-- /.post -->
+                <!-- /.tab-content -->
               </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="timeline">
-                <!-- The timeline -->
-
-              </div>
-              <!-- /.tab-pane -->
-
-              <div class="tab-pane" id="settings">
-                <form  class="form-horizontal" id="editStudentInfo">
-                  <input hidden name="studentIdStr" id="studentIdStr" value="" >
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">NickName</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control"  placeholder="Name" name="nickName" id="NickName" >
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">sex</label>
-                    <label class="col-sm-10">
-                      <input type="radio" checked="checked" name="gender" value="1"  />男 &nbsp;&nbsp;
-                      <input type="radio" name="gender" value="2" />女
-                    </label>
-                   </div>
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Password</label>
-                    <div class="col-sm-10">
-                      <input type="password" class="form-control" placeholder="password" name="password" >
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                  <label class="col-sm-2 control-label control-label">College</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" :placeholder="studentInfo.college" name="college">
-                    </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label control-label">Major</label>
-                  <div class="col-sm-10">
-                      <input type="text" class="form-control" :placeholder="studentInfo.major" name="major" >
-                  </div>
-                </div>
-
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- /.tab-pane -->
-
+              <!-- /.nav-tabs-custom -->
             </div>
-            <!-- /.tab-content -->
+            <!-- /.col -->
           </div>
-          <!-- /.nav-tabs-custom -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
+          <!-- /.row -->
 
-      </section>
+        </section>
       </div>
-    <!-- /.content -->
+      <!-- /.content -->
     </section>
 
   </div>
 </div>
-  <!-- /.content-wrapper -->
+<!-- /.content-wrapper -->
 
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-      Anything you want
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2018 <a href="#">EAMIS_HELPER</a>.</strong> All rights reserved.
-  </footer>
+<!-- Main Footer -->
+<footer class="main-footer">
+  <!-- To the right -->
+  <div class="pull-right hidden-xs">
+    CEO:XXX
+  </div>
+  <!-- Default to the left -->
+  <strong>Copyright &copy; 2016 <a href="#">EAMIS_RECOMMEMDER</a>.</strong> All rights reserved.
+</footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Create the tabs -->
+  <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+  </ul>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <!-- Home tab content -->
+    <div class="tab-pane active" id="control-sidebar-home-tab">
+      <h3 class="control-sidebar-heading">Recent Activity</h3>
+      <ul class="control-sidebar-menu">
+        <li>
+          <a href="javascript:;">
+            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+            <div class="menu-info">
+              <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
+              <p>Will be 23 on April 24th</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <!-- /.control-sidebar-menu -->
 
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="pull-right-container">
+      <h3 class="control-sidebar-heading">Tasks Progress</h3>
+      <ul class="control-sidebar-menu">
+        <li>
+          <a href="javascript:;">
+            <h4 class="control-sidebar-subheading">
+              Custom Template Design
+              <span class="pull-right-container">
                     <span class="label label-danger pull-right">70%</span>
                   </span>
-              </h4>
+            </h4>
 
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
+            <div class="progress progress-xxs">
+              <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <!-- /.control-sidebar-menu -->
 
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
     </div>
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- /.tab-pane -->
+    <!-- Stats tab content -->
+    <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+    <!-- /.tab-pane -->
+    <!-- Settings tab content -->
+    <div class="tab-pane" id="control-sidebar-settings-tab">
+      <form method="post">
+        <h3 class="control-sidebar-heading">General Settings</h3>
+
+        <div class="form-group">
+          <label class="control-sidebar-subheading">
+            Report panel usage
+            <input type="checkbox" class="pull-right" checked>
+          </label>
+
+          <p>
+            Some information about this general settings option
+          </p>
+        </div>
+        <!-- /.form-group -->
+      </form>
+    </div>
+    <!-- /.tab-pane -->
+  </div>
+</aside>
+<!-- /.control-sidebar -->
 
 
 <!-- jQuery 3 -->
@@ -550,7 +557,7 @@ desired effect
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<script>
+<!--<script>
 
   var studentIdStr = '';
   var StudentComment='';
@@ -623,6 +630,6 @@ $('#editStudentInfo').submit(function (e) {
 })
 
 </script>
-
+-->
 </body>
 </html>
