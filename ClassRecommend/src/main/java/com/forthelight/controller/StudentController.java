@@ -136,7 +136,8 @@ public class StudentController {
 		return gson.toJson(rsp);
 	}
 
-	@RequestMapping(value = "/studentInfo", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+	@RequestMapping(value = "/studentInfo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
+			+ ";charset=utf-8")
 	@ResponseBody
 	public String getStudentInfo(String studentIdStr, HttpServletResponse response) {
 
@@ -155,12 +156,12 @@ public class StudentController {
 
 		// ------------------ 左边栏学生信息数据 ------------------
 		Student student = studentBiz.findById(studentId);
-		if(student == null) {
+		if (student == null) {
 			success = false;
 		}
-		
+
 		Map<String, Object> studentInfo = new HashMap<>();
-		
+
 		studentInfo.put("student", student);
 		studentInfo.put("college", student.getCollege());
 		studentInfo.put("major", student.getMajor());
@@ -173,9 +174,10 @@ public class StudentController {
 		for (StudentCommentCourse studentCommentCourse : studentCommentCourses) {
 
 			JsonObject comment = new JsonObject();
-			//comment.addProperty("studentPortrait", studentCommentCourse.getStudent().getStudentPortrait());
+			// comment.addProperty("studentPortrait",
+			// studentCommentCourse.getStudent().getStudentPortrait());
 			int courseId = studentCommentCourse.getSelectId();
-			
+
 			comment.addProperty("courseName", studentCommentCourse.getCourse().getCourseName());
 			String commentTime = studentCommentCourse.getCommentTime().toString();
 			comment.addProperty("commentTime", commentTime);
@@ -189,8 +191,7 @@ public class StudentController {
 		Map<String, Object> data = new HashMap<>();
 		data.put("studentInfo", studentInfo);
 		data.put("comments", comments);
-		
-		
+
 		Map<String, Object> res = new HashMap<>();
 		res.put("data", data);
 		res.put("success", success);
@@ -198,29 +199,29 @@ public class StudentController {
 		return gson.toJson(res);
 
 	}
-	
-	@RequestMapping(value = "/editStudentInfo", method = RequestMethod.POST,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+
+	@RequestMapping(value = "/editStudentInfo", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
+			+ ";charset=utf-8")
 	@ResponseBody
-	public String editStudentInfo( HttpServletRequest request , HttpServletResponse response) {
+	public String editStudentInfo(HttpServletRequest request, HttpServletResponse response) {
 
 		response.setContentType("text/json;charset:UTF-8");
 		response.setCharacterEncoding("UTF-8");
 
 		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-		
-		
+
 		String studentIdStr = request.getParameter("studentIdStr");
 		String nickName = request.getParameter("nickName");
 		String gender = request.getParameter("gender");
 		String password = request.getParameter("password");
 		String college = request.getParameter("college");
 		String major = request.getParameter("major");
-		
+
 		int genderNumber = Integer.parseInt(gender);
-		
+
 		Student student = new Student();
 		int studentId = Integer.parseInt(studentIdStr);
-		
+
 		student.setId(studentId);
 		student.setNickName(nickName);
 		student.setGender(gender);
@@ -228,16 +229,102 @@ public class StudentController {
 		student.setPassword(password);
 		student.setCollege(collegeBiz.findByName(college));
 		student.setMajor(majorBiz.findByName(major));
-		
+
 		int result = studentBiz.update(student);
 
 		boolean success = false;
-		if(result > 0 ) {
+		if (result > 0) {
 			success = true;
 		}
-		
+
 		Map<String, Object> res = new HashMap<>();
 		res.put("success", success);
 		return gson.toJson(res);
 	}
+
+	@RequestMapping(value = "/searchStudent", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
+			+ ";charset=utf-8")
+	@ResponseBody
+	public String searchStudentInfo(HttpServletRequest request, HttpServletResponse response) {
+
+		response.setContentType("text/json;charset:UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+		Map<String, Object> res = new HashMap<>();
+
+		String keyword = request.getParameter("keyword");
+		List<Student> students = new ArrayList<Student>();
+
+		if (keyword == "") {
+			
+			students = studentBiz.findAll();
+			
+		} else {
+			
+			students = studentBiz.findByKeyword(keyword);
+		}
+
+		boolean success = false;
+
+		if (students.size() > 0) {
+			success = true;
+		}
+
+		
+
+		JsonArray studentInfo = new JsonArray();
+
+		for (Student student : students) {
+
+			JsonObject studentInfoArray = new JsonObject();
+			studentInfoArray.addProperty("studentId", student.getId());
+			studentInfoArray.addProperty("studentName", student.getStudentName());
+			studentInfoArray.addProperty("nickName", student.getNickName());
+			studentInfoArray.addProperty("studentNumber", student.getStudentNumber());
+			studentInfoArray.addProperty("college", student.getCollege().getCollegeName());
+			studentInfoArray.addProperty("major", student.getMajor().getMajorName());
+			studentInfoArray.addProperty("selectNumber", student.getCourses().size());
+			studentInfoArray.addProperty("commentNumber",studentCommentCourseBiz.findByStudentId(student.getId()).size());
+
+			studentInfo.add(studentInfoArray);
+
+		}
+
+		Map<String, Object> data = new HashMap<>();
+		data.put("students", studentInfo);
+
+		res.put("data", data);
+		res.put("success", success);
+
+		return gson.toJson(res);
+
+	}
+
+    @RequestMapping(value = "/deleteStudent", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+    @ResponseBody
+    public String deleteStudent(String studentIdStr, HttpServletResponse response) {
+
+	    response.setContentType("text/json;charset:UTF-8");
+	    response.setCharacterEncoding("UTF-8");
+
+	    Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+	    Map<String, Object> res = new HashMap<>();
+	    
+	    boolean success = false;
+	    
+	    int studentId = Integer.parseInt(studentIdStr);
+	    
+	    int result = studentBiz.delete(studentId);
+	    if(result > 0) {
+	    	
+	    	success = true;
+	    }
+	    
+	    res.put("success", success);
+	    
+	    return gson.toJson(res);
+	    
+    }
+
 }

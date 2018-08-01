@@ -72,4 +72,22 @@ public class StudentBizImpl implements StudentBiz {
 		// TODO Auto-generated method stub
 		return studentDao.update(student);
 	}
+
+	@Override
+	public List<Student> findAll() {
+		// TODO Auto-generated method stub
+		return studentDao.findAll();
+	}
+
+	@Override
+	public List<Student> findByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return studentDao.findByKeyword(keyword);
+	}
+
+	@Override
+	public int delete(int studentId) {
+		// TODO Auto-generated method stub
+		return studentDao.delete(studentId);
+	}
 }
