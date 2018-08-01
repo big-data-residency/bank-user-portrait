@@ -83,6 +83,8 @@
 .time-block {
   position: relative;
   flex-grow: 1;
+  
+      flex-basis:0;
 }
 
 .text {
@@ -203,3 +205,10 @@
   margin: 0px;
 }
 
+.coursebar{
+padding:1px;
+background-color:#00A157;
+border-radius: 10px 10px 10px 10px;
+height: 100%;
+text-align: center;
+}
