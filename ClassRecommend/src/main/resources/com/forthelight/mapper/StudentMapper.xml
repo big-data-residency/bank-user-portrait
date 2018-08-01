@@ -64,5 +64,22 @@
 	    where id = #{id}
 	</update>
 	
+	<select id="findAll" resultMap="StudentResultMap" >
+	    select * from student
+	    where deleteStatus = 0
+	</select>
+	
+	<select id="findByKeyword" resultMap="StudentResultMap" >
+	    select * from 
+	    ( ( student inner join college on collegeId = college.id ) 
+	    inner join major on majorId = major.id )
+	    where ( studentName like '%${_parameter}%' or studentNumber like '%${_parameter}%' or collegeName like '%${_parameter}%' or majorName like '%${_parameter}%' )
+	    and student.deleteStatus = 0 and college.deleteStatus = 0 and major.deleteStatus = 0
+	</select>
+	
+	<update id="delete" parameterType="int">
+	    update student set deleteStatus = 1
+	    where id = #{id}
+	</update>
 	
 </mapper>

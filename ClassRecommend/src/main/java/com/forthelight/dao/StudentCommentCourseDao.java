@@ -29,4 +29,5 @@ public interface StudentCommentCourseDao {
 	int numberOfGetContentScoreByGrade(String studentNumber);
 	
 	List<StudentCommentCourse> findByStudentId(int studentId);
+	
 }

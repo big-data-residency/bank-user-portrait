@@ -22,4 +22,10 @@ public interface StudentDao {
 	Student findByName(String studentName);
 	
 	int update (Student student);
+	
+	List<Student> findAll();
+	
+	List<Student> findByKeyword(String keyword);
+	
+	int delete(int studentId);
 }
