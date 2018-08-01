@@ -1,6 +1,9 @@
 /* interval timer */
 body {
   background-image: linear-gradient(to top, #e6b980 0%, #eacda3 100%);
+  /*background-image: linear-gradient(to top, 	#CCA8A0 0%, #eacda3 100%);*/
+  
+ /*background-image: linear-gradient(to top, #DFF8FF 0%, #DFF8FF 100%);*/
   height: 100vh;
   overflow: hidden;
   font-family: 'IM Fell English','Lucida Handwriting', cursive;
@@ -13,7 +16,7 @@ body {
 #ui {
   position: absolute;
   top: 20%;
-  left: 50%;
+  left: 25%;
 }
 /* text */
 #ui p {
@@ -530,4 +533,517 @@ body {
   20% {
     opacity: 0;
   }
+}
+/*ui2*/
+#ui2 {
+  position: absolute;
+  top: 20%;
+  right: 25%;
+}
+/* text */
+#ui2 p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  font-size: 72px;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  font-family: harry, cursive;
+  color: #333;
+}
+/* track */
+#ui2 .track {
+  position: absolute;
+  left: 50px;
+  width: 50px;
+  height: 8px;
+  border-radius: 999px;
+  transform-origin: 0 50%;
+  transition: 2000ms;
+}
+/* tracks positioning and timing */
+#ui2 .track.track_1 {
+  transform: rotateZ(-14deg);
+}
+#ui2 .track.track_1 .foot.left {
+  animation: fadeOut 3000ms infinite linear 300ms;
+}
+#ui2 .track.track_1 .foot.right {
+  animation: fadeOut 3000ms infinite linear 450ms;
+}
+#ui2 .track.track_2 {
+  transform: rotateZ(89deg);
+}
+#ui2 .track.track_2 .foot.left {
+  animation: fadeOut 3000ms infinite linear 600ms;
+}
+#ui2 .track.track_2 .foot.right {
+  animation: fadeOut 3000ms infinite linear 750ms;
+}
+#ui2 .track.track_3 {
+  transform: rotateZ(41deg);
+}
+#ui2 .track.track_3 .foot.left {
+  animation: fadeOut 3000ms infinite linear 900ms;
+}
+#ui2 .track.track_3 .foot.right {
+  animation: fadeOut 3000ms infinite linear 1050ms;
+}
+#ui2 .track.track_4 {
+  transform: rotateZ(53deg);
+}
+#ui2 .track.track_4 .foot.left {
+  animation: fadeOut 3000ms infinite linear 1200ms;
+}
+#ui2 .track.track_4 .foot.right {
+  animation: fadeOut 3000ms infinite linear 1350ms;
+}
+#ui2 .track.track_5 {
+  transform: rotateZ(-15deg);
+}
+#ui2 .track.track_5 .foot.left {
+  animation: fadeOut 3000ms infinite linear 1500ms;
+}
+#ui2 .track.track_5 .foot.right {
+  animation: fadeOut 3000ms infinite linear 1650ms;
+}
+#ui2 .track.track_6 {
+  transform: rotateZ(69deg);
+}
+#ui2 .track.track_6 .foot.left {
+  animation: fadeOut 3000ms infinite linear 1800ms;
+}
+#ui2 .track.track_6 .foot.right {
+  animation: fadeOut 3000ms infinite linear 1950ms;
+}
+#ui2 .track.track_7 {
+  transform: rotateZ(-9deg);
+}
+#ui2 .track.track_7 .foot.left {
+  animation: fadeOut 3000ms infinite linear 2100ms;
+}
+#ui2 .track.track_7 .foot.right {
+  animation: fadeOut 3000ms infinite linear 2250ms;
+}
+#ui2 .track.track_8 {
+  transform: rotateZ(28deg);
+}
+#ui2 .track.track_8 .foot.left {
+  animation: fadeOut 3000ms infinite linear 2400ms;
+}
+#ui2 .track.track_8 .foot.right {
+  animation: fadeOut 3000ms infinite linear 2550ms;
+}
+#ui2 .track.track_9 {
+  transform: rotateZ(-12deg);
+}
+#ui2 .track.track_9 .foot.left {
+  animation: fadeOut 3000ms infinite linear 2700ms;
+}
+#ui2 .track.track_9 .foot.right {
+  animation: fadeOut 3000ms infinite linear 2850ms;
+}
+#ui2 .track.track_10 {
+  transform: rotateZ(18deg);
+}
+#ui2 .track.track_10 .foot.left {
+  animation: fadeOut 3000ms infinite linear 3000ms;
+}
+#ui2 .track.track_10 .foot.right {
+  animation: fadeOut 3000ms infinite linear 3150ms;
+}
+#ui2 .track.track_11 {
+  transform: rotateZ(70deg);
+}
+#ui2 .track.track_11 .foot.left {
+  animation: fadeOut 3000ms infinite linear 3300ms;
+}
+#ui2 .track.track_11 .foot.right {
+  animation: fadeOut 3000ms infinite linear 3450ms;
+}
+#ui2 .track.track_12 {
+  transform: rotateZ(40deg);
+}
+#ui2 .track.track_12 .foot.left {
+  animation: fadeOut 3000ms infinite linear 3600ms;
+}
+#ui2 .track.track_12 .foot.right {
+  animation: fadeOut 3000ms infinite linear 3750ms;
+}
+#ui2 .track.track_13 {
+  transform: rotateZ(21deg);
+}
+#ui2 .track.track_13 .foot.left {
+  animation: fadeOut 3000ms infinite linear 3900ms;
+}
+#ui2 .track.track_13 .foot.right {
+  animation: fadeOut 3000ms infinite linear 4050ms;
+}
+#ui2 .track.track_14 {
+  transform: rotateZ(-75deg);
+}
+#ui2 .track.track_14 .foot.left {
+  animation: fadeOut 3000ms infinite linear 4200ms;
+}
+#ui2 .track.track_14 .foot.right {
+  animation: fadeOut 3000ms infinite linear 4350ms;
+}
+#ui2 .track.track_15 {
+  transform: rotateZ(65deg);
+}
+#ui2 .track.track_15 .foot.left {
+  animation: fadeOut 3000ms infinite linear 4500ms;
+}
+#ui2 .track.track_15 .foot.right {
+  animation: fadeOut 3000ms infinite linear 4650ms;
+}
+#ui2 .track.track_16 {
+  transform: rotateZ(-41deg);
+}
+#ui2 .track.track_16 .foot.left {
+  animation: fadeOut 3000ms infinite linear 4800ms;
+}
+#ui2 .track.track_16 .foot.right {
+  animation: fadeOut 3000ms infinite linear 4950ms;
+}
+#ui2 .track.track_17 {
+  transform: rotateZ(-56deg);
+}
+#ui2 .track.track_17 .foot.left {
+  animation: fadeOut 3000ms infinite linear 5100ms;
+}
+#ui2 .track.track_17 .foot.right {
+  animation: fadeOut 3000ms infinite linear 5250ms;
+}
+#ui2 .track.track_18 {
+  transform: rotateZ(25deg);
+}
+#ui2 .track.track_18 .foot.left {
+  animation: fadeOut 3000ms infinite linear 5400ms;
+}
+#ui2 .track.track_18 .foot.right {
+  animation: fadeOut 3000ms infinite linear 5550ms;
+}
+#ui2 .track.track_19 {
+  transform: rotateZ(16deg);
+}
+#ui2 .track.track_19 .foot.left {
+  animation: fadeOut 3000ms infinite linear 5700ms;
+}
+#ui2 .track.track_19 .foot.right {
+  animation: fadeOut 3000ms infinite linear 5850ms;
+}
+#ui2 .track.track_20 {
+  transform: rotateZ(75deg);
+}
+#ui2 .track.track_20 .foot.left {
+  animation: fadeOut 3000ms infinite linear 6000ms;
+}
+#ui2 .track.track_20 .foot.right {
+  animation: fadeOut 3000ms infinite linear 6150ms;
+}
+#ui2 .track.track_21 {
+  transform: rotateZ(-6deg);
+}
+#ui2 .track.track_21 .foot.left {
+  animation: fadeOut 3000ms infinite linear 6300ms;
+}
+#ui2 .track.track_21 .foot.right {
+  animation: fadeOut 3000ms infinite linear 6450ms;
+}
+#ui2 .track.track_22 {
+  transform: rotateZ(23deg);
+}
+#ui2 .track.track_22 .foot.left {
+  animation: fadeOut 3000ms infinite linear 6600ms;
+}
+#ui2 .track.track_22 .foot.right {
+  animation: fadeOut 3000ms infinite linear 6750ms;
+}
+#ui2 .track.track_23 {
+  transform: rotateZ(-28deg);
+}
+#ui2 .track.track_23 .foot.left {
+  animation: fadeOut 3000ms infinite linear 6900ms;
+}
+#ui2 .track.track_23 .foot.right {
+  animation: fadeOut 3000ms infinite linear 7050ms;
+}
+#ui2 .track.track_24 {
+  transform: rotateZ(79deg);
+}
+#ui2 .track.track_24 .foot.left {
+  animation: fadeOut 3000ms infinite linear 7200ms;
+}
+#ui2 .track.track_24 .foot.right {
+  animation: fadeOut 3000ms infinite linear 7350ms;
+}
+#ui2 .track.track_25 {
+  transform: rotateZ(57deg);
+}
+#ui2 .track.track_25 .foot.left {
+  animation: fadeOut 3000ms infinite linear 7500ms;
+}
+#ui2 .track.track_25 .foot.right {
+  animation: fadeOut 3000ms infinite linear 7650ms;
+}
+#ui2 .track.track_26 {
+  transform: rotateZ(-66deg);
+}
+#ui2 .track.track_26 .foot.left {
+  animation: fadeOut 3000ms infinite linear 7800ms;
+}
+#ui2 .track.track_26 .foot.right {
+  animation: fadeOut 3000ms infinite linear 7950ms;
+}
+#ui2 .track.track_27 {
+  transform: rotateZ(83deg);
+}
+#ui2 .track.track_27 .foot.left {
+  animation: fadeOut 3000ms infinite linear 8100ms;
+}
+#ui2 .track.track_27 .foot.right {
+  animation: fadeOut 3000ms infinite linear 8250ms;
+}
+#ui2 .track.track_28 {
+  transform: rotateZ(40deg);
+}
+#ui2 .track.track_28 .foot.left {
+  animation: fadeOut 3000ms infinite linear 8400ms;
+}
+#ui2 .track.track_28 .foot.right {
+  animation: fadeOut 3000ms infinite linear 8550ms;
+}
+#ui2 .track.track_29 {
+  transform: rotateZ(24deg);
+}
+#ui2 .track.track_29 .foot.left {
+  animation: fadeOut 3000ms infinite linear 8700ms;
+}
+#ui2 .track.track_29 .foot.right {
+  animation: fadeOut 3000ms infinite linear 8850ms;
+}
+#ui2 .track.track_30 {
+  transform: rotateZ(4deg);
+}
+#ui2 .track.track_30 .foot.left {
+  animation: fadeOut 3000ms infinite linear 9000ms;
+}
+#ui2 .track.track_30 .foot.right {
+  animation: fadeOut 3000ms infinite linear 9150ms;
+}
+#ui2 .track.track_31 {
+  transform: rotateZ(39deg);
+}
+#ui2 .track.track_31 .foot.left {
+  animation: fadeOut 3000ms infinite linear 9300ms;
+}
+#ui2 .track.track_31 .foot.right {
+  animation: fadeOut 3000ms infinite linear 9450ms;
+}
+#ui2 .track.track_32 {
+  transform: rotateZ(85deg);
+}
+#ui2 .track.track_32 .foot.left {
+  animation: fadeOut 3000ms infinite linear 9600ms;
+}
+#ui2 .track.track_32 .foot.right {
+  animation: fadeOut 3000ms infinite linear 9750ms;
+}
+#ui2 .track.track_33 {
+  transform: rotateZ(-24deg);
+}
+#ui2 .track.track_33 .foot.left {
+  animation: fadeOut 3000ms infinite linear 9900ms;
+}
+#ui2 .track.track_33 .foot.right {
+  animation: fadeOut 3000ms infinite linear 10050ms;
+}
+#ui2 .track.track_34 {
+  transform: rotateZ(22deg);
+}
+#ui2 .track.track_34 .foot.left {
+  animation: fadeOut 3000ms infinite linear 10200ms;
+}
+#ui2 .track.track_34 .foot.right {
+  animation: fadeOut 3000ms infinite linear 10350ms;
+}
+#ui2 .track.track_35 {
+  transform: rotateZ(-84deg);
+}
+#ui2 .track.track_35 .foot.left {
+  animation: fadeOut 3000ms infinite linear 10500ms;
+}
+#ui2 .track.track_35 .foot.right {
+  animation: fadeOut 3000ms infinite linear 10650ms;
+}
+#ui2 .track.track_36 {
+  transform: rotateZ(82deg);
+}
+#ui2 .track.track_36 .foot.left {
+  animation: fadeOut 3000ms infinite linear 10800ms;
+}
+#ui2 .track.track_36 .foot.right {
+  animation: fadeOut 3000ms infinite linear 10950ms;
+}
+#ui2 .track.track_37 {
+  transform: rotateZ(-48deg);
+}
+#ui2 .track.track_37 .foot.left {
+  animation: fadeOut 3000ms infinite linear 11100ms;
+}
+#ui2 .track.track_37 .foot.right {
+  animation: fadeOut 3000ms infinite linear 11250ms;
+}
+#ui2 .track.track_38 {
+  transform: rotateZ(37deg);
+}
+#ui2 .track.track_38 .foot.left {
+  animation: fadeOut 3000ms infinite linear 11400ms;
+}
+#ui2 .track.track_38 .foot.right {
+  animation: fadeOut 3000ms infinite linear 11550ms;
+}
+#ui2 .track.track_39 {
+  transform: rotateZ(77deg);
+}
+#ui2 .track.track_39 .foot.left {
+  animation: fadeOut 3000ms infinite linear 11700ms;
+}
+#ui2 .track.track_39 .foot.right {
+  animation: fadeOut 3000ms infinite linear 11850ms;
+}
+#ui2 .track.track_40 {
+  transform: rotateZ(84deg);
+}
+#ui2 .track.track_40 .foot.left {
+  animation: fadeOut 3000ms infinite linear 12000ms;
+}
+#ui2 .track.track_40 .foot.right {
+  animation: fadeOut 3000ms infinite linear 12150ms;
+}
+#ui2 .track.track_41 {
+  transform: rotateZ(-31deg);
+}
+#ui2 .track.track_41 .foot.left {
+  animation: fadeOut 3000ms infinite linear 12300ms;
+}
+#ui2 .track.track_41 .foot.right {
+  animation: fadeOut 3000ms infinite linear 12450ms;
+}
+#ui2 .track.track_42 {
+  transform: rotateZ(-37deg);
+}
+#ui2 .track.track_42 .foot.left {
+  animation: fadeOut 3000ms infinite linear 12600ms;
+}
+#ui2 .track.track_42 .foot.right {
+  animation: fadeOut 3000ms infinite linear 12750ms;
+}
+#ui2 .track.track_43 {
+  transform: rotateZ(80deg);
+}
+#ui2 .track.track_43 .foot.left {
+  animation: fadeOut 3000ms infinite linear 12900ms;
+}
+#ui2 .track.track_43 .foot.right {
+  animation: fadeOut 3000ms infinite linear 13050ms;
+}
+#ui2 .track.track_44 {
+  transform: rotateZ(-58deg);
+}
+#ui2 .track.track_44 .foot.left {
+  animation: fadeOut 3000ms infinite linear 13200ms;
+}
+#ui2 .track.track_44 .foot.right {
+  animation: fadeOut 3000ms infinite linear 13350ms;
+}
+#ui2 .track.track_45 {
+  transform: rotateZ(22deg);
+}
+#ui2 .track.track_45 .foot.left {
+  animation: fadeOut 3000ms infinite linear 13500ms;
+}
+#ui2 .track.track_45 .foot.right {
+  animation: fadeOut 3000ms infinite linear 13650ms;
+}
+#ui2 .track.track_46 {
+  transform: rotateZ(-48deg);
+}
+#ui2 .track.track_46 .foot.left {
+  animation: fadeOut 3000ms infinite linear 13800ms;
+}
+#ui2 .track.track_46 .foot.right {
+  animation: fadeOut 3000ms infinite linear 13950ms;
+}
+#ui2 .track.track_47 {
+  transform: rotateZ(-31deg);
+}
+#ui2 .track.track_47 .foot.left {
+  animation: fadeOut 3000ms infinite linear 14100ms;
+}
+#ui2 .track.track_47 .foot.right {
+  animation: fadeOut 3000ms infinite linear 14250ms;
+}
+#ui2 .track.track_48 {
+  transform: rotateZ(89deg);
+}
+#ui2 .track.track_48 .foot.left {
+  animation: fadeOut 3000ms infinite linear 14400ms;
+}
+#ui2 .track.track_48 .foot.right {
+  animation: fadeOut 3000ms infinite linear 14550ms;
+}
+#ui2 .track.track_49 {
+  transform: rotateZ(12deg);
+}
+#ui2 .track.track_49 .foot.left {
+  animation: fadeOut 3000ms infinite linear 14700ms;
+}
+#ui2 .track.track_49 .foot.right {
+  animation: fadeOut 3000ms infinite linear 14850ms;
+}
+#ui2 .track.track_50 {
+  transform: rotateZ(89deg);
+}
+#ui2 .track.track_50 .foot.left {
+  animation: fadeOut 3000ms infinite linear 15000ms;
+}
+#ui2 .track.track_50 .foot.right {
+  animation: fadeOut 3000ms infinite linear 15150ms;
+}
+#ui2 .track .foot {
+  position: absolute;
+  width: 14px;
+  height: 9px;
+  background: #000;
+  border-radius: 50%;
+  opacity: 0;
+}
+#ui2 .track .foot_claw {
+  content: '';
+  position: absolute;
+  width: 7px;
+  height: 8px;
+  background: #000;
+  border-radius: 100px 0px;
+}
+#ui2 .track .foot_claw:nth-child(2) {
+  top: 0px;
+  left: -9px;
+}
+
+#ui2 .track .foot.left {
+  top: -7px;
+}
+#ui2 .track .foot.right {
+  top: 7px;
+  left: 25px;
+}
+#ui2.switch .track {
+  background: rgba(0, 0, 0, 0);
+}
+#ui2.switch p::after {
+  opacity: 0;
 }
