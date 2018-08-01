@@ -21,6 +21,12 @@ public interface StudentBiz {
 	List<Student> findByCourseId(int courseId);
 
 	Student findByName(String studentName);
-	
+
 	int update(Student student);
+
+	List<Student> findAll();
+	
+	List<Student> findByKeyword(String keyword);
+	
+	int delete(int studentId);
 }
