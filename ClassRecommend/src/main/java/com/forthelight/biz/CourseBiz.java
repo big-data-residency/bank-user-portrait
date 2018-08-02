@@ -1,11 +1,9 @@
 package com.forthelight.biz;
 
-import java.util.List;
-
 import com.forthelight.domain.Course;
-import com.forthelight.domain.Student;
 import com.forthelight.domain.Tag;
-import com.forthelight.domain.Teacher;
+
+import java.util.List;
 
 public interface CourseBiz {
 
@@ -47,4 +45,6 @@ public interface CourseBiz {
 
 	List<Course> selectByKeyword(String keyword);
 
+
+    int setTime(Course course, int lessonDay, int startTime, int endTime);
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Sliding Login Form</title>
+    <title>LOGIN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -29,7 +29,9 @@
 <div id="slideBox">
     <div class="topLayer">
 
-        <div id="page1" style="height: 100%;width: 50%;">
+      <!--<div style="width: 50%;height: 100%;">-->
+        <div id="page1" style="height: 100%;">
+
             <iframe align="center" width="100%" height="100%" src="temp/footprint.html" frameborder="no" border="0"
                     marginwidth="0" marginheight="0" scrolling="no">
             </iframe>
@@ -75,14 +77,17 @@
             </div>
 
             <!--</div>-->
-        </div>
+        <!--</div>-->
+
 
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
 
             <!--<div class="right" >-->
-            <div class="content" style="float: right;" id="loginForm-wrapper">
-                <h2>Login</h2>
+
+            <div class="content" style="float: right; " id="loginForm-wrapper">
+                <!--<h2>Login</h2>-->
+
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="username" class="form-label">Username</label>
@@ -129,13 +134,14 @@
                     url: 'http://localhost:8080/login',
                     type: 'POST',
                     data: {
-                        studentNumber: login.login_username,
+                        NickName: login.login_username,
                         password: login.login_password
                     },
                     dataType: 'json',
                     success(res) {
                         if (res.success) {
-                            location.href = "user/starter.html";
+                           // location.href = "user/starter.html";
+
                         }
                         else {
                             alert(res.data);

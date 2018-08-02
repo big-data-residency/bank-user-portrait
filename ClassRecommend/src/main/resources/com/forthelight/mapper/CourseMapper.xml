@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.forthelight.dao.CourseDao">
 
@@ -88,6 +88,12 @@
 	    #{startWeek} , #{endWeek} , #{isSingleWeek} , #{credit} , #{examiningForm} , #{college.id} , 
 	    #{major.id} , #{level} , 0 , #{hasMidExam} , #{finalExamWeight} , #{midExamWeight} , #{passingCourse} )
 	</insert>
+
+    <insert id="setTime" keyColumn="id" useGeneratedKeys="true">
+        insert into course_time
+        (ClassId, StartLesson, EndLesson, LessonDay) VALUES
+            (#{course.id}, #{startTime}, #{endTime}, #{lessonDay});
+    </insert>
 	
 	<select id="findByTeacherId" parameterType="int" resultMap="CourseResultMap" >
 	    select * from Course 

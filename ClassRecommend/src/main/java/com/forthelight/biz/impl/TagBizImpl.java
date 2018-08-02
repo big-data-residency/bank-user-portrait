@@ -1,13 +1,13 @@
 package com.forthelight.biz.impl;
 
-import java.util.List;
-
+import com.forthelight.biz.TagBiz;
+import com.forthelight.dao.TagDao;
+import com.forthelight.domain.StudentCommentCourse;
+import com.forthelight.domain.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.forthelight.biz.TagBiz;
-import com.forthelight.dao.TagDao;
-import com.forthelight.domain.Tag;
+import java.util.List;
 
 @Service
 public class TagBizImpl implements TagBiz {
@@ -49,6 +49,11 @@ public class TagBizImpl implements TagBiz {
 	public int insert(Tag tag) {
 		// TODO Auto-generated method stub
 		return tagDao.insert(tag);
+	}
+
+	@Override
+	public int tagComment(Tag tag, StudentCommentCourse studentCommentCourse) {
+		return tagDao.tagComment(tag, studentCommentCourse);
 	}
 
 }
