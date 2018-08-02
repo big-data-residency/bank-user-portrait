@@ -60,8 +60,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 -->
 
 
-<body class="hold-transition skin-blue-light fixed" id="Asearch">
-<div class="wrapper">
+<body class="hold-transition skin-blue-light fixed" >
+<div class="wrapper" id="Asearch">
 
 	<header class="main-header">
 
@@ -457,7 +457,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
           getPar() {
               Asearch.studentId = this.GetQueryString('id');
           },
-
           GetLogin(){
               $.ajax({
                   url: 'http://localhost:8080/getsession',
@@ -468,7 +467,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                       if (json.success) {
                           this.Login=json.data;
                           if( this.Login.studentId != this.getPar()  ){
-                              location.href="../no-access.html";
+                              location.href="no-access.html";
                           }
 
                       } else {
