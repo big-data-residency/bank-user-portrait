@@ -33,17 +33,9 @@ public class StudentBizImpl implements StudentBiz {
 	}
 
     @Override
-    public String loginValidate(String NickName, String password) {
+    public Student loginValidate(String NickName) {
         Student student = studentDao.findByNickName(NickName);
-        if (student != null && student.getPassword() != null){
-            if (student.getPassword().equals(password)){
-                return "登录成功";
-            } else {
-                return "密码错误";
-            }
-        } else {
-            return "用户不存在";
-        }
+        return student;
     }
 
     @Override

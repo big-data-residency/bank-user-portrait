@@ -66,15 +66,44 @@ public class StudentController {
 		String NickName = request.getParameter("NickName");
 		String password = request.getParameter("password");
 
-		String validateResult = studentBiz.loginValidate(NickName, password);
-		if (validateResult.equals("登录成功")) {
-			rsp.put("success", true);
-			rsp.put("data", validateResult);
-			HttpSession session = request.getSession();
-			session.setAttribute("userid",);
+		Student student = studentBiz.loginValidate(NickName);
+		if (student != null && student.getPassword() != null){
+
+			if (student.getPassword().equals(password)){
+				rsp.put("success", true);
+				rsp.put("data", "登陆成功");
+				HttpSession session = request.getSession();
+				session.setAttribute("user",student);
+			} else {
+				rsp.put("success", false);
+				rsp.put("data", "密码错误");
+			}
 		} else {
+			rsp.put("success",false);
+			rsp.put("data","用户不存在");
+		}
+		return gson.toJson(rsp);
+	}
+
+	@RequestMapping(value = "/getsession", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getsession(HttpServletRequest request, HttpServletResponse response){
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("json");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+		Map<String, Object> rsp = new HashMap<>();
+
+		HttpSession session  = request.getSession(false);
+		Student student = (Student)session.getAttribute("user");
+
+		if(student==null) {
 			rsp.put("success", false);
-			rsp.put("data", validateResult);
+			rsp.put("data","当前未登录");
+		}else{
+			rsp.put("success",true);
+			rsp.put("data",student);
 		}
 		return gson.toJson(rsp);
 	}
