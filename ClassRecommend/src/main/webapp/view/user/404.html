@@ -115,7 +115,7 @@
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="studentinfo.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+												<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
 											</div>
 											<div class="pull-right">
 												<a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -175,7 +175,7 @@
 								<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程页面</span></a>
 							</li>
 							<li>
-								<a href="studentinfo.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+								<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
 							</li>
 							<!--<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -217,7 +217,7 @@
 
           <p>
             We could not find the page you were looking for.
-            Meanwhile, you may <a href="../../index.html">return to dashboard</a> or try using the search form.
+            Meanwhile, you may <a href="new_start.html?id={{studengId}}">return to starter</a> or try using the search form.
           </p>
 
           <!--<form class="search-form">
@@ -285,17 +285,10 @@
 			mounted() {
 				this.getPar();
 			}
-
 		})
-		
-		
     if(document.body.scrollWidth < 300){
       document.getElementById('autoDis').style.display = 'none';
     }
-    
-    
-	
-	
 </script>
 
 </html>

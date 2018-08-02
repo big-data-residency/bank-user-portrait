@@ -57,7 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 
-<body class="hold-transition skin-blue-light fixed">
+<body class="hold-transition skin-blue-light fixed" id="Cdetails">
 <div class="wrapper" id="classvue">
 
 				<!-- Main Header -->
@@ -144,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="studentinfo.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+												<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
 											</div>
 											<div class="pull-right">
 												<a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -192,7 +192,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 							<li class="header">EAMIS_HELPER</li>
 							<!-- Optionally you can add icons to the links -->
 							<li >
-								<a href="courseList.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
+								<a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
 							</li>
 							<li class="active">
 								<a href="#"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
@@ -204,7 +204,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 								<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程页面</span></a>
 							</li>
 							<li>
-								<a href="studentinfo.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+								<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
 							</li>
 							<!--<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -236,7 +236,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </h1>
             <!--面包屑-->
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-home"></i> 查看所有课程</a></li>
+                <li><a href="#"><i class="fa fa-book"></i> 查看所有课程</a></li>
                 <li class="active">课程具体信息</li>
             </ol>
         </section>
@@ -1336,7 +1336,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <footer class="main-footer">
         <!-- To the right -->
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 <a href="#">EAMIS_HELPER</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
     </footer>
 
  
@@ -1579,6 +1579,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
         }
            
     })
+
+
+   		var Cdetails = new Vue({
+			el: '#Cdetails',
+			data: {
+				studentId: ''
+			},
+			methods: {
+				GetQueryString(name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+					var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+					var context = "";
+					if(r != null)
+						context = r[2];
+					reg = null;
+					r = null;
+					return context == null || context == "" || context == "undefined" ? "" : context;
+				},
+				getPar() {
+					Cdetails.studentId = this.GetQueryString('id');
+				},
+			},
+
+			mounted() {
+				this.getPar();
+			}
+
+		})
+		
+		
+
+
+
+
 
 </script>
 
