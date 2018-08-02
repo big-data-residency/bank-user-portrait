@@ -124,6 +124,11 @@ public class CourseBizImpl implements CourseBiz {
 		// TODO Auto-generated method stub
 		return courseDao.tagList(courseId);
 	}
+
+	@Override
+	public List<Course> selectByKeyword(String keyword){
+		return courseDao.selectByKeyword(keyword);
+	}
 		
 
 }

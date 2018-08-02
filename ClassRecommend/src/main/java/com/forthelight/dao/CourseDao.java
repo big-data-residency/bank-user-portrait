@@ -44,4 +44,6 @@ public interface CourseDao {
 	
 	List<Tag> tagList(int courseId);
 
+	List<Course> selectByKeyword(String keyword);
+
 }

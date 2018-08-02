@@ -53,6 +53,9 @@ public class StudentController {
 		this.collegeBiz = collegeBiz;
 	}
 
+
+
+
 	@RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String login(HttpServletRequest request, HttpServletResponse response) {
@@ -75,6 +78,10 @@ public class StudentController {
 		}
 		return gson.toJson(rsp);
 	}
+
+
+
+
 
 	@RequestMapping(value = "/register", produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -135,6 +142,9 @@ public class StudentController {
 		rsp.put("data", "注册成功");
 		return gson.toJson(rsp);
 	}
+
+
+
 
 	@RequestMapping(value = "/studentInfo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
 			+ ";charset=utf-8")
@@ -200,6 +210,9 @@ public class StudentController {
 
 	}
 
+
+
+
 	@RequestMapping(value = "/editStudentInfo", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
 			+ ";charset=utf-8")
 	@ResponseBody
@@ -241,6 +254,9 @@ public class StudentController {
 		res.put("success", success);
 		return gson.toJson(res);
 	}
+
+
+
 
 	@RequestMapping(value = "/searchStudent", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
 			+ ";charset=utf-8")
@@ -301,6 +317,9 @@ public class StudentController {
 
 	}
 
+
+
+
     @RequestMapping(value = "/deleteStudent", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
     @ResponseBody
     public String deleteStudent(String studentIdStr, HttpServletResponse response) {
@@ -326,5 +345,57 @@ public class StudentController {
 	    return gson.toJson(res);
 	    
     }
+
+
+	@RequestMapping(value = "/studentBasicInfo", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+	@ResponseBody
+	public String studentBasicInfo(String studentIdStr, HttpServletResponse response) {
+
+		response.setContentType("text/json;charset:UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+		Map<String, Object> res = new HashMap<>();
+
+		int studentId = Integer.parseInt(studentIdStr);
+
+		boolean success = false;
+
+		if (studentIdStr != null) {
+			success = true;
+		}
+
+		Student studentInfo = studentBiz.findById(studentId);
+		if (studentInfo == null) {
+			success = false;
+		}
+
+		Map<String, Object> student = new HashMap<>();
+
+		student.put("student", studentInfo);
+		student.put("college", studentInfo.getCollege().getCollegeName());
+		student.put("major", studentInfo.getMajor().getMajorName());
+
+		if(studentInfo.getGrade() == 1){
+			student.put("grade","大一");
+		}
+		if(studentInfo.getGrade() == 2){
+			student.put("grade","大二");
+		}
+		if(studentInfo.getGrade() == 3){
+			student.put("grade","大三");
+		}
+		if(studentInfo.getGrade() == 4){
+			student.put("grade","大四");
+		}
+
+		Map<String, Object> data = new HashMap<>();
+		data.put("student",student);
+
+		res.put("data",data);
+		res.put("success",success);
+
+		return gson.toJson(res);
+	}
 
 }

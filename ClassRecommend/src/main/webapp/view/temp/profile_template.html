@@ -1115,15 +1115,12 @@ immediately after the control sidebar -->
         return context == null || context == "" || context == "undefined" ? "" : context;
       },
       getPar(){
-        console.log(1);
-        console.log(this.GetQueryString('id'));
         teacherId = this.GetQueryString('id');
-        console.log(2);
         },
       getTeacherInfo(){
         var _self = this;
         $.ajax({
-          url:'http://localhost:8080/ClassRecommend/teacherInfo',
+          url:'http://localhost:8080/teacherInfo',
           type:'GET',
           data:{
             teacherIdStr:teacherId

@@ -45,4 +45,6 @@ public interface CourseBiz {
 
 	List<Tag> tagList(int courseId);
 
+	List<Course> selectByKeyword(String keyword);
+
 }
