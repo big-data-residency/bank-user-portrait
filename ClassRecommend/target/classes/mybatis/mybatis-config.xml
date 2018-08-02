@@ -2,9 +2,9 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<settings>
-		<setting name="lazyLoadingEnabled" value="true"/>
-	</settings>
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+    </settings>
 	<typeAliases>
 		<typeAlias type="com.forthelight.domain.Student" alias="Student" />
 		<typeAlias type="com.forthelight.domain.File" alias="File" />
