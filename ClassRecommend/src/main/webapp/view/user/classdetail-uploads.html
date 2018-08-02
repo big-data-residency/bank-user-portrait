@@ -1495,14 +1495,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             	likenum:'',
             	uploadsnum:'',
             	commentsnum:'',
-            },
-
-
-
-            //
-
-            Login:{},
-
+            }
         },
         methods:{
             myfun() {
@@ -1579,31 +1572,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 // parent.location.href = "lesson/"+this.MyID;
                 //顶层跳转
                 // top.location.href = "lesson/"+this.MyID;
-            },
-            GetLogin(){
-                $.ajax({
-                    url:'http://localhost:8080/getsession',
-                    type: 'Get',
-                    data : {},
-                    dataType:'json',
-                    success(json){
-                        if(json.success){
-                            this.Login=json.data;
-                            if( this.Login.studentId != tmp_return  ){
-                                location.href="../no-access.html";
-                            }
-                            // alert(this.Login.nickName);
-                        }else{
-                            alert(json.data);
-                            location.href="../login.html";
-                        }
-                    },
-                    error: function (XMLHttpRequest){
-                        alert(("输出错误信息")+XMLHttpRequest.responseText);
-                    }
-
-                })
-
             }
         },
         mounted(){
@@ -1617,8 +1585,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
    		var Cdetails = new Vue({
 			el: '#Cdetails',
 			data: {
-				studentId: '',
-                Login:{},
+				studentId: ''
 			},
 			methods: {
 				GetQueryString(name) {
@@ -1633,7 +1600,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				},
 				getPar() {
 					Cdetails.studentId = this.GetQueryString('id');
-					tmp_return=this.getQueryString('id');
 				},
 			},
 
@@ -1642,8 +1608,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			}
 
 		})
+		
+		
 
 
+<script type="text/javascript">
+    $('#uploadBtn').click(function () {
+        var files = document.getElementById("fileInput").files;
+        if (typeof(files) === "undefined" || files.size() <= 0) {
+            alert("请选择文件");
+        }
+        var formFile = new FormData();
+        formFile.append("action", "uploadFiles");
+        formFile.append("files", files);
+
+        $.ajax({
+            url: "/fileUpload",
+            data: formFile,
+            type: "post",
+            dataType: "json",
+            cache: false,
+            processData: false,
+            contentType: false,
+
+            success: function (rsp) {
+                if (rsp.success) {
+                    alert("上传成功");
+                }
+            }
+        })
+    })
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

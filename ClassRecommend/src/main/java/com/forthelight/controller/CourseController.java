@@ -1,7 +1,10 @@
 package com.forthelight.controller;
 
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -213,8 +216,7 @@ public class CourseController {
 		if(courseKeyword == ""){
 			courses = courseBiz.findAll();
 		}else{
-			//courses = courseBiz.selectByKeyword(courseKeyword);
-			courses = null;
+			courses = courseBiz.selectByKeyword(courseKeyword);
 		}
 
 		boolean success = false;
