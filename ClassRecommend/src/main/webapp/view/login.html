@@ -134,13 +134,14 @@
                     url: 'http://localhost:8080/login',
                     type: 'POST',
                     data: {
-                        studentNumber: login.login_username,
+                        NickName: login.login_username,
                         password: login.login_password
                     },
                     dataType: 'json',
                     success(res) {
                         if (res.success) {
-                            location.href = "user/starter.html";
+                           // location.href = "user/starter.html";
+
                         }
                         else {
                             alert(res.data);
