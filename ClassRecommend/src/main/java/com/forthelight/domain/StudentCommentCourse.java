@@ -3,7 +3,6 @@ package com.forthelight.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -22,13 +21,13 @@ public class StudentCommentCourse implements Serializable {
 	private int knowledgeScore;
 	private int selectId;
 
+
 	private transient Student student;
 	private transient Course course;
 	private transient List<Tag> tags = new ArrayList<Tag>();
 
 	public StudentCommentCourse() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Integer getId() {

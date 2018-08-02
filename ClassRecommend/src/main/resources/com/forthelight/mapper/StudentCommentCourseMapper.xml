@@ -50,8 +50,9 @@
 	
 	<select id="commentNumberOfCourse" parameterType="int" resultType="int" >
 	    select count(*) from student_comment_course inner join student_select_course on selectId = student_select_course.id
-	    where selectId in ( select id from student_select_course where courseId = #{courseId} 
-	    and deleteStatus = 0 ) and deleteStatus = 0
+	    where selectId in ( select id from student_select_course where courseId = #{courseId}
+																	   and student_comment_course.deleteStatus = 0) and
+			  student_select_course.DeleteStatus = 0
 	</select>
 	
 	<select id="getSelectIdByStudentIdAndCourseId" resultType="int" >
@@ -60,9 +61,11 @@
 	</select>
 	
 	<insert id="insert" parameterType="StudentCommentCourse" >
-	    insert into student_comment_course values 
-	    ( null , #{selectId} , #{comment} , #{gradeScore}, #{contentScore} , #{likeNumber} , 0 , 
-	    #{anonymous} , #{commentTime} ,  #{bearScore} , #{interestingScore} ,  #{easyScore} , #{knowledgeScore} )
+		insert into student_comment_course
+		(id, SelectID, Comment, GradeScore, ContentScore, LikeNumber, DeleteStatus, Anonymous, CommentTime, BearScore, InterestingScore, EasyScore, KnowledgeScore)
+		VALUES
+			(null, #{selectId}, #{comment}, #{gradeScore}, #{contentScore}, #{likeNumber}, #{deleteStatus},
+				   #{anonymous}, #{commentTime}, #{bearScore}, #{interestingScore}, #{easyScore}, #{knowledgeScore});
 	</insert>
 	
 	<select id="getScoreByGrade"  resultType="int" >

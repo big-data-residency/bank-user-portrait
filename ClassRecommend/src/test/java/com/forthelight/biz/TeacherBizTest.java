@@ -1,8 +1,10 @@
 package com.forthelight.biz;
 
+import com.forthelight.dao.CollegeDao;
 import com.forthelight.dao.TeacherDao;
 import com.forthelight.domain.Course;
 import com.forthelight.domain.Teacher;
+import com.forthelight.util.RandomGenerator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.junit.Test;
@@ -11,16 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.lang.reflect.Type;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @ContextConfiguration("classpath:applicationContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TeacherBizTest {
     @Autowired
     TeacherDao teacherDao;
+    @Autowired
+    CollegeDao collegeDao;
 
     @Test
     public void findById() {
@@ -35,4 +36,23 @@ public class TeacherBizTest {
         System.out.println(gson.toJson(courses));
         System.out.println("===");
     }
+
+    @Test
+    public void insert() {
+        for (int i = 0; i < 500; i++) {
+            Teacher teacher = new Teacher();
+            teacher.setTeacherName(RandomGenerator.getName());
+            teacher.setGender(RandomGenerator.getSex());
+            teacher.setTelPhone(RandomGenerator.getPhone());
+            teacher.setEmail(RandomGenerator.getEmail(6, 11));
+            teacher.setOfficeAddress(RandomGenerator.getAddress());
+            teacher.setCollege(collegeDao.findById(RandomGenerator.random.nextInt(7) + 1));
+            teacher.setLevel(RandomGenerator.getLevel());
+
+            teacherDao.insert(teacher);
+            System.out.println(i);
+        }
+    }
+
+
 }
