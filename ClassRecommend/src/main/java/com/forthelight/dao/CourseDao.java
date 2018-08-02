@@ -47,4 +47,6 @@ public interface CourseDao {
 	List<Course> selectByKeyword(String keyword);
 
     int setTime(@Param("course") Course course, @Param("lessonDay") int lessonDay, @Param("startTime") int startTime, @Param("endTime") int endTime);
+
+    List<Course> findCourseOfAdmin(String courseType,String teacherName , int examType, String courseName);
 }
