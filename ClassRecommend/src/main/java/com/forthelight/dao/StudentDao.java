@@ -17,6 +17,8 @@ public interface StudentDao {
 	List<Student> findByCollegeId(int collegeId);
 
 	Student findByStudentNumber(String studentNumber);
+
+	Student findByNickName(String NickName);
 	
 	List<Student> findByCourseId(int courseId);
 

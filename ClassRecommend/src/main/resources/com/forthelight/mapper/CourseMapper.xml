@@ -148,6 +148,13 @@
 	    ( select id from student_select_course where courseId = #{courseId} 
 	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
 	</select>
+
+
+	<select id="selectByKeyword" resultMap="CourseResultMap">
+		select * from Course
+		where ( courseCode like '%${_parameter}%' or courseName like '%${_parameter}%' )
+		and deleteStatus = 0
+	</select>
 	
 
 </mapper>

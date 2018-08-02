@@ -44,5 +44,7 @@ public interface CourseDao {
 	
 	List<Tag> tagList(int courseId);
 
+	List<Course> selectByKeyword(String keyword);
+
     int setTime(@Param("course") Course course, @Param("lessonDay") int lessonDay, @Param("startTime") int startTime, @Param("endTime") int endTime);
 }

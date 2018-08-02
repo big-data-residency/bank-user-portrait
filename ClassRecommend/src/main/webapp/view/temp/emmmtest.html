@@ -37,6 +37,7 @@
             MyID: 1,
             sus: 'ewq',
             dat: '',
+            args:['123'],
         },
         methods: {
             myfun() {
@@ -67,14 +68,29 @@
                     }
                 });
             },
-            jump() {
+            jump(url) {
                 //本层跳转
-                location.href = "lesson/" + this.MyID;  //一般这个就可以了
+                //location.href = "lesson/" + this.MyID;  //一般这个就可以了
                 // window.location.href = "lesson/"+this.MyID;
                 //上一层跳转
                 // parent.location.href = "lesson/"+this.MyID;
                 //顶层跳转
                 // top.location.href = "lesson/"+this.MyID;
+
+                        var body = $(document.body),
+                            form = $("<form method='post'></form>"),
+                            input;
+                        form.attr({"action":"testjump.html"});
+                        $.each(this.args,function(key,value){
+                            input = $("<input type='hidden'>");
+                            input.attr({"name":key});
+                            input.val(value);
+                            form.append(input);
+                        });
+                        form.appendTo(document.body);
+                        form.submit();
+                        document.body.removeChild(form[0]);
+
             },
             textout(){
                 this.Param=this.$router.params.id;
