@@ -5,6 +5,8 @@
   -moz-user-select:none;
   -webkit-user-select:none;
 }
+
+
 .rating-stars ul > li.star {
   display:inline-block;
   
@@ -25,3 +27,7 @@
 .rating-stars ul > li.star.selected > i.fa {
   color:#FF912C;
 }
+
+
+
+

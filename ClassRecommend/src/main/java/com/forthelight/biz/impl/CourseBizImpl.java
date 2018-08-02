@@ -106,6 +106,11 @@ public class CourseBizImpl implements CourseBiz {
 		return courseDao.tagList(courseId);
 	}
 
+	@Override
+	public List<Course> selectByKeyword(String keyword){
+		return courseDao.selectByKeyword(keyword);
+	}
+		
     @Override
     public int setTime(Course course, int lessonDay, int startTime, int endTime) {
         return courseDao.setTime(course, lessonDay, startTime, endTime);
