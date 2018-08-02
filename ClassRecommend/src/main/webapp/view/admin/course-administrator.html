@@ -292,8 +292,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content-header">
             <!--标题-->
             <h1>
-                Course
-                <small>Search</small>
+                	查看全部课程
+                <small>administrator</small>
             </h1>
             <!--面包屑-->
             <ol class="breadcrumb">
@@ -308,7 +308,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				</section>-->
 				
 		<!--	<div class="clearfix"> </div>-->
-			<div class=" newsletter">
+			<!--<div class=" newsletter">
 				   <div class="social">
 					<ul>
 						<li><a href="#" class="link dblue" target="_parent"><span >A</span></a></li>
@@ -318,7 +318,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<li><a href="#" class="link dgreen" target="_parent"><span >E</span></a></li>
 					</ul>
 				</div>
-			</div>
+			</div>-->
 			
 			
 			<div class="row">
@@ -339,15 +339,29 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
            
-          </div>
+          </div>              
+          
+          <form action="#" method="post">
+                <div class="input-group">
+                  <input type="text" name="message" placeholder="class-number" class="form-control">
+                      <!--<span class="input-group-btn">
+                        <button type="submit" class="btn btn-danger btn-flat">Send</button>
+                      </span>-->
+                      <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+
+                </div>
+              </form>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
           <div class="row">
           	
           	<div class="col-md-3">
-              <div class="form-group">
-                 <label>课程编码</label>
+             <!-- <div class="form-group">
+                 <label>课程编码</label>-->
                 <!--<select class="form-control select2" style="width: 100%;">
                   <option selected="selected">Alabama</option>
                   <option>Alaska</option>
@@ -359,26 +373,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </select>-->
                 
                <!-- <div class="box-footer">-->
-              <form action="#" method="post">
+             <!-- <form action="#" method="post">
                 <div class="input-group">
                   <input type="text" name="message" placeholder="Type Message ..." class="form-control">
                       <!--<span class="input-group-btn">
                         <button type="submit" class="btn btn-danger btn-flat">Send</button>
                       </span>-->
-                      <span class="input-group-btn">
+                     <!-- <span class="input-group-btn">
               <button type="submit" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i>
               </button>
             </span>
 
                 </div>
-              </form>
+              </form>-->
             <!--</div>-->
                 
               </div>
               
             </div>
           	
-          	
+          	<div class="col-md-3">
+              <div class="form-group">
+                 <label>课程类型</label>
+                <select class="form-control select2" style="width: 100%;">
+                  <option selected="selected">Alabama</option>
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  <option>D</option>
+                  <option>E</option>
+                  
+                </select>
+              </div>
+              
+            </div>
+            
             <div class="col-md-3">
               <div class="form-group">
                  <label>授课老师</label>
