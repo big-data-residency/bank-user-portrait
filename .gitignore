@@ -12,3 +12,4 @@ test.html
 ClassRecommend/src/main/resources/properties/jdbc.properties
 ClassRecommend/target/classes/properties/jdbc.properties
 ClassRecommend/target/classes/properties/jdbc.properties
+.vscode
