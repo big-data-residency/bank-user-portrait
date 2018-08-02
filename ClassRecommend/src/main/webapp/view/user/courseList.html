@@ -34,7 +34,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue-light fixed">
+<body class="hold-transition skin-blue-light fixed" id="sfind">
 <div class="wrapper">
 
 				<!-- Main Header -->
@@ -169,10 +169,10 @@
 							<li class="header">EAMIS_HELPER</li>
 							<!-- Optionally you can add icons to the links -->
 							<li >
-								<a href="#"><i class="fa fa-user"></i> <span>用户首页</span></a>
+								<a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
 							</li>
 							<li class="active">
-								<a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+								<a href="#"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
 							</li>
 							<li>
 								<a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
@@ -213,8 +213,8 @@
             </h1>
             <!--面包屑-->
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-home"></i> 用户首页</a></li>
-                <li class="active">查看所有课程</li>
+                <li><a href="#"><i class="fa fa-book"></i> 查看所有课程</a></li>
+                <!--<li class="active">查看所有课程</li>-->
             </ol>
         </section>
 
@@ -818,6 +818,43 @@
         })
 
     })
+    
+    		var sfind = new Vue({
+			el: '#sfind',
+			data: {
+				studentId: ''
+			},
+			methods: {
+				GetQueryString(name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+					var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+					var context = "";
+					if(r != null)
+						context = r[2];
+					reg = null;
+					r = null;
+					return context == null || context == "" || context == "undefined" ? "" : context;
+				},
+				getPar() {
+					sfind.studentId = this.GetQueryString('id');
+				},
+			},
+
+			mounted() {
+				this.getPar();
+			}
+
+		})
+		
+		
+    if(document.body.scrollWidth < 300){
+      document.getElementById('autoDis').style.display = 'none';
+    }
+    
+    
+    
+    
+    
 </script>
 </body>
 </html>
