@@ -1,10 +1,7 @@
 package com.forthelight.controller;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -199,6 +196,61 @@ public class CourseController {
 		
 		return gson.toJson(res);
 
+	}
+
+
+	@RequestMapping(value = "/searchCourse", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+	@ResponseBody
+	public String studentBasicInfo(String courseKeyword, HttpServletResponse response) {
+
+		response.setContentType("text/json;charset:UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+		Map<String, Object> res = new HashMap<>();
+
+		List<Course> courses;
+		if(courseKeyword == ""){
+			courses = courseBiz.findAll();
+		}else{
+			courses = courseBiz.selectByKeyword(courseKeyword);
+		}
+
+		boolean success = false;
+		if(courses.size() > 0){
+			success = true;
+		}
+
+		Map<String, Object> data = new HashMap<>();
+		data.put("courses",courses);
+
+		res.put("data",data);
+		res.put("success",success);
+
+		return gson.toJson(res);
+	}
+
+
+	@RequestMapping(value = "/rCourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
+			+ ";charset=utf-8")
+	@ResponseBody
+	public String recommendCourse(HttpServletRequest request, HttpServletResponse response) {
+
+		response.setContentType("text/json;charset:UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+		System.out.print(request);
+
+		Map<String, Object> res = new HashMap<>();
+
+
+		boolean success = true;
+
+		res.put("success", success);
+
+		return gson.toJson(res);
 	}
 
 }

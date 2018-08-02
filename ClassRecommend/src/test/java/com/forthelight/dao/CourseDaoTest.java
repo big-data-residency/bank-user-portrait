@@ -135,4 +135,10 @@ public class CourseDaoTest {
     	List<Tag> tags = courseDao.tagList(3);
     	System.out.println(tags);
     }
+
+    @Test
+    public void  selectByKeyword(){
+        List<Course> courses = courseDao.selectByKeyword("数据");
+        System.out.println(courses.get(0).getCourseName());
+    }
 }
