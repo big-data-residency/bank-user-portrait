@@ -572,6 +572,45 @@ scratch. This page gets rid of all links and provides the needed markup only.
         //Initialize Select2 Elements
         $('.select2').select2()
 
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+            var context = "";
+            if (r != null)
+                context = r[2];
+            reg = null;
+            r = null;
+            return context == null || context == "" || context == "undefined" ? "" : context;
+        }
+        function getPar(){
+            var  adminId = this.GetQueryString('id');
+        }
+
+        function GetLogin(){
+            $.ajax({
+                url:'http://localhost:8080/getsession',
+                type: 'Get',
+                data : {},
+                dataType:'json',
+                success(json){
+                    if(json.success){
+                        this.Login=json.data;
+                        if( this.Login.privilege != 1 ||this.Login.studentId!=getPar() ){
+                            location.href="../user/no-access.html";
+                        }
+                        // alert(this.Login.nickName);
+                    }else{
+                        alert(json.data);
+                        location.href="../login.html";
+                    }
+                },
+                error: function (XMLHttpRequest){
+                    alert(("输出错误信息")+XMLHttpRequest.responseText);
+                }
+
+            })
+
+        }
     })
 </script>
 

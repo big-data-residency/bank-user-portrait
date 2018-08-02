@@ -57,7 +57,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue-light fixed">
-<div class="wrapper" id="classvue">
+<div class="wrapper" id="studentInfo">
 
     <!-- Main Header -->
 				<header class="main-header">
@@ -468,8 +468,9 @@ desired effect
             success(json){
                 if(json.success){
                     this.Login=json.data;
-                    if( this.Login.studentId != this.getPar()  ){
-                        location.href="../no-access.html";
+
+                    if( this.Login.studentId != this.getPar()){
+                        location.href="no-access.html";
                     }
                     // alert(this.Login.nickName);
                 }else{
