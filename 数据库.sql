@@ -1,418 +1,4285 @@
-CREATE DATABASE  IF NOT EXISTS `eamis-helper` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `eamis-helper`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: eamis-helper
--- ------------------------------------------------------
--- Server version	5.7.21-log
+/*
+ Navicat Premium Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+ Source Server         : MySQL
+ Source Server Type    : MySQL
+ Source Server Version : 100131
+ Source Host           : localhost:3306
+ Source Schema         : eamis-helper
 
---
--- Table structure for table `college`
---
+ Target Server Type    : MySQL
+ Target Server Version : 100131
+ File Encoding         : 65001
 
+ Date: 02/08/2018 11:29:38
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for college
+-- ----------------------------
 DROP TABLE IF EXISTS `college`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `college` (
+CREATE TABLE `college`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `CollegeName` varchar(255) DEFAULT NULL,
-  `Type` int(11) DEFAULT NULL COMMENT '学院分类 1234=文理工商',
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位',
+  `CollegeName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Type` int(11) NULL DEFAULT NULL COMMENT '学院分类 1234=文理工商',
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `college`
---
+-- ----------------------------
+-- Records of college
+-- ----------------------------
+INSERT INTO `college` VALUES (1, '计算机与控制工程学院', 3, 0);
+INSERT INTO `college` VALUES (2, '金融学院', 4, 0);
+INSERT INTO `college` VALUES (3, '历史学院', 1, 0);
+INSERT INTO `college` VALUES (4, '法学院', 2, 0);
+INSERT INTO `college` VALUES (5, '哲学院', 1, 0);
+INSERT INTO `college` VALUES (6, '电子信息与光学工程学院', 3, 0);
+INSERT INTO `college` VALUES (7, '公选课', 0, 0);
 
-LOCK TABLES `college` WRITE;
-/*!40000 ALTER TABLE `college` DISABLE KEYS */;
-INSERT INTO `college` VALUES (1,'计算机与控制工程学院',NULL,0),(2,'金融学院',NULL,0),(3,'历史学院',NULL,0),(4,'法学院',NULL,0),(5,'哲学院',NULL,0),(6,'公选课',NULL,0),(7,NULL,1,1);
-/*!40000 ALTER TABLE `college` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `comment_tag`
---
-
+-- ----------------------------
+-- Table structure for comment_tag
+-- ----------------------------
 DROP TABLE IF EXISTS `comment_tag`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comment_tag` (
+CREATE TABLE `comment_tag`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `TagID` int(11) DEFAULT NULL,
-  `CommentID` int(11) DEFAULT NULL,
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位：0 is 正常，1 is 删除',
+  `TagID` int(11) NULL DEFAULT NULL,
+  `CommentID` int(11) NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 删除',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `TagID` (`TagID`) USING BTREE,
-  KEY `CommentID` (`CommentID`) USING BTREE,
+  INDEX `TagID`(`TagID`) USING BTREE,
+  INDEX `CommentID`(`CommentID`) USING BTREE,
   CONSTRAINT `comment_tag_ibfk_1` FOREIGN KEY (`TagID`) REFERENCES `tag` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `comment_tag_ibfk_2` FOREIGN KEY (`CommentID`) REFERENCES `student_comment_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  CONSTRAINT `comment_tag_ibfk_2` FOREIGN KEY (`CommentID`) REFERENCES `student_select_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 141 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `comment_tag`
---
+-- ----------------------------
+-- Records of comment_tag
+-- ----------------------------
+INSERT INTO `comment_tag` VALUES (1, 4, 1, 0);
+INSERT INTO `comment_tag` VALUES (2, 4, 4, 0);
+INSERT INTO `comment_tag` VALUES (3, 1, 7, 0);
+INSERT INTO `comment_tag` VALUES (4, 5, 9, 0);
+INSERT INTO `comment_tag` VALUES (5, 2, 10, 0);
+INSERT INTO `comment_tag` VALUES (6, 4, 12, 0);
+INSERT INTO `comment_tag` VALUES (7, 3, 13, 0);
+INSERT INTO `comment_tag` VALUES (8, 3, 15, 0);
+INSERT INTO `comment_tag` VALUES (9, 4, 18, 0);
+INSERT INTO `comment_tag` VALUES (10, 4, 22, 0);
+INSERT INTO `comment_tag` VALUES (11, 1, 26, 0);
+INSERT INTO `comment_tag` VALUES (12, 3, 30, 0);
+INSERT INTO `comment_tag` VALUES (13, 3, 31, 0);
+INSERT INTO `comment_tag` VALUES (14, 2, 34, 0);
+INSERT INTO `comment_tag` VALUES (15, 1, 38, 0);
+INSERT INTO `comment_tag` VALUES (16, 3, 40, 0);
+INSERT INTO `comment_tag` VALUES (17, 5, 42, 0);
+INSERT INTO `comment_tag` VALUES (18, 4, 46, 0);
+INSERT INTO `comment_tag` VALUES (19, 4, 48, 0);
+INSERT INTO `comment_tag` VALUES (20, 5, 51, 0);
+INSERT INTO `comment_tag` VALUES (21, 1, 55, 0);
+INSERT INTO `comment_tag` VALUES (22, 2, 56, 0);
+INSERT INTO `comment_tag` VALUES (23, 2, 57, 0);
+INSERT INTO `comment_tag` VALUES (24, 3, 60, 0);
+INSERT INTO `comment_tag` VALUES (25, 1, 64, 0);
+INSERT INTO `comment_tag` VALUES (26, 5, 66, 0);
+INSERT INTO `comment_tag` VALUES (27, 3, 70, 0);
+INSERT INTO `comment_tag` VALUES (28, 5, 74, 0);
+INSERT INTO `comment_tag` VALUES (29, 1, 76, 0);
+INSERT INTO `comment_tag` VALUES (30, 5, 77, 0);
+INSERT INTO `comment_tag` VALUES (31, 2, 78, 0);
+INSERT INTO `comment_tag` VALUES (32, 2, 82, 0);
+INSERT INTO `comment_tag` VALUES (33, 4, 86, 0);
+INSERT INTO `comment_tag` VALUES (34, 3, 89, 0);
+INSERT INTO `comment_tag` VALUES (35, 2, 93, 0);
+INSERT INTO `comment_tag` VALUES (36, 4, 95, 0);
+INSERT INTO `comment_tag` VALUES (37, 5, 96, 0);
+INSERT INTO `comment_tag` VALUES (38, 4, 99, 0);
+INSERT INTO `comment_tag` VALUES (39, 2, 103, 0);
+INSERT INTO `comment_tag` VALUES (40, 5, 104, 0);
+INSERT INTO `comment_tag` VALUES (41, 4, 107, 0);
+INSERT INTO `comment_tag` VALUES (42, 1, 109, 0);
+INSERT INTO `comment_tag` VALUES (43, 4, 112, 0);
+INSERT INTO `comment_tag` VALUES (44, 3, 115, 0);
+INSERT INTO `comment_tag` VALUES (45, 4, 118, 0);
+INSERT INTO `comment_tag` VALUES (46, 4, 121, 0);
+INSERT INTO `comment_tag` VALUES (47, 5, 122, 0);
+INSERT INTO `comment_tag` VALUES (48, 1, 124, 0);
+INSERT INTO `comment_tag` VALUES (49, 1, 125, 0);
+INSERT INTO `comment_tag` VALUES (50, 5, 126, 0);
+INSERT INTO `comment_tag` VALUES (51, 3, 129, 0);
+INSERT INTO `comment_tag` VALUES (52, 1, 132, 0);
+INSERT INTO `comment_tag` VALUES (53, 5, 134, 0);
+INSERT INTO `comment_tag` VALUES (54, 3, 138, 0);
+INSERT INTO `comment_tag` VALUES (55, 1, 139, 0);
+INSERT INTO `comment_tag` VALUES (56, 1, 141, 0);
+INSERT INTO `comment_tag` VALUES (57, 1, 142, 0);
+INSERT INTO `comment_tag` VALUES (58, 5, 144, 0);
+INSERT INTO `comment_tag` VALUES (59, 3, 147, 0);
+INSERT INTO `comment_tag` VALUES (60, 5, 150, 0);
+INSERT INTO `comment_tag` VALUES (61, 1, 153, 0);
+INSERT INTO `comment_tag` VALUES (62, 4, 157, 0);
+INSERT INTO `comment_tag` VALUES (63, 3, 160, 0);
+INSERT INTO `comment_tag` VALUES (64, 5, 162, 0);
+INSERT INTO `comment_tag` VALUES (65, 3, 166, 0);
+INSERT INTO `comment_tag` VALUES (66, 5, 170, 0);
+INSERT INTO `comment_tag` VALUES (67, 5, 174, 0);
+INSERT INTO `comment_tag` VALUES (68, 1, 177, 0);
+INSERT INTO `comment_tag` VALUES (69, 4, 178, 0);
+INSERT INTO `comment_tag` VALUES (70, 2, 179, 0);
+INSERT INTO `comment_tag` VALUES (71, 1, 182, 0);
+INSERT INTO `comment_tag` VALUES (72, 1, 186, 0);
+INSERT INTO `comment_tag` VALUES (73, 1, 189, 0);
+INSERT INTO `comment_tag` VALUES (74, 5, 192, 0);
+INSERT INTO `comment_tag` VALUES (75, 2, 193, 0);
+INSERT INTO `comment_tag` VALUES (76, 2, 194, 0);
+INSERT INTO `comment_tag` VALUES (77, 2, 198, 0);
+INSERT INTO `comment_tag` VALUES (78, 3, 201, 0);
+INSERT INTO `comment_tag` VALUES (79, 5, 203, 0);
+INSERT INTO `comment_tag` VALUES (80, 2, 207, 0);
+INSERT INTO `comment_tag` VALUES (81, 4, 208, 0);
+INSERT INTO `comment_tag` VALUES (82, 2, 210, 0);
+INSERT INTO `comment_tag` VALUES (83, 1, 213, 0);
+INSERT INTO `comment_tag` VALUES (84, 2, 216, 0);
+INSERT INTO `comment_tag` VALUES (85, 4, 218, 0);
+INSERT INTO `comment_tag` VALUES (86, 2, 220, 0);
+INSERT INTO `comment_tag` VALUES (87, 2, 221, 0);
+INSERT INTO `comment_tag` VALUES (88, 4, 222, 0);
+INSERT INTO `comment_tag` VALUES (89, 4, 225, 0);
+INSERT INTO `comment_tag` VALUES (90, 3, 227, 0);
+INSERT INTO `comment_tag` VALUES (91, 2, 229, 0);
+INSERT INTO `comment_tag` VALUES (92, 5, 233, 0);
+INSERT INTO `comment_tag` VALUES (93, 5, 236, 0);
+INSERT INTO `comment_tag` VALUES (94, 2, 237, 0);
+INSERT INTO `comment_tag` VALUES (95, 2, 240, 0);
+INSERT INTO `comment_tag` VALUES (96, 3, 244, 0);
+INSERT INTO `comment_tag` VALUES (97, 2, 245, 0);
+INSERT INTO `comment_tag` VALUES (98, 3, 247, 0);
+INSERT INTO `comment_tag` VALUES (99, 2, 249, 0);
+INSERT INTO `comment_tag` VALUES (100, 2, 253, 0);
+INSERT INTO `comment_tag` VALUES (101, 4, 254, 0);
+INSERT INTO `comment_tag` VALUES (102, 2, 255, 0);
+INSERT INTO `comment_tag` VALUES (103, 5, 256, 0);
+INSERT INTO `comment_tag` VALUES (104, 5, 259, 0);
+INSERT INTO `comment_tag` VALUES (105, 5, 260, 0);
+INSERT INTO `comment_tag` VALUES (106, 1, 263, 0);
+INSERT INTO `comment_tag` VALUES (107, 1, 267, 0);
+INSERT INTO `comment_tag` VALUES (108, 4, 270, 0);
+INSERT INTO `comment_tag` VALUES (109, 3, 274, 0);
+INSERT INTO `comment_tag` VALUES (110, 5, 277, 0);
+INSERT INTO `comment_tag` VALUES (111, 5, 279, 0);
+INSERT INTO `comment_tag` VALUES (112, 3, 283, 0);
+INSERT INTO `comment_tag` VALUES (113, 4, 287, 0);
+INSERT INTO `comment_tag` VALUES (114, 5, 288, 0);
+INSERT INTO `comment_tag` VALUES (115, 3, 292, 0);
+INSERT INTO `comment_tag` VALUES (116, 5, 294, 0);
+INSERT INTO `comment_tag` VALUES (117, 4, 297, 0);
+INSERT INTO `comment_tag` VALUES (118, 2, 300, 0);
+INSERT INTO `comment_tag` VALUES (119, 1, 301, 0);
+INSERT INTO `comment_tag` VALUES (120, 3, 302, 0);
+INSERT INTO `comment_tag` VALUES (121, 4, 303, 0);
+INSERT INTO `comment_tag` VALUES (122, 5, 307, 0);
+INSERT INTO `comment_tag` VALUES (123, 3, 309, 0);
+INSERT INTO `comment_tag` VALUES (124, 1, 311, 0);
+INSERT INTO `comment_tag` VALUES (125, 4, 313, 0);
+INSERT INTO `comment_tag` VALUES (126, 3, 314, 0);
+INSERT INTO `comment_tag` VALUES (127, 2, 317, 0);
+INSERT INTO `comment_tag` VALUES (128, 1, 320, 0);
+INSERT INTO `comment_tag` VALUES (129, 4, 323, 0);
+INSERT INTO `comment_tag` VALUES (130, 3, 326, 0);
+INSERT INTO `comment_tag` VALUES (131, 2, 328, 0);
+INSERT INTO `comment_tag` VALUES (132, 2, 331, 0);
+INSERT INTO `comment_tag` VALUES (133, 5, 335, 0);
+INSERT INTO `comment_tag` VALUES (134, 1, 337, 0);
+INSERT INTO `comment_tag` VALUES (135, 3, 338, 0);
+INSERT INTO `comment_tag` VALUES (136, 3, 340, 0);
+INSERT INTO `comment_tag` VALUES (137, 5, 342, 0);
+INSERT INTO `comment_tag` VALUES (138, 5, 344, 0);
+INSERT INTO `comment_tag` VALUES (139, 2, 348, 0);
+INSERT INTO `comment_tag` VALUES (140, 5, 350, 0);
 
-LOCK TABLES `comment_tag` WRITE;
-/*!40000 ALTER TABLE `comment_tag` DISABLE KEYS */;
-INSERT INTO `comment_tag` VALUES (1,2,1,0);
-/*!40000 ALTER TABLE `comment_tag` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `course`
---
-
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
 DROP TABLE IF EXISTS `course`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `course` (
+CREATE TABLE `course`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `CourseCode` varchar(255) DEFAULT NULL COMMENT '课程编号',
-  `CourseName` varchar(255) DEFAULT NULL,
-  `TeacherID` int(11) DEFAULT NULL,
-  `StudentNumber` int(11) DEFAULT NULL COMMENT '课程人数',
-  `StartWeek` int(11) DEFAULT NULL,
-  `EndWeek` int(11) DEFAULT NULL,
-  `IsSingleWeek` int(11) DEFAULT '0' COMMENT '单双周标记：0 is 常规课程，1 is 单周课程，2 is 双周课程',
-  `Credit` double DEFAULT '0' COMMENT '学分数',
-  `ExaminingForm` int(11) DEFAULT '0' COMMENT '考试方式：0 is 闭卷考试，1 is 开卷考试，2 is 论文结课，3 is 其他',
-  `CollegeID` int(11) DEFAULT NULL COMMENT '开课学院ID，若为空则为任选课',
-  `MajorID` int(11) DEFAULT NULL COMMENT '所属专业ID，若为空则为所属学院的任意专业',
-  `Level` varchar(255) DEFAULT NULL COMMENT '对应ABCDE类课',
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位：0 is 正常，1 is 已删除',
-  `HasMidExam` int(11) DEFAULT '0' COMMENT '是否有期中考试 0=没有 1=有',
-  `FinalExamWeight` int(11) DEFAULT NULL,
-  `MidExamWeight` int(11) DEFAULT NULL,
-  `PassingCourse` int(11) DEFAULT '0' COMMENT '是否是通过制 0=否 1=是 默认0',
+  `CourseCode` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '课程编号',
+  `CourseName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `TeacherID` int(11) NULL DEFAULT NULL,
+  `StudentNumber` int(11) NULL DEFAULT NULL COMMENT '课程人数',
+  `StartWeek` int(11) NULL DEFAULT NULL,
+  `EndWeek` int(11) NULL DEFAULT NULL,
+  `IsSingleWeek` int(11) NULL DEFAULT 0 COMMENT '单双周标记：0 is 常规课程，1 is 单周课程，2 is 双周课程',
+  `Credit` double(11, 1) NULL DEFAULT 0.0 COMMENT '学分数',
+  `ExaminingForm` int(11) NULL DEFAULT 0 COMMENT '考试方式：0 is 闭卷考试，1 is 开卷考试，2 is 论文结课，3 is 其他',
+  `CollegeID` int(11) NULL DEFAULT NULL COMMENT '开课学院ID',
+  `MajorID` int(11) NULL DEFAULT NULL COMMENT '所属专业ID，若为空则为所属学院的任意专业',
+  `Level` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '对应ABCDE类课',
+  `HasMidExam` int(11) NULL DEFAULT 0 COMMENT '是否有期中考试 0=没有 1=有',
+  `FinalExamWeight` int(11) NULL DEFAULT NULL,
+  `MidExamWeight` int(11) NULL DEFAULT NULL,
+  `PassingCourse` int(11) NULL DEFAULT 0 COMMENT '是否是通过制 0=否 1=是 默认0',
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `TeacherID` (`TeacherID`) USING BTREE,
-  KEY `CollegeID` (`CollegeID`) USING BTREE,
-  KEY `MajorID` (`MajorID`) USING BTREE,
-  KEY `LevelID` (`Level`) USING BTREE,
+  INDEX `TeacherID`(`TeacherID`) USING BTREE,
+  INDEX `CollegeID`(`CollegeID`) USING BTREE,
+  INDEX `MajorID`(`MajorID`) USING BTREE,
+  INDEX `LevelID`(`Level`) USING BTREE,
   CONSTRAINT `course_ibfk_1` FOREIGN KEY (`TeacherID`) REFERENCES `teacher` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `course_ibfk_2` FOREIGN KEY (`CollegeID`) REFERENCES `college` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `course_ibfk_3` FOREIGN KEY (`MajorID`) REFERENCES `major` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 648 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `course`
---
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` VALUES (1, 'test', NULL, 126, NULL, NULL, NULL, 0, 1.0, 3, 5, 15, 'D', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (2, 'tses', NULL, 176, NULL, NULL, NULL, 0, 0.0, 0, 5, 15, 'A', 0, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (3, 'tes', NULL, 50, NULL, NULL, NULL, 0, 3.0, 2, 6, 6, 'D', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (4, 'se', NULL, 93, NULL, NULL, NULL, 0, 1.0, 1, 2, 21, 'C', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (5, 'es', NULL, 238, NULL, NULL, NULL, 0, 3.0, 0, 2, 19, 'E', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (6, 'es', NULL, 186, NULL, NULL, NULL, 0, 1.0, 2, 1, 4, 'A', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (7, 'es', NULL, 67, NULL, NULL, NULL, 0, 0.0, 3, 5, 11, 'D', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (8, 'etes', NULL, 229, NULL, NULL, NULL, 0, 1.0, 3, 6, 6, 'A', 1, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (9, '0001', '中华国学', 16, 150, 1, 16, 0, 3.0, 0, 3, 17, 'A', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (10, '0002', '现代商务文案策划', 4, 40, 1, 16, 1, 3.0, 2, 1, 2, 'C', 1, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (11, '0003', '现代商务文案策划', 230, 40, 1, 16, 0, 5.0, 3, 3, 16, 'A', 0, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (12, '0004', '非洲民俗与文化', 156, 30, 9, 16, 0, 3.0, 3, 6, 7, 'B', 1, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (13, '0005', '非洲民俗与文化', 79, 30, 1, 8, 0, 2.0, 1, 5, 13, 'D', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (14, '0006', '现代商务礼仪', 69, 40, 1, 16, 0, 0.0, 0, 1, 4, 'B', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (15, '0007', '现代商务礼仪', 232, 40, 1, 16, 0, 1.0, 3, 2, 23, 'A', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (16, '0008', '世界经典芭蕾舞剧赏析', 117, 50, 1, 16, 0, 1.0, 3, 2, 20, 'C', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (17, '0009', '中国音乐赏析', 92, 50, 1, 16, 0, 1.0, 0, 6, 6, 'B', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (18, '0030', '毛泽东的领导方法', 50, 100, 1, 16, 0, 3.0, 0, 5, 15, 'C', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (19, '0031', '毛泽东的领导方法', 251, 100, 1, 16, 0, 2.0, 2, 5, 13, 'C', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (20, '0032', '法国音乐及其文化精神', 166, 60, 1, 16, 0, 0.0, 0, 1, 3, 'A', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (21, '0033', '法国音乐及其文化精神', 127, 60, 1, 16, 1, 1.0, 3, 2, 19, 'C', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (22, '0034', '艺术导论', 143, 200, 1, 16, 1, 4.0, 3, 2, 19, 'A', 0, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (23, '0035', '艺术与审美（MOOC）', 252, 100, 1, 16, 0, 2.0, 2, 5, 15, 'A', 1, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (24, '0036', '艺术与审美（MOOC）', 98, 100, 1, 16, 0, 0.0, 2, 3, 17, 'D', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (25, '0037', '流行音乐鉴赏', 196, 50, 1, 16, 0, 2.0, 1, 5, 11, 'C', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (26, '0038', '流行音乐鉴赏', 99, 50, 1, 16, 0, 4.0, 2, 6, 7, 'C', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (27, '0039', '中国造神史话', 207, 100, 1, 16, 0, 2.0, 3, 5, 13, 'A', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (28, '0040', '中国造神史话', 195, 100, 1, 16, 0, 3.0, 1, 3, 18, 'C', 1, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (29, '0041', '合唱与指挥', 123, 60, 9, 16, 1, 2.0, 2, 2, 21, 'C', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (30, '0042', '建筑与建筑文化', 138, 30, 1, 8, 0, 2.0, 3, 5, 13, 'C', 0, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (31, '0043', '心智模式与人生发展', 17, 60, 1, 16, 0, 0.0, 0, 5, 12, 'A', 1, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (32, '0044', '非营利组织管理', 20, 55, 1, 16, 0, 2.0, 0, 2, 22, 'E', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (33, '0045', '非营利组织管理', 72, 55, 1, 16, 0, 2.0, 3, 1, 4, 'C', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (34, '0046', '法和经济学', 125, 50, 1, 16, 0, 2.0, 2, 6, 9, 'C', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (35, '0047', '法和经济学', 25, 50, 1, 16, 0, 1.0, 1, 1, 4, 'A', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (36, '0048', '科研方法论', 151, 100, 1, 16, 0, 1.0, 3, 3, 18, 'C', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (37, '0049', '科研方法论', 132, 100, 1, 16, 0, 0.0, 3, 1, 4, 'C', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (38, '0050', '科研方法论', 68, 100, 1, 16, 0, 4.0, 1, 1, 2, 'B', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (39, '0051', '基础生命科学导论实验', 180, 30, 1, 16, 0, 1.0, 0, 1, 3, 'C', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (40, '0052', '基础生命科学导论实验', 212, 30, 1, 16, 0, 4.0, 0, 6, 7, 'A', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (41, '0053', '哲学专题系列讲座', 68, 0, 1, 16, 1, 2.0, 3, 6, 7, 'B', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (42, '0054', '急救与灾难应变', 69, 40, 1, 16, 0, 5.0, 2, 3, 16, 'D', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (43, '0055', '急救与灾难应变', 130, 40, 1, 16, 0, 1.0, 2, 2, 21, 'E', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (44, '0056', '急救与灾难应变', 5, 40, 1, 16, 0, 2.0, 2, 1, 3, 'C', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (45, '0057', '急救与灾难应变', 86, 40, 1, 16, 0, 2.0, 1, 3, 18, 'C', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (46, '0058', '用英语讲中国文化（英）', 39, 50, 1, 16, 0, 2.0, 3, 5, 12, 'E', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (47, '0059', '英语国家文化', 127, 50, 1, 16, 0, 4.0, 1, 3, 18, 'B', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (48, '0060', '歌剧艺术', 98, 60, 9, 16, 0, 3.0, 3, 1, 2, 'E', 0, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (49, '0061', '思辩式英文写作', 206, 35, 1, 16, 0, 0.0, 3, 1, 4, 'B', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (50, '0062', '典型环境事件与对策', 84, 50, 1, 8, 0, 0.0, 1, 6, 5, 'E', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (51, '0063', '典型环境事件与对策', 129, 50, 1, 8, 0, 3.0, 2, 3, 16, 'B', 1, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (52, '0064', '形体训练与中国民族民间舞', 103, 30, 1, 16, 0, 5.0, 1, 5, 11, 'B', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (53, '0065', '音乐基础知识与视唱', 37, 50, 1, 16, 0, 5.0, 3, 2, 21, 'D', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (54, '0066', '音乐基础知识与视唱', 129, 50, 1, 16, 0, 1.0, 2, 5, 12, 'A', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (55, '0067', '逻辑学概论', 245, 60, 1, 16, 0, 2.0, 0, 5, 11, 'B', 1, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (56, '0068', '逻辑学概论', 190, 60, 1, 16, 0, 2.0, 0, 3, 17, 'B', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (57, '0069', '欧美文学', 176, 200, 1, 16, 0, 4.0, 2, 5, 15, 'C', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (58, '0070', '欧美文学', 226, 150, 1, 16, 1, 1.0, 2, 2, 21, 'B', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (59, '0071', '重要疾病的病因及防治', 156, 60, 1, 16, 0, 4.0, 0, 5, 13, 'D', 1, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (60, '0072', '重要疾病的病因及防治', 129, 60, 1, 16, 0, 4.0, 0, 5, 12, 'E', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (61, '0073', '世界文化与自然遗产', 229, 55, 1, 16, 1, 2.0, 3, 3, 17, 'A', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (62, '0074', '世界文化与自然遗产', 114, 55, 1, 16, 0, 1.0, 3, 2, 21, 'C', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (63, '0075', '世界文化与自然遗产', 201, 55, 1, 16, 0, 4.0, 3, 6, 9, 'B', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (64, '0076', '世界文化与自然遗产', 121, 55, 1, 16, 0, 5.0, 0, 5, 11, 'C', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (65, '0077', '人际传播和沟通', 38, 40, 1, 16, 1, 3.0, 1, 6, 5, 'B', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (66, '0078', '人际传播和沟通', 82, 40, 1, 16, 0, 3.0, 3, 2, 21, 'C', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (67, '0079', '幸福方法', 121, 50, 1, 16, 0, 4.0, 3, 6, 6, 'A', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (68, '0080', '幸福方法', 171, 50, 1, 16, 0, 2.0, 3, 2, 21, 'E', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (69, '0081', '3D 打印及应用', 251, 40, 1, 8, 0, 1.0, 3, 6, 10, 'D', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (70, '0082', '3D 打印及应用', 9, 50, 1, 8, 0, 0.0, 2, 5, 15, 'E', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (71, '0083', '西方美学研究', 146, 200, 1, 16, 0, 2.0, 0, 1, 3, 'C', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (72, '0084', '音乐剧赏析', 123, 60, 1, 16, 0, 3.0, 0, 5, 14, 'C', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (73, '0085', '音乐剧赏析', 232, 50, 1, 16, 0, 2.0, 0, 2, 19, 'E', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (74, '0086', '人体生理探秘', 233, 50, 1, 16, 0, 4.0, 1, 5, 13, 'C', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (75, '0087', '人体生理探秘', 44, 50, 1, 16, 0, 1.0, 3, 3, 18, 'B', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (76, '0088', 'VR 体验与全景视频创作', 1, 25, 1, 16, 0, 2.0, 3, 6, 6, 'E', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (77, '0089', '中国书画装裱与历史档案保护技术', 155, 16, 1, 16, 1, 1.0, 0, 6, 6, 'E', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (78, '0090', '通识金融与投资', 244, 50, 1, 11, 0, 4.0, 2, 5, 13, 'B', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (79, '0091', '个人风险与财富管理', 204, 50, 1, 16, 1, 1.0, 1, 2, 20, 'E', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (80, '0092', '中华民国外交史', 239, 50, 1, 16, 1, 4.0, 3, 5, 15, 'E', 0, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (81, '0093', '中华民国外交史', 185, 50, 1, 16, 0, 4.0, 0, 2, 21, 'C', 0, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (82, '0094', '沟通的艺术', 194, 40, 1, 16, 0, 5.0, 3, 5, 13, 'D', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (83, '0095', '沟通的艺术', 170, 40, 1, 16, 1, 1.0, 3, 2, 22, 'C', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (84, '0096', '形象管理', 91, 50, 9, 16, 0, 4.0, 3, 1, 2, 'B', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (85, '0097', '大学生心身保健', 229, 60, 1, 11, 0, 3.0, 2, 6, 6, 'E', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (86, '0098', '大学生心身保健', 97, 60, 1, 11, 0, 1.0, 3, 2, 8, 'B', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (87, '0099', '自然地理学', 203, 100, 1, 16, 1, 5.0, 0, 3, 16, 'D', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (88, '0300', '高级英语 Ⅰ', 218, 35, 1, 17, 0, 2.0, 0, 6, 9, 'C', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (89, '0301', '高级英语 Ⅰ', 72, 35, 1, 17, 0, 1.0, 1, 3, 17, 'D', 1, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (90, '0302', '高级英语 Ⅰ', 100, 35, 1, 17, 1, 2.0, 0, 2, 23, 'B', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (91, '0303', '高级英语 Ⅰ', 110, 35, 1, 17, 0, 4.0, 1, 5, 13, 'A', 1, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (92, '0304', '高级英语 Ⅰ', 73, 35, 1, 17, 0, 0.0, 3, 2, 20, 'E', 0, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (93, '0305', '高级英语 Ⅰ', 72, 35, 1, 17, 0, 0.0, 2, 3, 16, 'C', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (94, '0306', '高级英语 Ⅰ', 97, 35, 1, 17, 0, 0.0, 1, 2, 19, 'B', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (95, '0307', '高级英语 Ⅰ', 235, 35, 1, 17, 0, 2.0, 3, 1, 3, 'B', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (96, '0308', '高级英语 Ⅰ', 230, 35, 1, 17, 0, 4.0, 3, 6, 10, 'C', 0, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (97, '0309', '高级英语 Ⅰ', 171, 35, 1, 17, 0, 2.0, 0, 2, 20, 'E', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (98, '0330', '高级英语 Ⅰ', 231, 43, 1, 17, 0, 0.0, 2, 3, 17, 'A', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (99, '0331', '高级英语 Ⅰ', 22, 43, 1, 17, 0, 4.0, 3, 5, 13, 'B', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (100, '0332', '高级英语 Ⅰ', 115, 43, 1, 17, 0, 2.0, 0, 5, 11, 'E', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (101, '0333', '高级英语 Ⅰ', 197, 43, 1, 17, 0, 3.0, 3, 3, 16, 'B', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (102, '0334', '高级英语 Ⅰ', 55, 43, 1, 17, 0, 2.0, 2, 1, 3, 'E', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (103, '0335', '高级英语 Ⅰ', 201, 43, 1, 17, 1, 1.0, 2, 3, 17, 'B', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (104, '0336', '高级英语 Ⅰ', 228, 43, 1, 17, 0, 4.0, 1, 2, 21, 'E', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (105, '0337', '高级英语 Ⅰ', 65, 43, 1, 17, 0, 4.0, 2, 5, 12, 'E', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (106, '0338', '高级英语 Ⅰ', 9, 43, 1, 17, 0, 2.0, 1, 3, 17, 'A', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (107, '0339', '高级英语 Ⅰ', 52, 43, 1, 17, 0, 3.0, 1, 2, 21, 'A', 1, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (108, '0340', '高级英语 Ⅰ', 63, 43, 1, 17, 0, 4.0, 2, 6, 5, 'E', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (109, '0341', '高级英语 Ⅰ', 98, 43, 1, 17, 0, 4.0, 0, 1, 2, 'C', 1, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (110, '0342', '高级英语 Ⅰ', 101, 43, 1, 17, 0, 1.0, 3, 2, 21, 'A', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (111, '0343', '英语综合技能2-1', 71, 35, 1, 16, 0, 3.0, 0, 2, 21, 'E', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (112, '0344', '英语综合技能2-1', 101, 35, 1, 16, 0, 4.0, 1, 6, 9, 'B', 1, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (113, '0345', '英语综合技能2-1', 56, 35, 1, 16, 0, 3.0, 1, 5, 14, 'D', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (114, '0346', '英语综合技能2-1', 234, 35, 1, 16, 0, 3.0, 1, 2, 19, 'C', 0, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (115, '0347', '英语综合技能2-1', 121, 35, 1, 16, 0, 4.0, 3, 6, 7, 'A', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (116, '0348', '英语综合技能2-1', 190, 35, 1, 16, 0, 4.0, 3, 1, 2, 'D', 0, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (117, '0349', '英语综合技能2-1', 213, 35, 1, 16, 0, 1.0, 0, 5, 14, 'C', 1, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (118, '0350', '基础英语Ⅰ B', 90, 45, 1, 16, 0, 4.0, 1, 6, 6, 'C', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (119, '0351', '基础英语Ⅰ B', 5, 45, 1, 16, 0, 3.0, 1, 5, 14, 'B', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (120, '0352', '基础英语Ⅰ B', 51, 45, 1, 16, 0, 2.0, 0, 6, 9, 'B', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (121, '0353', '基础英语Ⅰ B', 62, 45, 1, 16, 0, 5.0, 1, 5, 15, 'E', 1, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (122, '0354', '基础英语Ⅰ B', 202, 45, 1, 16, 1, 3.0, 0, 5, 15, 'E', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (123, '0355', '基础英语Ⅰ B', 130, 45, 1, 16, 0, 5.0, 2, 5, 11, 'E', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (124, '0356', '基础英语Ⅰ B', 174, 55, 1, 16, 0, 2.0, 3, 6, 6, 'A', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (125, '0357', '基础英语Ⅰ B', 155, 55, 1, 16, 0, 3.0, 1, 1, 3, 'B', 0, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (126, '0358', '基础英语Ⅰ B', 126, 55, 1, 16, 0, 2.0, 2, 5, 15, 'A', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (127, '0359', '基础英语Ⅰ B', 202, 55, 1, 16, 0, 0.0, 1, 2, 22, 'D', 1, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (128, '0360', '基础英语Ⅰ B', 111, 55, 1, 16, 0, 2.0, 2, 5, 13, 'B', 1, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (129, '0361', '基础英语Ⅰ B', 13, 55, 1, 16, 0, 3.0, 0, 6, 5, 'D', 1, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (130, '0362', '基础英语Ⅰ B', 170, 55, 1, 16, 0, 4.0, 3, 2, 20, 'B', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (131, '0363', '基础英语Ⅰ B', 232, 55, 1, 16, 0, 1.0, 1, 3, 17, 'D', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (132, '0364', '基础英语Ⅰ B', 5, 55, 1, 16, 0, 1.0, 3, 3, 16, 'A', 1, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (133, '0365', '基础英语Ⅰ B', 97, 55, 1, 16, 0, 0.0, 1, 6, 5, 'D', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (134, '0366', '基础英语Ⅰ B', 238, 55, 1, 16, 0, 3.0, 2, 2, 21, 'C', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (135, '0367', '基础英语Ⅰ B', 63, 55, 1, 16, 0, 1.0, 0, 5, 11, 'C', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (136, '0368', '基础英语Ⅰ B', 75, 55, 1, 16, 0, 1.0, 2, 5, 13, 'A', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (137, '0369', '基础英语Ⅰ B', 211, 55, 1, 16, 1, 1.0, 0, 3, 17, 'A', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (138, '0370', '基础英语Ⅰ B', 83, 55, 1, 16, 0, 2.0, 2, 2, 22, 'E', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (139, '0371', '基础英语Ⅰ B', 171, 55, 1, 16, 0, 2.0, 3, 2, 21, 'E', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (140, '0372', '基础英语Ⅰ B', 248, 55, 1, 16, 0, 1.0, 0, 5, 14, 'B', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (141, '0373', '基础英语Ⅰ B', 110, 55, 1, 16, 0, 4.0, 3, 2, 23, 'E', 0, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (142, '0374', '基础英语Ⅰ B', 223, 55, 1, 16, 0, 1.0, 0, 6, 9, 'D', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (143, '0375', '基础英语Ⅰ B', 72, 55, 1, 16, 0, 1.0, 1, 1, 3, 'A', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (144, '0376', '基础英语Ⅰ B', 152, 55, 1, 16, 0, 2.0, 2, 3, 18, 'E', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (145, '0377', '基础英语Ⅰ B', 55, 55, 1, 16, 0, 4.0, 0, 3, 18, 'B', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (146, '0378', '基础英语Ⅰ B', 200, 55, 1, 16, 0, 4.0, 3, 2, 22, 'C', 0, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (147, '0379', '基础英语Ⅰ B', 208, 55, 1, 16, 0, 2.0, 3, 2, 20, 'D', 1, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (148, '0380', '基础英语Ⅰ B', 12, 55, 1, 16, 0, 2.0, 0, 6, 9, 'D', 0, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (149, '0381', '基础英语Ⅰ B', 66, 45, 1, 16, 0, 5.0, 0, 2, 8, 'E', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (150, '0382', '基础英语Ⅰ B', 44, 55, 1, 16, 0, 3.0, 0, 2, 23, 'C', 1, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (151, '0383', '基础英语Ⅰ B', 9, 55, 1, 16, 0, 3.0, 2, 5, 13, 'D', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (152, '0384', '基础英语Ⅰ B', 54, 55, 1, 16, 0, 5.0, 1, 1, 3, 'A', 0, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (153, '0385', '基础英语Ⅰ B', 116, 45, 1, 16, 1, 0.0, 2, 5, 15, 'D', 0, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (154, '0386', '基础英语Ⅰ B', 168, 45, 1, 16, 0, 4.0, 2, 5, 11, 'E', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (155, '0387', '基础英语Ⅰ B', 235, 45, 1, 16, 0, 4.0, 1, 5, 14, 'B', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (156, '0388', '基础英语Ⅰ B', 15, 45, 1, 16, 0, 1.0, 1, 6, 10, 'A', 0, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (157, '0389', '基础英语Ⅰ B', 27, 45, 1, 16, 0, 2.0, 1, 5, 13, 'A', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (158, '0390', '基础英语Ⅰ B', 209, 45, 1, 16, 1, 3.0, 0, 5, 14, 'B', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (159, '0391', '基础英语Ⅰ B', 127, 45, 1, 16, 0, 2.0, 3, 1, 2, 'E', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (160, '0392', '基础英语Ⅰ B', 250, 45, 1, 16, 0, 0.0, 2, 3, 18, 'E', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (161, '0393', '基础英语Ⅰ B', 53, 45, 1, 16, 0, 3.0, 0, 6, 5, 'C', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (162, '0394', '基础英语Ⅰ B', 98, 45, 1, 16, 0, 2.0, 3, 3, 17, 'D', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (163, '0395', '基础英语Ⅰ B', 194, 45, 1, 16, 0, 0.0, 3, 6, 5, 'D', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (164, '0396', '基础英语Ⅰ B', 146, 45, 1, 16, 0, 1.0, 2, 2, 8, 'D', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (165, '0397', '基础英语Ⅰ B', 189, 45, 1, 16, 0, 0.0, 1, 2, 23, 'D', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (166, '0398', '基础英语Ⅰ B', 22, 45, 1, 16, 1, 3.0, 1, 6, 5, 'C', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (167, '0399', '基础英语Ⅰ B', 151, 45, 1, 16, 0, 1.0, 2, 6, 5, 'E', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (168, '0400', '基础英语Ⅰ B', 18, 45, 1, 16, 0, 0.0, 0, 6, 5, 'B', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (169, '0401', '基础英语Ⅰ B', 60, 45, 1, 16, 0, 4.0, 3, 6, 7, 'B', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (170, '0402', '基础英语Ⅰ B', 194, 45, 1, 16, 0, 2.0, 1, 6, 10, 'E', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (171, '0403', '基础英语Ⅰ B', 68, 45, 1, 16, 0, 4.0, 2, 5, 12, 'C', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (172, '0404', '基础英语Ⅰ B', 87, 45, 1, 16, 0, 1.0, 1, 6, 6, 'A', 1, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (173, '0405', '基础英语Ⅰ B', 245, 45, 1, 16, 1, 1.0, 1, 1, 3, 'C', 1, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (174, '0406', '基础英语Ⅰ B', 155, 45, 1, 16, 0, 4.0, 0, 2, 20, 'E', 0, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (175, '0407', '基础英语Ⅰ C', 152, 50, 1, 16, 0, 2.0, 0, 5, 12, 'E', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (176, '0408', '基础英语Ⅰ C', 115, 50, 1, 16, 0, 4.0, 2, 5, 15, 'A', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (177, '0409', '基础英语Ⅰ C', 69, 50, 1, 16, 0, 4.0, 3, 2, 19, 'C', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (178, '0430', '语言、文化及交流2-1', 77, 35, 1, 16, 0, 0.0, 3, 6, 7, 'D', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (179, '0431', '语言、文化及交流2-1', 8, 35, 1, 16, 0, 0.0, 1, 2, 22, 'B', 0, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (180, '0432', '语言、文化及交流2-1', 77, 35, 1, 16, 0, 1.0, 1, 6, 9, 'D', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (181, '0433', '语言、文化及交流2-1', 73, 35, 1, 16, 0, 0.0, 2, 2, 20, 'D', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (182, '0434', '语言、文化及交流2-1', 49, 35, 1, 16, 0, 1.0, 3, 6, 5, 'D', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (183, '0435', '语言、文化及交流2-1', 86, 35, 1, 16, 0, 4.0, 0, 3, 18, 'B', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (184, '0436', '语言、文化及交流2-1', 132, 35, 1, 16, 0, 4.0, 0, 5, 11, 'C', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (185, '0437', '学术交流英语', 159, 43, 1, 17, 1, 2.0, 0, 3, 18, 'B', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (186, '0438', '学术交流英语', 139, 35, 1, 17, 0, 4.0, 2, 2, 21, 'B', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (187, '0439', '学术交流英语', 132, 43, 1, 17, 0, 3.0, 2, 2, 21, 'D', 1, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (188, '0440', '学术交流英语', 19, 35, 1, 17, 0, 1.0, 1, 6, 6, 'B', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (189, '0441', '学术英语写作', 85, 43, 1, 17, 1, 1.0, 3, 2, 23, 'A', 0, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (190, '0442', '学术英语写作', 241, 35, 1, 17, 0, 2.0, 3, 6, 9, 'B', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (191, '0443', '学术英语写作', 203, 43, 1, 17, 0, 4.0, 3, 5, 13, 'B', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (192, '0444', '学术英语写作', 76, 35, 1, 17, 0, 3.0, 2, 6, 10, 'D', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (193, '0445', '公众演讲', 40, 43, 1, 17, 0, 5.0, 0, 2, 22, 'C', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (194, '0446', '公众演讲', 111, 43, 1, 17, 0, 4.0, 3, 1, 2, 'D', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (195, '0447', '公众演讲', 86, 43, 1, 17, 0, 5.0, 2, 1, 3, 'E', 1, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (196, '0448', '公众演讲', 186, 43, 1, 17, 0, 4.0, 2, 5, 14, 'D', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (197, '0449', '英汉双向笔译实务', 208, 35, 1, 17, 0, 3.0, 0, 2, 21, 'A', 0, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (198, '0450', '英汉双向笔译实务', 80, 35, 1, 17, 1, 1.0, 1, 1, 4, 'C', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (199, '0451', '英汉双向笔译实务', 89, 43, 1, 17, 0, 3.0, 0, 3, 16, 'C', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (200, '0452', '英汉双向笔译实务', 141, 43, 1, 17, 0, 2.0, 0, 5, 13, 'D', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (201, '0453', '西方幻想文学', 228, 43, 1, 17, 0, 5.0, 0, 2, 8, 'B', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (202, '0454', '西方幻想文学', 163, 35, 1, 17, 0, 2.0, 2, 1, 4, 'C', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (203, '0455', '西方幻想文学', 112, 43, 1, 17, 0, 2.0, 2, 1, 3, 'A', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (204, '0456', '实用英语语言学', 231, 43, 1, 17, 0, 4.0, 0, 2, 19, 'C', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (205, '0457', '实用英语语言学', 106, 43, 1, 17, 0, 4.0, 0, 3, 18, 'D', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (206, '0458', '实用英语语言学', 12, 35, 1, 17, 0, 4.0, 2, 3, 17, 'D', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (207, '0459', '实用英语语言学', 167, 35, 1, 17, 0, 5.0, 3, 2, 20, 'B', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (208, '0460', '超越文化——中西文化概览', 98, 35, 1, 17, 0, 3.0, 1, 2, 22, 'C', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (209, '0461', '超越文化——中西文化概览', 84, 35, 1, 17, 0, 3.0, 2, 2, 19, 'A', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (210, '0462', '英语修辞与思维方式', 226, 43, 1, 17, 0, 3.0, 1, 1, 2, 'E', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (211, '0463', '英语修辞与思维方式', 118, 43, 1, 17, 0, 0.0, 2, 5, 14, 'E', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (212, '0464', '英语修辞与思维方式', 112, 35, 1, 17, 0, 4.0, 3, 5, 12, 'E', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (213, '0465', '英语修辞与思维方式', 192, 35, 1, 17, 0, 0.0, 2, 2, 19, 'D', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (214, '0466', '英汉语言意识与翻译', 228, 43, 1, 17, 0, 2.0, 0, 5, 12, 'E', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (215, '0467', '英汉语言意识与翻译', 246, 43, 1, 17, 0, 2.0, 1, 6, 7, 'C', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (216, '0468', '英汉语言意识与翻译', 216, 35, 1, 17, 0, 3.0, 3, 6, 9, 'E', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (217, '0469', '英汉语言意识与翻译', 35, 35, 1, 17, 0, 3.0, 3, 3, 18, 'B', 0, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (218, '0470', '英语语言与文化', 104, 0, 1, 17, 0, 2.0, 2, 3, 18, 'C', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (219, '0471', '英语语言与文化', 163, 0, 1, 17, 0, 5.0, 1, 1, 4, 'D', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (220, '0472', '中国近现代史纲要专题', 76, 100, 1, 17, 0, 4.0, 3, 2, 20, 'E', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (221, '0473', '中国近现代史纲要专题', 228, 100, 1, 17, 0, 0.0, 3, 5, 12, 'A', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (222, '0474', '思想道德修养与法律基础专题', 3, 0, 2, 17, 1, 5.0, 1, 5, 15, 'A', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (223, '0475', '思想道德修养与法律基础专题', 133, 100, 2, 17, 0, 2.0, 2, 6, 9, 'D', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (224, '0476', '大学生思想道德修养', 79, 60, 2, 17, 0, 5.0, 0, 3, 17, 'C', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (225, '0477', '大学生思想道德修养', 6, 120, 2, 17, 0, 1.0, 0, 3, 18, 'A', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (226, '0478', '中国近现代史纲要', 73, 200, 1, 17, 0, 2.0, 2, 2, 20, 'E', 1, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (227, '0479', '中国近现代史纲要', 205, 200, 1, 17, 0, 3.0, 3, 3, 17, 'C', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (228, '0480', '中国近现代史纲要', 112, 200, 1, 17, 0, 1.0, 0, 6, 7, 'A', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (229, '0481', '中国近现代史纲要', 178, 200, 1, 17, 0, 3.0, 3, 2, 22, 'C', 0, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (230, '0482', '中国近现代史纲要', 91, 110, 1, 17, 0, 2.0, 1, 3, 17, 'B', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (231, '0483', '中国近现代史纲要', 232, 200, 1, 17, 0, 1.0, 3, 5, 12, 'A', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (232, '0484', '中国近现代史纲要', 128, 160, 1, 17, 0, 1.0, 2, 3, 17, 'D', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (233, '0485', '中国近现代史纲要', 206, 150, 1, 17, 0, 5.0, 2, 5, 11, 'A', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (234, '0486', '中国近现代史纲要', 194, 160, 1, 17, 1, 1.0, 2, 6, 9, 'B', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (235, '0487', '中国近现代史纲要', 165, 160, 1, 17, 0, 3.0, 1, 3, 18, 'C', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (236, '0488', '中国近现代史纲要', 145, 300, 1, 17, 0, 1.0, 0, 2, 20, 'A', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (237, '0489', '中国近现代史纲要', 234, 200, 1, 17, 0, 0.0, 3, 6, 7, 'C', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (238, '0490', '中国近现代史纲要', 156, 110, 1, 17, 0, 3.0, 1, 6, 5, 'B', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (239, '0491', '中国近现代史纲要', 145, 110, 1, 17, 0, 2.0, 2, 1, 3, 'A', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (240, '0492', '中国近现代史纲要', 166, 160, 1, 17, 0, 3.0, 0, 2, 21, 'C', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (241, '0493', '中国近现代史纲要', 143, 160, 1, 17, 0, 2.0, 3, 3, 18, 'E', 0, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (242, '0494', '中国近现代史纲要', 224, 160, 1, 17, 0, 4.0, 0, 5, 14, 'E', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (243, '0495', '中国近现代史纲要', 29, 160, 1, 17, 0, 2.0, 0, 3, 17, 'A', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (244, '0496', '中国近现代史纲要', 145, 160, 1, 17, 0, 1.0, 3, 2, 19, 'C', 1, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (245, '0497', '中国近现代史纲要', 175, 160, 1, 17, 0, 2.0, 3, 6, 6, 'B', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (246, '0498', '中国近现代史纲要', 66, 200, 1, 17, 0, 4.0, 1, 5, 11, 'A', 1, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (247, '0499', '中国近现代史纲要', 75, 200, 1, 17, 1, 3.0, 0, 6, 6, 'B', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (248, '0500', '中国近现代史纲要', 221, 200, 1, 17, 0, 0.0, 2, 5, 12, 'A', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (249, '0501', '中国近现代史纲要', 215, 160, 1, 17, 0, 3.0, 2, 2, 19, 'C', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (250, '0502', '中国近现代史纲要', 87, 200, 1, 17, 0, 1.0, 1, 2, 20, 'E', 0, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (251, '0503', '中国近现代史纲要', 142, 300, 1, 17, 0, 4.0, 1, 3, 16, 'B', 0, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (252, '0504', '中国近现代史纲要', 187, 160, 1, 17, 0, 1.0, 0, 3, 18, 'E', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (253, '0505', '中国近现代史纲要', 225, 200, 1, 17, 0, 5.0, 2, 2, 20, 'A', 0, 60, 0, 0, 0);
+INSERT INTO `course` VALUES (254, '0506', '中国近现代史纲要', 195, 200, 1, 17, 0, 1.0, 3, 2, 22, 'D', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (255, '0507', '中国近现代史纲要', 131, 200, 1, 17, 0, 3.0, 2, 1, 3, 'A', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (256, '0508', '中国近现代史纲要', 123, 200, 1, 17, 0, 4.0, 0, 3, 16, 'E', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (257, '0509', '思想道德修养与法律基础', 74, 110, 2, 17, 0, 0.0, 1, 2, 8, 'D', 1, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (258, '0530', '思想道德修养与法律基础', 146, 110, 2, 17, 0, 1.0, 1, 1, 3, 'B', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (259, '0531', '思想道德修养与法律基础', 117, 200, 2, 17, 0, 2.0, 1, 3, 16, 'C', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (260, '0532', '思想道德修养与法律基础', 11, 0, 2, 17, 0, 4.0, 0, 3, 17, 'E', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (261, '0533', '思想道德修养与法律基础', 168, 110, 1, 16, 0, 1.0, 0, 3, 18, 'E', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (262, '0534', '思想道德修养与法律基础', 234, 200, 2, 17, 0, 3.0, 3, 2, 19, 'B', 1, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (263, '0535', '认识实习', 13, 60, 1, 17, 0, 2.0, 3, 6, 5, 'E', 0, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (264, '0536', '仿真实习', 155, 60, 1, 17, 1, 1.0, 3, 6, 6, 'A', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (265, '0537', '膜科学与技术', 5, 60, 1, 17, 0, 5.0, 1, 2, 23, 'B', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (266, '0538', '高分子化学', 4, 0, 1, 17, 0, 1.0, 1, 6, 9, 'B', 1, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (267, '0539', '综合化学化工实验（2）', 214, 60, 1, 17, 0, 1.0, 3, 5, 14, 'D', 1, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (268, '0540', '化工机械基础', 222, 60, 1, 17, 0, 4.0, 0, 3, 18, 'E', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (269, '0541', '化工热力学', 245, 60, 1, 17, 0, 2.0, 3, 5, 12, 'D', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (270, '0542', '化工传质与分离过程课程设计', 207, 60, 1, 17, 0, 5.0, 0, 6, 5, 'B', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (271, '0543', '能源化工基础', 235, 60, 1, 17, 1, 2.0, 0, 3, 18, 'E', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (272, '0544', '线性代数', 114, 70, 1, 17, 0, 1.0, 3, 5, 15, 'C', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (273, '0545', '生物化学', 145, 60, 1, 17, 0, 1.0, 2, 6, 5, 'E', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (274, '0546', '化工设计', 88, 60, 1, 17, 0, 2.0, 1, 6, 5, 'C', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (275, '0547', '化工传质与分离过程', 161, 60, 1, 17, 0, 2.0, 1, 6, 9, 'B', 1, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (276, '0548', '管理概论', 40, 60, 1, 17, 0, 1.0, 2, 6, 6, 'A', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (277, '0549', '成本会计（MA1）', 134, 80, 1, 17, 0, 2.0, 1, 3, 18, 'E', 0, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (278, '0550', '管理会计（MA2）', 69, 90, 1, 17, 0, 5.0, 1, 2, 20, 'A', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (279, '0551', '领导学', 106, 80, 1, 17, 0, 4.0, 2, 5, 13, 'B', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (280, '0552', '资产评估', 14, 80, 1, 17, 0, 2.0, 1, 2, 22, 'A', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (281, '0553', '信息经济学', 114, 50, 1, 17, 0, 5.0, 2, 2, 8, 'B', 0, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (282, '0554', '运筹学Ⅱ', 97, 50, 1, 17, 0, 4.0, 2, 1, 2, 'E', 0, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (283, '0555', '商务谈判', 187, 40, 1, 17, 0, 2.0, 3, 2, 21, 'E', 0, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (284, '0556', '程序设计2-1', 98, 50, 1, 17, 0, 1.0, 0, 5, 13, 'A', 1, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (285, '0557', '程序设计2-1', 154, 50, 1, 17, 0, 1.0, 3, 3, 17, 'A', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (286, '0558', '国际筹资与投资', 28, 80, 1, 17, 0, 5.0, 0, 6, 5, 'A', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (287, '0559', '网络经济学', 23, 50, 1, 17, 0, 2.0, 0, 5, 11, 'D', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (288, '0560', '计量金融学', 58, 60, 1, 17, 0, 5.0, 3, 1, 2, 'C', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (289, '0561', '人力资源管理专业英语', 30, 55, 1, 17, 0, 4.0, 0, 2, 20, 'C', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (290, '0562', '计算机基础及办公自动化', NULL, 100, 2, 17, 1, 4.0, 3, 5, 15, 'E', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (291, '0563', '组织行为学', 217, 150, 1, 17, 0, 1.0, 0, 6, 9, 'E', 0, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (292, '0564', '组织行为学', 158, 120, 1, 17, 0, 5.0, 1, 6, 10, 'D', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (293, '0565', '组织行为学', 185, 75, 1, 17, 0, 3.0, 2, 5, 12, 'E', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (294, '0566', '组织行为学', 43, 75, 1, 17, 0, 3.0, 1, 3, 17, 'C', 1, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (295, '0567', '组织行为学', 20, 100, 1, 17, 0, 3.0, 0, 2, 23, 'E', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (296, '0568', '高级会计学', 41, 80, 1, 17, 0, 4.0, 0, 6, 10, 'D', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (297, '0569', '组织理论与组织设计', 244, 60, 1, 17, 0, 4.0, 3, 1, 4, 'D', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (298, '0570', '审计学（AU1）', 214, 90, 1, 17, 0, 4.0, 1, 2, 19, 'C', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (299, '0571', '国际金融', 83, 75, 1, 17, 0, 4.0, 1, 5, 12, 'A', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (300, '0572', '商务智能', 21, 50, 1, 17, 0, 2.0, 1, 5, 11, 'D', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (301, '0573', '审计学', 97, 80, 1, 17, 1, 2.0, 0, 5, 13, 'E', 1, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (302, '0574', '运筹学', 127, 60, 1, 17, 0, 3.0, 0, 5, 14, 'C', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (303, '0575', '财务管理专业英语', 192, 75, 1, 17, 0, 0.0, 3, 5, 13, 'A', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (304, '0576', '运筹学Ⅰ', 86, 50, 1, 17, 0, 2.0, 0, 5, 11, 'A', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (305, '0577', '国际贸易', 161, 150, 1, 17, 1, 0.0, 1, 1, 2, 'E', 1, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (306, '0578', '商学导论', 114, 180, 2, 17, 0, 4.0, 0, 5, 15, 'D', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (307, '0579', '商学导论', 108, 130, 2, 17, 1, 3.0, 0, 5, 11, 'D', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (308, '0580', '商学导论', 147, 90, 2, 17, 0, 1.0, 2, 2, 8, 'E', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (309, '0581', '现代图书馆管理', 129, 50, 1, 17, 0, 5.0, 3, 2, 20, 'B', 1, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (310, '0582', '信息编目', 180, 50, 1, 9, 0, 2.0, 1, 2, 22, 'D', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (311, '0583', '文献数据库开发与设计', 93, 50, 1, 17, 0, 2.0, 0, 3, 16, 'E', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (312, '0584', '产业营销', 205, 40, 1, 17, 0, 2.0, 2, 5, 11, 'C', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (313, '0585', '数据仓库与数据挖掘', 188, 50, 1, 17, 0, 0.0, 1, 5, 11, 'A', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (314, '0586', '成本会计', 164, 80, 1, 17, 0, 4.0, 1, 2, 8, 'B', 1, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (315, '0587', '物流与供应链管理（全英文）', 191, 70, 1, 12, 0, 2.0, 2, 6, 5, 'C', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (316, '0588', '人力资源管理', 25, 60, 1, 17, 0, 4.0, 0, 6, 9, 'C', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (317, '0589', '创新管理', 13, 70, 1, 17, 0, 0.0, 2, 1, 4, 'C', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (318, '0590', '数字档案馆', 56, 50, 1, 17, 0, 4.0, 0, 6, 6, 'A', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (319, '0591', '财务管理信息系统', 92, 70, 1, 17, 1, 5.0, 0, 6, 9, 'A', 1, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (320, '0592', '招募与甄选', 241, 60, 1, 17, 0, 2.0, 1, 3, 16, 'B', 1, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (321, '0593', '企业税务与筹划', 29, 75, 1, 17, 0, 5.0, 0, 3, 16, 'C', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (322, '0594', '市场调查', 9, 40, 1, 17, 0, 4.0, 3, 1, 4, 'C', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (323, '0595', '计算机网络与通信技术', 29, 55, 1, 17, 0, 4.0, 3, 6, 10, 'D', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (324, '0596', '会计英语', 134, 80, 1, 17, 0, 4.0, 3, 3, 16, 'B', 1, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (325, '0597', '计算机会计', 215, 70, 1, 17, 0, 2.0, 1, 3, 17, 'C', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (326, '0598', '学习型组织与团队建设', 34, 80, 1, 17, 0, 3.0, 2, 2, 20, 'C', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (327, '0599', '劳动关系', 49, 60, 1, 17, 0, 4.0, 1, 1, 4, 'D', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (328, '0600', '职业生涯管理', 167, 110, 1, 17, 0, 1.0, 2, 2, 8, 'D', 0, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (329, '0601', '质量管理', 162, 70, 1, 17, 0, 3.0, 1, 2, 8, 'C', 1, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (330, '0602', '内部审计与风险管理', 13, 90, 1, 17, 0, 1.0, 1, 3, 17, 'E', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (331, '0603', '会计职业道德', 170, 80, 1, 17, 0, 1.0, 2, 1, 2, 'D', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (332, '0604', '产业经济学', 176, 70, 1, 17, 0, 2.0, 3, 2, 8, 'D', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (333, '0605', '高级财务管理（FN2）', 53, 30, 1, 17, 0, 2.0, 2, 2, 20, 'D', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (334, '0606', '社群信息学', 65, 50, 1, 17, 0, 1.0, 3, 2, 23, 'B', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (335, '0607', '高级审计学（AU2）', 120, 30, 1, 17, 0, 3.0, 2, 3, 16, 'B', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (336, '0608', '信息检索', 150, 50, 1, 17, 0, 2.0, 0, 6, 7, 'E', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (337, '0609', '图书情报与档案管理研究方法', 242, 50, 1, 17, 0, 2.0, 3, 2, 19, 'C', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (338, '0630', '投资学', 249, 75, 1, 17, 0, 3.0, 1, 1, 2, 'C', 0, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (339, '0631', '财务报表分析', 8, 200, 1, 17, 0, 0.0, 1, 2, 8, 'A', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (340, '0632', '博弈论', 149, 50, 1, 17, 0, 3.0, 2, 1, 4, 'D', 1, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (341, '0633', '财务管理', 54, 80, 1, 17, 0, 5.0, 3, 3, 16, 'C', 0, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (342, '0634', '财务管理', 248, 80, 1, 17, 0, 3.0, 3, 2, 23, 'E', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (343, '0635', '管理会计', 102, 100, 1, 17, 0, 3.0, 2, 5, 11, 'D', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (344, '0636', '概率论与数理统计', 84, 200, 1, 17, 0, 0.0, 0, 2, 19, 'D', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (345, '0637', '概率论与数理统计', 204, 200, 1, 17, 0, 4.0, 1, 2, 8, 'B', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (346, '0638', '概率论与数理统计', 214, 100, 1, 17, 0, 3.0, 2, 6, 7, 'D', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (347, '0639', '工业工程基础', 104, 30, 1, 17, 0, 5.0, 0, 2, 8, 'E', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (348, '0640', '财务会计（上）（FA2）', 216, 80, 1, 17, 0, 2.0, 3, 6, 5, 'B', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (349, '0641', '信息构建', 90, 50, 1, 8, 0, 3.0, 3, 6, 6, 'B', 0, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (350, '0642', '数据管理基础', 125, 50, 1, 17, 0, 5.0, 0, 5, 12, 'E', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (351, '0643', '物流工程', 28, 60, 1, 17, 1, 3.0, 1, 6, 7, 'D', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (352, '0644', '企业伦理', 50, 80, 1, 17, 0, 3.0, 3, 6, 9, 'B', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (353, '0645', '企业伦理', 53, 100, 1, 17, 0, 5.0, 0, 2, 19, 'C', 0, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (354, '0646', '竞争情报', 22, 50, 1, 17, 0, 4.0, 1, 5, 15, 'A', 1, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (355, '0647', '信息与信息检索系统评估', 156, 50, 1, 17, 0, 3.0, 2, 2, 22, 'B', 0, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (356, '0648', '信息服务与用户研究', 16, 50, 1, 9, 0, 4.0, 2, 2, 21, 'E', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (357, '0649', '供应链建模与优化', 142, 30, 1, 17, 0, 4.0, 1, 2, 19, 'C', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (358, '0650', '技术经济', 95, 80, 1, 17, 0, 5.0, 0, 5, 13, 'A', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (359, '0651', '经济法', 190, 80, 1, 17, 0, 2.0, 0, 2, 23, 'A', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (360, '0652', '宏观经济学', 66, 80, 1, 17, 0, 1.0, 2, 2, 20, 'E', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (361, '0653', '宏观经济学', 247, 100, 1, 17, 0, 4.0, 3, 3, 17, 'E', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (362, '0654', '宏观经济学', 120, 100, 1, 17, 1, 2.0, 3, 2, 8, 'C', 0, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (363, '0655', '宏观经济学', 140, 50, 1, 17, 0, 2.0, 3, 2, 21, 'A', 1, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (364, '0656', '宏观经济学', 80, 120, 1, 17, 0, 2.0, 0, 2, 21, 'D', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (365, '0657', '宏观经济学', 55, 100, 1, 17, 0, 5.0, 1, 3, 17, 'B', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (366, '0658', '会计学', 242, 70, 1, 17, 0, 2.0, 0, 2, 23, 'A', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (367, '0659', '会计学', 26, 65, 1, 17, 0, 4.0, 2, 1, 2, 'D', 0, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (368, '0660', '会计学', 137, 65, 1, 17, 0, 1.0, 0, 1, 3, 'A', 1, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (369, '0661', '会计学', 10, 50, 1, 17, 1, 1.0, 0, 3, 17, 'B', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (370, '0662', '会计学', 179, 50, 1, 17, 0, 4.0, 1, 6, 6, 'C', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (371, '0663', '会计学', 86, 70, 1, 17, 0, 4.0, 2, 1, 2, 'C', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (372, '0664', '电子商务概论', 193, 80, 1, 17, 0, 2.0, 0, 5, 14, 'E', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (373, '0665', '电子商务概论', 139, 80, 1, 17, 0, 2.0, 0, 5, 11, 'E', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (374, '0666', '电子商务概论', 228, 40, 1, 17, 0, 1.0, 3, 3, 16, 'B', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (375, '0667', '管理信息系统', 123, 50, 1, 17, 1, 2.0, 0, 1, 2, 'E', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (376, '0668', '管理信息系统', 90, 50, 1, 17, 0, 4.0, 3, 6, 9, 'D', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (377, '0669', '广告学', 202, 40, 1, 17, 0, 4.0, 2, 2, 19, 'E', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (378, '0670', '管理咨询', 49, 60, 1, 17, 0, 5.0, 2, 1, 3, 'C', 1, 60, 0, 0, 0);
+INSERT INTO `course` VALUES (379, '0671', '物流前沿专题', 48, 30, 1, 17, 1, 1.0, 0, 2, 22, 'B', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (380, '0672', '系统工程', 158, 60, 1, 17, 0, 1.0, 1, 5, 14, 'C', 1, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (381, '0673', '物流产业分析', 243, 30, 1, 17, 1, 3.0, 1, 2, 22, 'C', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (382, '0674', '物流产业分析', 122, 30, 1, 17, 0, 3.0, 2, 6, 7, 'C', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (383, '0675', '物流案例分析与方案策划', 32, 30, 1, 17, 0, 3.0, 1, 2, 19, 'A', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (384, '0676', '交通运输管理', 178, 60, 1, 17, 1, 1.0, 3, 1, 4, 'A', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (385, '0677', '生产与作业管理', 193, 60, 1, 17, 0, 3.0, 2, 2, 20, 'E', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (386, '0678', '项目管理', 36, 30, 1, 17, 0, 2.0, 1, 2, 22, 'A', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (387, '0679', '统计学', 64, 0, 1, 17, 0, 0.0, 1, 1, 2, 'B', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (388, '0680', '统计学', 115, 0, 1, 17, 0, 4.0, 0, 6, 5, 'B', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (389, '0681', '港口与航运管理', 241, 60, 1, 17, 0, 1.0, 1, 5, 13, 'C', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (390, '0682', '公司法', 167, 40, 1, 17, 0, 3.0, 0, 6, 7, 'E', 0, 60, 0, 0, 0);
+INSERT INTO `course` VALUES (391, '0683', '全球供应链管理与物流战略', 19, 60, 1, 17, 0, 0.0, 3, 5, 12, 'D', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (392, '0684', '物流系统规划与设计', 222, 60, 1, 17, 0, 1.0, 2, 1, 4, 'C', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (393, '0685', '无机化学2-1', 62, 50, 2, 17, 0, 4.0, 0, 5, 11, 'C', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (394, '0686', '有机化学实验2-1', 183, 32, 1, 17, 0, 0.0, 0, 6, 6, 'C', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (395, '0687', '有机化学实验2-1', 172, 30, 1, 17, 0, 4.0, 0, 1, 4, 'B', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (396, '0688', '有机化学实验2-1', 181, 32, 1, 17, 0, 2.0, 2, 1, 2, 'A', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (397, '0689', '有机化学实验2-1', 248, 30, 1, 17, 0, 1.0, 2, 1, 4, 'E', 1, 60, 0, 0, 0);
+INSERT INTO `course` VALUES (398, '0690', '有机化学实验2-1', 27, 32, 1, 17, 0, 1.0, 2, 5, 15, 'E', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (399, '0691', '有机化学实验2-1', 30, 32, 1, 17, 0, 4.0, 3, 1, 4, 'D', 1, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (400, '0692', '有机化学实验2-1', 15, 32, 1, 17, 0, 0.0, 1, 5, 14, 'E', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (401, '0693', '分子科学与工程信息学', 247, 60, 1, 17, 1, 2.0, 2, 2, 22, 'A', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (402, '0694', '应用化学分析', 206, 60, 1, 17, 0, 2.0, 3, 5, 13, 'C', 1, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (403, '0695', '改变世界的化学', 109, 320, 1, 17, 0, 1.0, 1, 1, 2, 'A', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (404, '0696', '生物化工导论', 138, 60, 1, 17, 1, 4.0, 2, 1, 2, 'E', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (405, '0697', '化学信息与模拟', 233, 60, 1, 17, 1, 4.0, 1, 5, 15, 'B', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (406, '0698', '仪器分析', 156, 70, 1, 17, 0, 5.0, 1, 2, 23, 'E', 0, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (407, '0699', '仪器分析', 246, 70, 1, 17, 0, 4.0, 2, 6, 6, 'C', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (408, '0700', '化学信息学', 241, 80, 1, 17, 0, 0.0, 1, 1, 2, 'B', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (409, '0701', '无机化学实验2-1', 154, 25, 2, 17, 0, 2.0, 2, 3, 17, 'B', 1, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (410, '0702', '无机化学实验2-1', 245, 25, 2, 17, 0, 1.0, 0, 2, 23, 'C', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (411, '0703', '生产实习', 44, 60, 1, 17, 0, 4.0, 0, 5, 14, 'E', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (412, '0704', '高分子材料导论', 62, 60, 1, 17, 1, 2.0, 1, 2, 20, 'D', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (413, '0705', '普通生物学', 105, 30, 2, 17, 1, 1.0, 3, 2, 20, 'A', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (414, '0706', '化学生物学', 239, 30, 1, 17, 0, 3.0, 0, 6, 6, 'E', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (415, '0707', '新型纳米催化材料', 212, 60, 1, 17, 0, 3.0, 1, 5, 14, 'B', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (416, '0708', '化工基础实验', 243, 30, 1, 17, 0, 3.0, 2, 5, 13, 'B', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (417, '0709', '化工基础实验', 149, 60, 1, 17, 0, 5.0, 3, 2, 22, 'B', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (418, '0730', '结构生物学 ', 221, 20, 1, 17, 1, 3.0, 3, 5, 12, 'B', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (419, '0731', '基础无机化学实验', 179, 33, 2, 17, 0, 2.0, 1, 1, 3, 'D', 1, 60, 0, 0, 0);
+INSERT INTO `course` VALUES (420, '0732', '基础无机化学实验', 252, 33, 2, 17, 0, 2.0, 2, 2, 19, 'D', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (421, '0733', '基础无机化学实验', 203, 33, 2, 17, 0, 3.0, 3, 5, 14, 'A', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (422, '0734', '基础无机化学实验', 12, 33, 2, 17, 0, 5.0, 0, 2, 19, 'C', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (423, '0735', '基础无机化学实验', 134, 33, 2, 17, 0, 3.0, 1, 1, 3, 'A', 0, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (424, '0736', '基础无机化学实验', 23, 33, 2, 17, 0, 1.0, 3, 5, 15, 'A', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (425, '0737', '基础无机化学实验', 121, 33, 2, 17, 0, 4.0, 0, 3, 17, 'E', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (426, '0738', '基础无机化学实验', 180, 33, 2, 17, 0, 3.0, 2, 2, 22, 'E', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (427, '0739', '结构化学', 81, 80, 1, 17, 0, 0.0, 3, 2, 8, 'C', 0, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (428, '0740', '仪器分析实验', 42, 64, 1, 17, 0, 4.0, 1, 1, 3, 'E', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (429, '0741', '仪器分析实验', 233, 64, 1, 17, 0, 0.0, 0, 2, 23, 'C', 0, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (430, '0742', '仪器分析实验', 83, 64, 1, 17, 0, 3.0, 0, 1, 4, 'D', 1, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (431, '0743', '电分析化学', 222, 60, 1, 17, 0, 5.0, 0, 1, 2, 'B', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (432, '0744', '有机化学2-1', 46, 80, 2, 17, 0, 2.0, 3, 6, 9, 'D', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (433, '0745', '有机化学2-1', 219, 90, 2, 17, 0, 3.0, 0, 2, 22, 'B', 1, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (434, '0746', '线性代数', 244, 100, 1, 17, 0, 2.0, 2, 6, 7, 'E', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (435, '0747', '线性代数', 127, 100, 1, 17, 0, 2.0, 3, 6, 10, 'D', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (436, '0748', '高等有机化学', 75, 80, 1, 17, 0, 4.0, 2, 6, 5, 'A', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (437, '0749', '有机化学2-2', 128, 90, 1, 17, 0, 0.0, 3, 5, 15, 'A', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (438, '0750', '有机化学2-2', 181, 80, 1, 17, 0, 2.0, 1, 2, 19, 'A', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (439, '0751', '有机化学2-2', 165, 80, 1, 17, 0, 2.0, 0, 2, 21, 'B', 0, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (440, '0752', '有机化学实验2-2', 65, 30, 1, 17, 1, 2.0, 3, 6, 10, 'D', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (441, '0753', '有机化学实验2-2', 124, 16, 1, 17, 0, 3.0, 3, 2, 8, 'A', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (442, '0754', '有机化学实验2-2', 27, 30, 1, 17, 0, 2.0, 2, 5, 14, 'E', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (443, '0755', '微生物学', 17, 20, 1, 17, 0, 4.0, 2, 2, 8, 'C', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (444, '0756', '化学概论2-1', 176, 90, 2, 17, 0, 2.0, 1, 2, 21, 'B', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (445, '0757', '化学概论2-1', 152, 80, 2, 17, 0, 2.0, 1, 6, 5, 'A', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (446, '0758', '化学概论2-1', 136, 80, 2, 17, 0, 2.0, 3, 6, 10, 'A', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (447, '0759', '化学概论2-1', 175, 80, 2, 17, 0, 3.0, 0, 5, 12, 'A', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (448, '0760', '当代化学前沿2-1', 163, 320, 2, 17, 0, 0.0, 1, 2, 20, 'B', 1, 60, 0, 0, 0);
+INSERT INTO `course` VALUES (449, '0761', '生物无机化学', 252, 30, 1, 17, 0, 2.0, 0, 6, 6, 'A', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (450, '0762', '综合化学实验2-1', 214, 50, 1, 17, 0, 4.0, 3, 2, 23, 'D', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (451, '0763', '新型分离技术', 163, 60, 1, 17, 0, 1.0, 3, 1, 4, 'C', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (452, '0764', '物质结构', 184, 50, 1, 17, 1, 2.0, 0, 5, 11, 'D', 0, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (453, '0765', '分子识别与组装', 160, 25, 1, 17, 0, 3.0, 3, 6, 6, 'D', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (454, '0766', '能源化学', 32, 70, 1, 17, 0, 3.0, 0, 5, 13, 'D', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (455, '0767', '量子化学', 213, 50, 1, 17, 0, 1.0, 0, 5, 12, 'E', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (456, '0768', '合成化学导论', 174, 60, 1, 17, 0, 2.0, 2, 5, 15, 'E', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (457, '0769', '精细化学品与高新技术', 55, 60, 1, 17, 0, 2.0, 0, 6, 6, 'B', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (458, '0770', '综合化学实验（一）', 249, 200, 1, 17, 0, 2.0, 2, 1, 2, 'D', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (459, '0771', '现代化工设计概论', 139, 60, 1, 17, 0, 1.0, 2, 5, 12, 'E', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (460, '0772', '有机化学2-1', 88, 50, 2, 17, 0, 3.0, 0, 2, 22, 'A', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (461, '0773', '数理统计', 148, 80, 1, 17, 0, 4.0, 0, 2, 22, 'A', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (462, '0774', '有机化学实验2-2', 158, 25, 1, 17, 0, 0.0, 3, 2, 21, 'C', 0, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (463, '0775', '有机化学实验2-2', 172, 25, 1, 17, 0, 4.0, 0, 5, 15, 'B', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (464, '0776', '物理化学实验2-1', 26, 50, 1, 17, 0, 3.0, 1, 1, 4, 'D', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (465, '0777', '应用计算化学', 236, 50, 1, 16, 0, 1.0, 0, 1, 2, 'D', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (466, '0778', '光电高分子材料的结构与性能', 181, 60, 1, 16, 0, 2.0, 0, 5, 12, 'D', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (467, '0779', '微生物发酵工程', 129, 20, 1, 16, 0, 4.0, 1, 5, 13, 'C', 0, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (468, '0780', '核酸生化', 148, 20, 1, 17, 0, 1.0, 2, 5, 14, 'E', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (469, '0781', '生命科学概要', 80, 20, 1, 17, 1, 3.0, 1, 1, 4, 'A', 0, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (470, '0782', '生物工程下游技术', 200, 20, 1, 17, 1, 4.0, 0, 2, 21, 'E', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (471, '0783', '生物技术概论', 30, 20, 2, 17, 1, 3.0, 1, 6, 5, 'B', 0, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (472, '0784', '初级综合汉语2-1', 221, 20, 2, 17, 0, 2.0, 3, 3, 18, 'A', 1, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (473, '0785', '初级综合汉语2-1', 209, 20, 2, 17, 0, 3.0, 3, 5, 14, 'A', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (474, '0786', '初级汉语口语2-1', 235, 20, 2, 17, 1, 1.0, 0, 6, 6, 'B', 0, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (475, '0787', '初级汉语口语2-1', 233, 20, 2, 17, 0, 2.0, 2, 5, 11, 'E', 1, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (476, '0788', '初级综合汉语2-2', 155, 15, 2, 17, 0, 2.0, 3, 3, 16, 'C', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (477, '0789', '现代汉语视听说2-2', 139, 10, 1, 17, 0, 4.0, 2, 1, 2, 'C', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (478, '0790', '中级综合汉语2-1', 77, 20, 2, 17, 0, 5.0, 3, 2, 20, 'B', 1, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (479, '0791', '中级汉语口语2-2', 124, 10, 1, 17, 0, 4.0, 0, 2, 21, 'E', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (480, '0792', '外教英语2-1', 212, 20, 2, 17, 0, 1.0, 2, 2, 8, 'B', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (481, '0793', '计算机应用', 24, 35, 1, 17, 0, 1.0, 0, 2, 23, 'B', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (482, '0794', '初级汉语口语2-2', 63, 15, 2, 17, 0, 2.0, 3, 2, 19, 'C', 1, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (483, '0795', '中国文化概论', 233, 40, 1, 17, 0, 3.0, 3, 5, 14, 'B', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (484, '0796', '社科文献检索', 92, 40, 1, 17, 0, 4.0, 1, 6, 10, 'D', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (485, '0797', '教育测量与评估', 162, 40, 1, 17, 0, 4.0, 0, 3, 18, 'E', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (486, '0798', '语义学', 252, 40, 1, 17, 1, 3.0, 3, 3, 18, 'A', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (487, '0799', '语法研究方法', 69, 40, 1, 17, 0, 5.0, 1, 6, 5, 'A', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (488, '0800', '电子商务', 175, 40, 1, 17, 0, 0.0, 1, 5, 13, 'C', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (489, '0801', '中国古代文学3-2', 226, 40, 1, 17, 0, 3.0, 1, 2, 8, 'D', 1, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (490, '0802', '高级汉语口语2-1', 38, 20, 2, 17, 0, 2.0, 3, 3, 16, 'C', 0, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (491, '0803', '高级汉语口语2-1', 120, 20, 2, 17, 0, 1.0, 1, 2, 8, 'D', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (492, '0804', '国际贸易实务', 135, 30, 1, 17, 0, 3.0, 1, 2, 23, 'C', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (493, '0805', '当代中国经济', 143, 30, 1, 17, 0, 4.0, 1, 1, 3, 'A', 1, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (494, '0806', '高级综合汉语2-2', 36, 30, 1, 17, 1, 3.0, 1, 2, 21, 'D', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (495, '0807', '现代汉语（语音、词汇、文字）', 105, 30, 1, 17, 0, 4.0, 2, 2, 23, 'C', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (496, '0808', '中级英语', 175, 20, 1, 17, 0, 1.0, 3, 5, 13, 'E', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (497, '0809', '初级英语', 155, 15, 2, 17, 1, 0.0, 1, 2, 20, 'C', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (498, '0830', '中级商务汉语2-2', 223, 20, 1, 17, 0, 1.0, 1, 6, 10, 'A', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (499, '0831', '现代汉语视听说2-1', 48, 20, 1, 17, 0, 1.0, 3, 1, 3, 'E', 1, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (500, '0832', '国际商务谈判', 210, 40, 1, 17, 0, 2.0, 3, 2, 20, 'E', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (501, '0833', '高级商务汉语2-2', 49, 30, 1, 17, 0, 1.0, 2, 5, 12, 'C', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (502, '0834', '国际营销管理', 79, 30, 1, 17, 1, 5.0, 0, 2, 22, 'A', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (503, '0835', '初级汉语写作', 190, 15, 2, 17, 1, 3.0, 0, 5, 15, 'C', 0, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (504, '0836', '初级汉语写作', 231, 15, 1, 17, 0, 1.0, 2, 3, 16, 'E', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (505, '0837', '初级汉语听力2-1', 80, 20, 2, 17, 1, 4.0, 1, 2, 20, 'E', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (506, '0838', '初级汉语听力2-1', 183, 20, 2, 17, 0, 3.0, 1, 6, 6, 'E', 0, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (507, '0839', '高级汉语口语2-2', 253, 30, 1, 17, 0, 3.0, 2, 5, 14, 'E', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (508, '0840', '论文写作', 221, 60, 1, 17, 0, 2.0, 2, 3, 18, 'D', 1, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (509, '0841', '汉字', 13, 30, 2, 17, 1, 0.0, 3, 5, 15, 'B', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (510, '0842', '现代汉语语法', 44, 30, 1, 17, 0, 3.0, 0, 1, 3, 'D', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (511, '0843', '高级汉语写作', 218, 30, 1, 17, 0, 2.0, 3, 5, 15, 'E', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (512, '0844', '汉语语法教学', 140, 35, 1, 17, 0, 4.0, 0, 5, 14, 'B', 0, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (513, '0845', '汉语教学概论', 174, 35, 1, 17, 0, 3.0, 1, 5, 12, 'E', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (514, '0846', '古代汉语2-1', 150, 40, 2, 17, 0, 1.0, 3, 3, 17, 'B', 0, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (515, '0847', '中国古典诗词欣赏', 176, 40, 1, 17, 0, 3.0, 3, 6, 9, 'C', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (516, '0848', '中国古典散文欣赏', 94, 40, 1, 17, 0, 1.0, 2, 2, 19, 'E', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (517, '0849', '中国古代文学名著选读2-2', 217, 30, 1, 9, 0, 1.0, 3, 2, 23, 'C', 0, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (518, '0850', '汉语词汇与中国文化', 168, 10, 1, 17, 0, 2.0, 2, 5, 12, 'D', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (519, '0851', '趣味成语', 105, 20, 1, 17, 0, 5.0, 2, 5, 14, 'A', 0, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (520, '0852', '中国诗歌欣赏与习作', 97, 30, 1, 17, 0, 3.0, 0, 1, 4, 'E', 1, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (521, '0853', '中国影视欣赏', 141, 10, 1, 17, 0, 2.0, 1, 1, 2, 'C', 0, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (522, '0854', '现代汉语3-3', 198, 40, 1, 17, 0, 2.0, 0, 3, 16, 'E', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (523, '0855', '现代汉语3-1', 49, 40, 2, 17, 0, 5.0, 3, 2, 19, 'E', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (524, '0856', '方言与方言研究', 162, 40, 1, 17, 0, 4.0, 0, 5, 11, 'C', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (525, '0857', '中级翻译（日汉、韩汉、英汉）', 80, 10, 1, 17, 0, 0.0, 2, 5, 13, 'A', 1, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (526, '0858', '中级翻译（日汉、韩汉、英汉）', 190, 10, 1, 17, 0, 5.0, 2, 1, 4, 'E', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (527, '0859', '高级汉语听力2-2', 136, 30, 1, 17, 0, 2.0, 0, 3, 17, 'B', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (528, '0860', '外语交际2-1', 1, 40, 1, 17, 0, 4.0, 3, 2, 20, 'E', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (529, '0861', '中级汉语听力2-1', 194, 20, 1, 17, 0, 2.0, 1, 1, 4, 'A', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (530, '0862', '中级汉语听力2-2', 236, 10, 1, 17, 0, 5.0, 2, 2, 21, 'B', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (531, '0863', '中级汉语写作', 113, 10, 1, 17, 0, 1.0, 0, 2, 22, 'E', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (532, '0864', '外国文学2-1', 126, 40, 1, 17, 0, 0.0, 3, 6, 5, 'C', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (533, '0865', '汉字与汉字教学', 103, 40, 1, 17, 0, 5.0, 1, 6, 10, 'D', 1, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (534, '0866', '心理语言学', 50, 40, 1, 17, 0, 3.0, 3, 2, 23, 'D', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (535, '0867', '中国古代文学名著选读2-1', 190, 60, 1, 17, 0, 4.0, 2, 5, 14, 'B', 1, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (536, '0868', '中国古代文学名著选读2-1', 94, 60, 1, 17, 0, 3.0, 1, 6, 10, 'D', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (537, '0869', '外汉翻译', 135, 40, 1, 17, 0, 0.0, 2, 3, 16, 'E', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (538, '0870', '世界经济', 221, 40, 1, 17, 1, 1.0, 0, 5, 13, 'C', 1, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (539, '0871', '经贸地理', 181, 40, 1, 17, 1, 5.0, 3, 3, 16, 'A', 1, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (540, '0872', '中级汉语口语2-1', 42, 20, 1, 17, 0, 1.0, 1, 6, 7, 'D', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (541, '0873', '中国现当代文学2-1', 37, 40, 2, 17, 0, 0.0, 0, 5, 11, 'C', 0, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (542, '0874', '中级综合汉语2-2', 136, 10, 1, 17, 0, 3.0, 2, 1, 2, 'A', 0, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (543, '0875', '初级汉语听力2-2', 238, 15, 2, 17, 0, 5.0, 2, 3, 18, 'E', 1, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (544, '0876', '高级汉语听力2-1', 86, 30, 2, 17, 0, 2.0, 1, 1, 4, 'D', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (545, '0877', '高级汉语听力2-1', 133, 30, 2, 17, 0, 4.0, 1, 5, 14, 'B', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (546, '0878', '文史资料检索', 222, 30, 1, 17, 1, 4.0, 1, 3, 17, 'D', 0, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (547, '0879', '古代汉语', 233, 30, 1, 17, 0, 2.0, 2, 5, 14, 'A', 0, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (548, '0880', '古代汉语入门', 247, 30, 1, 17, 1, 2.0, 3, 6, 6, 'B', 1, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (549, '0881', '日语（二外）2-1', 57, 40, 1, 17, 0, 4.0, 1, 1, 4, 'B', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (550, '0882', '中国文化专题', 216, 40, 1, 17, 0, 1.0, 1, 2, 22, 'D', 1, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (551, '0883', '对外汉语教学语法', 50, 0, 1, 16, 0, 2.0, 2, 5, 11, 'B', 0, 20, 10, 0, 0);
+INSERT INTO `course` VALUES (552, '0884', '商务汉语1:实战篇', 115, 20, 1, 16, 1, 3.0, 2, 2, 22, 'B', 1, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (553, '0885', '俄语(二外) 2-1', 71, 40, 1, 16, 0, 2.0, 2, 1, 3, 'D', 0, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (554, '0886', '西班牙语(二外) 2-1', 182, 40, 1, 16, 0, 0.0, 2, 5, 12, 'E', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (555, '0887', '西班牙语(二外) 2-2', 82, 40, 1, 16, 0, 2.0, 2, 6, 9, 'B', 1, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (556, '0888', '商务汉语1：备战篇', 76, 20, 1, 16, 0, 1.0, 0, 1, 3, 'A', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (557, '0889', '韩国语（二外）2-1', 142, 40, 1, 16, 0, 3.0, 2, 5, 11, 'A', 1, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (558, '0890', '韩国语（二外）2-2', 6, 40, 1, 16, 0, 4.0, 2, 6, 9, 'E', 0, 30, 20, 0, 0);
+INSERT INTO `course` VALUES (559, '0891', '体育4-3', 62, 30, 1, 16, 0, 2.0, 0, 2, 21, 'A', 1, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (560, '0892', '体育4-4', 8, 30, 1, 16, 0, 1.0, 2, 2, 8, 'C', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (561, '0893', '体育4-1', 219, 30, 1, 16, 0, 1.0, 2, 5, 11, 'A', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (562, '0894', '体育4-2', 81, 0, 1, 16, 1, 1.0, 2, 5, 15, 'B', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (563, '0895', '高级语言程序设计2-1', 118, 120, 2, 17, 0, 4.0, 2, 3, 17, 'A', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (564, '0896', '高级语言程序设计2-1', 169, 90, 2, 17, 0, 1.0, 1, 5, 11, 'B', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (565, '0897', '高级语言程序设计2-1', 71, 130, 1, 16, 0, 2.0, 3, 3, 17, 'C', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (566, '0898', '密码学', 167, 50, 1, 17, 0, 3.0, 3, 3, 17, 'C', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (567, '0899', '国际经济法', 101, 40, 1, 17, 0, 0.0, 2, 5, 14, 'C', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (568, '0900', '侵权法', 193, 50, 1, 17, 0, 3.0, 0, 6, 7, 'E', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (569, '0901', '公司法', 233, 40, 1, 17, 0, 4.0, 3, 1, 4, 'A', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (570, '0902', '劳动法', 50, 20, 1, 17, 0, 1.0, 1, 2, 23, 'C', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (571, '0903', '工程光学基础', 80, 55, 1, 17, 0, 2.0, 1, 2, 8, 'D', 0, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (572, '0904', '法理学', 54, 60, 2, 17, 0, 4.0, 1, 1, 2, 'A', 1, 10, 10, 0, 0);
+INSERT INTO `course` VALUES (573, '0905', '宪法学', 198, 60, 2, 17, 1, 5.0, 2, 1, 3, 'E', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (574, '0906', '概率论与数理统计', 125, 110, 1, 17, 0, 3.0, 0, 2, 22, 'E', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (575, '0907', '概率论与数理统计', 71, 110, 1, 17, 0, 4.0, 1, 2, 8, 'A', 0, 40, 40, 0, 0);
+INSERT INTO `course` VALUES (576, '0908', '概率论与数理统计', 125, 130, 1, 17, 0, 4.0, 2, 6, 10, 'E', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (577, '0909', '人机交互技术', 189, 120, 1, 17, 0, 4.0, 1, 1, 3, 'C', 0, 0, 30, 0, 0);
+INSERT INTO `course` VALUES (578, '0930', '电子技术基础实验', 26, 60, 1, 17, 0, 1.0, 0, 3, 18, 'E', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (579, '0931', '数字逻辑', 89, 130, 1, 17, 0, 3.0, 3, 2, 22, 'C', 0, 10, 40, 0, 0);
+INSERT INTO `course` VALUES (580, '0932', '数字逻辑', 89, 100, 1, 17, 0, 0.0, 2, 6, 10, 'B', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (581, '0933', '编译系统原理', 45, 175, 1, 17, 0, 2.0, 3, 2, 21, 'D', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (582, '0934', '模拟电子技术实验', 239, 100, 1, 17, 0, 1.0, 0, 3, 18, 'B', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (583, '0935', '模拟电子技术', 27, 110, 1, 17, 1, 3.0, 3, 2, 19, 'A', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (584, '0936', '自动化与智能科学概论', 42, 110, 2, 17, 0, 3.0, 0, 6, 9, 'A', 0, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (585, '0937', '现代控制论实验', 53, 100, 14, 17, 0, 4.0, 1, 2, 22, 'B', 0, 0, 10, 0, 0);
+INSERT INTO `course` VALUES (586, '0938', '现代控制论', 221, 85, 1, 17, 0, 0.0, 3, 5, 14, 'E', 1, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (587, '0939', '民法学（物权法）', 156, 55, 1, 17, 0, 2.0, 3, 2, 20, 'C', 1, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (588, '0940', '刑法分论', 6, 55, 1, 17, 0, 2.0, 0, 1, 3, 'D', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (589, '0941', '工业设计基础', 178, 100, 1, 17, 0, 4.0, 1, 5, 13, 'C', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (590, '0942', '民法学（合同法）', 25, 50, 1, 17, 0, 4.0, 3, 1, 4, 'E', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (591, '0943', '计算机概论', 169, 200, 2, 17, 0, 5.0, 2, 2, 20, 'E', 1, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (592, '0944', '刑事诉讼法', 28, 55, 1, 17, 0, 1.0, 2, 3, 18, 'E', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (593, '0945', '数据结构基础', 228, 100, 1, 17, 1, 4.0, 1, 6, 7, 'E', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (594, '0946', '知识产权法', 146, 50, 1, 17, 0, 3.0, 0, 6, 10, 'A', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (595, '0947', '编译系统原理', 226, 120, 1, 17, 0, 3.0, 2, 6, 6, 'A', 1, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (596, '0948', '综合课程设计2-2', 39, 80, 1, 17, 0, 2.0, 2, 6, 9, 'D', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (597, '0949', '数据结构', 113, 130, 1, 17, 0, 4.0, 1, 2, 22, 'D', 0, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (598, '0950', '数据结构', 220, 100, 1, 17, 0, 2.0, 1, 6, 7, 'B', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (599, '0951', '电子技术基础', 106, 220, 1, 17, 0, 0.0, 3, 1, 4, 'D', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (600, '0952', '行政法与行政诉讼法', 38, 50, 1, 17, 0, 1.0, 0, 5, 11, 'D', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (601, '0953', '物联网工程导论', 147, 50, 1, 17, 0, 4.0, 1, 5, 13, 'D', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (602, '0954', '计算机网络', 34, 100, 1, 17, 0, 5.0, 0, 3, 18, 'B', 1, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (603, '0955', '计算机网络', 2, 80, 1, 17, 0, 3.0, 3, 2, 20, 'A', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (604, '0956', '计算机网络', 253, 115, 1, 17, 0, 2.0, 1, 5, 12, 'E', 0, 50, 20, 0, 0);
+INSERT INTO `course` VALUES (605, '0957', '人工智能导论', 96, 60, 1, 17, 0, 3.0, 0, 2, 22, 'B', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (606, '0958', '自动检测技术与系统', 54, 100, 1, 16, 0, 3.0, 1, 3, 18, 'C', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (607, '0959', '人权法', 217, 30, 1, 17, 0, 2.0, 1, 2, 8, 'C', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (608, '0960', '西方法律思想史', 3, 50, 1, 17, 0, 3.0, 3, 3, 16, 'D', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (609, '0961', '中国法律思想史', 188, 50, 1, 17, 0, 4.0, 3, 6, 9, 'E', 0, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (610, '0962', '信息安全基础', 68, 115, 1, 17, 0, 0.0, 2, 5, 14, 'A', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (611, '0963', '运筹学', 252, 100, 1, 17, 0, 1.0, 3, 2, 8, 'E', 1, 60, 20, 0, 0);
+INSERT INTO `course` VALUES (612, '0964', '软件综合课程设计', 177, 130, 1, 17, 0, 3.0, 2, 6, 6, 'C', 1, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (613, '0965', '知识产权国际保护', 214, 20, 1, 17, 0, 4.0, 2, 5, 15, 'C', 0, 40, 0, 0, 0);
+INSERT INTO `course` VALUES (614, '0966', '信号与系统', 177, 85, 1, 17, 0, 3.0, 3, 5, 11, 'C', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (615, '0967', '信息安全综合实验', 94, 40, 1, 17, 0, 3.0, 1, 6, 6, 'C', 1, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (616, '0968', '机器智能基础', 157, 100, 1, 17, 0, 3.0, 0, 6, 5, 'E', 0, 30, 0, 0, 0);
+INSERT INTO `course` VALUES (617, '0969', '运动控制', 240, 100, 1, 16, 1, 1.0, 3, 2, 19, 'B', 1, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (618, '0970', '社会保障法', 31, 20, 1, 17, 0, 4.0, 1, 5, 14, 'B', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (619, '0971', '软件测试', 226, 125, 1, 17, 0, 1.0, 1, 1, 2, 'C', 1, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (620, '0972', '软件体系结构', 29, 115, 2, 17, 0, 4.0, 0, 5, 13, 'B', 1, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (621, '0973', '线性代数', 19, 120, 2, 17, 0, 2.0, 2, 6, 6, 'E', 1, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (622, '0974', '线性代数', 165, 70, 2, 17, 0, 1.0, 0, 6, 7, 'D', 0, 10, 0, 0, 0);
+INSERT INTO `course` VALUES (623, '0975', '线性代数', 76, 170, 2, 17, 0, 2.0, 1, 6, 7, 'B', 0, 10, 30, 0, 0);
+INSERT INTO `course` VALUES (624, '0976', '计算机图形学', 43, 50, 1, 17, 0, 4.0, 1, 1, 2, 'C', 0, 0, 20, 0, 0);
+INSERT INTO `course` VALUES (625, '0977', '计算机基础（文）', 178, 80, 2, 17, 0, 4.0, 3, 5, 14, 'D', 0, 20, 20, 0, 0);
+INSERT INTO `course` VALUES (626, '0978', '计算机基础（文）', 64, 100, 2, 17, 0, 1.0, 0, 2, 8, 'C', 1, 40, 30, 0, 0);
+INSERT INTO `course` VALUES (627, '0979', '计算机基础（文）', 175, 120, 2, 17, 0, 5.0, 1, 6, 6, 'C', 0, 20, 0, 0, 0);
+INSERT INTO `course` VALUES (628, '0980', '计算机基础（文）', 84, 80, 2, 17, 0, 3.0, 0, 2, 8, 'D', 0, 30, 40, 0, 0);
+INSERT INTO `course` VALUES (629, '0981', '计算机基础（文）', 175, 85, 2, 17, 0, 1.0, 1, 6, 7, 'E', 0, 20, 40, 0, 0);
+INSERT INTO `course` VALUES (630, '0982', '计算机基础（文）', 196, 110, 2, 17, 0, 2.0, 2, 6, 10, 'E', 0, 40, 10, 0, 0);
+INSERT INTO `course` VALUES (631, '0983', '计算机基础（文）', 223, 100, 2, 17, 0, 5.0, 2, 2, 8, 'E', 0, 20, 30, 0, 0);
+INSERT INTO `course` VALUES (632, '0984', '计算机基础（文）', 18, 120, 2, 17, 0, 3.0, 1, 3, 17, 'A', 1, 40, 20, 0, 0);
+INSERT INTO `course` VALUES (633, '0985', '计算机基础（文）', 169, 150, 2, 17, 0, 0.0, 1, 2, 23, 'C', 0, 0, 40, 0, 0);
+INSERT INTO `course` VALUES (634, '0986', '计算机基础（文）', 128, 150, 2, 17, 0, 3.0, 2, 2, 21, 'B', 0, 10, 20, 0, 0);
+INSERT INTO `course` VALUES (635, '0987', '计算机基础（文）', 210, 100, 2, 17, 0, 2.0, 1, 3, 17, 'C', 0, 50, 40, 0, 0);
+INSERT INTO `course` VALUES (636, '0988', '计算机基础（文）', 94, 100, 2, 17, 0, 3.0, 2, 5, 13, 'A', 0, 50, 30, 0, 0);
+INSERT INTO `course` VALUES (637, '0989', '计算机基础（文）', 111, 90, 2, 17, 1, 3.0, 3, 3, 16, 'D', 1, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (638, '0990', '计算机基础（文）', 83, 130, 2, 17, 0, 1.0, 3, 2, 19, 'D', 0, 30, 10, 0, 0);
+INSERT INTO `course` VALUES (639, '0991', '计算机基础（文）', 190, 150, 2, 17, 0, 0.0, 1, 1, 4, 'A', 1, 50, 10, 0, 0);
+INSERT INTO `course` VALUES (640, '0992', '计算机基础（文）', 147, 150, 2, 17, 0, 2.0, 2, 6, 9, 'A', 0, 60, 30, 0, 0);
+INSERT INTO `course` VALUES (641, '0993', '计算机基础（理）', 122, 100, 2, 17, 0, 2.0, 1, 6, 6, 'C', 1, 60, 0, 0, 0);
+INSERT INTO `course` VALUES (642, '0994', '计算机基础（理）', 182, 100, 2, 17, 0, 3.0, 1, 6, 7, 'D', 1, 60, 40, 0, 0);
+INSERT INTO `course` VALUES (643, '0995', '计算机基础（理）', 182, 100, 2, 17, 0, 1.0, 1, 2, 19, 'D', 0, 0, 0, 0, 0);
+INSERT INTO `course` VALUES (644, '0996', '计算机基础（理）', 130, 100, 2, 17, 0, 1.0, 3, 3, 16, 'E', 1, 50, 0, 0, 0);
+INSERT INTO `course` VALUES (645, '0997', '计算机基础（理）', 193, 80, 2, 17, 0, 1.0, 1, 1, 3, 'A', 0, 30, 30, 0, 0);
+INSERT INTO `course` VALUES (646, '0998', '计算机基础（理）', 160, 100, 2, 17, 0, 0.0, 2, 2, 23, 'A', 0, 60, 10, 0, 0);
+INSERT INTO `course` VALUES (647, '0999', '计算机基础（理）', 77, 90, 2, 17, 0, 2.0, 2, 6, 10, 'B', 1, 0, 0, 0, 0);
 
-LOCK TABLES `course` WRITE;
-/*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'s','计算方法',5,100,3,16,0,3,0,1,NULL,NULL,0,0,NULL,NULL,NULL),(2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'B',1,0,0,0,0),(3,NULL,'数据库',1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'A',0,0,0,0,0);
-/*!40000 ALTER TABLE `course` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `course_level`
---
-
+-- ----------------------------
+-- Table structure for course_level
+-- ----------------------------
 DROP TABLE IF EXISTS `course_level`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `course_level` (
+CREATE TABLE `course_level`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `LevelName` varchar(255) DEFAULT NULL,
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `LevelName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `course_level`
---
+-- ----------------------------
+-- Records of course_level
+-- ----------------------------
+INSERT INTO `course_level` VALUES (1, 'A', 0);
+INSERT INTO `course_level` VALUES (2, 'B', 0);
+INSERT INTO `course_level` VALUES (3, 'C', 0);
+INSERT INTO `course_level` VALUES (4, 'D', 0);
+INSERT INTO `course_level` VALUES (5, 'E', 0);
 
-LOCK TABLES `course_level` WRITE;
-/*!40000 ALTER TABLE `course_level` DISABLE KEYS */;
-INSERT INTO `course_level` VALUES (1,'A',0),(2,'B',0),(3,'C',0),(4,'D',0),(5,'E',0);
-/*!40000 ALTER TABLE `course_level` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `course_time`
---
-
+-- ----------------------------
+-- Table structure for course_time
+-- ----------------------------
 DROP TABLE IF EXISTS `course_time`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `course_time` (
+CREATE TABLE `course_time`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ClassId` int(11) DEFAULT NULL,
-  `StartLesson` int(11) DEFAULT NULL,
-  `EndLesson` int(11) DEFAULT NULL,
-  `LessonDay` int(11) DEFAULT NULL,
-  `DeleteStatus` int(11) DEFAULT '0',
+  `ClassId` int(11) NULL DEFAULT NULL,
+  `StartLesson` int(11) NULL DEFAULT NULL,
+  `EndLesson` int(11) NULL DEFAULT NULL,
+  `LessonDay` int(11) NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `ClassId` (`ClassId`) USING BTREE,
+  INDEX `ClassId`(`ClassId`) USING BTREE,
   CONSTRAINT `course_time_ibfk_1` FOREIGN KEY (`ClassId`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 1032 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `course_time`
---
+-- ----------------------------
+-- Records of course_time
+-- ----------------------------
+INSERT INTO `course_time` VALUES (1, 1, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (2, 1, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (3, 2, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (4, 2, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (5, 3, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (6, 3, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (7, 4, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (8, 4, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (9, 5, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (10, 5, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (11, 6, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (12, 7, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (13, 7, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (14, 8, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (15, 8, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (16, 9, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (17, 9, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (18, 10, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (19, 10, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (20, 11, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (21, 12, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (22, 12, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (23, 13, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (24, 14, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (25, 15, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (26, 15, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (27, 16, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (28, 16, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (29, 17, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (30, 18, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (31, 18, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (32, 19, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (33, 19, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (34, 20, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (35, 20, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (36, 21, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (37, 22, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (38, 22, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (39, 23, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (40, 24, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (41, 24, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (42, 25, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (43, 25, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (44, 26, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (45, 27, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (46, 27, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (47, 28, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (48, 29, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (49, 30, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (50, 30, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (51, 31, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (52, 31, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (53, 32, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (54, 32, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (55, 33, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (56, 33, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (57, 34, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (58, 34, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (59, 35, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (60, 35, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (61, 36, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (62, 36, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (63, 37, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (64, 38, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (65, 39, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (66, 39, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (67, 40, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (68, 41, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (69, 41, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (70, 42, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (71, 43, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (72, 43, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (73, 44, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (74, 44, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (75, 45, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (76, 46, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (77, 46, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (78, 47, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (79, 47, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (80, 48, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (81, 49, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (82, 49, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (83, 50, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (84, 50, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (85, 51, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (86, 52, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (87, 52, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (88, 53, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (89, 54, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (90, 55, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (91, 56, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (92, 56, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (93, 57, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (94, 57, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (95, 58, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (96, 58, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (97, 59, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (98, 59, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (99, 60, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (100, 61, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (101, 61, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (102, 62, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (103, 62, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (104, 63, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (105, 64, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (106, 64, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (107, 65, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (108, 65, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (109, 66, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (110, 66, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (111, 67, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (112, 68, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (113, 69, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (114, 69, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (115, 70, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (116, 70, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (117, 71, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (118, 72, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (119, 72, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (120, 73, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (121, 73, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (122, 74, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (123, 74, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (124, 75, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (125, 76, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (126, 77, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (127, 77, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (128, 78, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (129, 78, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (130, 79, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (131, 79, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (132, 80, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (133, 80, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (134, 81, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (135, 81, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (136, 82, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (137, 83, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (138, 84, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (139, 84, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (140, 85, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (141, 85, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (142, 86, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (143, 86, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (144, 87, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (145, 87, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (146, 88, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (147, 88, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (148, 89, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (149, 90, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (150, 91, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (151, 92, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (152, 93, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (153, 93, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (154, 94, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (155, 94, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (156, 95, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (157, 95, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (158, 96, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (159, 97, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (160, 98, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (161, 98, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (162, 99, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (163, 99, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (164, 100, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (165, 100, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (166, 101, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (167, 101, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (168, 102, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (169, 102, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (170, 103, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (171, 103, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (172, 104, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (173, 104, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (174, 105, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (175, 106, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (176, 106, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (177, 107, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (178, 108, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (179, 108, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (180, 109, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (181, 110, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (182, 110, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (183, 111, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (184, 111, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (185, 112, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (186, 112, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (187, 113, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (188, 113, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (189, 114, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (190, 115, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (191, 116, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (192, 116, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (193, 117, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (194, 118, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (195, 119, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (196, 119, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (197, 120, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (198, 120, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (199, 121, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (200, 121, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (201, 122, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (202, 123, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (203, 124, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (204, 124, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (205, 125, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (206, 125, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (207, 126, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (208, 126, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (209, 127, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (210, 128, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (211, 129, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (212, 129, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (213, 130, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (214, 130, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (215, 131, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (216, 131, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (217, 132, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (218, 132, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (219, 133, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (220, 133, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (221, 134, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (222, 134, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (223, 135, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (224, 136, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (225, 137, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (226, 137, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (227, 138, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (228, 138, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (229, 139, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (230, 139, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (231, 140, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (232, 140, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (233, 141, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (234, 141, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (235, 142, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (236, 142, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (237, 143, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (238, 144, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (239, 144, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (240, 145, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (241, 146, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (242, 147, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (243, 147, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (244, 148, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (245, 148, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (246, 149, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (247, 150, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (248, 150, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (249, 151, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (250, 152, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (251, 153, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (252, 154, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (253, 154, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (254, 155, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (255, 156, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (256, 156, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (257, 157, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (258, 157, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (259, 158, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (260, 158, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (261, 159, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (262, 159, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (263, 160, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (264, 161, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (265, 161, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (266, 162, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (267, 163, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (268, 163, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (269, 164, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (270, 164, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (271, 165, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (272, 165, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (273, 166, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (274, 167, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (275, 167, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (276, 168, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (277, 168, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (278, 169, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (279, 169, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (280, 170, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (281, 171, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (282, 171, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (283, 172, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (284, 173, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (285, 173, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (286, 174, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (287, 174, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (288, 175, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (289, 175, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (290, 176, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (291, 176, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (292, 177, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (293, 177, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (294, 178, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (295, 179, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (296, 179, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (297, 180, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (298, 180, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (299, 181, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (300, 182, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (301, 183, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (302, 183, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (303, 184, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (304, 184, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (305, 185, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (306, 185, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (307, 186, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (308, 187, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (309, 188, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (310, 188, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (311, 189, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (312, 189, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (313, 190, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (314, 190, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (315, 191, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (316, 192, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (317, 193, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (318, 193, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (319, 194, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (320, 195, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (321, 195, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (322, 196, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (323, 197, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (324, 198, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (325, 199, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (326, 200, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (327, 201, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (328, 202, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (329, 203, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (330, 204, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (331, 204, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (332, 205, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (333, 205, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (334, 206, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (335, 206, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (336, 207, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (337, 207, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (338, 208, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (339, 209, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (340, 209, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (341, 210, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (342, 210, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (343, 211, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (344, 211, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (345, 212, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (346, 212, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (347, 213, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (348, 213, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (349, 214, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (350, 215, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (351, 216, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (352, 216, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (353, 217, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (354, 217, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (355, 218, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (356, 218, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (357, 219, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (358, 220, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (359, 221, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (360, 222, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (361, 223, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (362, 224, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (363, 224, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (364, 225, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (365, 225, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (366, 226, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (367, 226, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (368, 227, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (369, 227, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (370, 228, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (371, 229, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (372, 230, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (373, 230, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (374, 231, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (375, 231, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (376, 232, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (377, 233, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (378, 234, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (379, 235, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (380, 235, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (381, 236, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (382, 236, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (383, 237, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (384, 237, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (385, 238, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (386, 238, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (387, 239, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (388, 239, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (389, 240, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (390, 240, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (391, 241, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (392, 242, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (393, 242, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (394, 243, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (395, 244, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (396, 244, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (397, 245, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (398, 246, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (399, 247, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (400, 247, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (401, 248, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (402, 248, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (403, 249, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (404, 250, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (405, 250, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (406, 251, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (407, 252, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (408, 252, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (409, 253, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (410, 254, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (411, 254, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (412, 255, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (413, 256, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (414, 256, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (415, 257, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (416, 257, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (417, 258, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (418, 259, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (419, 260, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (420, 260, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (421, 261, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (422, 261, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (423, 262, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (424, 263, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (425, 263, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (426, 264, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (427, 265, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (428, 265, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (429, 266, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (430, 266, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (431, 267, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (432, 268, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (433, 268, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (434, 269, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (435, 270, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (436, 270, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (437, 271, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (438, 271, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (439, 272, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (440, 272, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (441, 273, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (442, 273, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (443, 274, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (444, 275, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (445, 275, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (446, 276, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (447, 277, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (448, 277, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (449, 278, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (450, 278, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (451, 279, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (452, 279, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (453, 280, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (454, 281, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (455, 281, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (456, 282, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (457, 282, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (458, 283, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (459, 283, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (460, 284, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (461, 284, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (462, 285, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (463, 286, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (464, 287, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (465, 287, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (466, 288, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (467, 289, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (468, 290, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (469, 290, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (470, 291, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (471, 291, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (472, 292, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (473, 293, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (474, 293, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (475, 294, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (476, 295, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (477, 295, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (478, 296, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (479, 296, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (480, 297, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (481, 298, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (482, 298, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (483, 299, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (484, 300, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (485, 300, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (486, 301, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (487, 302, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (488, 303, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (489, 303, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (490, 304, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (491, 304, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (492, 305, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (493, 306, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (494, 307, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (495, 308, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (496, 308, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (497, 309, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (498, 309, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (499, 310, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (500, 310, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (501, 311, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (502, 312, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (503, 312, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (504, 313, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (505, 313, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (506, 314, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (507, 314, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (508, 315, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (509, 316, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (510, 316, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (511, 317, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (512, 318, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (513, 318, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (514, 319, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (515, 320, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (516, 321, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (517, 322, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (518, 323, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (519, 324, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (520, 324, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (521, 325, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (522, 325, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (523, 326, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (524, 326, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (525, 327, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (526, 327, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (527, 328, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (528, 328, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (529, 329, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (530, 329, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (531, 330, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (532, 330, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (533, 331, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (534, 331, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (535, 332, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (536, 333, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (537, 333, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (538, 334, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (539, 334, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (540, 335, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (541, 335, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (542, 336, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (543, 336, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (544, 337, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (545, 337, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (546, 338, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (547, 338, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (548, 339, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (549, 340, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (550, 341, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (551, 342, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (552, 343, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (553, 344, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (554, 345, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (555, 346, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (556, 346, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (557, 347, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (558, 348, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (559, 348, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (560, 349, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (561, 349, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (562, 350, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (563, 350, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (564, 351, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (565, 351, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (566, 352, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (567, 353, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (568, 354, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (569, 355, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (570, 355, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (571, 356, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (572, 357, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (573, 357, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (574, 358, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (575, 359, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (576, 359, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (577, 360, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (578, 360, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (579, 361, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (580, 361, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (581, 362, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (582, 362, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (583, 363, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (584, 364, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (585, 364, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (586, 365, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (587, 366, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (588, 366, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (589, 367, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (590, 367, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (591, 368, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (592, 368, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (593, 369, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (594, 370, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (595, 371, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (596, 372, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (597, 373, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (598, 374, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (599, 374, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (600, 375, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (601, 376, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (602, 377, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (603, 377, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (604, 378, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (605, 378, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (606, 379, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (607, 380, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (608, 380, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (609, 381, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (610, 382, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (611, 383, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (612, 383, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (613, 384, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (614, 385, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (615, 385, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (616, 386, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (617, 386, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (618, 387, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (619, 388, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (620, 388, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (621, 389, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (622, 389, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (623, 390, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (624, 391, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (625, 391, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (626, 392, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (627, 392, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (628, 393, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (629, 394, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (630, 394, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (631, 395, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (632, 396, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (633, 397, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (634, 397, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (635, 398, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (636, 398, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (637, 399, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (638, 399, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (639, 400, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (640, 400, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (641, 401, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (642, 401, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (643, 402, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (644, 402, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (645, 403, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (646, 404, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (647, 405, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (648, 406, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (649, 406, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (650, 407, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (651, 407, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (652, 408, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (653, 409, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (654, 409, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (655, 410, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (656, 410, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (657, 411, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (658, 411, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (659, 412, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (660, 413, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (661, 413, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (662, 414, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (663, 415, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (664, 415, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (665, 416, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (666, 416, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (667, 417, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (668, 417, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (669, 418, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (670, 418, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (671, 419, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (672, 420, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (673, 421, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (674, 422, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (675, 422, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (676, 423, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (677, 424, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (678, 424, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (679, 425, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (680, 425, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (681, 426, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (682, 426, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (683, 427, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (684, 427, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (685, 428, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (686, 428, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (687, 429, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (688, 430, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (689, 431, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (690, 432, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (691, 433, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (692, 433, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (693, 434, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (694, 435, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (695, 435, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (696, 436, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (697, 436, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (698, 437, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (699, 437, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (700, 438, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (701, 439, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (702, 439, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (703, 440, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (704, 441, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (705, 442, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (706, 442, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (707, 443, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (708, 444, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (709, 445, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (710, 445, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (711, 446, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (712, 446, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (713, 447, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (714, 448, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (715, 448, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (716, 449, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (717, 450, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (718, 450, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (719, 451, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (720, 452, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (721, 453, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (722, 453, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (723, 454, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (724, 455, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (725, 455, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (726, 456, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (727, 457, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (728, 457, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (729, 458, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (730, 459, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (731, 460, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (732, 460, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (733, 461, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (734, 461, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (735, 462, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (736, 463, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (737, 463, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (738, 464, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (739, 464, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (740, 465, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (741, 465, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (742, 466, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (743, 466, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (744, 467, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (745, 468, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (746, 468, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (747, 469, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (748, 469, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (749, 470, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (750, 471, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (751, 472, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (752, 472, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (753, 473, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (754, 473, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (755, 474, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (756, 475, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (757, 476, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (758, 477, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (759, 478, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (760, 478, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (761, 479, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (762, 480, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (763, 480, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (764, 481, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (765, 482, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (766, 483, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (767, 484, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (768, 484, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (769, 485, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (770, 486, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (771, 487, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (772, 488, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (773, 488, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (774, 489, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (775, 489, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (776, 490, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (777, 491, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (778, 491, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (779, 492, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (780, 492, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (781, 493, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (782, 494, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (783, 494, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (784, 495, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (785, 496, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (786, 497, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (787, 497, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (788, 498, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (789, 498, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (790, 499, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (791, 499, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (792, 500, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (793, 500, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (794, 501, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (795, 502, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (796, 502, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (797, 503, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (798, 503, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (799, 504, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (800, 504, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (801, 505, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (802, 505, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (803, 506, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (804, 507, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (805, 507, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (806, 508, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (807, 508, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (808, 509, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (809, 509, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (810, 510, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (811, 510, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (812, 511, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (813, 512, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (814, 513, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (815, 514, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (816, 515, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (817, 515, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (818, 516, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (819, 516, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (820, 517, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (821, 517, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (822, 518, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (823, 518, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (824, 519, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (825, 519, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (826, 520, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (827, 520, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (828, 521, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (829, 521, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (830, 522, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (831, 522, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (832, 523, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (833, 523, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (834, 524, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (835, 525, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (836, 526, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (837, 526, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (838, 527, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (839, 528, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (840, 529, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (841, 530, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (842, 530, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (843, 531, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (844, 532, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (845, 533, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (846, 533, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (847, 534, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (848, 535, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (849, 536, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (850, 536, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (851, 537, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (852, 537, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (853, 538, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (854, 539, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (855, 540, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (856, 540, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (857, 541, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (858, 542, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (859, 542, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (860, 543, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (861, 543, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (862, 544, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (863, 544, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (864, 545, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (865, 546, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (866, 547, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (867, 547, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (868, 548, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (869, 549, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (870, 549, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (871, 550, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (872, 550, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (873, 551, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (874, 551, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (875, 552, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (876, 552, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (877, 553, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (878, 553, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (879, 554, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (880, 554, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (881, 555, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (882, 555, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (883, 556, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (884, 556, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (885, 557, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (886, 557, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (887, 558, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (888, 558, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (889, 559, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (890, 559, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (891, 560, 1, 4, 2, 0);
+INSERT INTO `course_time` VALUES (892, 560, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (893, 561, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (894, 561, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (895, 562, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (896, 562, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (897, 563, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (898, 564, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (899, 565, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (900, 565, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (901, 566, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (902, 567, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (903, 567, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (904, 568, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (905, 569, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (906, 569, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (907, 570, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (908, 571, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (909, 572, 5, 8, 4, 0);
+INSERT INTO `course_time` VALUES (910, 572, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (911, 573, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (912, 573, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (913, 574, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (914, 574, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (915, 575, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (916, 576, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (917, 576, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (918, 577, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (919, 578, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (920, 579, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (921, 579, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (922, 580, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (923, 580, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (924, 581, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (925, 582, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (926, 583, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (927, 583, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (928, 584, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (929, 584, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (930, 585, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (931, 586, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (932, 586, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (933, 587, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (934, 588, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (935, 588, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (936, 589, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (937, 589, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (938, 590, 1, 4, 1, 0);
+INSERT INTO `course_time` VALUES (939, 591, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (940, 591, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (941, 592, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (942, 593, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (943, 594, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (944, 595, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (945, 596, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (946, 596, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (947, 597, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (948, 597, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (949, 598, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (950, 598, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (951, 599, 1, 4, 4, 0);
+INSERT INTO `course_time` VALUES (952, 599, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (953, 600, 6, 8, 2, 0);
+INSERT INTO `course_time` VALUES (954, 601, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (955, 602, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (956, 602, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (957, 603, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (958, 604, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (959, 604, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (960, 605, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (961, 605, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (962, 606, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (963, 606, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (964, 607, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (965, 607, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (966, 608, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (967, 608, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (968, 609, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (969, 609, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (970, 610, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (971, 610, 5, 7, 2, 0);
+INSERT INTO `course_time` VALUES (972, 611, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (973, 611, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (974, 612, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (975, 613, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (976, 613, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (977, 614, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (978, 615, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (979, 615, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (980, 616, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (981, 616, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (982, 617, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (983, 618, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (984, 618, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (985, 619, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (986, 620, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (987, 620, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (988, 621, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (989, 621, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (990, 622, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (991, 622, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (992, 623, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (993, 623, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (994, 624, 1, 4, 3, 0);
+INSERT INTO `course_time` VALUES (995, 624, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (996, 625, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (997, 625, 2, 4, 3, 0);
+INSERT INTO `course_time` VALUES (998, 626, 5, 8, 2, 0);
+INSERT INTO `course_time` VALUES (999, 627, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (1000, 628, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (1001, 628, 6, 8, 3, 0);
+INSERT INTO `course_time` VALUES (1002, 629, 5, 7, 1, 0);
+INSERT INTO `course_time` VALUES (1003, 630, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (1004, 631, 6, 8, 1, 0);
+INSERT INTO `course_time` VALUES (1005, 631, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (1006, 632, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (1007, 632, 2, 4, 5, 0);
+INSERT INTO `course_time` VALUES (1008, 633, 5, 8, 5, 0);
+INSERT INTO `course_time` VALUES (1009, 634, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (1010, 635, 5, 8, 1, 0);
+INSERT INTO `course_time` VALUES (1011, 635, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (1012, 636, 1, 3, 1, 0);
+INSERT INTO `course_time` VALUES (1013, 636, 2, 4, 1, 0);
+INSERT INTO `course_time` VALUES (1014, 637, 5, 7, 5, 0);
+INSERT INTO `course_time` VALUES (1015, 638, 1, 4, 5, 0);
+INSERT INTO `course_time` VALUES (1016, 639, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (1017, 639, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (1018, 640, 1, 3, 2, 0);
+INSERT INTO `course_time` VALUES (1019, 640, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (1020, 641, 1, 3, 4, 0);
+INSERT INTO `course_time` VALUES (1021, 641, 2, 4, 4, 0);
+INSERT INTO `course_time` VALUES (1022, 642, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (1023, 642, 1, 3, 3, 0);
+INSERT INTO `course_time` VALUES (1024, 643, 2, 4, 2, 0);
+INSERT INTO `course_time` VALUES (1025, 643, 1, 3, 5, 0);
+INSERT INTO `course_time` VALUES (1026, 644, 6, 8, 4, 0);
+INSERT INTO `course_time` VALUES (1027, 644, 5, 7, 3, 0);
+INSERT INTO `course_time` VALUES (1028, 645, 5, 8, 3, 0);
+INSERT INTO `course_time` VALUES (1029, 646, 6, 8, 5, 0);
+INSERT INTO `course_time` VALUES (1030, 646, 5, 7, 4, 0);
+INSERT INTO `course_time` VALUES (1031, 647, 1, 3, 1, 0);
 
-LOCK TABLES `course_time` WRITE;
-/*!40000 ALTER TABLE `course_time` DISABLE KEYS */;
-/*!40000 ALTER TABLE `course_time` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `file`
---
-
+-- ----------------------------
+-- Table structure for file
+-- ----------------------------
 DROP TABLE IF EXISTS `file`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `file` (
+CREATE TABLE `file`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `FileName` varchar(255) DEFAULT NULL,
-  `FilePath` varchar(255) DEFAULT NULL,
-  `UpdateTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `StudentID` int(11) DEFAULT NULL COMMENT '上传人ID',
-  `CourseID` int(11) DEFAULT NULL,
-  `DownloadNum` int(11) DEFAULT NULL,
-  `DeleteStatus` int(11) DEFAULT '0' COMMENT '删除位',
+  `FileName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `FilePath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `UpdateTime` timestamp(0) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  `StudentID` int(11) NULL DEFAULT NULL COMMENT '上传人ID',
+  `CourseID` int(11) NULL DEFAULT NULL,
+  `DownloadNum` int(11) NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NULL DEFAULT 0 COMMENT '删除位',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `StudentID` (`StudentID`) USING BTREE,
-  KEY `CourseID` (`CourseID`) USING BTREE,
+  INDEX `StudentID`(`StudentID`) USING BTREE,
+  INDEX `CourseID`(`CourseID`) USING BTREE,
   CONSTRAINT `file_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `file_ibfk_2` FOREIGN KEY (`CourseID`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `file`
---
-
-LOCK TABLES `file` WRITE;
-/*!40000 ALTER TABLE `file` DISABLE KEYS */;
-/*!40000 ALTER TABLE `file` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `major`
---
-
+-- ----------------------------
+-- Table structure for major
+-- ----------------------------
 DROP TABLE IF EXISTS `major`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `major` (
+CREATE TABLE `major`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `MajorName` varchar(255) DEFAULT NULL,
-  `CollegeID` int(11) DEFAULT NULL,
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位',
+  `MajorName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `CollegeID` int(11) NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `CollegeID` (`CollegeID`) USING BTREE,
+  INDEX `CollegeID`(`CollegeID`) USING BTREE,
   CONSTRAINT `major_ibfk_1` FOREIGN KEY (`CollegeID`) REFERENCES `college` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `major`
---
+-- ----------------------------
+-- Records of major
+-- ----------------------------
+INSERT INTO `major` VALUES (2, '信息安全', 1, 0);
+INSERT INTO `major` VALUES (3, '自动化', 1, 0);
+INSERT INTO `major` VALUES (4, '智能科学与技术', 1, 0);
+INSERT INTO `major` VALUES (5, '电子科学与技术', 6, 0);
+INSERT INTO `major` VALUES (6, '电子信息科学与技术', 6, 0);
+INSERT INTO `major` VALUES (7, '通信工程', 6, 0);
+INSERT INTO `major` VALUES (8, '精算学', 2, 0);
+INSERT INTO `major` VALUES (9, '光电信息科学与工程', 6, 0);
+INSERT INTO `major` VALUES (10, '微电子科学与工程', 6, 0);
+INSERT INTO `major` VALUES (11, '马克思主义哲学', 5, 0);
+INSERT INTO `major` VALUES (12, '中国哲学', 5, 0);
+INSERT INTO `major` VALUES (13, '外国哲学', 5, 0);
+INSERT INTO `major` VALUES (14, '逻辑学', 5, 0);
+INSERT INTO `major` VALUES (15, '科学技术哲学', 5, 0);
+INSERT INTO `major` VALUES (16, '中国史学', 3, 0);
+INSERT INTO `major` VALUES (17, '世界史学', 3, 0);
+INSERT INTO `major` VALUES (18, '考古与博物馆学', 3, 0);
+INSERT INTO `major` VALUES (19, '国际金融', 2, 0);
+INSERT INTO `major` VALUES (20, '数量金融', 2, 0);
+INSERT INTO `major` VALUES (21, '应用金融', 2, 0);
+INSERT INTO `major` VALUES (22, '金融经济', 2, 0);
+INSERT INTO `major` VALUES (23, '风险管理与保险', 2, 0);
 
-LOCK TABLES `major` WRITE;
-/*!40000 ALTER TABLE `major` DISABLE KEYS */;
-INSERT INTO `major` VALUES (1,'计算机科学',1,0),(2,'信息安全',1,0),(3,'自动化',1,0),(4,'智能',1,0);
-/*!40000 ALTER TABLE `major` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `student`
---
-
+-- ----------------------------
+-- Table structure for student
+-- ----------------------------
 DROP TABLE IF EXISTS `student`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `student` (
+CREATE TABLE `student`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `StudentName` varchar(255) DEFAULT NULL,
-  `Gender` int(11) DEFAULT '0' COMMENT '性别：0 is 未知，1 is 男，2 is 女',
-  `NickName` varchar(255) DEFAULT NULL,
-  `Password` varchar(255) DEFAULT NULL,
-  `StudentNumber` varchar(255) DEFAULT NULL,
-  `Grade` int(11) DEFAULT NULL,
-  `CollegeID` int(11) DEFAULT NULL,
-  `MajorID` int(11) DEFAULT NULL,
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位：0 is 正常，1 is 已删除',
-  `Privilege` int(11) NOT NULL DEFAULT '0' COMMENT '0=普通用户 1=管理员',
-  PRIMARY KEY (`id`,`Privilege`) USING BTREE,
-  KEY `CollegeID` (`CollegeID`) USING BTREE,
-  KEY `MajorID` (`MajorID`) USING BTREE,
+  `StudentName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Gender` int(11) NULL DEFAULT 0 COMMENT '性别：0 is 未知，1 is 男，2 is 女',
+  `NickName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `StudentNumber` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Grade` int(11) NULL DEFAULT NULL,
+  `CollegeID` int(11) NULL DEFAULT NULL,
+  `MajorID` int(11) NULL DEFAULT NULL,
+  `StudentPortrait` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Privilege` int(11) NOT NULL DEFAULT 0 COMMENT '0=普通用户 1=管理员',
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `CollegeID`(`CollegeID`) USING BTREE,
+  INDEX `MajorID`(`MajorID`) USING BTREE,
   CONSTRAINT `student_ibfk_1` FOREIGN KEY (`CollegeID`) REFERENCES `college` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `student_ibfk_2` FOREIGN KEY (`MajorID`) REFERENCES `major` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 457 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `student`
---
+-- ----------------------------
+-- Records of student
+-- ----------------------------
+INSERT INTO `student` VALUES (4, 'TestStudent', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, 0);
+INSERT INTO `student` VALUES (5, 'TestStudent', NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, 0);
+INSERT INTO `student` VALUES (8, '邱新竹', 1, 'Brady Nixon', '903050', '1368577', 13, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (9, '邓雪曼', 2, 'Susie Camp', '508682', '1384372', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (10, '银振国', 1, 'Kirk Russell', '771614', '1695593', 16, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (11, '雀白容', 2, 'Cash Timothy', '990777', '1351887', 13, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (12, '卓怜南', 2, 'Cleveland Raymond', '251632', '1669829', 16, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (13, '亥帅红', 1, 'Frank Joel', '1007450', '1556883', 15, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (14, '树涵意', 2, 'Miriam Stephens', '425260', '1545911', 15, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (15, '御贞静', 2, 'Winston Marlowe', '428708', '1413615', 14, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (16, '干浦泽', 1, 'Letitia O\'Connor', '902840', '1452670', 14, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (17, '空康宁', 2, 'Vic Butler', '1015985', '1504132', 15, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (18, '瞿桂月', 1, 'Camille Grey', '1035253', '1514281', 15, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (19, '蒿访烟', 1, 'Nat Alfred', '955282', '1375625', 13, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (20, '但静涵', 2, 'Alan Boswell', '900578', '1760306', 17, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (21, '成伟博', 1, 'Pamela Lincoln', '852009', '1339878', 13, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (22, '乌怀绿', 2, 'Rebecca Lawson', '214154', '1790515', 17, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (23, '磨芳华', 1, 'Lewis Woolf', '745267', '1706916', 17, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (24, '吕半凡', 1, 'Barton Hawthorne', '643794', '1606553', 16, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (25, '卿文华', 2, 'Molly Thodore', '605047', '1559874', 15, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (26, '仝紫琼', 1, 'Parker Babbitt', '705988', '1641465', 16, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (27, '频红旭', 2, 'Elma Buckle', '998939', '1425866', 14, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (28, '卢之桃', 2, 'Yedda Cotton', '380637', '1375181', 13, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (29, '虞成和', 2, 'Les Smith', '865761', '1325363', 13, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (30, '虢冬梅', 1, 'Gill Macadam', '913543', '1561672', 15, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (31, '邹端静', 2, 'Alva Scott', '131685', '1684451', 16, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (32, '巫凝洁', 2, 'Andrea Young', '863890', '1452340', 14, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (33, '说寄波', 1, 'Elliot Sara(h)', '187752', '1500380', 15, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (34, '洪奇略', 1, 'Burnell Blume', '1079411', '1797583', 17, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (35, '昝典丽', 1, 'Boris Broad', '734628', '1503307', 15, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (36, '鹿依秋', 1, 'Cheryl Harrington', '871231', '1593869', 15, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (37, '简远航', 1, 'Jo Roger', '1074696', '1747096', 17, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (38, '鄞思慧', 2, 'Keith Hobbes', '403567', '1683152', 16, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (39, '鱼芳馥', 2, 'Maggie Owen', '561898', '1602788', 16, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (40, '蔚书白', 1, 'Armand Kitto', '594310', '1690685', 16, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (41, '尹天悦', 2, 'Odelia Moore', '586129', '1475973', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (42, '融亦竹', 2, 'Kimberley Wallis', '765845', '1789549', 17, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (43, '貊嘉志', 1, 'Deirdre Herty', '788006', '1321688', 13, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (44, '甘凌雪', 2, 'Zero Washington', '715253', '1395072', 13, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (45, '焉意远', 1, 'Vicky Raphael', '268075', '1367734', 13, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (46, '肖新荣', 1, 'Rachel Harrison', '792059', '1396315', 13, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (47, '尤修为', 2, 'Troy Barney', '107714', '1373032', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (48, '畅佁然', 2, 'Jennifer Pearson', '229990', '1713606', 17, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (49, '营良骏', 1, 'Ogden Pepys', '389621', '1387332', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (50, '申震轩', 2, 'Noel Hugh', '504590', '1789495', 17, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (51, '郑向松', 1, 'Salome Martha', '892039', '1353447', 13, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (52, '上官弘深', 1, 'Ada Maltz', '923639', '1454383', 14, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (53, '汗依波', 2, 'Helen Barnard', '732831', '1606195', 16, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (54, '满嘉怡', 2, 'Bennett Powell', '266337', '1613986', 16, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (55, '纪清怡', 2, 'May MacArthur', '343514', '1710109', 17, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (56, '竺俊雅', 1, 'Lambert Katte', '501971', '1474670', 14, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (57, '章佳沛珊', 1, 'Bevis Beard', '145797', '1370676', 13, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (58, '纵庄雅', 1, 'Lucy Brown', '831317', '1379211', 13, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (59, '须洁雅', 1, 'Jonas Morrison', '780526', '1590993', 15, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (60, '和睿诚', 1, 'Werner Wodehous', '166276', '1595398', 15, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (61, '逢静安', 1, 'Natividad Dodd', '1079219', '1647862', 16, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (62, '圭雁凡', 1, 'Irma Amelia', '953691', '1643235', 16, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (63, '山妍和', 1, 'Ula Jonson', '1049265', '1393791', 13, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (64, '律彦杉', 2, 'Avery Foster', '924000', '1565502', 15, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (65, '镜映天', 2, 'Guy Trollpoe', '971157', '1698038', 16, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (66, '蔡笑旋', 1, 'Vivian Mackintosh', '253453', '1568094', 15, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (67, '星思嫒', 2, 'Griffith Maurice', '308174', '1719343', 17, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (68, '贵南蓉', 2, 'Dennis Kipling', '651206', '1734703', 17, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (69, '同梦寒', 1, 'Monroe Willard', '758575', '1582970', 15, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (70, '安英豪', 1, 'Otis Back', '391410', '1422441', 14, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (71, '仁翰飞', 2, 'Isabel Toynbee', '383676', '1361282', 13, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (72, '关可嘉', 1, 'Betsy Godwin', '797175', '1441155', 14, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (73, '西门方方', 2, 'Frederica Eva', '895943', '1481271', 14, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (74, '赤贤惠', 2, 'Booth Lawrence', '736076', '1576822', 15, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (75, '宿乐儿', 1, 'Olga Dupont', '912285', '1600832', 16, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (76, '代山梅', 1, 'Gabriel Samuel', '691863', '1528577', 15, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (77, '道友珊', 2, 'Hunter Dewar', '871184', '1720741', 17, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (78, '习心远', 2, 'Carl Bess', '948670', '1311652', 13, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (79, '霍曼彤', 1, 'Deborah House', '869842', '1447704', 14, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (80, '通俊楠', 1, 'Tyler Adolph', '174627', '1339727', 13, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (81, '敏明诚', 2, 'Marsh Walker', '572215', '1423772', 14, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (82, '奈长岳', 1, 'Sam Turner', '238438', '1618626', 16, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (83, '佴婉丽', 2, 'Mamie Belloc', '300990', '1635019', 16, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (84, '公冶柔雅', 2, 'Belle Saroyan', '847258', '1344790', 13, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (85, '旗飞飙', 1, 'Donald Sharp', '152060', '1654408', 16, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (86, '卷琦巧', 1, 'Barlow Minnie', '429006', '1788731', 17, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (87, '朱云臻', 2, 'Alston Tate', '879470', '1361699', 13, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (88, '留丽芳', 1, 'Teresa Eleanor', '784822', '1399078', 13, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (89, '独宜楠', 1, 'Marcia Holt', '829579', '1339775', 13, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (90, '京妮子', 2, 'Phoebe Howell(s)', '132008', '1410119', 14, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (91, '辛香柏', 2, 'Elmer ', '426275', '1370381', 13, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (92, '赵云飞', 1, 'Genevieve Pritt', '807019', '1592849', 15, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (93, '敬溶溶', 1, 'Hugo Stone', '133190', '1634593', 16, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (94, '祈星光', 1, 'Eartha Dewey', '624635', '1710853', 17, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (95, '杭涵亮', 2, 'Otto Bauer', '358557', '1393319', 13, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (96, '管夏真', 1, 'Arvin Whyet', '514342', '1467799', 14, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (97, '蓝敬曦', 1, 'Patricia Thorndike', '108390', '1697238', 16, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (98, '景春海', 1, 'York Arabella', '956074', '1691795', 16, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (99, '允琇云', 1, 'Ted Augustine', '711966', '1635880', 16, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (100, '哈凝蝶', 1, 'Sidney Pullan', '193139', '1307002', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (101, '仰光亮', 2, 'Beatrice Barton', '540522', '1302101', 13, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (102, '犹雨筠', 2, 'Rudolf Carllyle', '508742', '1542059', 15, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (103, '车浦和', 2, 'Kevin Paul', '193688', '1308816', 13, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (104, '信昆谊', 1, 'Nina Ingersoll', '278246', '1540928', 15, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (105, '凌兰泽', 1, 'Page Hill', '570137', '1488595', 14, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (106, '羿智刚', 2, 'Vito Lizzie', '824768', '1502185', 15, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (107, '问同光', 2, 'Candice Herbert', '594919', '1755531', 17, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (108, '那拉端丽', 2, 'Amelia Alsop(p)', '649173', '1563568', 15, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (109, '实凌霜', 1, 'Aldrich Nelly', '410021', '1524096', 15, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (110, '藤湛恩', 1, 'Marlon Max', '865428', '1646168', 16, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (111, '汝芳林', 2, 'Richard Jefferson', '191960', '1429483', 14, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (112, '九溪儿', 1, 'Gordon Dorothy', '1049345', '1462263', 14, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (113, '旷澎湃', 2, 'Ward Needham', '798384', '1516576', 15, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (114, '敛飞雪', 1, 'Rose Walkley', '972758', '1437573', 14, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (115, '寿春娇', 2, 'Nora Hopkin(s)', '264343', '1403406', 14, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (116, '勾书语', 1, 'Vanessa Horace', '931391', '1711318', 17, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (117, '宜晨辰', 2, 'Rita Jonathan', '381640', '1710263', 17, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (118, '樊夜春', 2, 'Gloria Richard', '614426', '1425189', 14, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (119, '农振博', 1, 'Valentine Macaulay', '187317', '1590308', 15, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (120, '委静慧', 1, 'Larry Price', '133025', '1787596', 17, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (121, '方兴旺', 1, 'Josephine Brooke', '1034843', '1604354', 16, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (122, '元温文', 1, 'Archibald Bulwer', '466591', '1701542', 17, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (123, '督良才', 1, 'Willie Lucas', '771146', '1517522', 15, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (124, '董高超', 2, 'Blake Tommy', '230550', '1400014', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (125, '少腾逸', 2, 'Edmund Milton', '254996', '1708235', 17, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (126, '似修杰', 1, 'Stephanie Christie', '545080', '1619526', 16, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (127, '汤曼凡', 1, 'Bard Ted', '359932', '1565659', 15, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (128, '弥颀秀', 1, 'Basil Steele', '686188', '1781922', 17, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (129, '市昆纶', 2, 'Nicholas Bloomfield', '520207', '1720768', 17, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (130, '度昕雨', 2, 'Kenneth Harrod', '739354', '1567737', 15, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (131, '苑飞雨', 1, 'Jim Bach', '307017', '1781834', 17, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (132, '禾痴凝', 1, 'Beacher Michelson', '953003', '1482267', 14, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (133, '第五安晏', 1, 'Ives Duncan', '694540', '1703120', 17, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (134, '枚夜柳', 1, 'Afra Anthony', '259286', '1513985', 15, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (135, '康云水', 1, 'Dunn Adelaide', '196218', '1459172', 14, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (136, '逯伟诚', 1, 'Alfred Nora', '1052788', '1661953', 16, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (137, '盘若南', 1, 'Gilbert Newton', '941134', '1445460', 14, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (138, '赖梦影', 1, 'August Belle', '1063713', '1668627', 16, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (139, '毛昕月', 1, 'Merlin Crichton', '339311', '1787673', 17, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (140, '漆凯康', 2, 'Elijah Pater', '760855', '1580944', 15, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (141, '雷书艺', 2, 'Honey Elsie', '168019', '1636013', 16, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (142, '秘雨晨', 2, 'Zachary Larkin', '981088', '1697051', 16, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (143, '介建业', 1, 'Nancy Judson', '977224', '1584793', 15, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (144, '丁丹红', 1, 'Arthur Bowman', '687227', '1496731', 14, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (145, '天雅蕊', 1, 'Janet Simon', '925184', '1421440', 14, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (146, '沐庆生', 2, 'Zona Ann', '419295', '1745715', 17, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (147, '於依波', 1, 'Nick Coffey', '458292', '1642718', 16, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (148, '友尔安', 2, 'Ina Sander', '128257', '1650459', 16, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (149, '登鸿运', 2, 'Earl Goldsmith', '605458', '1662778', 16, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (150, '堂馥芬', 2, 'Prudence Agnes', '1089450', '1738024', 17, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (151, '边高邈', 1, 'Elva Carmen', '620720', '1312020', 13, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (152, '戈昂然', 1, 'Channing Huntington', '951149', '1341494', 13, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (153, '贾忆南', 2, 'Barret Palmer', '698716', '1659614', 16, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (154, '庄浩淼', 1, 'Levi Church', '383670', '1689570', 16, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (155, '栾筠溪', 2, 'Lester Joe', '1051771', '1367931', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (156, '苦芳芳', 1, 'Bert Fox', '128342', '1679491', 16, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (157, '百代天', 2, 'Ian Judith', '748829', '1655925', 16, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (158, '圣子明', 2, 'Theresa Lewis', '602893', '1477719', 14, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (159, '诸良吉', 1, 'Nigel Wollaston', '938041', '1354063', 13, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (160, '喜雨梅', 2, 'Hubery Gaskell', '1097547', '1457288', 14, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (161, '龙修贤', 1, 'Harold Laurie', '164895', '1770469', 17, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (162, '鞠蒙雨', 1, 'Evan Katrine', '875066', '1468977', 14, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (163, '唐璠瑜', 1, 'Darnell Haywood', '635283', '1657628', 16, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (164, '礼浩皛', 2, 'Chester Curme', '165282', '1339371', 13, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (165, '良天媛', 2, 'Eunice Dolly', '764837', '1710585', 17, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (166, '贸浩丽', 1, 'Ferdinand Hansom', '302085', '1676726', 16, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (167, '侍采春', 2, 'Malcolm Dick', '730412', '1496101', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (168, '游采枫', 1, 'Dawn Bryce', '986211', '1312065', 13, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (169, '荤以旋', 1, 'Matthew Cronin', '744102', '1571819', 15, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (170, '虎梦旋', 1, 'Orville Jones', '833463', '1470466', 14, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (171, '淦贤淑', 2, 'Mandy Raman', '180104', '1463683', 14, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (172, '麦安彤', 1, 'Alexia Daisy', '479595', '1358283', 13, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (173, '陈雪珊', 2, 'Boyce Doris', '406361', '1717704', 17, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (174, '岳如南', 1, 'Ronald Sailsbury', '233281', '1789309', 17, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (175, '沃山兰', 1, 'Quintina Franklin', '442074', '1423200', 14, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (176, '秦书双', 2, 'Paul DeQuincey', '557515', '1703696', 17, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (177, '法华晖', 2, 'Benedict Locke', '205467', '1611650', 16, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (178, '古和通', 1, 'Bob Wagner', '810224', '1714908', 17, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (179, '锁湘云', 2, 'Spencer May', '897954', '1442859', 14, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (180, '祢奥维', 1, 'Poppy Reed', '198009', '1744684', 17, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (181, '布俊楚', 2, 'Joyce Jeremiah', '664282', '1405151', 14, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (182, '刘书雁', 1, 'Yves Cromwell', '1020173', '1655136', 16, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (183, '考巧云', 2, 'Brian Ella', '397210', '1331569', 13, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (184, '项白竹', 2, 'Gerald O\'Casey', '580160', '1664479', 16, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (185, '佟佳古韵', 2, 'Alva Gallup', '604556', '1663506', 16, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (186, '水凝雪', 1, 'Verne Dickens', '552933', '1339810', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (187, '漆雕运凡', 1, 'Maurice Kelvin', '651390', '1728281', 17, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (188, '夏初曼', 1, 'Phoenix Ricardo', '500318', '1796827', 17, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (189, '濮阳运浩', 1, 'Edith Guy', '797505', '1458108', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (190, '完颜欣荣', 2, 'Tiffany Becky', '471348', '1768416', 17, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (191, '斯静槐', 2, 'Donna Piers', '906181', '1651550', 16, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (192, '仵春妤', 2, 'Hilary Wordsworth', '1015205', '1366977', 13, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (193, '南门晓蕾', 1, 'Winni Gilbert', '783207', '1516380', 15, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (194, '冼半青', 1, 'Lennon Chaplin', '956159', '1615404', 16, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (195, '麻念之', 2, 'Mag Sonmerfield', '764036', '1564044', 15, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (196, '庆笑雯', 2, 'Caesar Elizabeth', '873415', '1449437', 14, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (197, '及亦竹', 1, 'Pandora Shelley', '853380', '1667666', 16, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (198, '曾远骞', 2, 'Rosalind Michael', '453549', '1392547', 13, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (199, '孙静云', 1, 'Sherry Lyly', '699868', '1650409', 16, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (200, '合思雨', 1, 'Hilda Felton', '310312', '1456041', 14, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (201, '严沛儿', 2, 'Ruby Lily', '489726', '1676863', 16, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (202, '斐嘉禧', 1, 'Madeline Valentine', '493213', '1678227', 16, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (203, '索若翠', 1, 'Mortimer Louis', '970737', '1739828', 17, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (204, '红问梅', 1, 'Phil ', '624372', '1394435', 13, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (205, '巫马孤容', 1, 'Joy Hazlitt', '194143', '1586348', 15, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (206, '廖岚风', 2, 'John Connor', '659983', '1396829', 13, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (207, '袭凡阳', 1, 'Hale Dalton', '804347', '1574491', 15, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (208, '陶心诺', 1, 'Claire Lancelot', '767657', '1346005', 13, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (209, '奕醉柳', 1, 'Egbert Browne', '547021', '1643122', 16, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (210, '范语心', 1, 'Ira Austin', '957017', '1310539', 13, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (211, '勤星文', 2, 'Omar Pollitt', '795953', '1412777', 14, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (212, '蓬靖易', 1, 'Douglas Evelina', '739194', '1599106', 15, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (213, '戴欣然', 1, 'Ralap Coverdale', '400126', '1699789', 16, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (214, '么依白', 1, 'Kelly Job', '530789', '1366363', 13, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (215, '愚惜灵', 2, 'Asa Sinclair', '885731', '1647086', 16, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (216, '伦灵萱', 2, 'Calvin Bunyan', '700015', '1359648', 13, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (217, '晋清芬', 1, 'Harvey Luke', '155305', '1313818', 13, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (218, '其霁芸', 1, 'Elvis Emily', '338223', '1376942', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (219, '军星菱', 1, 'Grace Galbraith', '501038', '1765553', 17, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (220, '止艳蕙', 2, 'Boyd Steinbeck', '685303', '1465686', 14, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (221, '谬星驰', 2, 'Xanthe Edie', '750023', '1713852', 17, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (222, '居含桃', 2, 'Athena Humphr(e)y', '153779', '1361673', 13, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (223, '龚芷文', 2, 'Susanna ', '293850', '1690053', 16, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (224, '希含海', 2, 'Theobald Hood', '887785', '1428789', 14, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (225, '抄嘉石', 2, 'Meredith Fowler', '700123', '1589416', 15, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (226, '节高原', 1, 'Will Benjamin', '898794', '1343023', 13, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (227, '慕雅柔', 2, 'Cornelius Ralph', '601826', '1467255', 14, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (228, '兆忆之', 1, 'Nelly Rossetti', '1017077', '1496901', 14, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (229, '吴新筠', 1, 'Marshall Surrey', '964267', '1713222', 17, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (230, '裘天骄', 2, 'Queena Hamilton', '288928', '1620295', 16, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (231, '随尔蓉', 1, 'Chloe Dunbar', '746557', '1564982', 15, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (232, '潘玉宇', 2, 'Mirabelle Walter', '738954', '1648714', 16, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (233, '恭辰铭', 2, 'Jessie Eugen', '209154', '1560220', 15, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (234, '栋映寒', 1, 'Ryan Huxley', '840230', '1547646', 15, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (235, '贲景天', 2, 'Tess Hughes', '727816', '1530798', 15, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (236, '肇小珍', 1, 'Allen Middleton', '354082', '1639097', 16, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (237, '双代珊', 2, 'Steven Marner', '124905', '1543946', 15, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (238, '司翰海', 1, 'Regan William', '401562', '1763430', 17, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (239, '商青香', 1, 'Rodney Pansy', '227089', '1665769', 16, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (240, '封建义', 1, 'Phyllis Baker', '607965', '1773662', 17, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (241, '桂寻桃', 2, 'William Newman', '399558', '1471191', 14, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (242, '念半蕾', 1, 'Berg Occam', '309306', '1376411', 13, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (243, '清高旻', 1, 'Curitis Bart', '278938', '1473153', 14, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (244, '员柔谨', 1, 'Reginald Halifax', '761813', '1510760', 15, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (245, '宇凌春', 1, 'Adelaide Susan', '429609', '1543336', 15, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (246, '集乐安', 1, 'Bradley Ferguson', '762458', '1468655', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (247, '闪梦竹', 1, 'Thomas Waters', '351579', '1351299', 13, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (248, '左曾琪', 2, 'Bernice Warner', '502176', '1662591', 16, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (249, '源静竹', 2, 'Lilith Delia', '232062', '1713201', 17, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (250, '休念珍', 1, 'Saxon Oscar', '399010', '1761105', 17, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (251, '局迎彤', 1, 'Elton Malachi', '796085', '1775597', 17, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (252, '冒寻芳', 1, 'Porter Tennyson', '962496', '1356846', 13, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (253, '马淑君', 2, 'Ken Giles', '951723', '1445590', 14, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (254, '孝流如', 2, 'Duke Wright', '1042438', '1744168', 17, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (255, '王迎丝', 2, 'Louis Robert', '634296', '1357211', 13, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (256, '枝晗晗', 2, 'Freda Faraday', '404613', '1714243', 17, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (257, '庾森莉', 1, 'Angela Pulitzer', '140811', '1518745', 15, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (258, '钟飞羽', 2, 'Coral Ernest', '1029617', '1700898', 17, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (259, '巩水荷', 1, 'Sean Madge', '129217', '1363847', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (260, '浑雨文', 2, 'Samuel North', '405798', '1412618', 14, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (261, '行迎梅', 2, 'Bridget Rhys', '262870', '1670949', 16, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (262, '鲜于兰芳', 2, 'Dominic Bell', '630146', '1524404', 15, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (263, '将玉书', 1, 'David Hudson', '623605', '1623643', 16, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (264, '闻春梅', 1, 'Ida Martin', '927497', '1571630', 15, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (265, '钦恨寒', 2, 'Ernest Gibbon', '798363', '1352867', 13, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (266, '段慕蕊', 2, 'Leonard Mat(h)ilda', '739735', '1452779', 14, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (267, '黎以彤', 1, 'Viola Hodge', '918665', '1671177', 16, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (268, '戚德宇', 2, 'Renata Gallacher', '254816', '1505351', 15, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (269, '仍安顺', 2, 'Charles More', '717822', '1314690', 13, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (270, '祖笛韵', 1, 'Broderick Smedley', '245427', '1475695', 14, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (271, '骑情韵', 1, 'Erica Euphemia', '964053', '1698524', 16, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (272, '刀菀柳', 1, 'Felix Habakkuk', '638878', '1520778', 15, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (273, '蓟妙芙', 1, 'Griselda Keats', '957038', '1400038', 14, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (274, '桥鸿博', 2, 'Lydia Margery', '442709', '1767852', 17, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (275, '聊娟妍', 2, 'Dick Nancy', '274580', '1769651', 17, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (276, '贰秋白', 2, 'Benjamin Bessie', '175156', '1541429', 15, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (277, '赛涵柳', 1, 'Jodie Parker', '945702', '1531697', 15, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (278, '戏岚翠', 2, 'Kay Howard', '875340', '1611247', 16, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (279, '折坚成', 2, 'Jason Jenny', '329186', '1484497', 14, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (280, '蛮佩珍', 2, 'Abraham Taylor', '149023', '1538342', 15, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (281, '綦春柏', 1, 'Arlene Wyld(e)', '910614', '1710085', 17, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (282, '凤洋然', 2, 'Melissa Robbins', '692428', '1393340', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (283, '邛静淑', 2, 'Diana Lou(ie)', '797984', '1668735', 16, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (284, '经曼珠', 1, 'Aaron Wilde', '1010898', '1671027', 16, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (285, '赧晓露', 2, 'Jared Arthur', '517643', '1488258', 14, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (286, '寻凌春', 2, 'Gwendolyn Bartlett', '491572', '1531761', 15, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (287, '拱千凝', 1, 'Wilbur Wilmot(t)', '766283', '1549338', 15, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (288, '芒幼安', 1, 'Virgil Sandy', '469345', '1509349', 15, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (289, '冉梅红', 2, 'Arlen Addison', '1003972', '1548580', 15, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (290, '戢绮烟', 1, 'Cyril Becher', '116208', '1499863', 14, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (291, '福文君', 1, 'Bertha Burke', '743155', '1645849', 16, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (292, '郸锐逸', 1, 'Tammy Thoreau', '348856', '1422579', 14, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (293, '图门津童', 2, 'Maureen Richards', '420203', '1354120', 13, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (294, '玄夏容', 2, 'Blair Bartholomew', '633073', '1595941', 15, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (295, '盖飞瑶', 2, 'Venus Shakespeare', '940228', '1328235', 13, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (296, '微生尔竹', 2, 'Sharon Anderson', '1074266', '1726440', 17, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (297, '支优瑗', 2, 'Max Reade', '248902', '1358041', 13, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (298, '萧嘉月', 1, 'Arno Forster', '612741', '1446775', 14, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (299, '错晗玥', 2, 'Sylvia Baldwin', '206268', '1684024', 16, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (300, '潜爰美', 1, 'Aurora Zangwill', '912914', '1526891', 15, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (301, '戊恨蝶', 2, 'Patrick Blake', '134235', '1325588', 13, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (302, '校鹤轩', 1, 'Byron Esther', '713303', '1620190', 16, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (303, '归雅素', 2, 'Roy Stella', '246693', '1341326', 13, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (304, '夫悦和', 2, 'Bblythe Obadiah', '178805', '1450737', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (305, '后飞白', 1, 'Bowen Eisenhower', '530452', '1339208', 13, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (306, '招智阳', 1, 'Grover Childe', '202929', '1472780', 14, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (307, '丙古兰', 2, 'Eleanore Bobby', '256503', '1501780', 15, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (308, '魏贞婉', 1, 'Kim Clark(e)', '903486', '1638703', 16, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (309, '苍紫文', 1, 'Leif Carnegie', '976884', '1676837', 16, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (310, '韩安春', 1, 'Vivien Augustus', '135874', '1532306', 15, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (311, '羊梦丝', 1, 'Murphy Trevelyan', '367058', '1375447', 13, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (312, '郯友易', 2, 'Lance Ferdinand', '375339', '1766253', 17, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (313, '夙令雪', 1, 'Benson Gold', '834217', '1799873', 17, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (314, '腾元武', 2, 'Natalie Cowper', '989531', '1688422', 16, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (315, '尾俊语', 2, 'Bishop Connie', '664443', '1702159', 17, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (316, '窦善和', 2, 'Gary Benson', '539194', '1784061', 17, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (317, '己香波', 1, 'Linda Barrie', '105864', '1342267', 13, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (318, '泥从安', 1, 'Moira Wolf', '819446', '1662880', 16, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (319, '练冷松', 1, 'Carr Salome', '150046', '1596743', 15, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (320, '轩辕乐安', 2, 'Henry Dutt', '344061', '1507999', 15, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (321, '涂夏雪', 1, 'Cynthia Louise', '177812', '1527322', 15, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (322, '皇代桃', 1, 'Vera Johnson', '397531', '1517975', 15, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (323, '郏又亦', 1, 'Wendy I.', '572935', '1417531', 14, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (324, '宗傲旋', 1, 'Sally Fred', '114702', '1717191', 17, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (325, '钱温瑜', 1, 'Colby Hewlett', '843664', '1454722', 14, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (326, '仙滢滢', 2, 'Tab Clapham', '332180', '1761612', 17, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (327, '定格格', 1, 'Burke Sophy', '1020314', '1675704', 16, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (328, '巴香天', 2, 'Bella Monroe', '436807', '1483621', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (329, '素秋柔', 2, 'Berton Mill', '1020661', '1428324', 14, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (330, '展嘉熙', 2, 'Gavin Bird', '1009115', '1443214', 14, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (331, '爱妮娜', 1, 'Osborn ', '793637', '1694120', 16, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (332, '让雨琴', 1, 'Wordsworth Marshall', '917021', '1442907', 14, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (333, '周歌云', 1, 'Lorraine Alice', '522016', '1595610', 15, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (334, '析梦月', 1, 'Valentina Conan', '1063270', '1344243', 13, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (335, '路青亦', 1, 'Verna Zephaniah', '571709', '1367190', 13, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (336, '陀丽华', 2, 'Maud Birrell', '905595', '1353134', 13, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (337, '申屠德馨', 2, 'Maria Wilson', '778551', '1728916', 17, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (338, '衡长菁', 1, 'Primo Bellamy', '136768', '1684517', 16, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (339, '隆月明', 1, 'Marico Windsor', '1046046', '1336141', 13, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (340, '户涵润', 1, 'Adair Nehemiah', '888077', '1757031', 17, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (341, '肥静秀', 1, 'Gregary Carrie', '274118', '1332096', 13, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (342, '在元槐', 2, 'Moses Walton', '489828', '1752338', 17, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (343, '穰忆文', 2, 'Wendell Rob', '343736', '1494362', 14, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (344, '伍听安', 2, 'Ethel Hicks', '1004551', '1609284', 16, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (345, '酒俊达', 2, 'Tony Moll', '958535', '1405570', 14, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (346, '全经赋', 1, 'Lynn Samson', '505169', '1671799', 16, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (347, '闭晨钰', 2, 'Xavier Keynes', '222774', '1441414', 14, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (348, '郭清淑', 1, 'Tabitha Cecillia', '773591', '1367947', 13, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (349, '毋英卓', 1, 'Rock Anne', '804493', '1526472', 15, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (350, '藩修诚', 1, 'Tracy Bert', '853014', '1423125', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (351, '滑烨磊', 1, 'Ivan Gunter', '640642', '1532292', 15, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (352, '聂碧琴', 2, 'Perry Yeates', '622891', '1348628', 13, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (353, '检晓桐', 2, 'Hedy Dierser', '341789', '1700245', 17, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (354, '侨乐天', 2, 'Owen Bloomer', '185411', '1537175', 15, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (355, '宣莹华', 2, 'Quinn Raleign', '710932', '1420713', 14, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (356, '剑辰骏', 1, 'Juliet Malthus', '589249', '1536167', 15, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (357, '钊曼安', 2, 'Ansel Swinburne', '507200', '1444657', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (358, '紫诗蕊', 2, 'Jacob Lindsay', '156786', '1480700', 14, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (359, '党欣笑', 1, 'Oswald David', '618948', '1499015', 14, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (360, '蒉英哲', 2, 'Leona Orlando', '904938', '1739693', 17, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (361, '泰晏如', 1, 'Jessica Jonah', '786824', '1330671', 13, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (362, '文炫明', 2, 'Barnett Temple', '180649', '1764819', 17, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (363, '晁绢子', 2, 'Lucien Ben', '711374', '1756829', 17, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (364, '羽哲彦', 2, 'Samantha Fielding', '402727', '1343256', 13, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (365, '典涵桃', 1, 'Jeffrey Cocker', '788927', '1612768', 16, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (366, '莘静枫', 2, 'Daniel Stevenson', '862830', '1501104', 15, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (367, '飞芳春', 2, 'Edison Doyle', '988609', '1458319', 14, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (368, '步曼彤', 2, 'Kelly Crofts', '372788', '1504549', 15, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (369, '旅玄雅', 1, 'Michelle Sherwood', '566430', '1405081', 14, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (370, '桐春晓', 2, 'Sebastiane Burne-Jones', '150419', '1422854', 14, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (371, '荆若云', 2, 'Doris Wesley', '614024', '1662943', 16, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (372, '长岚岚', 2, 'Albert Gunther', '146075', '1430549', 14, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (373, '苟秀筠', 1, 'Winifred Gibson', '1027381', '1496927', 14, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (374, '来依霜', 1, 'Kennedy Meg', '993336', '1574665', 15, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (375, '威昂雄', 2, 'Rosemary Wheeler', '755352', '1366157', 13, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (376, '性爰爰', 2, 'Newman Adela', '493387', '1338599', 13, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (377, '公孙烨华', 2, 'Tyrone Jenkin(s)', '353398', '1351322', 13, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (378, '仆宏富', 2, 'Lindsay Dan', '871619', '1624766', 16, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (379, '尔新觉', 1, 'Fitch Houston', '285852', '1541022', 15, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (380, '庹白萱', 1, 'Pag Roland', '1059295', '1427505', 14, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (381, '颛孙又松', 2, 'Enid Patrick', '791383', '1443199', 14, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (382, '丘向文', 2, 'Lesley Micah', '529387', '1614549', 16, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (383, '高囡囡', 1, 'Mabel Violet', '775505', '1528781', 15, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (384, '澄毅然', 1, 'Adam Mac-', '833495', '1795553', 17, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (385, '计虹颖', 1, 'Jack Clemens', '711560', '1634810', 16, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (386, '缑晓莉', 2, 'Modesty Catharine', '838164', '1476395', 14, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (387, '弭迎梅', 2, 'Kerwin Abbot(t)', '1071181', '1363627', 13, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (388, '才成仁', 1, 'Walker Faulkner', '678489', '1765458', 17, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (389, '柯凡雁', 2, 'Amy Twain', '267264', '1332259', 13, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (390, '始春岚', 2, 'Dwight Electra', '504121', '1378174', 13, 2, 22, NULL, 0, 0);
+INSERT INTO `student` VALUES (391, '接乐心', 1, 'Denise Harold', '809400', '1308061', 13, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (392, '栗甜恬', 1, 'Montague Peter', '545418', '1465943', 14, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (393, '司空韶丽', 1, 'Steward Julia', '721411', '1611435', 16, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (394, '哀蕴美', 2, 'Eric Sheridan', '540478', '1764516', 17, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (395, '歧凝琴', 2, 'Flora Beerbohm', '619415', '1747235', 17, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (396, '阳琼芳', 2, 'Louise Jasper', '139849', '1729228', 17, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (397, '悉访文', 1, 'Franklin Clare', '890165', '1650915', 16, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (398, '守雪晴', 2, 'Hannah Browning', '1019353', '1746892', 17, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (399, '续丝柳', 1, 'Elsie Caroline', '873052', '1583189', 15, 2, 20, NULL, 0, 0);
+INSERT INTO `student` VALUES (400, '拓跋兴发', 1, 'Wright Theresa', '554262', '1374003', 13, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (401, '果俊力', 2, 'Jenny Tomlinson', '224668', '1379946', 13, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (402, '可巧夏', 2, 'Celeste Smollett', '968893', '1655101', 16, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (403, '大元明', 1, 'Sabina Bertha', '854067', '1557495', 15, 5, 15, NULL, 0, 0);
+INSERT INTO `student` VALUES (404, '潮雅素', 1, 'Jane Gresham', '315153', '1442362', 14, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (405, '函文敏', 1, 'Beryl Grace', '181637', '1718093', 17, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (406, '殳春冬', 2, 'Joshua Judd', '527994', '1327057', 13, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (407, '务思彤', 2, 'Agnes Keppel', '1031589', '1375187', 13, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (408, '利小翠', 1, 'Colbert Peggy', '504939', '1451079', 14, 1, 2, NULL, 0, 0);
+INSERT INTO `student` VALUES (409, '养清馨', 1, 'Jean Hodgson', '547172', '1606873', 16, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (410, '司马乐邦', 1, 'Gustave Francis', '711658', '1657283', 16, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (411, '褚野雪', 1, 'Jill Whittier', '425466', '1681857', 16, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (412, '塞泰平', 2, 'Dominic DuBois', '834140', '1493777', 14, 3, 18, NULL, 0, 0);
+INSERT INTO `student` VALUES (413, '张廖初蝶', 1, 'Eden Jacob', '249518', '1719157', 17, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (414, '昌北晶', 2, 'Frances Harriman', '897872', '1652601', 16, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (415, '壬梦玉', 1, 'Cliff Swift', '1090407', '1691621', 16, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (416, '宏幻儿', 2, 'Aries Frances', '924895', '1739460', 17, 6, 7, NULL, 0, 0);
+INSERT INTO `student` VALUES (417, '矫永寿', 1, 'Clyde Horatio', '411758', '1585686', 15, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (418, '罕宜春', 1, 'Corey Watt', '333664', '1512617', 15, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (419, '姬含蕊', 2, 'Philip Service', '648519', '1761819', 17, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (420, '犁天华', 1, 'Colin Jeremy', '509391', '1570375', 15, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (421, '糜如松', 1, 'Ophelia Onions', '636170', '1623767', 16, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (422, '茂含蕊', 1, 'Kristin Kell(e)y', '283983', '1317522', 13, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (423, '顾雅洁', 1, 'Elvira Sawyer', '699656', '1690860', 16, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (424, '暴丽芳', 2, 'Giles Morgan', '632390', '1401811', 14, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (425, '宦青旋', 1, 'Muriel Jean', '872062', '1401111', 14, 2, 23, NULL, 0, 0);
+INSERT INTO `student` VALUES (426, '笪子怡', 1, 'Dale Henley', '292975', '1482657', 14, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (427, '纳喇高飞', 2, 'Ingemar Scripps', '580392', '1701058', 17, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (428, '板平蓝', 2, 'Sandy Leighton', '1048666', '1670780', 16, 1, 4, NULL, 0, 0);
+INSERT INTO `student` VALUES (429, '狄元灵', 1, 'Nydia Patience', '172738', '1683002', 16, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (430, '衅平安', 1, 'Nathan Bessemer', '353149', '1649593', 16, 3, 16, NULL, 0, 0);
+INSERT INTO `student` VALUES (431, '冠若枫', 2, 'Barry Field', '728605', '1361573', 13, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (432, '穆萦怀', 1, 'Nicola Walsh', '417308', '1647550', 16, 5, 12, NULL, 0, 0);
+INSERT INTO `student` VALUES (433, '赫孤云', 2, 'Truda Morse', '351084', '1327680', 13, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (434, '仪光熙', 1, 'Evelyn Acheson', '737498', '1429203', 14, 2, 19, NULL, 0, 0);
+INSERT INTO `student` VALUES (435, '遇飞兰', 2, 'Madge Jessie', '955411', '1596989', 15, 5, 11, NULL, 0, 0);
+INSERT INTO `student` VALUES (436, '祝乐蓉', 1, 'Ternence Petty', '712372', '1361205', 13, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (437, '世敏智', 1, 'Ellis Marcellus', '238580', '1382359', 13, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (438, '韶沛凝', 1, 'Belinda Wheatley', '175066', '1350155', 13, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (439, '那春柔', 1, 'Eli Poe', '823236', '1618221', 16, 6, 6, NULL, 0, 0);
+INSERT INTO `student` VALUES (440, '善鸿雪', 1, 'Yale Cissie', '453320', '1657750', 16, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (441, '常梦旋', 2, 'Blithe Daniel', '271704', '1712880', 17, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (442, '慕容晶茹', 1, 'Joanna Gosse', '725823', '1329043', 13, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (443, '年力勤', 2, 'Antonio Dulles', '774077', '1339714', 13, 1, 3, NULL, 0, 0);
+INSERT INTO `student` VALUES (444, '睢慧云', 1, 'Myrna Edith', '258470', '1696850', 16, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (445, '庞高旻', 2, 'Godfery II.', '111958', '1618694', 16, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (446, '郁鸿宝', 1, 'Sibyl Webster', '150431', '1675124', 16, 2, 8, NULL, 0, 0);
+INSERT INTO `student` VALUES (447, '位怡悦', 2, 'Spring Toland', '949624', '1496206', 14, 6, 10, NULL, 0, 0);
+INSERT INTO `student` VALUES (448, '弓音仪', 2, 'Victor Lucia', '868953', '1451083', 14, 6, 5, NULL, 0, 0);
+INSERT INTO `student` VALUES (449, '酆初珍', 1, 'Duncan Bentham', '735137', '1799497', 17, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (450, '孛访梦', 2, 'Lyndon Snow', '870812', '1665755', 16, 5, 14, NULL, 0, 0);
+INSERT INTO `student` VALUES (451, '铎如风', 1, 'Heloise Gregory', '348749', '1315248', 13, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (452, '寒忆霜', 2, 'Harry Freeman', '860924', '1492524', 14, 3, 17, NULL, 0, 0);
+INSERT INTO `student` VALUES (453, '奉傲易', 2, 'Lisa Christy', '555440', '1628077', 16, 2, 21, NULL, 0, 0);
+INSERT INTO `student` VALUES (454, '甲若雁', 2, 'Ron Mansfield', '977596', '1557975', 15, 5, 13, NULL, 0, 0);
+INSERT INTO `student` VALUES (455, '厍恬谧', 2, 'Stacey Jack', '776786', '1654475', 16, 6, 9, NULL, 0, 0);
+INSERT INTO `student` VALUES (456, '焦心思', 1, 'Dylan Tout', '192040', '1555384', 15, 3, 17, NULL, 0, 0);
 
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'蝙蝠侠',1,'Batman','batman',NULL,2016,1,2,0,0),(2,'超人',1,'Superman','superman',NULL,2017,1,1,0,0),(4,'TestStudent',NULL,NULL,NULL,NULL,0,NULL,NULL,0,0),(5,'TestStudent',NULL,NULL,NULL,NULL,0,NULL,NULL,0,0);
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `student_comment_course`
---
-
+-- ----------------------------
+-- Table structure for student_comment_course
+-- ----------------------------
 DROP TABLE IF EXISTS `student_comment_course`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `student_comment_course` (
+CREATE TABLE `student_comment_course`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `SelectID` int(11) DEFAULT NULL,
-  `Comment` varchar(255) DEFAULT NULL,
-  `GradeScore` int(11) DEFAULT NULL COMMENT '成绩打分',
-  `ContentScore` int(11) DEFAULT NULL,
-  `LikeNumber` int(11) DEFAULT '0',
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位：0 is 正常，1 is 已删除',
-  `Anonymous` int(11) DEFAULT '0' COMMENT '0=不匿名，1=匿名 默认不匿名',
-  `CommentTime` timestamp NULL DEFAULT NULL,
-  `BearScore` int(11) DEFAULT NULL,
-  `InterestingScore` int(11) DEFAULT NULL,
-  `EasyScore` int(11) DEFAULT NULL,
-  `KnowledgeScore` int(11) DEFAULT NULL,
+  `SelectID` int(11) NULL DEFAULT 0,
+  `Comment` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `GradeScore` int(11) NULL DEFAULT NULL COMMENT '成绩打分',
+  `ContentScore` int(11) NULL DEFAULT NULL,
+  `LikeNumber` int(11) NULL DEFAULT 0,
+  `Anonymous` int(11) NULL DEFAULT 0 COMMENT '0=不匿名，1=匿名 默认不匿名',
+  `CommentTime` timestamp(6) NULL DEFAULT NULL,
+  `BearScore` int(11) NULL DEFAULT NULL,
+  `InterestingScore` int(11) NULL DEFAULT NULL,
+  `EasyScore` int(11) NULL DEFAULT NULL,
+  `KnowledgeScore` int(11) NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `id` (`id`) USING BTREE,
-  KEY `SelectID` (`SelectID`) USING BTREE,
+  INDEX `id`(`id`) USING BTREE,
+  INDEX `SelectID`(`SelectID`) USING BTREE,
   CONSTRAINT `student_comment_course_ibfk_1` FOREIGN KEY (`SelectID`) REFERENCES `student_select_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 355 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `student_comment_course`
---
+-- ----------------------------
+-- Records of student_comment_course
+-- ----------------------------
+INSERT INTO `student_comment_course` VALUES (1, 1, '大家大二就能选这节课，只需要一点点高数基础', 2, 1, 224, 0, '2018-08-02 10:20:49.000000', 4, 5, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (2, 1, '慎选！！！大作业要我命', 2, 2, 104, 0, '2018-08-02 09:06:43.000000', 1, 2, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (3, 8, '慎选！！！大作业要我命', 2, 2, 240, 0, '2018-08-02 09:17:23.000000', 2, 1, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (4, 9, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 4, 52, 1, '2018-08-02 10:36:19.000000', 2, 5, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (5, 15, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 1, 283, 1, '2018-08-02 09:09:52.000000', 1, 2, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (6, 11, '学了这门课PPT技能MAX 手动微笑', 2, 3, 65, 1, '2018-08-02 08:28:08.000000', 4, 1, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (7, 14, '学了这门课PPT技能MAX 手动微笑', 2, 5, 210, 1, '2018-08-02 10:40:46.000000', 4, 1, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (8, 19, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 4, 275, 1, '2018-08-02 10:01:51.000000', 2, 2, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (9, 20, '老师给分高', 2, 2, 21, 1, '2018-08-02 08:54:16.000000', 3, 4, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (10, 18, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 5, 170, 1, '2018-08-02 08:46:03.000000', 5, 1, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (11, 23, '老师给分超高，感谢老师', 3, 2, 260, 1, '2018-08-02 09:33:50.000000', 2, 2, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (12, 26, '老师讲课超级好，能够带动课堂的氛围', 4, 4, 95, 1, '2018-08-02 09:59:13.000000', 1, 5, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (13, 31, '大家大二就能选这节课，只需要一点点高数基础', 2, 2, 137, 0, '2018-08-02 10:47:09.000000', 4, 3, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (14, 30, '大家大二就能选这节课，只需要一点点高数基础', 2, 4, 272, 1, '2018-08-02 08:26:36.000000', 1, 1, 3, 2, 0);
+INSERT INTO `student_comment_course` VALUES (15, 36, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 5, 42, 0, '2018-08-02 09:54:31.000000', 4, 4, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (16, 34, '大家大二就能选这节课，只需要一点点高数基础', 4, 4, 104, 0, '2018-08-02 08:49:01.000000', 3, 2, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (17, 36, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 5, 5, 171, 1, '2018-08-02 10:11:05.000000', 3, 5, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (18, 38, '老师人很好，上课作业少，平时没作业，期末成绩好', 5, 1, 77, 0, '2018-08-02 11:11:10.000000', 5, 4, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (19, 43, '老师讲课超级好，能够带动课堂的氛围', 3, 4, 100, 1, '2018-08-02 09:35:56.000000', 3, 1, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (20, 43, '老师给分超高，感谢老师', 1, 5, 291, 1, '2018-08-02 10:09:59.000000', 1, 1, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (21, 42, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 4, 101, 1, '2018-08-02 10:03:08.000000', 4, 3, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (22, 45, '老师讲课超级好，能够带动课堂的氛围', 4, 2, 128, 0, '2018-08-02 08:27:54.000000', 2, 3, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (23, 48, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 4, 164, 1, '2018-08-02 10:35:18.000000', 2, 5, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (24, 55, '慎选！！！大作业要我命', 1, 2, 206, 0, '2018-08-02 10:53:44.000000', 3, 2, 2, 2, 0);
+INSERT INTO `student_comment_course` VALUES (25, 54, '大家大二就能选这节课，只需要一点点高数基础', 1, 3, 276, 0, '2018-08-02 08:59:21.000000', 2, 3, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (26, 63, '慎选！！！大作业要我命', 5, 1, 233, 1, '2018-08-02 10:58:33.000000', 3, 5, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (27, 62, '老师给分高', 2, 5, 174, 0, '2018-08-02 11:06:35.000000', 1, 2, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (28, 63, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 5, 133, 0, '2018-08-02 08:56:12.000000', 4, 1, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (29, 65, '老师给分超高，感谢老师', 1, 4, 236, 1, '2018-08-02 09:20:04.000000', 5, 4, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (30, 67, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 3, 3, 137, 1, '2018-08-02 10:47:34.000000', 5, 2, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (31, 78, '慎选！！！大作业要我命', 2, 3, 43, 0, '2018-08-02 10:45:24.000000', 5, 2, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (32, 83, '慎选！！！大作业要我命', 5, 2, 0, 0, '2018-08-02 08:50:28.000000', 3, 2, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (33, 97, '学了这门课PPT技能MAX 手动微笑', 5, 2, 71, 1, '2018-08-02 09:53:20.000000', 3, 4, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (34, 100, '慎选！！！大作业要我命', 2, 2, 10, 1, '2018-08-02 08:30:13.000000', 1, 5, 3, 2, 0);
+INSERT INTO `student_comment_course` VALUES (35, 96, '老师给分超高，感谢老师', 5, 3, 31, 1, '2018-08-02 10:09:14.000000', 3, 3, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (36, 104, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 3, 7, 0, '2018-08-02 10:50:45.000000', 3, 5, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (37, 110, '老师给分超高，感谢老师', 3, 1, 60, 0, '2018-08-02 10:31:49.000000', 5, 5, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (38, 112, '慎选！！！大作业要我命', 4, 2, 269, 1, '2018-08-02 09:14:50.000000', 5, 2, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (39, 115, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 1, 5, 242, 0, '2018-08-02 08:28:37.000000', 4, 3, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (40, 114, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 5, 4, 194, 1, '2018-08-02 09:24:44.000000', 2, 5, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (41, 115, '老师给分超高，感谢老师', 4, 3, 274, 1, '2018-08-02 10:53:03.000000', 4, 4, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (42, 118, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 3, 104, 1, '2018-08-02 11:03:31.000000', 3, 5, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (43, 122, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 3, 1, 236, 0, '2018-08-02 08:46:41.000000', 5, 5, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (44, 119, '老师给分高', 5, 1, 155, 0, '2018-08-02 09:06:09.000000', 4, 5, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (45, 124, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 1, 297, 1, '2018-08-02 10:45:19.000000', 2, 1, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (46, 135, '老师给分高', 4, 5, 85, 1, '2018-08-02 10:43:57.000000', 1, 1, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (47, 140, '大家大二就能选这节课，只需要一点点高数基础', 4, 2, 27, 0, '2018-08-02 10:41:13.000000', 5, 1, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (48, 147, '老师给分超高，感谢老师', 3, 2, 186, 0, '2018-08-02 09:29:53.000000', 2, 3, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (49, 148, '老师给分超高，感谢老师', 4, 2, 97, 1, '2018-08-02 10:25:15.000000', 4, 1, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (50, 150, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 5, 129, 1, '2018-08-02 10:16:37.000000', 3, 5, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (51, 151, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 3, 5, 196, 0, '2018-08-02 10:25:07.000000', 1, 1, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (52, 151, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 4, 5, 202, 1, '2018-08-02 10:21:34.000000', 5, 3, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (53, 169, '慎选！！！大作业要我命', 2, 1, 216, 1, '2018-08-02 11:01:54.000000', 4, 3, 2, 2, 0);
+INSERT INTO `student_comment_course` VALUES (54, 169, '大家大二就能选这节课，只需要一点点高数基础', 2, 3, 60, 0, '2018-08-02 10:06:53.000000', 5, 1, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (55, 170, '老师给分高', 1, 4, 168, 1, '2018-08-02 08:51:51.000000', 1, 3, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (56, 183, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 3, 114, 1, '2018-08-02 08:27:48.000000', 1, 5, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (57, 180, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 2, 83, 1, '2018-08-02 10:35:18.000000', 5, 3, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (58, 183, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 2, 196, 1, '2018-08-02 08:46:22.000000', 1, 4, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (59, 196, '慎选！！！大作业要我命', 4, 3, 233, 1, '2018-08-02 10:35:22.000000', 2, 3, 2, 2, 0);
+INSERT INTO `student_comment_course` VALUES (60, 202, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 1, 2, 149, 1, '2018-08-02 09:40:55.000000', 2, 1, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (61, 199, '大家大二就能选这节课，只需要一点点高数基础', 2, 4, 253, 0, '2018-08-02 09:14:44.000000', 3, 5, 2, 4, 0);
+INSERT INTO `student_comment_course` VALUES (62, 201, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 2, 5, 269, 0, '2018-08-02 09:45:47.000000', 2, 2, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (63, 203, '老师给分高', 1, 5, 234, 0, '2018-08-02 10:41:15.000000', 3, 5, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (64, 209, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 4, 1, 143, 1, '2018-08-02 10:23:26.000000', 4, 2, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (65, 209, '老师给分高', 1, 1, 8, 1, '2018-08-02 10:59:22.000000', 1, 3, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (66, 207, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 1, 276, 0, '2018-08-02 08:46:28.000000', 4, 4, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (67, 214, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 1, 214, 0, '2018-08-02 09:23:34.000000', 3, 3, 2, 4, 0);
+INSERT INTO `student_comment_course` VALUES (68, 212, '大家大二就能选这节课，只需要一点点高数基础', 3, 4, 136, 1, '2018-08-02 08:38:38.000000', 2, 1, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (69, 213, '老师给分超高，感谢老师', 5, 3, 93, 1, '2018-08-02 09:33:56.000000', 5, 2, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (70, 217, '老师给分高', 4, 5, 75, 0, '2018-08-02 08:30:59.000000', 3, 2, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (71, 219, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 1, 42, 1, '2018-08-02 09:49:34.000000', 1, 3, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (72, 225, '大家大二就能选这节课，只需要一点点高数基础', 2, 4, 157, 1, '2018-08-02 09:09:05.000000', 5, 2, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (73, 221, '学了这门课PPT技能MAX 手动微笑', 4, 5, 4, 1, '2018-08-02 09:07:23.000000', 5, 1, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (74, 227, '慎选！！！大作业要我命', 2, 5, 247, 1, '2018-08-02 08:45:58.000000', 5, 3, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (75, 226, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 3, 9, 0, '2018-08-02 10:56:31.000000', 5, 5, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (76, 231, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 2, 2, 297, 0, '2018-08-02 10:03:19.000000', 3, 1, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (77, 237, '学了这门课PPT技能MAX 手动微笑', 2, 1, 115, 1, '2018-08-02 10:48:35.000000', 2, 3, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (78, 238, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 2, 152, 1, '2018-08-02 11:00:12.000000', 4, 4, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (79, 245, '老师给分高', 2, 1, 164, 1, '2018-08-02 09:53:24.000000', 5, 3, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (80, 247, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 3, 227, 0, '2018-08-02 09:18:33.000000', 5, 1, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (81, 248, '老师人很好，上课作业少，平时没作业，期末成绩好', 4, 1, 221, 0, '2018-08-02 09:18:57.000000', 1, 2, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (82, 251, '老师给分高', 1, 3, 81, 1, '2018-08-02 10:27:46.000000', 2, 4, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (83, 254, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 1, 106, 1, '2018-08-02 08:41:47.000000', 3, 3, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (84, 255, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 4, 4, 94, 1, '2018-08-02 09:09:34.000000', 1, 5, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (85, 261, '老师讲课超级好，能够带动课堂的氛围', 3, 3, 123, 1, '2018-08-02 09:42:06.000000', 5, 5, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (86, 266, '慎选！！！大作业要我命', 5, 5, 234, 0, '2018-08-02 10:54:31.000000', 4, 3, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (87, 265, '老师讲课超级好，能够带动课堂的氛围', 1, 1, 61, 0, '2018-08-02 09:50:02.000000', 3, 4, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (88, 266, '大家大二就能选这节课，只需要一点点高数基础', 5, 4, 195, 0, '2018-08-02 09:50:38.000000', 1, 3, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (89, 273, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 1, 105, 1, '2018-08-02 10:11:50.000000', 5, 4, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (90, 274, '学了这门课PPT技能MAX 手动微笑', 3, 2, 294, 1, '2018-08-02 11:07:49.000000', 5, 2, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (91, 277, '老师讲课超级好，能够带动课堂的氛围', 1, 4, 170, 0, '2018-08-02 09:07:43.000000', 1, 1, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (92, 278, '学了这门课PPT技能MAX 手动微笑', 2, 4, 140, 1, '2018-08-02 10:13:17.000000', 5, 1, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (93, 281, '老师给分高', 2, 4, 31, 1, '2018-08-02 08:52:44.000000', 3, 3, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (94, 282, '老师给分高', 3, 4, 108, 0, '2018-08-02 10:45:49.000000', 5, 3, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (95, 285, '大家大二就能选这节课，只需要一点点高数基础', 2, 2, 90, 0, '2018-08-02 10:29:50.000000', 5, 1, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (96, 288, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 3, 182, 0, '2018-08-02 10:00:27.000000', 5, 1, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (97, 288, '大家大二就能选这节课，只需要一点点高数基础', 1, 3, 26, 0, '2018-08-02 09:28:19.000000', 3, 3, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (98, 289, '老师给分高', 3, 4, 40, 0, '2018-08-02 09:31:33.000000', 2, 4, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (99, 290, '老师讲课超级好，能够带动课堂的氛围', 4, 3, 80, 1, '2018-08-02 09:36:58.000000', 4, 4, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (100, 293, '老师人很好，上课作业少，平时没作业，期末成绩好', 5, 2, 234, 0, '2018-08-02 09:29:46.000000', 3, 5, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (101, 295, '学了这门课PPT技能MAX 手动微笑', 4, 1, 37, 0, '2018-08-02 10:11:39.000000', 3, 4, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (102, 296, '老师讲课超级好，能够带动课堂的氛围', 1, 2, 280, 1, '2018-08-02 10:11:12.000000', 1, 3, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (103, 294, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 1, 185, 1, '2018-08-02 10:21:29.000000', 5, 2, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (104, 295, '老师讲课超级好，能够带动课堂的氛围', 2, 2, 178, 1, '2018-08-02 09:02:43.000000', 2, 4, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (105, 301, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 5, 15, 1, '2018-08-02 09:06:56.000000', 2, 3, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (106, 300, '学了这门课PPT技能MAX 手动微笑', 1, 5, 116, 0, '2018-08-02 10:15:31.000000', 5, 2, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (107, 306, '老师给分超高，感谢老师', 1, 2, 196, 1, '2018-08-02 10:41:05.000000', 3, 4, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (108, 306, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 2, 146, 1, '2018-08-02 11:09:01.000000', 3, 2, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (109, 307, '慎选！！！大作业要我命', 4, 2, 132, 0, '2018-08-02 10:03:07.000000', 5, 5, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (110, 311, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 2, 70, 1, '2018-08-02 09:52:55.000000', 4, 5, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (111, 310, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 5, 5, 3, 1, '2018-08-02 09:03:12.000000', 4, 2, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (112, 316, '老师人很好，上课作业少，平时没作业，期末成绩好', 4, 2, 69, 1, '2018-08-02 09:22:08.000000', 4, 3, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (113, 314, '大家大二就能选这节课，只需要一点点高数基础', 2, 5, 181, 1, '2018-08-02 09:12:06.000000', 3, 5, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (114, 319, '老师讲课超级好，能够带动课堂的氛围', 4, 3, 157, 1, '2018-08-02 10:23:13.000000', 5, 3, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (115, 320, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 5, 86, 1, '2018-08-02 09:36:38.000000', 5, 3, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (116, 320, '老师讲课超级好，能够带动课堂的氛围', 3, 3, 252, 0, '2018-08-02 08:38:42.000000', 5, 5, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (117, 327, '老师讲课超级好，能够带动课堂的氛围', 4, 5, 34, 1, '2018-08-02 11:10:32.000000', 1, 3, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (118, 328, '大家大二就能选这节课，只需要一点点高数基础', 4, 4, 222, 1, '2018-08-02 10:55:30.000000', 1, 1, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (119, 336, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 4, 40, 1, '2018-08-02 08:42:49.000000', 2, 1, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (120, 335, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 5, 4, 11, 0, '2018-08-02 10:42:26.000000', 1, 3, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (121, 339, '学了这门课PPT技能MAX 手动微笑', 1, 5, 98, 0, '2018-08-02 09:40:38.000000', 2, 4, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (122, 340, '老师给分高', 3, 4, 46, 1, '2018-08-02 09:26:05.000000', 1, 1, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (123, 344, '慎选！！！大作业要我命', 4, 3, 294, 1, '2018-08-02 08:49:26.000000', 4, 3, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (124, 347, '大家大二就能选这节课，只需要一点点高数基础', 3, 5, 137, 0, '2018-08-02 10:14:24.000000', 2, 2, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (125, 354, '老师给分超高，感谢老师', 5, 5, 194, 0, '2018-08-02 10:33:13.000000', 3, 2, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (126, 356, '老师给分高', 3, 1, 254, 1, '2018-08-02 08:42:30.000000', 1, 4, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (127, 354, '老师讲课超级好，能够带动课堂的氛围', 3, 2, 252, 0, '2018-08-02 09:42:57.000000', 2, 4, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (128, 363, '老师人很好，上课作业少，平时没作业，期末成绩好', 5, 5, 183, 0, '2018-08-02 09:41:27.000000', 2, 4, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (129, 361, '老师给分高', 2, 3, 236, 1, '2018-08-02 10:54:24.000000', 1, 3, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (130, 365, '老师给分超高，感谢老师', 4, 5, 101, 0, '2018-08-02 09:40:16.000000', 2, 5, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (131, 367, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 5, 127, 0, '2018-08-02 08:45:11.000000', 3, 2, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (132, 372, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 4, 1, 107, 1, '2018-08-02 09:18:53.000000', 5, 2, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (133, 374, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 3, 1, 22, 0, '2018-08-02 10:19:27.000000', 1, 3, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (134, 375, '大家大二就能选这节课，只需要一点点高数基础', 4, 4, 94, 1, '2018-08-02 10:17:58.000000', 2, 4, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (135, 378, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 4, 2, 270, 1, '2018-08-02 09:30:50.000000', 5, 2, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (136, 379, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 1, 129, 0, '2018-08-02 09:32:09.000000', 2, 4, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (137, 378, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 3, 4, 288, 0, '2018-08-02 11:00:10.000000', 5, 3, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (138, 385, '老师人很好，上课作业少，平时没作业，期末成绩好', 4, 3, 97, 0, '2018-08-02 10:19:23.000000', 1, 4, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (139, 386, '慎选！！！大作业要我命', 3, 4, 75, 1, '2018-08-02 09:57:34.000000', 3, 4, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (140, 385, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 5, 297, 1, '2018-08-02 09:06:43.000000', 2, 2, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (141, 396, '老师讲课超级好，能够带动课堂的氛围', 2, 3, 98, 1, '2018-08-02 09:16:53.000000', 5, 4, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (142, 402, '大家大二就能选这节课，只需要一点点高数基础', 1, 3, 248, 1, '2018-08-02 08:45:40.000000', 3, 2, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (143, 407, '老师讲课超级好，能够带动课堂的氛围', 1, 4, 70, 0, '2018-08-02 09:10:51.000000', 5, 2, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (144, 405, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 3, 67, 1, '2018-08-02 09:50:04.000000', 1, 5, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (145, 411, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 4, 3, 271, 1, '2018-08-02 11:04:11.000000', 5, 4, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (146, 412, '老师人很好，上课作业少，平时没作业，期末成绩好', 4, 4, 291, 1, '2018-08-02 09:13:00.000000', 1, 1, 3, 2, 0);
+INSERT INTO `student_comment_course` VALUES (147, 413, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 1, 203, 0, '2018-08-02 09:19:54.000000', 2, 2, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (148, 419, '大家大二就能选这节课，只需要一点点高数基础', 5, 3, 200, 1, '2018-08-02 09:04:37.000000', 2, 1, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (149, 421, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 5, 5, 86, 1, '2018-08-02 08:47:44.000000', 4, 4, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (150, 421, '老师人很好，上课作业少，平时没作业，期末成绩好', 4, 4, 84, 1, '2018-08-02 09:28:58.000000', 3, 5, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (151, 425, '大家大二就能选这节课，只需要一点点高数基础', 3, 1, 275, 0, '2018-08-02 09:30:56.000000', 1, 3, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (152, 426, '慎选！！！大作业要我命', 4, 3, 217, 0, '2018-08-02 10:55:02.000000', 4, 1, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (153, 435, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 3, 3, 107, 0, '2018-08-02 08:51:57.000000', 4, 5, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (154, 436, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 5, 282, 0, '2018-08-02 09:01:45.000000', 4, 5, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (155, 441, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 4, 5, 117, 1, '2018-08-02 09:55:15.000000', 1, 4, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (156, 447, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 1, 3, 66, 0, '2018-08-02 09:44:06.000000', 1, 4, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (157, 454, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 3, 284, 1, '2018-08-02 10:51:51.000000', 1, 4, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (158, 464, '老师给分高', 3, 4, 285, 1, '2018-08-02 10:32:06.000000', 4, 5, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (159, 465, '老师给分超高，感谢老师', 4, 5, 298, 0, '2018-08-02 10:09:12.000000', 2, 5, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (160, 474, '学了这门课PPT技能MAX 手动微笑', 2, 2, 115, 0, '2018-08-02 09:01:43.000000', 4, 5, 3, 2, 0);
+INSERT INTO `student_comment_course` VALUES (161, 482, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 1, 223, 1, '2018-08-02 08:46:41.000000', 2, 3, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (162, 483, '老师给分超高，感谢老师', 5, 2, 257, 1, '2018-08-02 10:57:32.000000', 5, 5, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (163, 482, '老师讲课超级好，能够带动课堂的氛围', 3, 5, 270, 0, '2018-08-02 08:58:42.000000', 1, 5, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (164, 487, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 1, 1, 155, 0, '2018-08-02 09:30:05.000000', 3, 1, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (165, 490, '慎选！！！大作业要我命', 1, 5, 193, 1, '2018-08-02 08:42:55.000000', 5, 4, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (166, 486, '学了这门课PPT技能MAX 手动微笑', 4, 1, 184, 0, '2018-08-02 11:08:44.000000', 1, 3, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (167, 492, '大家大二就能选这节课，只需要一点点高数基础', 5, 4, 281, 0, '2018-08-02 10:29:12.000000', 1, 4, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (168, 492, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 4, 153, 0, '2018-08-02 09:56:20.000000', 2, 3, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (169, 502, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 5, 23, 1, '2018-08-02 10:15:10.000000', 3, 5, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (170, 507, '慎选！！！大作业要我命', 4, 4, 191, 1, '2018-08-02 09:34:29.000000', 5, 4, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (171, 505, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 5, 183, 1, '2018-08-02 10:54:26.000000', 5, 4, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (172, 508, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 2, 39, 1, '2018-08-02 08:58:40.000000', 1, 1, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (173, 512, '大家大二就能选这节课，只需要一点点高数基础', 3, 5, 248, 1, '2018-08-02 09:31:01.000000', 1, 4, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (174, 513, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 4, 94, 1, '2018-08-02 09:57:56.000000', 1, 3, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (175, 511, '慎选！！！大作业要我命', 2, 3, 265, 0, '2018-08-02 10:47:52.000000', 1, 4, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (176, 514, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 1, 1, 79, 0, '2018-08-02 10:37:31.000000', 2, 3, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (177, 518, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 3, 3, 27, 0, '2018-08-02 10:42:42.000000', 4, 5, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (178, 523, '大家大二就能选这节课，只需要一点点高数基础', 5, 1, 206, 1, '2018-08-02 09:25:27.000000', 4, 5, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (179, 527, '老师讲课超级好，能够带动课堂的氛围', 1, 3, 214, 0, '2018-08-02 10:03:18.000000', 5, 1, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (180, 529, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 2, 5, 207, 0, '2018-08-02 10:36:10.000000', 1, 4, 3, 2, 0);
+INSERT INTO `student_comment_course` VALUES (181, 531, '老师给分超高，感谢老师', 4, 4, 146, 0, '2018-08-02 08:42:40.000000', 3, 2, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (182, 532, '老师给分超高，感谢老师', 5, 5, 119, 1, '2018-08-02 09:54:34.000000', 3, 1, 3, 2, 0);
+INSERT INTO `student_comment_course` VALUES (183, 536, '大家大二就能选这节课，只需要一点点高数基础', 2, 4, 63, 1, '2018-08-02 09:29:03.000000', 1, 1, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (184, 537, '老师给分高', 5, 1, 281, 1, '2018-08-02 08:56:13.000000', 1, 1, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (185, 542, '学了这门课PPT技能MAX 手动微笑', 5, 2, 203, 0, '2018-08-02 10:14:41.000000', 1, 4, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (186, 547, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 2, 157, 0, '2018-08-02 09:38:06.000000', 5, 1, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (187, 548, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 1, 94, 0, '2018-08-02 10:12:00.000000', 4, 2, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (188, 548, '老师讲课超级好，能够带动课堂的氛围', 4, 5, 212, 0, '2018-08-02 10:32:22.000000', 5, 1, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (189, 552, '学了这门课PPT技能MAX 手动微笑', 1, 4, 28, 0, '2018-08-02 10:27:02.000000', 4, 4, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (190, 555, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 5, 227, 1, '2018-08-02 09:15:41.000000', 2, 1, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (191, 564, '慎选！！！大作业要我命', 3, 2, 78, 1, '2018-08-02 10:01:19.000000', 1, 1, 2, 2, 0);
+INSERT INTO `student_comment_course` VALUES (192, 565, '老师给分超高，感谢老师', 2, 1, 272, 0, '2018-08-02 09:02:00.000000', 1, 2, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (193, 568, '大家大二就能选这节课，只需要一点点高数基础', 5, 3, 111, 0, '2018-08-02 11:06:35.000000', 5, 3, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (194, 569, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 5, 5, 1, '2018-08-02 10:28:40.000000', 1, 1, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (195, 577, '大家大二就能选这节课，只需要一点点高数基础', 5, 4, 68, 1, '2018-08-02 10:10:40.000000', 2, 1, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (196, 578, '老师讲课超级好，能够带动课堂的氛围', 4, 1, 19, 1, '2018-08-02 08:48:50.000000', 1, 3, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (197, 581, '慎选！！！大作业要我命', 4, 5, 257, 0, '2018-08-02 08:54:20.000000', 5, 1, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (198, 589, '老师人很好，上课作业少，平时没作业，期末成绩好', 5, 1, 6, 0, '2018-08-02 09:08:57.000000', 4, 4, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (199, 594, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 5, 18, 1, '2018-08-02 11:07:03.000000', 1, 1, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (200, 592, '老师讲课超级好，能够带动课堂的氛围', 3, 2, 284, 1, '2018-08-02 09:42:20.000000', 3, 5, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (201, 601, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 3, 3, 11, 1, '2018-08-02 10:29:24.000000', 4, 1, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (202, 598, '大家大二就能选这节课，只需要一点点高数基础', 5, 3, 67, 0, '2018-08-02 09:06:54.000000', 3, 3, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (203, 603, '老师给分超高，感谢老师', 3, 4, 46, 1, '2018-08-02 08:43:33.000000', 5, 2, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (204, 604, '老师给分超高，感谢老师', 5, 4, 287, 0, '2018-08-02 08:59:12.000000', 1, 2, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (205, 609, '老师讲课超级好，能够带动课堂的氛围', 5, 1, 55, 1, '2018-08-02 09:01:09.000000', 4, 2, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (206, 607, '老师给分高', 1, 4, 187, 0, '2018-08-02 10:13:02.000000', 2, 4, 3, 2, 0);
+INSERT INTO `student_comment_course` VALUES (207, 612, '老师给分高', 1, 3, 34, 1, '2018-08-02 10:35:26.000000', 5, 3, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (208, 616, '慎选！！！大作业要我命', 5, 1, 183, 0, '2018-08-02 10:08:15.000000', 3, 5, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (209, 620, '慎选！！！大作业要我命', 2, 3, 79, 0, '2018-08-02 09:19:18.000000', 2, 5, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (210, 624, '大家大二就能选这节课，只需要一点点高数基础', 3, 5, 159, 1, '2018-08-02 10:37:19.000000', 2, 2, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (211, 624, '老师给分高', 2, 3, 215, 1, '2018-08-02 09:19:53.000000', 5, 1, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (212, 630, '慎选！！！大作业要我命', 1, 5, 234, 0, '2018-08-02 08:51:56.000000', 1, 1, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (213, 628, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 2, 4, 233, 0, '2018-08-02 10:20:21.000000', 5, 4, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (214, 628, '老师讲课超级好，能够带动课堂的氛围', 1, 4, 259, 1, '2018-08-02 09:48:09.000000', 1, 5, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (215, 633, '老师给分高', 4, 1, 233, 1, '2018-08-02 09:32:42.000000', 1, 2, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (216, 637, '慎选！！！大作业要我命', 1, 3, 248, 1, '2018-08-02 08:29:43.000000', 1, 4, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (217, 645, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 2, 112, 1, '2018-08-02 08:40:33.000000', 2, 5, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (218, 647, '大家大二就能选这节课，只需要一点点高数基础', 4, 5, 118, 1, '2018-08-02 08:31:37.000000', 4, 2, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (219, 650, '慎选！！！大作业要我命', 5, 4, 63, 1, '2018-08-02 08:54:53.000000', 3, 2, 2, 2, 0);
+INSERT INTO `student_comment_course` VALUES (220, 657, '学了这门课PPT技能MAX 手动微笑', 2, 3, 158, 0, '2018-08-02 10:23:26.000000', 4, 5, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (221, 657, '老师给分超高，感谢老师', 2, 4, 6, 0, '2018-08-02 09:40:13.000000', 5, 1, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (222, 663, '慎选！！！大作业要我命', 1, 5, 6, 0, '2018-08-02 11:04:39.000000', 2, 2, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (223, 669, '慎选！！！大作业要我命', 5, 5, 26, 1, '2018-08-02 10:32:35.000000', 1, 2, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (224, 665, '学了这门课PPT技能MAX 手动微笑', 3, 1, 48, 1, '2018-08-02 09:04:35.000000', 1, 3, 2, 4, 0);
+INSERT INTO `student_comment_course` VALUES (225, 665, '慎选！！！大作业要我命', 3, 2, 149, 1, '2018-08-02 08:56:46.000000', 5, 5, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (226, 672, '慎选！！！大作业要我命', 4, 5, 185, 1, '2018-08-02 09:39:26.000000', 3, 3, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (227, 670, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 1, 2, 160, 1, '2018-08-02 09:51:11.000000', 3, 2, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (228, 682, '慎选！！！大作业要我命', 4, 2, 101, 0, '2018-08-02 09:44:46.000000', 4, 2, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (229, 688, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 3, 3, 237, 0, '2018-08-02 10:41:11.000000', 2, 1, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (230, 690, '老师讲课超级好，能够带动课堂的氛围', 2, 4, 143, 1, '2018-08-02 11:11:40.000000', 1, 2, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (231, 693, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 3, 152, 0, '2018-08-02 10:41:11.000000', 5, 2, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (232, 691, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 3, 1, 240, 0, '2018-08-02 08:50:37.000000', 5, 5, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (233, 696, '学了这门课PPT技能MAX 手动微笑', 5, 5, 234, 1, '2018-08-02 10:42:37.000000', 2, 3, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (234, 696, '老师给分超高，感谢老师', 1, 5, 212, 1, '2018-08-02 09:27:20.000000', 4, 5, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (235, 706, '学了这门课PPT技能MAX 手动微笑', 5, 1, 154, 0, '2018-08-02 09:40:38.000000', 4, 4, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (236, 714, '老师给分高', 1, 5, 204, 0, '2018-08-02 10:39:24.000000', 4, 4, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (237, 715, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 2, 15, 1, '2018-08-02 08:51:02.000000', 1, 3, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (238, 717, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 2, 2, 184, 0, '2018-08-02 10:36:49.000000', 5, 3, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (239, 716, '老师给分高', 2, 1, 198, 0, '2018-08-02 10:18:00.000000', 5, 2, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (240, 717, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 5, 5, 197, 0, '2018-08-02 09:14:30.000000', 2, 3, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (241, 718, '老师人很好，上课作业少，平时没作业，期末成绩好', 4, 4, 91, 0, '2018-08-02 10:15:35.000000', 1, 1, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (242, 722, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 4, 91, 1, '2018-08-02 11:07:53.000000', 4, 1, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (243, 724, '老师给分超高，感谢老师', 2, 2, 281, 0, '2018-08-02 08:39:20.000000', 1, 2, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (244, 725, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 1, 1, 122, 0, '2018-08-02 10:38:12.000000', 5, 5, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (245, 735, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 1, 131, 0, '2018-08-02 08:49:15.000000', 2, 2, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (246, 742, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 2, 242, 0, '2018-08-02 09:47:53.000000', 5, 2, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (247, 744, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 5, 289, 0, '2018-08-02 08:51:08.000000', 4, 1, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (248, 743, '老师给分超高，感谢老师', 5, 4, 178, 1, '2018-08-02 10:28:23.000000', 2, 3, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (249, 747, '学了这门课PPT技能MAX 手动微笑', 3, 4, 272, 0, '2018-08-02 10:14:13.000000', 1, 4, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (250, 750, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 5, 127, 0, '2018-08-02 09:47:26.000000', 2, 1, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (251, 748, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 5, 2, 209, 1, '2018-08-02 10:21:55.000000', 3, 1, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (252, 757, '老师给分超高，感谢老师', 4, 4, 82, 0, '2018-08-02 10:08:13.000000', 2, 2, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (253, 761, '老师讲课超级好，能够带动课堂的氛围', 5, 4, 198, 1, '2018-08-02 10:04:38.000000', 1, 2, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (254, 765, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 2, 1, 274, 1, '2018-08-02 09:50:07.000000', 5, 3, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (255, 767, '学了这门课PPT技能MAX 手动微笑', 2, 4, 7, 1, '2018-08-02 10:37:05.000000', 4, 3, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (256, 778, '大家大二就能选这节课，只需要一点点高数基础', 3, 5, 25, 1, '2018-08-02 08:57:38.000000', 1, 5, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (257, 782, '学了这门课PPT技能MAX 手动微笑', 5, 5, 135, 0, '2018-08-02 08:49:40.000000', 4, 5, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (258, 787, '老师讲课超级好，能够带动课堂的氛围', 3, 5, 88, 1, '2018-08-02 09:52:54.000000', 4, 4, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (259, 800, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 5, 58, 0, '2018-08-02 09:54:55.000000', 5, 4, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (260, 801, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 4, 122, 0, '2018-08-02 10:01:54.000000', 2, 2, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (261, 809, '慎选！！！大作业要我命', 5, 5, 7, 1, '2018-08-02 08:35:21.000000', 4, 1, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (262, 806, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 5, 121, 1, '2018-08-02 09:22:13.000000', 4, 2, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (263, 806, '学了这门课PPT技能MAX 手动微笑', 5, 3, 93, 0, '2018-08-02 09:47:23.000000', 5, 3, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (264, 810, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 1, 72, 1, '2018-08-02 08:37:17.000000', 4, 3, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (265, 814, '老师讲课超级好，能够带动课堂的氛围', 5, 4, 73, 1, '2018-08-02 09:22:55.000000', 4, 5, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (266, 812, '大家大二就能选这节课，只需要一点点高数基础', 2, 1, 251, 1, '2018-08-02 09:36:08.000000', 4, 3, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (267, 822, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 3, 111, 1, '2018-08-02 09:51:02.000000', 5, 5, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (268, 823, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 2, 4, 60, 0, '2018-08-02 08:40:32.000000', 4, 1, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (269, 827, '老师给分超高，感谢老师', 5, 3, 234, 0, '2018-08-02 08:26:23.000000', 5, 1, 2, 2, 0);
+INSERT INTO `student_comment_course` VALUES (270, 829, '慎选！！！大作业要我命', 4, 1, 251, 0, '2018-08-02 10:23:47.000000', 1, 1, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (271, 838, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 3, 5, 183, 0, '2018-08-02 10:13:59.000000', 4, 5, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (272, 838, '老师给分高', 3, 2, 167, 1, '2018-08-02 09:16:41.000000', 1, 3, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (273, 840, '老师给分高', 3, 3, 219, 0, '2018-08-02 11:12:26.000000', 3, 5, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (274, 841, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 5, 103, 0, '2018-08-02 09:44:31.000000', 1, 5, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (275, 845, '老师讲课超级好，能够带动课堂的氛围', 4, 4, 94, 1, '2018-08-02 10:14:46.000000', 5, 4, 4, 1, 0);
+INSERT INTO `student_comment_course` VALUES (276, 847, '学了这门课PPT技能MAX 手动微笑', 3, 4, 238, 0, '2018-08-02 08:29:04.000000', 2, 5, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (277, 848, '慎选！！！大作业要我命', 3, 2, 279, 1, '2018-08-02 09:07:23.000000', 1, 2, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (278, 846, '慎选！！！大作业要我命', 4, 5, 92, 0, '2018-08-02 09:27:35.000000', 1, 5, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (279, 852, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 5, 10, 1, '2018-08-02 10:09:48.000000', 5, 5, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (280, 859, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 4, 142, 0, '2018-08-02 09:30:38.000000', 1, 5, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (281, 862, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 4, 176, 0, '2018-08-02 08:43:29.000000', 2, 5, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (282, 864, '学了这门课PPT技能MAX 手动微笑', 5, 5, 38, 1, '2018-08-02 10:26:53.000000', 5, 1, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (283, 864, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 4, 182, 0, '2018-08-02 10:58:09.000000', 3, 5, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (284, 875, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 1, 116, 1, '2018-08-02 09:04:45.000000', 4, 3, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (285, 882, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 5, 175, 0, '2018-08-02 09:02:45.000000', 5, 1, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (286, 886, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 3, 2, 206, 1, '2018-08-02 09:00:59.000000', 4, 5, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (287, 896, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 2, 2, 73, 1, '2018-08-02 08:56:14.000000', 1, 1, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (288, 901, '老师给分高', 3, 1, 255, 0, '2018-08-02 09:15:52.000000', 2, 1, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (289, 906, '老师人很好，上课作业少，平时没作业，期末成绩好', 4, 1, 82, 1, '2018-08-02 08:42:37.000000', 5, 4, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (290, 909, '大家大二就能选这节课，只需要一点点高数基础', 1, 3, 135, 1, '2018-08-02 08:37:28.000000', 5, 4, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (291, 906, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 2, 3, 16, 1, '2018-08-02 08:57:00.000000', 1, 5, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (292, 912, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 1, 3, 279, 1, '2018-08-02 08:31:35.000000', 2, 2, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (293, 913, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 3, 141, 1, '2018-08-02 08:48:36.000000', 1, 5, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (294, 925, '大家大二就能选这节课，只需要一点点高数基础', 3, 1, 239, 1, '2018-08-02 09:20:49.000000', 5, 5, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (295, 937, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 5, 2, 1, '2018-08-02 09:09:37.000000', 1, 3, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (296, 934, '老师人很好，上课作业少，平时没作业，期末成绩好', 5, 2, 299, 0, '2018-08-02 09:49:36.000000', 3, 4, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (297, 935, '老师讲课超级好，能够带动课堂的氛围', 5, 1, 261, 1, '2018-08-02 10:19:15.000000', 1, 5, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (298, 938, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 4, 5, 259, 0, '2018-08-02 08:38:32.000000', 5, 1, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (299, 943, '老师讲课超级好，能够带动课堂的氛围', 4, 5, 253, 0, '2018-08-02 10:09:32.000000', 1, 4, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (300, 945, '老师给分高', 1, 5, 190, 1, '2018-08-02 11:10:30.000000', 5, 4, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (301, 948, '老师给分超高，感谢老师', 2, 4, 257, 1, '2018-08-02 08:57:34.000000', 5, 5, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (302, 954, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 1, 1, 286, 1, '2018-08-02 08:33:49.000000', 5, 1, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (303, 953, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 3, 244, 0, '2018-08-02 09:18:59.000000', 1, 5, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (304, 955, '慎选！！！大作业要我命', 4, 2, 199, 0, '2018-08-02 11:06:39.000000', 4, 2, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (305, 961, '老师给分高', 3, 2, 194, 0, '2018-08-02 10:04:15.000000', 4, 1, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (306, 959, '大家大二就能选这节课，只需要一点点高数基础', 5, 1, 254, 0, '2018-08-02 09:41:57.000000', 5, 5, 1, 1, 0);
+INSERT INTO `student_comment_course` VALUES (307, 963, '慎选！！！大作业要我命', 2, 2, 215, 0, '2018-08-02 10:59:33.000000', 4, 1, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (308, 966, '老师给分超高，感谢老师', 3, 1, 282, 0, '2018-08-02 10:37:52.000000', 1, 4, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (309, 968, '老师讲课超级好，能够带动课堂的氛围', 5, 3, 292, 0, '2018-08-02 08:31:03.000000', 4, 4, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (310, 968, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 4, 251, 0, '2018-08-02 08:50:20.000000', 5, 4, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (311, 970, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 1, 92, 1, '2018-08-02 10:55:41.000000', 5, 3, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (312, 974, '老师给分超高，感谢老师', 1, 4, 220, 0, '2018-08-02 10:24:21.000000', 5, 1, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (313, 973, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 5, 49, 0, '2018-08-02 09:19:53.000000', 3, 2, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (314, 983, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 4, 15, 0, '2018-08-02 09:52:32.000000', 3, 3, 4, 4, 0);
+INSERT INTO `student_comment_course` VALUES (315, 986, '老师讲课超级好，能够带动课堂的氛围', 5, 2, 52, 0, '2018-08-02 10:56:48.000000', 2, 2, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (316, 986, '老师给分高', 1, 1, 286, 0, '2018-08-02 10:50:38.000000', 1, 1, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (317, 990, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 2, 105, 1, '2018-08-02 08:42:25.000000', 4, 1, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (318, 992, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 5, 3, 155, 1, '2018-08-02 09:59:08.000000', 4, 2, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (319, 992, '慎选！！！大作业要我命', 5, 3, 294, 0, '2018-08-02 10:56:40.000000', 3, 2, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (320, 995, '老师讲课超级好，能够带动课堂的氛围', 4, 1, 227, 1, '2018-08-02 08:40:38.000000', 3, 1, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (321, 999, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 1, 1, 22, 1, '2018-08-02 08:58:35.000000', 4, 2, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (322, 1000, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 5, 4, 231, 1, '2018-08-02 09:04:41.000000', 5, 5, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (323, 1001, '大家大二就能选这节课，只需要一点点高数基础', 4, 5, 270, 1, '2018-08-02 10:19:35.000000', 3, 2, 1, 3, 0);
+INSERT INTO `student_comment_course` VALUES (324, 1005, '老师人很好，上课作业少，平时没作业，期末成绩好', 4, 1, 140, 0, '2018-08-02 10:31:07.000000', 4, 2, 2, 3, 0);
+INSERT INTO `student_comment_course` VALUES (325, 1007, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 2, 5, 61, 1, '2018-08-02 09:37:02.000000', 5, 2, 2, 4, 0);
+INSERT INTO `student_comment_course` VALUES (326, 1011, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 4, 2, 260, 0, '2018-08-02 11:10:28.000000', 4, 4, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (327, 1009, '慎选！！！大作业要我命', 2, 5, 268, 0, '2018-08-02 09:12:35.000000', 1, 3, 3, 5, 0);
+INSERT INTO `student_comment_course` VALUES (328, 1010, '大家大二就能选这节课，只需要一点点高数基础', 1, 4, 21, 0, '2018-08-02 09:59:49.000000', 3, 5, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (329, 1017, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 4, 4, 248, 1, '2018-08-02 09:21:51.000000', 4, 1, 2, 2, 0);
+INSERT INTO `student_comment_course` VALUES (330, 1022, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 3, 5, 190, 1, '2018-08-02 10:26:41.000000', 2, 3, 5, 1, 0);
+INSERT INTO `student_comment_course` VALUES (331, 1026, '学了这门课PPT技能MAX 手动微笑', 5, 2, 68, 0, '2018-08-02 10:08:54.000000', 1, 4, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (332, 1026, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 1, 232, 0, '2018-08-02 08:32:40.000000', 2, 2, 5, 2, 0);
+INSERT INTO `student_comment_course` VALUES (333, 1023, '慎选！！！大作业要我命', 2, 1, 182, 1, '2018-08-02 08:43:47.000000', 2, 5, 4, 2, 0);
+INSERT INTO `student_comment_course` VALUES (334, 1029, '老师人很好，上课作业少，平时没作业，期末成绩好', 5, 2, 286, 1, '2018-08-02 10:24:33.000000', 4, 3, 3, 2, 0);
+INSERT INTO `student_comment_course` VALUES (335, 1030, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 1, 4, 147, 1, '2018-08-02 10:24:52.000000', 3, 2, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (336, 1033, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 5, 32, 0, '2018-08-02 10:09:21.000000', 1, 4, 4, 3, 0);
+INSERT INTO `student_comment_course` VALUES (337, 1034, '学了这门课PPT技能MAX 手动微笑', 4, 2, 231, 0, '2018-08-02 10:28:17.000000', 1, 4, 1, 5, 0);
+INSERT INTO `student_comment_course` VALUES (338, 1034, '老师讲课超级好，能够带动课堂的氛围', 2, 2, 297, 1, '2018-08-02 08:50:29.000000', 5, 4, 2, 1, 0);
+INSERT INTO `student_comment_course` VALUES (339, 1033, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 1, 5, 185, 1, '2018-08-02 10:48:51.000000', 5, 1, 1, 4, 0);
+INSERT INTO `student_comment_course` VALUES (340, 1041, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 3, 5, 198, 0, '2018-08-02 09:20:34.000000', 4, 4, 1, 2, 0);
+INSERT INTO `student_comment_course` VALUES (341, 1043, '老师人很好，上课作业少，平时没作业，期末成绩好', 5, 1, 66, 1, '2018-08-02 09:34:38.000000', 1, 3, 2, 4, 0);
+INSERT INTO `student_comment_course` VALUES (342, 1045, '老师给分超高，感谢老师', 3, 4, 236, 1, '2018-08-02 10:37:51.000000', 5, 4, 5, 4, 0);
+INSERT INTO `student_comment_course` VALUES (343, 1041, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 3, 234, 1, '2018-08-02 08:29:57.000000', 1, 1, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (344, 1046, '慎选！！！大作业要我命', 5, 2, 234, 0, '2018-08-02 09:50:53.000000', 4, 5, 5, 3, 0);
+INSERT INTO `student_comment_course` VALUES (345, 1057, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 3, 3, 114, 1, '2018-08-02 10:54:07.000000', 2, 3, 4, 5, 0);
+INSERT INTO `student_comment_course` VALUES (346, 1064, '老师人很好，上课作业少，平时没作业，期末成绩好', 3, 4, 27, 1, '2018-08-02 08:26:10.000000', 2, 5, 3, 4, 0);
+INSERT INTO `student_comment_course` VALUES (347, 1067, '老师人很好，上课作业少，平时没作业，期末成绩好', 1, 1, 194, 0, '2018-08-02 08:40:48.000000', 2, 4, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (348, 1068, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 4, 5, 13, 0, '2018-08-02 08:57:34.000000', 5, 5, 2, 2, 0);
+INSERT INTO `student_comment_course` VALUES (349, 1073, '老师人很好，上课作业少，平时没作业，期末成绩好', 2, 5, 207, 0, '2018-08-02 09:00:47.000000', 1, 4, 2, 5, 0);
+INSERT INTO `student_comment_course` VALUES (350, 1075, '大家大二就能选这节课，只需要一点点高数基础', 2, 4, 119, 1, '2018-08-02 10:24:38.000000', 3, 3, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (351, 1075, '平时作业+期中考试+两次展示+期末闭卷考试，/微笑，不要问我为什么选了这门课', 5, 3, 82, 1, '2018-08-02 09:29:57.000000', 5, 1, 3, 3, 0);
+INSERT INTO `student_comment_course` VALUES (352, 1077, '听老师说下学期要改革，要变难，学弟学妹谨慎啊', 4, 1, 224, 1, '2018-08-02 09:02:15.000000', 1, 5, 5, 5, 0);
+INSERT INTO `student_comment_course` VALUES (353, 1086, '大家大二就能选这节课，只需要一点点高数基础', 1, 3, 71, 1, '2018-08-02 10:09:04.000000', 2, 4, 3, 1, 0);
+INSERT INTO `student_comment_course` VALUES (354, 1086, '早八早起难，进度疯狂赶，你问选不选，我没这个胆', 4, 1, 32, 0, '2018-08-02 09:51:23.000000', 3, 3, 1, 4, 0);
 
-LOCK TABLES `student_comment_course` WRITE;
-/*!40000 ALTER TABLE `student_comment_course` DISABLE KEYS */;
-INSERT INTO `student_comment_course` VALUES (1,1,'你很优秀，但这不影响你的优秀',NULL,NULL,2,0,0,NULL,NULL,NULL,NULL,NULL),(5,2,'优秀',0,0,0,0,0,NULL,0,0,0,0);
-/*!40000 ALTER TABLE `student_comment_course` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `student_select_course`
---
-
+-- ----------------------------
+-- Table structure for student_select_course
+-- ----------------------------
 DROP TABLE IF EXISTS `student_select_course`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `student_select_course` (
+CREATE TABLE `student_select_course`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `StudentID` int(11) DEFAULT NULL,
-  `CourseID` int(11) DEFAULT NULL,
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位：0 is 正常，1 is 已删除',
+  `StudentID` int(11) NULL DEFAULT NULL,
+  `CourseID` int(11) NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `StudentID` (`StudentID`) USING BTREE,
-  KEY `CourseID` (`CourseID`) USING BTREE,
+  INDEX `StudentID`(`StudentID`) USING BTREE,
+  INDEX `CourseID`(`CourseID`) USING BTREE,
   CONSTRAINT `student_select_course_ibfk_1` FOREIGN KEY (`StudentID`) REFERENCES `student` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `student_select_course_ibfk_2` FOREIGN KEY (`CourseID`) REFERENCES `course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 1089 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `student_select_course`
---
+-- ----------------------------
+-- Records of student_select_course
+-- ----------------------------
+INSERT INTO `student_select_course` VALUES (1, 8, 333, 0);
+INSERT INTO `student_select_course` VALUES (2, 8, 14, 0);
+INSERT INTO `student_select_course` VALUES (3, 8, 100, 0);
+INSERT INTO `student_select_course` VALUES (4, 9, 563, 0);
+INSERT INTO `student_select_course` VALUES (5, 9, 483, 0);
+INSERT INTO `student_select_course` VALUES (6, 9, 524, 0);
+INSERT INTO `student_select_course` VALUES (7, 9, 103, 0);
+INSERT INTO `student_select_course` VALUES (8, 9, 32, 0);
+INSERT INTO `student_select_course` VALUES (9, 10, 483, 0);
+INSERT INTO `student_select_course` VALUES (10, 10, 48, 0);
+INSERT INTO `student_select_course` VALUES (11, 11, 317, 0);
+INSERT INTO `student_select_course` VALUES (12, 11, 369, 0);
+INSERT INTO `student_select_course` VALUES (13, 11, 344, 0);
+INSERT INTO `student_select_course` VALUES (14, 11, 166, 0);
+INSERT INTO `student_select_course` VALUES (15, 11, 320, 0);
+INSERT INTO `student_select_course` VALUES (16, 12, 180, 0);
+INSERT INTO `student_select_course` VALUES (17, 12, 256, 0);
+INSERT INTO `student_select_course` VALUES (18, 12, 577, 0);
+INSERT INTO `student_select_course` VALUES (19, 12, 119, 0);
+INSERT INTO `student_select_course` VALUES (20, 12, 101, 0);
+INSERT INTO `student_select_course` VALUES (21, 13, 491, 0);
+INSERT INTO `student_select_course` VALUES (22, 17, 639, 0);
+INSERT INTO `student_select_course` VALUES (23, 17, 182, 0);
+INSERT INTO `student_select_course` VALUES (24, 17, 108, 0);
+INSERT INTO `student_select_course` VALUES (25, 17, 393, 0);
+INSERT INTO `student_select_course` VALUES (26, 17, 557, 0);
+INSERT INTO `student_select_course` VALUES (27, 19, 175, 0);
+INSERT INTO `student_select_course` VALUES (28, 19, 395, 0);
+INSERT INTO `student_select_course` VALUES (29, 19, 262, 0);
+INSERT INTO `student_select_course` VALUES (30, 20, 399, 0);
+INSERT INTO `student_select_course` VALUES (31, 20, 302, 0);
+INSERT INTO `student_select_course` VALUES (32, 20, 441, 0);
+INSERT INTO `student_select_course` VALUES (33, 20, 470, 0);
+INSERT INTO `student_select_course` VALUES (34, 21, 563, 0);
+INSERT INTO `student_select_course` VALUES (35, 21, 602, 0);
+INSERT INTO `student_select_course` VALUES (36, 21, 295, 0);
+INSERT INTO `student_select_course` VALUES (37, 21, 20, 0);
+INSERT INTO `student_select_course` VALUES (38, 21, 139, 0);
+INSERT INTO `student_select_course` VALUES (39, 22, 587, 0);
+INSERT INTO `student_select_course` VALUES (40, 22, 113, 0);
+INSERT INTO `student_select_course` VALUES (41, 22, 212, 0);
+INSERT INTO `student_select_course` VALUES (42, 22, 290, 0);
+INSERT INTO `student_select_course` VALUES (43, 22, 262, 0);
+INSERT INTO `student_select_course` VALUES (44, 23, 294, 0);
+INSERT INTO `student_select_course` VALUES (45, 23, 629, 0);
+INSERT INTO `student_select_course` VALUES (46, 23, 579, 0);
+INSERT INTO `student_select_course` VALUES (47, 23, 252, 0);
+INSERT INTO `student_select_course` VALUES (48, 23, 12, 0);
+INSERT INTO `student_select_course` VALUES (49, 24, 333, 0);
+INSERT INTO `student_select_course` VALUES (50, 24, 128, 0);
+INSERT INTO `student_select_course` VALUES (51, 24, 386, 0);
+INSERT INTO `student_select_course` VALUES (52, 24, 111, 0);
+INSERT INTO `student_select_course` VALUES (53, 24, 409, 0);
+INSERT INTO `student_select_course` VALUES (54, 26, 323, 0);
+INSERT INTO `student_select_course` VALUES (55, 26, 60, 0);
+INSERT INTO `student_select_course` VALUES (56, 26, 294, 0);
+INSERT INTO `student_select_course` VALUES (57, 27, 261, 0);
+INSERT INTO `student_select_course` VALUES (58, 28, 614, 0);
+INSERT INTO `student_select_course` VALUES (59, 28, 126, 0);
+INSERT INTO `student_select_course` VALUES (60, 28, 360, 0);
+INSERT INTO `student_select_course` VALUES (61, 29, 156, 0);
+INSERT INTO `student_select_course` VALUES (62, 29, 532, 0);
+INSERT INTO `student_select_course` VALUES (63, 29, 90, 0);
+INSERT INTO `student_select_course` VALUES (64, 29, 327, 0);
+INSERT INTO `student_select_course` VALUES (65, 29, 136, 0);
+INSERT INTO `student_select_course` VALUES (66, 30, 169, 0);
+INSERT INTO `student_select_course` VALUES (67, 30, 323, 0);
+INSERT INTO `student_select_course` VALUES (68, 30, 384, 0);
+INSERT INTO `student_select_course` VALUES (69, 30, 200, 0);
+INSERT INTO `student_select_course` VALUES (70, 32, 192, 0);
+INSERT INTO `student_select_course` VALUES (71, 32, 63, 0);
+INSERT INTO `student_select_course` VALUES (72, 32, 194, 0);
+INSERT INTO `student_select_course` VALUES (73, 33, 495, 0);
+INSERT INTO `student_select_course` VALUES (74, 33, 86, 0);
+INSERT INTO `student_select_course` VALUES (75, 33, 174, 0);
+INSERT INTO `student_select_course` VALUES (76, 33, 189, 0);
+INSERT INTO `student_select_course` VALUES (77, 33, 347, 0);
+INSERT INTO `student_select_course` VALUES (78, 34, 587, 0);
+INSERT INTO `student_select_course` VALUES (79, 34, 126, 0);
+INSERT INTO `student_select_course` VALUES (80, 35, 155, 0);
+INSERT INTO `student_select_course` VALUES (81, 36, 593, 0);
+INSERT INTO `student_select_course` VALUES (82, 36, 53, 0);
+INSERT INTO `student_select_course` VALUES (83, 36, 511, 0);
+INSERT INTO `student_select_course` VALUES (84, 36, 209, 0);
+INSERT INTO `student_select_course` VALUES (85, 36, 490, 0);
+INSERT INTO `student_select_course` VALUES (86, 37, 285, 0);
+INSERT INTO `student_select_course` VALUES (87, 38, 392, 0);
+INSERT INTO `student_select_course` VALUES (88, 38, 454, 0);
+INSERT INTO `student_select_course` VALUES (89, 38, 530, 0);
+INSERT INTO `student_select_course` VALUES (90, 39, 94, 0);
+INSERT INTO `student_select_course` VALUES (91, 41, 362, 0);
+INSERT INTO `student_select_course` VALUES (92, 41, 637, 0);
+INSERT INTO `student_select_course` VALUES (93, 41, 185, 0);
+INSERT INTO `student_select_course` VALUES (94, 43, 504, 0);
+INSERT INTO `student_select_course` VALUES (95, 43, 10, 0);
+INSERT INTO `student_select_course` VALUES (96, 45, 191, 0);
+INSERT INTO `student_select_course` VALUES (97, 45, 178, 0);
+INSERT INTO `student_select_course` VALUES (98, 45, 144, 0);
+INSERT INTO `student_select_course` VALUES (99, 45, 471, 0);
+INSERT INTO `student_select_course` VALUES (100, 45, 476, 0);
+INSERT INTO `student_select_course` VALUES (101, 47, 460, 0);
+INSERT INTO `student_select_course` VALUES (102, 48, 541, 0);
+INSERT INTO `student_select_course` VALUES (103, 48, 436, 0);
+INSERT INTO `student_select_course` VALUES (104, 49, 401, 0);
+INSERT INTO `student_select_course` VALUES (105, 49, 258, 0);
+INSERT INTO `student_select_course` VALUES (106, 50, 238, 0);
+INSERT INTO `student_select_course` VALUES (107, 51, 349, 0);
+INSERT INTO `student_select_course` VALUES (108, 52, 378, 0);
+INSERT INTO `student_select_course` VALUES (109, 53, 267, 0);
+INSERT INTO `student_select_course` VALUES (110, 53, 255, 0);
+INSERT INTO `student_select_course` VALUES (111, 54, 284, 0);
+INSERT INTO `student_select_course` VALUES (112, 54, 55, 0);
+INSERT INTO `student_select_course` VALUES (113, 54, 401, 0);
+INSERT INTO `student_select_course` VALUES (114, 55, 258, 0);
+INSERT INTO `student_select_course` VALUES (115, 55, 50, 0);
+INSERT INTO `student_select_course` VALUES (116, 55, 122, 0);
+INSERT INTO `student_select_course` VALUES (117, 55, 76, 0);
+INSERT INTO `student_select_course` VALUES (118, 55, 503, 0);
+INSERT INTO `student_select_course` VALUES (119, 57, 531, 0);
+INSERT INTO `student_select_course` VALUES (120, 57, 256, 0);
+INSERT INTO `student_select_course` VALUES (121, 57, 641, 0);
+INSERT INTO `student_select_course` VALUES (122, 57, 114, 0);
+INSERT INTO `student_select_course` VALUES (123, 57, 511, 0);
+INSERT INTO `student_select_course` VALUES (124, 58, 376, 0);
+INSERT INTO `student_select_course` VALUES (125, 58, 93, 0);
+INSERT INTO `student_select_course` VALUES (126, 58, 481, 0);
+INSERT INTO `student_select_course` VALUES (127, 59, 337, 0);
+INSERT INTO `student_select_course` VALUES (128, 59, 63, 0);
+INSERT INTO `student_select_course` VALUES (129, 59, 250, 0);
+INSERT INTO `student_select_course` VALUES (130, 59, 519, 0);
+INSERT INTO `student_select_course` VALUES (131, 59, 151, 0);
+INSERT INTO `student_select_course` VALUES (132, 61, 50, 0);
+INSERT INTO `student_select_course` VALUES (133, 61, 211, 0);
+INSERT INTO `student_select_course` VALUES (134, 62, 395, 0);
+INSERT INTO `student_select_course` VALUES (135, 63, 333, 0);
+INSERT INTO `student_select_course` VALUES (136, 63, 462, 0);
+INSERT INTO `student_select_course` VALUES (137, 65, 642, 0);
+INSERT INTO `student_select_course` VALUES (138, 65, 589, 0);
+INSERT INTO `student_select_course` VALUES (139, 66, 160, 0);
+INSERT INTO `student_select_course` VALUES (140, 66, 513, 0);
+INSERT INTO `student_select_course` VALUES (141, 66, 238, 0);
+INSERT INTO `student_select_course` VALUES (142, 66, 360, 0);
+INSERT INTO `student_select_course` VALUES (143, 67, 634, 0);
+INSERT INTO `student_select_course` VALUES (144, 67, 461, 0);
+INSERT INTO `student_select_course` VALUES (145, 67, 286, 0);
+INSERT INTO `student_select_course` VALUES (146, 67, 230, 0);
+INSERT INTO `student_select_course` VALUES (147, 67, 307, 0);
+INSERT INTO `student_select_course` VALUES (148, 68, 448, 0);
+INSERT INTO `student_select_course` VALUES (149, 68, 9, 0);
+INSERT INTO `student_select_course` VALUES (150, 68, 69, 0);
+INSERT INTO `student_select_course` VALUES (151, 68, 201, 0);
+INSERT INTO `student_select_course` VALUES (152, 68, 369, 0);
+INSERT INTO `student_select_course` VALUES (153, 69, 153, 0);
+INSERT INTO `student_select_course` VALUES (154, 70, 107, 0);
+INSERT INTO `student_select_course` VALUES (155, 71, 55, 0);
+INSERT INTO `student_select_course` VALUES (156, 73, 158, 0);
+INSERT INTO `student_select_course` VALUES (157, 73, 156, 0);
+INSERT INTO `student_select_course` VALUES (158, 74, 407, 0);
+INSERT INTO `student_select_course` VALUES (159, 75, 529, 0);
+INSERT INTO `student_select_course` VALUES (160, 76, 9, 0);
+INSERT INTO `student_select_course` VALUES (161, 76, 58, 0);
+INSERT INTO `student_select_course` VALUES (162, 76, 354, 0);
+INSERT INTO `student_select_course` VALUES (163, 76, 543, 0);
+INSERT INTO `student_select_course` VALUES (164, 76, 647, 0);
+INSERT INTO `student_select_course` VALUES (165, 77, 298, 0);
+INSERT INTO `student_select_course` VALUES (166, 77, 530, 0);
+INSERT INTO `student_select_course` VALUES (167, 78, 278, 0);
+INSERT INTO `student_select_course` VALUES (168, 78, 397, 0);
+INSERT INTO `student_select_course` VALUES (169, 78, 574, 0);
+INSERT INTO `student_select_course` VALUES (170, 79, 637, 0);
+INSERT INTO `student_select_course` VALUES (171, 79, 464, 0);
+INSERT INTO `student_select_course` VALUES (172, 79, 617, 0);
+INSERT INTO `student_select_course` VALUES (173, 79, 385, 0);
+INSERT INTO `student_select_course` VALUES (174, 79, 410, 0);
+INSERT INTO `student_select_course` VALUES (175, 80, 546, 0);
+INSERT INTO `student_select_course` VALUES (176, 80, 94, 0);
+INSERT INTO `student_select_course` VALUES (177, 80, 157, 0);
+INSERT INTO `student_select_course` VALUES (178, 80, 441, 0);
+INSERT INTO `student_select_course` VALUES (179, 82, 224, 0);
+INSERT INTO `student_select_course` VALUES (180, 82, 9, 0);
+INSERT INTO `student_select_course` VALUES (181, 82, 251, 0);
+INSERT INTO `student_select_course` VALUES (182, 82, 646, 0);
+INSERT INTO `student_select_course` VALUES (183, 82, 113, 0);
+INSERT INTO `student_select_course` VALUES (184, 83, 137, 0);
+INSERT INTO `student_select_course` VALUES (185, 84, 538, 0);
+INSERT INTO `student_select_course` VALUES (186, 85, 285, 0);
+INSERT INTO `student_select_course` VALUES (187, 85, 243, 0);
+INSERT INTO `student_select_course` VALUES (188, 85, 360, 0);
+INSERT INTO `student_select_course` VALUES (189, 85, 68, 0);
+INSERT INTO `student_select_course` VALUES (190, 86, 589, 0);
+INSERT INTO `student_select_course` VALUES (191, 86, 591, 0);
+INSERT INTO `student_select_course` VALUES (192, 87, 363, 0);
+INSERT INTO `student_select_course` VALUES (193, 87, 458, 0);
+INSERT INTO `student_select_course` VALUES (194, 87, 106, 0);
+INSERT INTO `student_select_course` VALUES (195, 88, 572, 0);
+INSERT INTO `student_select_course` VALUES (196, 88, 154, 0);
+INSERT INTO `student_select_course` VALUES (197, 89, 405, 0);
+INSERT INTO `student_select_course` VALUES (198, 89, 157, 0);
+INSERT INTO `student_select_course` VALUES (199, 91, 541, 0);
+INSERT INTO `student_select_course` VALUES (200, 91, 327, 0);
+INSERT INTO `student_select_course` VALUES (201, 91, 124, 0);
+INSERT INTO `student_select_course` VALUES (202, 91, 170, 0);
+INSERT INTO `student_select_course` VALUES (203, 92, 233, 0);
+INSERT INTO `student_select_course` VALUES (204, 92, 137, 0);
+INSERT INTO `student_select_course` VALUES (205, 92, 60, 0);
+INSERT INTO `student_select_course` VALUES (206, 92, 493, 0);
+INSERT INTO `student_select_course` VALUES (207, 93, 555, 0);
+INSERT INTO `student_select_course` VALUES (208, 93, 126, 0);
+INSERT INTO `student_select_course` VALUES (209, 93, 259, 0);
+INSERT INTO `student_select_course` VALUES (210, 93, 74, 0);
+INSERT INTO `student_select_course` VALUES (211, 94, 554, 0);
+INSERT INTO `student_select_course` VALUES (212, 94, 314, 0);
+INSERT INTO `student_select_course` VALUES (213, 94, 537, 0);
+INSERT INTO `student_select_course` VALUES (214, 94, 363, 0);
+INSERT INTO `student_select_course` VALUES (215, 94, 261, 0);
+INSERT INTO `student_select_course` VALUES (216, 95, 252, 0);
+INSERT INTO `student_select_course` VALUES (217, 95, 615, 0);
+INSERT INTO `student_select_course` VALUES (218, 95, 128, 0);
+INSERT INTO `student_select_course` VALUES (219, 96, 400, 0);
+INSERT INTO `student_select_course` VALUES (220, 96, 534, 0);
+INSERT INTO `student_select_course` VALUES (221, 97, 328, 0);
+INSERT INTO `student_select_course` VALUES (222, 97, 411, 0);
+INSERT INTO `student_select_course` VALUES (223, 97, 375, 0);
+INSERT INTO `student_select_course` VALUES (224, 97, 255, 0);
+INSERT INTO `student_select_course` VALUES (225, 97, 527, 0);
+INSERT INTO `student_select_course` VALUES (226, 98, 197, 0);
+INSERT INTO `student_select_course` VALUES (227, 98, 383, 0);
+INSERT INTO `student_select_course` VALUES (228, 98, 527, 0);
+INSERT INTO `student_select_course` VALUES (229, 98, 376, 0);
+INSERT INTO `student_select_course` VALUES (230, 99, 457, 0);
+INSERT INTO `student_select_course` VALUES (231, 99, 609, 0);
+INSERT INTO `student_select_course` VALUES (232, 99, 456, 0);
+INSERT INTO `student_select_course` VALUES (233, 100, 591, 0);
+INSERT INTO `student_select_course` VALUES (234, 100, 166, 0);
+INSERT INTO `student_select_course` VALUES (235, 100, 646, 0);
+INSERT INTO `student_select_course` VALUES (236, 100, 163, 0);
+INSERT INTO `student_select_course` VALUES (237, 100, 249, 0);
+INSERT INTO `student_select_course` VALUES (238, 101, 428, 0);
+INSERT INTO `student_select_course` VALUES (239, 101, 203, 0);
+INSERT INTO `student_select_course` VALUES (240, 103, 622, 0);
+INSERT INTO `student_select_course` VALUES (241, 103, 452, 0);
+INSERT INTO `student_select_course` VALUES (242, 103, 548, 0);
+INSERT INTO `student_select_course` VALUES (243, 103, 548, 0);
+INSERT INTO `student_select_course` VALUES (244, 103, 151, 0);
+INSERT INTO `student_select_course` VALUES (245, 105, 277, 0);
+INSERT INTO `student_select_course` VALUES (246, 105, 616, 0);
+INSERT INTO `student_select_course` VALUES (247, 106, 647, 0);
+INSERT INTO `student_select_course` VALUES (248, 106, 558, 0);
+INSERT INTO `student_select_course` VALUES (249, 106, 62, 0);
+INSERT INTO `student_select_course` VALUES (250, 106, 309, 0);
+INSERT INTO `student_select_course` VALUES (251, 107, 154, 0);
+INSERT INTO `student_select_course` VALUES (252, 107, 313, 0);
+INSERT INTO `student_select_course` VALUES (253, 107, 28, 0);
+INSERT INTO `student_select_course` VALUES (254, 107, 159, 0);
+INSERT INTO `student_select_course` VALUES (255, 108, 132, 0);
+INSERT INTO `student_select_course` VALUES (256, 108, 58, 0);
+INSERT INTO `student_select_course` VALUES (257, 109, 135, 0);
+INSERT INTO `student_select_course` VALUES (258, 109, 312, 0);
+INSERT INTO `student_select_course` VALUES (259, 109, 159, 0);
+INSERT INTO `student_select_course` VALUES (260, 109, 189, 0);
+INSERT INTO `student_select_course` VALUES (261, 109, 642, 0);
+INSERT INTO `student_select_course` VALUES (262, 110, 588, 0);
+INSERT INTO `student_select_course` VALUES (263, 110, 428, 0);
+INSERT INTO `student_select_course` VALUES (264, 111, 491, 0);
+INSERT INTO `student_select_course` VALUES (265, 112, 491, 0);
+INSERT INTO `student_select_course` VALUES (266, 112, 63, 0);
+INSERT INTO `student_select_course` VALUES (267, 112, 32, 0);
+INSERT INTO `student_select_course` VALUES (268, 112, 88, 0);
+INSERT INTO `student_select_course` VALUES (269, 114, 371, 0);
+INSERT INTO `student_select_course` VALUES (270, 114, 118, 0);
+INSERT INTO `student_select_course` VALUES (271, 114, 411, 0);
+INSERT INTO `student_select_course` VALUES (272, 116, 444, 0);
+INSERT INTO `student_select_course` VALUES (273, 116, 271, 0);
+INSERT INTO `student_select_course` VALUES (274, 116, 45, 0);
+INSERT INTO `student_select_course` VALUES (275, 117, 321, 0);
+INSERT INTO `student_select_course` VALUES (276, 117, 345, 0);
+INSERT INTO `student_select_course` VALUES (277, 118, 217, 0);
+INSERT INTO `student_select_course` VALUES (278, 118, 239, 0);
+INSERT INTO `student_select_course` VALUES (279, 118, 415, 0);
+INSERT INTO `student_select_course` VALUES (280, 119, 539, 0);
+INSERT INTO `student_select_course` VALUES (281, 119, 217, 0);
+INSERT INTO `student_select_course` VALUES (282, 119, 543, 0);
+INSERT INTO `student_select_course` VALUES (283, 119, 235, 0);
+INSERT INTO `student_select_course` VALUES (284, 120, 294, 0);
+INSERT INTO `student_select_course` VALUES (285, 120, 375, 0);
+INSERT INTO `student_select_course` VALUES (286, 121, 154, 0);
+INSERT INTO `student_select_course` VALUES (287, 121, 354, 0);
+INSERT INTO `student_select_course` VALUES (288, 121, 567, 0);
+INSERT INTO `student_select_course` VALUES (289, 123, 529, 0);
+INSERT INTO `student_select_course` VALUES (290, 123, 480, 0);
+INSERT INTO `student_select_course` VALUES (291, 123, 199, 0);
+INSERT INTO `student_select_course` VALUES (292, 124, 479, 0);
+INSERT INTO `student_select_course` VALUES (293, 124, 402, 0);
+INSERT INTO `student_select_course` VALUES (294, 125, 189, 0);
+INSERT INTO `student_select_course` VALUES (295, 125, 196, 0);
+INSERT INTO `student_select_course` VALUES (296, 125, 559, 0);
+INSERT INTO `student_select_course` VALUES (297, 125, 462, 0);
+INSERT INTO `student_select_course` VALUES (298, 125, 619, 0);
+INSERT INTO `student_select_course` VALUES (299, 126, 466, 0);
+INSERT INTO `student_select_course` VALUES (300, 126, 137, 0);
+INSERT INTO `student_select_course` VALUES (301, 126, 234, 0);
+INSERT INTO `student_select_course` VALUES (302, 126, 353, 0);
+INSERT INTO `student_select_course` VALUES (303, 127, 136, 0);
+INSERT INTO `student_select_course` VALUES (304, 127, 19, 0);
+INSERT INTO `student_select_course` VALUES (305, 129, 206, 0);
+INSERT INTO `student_select_course` VALUES (306, 129, 446, 0);
+INSERT INTO `student_select_course` VALUES (307, 129, 371, 0);
+INSERT INTO `student_select_course` VALUES (308, 129, 602, 0);
+INSERT INTO `student_select_course` VALUES (309, 130, 543, 0);
+INSERT INTO `student_select_course` VALUES (310, 131, 14, 0);
+INSERT INTO `student_select_course` VALUES (311, 131, 605, 0);
+INSERT INTO `student_select_course` VALUES (312, 131, 261, 0);
+INSERT INTO `student_select_course` VALUES (313, 132, 186, 0);
+INSERT INTO `student_select_course` VALUES (314, 132, 230, 0);
+INSERT INTO `student_select_course` VALUES (315, 132, 269, 0);
+INSERT INTO `student_select_course` VALUES (316, 132, 400, 0);
+INSERT INTO `student_select_course` VALUES (317, 133, 62, 0);
+INSERT INTO `student_select_course` VALUES (318, 133, 413, 0);
+INSERT INTO `student_select_course` VALUES (319, 133, 256, 0);
+INSERT INTO `student_select_course` VALUES (320, 133, 548, 0);
+INSERT INTO `student_select_course` VALUES (321, 134, 192, 0);
+INSERT INTO `student_select_course` VALUES (322, 134, 52, 0);
+INSERT INTO `student_select_course` VALUES (323, 134, 199, 0);
+INSERT INTO `student_select_course` VALUES (324, 134, 25, 0);
+INSERT INTO `student_select_course` VALUES (325, 134, 227, 0);
+INSERT INTO `student_select_course` VALUES (326, 135, 315, 0);
+INSERT INTO `student_select_course` VALUES (327, 135, 637, 0);
+INSERT INTO `student_select_course` VALUES (328, 137, 230, 0);
+INSERT INTO `student_select_course` VALUES (329, 137, 119, 0);
+INSERT INTO `student_select_course` VALUES (330, 138, 569, 0);
+INSERT INTO `student_select_course` VALUES (331, 138, 578, 0);
+INSERT INTO `student_select_course` VALUES (332, 138, 81, 0);
+INSERT INTO `student_select_course` VALUES (333, 138, 509, 0);
+INSERT INTO `student_select_course` VALUES (334, 139, 455, 0);
+INSERT INTO `student_select_course` VALUES (335, 139, 149, 0);
+INSERT INTO `student_select_course` VALUES (336, 139, 374, 0);
+INSERT INTO `student_select_course` VALUES (337, 140, 249, 0);
+INSERT INTO `student_select_course` VALUES (338, 142, 354, 0);
+INSERT INTO `student_select_course` VALUES (339, 142, 499, 0);
+INSERT INTO `student_select_course` VALUES (340, 142, 395, 0);
+INSERT INTO `student_select_course` VALUES (341, 142, 95, 0);
+INSERT INTO `student_select_course` VALUES (342, 142, 304, 0);
+INSERT INTO `student_select_course` VALUES (343, 144, 20, 0);
+INSERT INTO `student_select_course` VALUES (344, 144, 45, 0);
+INSERT INTO `student_select_course` VALUES (345, 146, 605, 0);
+INSERT INTO `student_select_course` VALUES (346, 146, 469, 0);
+INSERT INTO `student_select_course` VALUES (347, 147, 492, 0);
+INSERT INTO `student_select_course` VALUES (348, 147, 111, 0);
+INSERT INTO `student_select_course` VALUES (349, 147, 68, 0);
+INSERT INTO `student_select_course` VALUES (350, 148, 37, 0);
+INSERT INTO `student_select_course` VALUES (351, 148, 493, 0);
+INSERT INTO `student_select_course` VALUES (352, 148, 541, 0);
+INSERT INTO `student_select_course` VALUES (353, 148, 315, 0);
+INSERT INTO `student_select_course` VALUES (354, 151, 530, 0);
+INSERT INTO `student_select_course` VALUES (355, 151, 248, 0);
+INSERT INTO `student_select_course` VALUES (356, 151, 56, 0);
+INSERT INTO `student_select_course` VALUES (357, 151, 369, 0);
+INSERT INTO `student_select_course` VALUES (358, 151, 195, 0);
+INSERT INTO `student_select_course` VALUES (359, 152, 206, 0);
+INSERT INTO `student_select_course` VALUES (360, 152, 150, 0);
+INSERT INTO `student_select_course` VALUES (361, 153, 71, 0);
+INSERT INTO `student_select_course` VALUES (362, 153, 451, 0);
+INSERT INTO `student_select_course` VALUES (363, 153, 272, 0);
+INSERT INTO `student_select_course` VALUES (364, 154, 451, 0);
+INSERT INTO `student_select_course` VALUES (365, 154, 565, 0);
+INSERT INTO `student_select_course` VALUES (366, 157, 242, 0);
+INSERT INTO `student_select_course` VALUES (367, 157, 81, 0);
+INSERT INTO `student_select_course` VALUES (368, 158, 302, 0);
+INSERT INTO `student_select_course` VALUES (369, 158, 460, 0);
+INSERT INTO `student_select_course` VALUES (370, 158, 141, 0);
+INSERT INTO `student_select_course` VALUES (371, 158, 613, 0);
+INSERT INTO `student_select_course` VALUES (372, 158, 422, 0);
+INSERT INTO `student_select_course` VALUES (373, 162, 433, 0);
+INSERT INTO `student_select_course` VALUES (374, 162, 460, 0);
+INSERT INTO `student_select_course` VALUES (375, 162, 428, 0);
+INSERT INTO `student_select_course` VALUES (376, 163, 164, 0);
+INSERT INTO `student_select_course` VALUES (377, 164, 97, 0);
+INSERT INTO `student_select_course` VALUES (378, 164, 294, 0);
+INSERT INTO `student_select_course` VALUES (379, 164, 24, 0);
+INSERT INTO `student_select_course` VALUES (380, 164, 212, 0);
+INSERT INTO `student_select_course` VALUES (381, 164, 528, 0);
+INSERT INTO `student_select_course` VALUES (382, 165, 84, 0);
+INSERT INTO `student_select_course` VALUES (383, 165, 400, 0);
+INSERT INTO `student_select_course` VALUES (384, 166, 628, 0);
+INSERT INTO `student_select_course` VALUES (385, 166, 345, 0);
+INSERT INTO `student_select_course` VALUES (386, 166, 40, 0);
+INSERT INTO `student_select_course` VALUES (387, 166, 481, 0);
+INSERT INTO `student_select_course` VALUES (388, 166, 140, 0);
+INSERT INTO `student_select_course` VALUES (389, 167, 171, 0);
+INSERT INTO `student_select_course` VALUES (390, 168, 137, 0);
+INSERT INTO `student_select_course` VALUES (391, 170, 101, 0);
+INSERT INTO `student_select_course` VALUES (392, 170, 452, 0);
+INSERT INTO `student_select_course` VALUES (393, 170, 184, 0);
+INSERT INTO `student_select_course` VALUES (394, 170, 267, 0);
+INSERT INTO `student_select_course` VALUES (395, 170, 414, 0);
+INSERT INTO `student_select_course` VALUES (396, 171, 192, 0);
+INSERT INTO `student_select_course` VALUES (397, 171, 600, 0);
+INSERT INTO `student_select_course` VALUES (398, 173, 538, 0);
+INSERT INTO `student_select_course` VALUES (399, 173, 313, 0);
+INSERT INTO `student_select_course` VALUES (400, 174, 594, 0);
+INSERT INTO `student_select_course` VALUES (401, 174, 467, 0);
+INSERT INTO `student_select_course` VALUES (402, 174, 326, 0);
+INSERT INTO `student_select_course` VALUES (403, 176, 484, 0);
+INSERT INTO `student_select_course` VALUES (404, 176, 120, 0);
+INSERT INTO `student_select_course` VALUES (405, 176, 362, 0);
+INSERT INTO `student_select_course` VALUES (406, 176, 235, 0);
+INSERT INTO `student_select_course` VALUES (407, 176, 116, 0);
+INSERT INTO `student_select_course` VALUES (408, 177, 71, 0);
+INSERT INTO `student_select_course` VALUES (409, 177, 101, 0);
+INSERT INTO `student_select_course` VALUES (410, 177, 366, 0);
+INSERT INTO `student_select_course` VALUES (411, 179, 163, 0);
+INSERT INTO `student_select_course` VALUES (412, 179, 466, 0);
+INSERT INTO `student_select_course` VALUES (413, 179, 381, 0);
+INSERT INTO `student_select_course` VALUES (414, 179, 420, 0);
+INSERT INTO `student_select_course` VALUES (415, 180, 253, 0);
+INSERT INTO `student_select_course` VALUES (416, 180, 379, 0);
+INSERT INTO `student_select_course` VALUES (417, 180, 58, 0);
+INSERT INTO `student_select_course` VALUES (418, 183, 24, 0);
+INSERT INTO `student_select_course` VALUES (419, 184, 566, 0);
+INSERT INTO `student_select_course` VALUES (420, 184, 298, 0);
+INSERT INTO `student_select_course` VALUES (421, 184, 124, 0);
+INSERT INTO `student_select_course` VALUES (422, 184, 178, 0);
+INSERT INTO `student_select_course` VALUES (423, 185, 264, 0);
+INSERT INTO `student_select_course` VALUES (424, 186, 446, 0);
+INSERT INTO `student_select_course` VALUES (425, 186, 55, 0);
+INSERT INTO `student_select_course` VALUES (426, 186, 171, 0);
+INSERT INTO `student_select_course` VALUES (427, 187, 39, 0);
+INSERT INTO `student_select_course` VALUES (428, 187, 642, 0);
+INSERT INTO `student_select_course` VALUES (429, 188, 302, 0);
+INSERT INTO `student_select_course` VALUES (430, 189, 366, 0);
+INSERT INTO `student_select_course` VALUES (431, 189, 164, 0);
+INSERT INTO `student_select_course` VALUES (432, 189, 329, 0);
+INSERT INTO `student_select_course` VALUES (433, 190, 186, 0);
+INSERT INTO `student_select_course` VALUES (434, 190, 349, 0);
+INSERT INTO `student_select_course` VALUES (435, 190, 18, 0);
+INSERT INTO `student_select_course` VALUES (436, 190, 221, 0);
+INSERT INTO `student_select_course` VALUES (437, 191, 491, 0);
+INSERT INTO `student_select_course` VALUES (438, 191, 332, 0);
+INSERT INTO `student_select_course` VALUES (439, 191, 126, 0);
+INSERT INTO `student_select_course` VALUES (440, 191, 300, 0);
+INSERT INTO `student_select_course` VALUES (441, 191, 482, 0);
+INSERT INTO `student_select_course` VALUES (442, 192, 321, 0);
+INSERT INTO `student_select_course` VALUES (443, 194, 153, 0);
+INSERT INTO `student_select_course` VALUES (444, 195, 134, 0);
+INSERT INTO `student_select_course` VALUES (445, 195, 480, 0);
+INSERT INTO `student_select_course` VALUES (446, 195, 374, 0);
+INSERT INTO `student_select_course` VALUES (447, 196, 225, 0);
+INSERT INTO `student_select_course` VALUES (448, 196, 467, 0);
+INSERT INTO `student_select_course` VALUES (449, 197, 481, 0);
+INSERT INTO `student_select_course` VALUES (450, 197, 284, 0);
+INSERT INTO `student_select_course` VALUES (451, 198, 30, 0);
+INSERT INTO `student_select_course` VALUES (452, 198, 351, 0);
+INSERT INTO `student_select_course` VALUES (453, 199, 52, 0);
+INSERT INTO `student_select_course` VALUES (454, 200, 347, 0);
+INSERT INTO `student_select_course` VALUES (455, 200, 56, 0);
+INSERT INTO `student_select_course` VALUES (456, 201, 564, 0);
+INSERT INTO `student_select_course` VALUES (457, 201, 515, 0);
+INSERT INTO `student_select_course` VALUES (458, 201, 105, 0);
+INSERT INTO `student_select_course` VALUES (459, 202, 22, 0);
+INSERT INTO `student_select_course` VALUES (460, 202, 59, 0);
+INSERT INTO `student_select_course` VALUES (461, 202, 526, 0);
+INSERT INTO `student_select_course` VALUES (462, 202, 96, 0);
+INSERT INTO `student_select_course` VALUES (463, 203, 48, 0);
+INSERT INTO `student_select_course` VALUES (464, 203, 549, 0);
+INSERT INTO `student_select_course` VALUES (465, 203, 320, 0);
+INSERT INTO `student_select_course` VALUES (466, 204, 445, 0);
+INSERT INTO `student_select_course` VALUES (467, 204, 226, 0);
+INSERT INTO `student_select_course` VALUES (468, 204, 240, 0);
+INSERT INTO `student_select_course` VALUES (469, 204, 95, 0);
+INSERT INTO `student_select_course` VALUES (470, 204, 381, 0);
+INSERT INTO `student_select_course` VALUES (471, 206, 606, 0);
+INSERT INTO `student_select_course` VALUES (472, 206, 276, 0);
+INSERT INTO `student_select_course` VALUES (473, 206, 530, 0);
+INSERT INTO `student_select_course` VALUES (474, 206, 516, 0);
+INSERT INTO `student_select_course` VALUES (475, 206, 290, 0);
+INSERT INTO `student_select_course` VALUES (476, 207, 483, 0);
+INSERT INTO `student_select_course` VALUES (477, 207, 64, 0);
+INSERT INTO `student_select_course` VALUES (478, 207, 149, 0);
+INSERT INTO `student_select_course` VALUES (479, 208, 242, 0);
+INSERT INTO `student_select_course` VALUES (480, 208, 529, 0);
+INSERT INTO `student_select_course` VALUES (481, 209, 632, 0);
+INSERT INTO `student_select_course` VALUES (482, 210, 631, 0);
+INSERT INTO `student_select_course` VALUES (483, 210, 280, 0);
+INSERT INTO `student_select_course` VALUES (484, 210, 52, 0);
+INSERT INTO `student_select_course` VALUES (485, 210, 438, 0);
+INSERT INTO `student_select_course` VALUES (486, 211, 545, 0);
+INSERT INTO `student_select_course` VALUES (487, 211, 636, 0);
+INSERT INTO `student_select_course` VALUES (488, 211, 579, 0);
+INSERT INTO `student_select_course` VALUES (489, 211, 506, 0);
+INSERT INTO `student_select_course` VALUES (490, 211, 590, 0);
+INSERT INTO `student_select_course` VALUES (491, 212, 357, 0);
+INSERT INTO `student_select_course` VALUES (492, 213, 518, 0);
+INSERT INTO `student_select_course` VALUES (493, 213, 242, 0);
+INSERT INTO `student_select_course` VALUES (494, 213, 600, 0);
+INSERT INTO `student_select_course` VALUES (495, 213, 630, 0);
+INSERT INTO `student_select_course` VALUES (496, 214, 415, 0);
+INSERT INTO `student_select_course` VALUES (497, 214, 87, 0);
+INSERT INTO `student_select_course` VALUES (498, 214, 554, 0);
+INSERT INTO `student_select_course` VALUES (499, 215, 643, 0);
+INSERT INTO `student_select_course` VALUES (500, 215, 63, 0);
+INSERT INTO `student_select_course` VALUES (501, 215, 179, 0);
+INSERT INTO `student_select_course` VALUES (502, 215, 491, 0);
+INSERT INTO `student_select_course` VALUES (503, 215, 76, 0);
+INSERT INTO `student_select_course` VALUES (504, 216, 293, 0);
+INSERT INTO `student_select_course` VALUES (505, 216, 195, 0);
+INSERT INTO `student_select_course` VALUES (506, 216, 152, 0);
+INSERT INTO `student_select_course` VALUES (507, 216, 316, 0);
+INSERT INTO `student_select_course` VALUES (508, 217, 379, 0);
+INSERT INTO `student_select_course` VALUES (509, 217, 230, 0);
+INSERT INTO `student_select_course` VALUES (510, 218, 84, 0);
+INSERT INTO `student_select_course` VALUES (511, 218, 477, 0);
+INSERT INTO `student_select_course` VALUES (512, 218, 263, 0);
+INSERT INTO `student_select_course` VALUES (513, 218, 449, 0);
+INSERT INTO `student_select_course` VALUES (514, 219, 645, 0);
+INSERT INTO `student_select_course` VALUES (515, 219, 450, 0);
+INSERT INTO `student_select_course` VALUES (516, 219, 307, 0);
+INSERT INTO `student_select_course` VALUES (517, 220, 428, 0);
+INSERT INTO `student_select_course` VALUES (518, 221, 70, 0);
+INSERT INTO `student_select_course` VALUES (519, 221, 564, 0);
+INSERT INTO `student_select_course` VALUES (520, 223, 61, 0);
+INSERT INTO `student_select_course` VALUES (521, 223, 549, 0);
+INSERT INTO `student_select_course` VALUES (522, 224, 604, 0);
+INSERT INTO `student_select_course` VALUES (523, 224, 448, 0);
+INSERT INTO `student_select_course` VALUES (524, 224, 83, 0);
+INSERT INTO `student_select_course` VALUES (525, 224, 247, 0);
+INSERT INTO `student_select_course` VALUES (526, 224, 509, 0);
+INSERT INTO `student_select_course` VALUES (527, 226, 489, 0);
+INSERT INTO `student_select_course` VALUES (528, 226, 206, 0);
+INSERT INTO `student_select_course` VALUES (529, 226, 571, 0);
+INSERT INTO `student_select_course` VALUES (530, 227, 125, 0);
+INSERT INTO `student_select_course` VALUES (531, 227, 446, 0);
+INSERT INTO `student_select_course` VALUES (532, 227, 578, 0);
+INSERT INTO `student_select_course` VALUES (533, 228, 27, 0);
+INSERT INTO `student_select_course` VALUES (534, 228, 24, 0);
+INSERT INTO `student_select_course` VALUES (535, 228, 166, 0);
+INSERT INTO `student_select_course` VALUES (536, 228, 595, 0);
+INSERT INTO `student_select_course` VALUES (537, 228, 533, 0);
+INSERT INTO `student_select_course` VALUES (538, 229, 245, 0);
+INSERT INTO `student_select_course` VALUES (539, 229, 205, 0);
+INSERT INTO `student_select_course` VALUES (540, 229, 48, 0);
+INSERT INTO `student_select_course` VALUES (541, 229, 292, 0);
+INSERT INTO `student_select_course` VALUES (542, 229, 150, 0);
+INSERT INTO `student_select_course` VALUES (543, 230, 570, 0);
+INSERT INTO `student_select_course` VALUES (544, 230, 647, 0);
+INSERT INTO `student_select_course` VALUES (545, 230, 258, 0);
+INSERT INTO `student_select_course` VALUES (546, 230, 521, 0);
+INSERT INTO `student_select_course` VALUES (547, 230, 226, 0);
+INSERT INTO `student_select_course` VALUES (548, 231, 436, 0);
+INSERT INTO `student_select_course` VALUES (549, 231, 361, 0);
+INSERT INTO `student_select_course` VALUES (550, 231, 249, 0);
+INSERT INTO `student_select_course` VALUES (551, 232, 28, 0);
+INSERT INTO `student_select_course` VALUES (552, 233, 206, 0);
+INSERT INTO `student_select_course` VALUES (553, 233, 226, 0);
+INSERT INTO `student_select_course` VALUES (554, 233, 535, 0);
+INSERT INTO `student_select_course` VALUES (555, 233, 90, 0);
+INSERT INTO `student_select_course` VALUES (556, 234, 24, 0);
+INSERT INTO `student_select_course` VALUES (557, 234, 155, 0);
+INSERT INTO `student_select_course` VALUES (558, 235, 423, 0);
+INSERT INTO `student_select_course` VALUES (559, 235, 475, 0);
+INSERT INTO `student_select_course` VALUES (560, 235, 92, 0);
+INSERT INTO `student_select_course` VALUES (561, 235, 576, 0);
+INSERT INTO `student_select_course` VALUES (562, 236, 577, 0);
+INSERT INTO `student_select_course` VALUES (563, 236, 175, 0);
+INSERT INTO `student_select_course` VALUES (564, 238, 509, 0);
+INSERT INTO `student_select_course` VALUES (565, 238, 531, 0);
+INSERT INTO `student_select_course` VALUES (566, 238, 337, 0);
+INSERT INTO `student_select_course` VALUES (567, 240, 509, 0);
+INSERT INTO `student_select_course` VALUES (568, 240, 467, 0);
+INSERT INTO `student_select_course` VALUES (569, 242, 167, 0);
+INSERT INTO `student_select_course` VALUES (570, 242, 553, 0);
+INSERT INTO `student_select_course` VALUES (571, 242, 142, 0);
+INSERT INTO `student_select_course` VALUES (572, 244, 615, 0);
+INSERT INTO `student_select_course` VALUES (573, 244, 303, 0);
+INSERT INTO `student_select_course` VALUES (574, 244, 143, 0);
+INSERT INTO `student_select_course` VALUES (575, 245, 27, 0);
+INSERT INTO `student_select_course` VALUES (576, 245, 531, 0);
+INSERT INTO `student_select_course` VALUES (577, 245, 615, 0);
+INSERT INTO `student_select_course` VALUES (578, 245, 229, 0);
+INSERT INTO `student_select_course` VALUES (579, 246, 484, 0);
+INSERT INTO `student_select_course` VALUES (580, 247, 22, 0);
+INSERT INTO `student_select_course` VALUES (581, 248, 60, 0);
+INSERT INTO `student_select_course` VALUES (582, 248, 389, 0);
+INSERT INTO `student_select_course` VALUES (583, 248, 90, 0);
+INSERT INTO `student_select_course` VALUES (584, 250, 385, 0);
+INSERT INTO `student_select_course` VALUES (585, 250, 355, 0);
+INSERT INTO `student_select_course` VALUES (586, 250, 198, 0);
+INSERT INTO `student_select_course` VALUES (587, 251, 97, 0);
+INSERT INTO `student_select_course` VALUES (588, 251, 425, 0);
+INSERT INTO `student_select_course` VALUES (589, 251, 453, 0);
+INSERT INTO `student_select_course` VALUES (590, 251, 590, 0);
+INSERT INTO `student_select_course` VALUES (591, 252, 263, 0);
+INSERT INTO `student_select_course` VALUES (592, 252, 322, 0);
+INSERT INTO `student_select_course` VALUES (593, 252, 59, 0);
+INSERT INTO `student_select_course` VALUES (594, 252, 49, 0);
+INSERT INTO `student_select_course` VALUES (595, 253, 376, 0);
+INSERT INTO `student_select_course` VALUES (596, 254, 125, 0);
+INSERT INTO `student_select_course` VALUES (597, 255, 491, 0);
+INSERT INTO `student_select_course` VALUES (598, 255, 524, 0);
+INSERT INTO `student_select_course` VALUES (599, 255, 558, 0);
+INSERT INTO `student_select_course` VALUES (600, 255, 105, 0);
+INSERT INTO `student_select_course` VALUES (601, 255, 392, 0);
+INSERT INTO `student_select_course` VALUES (602, 256, 601, 0);
+INSERT INTO `student_select_course` VALUES (603, 256, 461, 0);
+INSERT INTO `student_select_course` VALUES (604, 257, 368, 0);
+INSERT INTO `student_select_course` VALUES (605, 257, 176, 0);
+INSERT INTO `student_select_course` VALUES (606, 257, 244, 0);
+INSERT INTO `student_select_course` VALUES (607, 258, 621, 0);
+INSERT INTO `student_select_course` VALUES (608, 258, 458, 0);
+INSERT INTO `student_select_course` VALUES (609, 258, 554, 0);
+INSERT INTO `student_select_course` VALUES (610, 259, 458, 0);
+INSERT INTO `student_select_course` VALUES (611, 259, 527, 0);
+INSERT INTO `student_select_course` VALUES (612, 261, 492, 0);
+INSERT INTO `student_select_course` VALUES (613, 261, 497, 0);
+INSERT INTO `student_select_course` VALUES (614, 262, 609, 0);
+INSERT INTO `student_select_course` VALUES (615, 263, 230, 0);
+INSERT INTO `student_select_course` VALUES (616, 263, 375, 0);
+INSERT INTO `student_select_course` VALUES (617, 263, 303, 0);
+INSERT INTO `student_select_course` VALUES (618, 263, 105, 0);
+INSERT INTO `student_select_course` VALUES (619, 264, 194, 0);
+INSERT INTO `student_select_course` VALUES (620, 264, 644, 0);
+INSERT INTO `student_select_course` VALUES (621, 264, 524, 0);
+INSERT INTO `student_select_course` VALUES (622, 264, 161, 0);
+INSERT INTO `student_select_course` VALUES (623, 265, 378, 0);
+INSERT INTO `student_select_course` VALUES (624, 265, 150, 0);
+INSERT INTO `student_select_course` VALUES (625, 265, 633, 0);
+INSERT INTO `student_select_course` VALUES (626, 265, 64, 0);
+INSERT INTO `student_select_course` VALUES (627, 266, 590, 0);
+INSERT INTO `student_select_course` VALUES (628, 266, 145, 0);
+INSERT INTO `student_select_course` VALUES (629, 266, 424, 0);
+INSERT INTO `student_select_course` VALUES (630, 266, 136, 0);
+INSERT INTO `student_select_course` VALUES (631, 267, 94, 0);
+INSERT INTO `student_select_course` VALUES (632, 267, 413, 0);
+INSERT INTO `student_select_course` VALUES (633, 267, 518, 0);
+INSERT INTO `student_select_course` VALUES (634, 267, 38, 0);
+INSERT INTO `student_select_course` VALUES (635, 267, 322, 0);
+INSERT INTO `student_select_course` VALUES (636, 268, 373, 0);
+INSERT INTO `student_select_course` VALUES (637, 269, 177, 0);
+INSERT INTO `student_select_course` VALUES (638, 269, 120, 0);
+INSERT INTO `student_select_course` VALUES (639, 269, 512, 0);
+INSERT INTO `student_select_course` VALUES (640, 270, 575, 0);
+INSERT INTO `student_select_course` VALUES (641, 270, 129, 0);
+INSERT INTO `student_select_course` VALUES (642, 271, 438, 0);
+INSERT INTO `student_select_course` VALUES (643, 271, 570, 0);
+INSERT INTO `student_select_course` VALUES (644, 271, 574, 0);
+INSERT INTO `student_select_course` VALUES (645, 272, 258, 0);
+INSERT INTO `student_select_course` VALUES (646, 272, 541, 0);
+INSERT INTO `student_select_course` VALUES (647, 272, 615, 0);
+INSERT INTO `student_select_course` VALUES (648, 274, 351, 0);
+INSERT INTO `student_select_course` VALUES (649, 274, 475, 0);
+INSERT INTO `student_select_course` VALUES (650, 274, 79, 0);
+INSERT INTO `student_select_course` VALUES (651, 274, 283, 0);
+INSERT INTO `student_select_course` VALUES (652, 275, 406, 0);
+INSERT INTO `student_select_course` VALUES (653, 276, 122, 0);
+INSERT INTO `student_select_course` VALUES (654, 276, 382, 0);
+INSERT INTO `student_select_course` VALUES (655, 276, 377, 0);
+INSERT INTO `student_select_course` VALUES (656, 277, 304, 0);
+INSERT INTO `student_select_course` VALUES (657, 277, 286, 0);
+INSERT INTO `student_select_course` VALUES (658, 277, 608, 0);
+INSERT INTO `student_select_course` VALUES (659, 278, 455, 0);
+INSERT INTO `student_select_course` VALUES (660, 278, 472, 0);
+INSERT INTO `student_select_course` VALUES (661, 279, 362, 0);
+INSERT INTO `student_select_course` VALUES (662, 279, 256, 0);
+INSERT INTO `student_select_course` VALUES (663, 280, 496, 0);
+INSERT INTO `student_select_course` VALUES (664, 280, 314, 0);
+INSERT INTO `student_select_course` VALUES (665, 281, 250, 0);
+INSERT INTO `student_select_course` VALUES (666, 281, 444, 0);
+INSERT INTO `student_select_course` VALUES (667, 281, 426, 0);
+INSERT INTO `student_select_course` VALUES (668, 281, 84, 0);
+INSERT INTO `student_select_course` VALUES (669, 281, 36, 0);
+INSERT INTO `student_select_course` VALUES (670, 282, 634, 0);
+INSERT INTO `student_select_course` VALUES (671, 282, 632, 0);
+INSERT INTO `student_select_course` VALUES (672, 282, 430, 0);
+INSERT INTO `student_select_course` VALUES (673, 283, 187, 0);
+INSERT INTO `student_select_course` VALUES (674, 283, 306, 0);
+INSERT INTO `student_select_course` VALUES (675, 283, 443, 0);
+INSERT INTO `student_select_course` VALUES (676, 283, 70, 0);
+INSERT INTO `student_select_course` VALUES (677, 283, 293, 0);
+INSERT INTO `student_select_course` VALUES (678, 284, 253, 0);
+INSERT INTO `student_select_course` VALUES (679, 284, 370, 0);
+INSERT INTO `student_select_course` VALUES (680, 285, 263, 0);
+INSERT INTO `student_select_course` VALUES (681, 285, 604, 0);
+INSERT INTO `student_select_course` VALUES (682, 286, 560, 0);
+INSERT INTO `student_select_course` VALUES (683, 286, 15, 0);
+INSERT INTO `student_select_course` VALUES (684, 287, 441, 0);
+INSERT INTO `student_select_course` VALUES (685, 287, 531, 0);
+INSERT INTO `student_select_course` VALUES (686, 287, 61, 0);
+INSERT INTO `student_select_course` VALUES (687, 287, 33, 0);
+INSERT INTO `student_select_course` VALUES (688, 288, 615, 0);
+INSERT INTO `student_select_course` VALUES (689, 288, 538, 0);
+INSERT INTO `student_select_course` VALUES (690, 288, 54, 0);
+INSERT INTO `student_select_course` VALUES (691, 289, 380, 0);
+INSERT INTO `student_select_course` VALUES (692, 289, 205, 0);
+INSERT INTO `student_select_course` VALUES (693, 289, 263, 0);
+INSERT INTO `student_select_course` VALUES (694, 290, 381, 0);
+INSERT INTO `student_select_course` VALUES (695, 291, 407, 0);
+INSERT INTO `student_select_course` VALUES (696, 291, 452, 0);
+INSERT INTO `student_select_course` VALUES (697, 291, 492, 0);
+INSERT INTO `student_select_course` VALUES (698, 292, 321, 0);
+INSERT INTO `student_select_course` VALUES (699, 293, 563, 0);
+INSERT INTO `student_select_course` VALUES (700, 293, 438, 0);
+INSERT INTO `student_select_course` VALUES (701, 294, 141, 0);
+INSERT INTO `student_select_course` VALUES (702, 294, 558, 0);
+INSERT INTO `student_select_course` VALUES (703, 295, 537, 0);
+INSERT INTO `student_select_course` VALUES (704, 295, 336, 0);
+INSERT INTO `student_select_course` VALUES (705, 295, 230, 0);
+INSERT INTO `student_select_course` VALUES (706, 295, 79, 0);
+INSERT INTO `student_select_course` VALUES (707, 295, 214, 0);
+INSERT INTO `student_select_course` VALUES (708, 296, 130, 0);
+INSERT INTO `student_select_course` VALUES (709, 296, 627, 0);
+INSERT INTO `student_select_course` VALUES (710, 296, 389, 0);
+INSERT INTO `student_select_course` VALUES (711, 297, 416, 0);
+INSERT INTO `student_select_course` VALUES (712, 297, 246, 0);
+INSERT INTO `student_select_course` VALUES (713, 297, 639, 0);
+INSERT INTO `student_select_course` VALUES (714, 297, 247, 0);
+INSERT INTO `student_select_course` VALUES (715, 297, 194, 0);
+INSERT INTO `student_select_course` VALUES (716, 299, 346, 0);
+INSERT INTO `student_select_course` VALUES (717, 299, 208, 0);
+INSERT INTO `student_select_course` VALUES (718, 299, 203, 0);
+INSERT INTO `student_select_course` VALUES (719, 299, 255, 0);
+INSERT INTO `student_select_course` VALUES (720, 299, 205, 0);
+INSERT INTO `student_select_course` VALUES (721, 300, 301, 0);
+INSERT INTO `student_select_course` VALUES (722, 300, 97, 0);
+INSERT INTO `student_select_course` VALUES (723, 300, 342, 0);
+INSERT INTO `student_select_course` VALUES (724, 300, 486, 0);
+INSERT INTO `student_select_course` VALUES (725, 301, 110, 0);
+INSERT INTO `student_select_course` VALUES (726, 301, 535, 0);
+INSERT INTO `student_select_course` VALUES (727, 301, 621, 0);
+INSERT INTO `student_select_course` VALUES (728, 302, 302, 0);
+INSERT INTO `student_select_course` VALUES (729, 302, 565, 0);
+INSERT INTO `student_select_course` VALUES (730, 302, 206, 0);
+INSERT INTO `student_select_course` VALUES (731, 303, 486, 0);
+INSERT INTO `student_select_course` VALUES (732, 303, 55, 0);
+INSERT INTO `student_select_course` VALUES (733, 303, 620, 0);
+INSERT INTO `student_select_course` VALUES (734, 303, 456, 0);
+INSERT INTO `student_select_course` VALUES (735, 304, 524, 0);
+INSERT INTO `student_select_course` VALUES (736, 304, 28, 0);
+INSERT INTO `student_select_course` VALUES (737, 304, 431, 0);
+INSERT INTO `student_select_course` VALUES (738, 304, 443, 0);
+INSERT INTO `student_select_course` VALUES (739, 305, 392, 0);
+INSERT INTO `student_select_course` VALUES (740, 306, 515, 0);
+INSERT INTO `student_select_course` VALUES (741, 307, 491, 0);
+INSERT INTO `student_select_course` VALUES (742, 308, 363, 0);
+INSERT INTO `student_select_course` VALUES (743, 308, 164, 0);
+INSERT INTO `student_select_course` VALUES (744, 308, 163, 0);
+INSERT INTO `student_select_course` VALUES (745, 308, 259, 0);
+INSERT INTO `student_select_course` VALUES (746, 309, 55, 0);
+INSERT INTO `student_select_course` VALUES (747, 309, 264, 0);
+INSERT INTO `student_select_course` VALUES (748, 309, 300, 0);
+INSERT INTO `student_select_course` VALUES (749, 309, 420, 0);
+INSERT INTO `student_select_course` VALUES (750, 309, 452, 0);
+INSERT INTO `student_select_course` VALUES (751, 310, 458, 0);
+INSERT INTO `student_select_course` VALUES (752, 311, 182, 0);
+INSERT INTO `student_select_course` VALUES (753, 311, 229, 0);
+INSERT INTO `student_select_course` VALUES (754, 311, 166, 0);
+INSERT INTO `student_select_course` VALUES (755, 312, 582, 0);
+INSERT INTO `student_select_course` VALUES (756, 313, 230, 0);
+INSERT INTO `student_select_course` VALUES (757, 313, 39, 0);
+INSERT INTO `student_select_course` VALUES (758, 314, 560, 0);
+INSERT INTO `student_select_course` VALUES (759, 314, 597, 0);
+INSERT INTO `student_select_course` VALUES (760, 314, 574, 0);
+INSERT INTO `student_select_course` VALUES (761, 314, 90, 0);
+INSERT INTO `student_select_course` VALUES (762, 314, 89, 0);
+INSERT INTO `student_select_course` VALUES (763, 315, 193, 0);
+INSERT INTO `student_select_course` VALUES (764, 316, 452, 0);
+INSERT INTO `student_select_course` VALUES (765, 316, 25, 0);
+INSERT INTO `student_select_course` VALUES (766, 316, 476, 0);
+INSERT INTO `student_select_course` VALUES (767, 316, 89, 0);
+INSERT INTO `student_select_course` VALUES (768, 316, 221, 0);
+INSERT INTO `student_select_course` VALUES (769, 317, 25, 0);
+INSERT INTO `student_select_course` VALUES (770, 318, 594, 0);
+INSERT INTO `student_select_course` VALUES (771, 318, 554, 0);
+INSERT INTO `student_select_course` VALUES (772, 318, 428, 0);
+INSERT INTO `student_select_course` VALUES (773, 318, 532, 0);
+INSERT INTO `student_select_course` VALUES (774, 319, 166, 0);
+INSERT INTO `student_select_course` VALUES (775, 319, 252, 0);
+INSERT INTO `student_select_course` VALUES (776, 319, 474, 0);
+INSERT INTO `student_select_course` VALUES (777, 320, 306, 0);
+INSERT INTO `student_select_course` VALUES (778, 320, 628, 0);
+INSERT INTO `student_select_course` VALUES (779, 320, 346, 0);
+INSERT INTO `student_select_course` VALUES (780, 320, 315, 0);
+INSERT INTO `student_select_course` VALUES (781, 322, 180, 0);
+INSERT INTO `student_select_course` VALUES (782, 322, 576, 0);
+INSERT INTO `student_select_course` VALUES (783, 322, 99, 0);
+INSERT INTO `student_select_course` VALUES (784, 322, 514, 0);
+INSERT INTO `student_select_course` VALUES (785, 324, 119, 0);
+INSERT INTO `student_select_course` VALUES (786, 324, 180, 0);
+INSERT INTO `student_select_course` VALUES (787, 324, 320, 0);
+INSERT INTO `student_select_course` VALUES (788, 324, 208, 0);
+INSERT INTO `student_select_course` VALUES (789, 325, 344, 0);
+INSERT INTO `student_select_course` VALUES (790, 326, 556, 0);
+INSERT INTO `student_select_course` VALUES (791, 326, 292, 0);
+INSERT INTO `student_select_course` VALUES (792, 326, 496, 0);
+INSERT INTO `student_select_course` VALUES (793, 326, 35, 0);
+INSERT INTO `student_select_course` VALUES (794, 326, 556, 0);
+INSERT INTO `student_select_course` VALUES (795, 327, 637, 0);
+INSERT INTO `student_select_course` VALUES (796, 327, 570, 0);
+INSERT INTO `student_select_course` VALUES (797, 328, 118, 0);
+INSERT INTO `student_select_course` VALUES (798, 328, 141, 0);
+INSERT INTO `student_select_course` VALUES (799, 328, 383, 0);
+INSERT INTO `student_select_course` VALUES (800, 328, 611, 0);
+INSERT INTO `student_select_course` VALUES (801, 329, 604, 0);
+INSERT INTO `student_select_course` VALUES (802, 329, 86, 0);
+INSERT INTO `student_select_course` VALUES (803, 329, 601, 0);
+INSERT INTO `student_select_course` VALUES (804, 330, 86, 0);
+INSERT INTO `student_select_course` VALUES (805, 330, 503, 0);
+INSERT INTO `student_select_course` VALUES (806, 332, 520, 0);
+INSERT INTO `student_select_course` VALUES (807, 332, 463, 0);
+INSERT INTO `student_select_course` VALUES (808, 332, 494, 0);
+INSERT INTO `student_select_course` VALUES (809, 332, 248, 0);
+INSERT INTO `student_select_course` VALUES (810, 334, 362, 0);
+INSERT INTO `student_select_course` VALUES (811, 334, 359, 0);
+INSERT INTO `student_select_course` VALUES (812, 335, 637, 0);
+INSERT INTO `student_select_course` VALUES (813, 335, 42, 0);
+INSERT INTO `student_select_course` VALUES (814, 335, 344, 0);
+INSERT INTO `student_select_course` VALUES (815, 336, 87, 0);
+INSERT INTO `student_select_course` VALUES (816, 340, 58, 0);
+INSERT INTO `student_select_course` VALUES (817, 340, 520, 0);
+INSERT INTO `student_select_course` VALUES (818, 340, 71, 0);
+INSERT INTO `student_select_course` VALUES (819, 340, 454, 0);
+INSERT INTO `student_select_course` VALUES (820, 340, 176, 0);
+INSERT INTO `student_select_course` VALUES (821, 341, 215, 0);
+INSERT INTO `student_select_course` VALUES (822, 342, 526, 0);
+INSERT INTO `student_select_course` VALUES (823, 342, 404, 0);
+INSERT INTO `student_select_course` VALUES (824, 342, 51, 0);
+INSERT INTO `student_select_course` VALUES (825, 342, 545, 0);
+INSERT INTO `student_select_course` VALUES (826, 342, 575, 0);
+INSERT INTO `student_select_course` VALUES (827, 343, 424, 0);
+INSERT INTO `student_select_course` VALUES (828, 343, 125, 0);
+INSERT INTO `student_select_course` VALUES (829, 343, 273, 0);
+INSERT INTO `student_select_course` VALUES (830, 343, 28, 0);
+INSERT INTO `student_select_course` VALUES (831, 345, 591, 0);
+INSERT INTO `student_select_course` VALUES (832, 345, 594, 0);
+INSERT INTO `student_select_course` VALUES (833, 345, 511, 0);
+INSERT INTO `student_select_course` VALUES (834, 347, 434, 0);
+INSERT INTO `student_select_course` VALUES (835, 348, 54, 0);
+INSERT INTO `student_select_course` VALUES (836, 348, 474, 0);
+INSERT INTO `student_select_course` VALUES (837, 348, 441, 0);
+INSERT INTO `student_select_course` VALUES (838, 348, 634, 0);
+INSERT INTO `student_select_course` VALUES (839, 348, 553, 0);
+INSERT INTO `student_select_course` VALUES (840, 349, 576, 0);
+INSERT INTO `student_select_course` VALUES (841, 349, 30, 0);
+INSERT INTO `student_select_course` VALUES (842, 349, 416, 0);
+INSERT INTO `student_select_course` VALUES (843, 349, 573, 0);
+INSERT INTO `student_select_course` VALUES (844, 349, 73, 0);
+INSERT INTO `student_select_course` VALUES (845, 350, 430, 0);
+INSERT INTO `student_select_course` VALUES (846, 350, 246, 0);
+INSERT INTO `student_select_course` VALUES (847, 350, 494, 0);
+INSERT INTO `student_select_course` VALUES (848, 350, 406, 0);
+INSERT INTO `student_select_course` VALUES (849, 350, 384, 0);
+INSERT INTO `student_select_course` VALUES (850, 351, 490, 0);
+INSERT INTO `student_select_course` VALUES (851, 352, 88, 0);
+INSERT INTO `student_select_course` VALUES (852, 352, 117, 0);
+INSERT INTO `student_select_course` VALUES (853, 352, 88, 0);
+INSERT INTO `student_select_course` VALUES (854, 353, 389, 0);
+INSERT INTO `student_select_course` VALUES (855, 354, 240, 0);
+INSERT INTO `student_select_course` VALUES (856, 354, 73, 0);
+INSERT INTO `student_select_course` VALUES (857, 354, 363, 0);
+INSERT INTO `student_select_course` VALUES (858, 354, 352, 0);
+INSERT INTO `student_select_course` VALUES (859, 354, 213, 0);
+INSERT INTO `student_select_course` VALUES (860, 355, 86, 0);
+INSERT INTO `student_select_course` VALUES (861, 356, 138, 0);
+INSERT INTO `student_select_course` VALUES (862, 356, 617, 0);
+INSERT INTO `student_select_course` VALUES (863, 356, 435, 0);
+INSERT INTO `student_select_course` VALUES (864, 356, 322, 0);
+INSERT INTO `student_select_course` VALUES (865, 357, 431, 0);
+INSERT INTO `student_select_course` VALUES (866, 358, 45, 0);
+INSERT INTO `student_select_course` VALUES (867, 358, 98, 0);
+INSERT INTO `student_select_course` VALUES (868, 360, 377, 0);
+INSERT INTO `student_select_course` VALUES (869, 360, 305, 0);
+INSERT INTO `student_select_course` VALUES (870, 360, 300, 0);
+INSERT INTO `student_select_course` VALUES (871, 360, 307, 0);
+INSERT INTO `student_select_course` VALUES (872, 361, 102, 0);
+INSERT INTO `student_select_course` VALUES (873, 361, 306, 0);
+INSERT INTO `student_select_course` VALUES (874, 361, 94, 0);
+INSERT INTO `student_select_course` VALUES (875, 362, 509, 0);
+INSERT INTO `student_select_course` VALUES (876, 362, 486, 0);
+INSERT INTO `student_select_course` VALUES (877, 363, 25, 0);
+INSERT INTO `student_select_course` VALUES (878, 363, 165, 0);
+INSERT INTO `student_select_course` VALUES (879, 363, 175, 0);
+INSERT INTO `student_select_course` VALUES (880, 364, 178, 0);
+INSERT INTO `student_select_course` VALUES (881, 364, 223, 0);
+INSERT INTO `student_select_course` VALUES (882, 364, 192, 0);
+INSERT INTO `student_select_course` VALUES (883, 365, 365, 0);
+INSERT INTO `student_select_course` VALUES (884, 366, 165, 0);
+INSERT INTO `student_select_course` VALUES (885, 366, 42, 0);
+INSERT INTO `student_select_course` VALUES (886, 366, 306, 0);
+INSERT INTO `student_select_course` VALUES (887, 367, 377, 0);
+INSERT INTO `student_select_course` VALUES (888, 367, 384, 0);
+INSERT INTO `student_select_course` VALUES (889, 368, 24, 0);
+INSERT INTO `student_select_course` VALUES (890, 368, 207, 0);
+INSERT INTO `student_select_course` VALUES (891, 369, 241, 0);
+INSERT INTO `student_select_course` VALUES (892, 369, 164, 0);
+INSERT INTO `student_select_course` VALUES (893, 370, 307, 0);
+INSERT INTO `student_select_course` VALUES (894, 371, 215, 0);
+INSERT INTO `student_select_course` VALUES (895, 371, 385, 0);
+INSERT INTO `student_select_course` VALUES (896, 373, 98, 0);
+INSERT INTO `student_select_course` VALUES (897, 373, 162, 0);
+INSERT INTO `student_select_course` VALUES (898, 374, 126, 0);
+INSERT INTO `student_select_course` VALUES (899, 374, 79, 0);
+INSERT INTO `student_select_course` VALUES (900, 374, 497, 0);
+INSERT INTO `student_select_course` VALUES (901, 374, 129, 0);
+INSERT INTO `student_select_course` VALUES (902, 375, 632, 0);
+INSERT INTO `student_select_course` VALUES (903, 375, 452, 0);
+INSERT INTO `student_select_course` VALUES (904, 375, 410, 0);
+INSERT INTO `student_select_course` VALUES (905, 375, 385, 0);
+INSERT INTO `student_select_course` VALUES (906, 376, 265, 0);
+INSERT INTO `student_select_course` VALUES (907, 376, 37, 0);
+INSERT INTO `student_select_course` VALUES (908, 376, 201, 0);
+INSERT INTO `student_select_course` VALUES (909, 376, 282, 0);
+INSERT INTO `student_select_course` VALUES (910, 377, 585, 0);
+INSERT INTO `student_select_course` VALUES (911, 378, 183, 0);
+INSERT INTO `student_select_course` VALUES (912, 378, 44, 0);
+INSERT INTO `student_select_course` VALUES (913, 379, 550, 0);
+INSERT INTO `student_select_course` VALUES (914, 379, 290, 0);
+INSERT INTO `student_select_course` VALUES (915, 381, 276, 0);
+INSERT INTO `student_select_course` VALUES (916, 382, 276, 0);
+INSERT INTO `student_select_course` VALUES (917, 382, 436, 0);
+INSERT INTO `student_select_course` VALUES (918, 382, 449, 0);
+INSERT INTO `student_select_course` VALUES (919, 383, 360, 0);
+INSERT INTO `student_select_course` VALUES (920, 383, 191, 0);
+INSERT INTO `student_select_course` VALUES (921, 383, 292, 0);
+INSERT INTO `student_select_course` VALUES (922, 383, 490, 0);
+INSERT INTO `student_select_course` VALUES (923, 385, 459, 0);
+INSERT INTO `student_select_course` VALUES (924, 385, 309, 0);
+INSERT INTO `student_select_course` VALUES (925, 385, 189, 0);
+INSERT INTO `student_select_course` VALUES (926, 385, 265, 0);
+INSERT INTO `student_select_course` VALUES (927, 385, 158, 0);
+INSERT INTO `student_select_course` VALUES (928, 387, 208, 0);
+INSERT INTO `student_select_course` VALUES (929, 387, 542, 0);
+INSERT INTO `student_select_course` VALUES (930, 387, 145, 0);
+INSERT INTO `student_select_course` VALUES (931, 387, 125, 0);
+INSERT INTO `student_select_course` VALUES (932, 387, 236, 0);
+INSERT INTO `student_select_course` VALUES (933, 389, 269, 0);
+INSERT INTO `student_select_course` VALUES (934, 391, 332, 0);
+INSERT INTO `student_select_course` VALUES (935, 391, 263, 0);
+INSERT INTO `student_select_course` VALUES (936, 391, 486, 0);
+INSERT INTO `student_select_course` VALUES (937, 391, 229, 0);
+INSERT INTO `student_select_course` VALUES (938, 391, 646, 0);
+INSERT INTO `student_select_course` VALUES (939, 392, 373, 0);
+INSERT INTO `student_select_course` VALUES (940, 394, 527, 0);
+INSERT INTO `student_select_course` VALUES (941, 394, 453, 0);
+INSERT INTO `student_select_course` VALUES (942, 394, 109, 0);
+INSERT INTO `student_select_course` VALUES (943, 394, 454, 0);
+INSERT INTO `student_select_course` VALUES (944, 394, 303, 0);
+INSERT INTO `student_select_course` VALUES (945, 395, 474, 0);
+INSERT INTO `student_select_course` VALUES (946, 395, 60, 0);
+INSERT INTO `student_select_course` VALUES (947, 395, 402, 0);
+INSERT INTO `student_select_course` VALUES (948, 396, 47, 0);
+INSERT INTO `student_select_course` VALUES (949, 396, 369, 0);
+INSERT INTO `student_select_course` VALUES (950, 397, 250, 0);
+INSERT INTO `student_select_course` VALUES (951, 398, 439, 0);
+INSERT INTO `student_select_course` VALUES (952, 398, 465, 0);
+INSERT INTO `student_select_course` VALUES (953, 398, 149, 0);
+INSERT INTO `student_select_course` VALUES (954, 398, 101, 0);
+INSERT INTO `student_select_course` VALUES (955, 398, 568, 0);
+INSERT INTO `student_select_course` VALUES (956, 399, 115, 0);
+INSERT INTO `student_select_course` VALUES (957, 399, 616, 0);
+INSERT INTO `student_select_course` VALUES (958, 399, 190, 0);
+INSERT INTO `student_select_course` VALUES (959, 400, 573, 0);
+INSERT INTO `student_select_course` VALUES (960, 400, 579, 0);
+INSERT INTO `student_select_course` VALUES (961, 400, 152, 0);
+INSERT INTO `student_select_course` VALUES (962, 400, 615, 0);
+INSERT INTO `student_select_course` VALUES (963, 402, 145, 0);
+INSERT INTO `student_select_course` VALUES (964, 402, 348, 0);
+INSERT INTO `student_select_course` VALUES (965, 402, 92, 0);
+INSERT INTO `student_select_course` VALUES (966, 402, 272, 0);
+INSERT INTO `student_select_course` VALUES (967, 403, 501, 0);
+INSERT INTO `student_select_course` VALUES (968, 403, 58, 0);
+INSERT INTO `student_select_course` VALUES (969, 403, 453, 0);
+INSERT INTO `student_select_course` VALUES (970, 404, 289, 0);
+INSERT INTO `student_select_course` VALUES (971, 404, 11, 0);
+INSERT INTO `student_select_course` VALUES (972, 404, 499, 0);
+INSERT INTO `student_select_course` VALUES (973, 405, 95, 0);
+INSERT INTO `student_select_course` VALUES (974, 405, 9, 0);
+INSERT INTO `student_select_course` VALUES (975, 405, 75, 0);
+INSERT INTO `student_select_course` VALUES (976, 406, 340, 0);
+INSERT INTO `student_select_course` VALUES (977, 407, 100, 0);
+INSERT INTO `student_select_course` VALUES (978, 407, 632, 0);
+INSERT INTO `student_select_course` VALUES (979, 407, 77, 0);
+INSERT INTO `student_select_course` VALUES (980, 407, 58, 0);
+INSERT INTO `student_select_course` VALUES (981, 407, 437, 0);
+INSERT INTO `student_select_course` VALUES (982, 408, 11, 0);
+INSERT INTO `student_select_course` VALUES (983, 410, 342, 0);
+INSERT INTO `student_select_course` VALUES (984, 410, 347, 0);
+INSERT INTO `student_select_course` VALUES (985, 411, 231, 0);
+INSERT INTO `student_select_course` VALUES (986, 411, 512, 0);
+INSERT INTO `student_select_course` VALUES (987, 411, 332, 0);
+INSERT INTO `student_select_course` VALUES (988, 411, 206, 0);
+INSERT INTO `student_select_course` VALUES (989, 411, 589, 0);
+INSERT INTO `student_select_course` VALUES (990, 413, 535, 0);
+INSERT INTO `student_select_course` VALUES (991, 413, 580, 0);
+INSERT INTO `student_select_course` VALUES (992, 413, 530, 0);
+INSERT INTO `student_select_course` VALUES (993, 413, 70, 0);
+INSERT INTO `student_select_course` VALUES (994, 415, 192, 0);
+INSERT INTO `student_select_course` VALUES (995, 415, 498, 0);
+INSERT INTO `student_select_course` VALUES (996, 416, 173, 0);
+INSERT INTO `student_select_course` VALUES (997, 416, 255, 0);
+INSERT INTO `student_select_course` VALUES (998, 418, 578, 0);
+INSERT INTO `student_select_course` VALUES (999, 418, 148, 0);
+INSERT INTO `student_select_course` VALUES (1000, 418, 364, 0);
+INSERT INTO `student_select_course` VALUES (1001, 419, 425, 0);
+INSERT INTO `student_select_course` VALUES (1002, 419, 296, 0);
+INSERT INTO `student_select_course` VALUES (1003, 420, 157, 0);
+INSERT INTO `student_select_course` VALUES (1004, 420, 338, 0);
+INSERT INTO `student_select_course` VALUES (1005, 420, 173, 0);
+INSERT INTO `student_select_course` VALUES (1006, 420, 404, 0);
+INSERT INTO `student_select_course` VALUES (1007, 421, 95, 0);
+INSERT INTO `student_select_course` VALUES (1008, 421, 132, 0);
+INSERT INTO `student_select_course` VALUES (1009, 422, 611, 0);
+INSERT INTO `student_select_course` VALUES (1010, 422, 51, 0);
+INSERT INTO `student_select_course` VALUES (1011, 422, 53, 0);
+INSERT INTO `student_select_course` VALUES (1012, 422, 179, 0);
+INSERT INTO `student_select_course` VALUES (1013, 423, 514, 0);
+INSERT INTO `student_select_course` VALUES (1014, 423, 79, 0);
+INSERT INTO `student_select_course` VALUES (1015, 424, 511, 0);
+INSERT INTO `student_select_course` VALUES (1016, 425, 473, 0);
+INSERT INTO `student_select_course` VALUES (1017, 425, 239, 0);
+INSERT INTO `student_select_course` VALUES (1018, 425, 408, 0);
+INSERT INTO `student_select_course` VALUES (1019, 425, 571, 0);
+INSERT INTO `student_select_course` VALUES (1020, 425, 614, 0);
+INSERT INTO `student_select_course` VALUES (1021, 426, 50, 0);
+INSERT INTO `student_select_course` VALUES (1022, 427, 206, 0);
+INSERT INTO `student_select_course` VALUES (1023, 427, 529, 0);
+INSERT INTO `student_select_course` VALUES (1024, 427, 67, 0);
+INSERT INTO `student_select_course` VALUES (1025, 427, 199, 0);
+INSERT INTO `student_select_course` VALUES (1026, 427, 441, 0);
+INSERT INTO `student_select_course` VALUES (1027, 428, 283, 0);
+INSERT INTO `student_select_course` VALUES (1028, 429, 295, 0);
+INSERT INTO `student_select_course` VALUES (1029, 429, 322, 0);
+INSERT INTO `student_select_course` VALUES (1030, 429, 277, 0);
+INSERT INTO `student_select_course` VALUES (1031, 430, 135, 0);
+INSERT INTO `student_select_course` VALUES (1032, 430, 71, 0);
+INSERT INTO `student_select_course` VALUES (1033, 430, 307, 0);
+INSERT INTO `student_select_course` VALUES (1034, 430, 466, 0);
+INSERT INTO `student_select_course` VALUES (1035, 430, 29, 0);
+INSERT INTO `student_select_course` VALUES (1036, 431, 243, 0);
+INSERT INTO `student_select_course` VALUES (1037, 433, 162, 0);
+INSERT INTO `student_select_course` VALUES (1038, 433, 606, 0);
+INSERT INTO `student_select_course` VALUES (1039, 434, 216, 0);
+INSERT INTO `student_select_course` VALUES (1040, 434, 539, 0);
+INSERT INTO `student_select_course` VALUES (1041, 435, 358, 0);
+INSERT INTO `student_select_course` VALUES (1042, 435, 86, 0);
+INSERT INTO `student_select_course` VALUES (1043, 435, 60, 0);
+INSERT INTO `student_select_course` VALUES (1044, 435, 36, 0);
+INSERT INTO `student_select_course` VALUES (1045, 435, 342, 0);
+INSERT INTO `student_select_course` VALUES (1046, 437, 438, 0);
+INSERT INTO `student_select_course` VALUES (1047, 437, 503, 0);
+INSERT INTO `student_select_course` VALUES (1048, 437, 593, 0);
+INSERT INTO `student_select_course` VALUES (1049, 438, 85, 0);
+INSERT INTO `student_select_course` VALUES (1050, 439, 402, 0);
+INSERT INTO `student_select_course` VALUES (1051, 440, 398, 0);
+INSERT INTO `student_select_course` VALUES (1052, 440, 389, 0);
+INSERT INTO `student_select_course` VALUES (1053, 442, 475, 0);
+INSERT INTO `student_select_course` VALUES (1054, 442, 169, 0);
+INSERT INTO `student_select_course` VALUES (1055, 442, 225, 0);
+INSERT INTO `student_select_course` VALUES (1056, 442, 262, 0);
+INSERT INTO `student_select_course` VALUES (1057, 443, 103, 0);
+INSERT INTO `student_select_course` VALUES (1058, 443, 16, 0);
+INSERT INTO `student_select_course` VALUES (1059, 443, 242, 0);
+INSERT INTO `student_select_course` VALUES (1060, 443, 645, 0);
+INSERT INTO `student_select_course` VALUES (1061, 444, 526, 0);
+INSERT INTO `student_select_course` VALUES (1062, 444, 144, 0);
+INSERT INTO `student_select_course` VALUES (1063, 445, 336, 0);
+INSERT INTO `student_select_course` VALUES (1064, 445, 94, 0);
+INSERT INTO `student_select_course` VALUES (1065, 446, 90, 0);
+INSERT INTO `student_select_course` VALUES (1066, 446, 373, 0);
+INSERT INTO `student_select_course` VALUES (1067, 446, 277, 0);
+INSERT INTO `student_select_course` VALUES (1068, 446, 455, 0);
+INSERT INTO `student_select_course` VALUES (1069, 448, 226, 0);
+INSERT INTO `student_select_course` VALUES (1070, 448, 93, 0);
+INSERT INTO `student_select_course` VALUES (1071, 449, 103, 0);
+INSERT INTO `student_select_course` VALUES (1072, 449, 616, 0);
+INSERT INTO `student_select_course` VALUES (1073, 451, 168, 0);
+INSERT INTO `student_select_course` VALUES (1074, 451, 501, 0);
+INSERT INTO `student_select_course` VALUES (1075, 451, 507, 0);
+INSERT INTO `student_select_course` VALUES (1076, 451, 422, 0);
+INSERT INTO `student_select_course` VALUES (1077, 452, 240, 0);
+INSERT INTO `student_select_course` VALUES (1078, 452, 436, 0);
+INSERT INTO `student_select_course` VALUES (1079, 452, 618, 0);
+INSERT INTO `student_select_course` VALUES (1080, 454, 561, 0);
+INSERT INTO `student_select_course` VALUES (1081, 454, 418, 0);
+INSERT INTO `student_select_course` VALUES (1082, 454, 583, 0);
+INSERT INTO `student_select_course` VALUES (1083, 454, 288, 0);
+INSERT INTO `student_select_course` VALUES (1084, 454, 114, 0);
+INSERT INTO `student_select_course` VALUES (1085, 455, 368, 0);
+INSERT INTO `student_select_course` VALUES (1086, 456, 119, 0);
+INSERT INTO `student_select_course` VALUES (1087, 456, 569, 0);
+INSERT INTO `student_select_course` VALUES (1088, 456, 509, 0);
 
-LOCK TABLES `student_select_course` WRITE;
-/*!40000 ALTER TABLE `student_select_course` DISABLE KEYS */;
-INSERT INTO `student_select_course` VALUES (1,2,3,0),(2,1,1,0);
-/*!40000 ALTER TABLE `student_select_course` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tag`
---
-
+-- ----------------------------
+-- Table structure for tag
+-- ----------------------------
 DROP TABLE IF EXISTS `tag`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tag` (
+CREATE TABLE `tag`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `TagName` varchar(255) DEFAULT NULL,
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位',
+  `TagName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `tag`
---
+-- ----------------------------
+-- Records of tag
+-- ----------------------------
+INSERT INTO `tag` VALUES (1, '给分高', 0);
+INSERT INTO `tag` VALUES (2, '给分很高', 0);
+INSERT INTO `tag` VALUES (3, '给分非常高', 0);
+INSERT INTO `tag` VALUES (4, '给分贼高', 0);
+INSERT INTO `tag` VALUES (5, '你很优秀', 0);
+INSERT INTO `tag` VALUES (6, '你非常优秀', 1);
 
-LOCK TABLES `tag` WRITE;
-/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
-INSERT INTO `tag` VALUES (1,'给分高',0),(2,'给分很高',0),(3,'给分非常高',0),(4,'给分贼高',0),(5,'你很优秀',0),(6,'你非常优秀',1);
-/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `teacher`
---
-
+-- ----------------------------
+-- Table structure for teacher
+-- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `teacher` (
+CREATE TABLE `teacher`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `TeacherName` varchar(255) DEFAULT NULL,
-  `Gender` int(11) DEFAULT '0' COMMENT '性别：0 is 未知，1 is 男，2 is 女',
-  `TelPhone` varchar(255) DEFAULT NULL,
-  `Email` varchar(255) DEFAULT NULL,
-  `OfficeAddress` varchar(255) DEFAULT NULL COMMENT '办公地址',
-  `CollegeID` int(11) DEFAULT NULL,
-  `DeleteStatus` int(11) NOT NULL DEFAULT '0' COMMENT '删除位：0 is 正常，1 is 已删除',
-  `Level` varchar(45) DEFAULT NULL,
+  `TeacherName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Gender` int(11) NULL DEFAULT 0 COMMENT '性别：0 is 未知，1 is 男，2 is 女',
+  `TelPhone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `OfficeAddress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '办公地址',
+  `CollegeID` int(11) NULL DEFAULT NULL,
+  `TeacherPortrait` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `Level` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
   PRIMARY KEY (`id`) USING BTREE,
-  KEY `CollegeID` (`CollegeID`) USING BTREE,
+  INDEX `CollegeID`(`CollegeID`) USING BTREE,
   CONSTRAINT `teacher_ibfk_1` FOREIGN KEY (`CollegeID`) REFERENCES `college` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE = InnoDB AUTO_INCREMENT = 254 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data for table `teacher`
---
+-- ----------------------------
+-- Records of teacher
+-- ----------------------------
+INSERT INTO `teacher` VALUES (1, '袁晓洁', 2, NULL, NULL, NULL, 1, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (2, '王刚', 1, NULL, NULL, NULL, 1, NULL, NULL, 0);
+INSERT INTO `teacher` VALUES (3, '刘晓光', 1, NULL, NULL, NULL, 1, NULL, NULL, 0);
+INSERT INTO `teacher` VALUES (4, '杨巨峰', 1, NULL, NULL, NULL, 1, NULL, NULL, 0);
+INSERT INTO `teacher` VALUES (5, '辛运帏', 2, NULL, NULL, NULL, 1, NULL, NULL, 0);
+INSERT INTO `teacher` VALUES (6, '苏明', 1, NULL, NULL, NULL, 1, NULL, NULL, 0);
+INSERT INTO `teacher` VALUES (7, 'TestTeacher1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `teacher` VALUES (8, '瑞长娟', 1, '13804757075', 'fvioga@3721.net', '高唐街130号-8-3', 2, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (9, '甘芳蔼', 2, '15304943528', 'h6pd3d1@qq.com', '宁阳广场130号-8-1', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (10, '代浩浩', 1, '13306097157', '0q9pvw@163.com', '青大一街130号-8-8', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (11, '厚靖巧', 2, '15306652504', 'h96352@qq.com', '新湛二路110号-9-9', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (12, '粘翠梅', 2, '13007171051', 'yqdqw0bz@3721.net', '澳门三路104号-20-2', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (13, '乌孙月华', 2, '13506733915', 'syjka3fc6z@msn.com', '莲岛大厦12号-20-8', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (14, '宰以松', 1, '13301250945', 'eyx7jpt@126.com', '新湛支路110号-18-2', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (15, '禹易文', 1, '15503137256', 'mo308o@msn.com', '华阳路98号-6-10', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (16, '承瑜敏', 1, '15701488036', 'd7xe1vyq@sohu.com', '苏州街129号-8-8', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (17, '瓮白风', 1, '13400796801', 'k1i5toa@126.com', '澳门广场139号-10-5', 6, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (18, '锺洁玉', 2, '13407762796', 'vq0u40d@3721.net', '承德街41号-4-5', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (19, '代雨琴', 1, '15308324521', 'lua2g9kkusw@163.com', '德盛街55号-20-8', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (20, '邱凝旋', 1, '13501913641', 'b65fs2t5b6@163.com', '台西四街19号-2-10', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (21, '冼夜天', 1, '13805660257', 'qtfiud3gs@yahoo.com.cn', '贮水山支街23号-13-5', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (22, '颜乐童', 1, '15905164766', 'qv1v0ze@sina.com', '团岛一街84号-17-1', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (23, '帖千秋', 1, '15805798608', 'qkhwl29v4@aol.com', '湛山四大厦146号-11-6', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (24, '左丘莹玉', 1, '15806835545', 'kx3zhq3@3721.net', '郓城南路141号-17-6', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (25, '延晴虹', 2, '13001404985', 'e6v4qbe4@yahoo.com', '宝山广场132号-5-6', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (26, '屈忆彤', 2, '15102305307', 'tn3x1793x@163.net', '澳门四街150号-12-6', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (27, '苟语蝶', 2, '15501677417', 'fbbq88g0@163.net', '吴县一街61号-16-8', 3, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (28, '少代芹', 2, '15808350924', 'g407xxmi1sl@ask.com', '鱼山广场30号-9-5', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (29, '史觅晴', 1, '15202272514', 'pelduyjzpdm@yahoo.com', '四方街41号-17-7', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (30, '及明智', 1, '15107542034', 'xrgebq2dn@0355.net', '云霄大厦56号-17-4', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (31, '楚欣嘉', 1, '15100024996', '8vtvcxpb@ask.com', '胶州广场79号-12-7', 2, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (32, '闵恨荷', 1, '13301598243', '62ynb0qbut@gmail.com', '上杭路110号-7-10', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (33, '呼白筠', 2, '15907443993', 'o84rd3xp@yahoo.com', '渤海街143号-19-3', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (34, '铎雅洁', 2, '15601854461', 'nhy6d3j@yahoo.com.cn', '菜市一街146号-2-9', 3, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (35, '貊尔真', 2, '13103136405', 'ivke32wlm8b@live.com', '普集路144号-2-3', 3, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (36, '暨绮烟', 2, '13003495613', 'zeja8rogy@aol.com', '潍县广场52号-12-5', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (37, '甫阳飙', 2, '15603947290', 'a9q6zwf@msn.com', '红山峡路62号-5-2', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (38, '蹇和志', 2, '13106087410', 'dyyj7q1@sina.com', '泰城街63号-8-8', 2, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (39, '局香桃', 2, '15704452362', '39wk9x5sz@gmail.com', '青大一街100号-13-4', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (40, '容秋寒', 2, '15506583120', 'b1zg1ehzw3@gmail.com', '金口一广场142号-4-5', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (41, '锺离静竹', 1, '15708327743', '19wy89i@qq.com', '鱼山支街138号-13-1', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (42, '于忆秋', 1, '15304457819', 'aacueewf@qq.com', '武昌路99号-1-8', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (43, '阎傲柏', 2, '15106021739', 'rhov6j5btn7@163.com', '澳门五路144号-1-7', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (44, '赵曼丽', 2, '15704366198', 'ovpi2pz0@sina.com', '湘潭街83号-6-3', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (45, '拱仙仪', 1, '15207574190', '6tian4jw@qq.com', '台湾街86号-18-1', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (46, '蔚洛妃', 1, '15706234949', 'migdkdle3@yeah.net', '居庸关街144号-12-3', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (47, '朱云霞', 2, '15204370135', '6iu8udxuf@aol.com', '宝山广场141号-14-7', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (48, '折经业', 1, '13901553231', 'rre1t0@yeah.net', '承德街137号-10-10', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (49, '零采南', 1, '13400388598', '4klk1eq5w@163.net', '十梅庵街59号-3-6', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (50, '况冰冰', 1, '13405620204', 'aosbi3i56@163.com', '泗水大厦112号-9-9', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (51, '布欣怿', 2, '13900382520', 'fszluvd@yahoo.com', '湛山路34号-10-8', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (52, '景千凡', 2, '15203577687', 'e392xu155@263.net', '明水路145号-13-2', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (53, '吕丹云', 2, '15004913200', '91pk41ljsgm@live.com', '平原广场120号-4-9', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (54, '丁水风', 1, '15903274003', '1geh39l@msn.com', '包头路23号-1-6', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (55, '呼延云亭', 1, '13606089086', '4h7ya098fsx@0355.net', '正阳关街74号-7-2', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (56, '勇萌运', 1, '15000655624', '6lc1xy@live.com', '丹东街66号-18-2', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (57, '盍运浩', 2, '15606261958', '19ju1cgjmi1@126.com', '泰山支路128号-18-2', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (58, '第五丹溪', 2, '15301432837', 'nk7pm0l5ut@yahoo.com', '莒县路21号-4-4', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (59, '裴晨曦', 2, '13208167092', 'cdfnyjiwe@qq.com', '普集路149号-14-9', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (60, '承惜萱', 1, '15701122876', 'mex3k8@0355.net', '太平角六街82号-15-8', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (61, '桐婉然', 1, '13304999024', '7etz66kiq5l@yahoo.com', '仙山街145号-4-10', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (62, '蒉依秋', 1, '15800261089', 'rwctc8gzx3@live.com', '龙羊峡路51号-18-4', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (63, '陶音仪', 1, '15802002935', '56xed88yd6@ask.com', '大港纬二路142号-5-7', 1, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (64, '僧语芹', 2, '15900725428', 'l5h2z71@yeah.net', '太平角一街124号-19-5', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (65, '隽凡双', 1, '15203286843', '5zaa5gx@sina.com', '咸阳支街19号-19-9', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (66, '龚风华', 2, '13505341889', 'pu4s0k@163.net', '丹阳街147号-9-5', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (67, '硕童童', 2, '13407466432', 'md6i9fsah5@qq.com', '广西支街33号-20-10', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (68, '休冷之', 2, '15107601645', 'c0514c3ro6b@qq.com', '泰兴广场15号-4-6', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (69, '暨绮烟', 1, '15203395794', 'dh1ip974@msn.com', '胶东广场74号-15-4', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (70, '雀宜楠', 2, '15602383357', 'njl2jy7w14j@yeah.net', '漳平路83号-3-8', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (71, '伍雅丹', 2, '15104207876', 'fjr9x72ao4m@hotmail.com', '小港二街24号-9-7', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (72, '謇又亦', 2, '15905574518', '4vk3oxc6o@126.com', '庆祥街140号-2-6', 1, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (73, '台代卉', 2, '13500278521', 'a7l1jdwt70@yeah.net', '正阳关街137号-6-7', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (74, '柳晶滢', 1, '15801035636', 'pzma0z0db@263.net', '无棣四路122号-11-10', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (75, '贯浩瀚', 1, '15502670186', 'bet7a5u@yeah.net', '泰州六街24号-3-2', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (76, '盘淑雅', 2, '13403273158', 'mtvcc8fln@0355.net', '吴县二大厦64号-2-2', 3, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (77, '丰立人', 1, '13302651035', 'w6fw6cg8g6@yeah.net', '高密路39号-16-3', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (78, '蒙绮玉', 2, '15700451601', 'uc1v5i@yahoo.com.cn', '东海一大厦150号-19-9', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (79, '晁梅雪', 1, '13703995001', '626qi6@msn.com', '历城广场135号-12-2', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (80, '牢从露', 1, '13505072205', '9hh2ds@googlemail.com', '四方街28号-2-4', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (81, '学春竹', 2, '15801267568', 'jq066ts9@263.net', '吴兴大厦101号-13-9', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (82, '梅清润', 2, '15206657183', 'bjaes3b@googlemail.com', '宁国路139号-18-2', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (83, '鄞妙菡', 2, '15500090115', 'a6x5idkz7id@msn.com', '通化路57号-15-8', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (84, '齐霞英', 1, '15108172116', '06mj9o5cv6b@aol.com', '惜福镇街道93号-6-1', 7, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (85, '纳喇宾白', 1, '15202635409', '8gjvttxpi60@ask.com', '金乡广场119号-17-10', 3, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (86, '东门安双', 1, '13907712036', '4lw67dd@ask.com', '燕儿岛路43号-14-2', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (87, '绳姗姗', 2, '13306273008', 'mf0iq93p@gmail.com', '吴兴大厦140号-18-10', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (88, '双香薇', 2, '13604752483', 'xgzj76@aol.com', '夏津大厦120号-3-9', 1, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (89, '佘雅懿', 2, '13604185145', 'ahk98wv@googlemail.com', '王村路88号-3-1', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (90, '廖静雅', 2, '13107336274', 'hc13h8h8d@yeah.net', '大港三街77号-10-8', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (91, '游鸿志', 2, '13704917600', '5yn01l1@yahoo.com', '朝城路39号-13-6', 3, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (92, '詹冰蝶', 1, '15108293506', 'azmdaiw05@0355.net', '太湖路78号-5-3', 7, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (93, '钞海桃', 1, '13201581392', 'k8hywhchzwi@msn.com', '天台东一路41号-9-7', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (94, '管沛凝', 2, '15300176046', 'c3jtl2uaqv@hotmail.com', '屏东支路131号-19-2', 5, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (95, '宝语燕', 2, '13404130010', '2yw08lh1g@qq.com', '胶州广场138号-17-4', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (96, '蛮盼巧', 2, '13000607817', 'nhmcwra@msn.com', '珠海支街58号-5-7', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (97, '衡元武', 1, '13504994157', 'y47d39@gmail.com', '泰州六街27号-3-5', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (98, '翟冷荷', 2, '15200157587', 'o936ky0@3721.net', '明阳大厦85号-2-1', 3, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (99, '慕书南', 2, '15302492406', 'r253y10@live.com', '西藏二街134号-3-9', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (100, '蓝雅琴', 1, '15702640348', '6zufmidun@msn.com', '广西街143号-12-1', 2, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (101, '淦梓暄', 1, '15604635431', 'sn44bhh7nst@yahoo.com.cn', '高雄广场80号-13-8', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (102, '厉驰海', 1, '13601518463', '93xxa23bmbz@3721.net', '台东一街121号-14-8', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (103, '偶绮波', 2, '15204835275', '7m2uedrepda@163.com', '珠海二街81号-2-4', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (104, '士静和', 1, '13803115668', '6xsdcj@aol.com', '西陵峡二街140号-12-1', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (105, '窦兰英', 2, '13504495159', 'rxqdp7urnhh@sohu.com', '台西五路77号-15-10', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (106, '薄听枫', 1, '13602362592', 'vr01rx@yahoo.com.cn', '湛山三路113号-12-2', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (107, '华迎夏', 2, '15302476432', 'gdqfhfd88ib@sina.com', '吉林路87号-13-2', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (108, '宏夏波', 2, '15600672134', '6ghmpdo@googlemail.com', '台东二路32号-2-6', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (109, '舒和硕', 1, '13008347085', 'zrju1g2io8j@sohu.com', '善化街78号-2-3', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (110, '茹雪羽', 1, '15607997216', '7tv878b@ask.com', '艳阳街40号-8-5', 5, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (111, '功孤晴', 2, '13205430613', '7471o6t2@hotmail.com', '四平支路144号-15-8', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (112, '寿代芙', 2, '13107716885', 'i5k0yq55@sina.com', '高苑大厦102号-9-4', 3, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (113, '宁哲美', 2, '13803944766', '14m4vj@ask.com', '白沙河路116号-15-4', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (114, '养君豪', 1, '13205673215', 'zs2jkd8smdd@aol.com', '泰兴广场72号-3-3', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (115, '唐念瑶', 2, '15605376696', '796b1n1vt@qq.com', '丰县广场78号-4-6', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (116, '郏初晴', 1, '13903220592', 'zabx3w7@qq.com', '乐陵街34号-5-10', 6, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (117, '碧菱凡', 2, '13506750395', 'k59zu28q@aol.com', '徐家麦岛函谷关广场143号-14-9', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (118, '欧阳信鸿', 2, '13504846860', 'qjnn1444ue@yahoo.com.cn', '长山路121号-1-8', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (119, '是南蕾', 1, '13403620886', 'w78m5tjz1@sina.com', '嘉峪关路147号-7-6', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (120, '伟夏蓉', 1, '13303695917', 'yqd4020@aol.com', '金口一广场112号-20-4', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (121, '双映冬', 2, '15802185916', 'xfs1ctc@yahoo.com.cn', '新竹路112号-10-4', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (122, '无怜云', 2, '15002122649', 'dty609c60gx@ask.com', '单县路86号-13-8', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (123, '百绿兰', 2, '15603690162', '8w9s8c@yahoo.com', '内蒙古路115号-14-5', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (124, '宦思烟', 1, '13601420364', '2658lxi5rio@hotmail.com', '大成大厦119号-19-10', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (125, '湛初珍', 1, '13406225912', '969e92@sohu.com', '长城南路85号-4-9', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (126, '卯子琪', 1, '13705075726', '8hjj4car0@163.net', '华山路44号-8-9', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (127, '奚初蝶', 2, '13005391841', '2t8g28@sohu.com', '珠海支街136号-19-4', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (128, '卢傲云', 2, '13002752308', 'snuoaj4@gmail.com', '城武支大厦105号-4-3', 3, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (129, '野俊名', 1, '13001115620', 'tqx1cq@yahoo.com', '莲岛大厦59号-18-10', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (130, '齐霞英', 2, '13103508619', '7b3fiv0o47o@yahoo.com', '莱芜一广场62号-5-2', 7, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (131, '勇丽君', 2, '13202642829', 'e472vc@sohu.com', '范县路42号-12-6', 1, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (132, '有若骞', 1, '15203877920', 'n5ncgh@3721.net', '清和街149号-4-8', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (133, '熊博实', 2, '13406354646', 'r9hoe9vel0v@gmail.com', '瑞阳街92号-14-7', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (134, '库明俊', 2, '15101613638', '712jfb@263.net', '龙口街73号-4-3', 6, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (135, '桓初夏', 2, '15703514378', '8hl7e1d14@hotmail.com', '广州路93号-8-5', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (136, '戚碧玉', 1, '13102020100', '5loucddtri@live.com', '宁国二路45号-2-10', 3, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (137, '闽江雪', 1, '13207501258', 'm2ht4vq@126.com', '太平角五路111号-14-1', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (138, '迟湛蓝', 1, '13406207289', 'mml6h7x84y@163.net', '南通大厦77号-3-10', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (139, '房湘云', 1, '13907315166', '7abutj09kh@hotmail.com', '冠县支广场139号-9-8', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (140, '仉碧曼', 2, '13503373375', 'bvmcm85@qq.com', '青威高速58号-2-9', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (141, '永彦君', 2, '13205382199', 'yg30woe5jl@ask.com', '港华大厦135号-17-3', 3, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (142, '明白风', 2, '13305571409', 'n3ngnrbhsky@yeah.net', '博兴路60号-6-1', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (143, '愚幼菱', 2, '13103967350', '54mr7zno21k@yahoo.com', '台西三路120号-2-10', 2, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (144, '乔若华', 2, '13806305550', 'ws8ljy0rw8@msn.com', '六码头99号-20-5', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (145, '潘卓君', 1, '15902910836', 'imdfzhqdsbt@yeah.net', '湛山三路40号-6-8', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (146, '矫晴丽', 1, '15200020277', 'ift3fzqj24@0355.net', '江城大厦96号-12-10', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (147, '容雪翎', 2, '15000572809', 'p0d624rt9@126.com', '平定路53号-4-8', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (148, '曹慧云', 1, '13307593157', 'n4384g6h@163.com', '宁国三大厦91号-2-3', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (149, '施尔柳', 2, '13205000015', '3omtu9a@ask.com', '泰州三广场136号-20-3', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (150, '督紫易', 1, '15504290108', 's9eql5jq0@msn.com', '泗水大厦30号-2-5', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (151, '公羊星爵', 1, '15608667919', 'bfu0weglh@3721.net', '石岛广场148号-7-10', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (152, '鲍婉清', 1, '15300074210', 'ah8adf35@ask.com', '青岛路42号-4-10', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (153, '市怀柔', 1, '13200496009', 'x5w390fi81c@163.com', '鱼台街46号-7-9', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (154, '毛振国', 1, '13908748393', 'nojl8giyc@hotmail.com', '明月峡大厦76号-9-6', 6, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (155, '候嘉颖', 1, '15101873807', 'cjo8nd0@163.net', '秀湛四路59号-17-7', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (156, '太史曼容', 1, '13800698510', 't6y0mcu9o5@sina.com', '长城南路115号-4-10', 1, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (157, '竭雅娴', 1, '15604546211', 'i114enih@yahoo.com.cn', '京山广场105号-9-3', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (158, '颜乐童', 2, '13401612819', 'ltgp6b@3721.net', '文登广场80号-18-10', 5, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (159, '贵思卉', 1, '15803092699', '0b25uzeja44@yahoo.com.cn', '广东广场11号-4-2', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (160, '吾傲菡', 2, '13508242468', 'kv2ymxe@yahoo.com.cn', '丰海路87号-3-2', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (161, '上官芳蕤', 1, '15900837270', 'yg3b0pb@yahoo.com', '龙泉路88号-6-7', 4, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (162, '理萦思', 1, '15001703341', '01pko3vg@live.com', '郭口大厦79号-8-10', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (163, '苏凝冬', 1, '13005043369', 'm5mmpst5x26@sina.com', '无棣二大厦38号-4-6', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (164, '杭弘博', 1, '15300447954', '1k970krisbr@126.com', '郓城南路46号-19-6', 2, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (165, '斐海之', 2, '15100606016', '8cb9ogg@163.net', '湛山四大厦136号-16-1', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (166, '殷问萍', 1, '13805962169', 'jhpq8xoja@263.net', '莲岛大厦67号-15-5', 6, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (167, '威山蝶', 1, '13500650791', '6q3v7c5zb@yahoo.com.cn', '吴淞路143号-15-3', 7, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (168, '佘雅懿', 1, '13302456234', 'shiwlpc12q@aol.com', '徐州大厦140号-10-8', 3, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (169, '葛元英', 1, '15903577417', 'e0gsf0@263.net', '如东路116号-16-7', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (170, '税问芙', 1, '13202551320', 'ibew8cjiia@0355.net', '桓台路98号-6-9', 4, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (171, '偶绮波', 2, '13303972834', 'pgrl7hdqha@live.com', '无棣一路55号-3-3', 5, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (172, '从皓洁', 1, '15603298971', '7mwsm6e@msn.com', '宁国路109号-19-4', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (173, '蒉依秋', 1, '15206696897', 'puhznl@3721.net', '长城南路25号-20-9', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (174, '訾安平', 2, '13706723973', 'eedxbyji64@gmail.com', '机场路55号-13-6', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (175, '森寄文', 2, '15701972250', 'n7g8394@126.com', '高密路80号-19-9', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (176, '不和安', 1, '13805067221', '9hd6ct@yeah.net', '伏龙街54号-15-10', 6, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (177, '召如彤', 1, '13807310263', 'w7hj5hgio6b@163.com', '上海支路32号-16-8', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (178, '展叶飞', 2, '15206383279', 'e3zr25@hotmail.com', '海游路44号-8-5', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (179, '业运洁', 1, '15205101313', 'tm6jgcsh6@hotmail.com', '湛山四大厦127号-16-2', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (180, '闫春绿', 2, '13002965873', 'hl4gg5nf65@sina.com', '青大街115号-13-2', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (181, '福喜悦', 1, '15603823793', 'uhh07att@163.net', '天台东一路149号-15-1', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (182, '卿雁卉', 1, '13206884306', 'bag31kp4h9e@yahoo.com.cn', '中城路60号-3-6', 3, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (183, '帛依云', 1, '13203605649', 'qacjfnk@hotmail.com', '兴阳路32号-16-8', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (184, '合力勤', 2, '13201766714', 'zus4qdgqrf@sina.com', '宁国二路150号-14-3', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (185, '隽凡双', 2, '13403788936', '80xm6cc@yahoo.com.cn', '银川西路51号-17-8', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (186, '斋鸣玉', 2, '13102046130', 'dcxhyivf@msn.com', '珠海街150号-15-7', 3, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (187, '过亦玉', 1, '13406566465', 'zaxwe434@ask.com', '登州路130号-10-7', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (188, '潜晓骞', 1, '13403524241', 'tb2ztl724l@googlemail.com', '巨野大厦72号-6-7', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (189, '信刚捷', 2, '15605235888', '4g21huwcjz8@live.com', '阳信路44号-9-6', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (190, '纳经义', 1, '15808605992', 'kxyz7h@gmail.com', '海阳路75号-8-6', 3, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (191, '励琬凝', 2, '15905008113', 'aks6fbseh@263.net', '孟庄广场11号-5-1', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (192, '节昊磊', 1, '15304242356', 'r4rmbb@263.net', '德阳路11号-15-1', 5, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (193, '莘彤云', 2, '13205121596', '2ims2yxdgr@ask.com', '王家麦岛74号-4-7', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (194, '衷沛容', 1, '13406137110', 'gxddkb@yahoo.com', '德阳路98号-17-10', 3, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (195, '时妙梦', 2, '13806722673', 'cyjfhec@qq.com', '邹县广场100号-5-6', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (196, '兰博涛', 2, '15604950653', 'wopdecu8k@qq.com', '信号山路46号-13-1', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (197, '盛嘉颖', 1, '15905134866', 'j90fw5ywa7t@gmail.com', '台西纬四街23号-12-4', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (198, '勾曼衍', 1, '15108694452', 'xobbjawes@googlemail.com', '标山路108号-14-8', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (199, '胡阳州', 2, '13901174304', 'gj2ugk@263.net', '泰州四路61号-7-6', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (200, '袁博文', 2, '13002936591', 'f8w8c6vk@yahoo.com', '阳谷广场138号-18-1', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (201, '及飞鸾', 2, '13203530188', 'o8i2w9f@msn.com', '西江广场114号-16-7', 6, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (202, '邰嘉歆', 1, '15306464861', 'wajxo5l@yeah.net', '国城路39号-18-8', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (203, '皇沛珊', 2, '15504747358', 'expmt7thjv@gmail.com', '东海一大厦49号-16-10', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (204, '太叔如风', 2, '13900223858', '3xo6supk09@0355.net', '李村街53号-17-7', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (205, '卜寻菡', 2, '13000905911', '54efz5r65cm@sina.com', '洮南大厦104号-12-4', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (206, '冉雪松', 1, '15104334840', '3djiycmwghr@qq.com', '青威高速60号-9-8', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (207, '刀新雅', 1, '15106068199', 'mebpd23biu@263.net', '台西三路56号-6-7', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (208, '端木元正', 2, '13901525636', 'c4s3kl@hotmail.com', '港环路147号-19-2', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (209, '鞠运恒', 2, '13505480417', '9gqc4nw@hotmail.com', '东阿街71号-2-3', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (210, '裔曼彤', 2, '13201548127', '2aubj7ss@yahoo.com.cn', '仙居街29号-15-9', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (211, '单昕雨', 1, '13706762038', 'j966ncm9nna@hotmail.com', '逍遥一街61号-7-6', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (212, '暨绮烟', 1, '15504503079', '69ped5zzt@gmail.com', '滨县广场111号-6-4', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (213, '磨春柏', 1, '13407310997', 'btcpsg@163.com', '包头路57号-2-8', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (214, '抄辰钊', 1, '15502067424', 'pvubtgyi@hotmail.com', '小港二街102号-6-2', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (215, '端听枫', 2, '13106355196', 's74juhgoov@sina.com', '蒲台大厦130号-13-10', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (216, '夫梓云', 1, '15901096626', '0eh9yga63by@gmail.com', '西陵峡二街115号-3-2', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (217, '机瀚钰', 2, '13600881053', 'k7s9471vvp@yahoo.com.cn', '苏州街143号-10-8', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (218, '似天韵', 1, '15803472923', 'k3rlzr1@hotmail.com', '顺兴街95号-15-1', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (219, '甲晶燕', 2, '15607422238', 'hu8bkgl@163.net', '旅顺街108号-11-2', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (220, '奇依云', 2, '13507403335', 'iv2tr3t@163.net', '港青街72号-14-3', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (221, '习白亦', 1, '15601506658', '68bt78l1lye@gmail.com', '桓台路57号-8-7', 3, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (222, '敬采梦', 2, '15502026305', 'm5xkfzh29@yahoo.com', '芝泉路110号-5-1', 5, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (223, '阚瑰玮', 2, '15001660266', 'esxub3irw2@gmail.com', '徐州大厦87号-7-3', 2, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (224, '洛自强', 1, '15505858111', 'e2in8cv7fl8@qq.com', '白沙河路57号-9-9', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (225, '滑觅珍', 1, '13408742385', 'aw0hd3m6@sohu.com', '临朐路130号-4-9', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (226, '居意致', 1, '13004963509', 't7e5cbsc@msn.com', '四平支路95号-17-4', 7, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (227, '勾香薇', 2, '13707917096', 'nomy8dv@ask.com', '宁国三大厦112号-7-4', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (228, '边怜双', 2, '13603167020', 'bi3a853vz9@0355.net', '澳门六广场33号-7-2', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (229, '柴沛山', 1, '15102390802', 'd0kce7@sina.com', '新湛二路24号-6-4', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (230, '鱼雨雪', 1, '13600580573', 'pjddv9k9x@263.net', '东海西路25号-11-2', 5, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (231, '毓凯风', 1, '15005158192', 'leoqpxl@gmail.com', '荷泽三大厦82号-13-8', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (232, '邸雅容', 1, '13907417347', '6b4d9j3fdy1@126.com', '南口广场135号-20-10', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (233, '汝嫔然', 1, '13207118037', '1a6spina@163.net', '丰海路57号-2-6', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (234, '刑德曜', 2, '13902924727', '0n11cdqdu@3721.net', '龙山路38号-12-9', 6, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (235, '操又蓝', 2, '15300362763', 'qu8sm12@ask.com', '三明北街92号-1-10', 1, NULL, '研究员', 0);
+INSERT INTO `teacher` VALUES (236, '光迎蕾', 1, '13604073602', 'bce9gid7pa@googlemail.com', '台东一街117号-9-2', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (237, '冠嘉志', 2, '13406164932', 'rmfr4waxf@263.net', '城阳街45号-20-2', 4, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (238, '母珠玉', 1, '13307982328', '0nj53iu@live.com', '堂邑路50号-4-7', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (239, '褒秋柔', 2, '13505108587', 'cirhz1oqkw@gmail.com', '夏庄街道123号-18-1', 5, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (240, '纳喇宾白', 1, '13908106951', '6z2nyr23@yeah.net', '丰盛街134号-8-1', 7, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (241, '尧彦珺', 2, '13802865106', 'lzqtrel8j05@hotmail.com', '太平角五路16号-15-10', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (242, '厚若薇', 2, '13304456368', 'sbyalsl@qq.com', '台东东二路25号-1-7', 1, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (243, '青冰凡', 1, '13205938598', '284m5xc@msn.com', '昌邑街148号-2-1', 2, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (244, '莱运华', 1, '15606936150', '6ta9il88lmu@qq.com', '德县路94号-9-4', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (245, '义诗珊', 2, '13401803604', 'in994e5ft@sina.com', '国城路87号-6-6', 5, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (246, '后正雅', 1, '15600334721', '16eli6@yeah.net', '海江街22号-19-3', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (247, '朱云霞', 1, '15506815137', 'pw7y42@ask.com', '石村广场26号-3-7', 2, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (248, '亥文翰', 1, '13503075780', 'v8gvrsdu@hotmail.com', '吴兴一广场89号-1-9', 6, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (249, '秦文敏', 1, '13303458799', 'ciqdjx2o@yahoo.com.cn', '宁波路110号-13-9', 2, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (250, '邰嘉歆', 2, '15704806489', '1mu2avdya@hotmail.com', '太平角三大厦106号-18-8', 1, NULL, '讲师', 0);
+INSERT INTO `teacher` VALUES (251, '卜琬凝', 2, '13307667828', '8uvatf@0355.net', '贵州街121号-10-9', 2, NULL, '教授', 0);
+INSERT INTO `teacher` VALUES (252, '师笑容', 1, '15104754725', 'j4k4o9g8@263.net', '锦州街139号-17-4', 4, NULL, '副教授', 0);
+INSERT INTO `teacher` VALUES (253, '焦寄风', 2, '15605477491', 'alvf08@ask.com', '遵义路150号-8-7', 3, NULL, '讲师', 0);
 
-LOCK TABLES `teacher` WRITE;
-/*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-INSERT INTO `teacher` VALUES (1,'袁晓洁',2,NULL,NULL,NULL,1,0,'教授'),(2,'王刚',1,NULL,NULL,NULL,1,0,NULL),(3,'刘晓光',1,NULL,NULL,NULL,1,0,NULL),(4,'杨巨峰',1,NULL,NULL,NULL,1,0,NULL),(5,'辛运帏',2,NULL,NULL,NULL,1,0,NULL),(6,'苏明',1,NULL,NULL,NULL,1,0,NULL),(7,'TestTeacher1',NULL,NULL,NULL,NULL,NULL,1,NULL);
-/*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'eamis-helper'
---
-
---
--- Dumping routines for database 'eamis-helper'
---
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-07-28  1:20:24
+SET FOREIGN_KEY_CHECKS = 1;

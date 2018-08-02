@@ -1,9 +1,10 @@
 package com.forthelight.dao;
 
-import java.util.List;
-
+import com.forthelight.domain.Course;
 import com.forthelight.domain.Student;
-import org.springframework.stereotype.Component;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface StudentDao {
 
@@ -20,4 +21,16 @@ public interface StudentDao {
 	List<Student> findByCourseId(int courseId);
 
 	Student findByName(String studentName);
+	
+	int update (Student student);
+	
+	List<Student> findAll();
+	
+	List<Student> findByKeyword(String keyword);
+	
+	int delete(int studentId);
+
+    int selectCourse(@Param("student") Student student, @Param("course") Course course);
+
+    int getSelectId(@Param("student") Student student, @Param("course") Course course);
 }

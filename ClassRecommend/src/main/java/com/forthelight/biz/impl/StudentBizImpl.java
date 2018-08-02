@@ -1,13 +1,13 @@
 package com.forthelight.biz.impl;
 
-import java.util.List;
-
+import com.forthelight.biz.StudentBiz;
+import com.forthelight.dao.StudentDao;
+import com.forthelight.domain.Course;
+import com.forthelight.domain.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.forthelight.biz.StudentBiz;
-import com.forthelight.dao.StudentDao;
-import com.forthelight.domain.Student;
+import java.util.List;
 
 @Service("studentBiz")
 public class StudentBizImpl implements StudentBiz {
@@ -66,4 +66,37 @@ public class StudentBizImpl implements StudentBiz {
     public Student findByName(String studentName) {
         return studentDao.findByName(studentName);
     }
+
+	@Override
+	public int update(Student student) {
+		// TODO Auto-generated method stub
+		return studentDao.update(student);
+	}
+
+	@Override
+	public List<Student> findAll() {
+		// TODO Auto-generated method stub
+		return studentDao.findAll();
+	}
+
+	@Override
+	public List<Student> findByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return studentDao.findByKeyword(keyword);
+	}
+
+	@Override
+	public int delete(int studentId) {
+		return studentDao.delete(studentId);
+	}
+
+	@Override
+	public int selectCourse(Student student, Course course) {
+		return studentDao.selectCourse(student, course);
+	}
+
+	@Override
+	public int getSelectId(Student student, Course course) {
+		return studentDao.getSelectId(student, course);
+	}
 }

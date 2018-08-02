@@ -185,15 +185,15 @@ font-weight:200;
     display: inline-block;
     vertical-align: middle;
     position: relative;
-      width: 100px;
-    height: 100px;
+      width: 60px;
+    height: 60px;
     border-radius: 50%;
     border: 2px dashed white;
     background-clip: content-box;
     padding: 4px;
     transition: .5s;
     color: #D7D0BE;
-    margin-left: 20px;
+    margin-left: 50px;
     margin-right: 30px;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2),
 	0 1px 0 rgba(255, 255, 255, 0.2);

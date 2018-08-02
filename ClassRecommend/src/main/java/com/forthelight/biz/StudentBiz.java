@@ -1,8 +1,9 @@
 package com.forthelight.biz;
 
-import java.util.List;
-
+import com.forthelight.domain.Course;
 import com.forthelight.domain.Student;
+
+import java.util.List;
 
 public interface StudentBiz {
 
@@ -21,4 +22,16 @@ public interface StudentBiz {
 	List<Student> findByCourseId(int courseId);
 
 	Student findByName(String studentName);
+
+	int update(Student student);
+
+	List<Student> findAll();
+	
+	List<Student> findByKeyword(String keyword);
+	
+	int delete(int studentId);
+
+    int selectCourse(Student student, Course course);
+
+    int getSelectId(Student student, Course course);
 }

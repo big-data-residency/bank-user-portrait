@@ -53,6 +53,7 @@ public class TeacherController {
         int teacherId = Integer.parseInt(teacherIdStr);
         
 		boolean success = false;
+		
 		if(teacherIdStr != null) {
 			success = true;
 		}
@@ -62,6 +63,10 @@ public class TeacherController {
         
         // ----------------- 左边栏数据 ------------
         Teacher teacher = teacherBiz.findById(teacherId);
+        if(teacher == null) {
+        	
+        	success = false;
+        }
 		College college = teacher.getCollege();
 		
 		// --------------- 第一个标签栏数据 -------------------
