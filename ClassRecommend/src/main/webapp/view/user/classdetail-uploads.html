@@ -1495,7 +1495,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             	likenum:'',
             	uploadsnum:'',
             	commentsnum:'',
-            }
+            },
+
+
+
+            //
+
+            Login:{},
+
         },
         methods:{
             myfun() {
@@ -1563,7 +1570,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         alert("输出错误信息"+XMLHttpRequest.responseText);
                     }
             	});
-            }
+            },
             jump(){
                 //本层跳转
                 location.href = "lesson/"+this.MyID;  //一般这个就可以了
@@ -1572,19 +1579,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 // parent.location.href = "lesson/"+this.MyID;
                 //顶层跳转
                 // top.location.href = "lesson/"+this.MyID;
+            },
+            GetLogin(){
+                $.ajax({
+                    url:'http://localhost:8080/getsession',
+                    type: 'Get',
+                    data : {},
+                    dataType:'json',
+                    success(json){
+                        if(json.success){
+                            this.Login=json.data;
+                            if( this.Login.studentId != tmp_return  ){
+                                location.href="../no-access.html";
+                            }
+                            // alert(this.Login.nickName);
+                        }else{
+                            alert(json.data);
+                            location.href="../login.html";
+                        }
+                    },
+                    error: function (XMLHttpRequest){
+                        alert(("输出错误信息")+XMLHttpRequest.responseText);
+                    }
+
+                })
+
             }
         },
         mounted(){
         	// this.myfun();
+            this.GetLogin();
         }
            
     })
-
+      var tmp_return ;
 
    		var Cdetails = new Vue({
 			el: '#Cdetails',
 			data: {
-				studentId: ''
+				studentId: '',
+                Login:{},
 			},
 			methods: {
 				GetQueryString(name) {
@@ -1599,6 +1633,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 				},
 				getPar() {
 					Cdetails.studentId = this.GetQueryString('id');
+					tmp_return=this.getQueryString('id');
 				},
 			},
 
@@ -1607,11 +1642,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			}
 
 		})
-		
-		
-
-
-
 
 
 </script>
