@@ -1,8 +1,9 @@
 package com.forthelight.biz;
 
-import java.util.List;
-
+import com.forthelight.domain.StudentCommentCourse;
 import com.forthelight.domain.Tag;
+
+import java.util.List;
 
 public interface TagBiz {
 	
@@ -18,4 +19,5 @@ public interface TagBiz {
 
 	int insert(Tag tag);
 
+	int tagComment(Tag tag, StudentCommentCourse studentCommentCourse);
 }

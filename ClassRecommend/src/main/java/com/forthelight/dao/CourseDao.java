@@ -1,10 +1,10 @@
 package com.forthelight.dao;
 
-import java.util.List;
-
 import com.forthelight.domain.Course;
 import com.forthelight.domain.Tag;
-import com.forthelight.domain.Teacher;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CourseDao {
 
@@ -44,4 +44,5 @@ public interface CourseDao {
 	
 	List<Tag> tagList(int courseId);
 
+    int setTime(@Param("course") Course course, @Param("lessonDay") int lessonDay, @Param("startTime") int startTime, @Param("endTime") int endTime);
 }

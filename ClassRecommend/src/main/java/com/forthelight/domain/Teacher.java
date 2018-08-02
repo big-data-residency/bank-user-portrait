@@ -1,13 +1,10 @@
 package com.forthelight.domain;
 
-import org.springframework.stereotype.Component;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
-@Component
 public class Teacher implements Serializable {
 	private Integer id;
 	private String teacherName;
@@ -15,9 +12,9 @@ public class Teacher implements Serializable {
 	private String telPhone;
 	private String email;
 	private String officeAddress;
-	private Integer deleteStatus;
 	private String level;
 	private String teacherPortrait;
+	private Integer deleteStatus;
 
 	private transient College college;
 	private transient List<Course> courses = new ArrayList<Course>();
