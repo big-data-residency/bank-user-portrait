@@ -47,6 +47,12 @@
 	    insert into Tag values
 	    ( null , #{tagName} , 0 )
 	</insert>
+
+	<insert id="tagComment" useGeneratedKeys="true" keyColumn="id">
+		INSERT INTO comment_tag
+		(id, TagID, CommentID, DeleteStatus) VALUES
+			(NULL, #{tag.id}, #{comment.id}, 0);
+	</insert>
 	
 
 </mapper>

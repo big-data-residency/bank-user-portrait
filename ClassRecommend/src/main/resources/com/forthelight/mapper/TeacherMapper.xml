@@ -62,9 +62,11 @@
 	</update>
 
 	<insert id="insert" parameterType="Teacher">
-		insert into teacher values
-		( null , #{teacherName} , #{gender} , #{telPhone} , #{email} , 
-		#{officeAddress} , #{college.id} , 0 , #{level} , #{teacherPortrait} )
+        insert into teacher
+        (id, TeacherName, Gender, TelPhone, Email, OfficeAddress, CollegeID, TeacherPortrait, Level, DeleteStatus)
+        values
+            (null, #{teacherName}, #{gender}, #{telPhone}, #{email}, #{officeAddress}, #{college.id},
+             #{teacherPortrait}, #{level}, 0);
 	</insert>
 	
 	<select id="findByCollegeId" parameterType="int" resultMap="TeacherResultMap" >
