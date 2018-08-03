@@ -18,17 +18,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
 
     <link rel="stylesheet" href="../../style/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  	<!-- bootstrap datepicker -->
- 	<link rel="stylesheet" href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  	<!-- iCheck for checkboxes and radio inputs -->
-  	<!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
-  	<link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
-  	<!-- Bootstrap Color Picker -->
-  	<link rel="stylesheet" href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  	<!-- Bootstrap time Picker -->
-  	<!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
-  	<!-- Select2 -->
-  <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
+    <link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">
 
     <!-- DataTables -->
     <link rel="stylesheet" href="../../style/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
@@ -310,7 +310,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <h3 class="box-title">筛选条件</h3>
-
+                            <p>{{teacherInfo}}</p>
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             </div>
@@ -334,11 +334,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>授课老师</label>
-                                        <select  id="teacherInfo" class="form-control select2" style="width: 100%;">
+                                        <!--<select  id="teacherInfo" v-model="teacherInfo" class="form-control select2" style="width: 100%;">-->
 
-                                            <option v-for=" (teacher,index) in teachers " v-if="index == 0" selected="selected">{{ teacher.teacherName }}</option>
-                                            <option v-else>{{ teacher.teacherName }}</option>
-
+                                        <!--<option v-for=" (teacher,index) in teachers " v-if="index == 0" selected="selected" value="teacher.teacherName" label="teacher.teacherName"></option>-->
+                                        <!--<option v-else value="teacher.teacherName" label="teacher.teacherName"></option>-->
+                                        <!--</select>-->
+                                        <select v-model="teacherInfo" class="form-control select2" style="width: 100%;">
+                                            <option v-for="teacher in teachers" v-bind:value="teacher.id">{{teacher.name}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -526,14 +528,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- AdminLTE for demo purposes -->
 <script src="../../style/dist/js/demo.js"></script>
 <!-- Page script -->
-
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
 <script>
-
     $(function () {
         $('#example1').DataTable()
         $('#example2').DataTable({
@@ -547,14 +542,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
         //Initialize Select2 Elements
         $('.select2').select2()
     })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<script>
 
     var adminCourse = new Vue({
-
         el:'#adminCourse',
         data:{
-            teachers:'',
+            teachers:[{
+                id:1,
+                name:'aaa',
+            },{
+                id:2,
+                name:'bbb',
+            },{
+                id:3,
+                name:'ccc',
+            }],
             courseType: document.getElementById("courseType").value,
-            teacherInfo:document.getElementById("teacherInfo").value,
+            teacherInfo:2,
             examType:document.getElementById("examType").value,
             courseName:'',
             courses:''
@@ -565,7 +574,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     url:'http://localhost:8080/findAllTeachers',
                     data:{
                         teacherIdStr: '',
-
                     },
                     type:'GET',
                     dataType:'json',
@@ -581,7 +589,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     url:'http://localhost:8080/findCourseOfAdmin',
                     data:{
                         courseType: adminCourse.courseType,
-                        teacherInfo: adminCourse.teacherInfo,
+                        teacherInfo: teacherInfo,
                         examType: adminCourse.examType,
                         courseName: adminCourse.courseName
                     },
@@ -595,58 +603,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         }
                     }
                 })
-
             }
         },
         mounted(){
-            this.getAllTeachers();
-        }
-
-        function GetQueryString(name) {
-            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-            var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-            var context = "";
-            if (r != null)
-                context = r[2];
-            reg = null;
-            r = null;
-            return context == null || context == "" || context == "undefined" ? "" : context;
-        }
-        function getPar(){
-            var  adminId = this.GetQueryString('id');
-        }
-
-        function GetLogin(){
-            $.ajax({
-                url:'http://localhost:8080/getsession',
-                type: 'Get',
-                data : {},
-                dataType:'json',
-                success(json){
-                    if(json.success){
-                        this.Login=json.data;
-                        if( this.Login.privilege != 1 ||this.Login.studentId!=getPar() ){
-                            location.href="../user/no-access.html";
-                        }
-                        // alert(this.Login.nickName);
-                    }else{
-                        alert(json.data);
-                        location.href="../login.html";
-                    }
-                },
-                error: function (XMLHttpRequest){
-                    alert(("输出错误信息")+XMLHttpRequest.responseText);
-                }
-
-            })
-
+            //this.getAllTeachers();
         }
     })
-
 </script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
 </body>
 </html>
