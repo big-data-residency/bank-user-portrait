@@ -18,13 +18,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
 
     <link rel="stylesheet" href="../../style/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-    <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-    <!-- iCheck for checkboxes and radio inputs -->
-    <!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
-    <link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
-    <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+  	<!-- bootstrap datepicker -->
+ 	<link rel="stylesheet" href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  	<!-- iCheck for checkboxes and radio inputs -->
+  	<!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
+  	<link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
+  	<!-- Bootstrap Color Picker -->
+  	<link rel="stylesheet" href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+  	<!-- Bootstrap time Picker -->
+  	<!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
+  	<!-- Select2 -->
+  <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../style/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+
     <!-- Bootstrap time Picker -->
     <!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
     <!-- Select2 -->
@@ -46,17 +54,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
 
-<body class="hold-transition skin-blue fixed">
-<div class="wrapper">
+<body class="hold-transition skin-blue fixed"  >
+<div class="wrapper" id="adminCourse">
 
     <!-- Main Header -->
     <header class="main-header">
@@ -300,187 +305,79 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </section>
         <!-- Main content -->
         <section class="content container-fluid">
-            <!--<section class="content-header">
-<h2 style="margin-bottom: 30px;margin-top: 50px;font-weight:bold;text-align: left;">用户信息</h2>
-                </section>-->
-
-            <!--	<div class="clearfix"> </div>-->
-            <!--<div class=" newsletter">
-                   <div class="social">
-                    <ul>
-                        <li><a href="#" class="link dblue" target="_parent"><span >A</span></a></li>
-                        <li><a href="#" class="link lblue" target="_parent"><span >B</span></a></li>
-                        <li><a href="#" class="link orange" target="_parent"><span>C</span></a></li>
-                        <li><a href="#" class="link yellow" target="_parent"><span >D</span></a></li>
-                        <li><a href="#" class="link dgreen" target="_parent"><span >E</span></a></li>
-                    </ul>
-                </div>
-            </div>-->
-
-
             <div class="row">
                 <div class="col-md-12">
-
-
-
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <h3 class="box-title">筛选条件</h3>
 
-                            <!--<label>是否通过制</label>-->
-
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-
                             </div>
-
-
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="row">
-
                                 <div class="col-md-3">
-                                    <!-- <div class="form-group">
-                                        <label>课程编码</label>-->
-                                    <!--<select class="form-control select2" style="width: 100%;">
-                                      <option selected="selected">Alabama</option>
-                                      <option>Alaska</option>
-                                      <option>California</option>
-                                      <option>Delaware</option>
-                                      <option>Tennessee</option>
-                                      <option>Texas</option>
-                                      <option>Washington</option>
-                                    </select>-->
-
-                                    <!-- <div class="box-footer">-->
-                                    <!-- <form action="#" method="post">
-                                       <div class="input-group">
-                                         <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                                             <!--<span class="input-group-btn">
-                                               <button type="submit" class="btn btn-danger btn-flat">Send</button>
-                                             </span>-->
-                                    <!-- <span class="input-group-btn">
-                             <button type="submit" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i>
-                             </button>
-                           </span>
-
-                               </div>
-                             </form>-->
-                                    <!--</div>-->
-
+                                    <div class="form-group">
+                                        <label>课程类型</label>
+                                        <select id="courseType" class="form-control select2"  style="width: 100%;">
+                                            <option selected="selected">全部</option>
+                                            <option>A</option>
+                                            <option>B</option>
+                                            <option>C</option>
+                                            <option>D</option>
+                                            <option>E</option>
+                                        </select>
+                                    </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>授课老师</label>
+                                        <select  id="teacherInfo" class="form-control select2" style="width: 100%;">
 
-                            </div>
+                                            <option v-for=" (teacher,index) in teachers " v-if="index == 0" selected="selected">{{ teacher.teacherName }}</option>
+                                            <option v-else>{{ teacher.teacherName }}</option>
 
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>课程类型</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                        <option>D</option>
-                                        <option>E</option>
-
-                                    </select>
+                                        </select>
+                                    </div>
                                 </div>
-
-                            </div>
-
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>授课老师</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
-                                    </select>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>考核方式</label>
+                                        <select class="form-control select2" id="examType" style="width: 100%;">
+                                            <option selected="selected">全部</option>
+                                            <option>闭卷考试</option>
+                                            <option>开卷考试</option>
+                                            <option>论文结课</option>
+                                            <option>其他</option>
+                                        </select>
+                                    </div>
                                 </div>
-
-                            </div>
-                            <!-- /.col -->
-
-
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>考核方式</label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option selected="selected">Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>California</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                        <option>Washington</option>
-                                    </select>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>课程名称</label>
+                                        <form action="#" method="post" id="searchClass" >
+                                            <div class="input-group">
+                                                <input type="text" v-model="courseName"  placeholder="class-Name" class="form-control">
+                                                <span class="input-group-btn">
+                                                    <button type="button" v-on:click="findCourse()" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-
                             </div>
-
-
-                            <div class="col-md-3">
-                                <div class="form-group">
-                                    <label>课程名称</label>
-                                    <form action="#" method="post">
-                                        <div class="input-group">
-                                            <input type="text" name="message" placeholder="class-number" class="form-control">
-                                            <!--<span class="input-group-btn">
-                                              <button type="submit" class="btn btn-danger btn-flat">Send</button>
-                                            </span>-->
-                                            <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-
-                                        </div>
-                                    </form>
-                                </div>
-
-                            </div>
-                            <!-- /.col -->
-
-                            <!-- /.col -->
-
-
-
-
-                            <!-- /.col -->
-
-
-                            <!-- /.col -->
-
-
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
-
-
                     </div>
-                    <!-- /.box-body -->
-
-                </div>
-                <!-- /.box -->
-
-
-
-                <div class="col-md-12">
-
-
 
                     <div class="box box-primary">
                         <div class="box-header">
                             <h3 class="box-title">课程列表</h3>
                         </div>
 
-
-                        <div class="CustomerInfoChange">
-                            <table class="table table-hover">
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th scope="col">编号</th>
@@ -488,179 +385,125 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <th scope="col">老师</th>
                                     <th scope="col">考核方式</th>
                                     <th scope="col">通过制</th>
-
+                                    <th scope="col" style="width: 50px"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
+                                <tr v-for="course in courses">
+                                    <td>{{ course.courseCode }}</td>
+                                    <td>{{ course.courseName }}</td>
+                                    <td>{{ course.teacherName }}</td>
+                                    <td>{{ course.examType }}</td>
+                                    <td>{{ course.passType }}</td>
                                     <td>
-                                        <a href="update.html">编辑</a>
+                                        <a href="update.html">评价</a>
                                     </td>
-
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                    <td>
-                                        <a href="update.html">编辑</a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                    <td>
-                                        <a href="update.html">编辑</a>
-                                    </td>
-
                                 </tr>
                                 </tbody>
+
                             </table>
 
-                            <div class="box-footer clearfix">
-                                <ul class="pagination pagination-sm no-margin pull-right">
-                                    <li><a href="#">&laquo;</a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">&raquo;</a></li>
-                                </ul>
-                            </div>
                         </div>
-
-
 
                     </div>
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
         </section>
+        <!-- /.content -->
     </div>
-    <!-- /.col (right) -->
-
-
-
-</div>
-</div>
+    <!-- /.content-wrapper -->
 
 
 
 
 
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            CEO:XXX
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2016 <a href="#">EAMIS_RECOMMEMDER</a>.</strong> All rights reserved.
+    </footer>
 
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <!-- Home tab content -->
+            <div class="tab-pane active" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:;">
+                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-</section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+                            <div class="menu-info">
+                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
+                                <p>Will be 23 on April 24th</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
 
-
-
-
-<!-- Main Footer -->
-<footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-        CEO:XXX
-    </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">EAMIS_RECOMMEMDER</a>.</strong> All rights reserved.
-</footer>
-
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!-- Home tab content -->
-        <div class="tab-pane active" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
-            <ul class="control-sidebar-menu">
-                <li>
-                    <a href="javascript:;">
-                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-                        <div class="menu-info">
-                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                            <p>Will be 23 on April 24th</p>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            <!-- /.control-sidebar-menu -->
-
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
-            <ul class="control-sidebar-menu">
-                <li>
-                    <a href="javascript:;">
-                        <h4 class="control-sidebar-subheading">
-                            Custom Template Design
-                            <span class="pull-right-container">
+                <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                <ul class="control-sidebar-menu">
+                    <li>
+                        <a href="javascript:;">
+                            <h4 class="control-sidebar-subheading">
+                                Custom Template Design
+                                <span class="pull-right-container">
                     <span class="label label-danger pull-right">70%</span>
                   </span>
-                        </h4>
+                            </h4>
 
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            <!-- /.control-sidebar-menu -->
+                            <div class="progress progress-xxs">
+                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
 
+            </div>
+            <!-- /.tab-pane -->
+            <!-- Stats tab content -->
+            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+            <!-- /.tab-pane -->
+            <!-- Settings tab content -->
+            <div class="tab-pane" id="control-sidebar-settings-tab">
+                <form method="post">
+                    <h3 class="control-sidebar-heading">General Settings</h3>
+
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            Report panel usage
+                            <input type="checkbox" class="pull-right" checked>
+                        </label>
+
+                        <p>
+                            Some information about this general settings option
+                        </p>
+                    </div>
+                    <!-- /.form-group -->
+                </form>
+            </div>
+            <!-- /.tab-pane -->
         </div>
-        <!-- /.tab-pane -->
-        <!-- Stats tab content -->
-        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-        <!-- /.tab-pane -->
-        <!-- Settings tab content -->
-        <div class="tab-pane" id="control-sidebar-settings-tab">
-            <form method="post">
-                <h3 class="control-sidebar-heading">General Settings</h3>
-
-                <div class="form-group">
-                    <label class="control-sidebar-subheading">
-                        Report panel usage
-                        <input type="checkbox" class="pull-right" checked>
-                    </label>
-
-                    <p>
-                        Some information about this general settings option
-                    </p>
-                </div>
-                <!-- /.form-group -->
-            </form>
-        </div>
-        <!-- /.tab-pane -->
-    </div>
-</aside>
-<!-- /.control-sidebar -->
-<!-- Add the sidebar's background. This div must be placed
-immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+    immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -675,97 +518,131 @@ immediately after the control sidebar -->
 
 
 <script src="../../style/bower_components/select2/dist/js/select2.full.min.js"></script>
-<!-- InputMask -->
-<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
-<script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<!-- date-range-picker -->
-<script src="../../style/bower_components/moment/min/moment.min.js"></script>
-<script src="../../style/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap datepicker -->
-<script src="../../style/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- bootstrap color picker -->
-<script src="../../style/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-<!-- bootstrap time picker -->
-<script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
-<!-- SlimScroll -->
-<script src="../../style/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="../../style/newstyle/js/icheck.min.js"></script>
-<!-- FastClick -->
-<script src="../../style/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../style/dist/js/adminlte.min.js"></script>
+
+<script src="../../style/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../style/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../style/dist/js/demo.js"></script>
 <!-- Page script -->
 
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 <script>
+
     $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+        });
         //Initialize Select2 Elements
         $('.select2').select2()
-
-        //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-        //Datemask2 mm/dd/yyyy
-        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-        //Money Euro
-        $('[data-mask]').inputmask()
-
-        //Date range picker
-        $('#reservation').daterangepicker()
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
-        //Date range as a button
-        $('#daterange-btn').daterangepicker(
-            {
-                ranges   : {
-                    'Today'       : [moment(), moment()],
-                    'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                },
-                startDate: moment().subtract(29, 'days'),
-                endDate  : moment()
-            },
-            function (start, end) {
-                $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-            }
-        )
-
-        //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
-        })
-
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-            checkboxClass: 'icheckbox_minimal-blue',
-            radioClass   : 'iradio_minimal-blue'
-        })
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-            checkboxClass: 'icheckbox_minimal-red',
-            radioClass   : 'iradio_minimal-red'
-        })
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            radioClass   : 'iradio_flat-green'
-        })
-
-        //Colorpicker
-        $('.my-colorpicker1').colorpicker()
-        //color picker with addon
-        $('.my-colorpicker2').colorpicker()
-
-        //Timepicker
-        $('.timepicker').timepicker({
-            showInputs: false
-        })
     })
+
+    var adminCourse = new Vue({
+
+        el:'#adminCourse',
+        data:{
+            teachers:'',
+            courseType: document.getElementById("courseType").value,
+            teacherInfo:document.getElementById("teacherInfo").value,
+            examType:document.getElementById("examType").value,
+            courseName:'',
+            courses:''
+        },
+        methods:{
+            getAllTeachers() {
+                $.ajax({
+                    url:'http://localhost:8080/findAllTeachers',
+                    data:{
+                        teacherIdStr: '',
+
+                    },
+                    type:'GET',
+                    dataType:'json',
+                    success:function (res) {
+                        if(res.success){
+                            adminCourse.teachers = res.data.teachers
+                        }
+                    }
+                })
+            },
+            findCourse(){
+                $.ajax({
+                    url:'http://localhost:8080/findCourseOfAdmin',
+                    data:{
+                        courseType: adminCourse.courseType,
+                        teacherInfo: adminCourse.teacherInfo,
+                        examType: adminCourse.examType,
+                        courseName: adminCourse.courseName
+                    },
+                    type:'GET',
+                    dataType: 'json',
+                    success:function (res) {
+                        if(res.success){
+                            adminCourse.courses = res.data.courses
+                        }else{
+                            alert("没有查到相关结果")
+                        }
+                    }
+                })
+
+            }
+        },
+        mounted(){
+            this.getAllTeachers();
+        }
+
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+            var context = "";
+            if (r != null)
+                context = r[2];
+            reg = null;
+            r = null;
+            return context == null || context == "" || context == "undefined" ? "" : context;
+        }
+        function getPar(){
+            var  adminId = this.GetQueryString('id');
+        }
+
+        function GetLogin(){
+            $.ajax({
+                url:'http://localhost:8080/getsession',
+                type: 'Get',
+                data : {},
+                dataType:'json',
+                success(json){
+                    if(json.success){
+                        this.Login=json.data;
+                        if( this.Login.privilege != 1 ||this.Login.studentId!=getPar() ){
+                            location.href="../user/no-access.html";
+                        }
+                        // alert(this.Login.nickName);
+                    }else{
+                        alert(json.data);
+                        location.href="../login.html";
+                    }
+                },
+                error: function (XMLHttpRequest){
+                    alert(("输出错误信息")+XMLHttpRequest.responseText);
+                }
+
+            })
+
+        }
+    })
+
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

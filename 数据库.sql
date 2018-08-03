@@ -2511,7 +2511,7 @@ CREATE TABLE `student_comment_course`  (
   `InterestingScore` int(11) NULL DEFAULT NULL,
   `EasyScore` int(11) NULL DEFAULT NULL,
   `KnowledgeScore` int(11) NULL DEFAULT NULL,
-  `DeleteStatus` int(11) NOT NULL DEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
+  `DeleteStatus` int(11) NOT NULL DidEFAULT 0 COMMENT '删除位：0 is 正常，1 is 已删除',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `id`(`id`) USING BTREE,
   INDEX `SelectID`(`SelectID`) USING BTREE,

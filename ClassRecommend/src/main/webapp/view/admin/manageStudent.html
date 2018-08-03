@@ -492,6 +492,47 @@ immediately after the control sidebar -->
     $('#deleteAlert').hide();
 
     $(function () {
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+            var context = "";
+            if (r != null)
+                context = r[2];
+            reg = null;
+            r = null;
+            return context == null || context == "" || context == "undefined" ? "" : context;
+        }
+       function getPar(){
+           var  adminId = this.GetQueryString('id');
+        }
+
+        function GetLogin(){
+            $.ajax({
+                url:'http://localhost:8080/getsession',
+                type: 'Get',
+                data : {},
+                dataType:'json',
+                success(json){
+                    if(json.success){
+                        this.Login=json.data;
+                        if( this.Login.privilege != 1||this.Login.studentId!=getPar() ){
+                            location.href="../user/no-access.html";
+                        }
+                        // alert(this.Login.nickName);
+                    }else{
+                        alert(json.data);
+                        location.href="../login.html";
+                    }
+                },
+                error: function (XMLHttpRequest){
+                    alert(("输出错误信息")+XMLHttpRequest.responseText);
+                }
+
+            })
+
+        }
+
+
         $.ajax({
             url: 'http://localhost:8080/searchStudent',
             data: {
@@ -503,7 +544,6 @@ immediately after the control sidebar -->
             },
             success: function (res) {
                 if (res.success) {
-
                     for (var student of res.data.students) {
                         console.log(student.studentId)
                         $('#studentList').append(`<tr role='row' class='odd'>
@@ -519,8 +559,8 @@ immediately after the control sidebar -->
 
                 }
             }
-        })
-    });
+    })
+    }
 
     $('#searchStudent').submit(function (e) {
         e.preventDefault()
