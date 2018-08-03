@@ -50,7 +50,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <body class="hold-transition skin-blue-light fixed">
-    <div class="wrapper" id="classvue">
+    <div id="classvue">
 
         <!-- Main Header -->
         <header class="main-header">
@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <ul class="menu">
                                         <li>
                                             <!-- Task item -->
-                                            <a href="http://localhost:8080/view/user/course-attended.html?id={{studentIdStr}}">
+                                            <a href="#">
                                                 <!-- Task title and progress text -->
                                                 <h3>
                                                     已评课数
@@ -110,7 +110,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </ul>
                                 </li>
                                 <li class="footer">
-                                    <a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentIdStr}}">进入评课</a>
+                                    <a href="#">进入评课</a>
                                 </li>
                             </ul>
                         </li>
@@ -138,7 +138,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="studentinfo_new.html?id={{studentIdStr}}" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -187,7 +187,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <li class="header">EAMIS_HELPER</li>
                     <!-- Optionally you can add icons to the links -->
                     <li>
-                        <a href="new_start.html?id={{studentIdStr}}">
+                        <a href="#"></a>
                             <i class="fa fa-user"></i>
                             <span>用户首页</span>
                         </a>
@@ -199,36 +199,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </a>
                     </li>
                     <li>
-                        <a href="course-attended.html?id={{studentIdStr}}">
+                        <a href="#">
                             <i class="fa fa-bookmark"></i>
                             <span>查看已修课程</span>
                         </a>
                     </li>
                     <li>
-                        <a href="select_course.html?id={{studentIdStr}}">
+                        <a href="#">
                             <i class="fa fa-heart"></i>
                             <span>推荐课程页面</span>
                         </a>
                     </li>
                     <li>
-                        <a href="studentinfo_new.html?id={{studentIdStr}}">
+                        <a href="#">
                             <i class="fa fa-edit"></i>
                             <span>个人信息</span>
                         </a>
                     </li>
-                    <!--<li class="treeview">
-<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-<span class="pull-right-container">
-    <i class="fa fa-angle-left pull-right"></i>
-  </span>
-        </a>
-        <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-        </ul>
-    </li>
-</ul>
-<!-- /.sidebar-menu -->
+                </ul>
+                <!-- /.sidebar-menu -->
             </section>
             <!-- /.sidebar -->
         </aside>
@@ -419,7 +408,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             filler text for everyone from bacon lovers to Charlie Sheen fans.
                                         </p>
 
-                                        <form class="form-horizontal">
+                                        <form id="responseForm" class="form-horizontal">
                                             <div class="form-group margin-bottom-none">
                                                 <div class="col-sm-9">
                                                     <input class="form-control input-sm" placeholder="Response">
@@ -594,7 +583,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                         <!-- /.box-header -->
 
                                         <!-- form start -->
-                                        <form role="form" action="/fileUpload" method="post" enctype="multipart/form-data">
+                                        <form id="fileForm" action="/fileUpload" method="post" enctype="multipart/form-data">
                                             <div class="box-body">
                                                 <div class="form-group">
                                                     <label for="uploadFileTitle">文件标题</label>
@@ -685,7 +674,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </div>
 
                                 <div class="tab-pane" id="settings">
-                                    <form class="form-horizontal">
+                                    <form id="evaluateForm" class="form-horizontal">
 
                                         <div class="form-group">
                                             <label for="inputExperience" class="col-sm-2 control-label">课程评价</label>
@@ -706,33 +695,32 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <div class="col-sm-10 control-radio">
                                                 <input id="radio-90+" class="radio-inline" type="radio" name="radio" checked="checked" />
                                                 <label for="radio-90+">
-                                                    <p>90~100</p>
+                                                    90~100
                                                 </label>
-                                                
+
                                                 <input id="radio-80+" class="radio-inline" type="radio" name="radio" />
                                                 <label for="radio-80+">
-                                                    <p>80~90</p>
+                                                    80~90
                                                 </label>
-                                                
+
                                                 <input id="radio-70+" class="radio-inline" type="radio" name="radio" />
                                                 <label for="radio-70+">
-                                                    <p>70~80</p>
+                                                    70~80
                                                 </label>
-                                                
+
                                                 <input id="radio-60+" class="radio-inline" type="radio" name="radio" />
                                                 <label for="radio-60+">
-                                                    <p>60~70</p>
+                                                    60~70
                                                 </label>
-                                                
+
                                                 <input id="radio-50+" class="radio-inline" type="radio" name="radio" />
                                                 <label for="radio-50+">
-                                                    <p>~60</p>
+                                                    ~60
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="bearRate" class="col-sm-2 control-label">手下留情</label>
-
+                                            <label class="col-sm-2 control-label">手下留情</label>
                                             <div id="bearRate" class="rating-stars">
                                                 <div>
                                                     <ul class="stars col-sm-10">
@@ -758,7 +746,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="interestingRate" class="col-sm-2 control-label">课堂有趣</label>
+                                            <label class="col-sm-2 control-label">课堂有趣</label>
                                             <div id="interestingRate" class="rating-stars">
                                                 <ul class="stars col-sm-10">
 
@@ -782,7 +770,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="easyRate" class="col-sm-2 control-label">划水程度</label>
+                                            <label class="col-sm-2 control-label">划水程度</label>
                                             <div id="easyRate" class="rating-stars">
                                                 <ul class="stars col-sm-10">
 
@@ -806,7 +794,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="knowledgeScore" class="col-sm-2 control-label">干货满满</label>
+                                            <label class="col-sm-2 control-label">干货满满</label>
                                             <div id="knowledgeScore" class="rating-stars">
                                                 <ul class="stars col-sm-10">
 
@@ -825,15 +813,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <li class="star" title='WOW!!!' data-value='5'>
                                                         <i class='fa fa-star fa-fw'></i>
                                                     </li>
+                                                </ul>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="anonymous" class="col-sm-2 control-label">是否匿名</label>
-                                            <div class="col-sm-1" style="padding-top: 4px">
+                                            <div class="col-sm-2">
                                                 <input id="anonymous" type="checkbox" checked="checked" />
-                                                <label for="anonymous">匿名</label>
+                                                <label >匿名</label>
                                             </div>
-                                            <div class="col-sm-9">
+                                            <div class="col-sm-8">
                                                 <button id="commentUpload" type="submit" class="btn btn-danger">提交</button>
                                             </div>
                                         </div>
@@ -841,8 +830,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <label for="commentUploadBtn" class="col-sm-2 control-label"></label>
                                             <button id="commentUpload" type="submit" class="btn btn-danger">提交</button>
                                         </div> -->
+                                        </form>
                                 </div>
-                                </form>
 
                             </div>
 
@@ -855,16 +844,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 </div>
                 <!-- /.col -->
+                <!-- /.row -->
+            </section>
+            <!-- /.content -->
         </div>
-        <!-- /.row -->
-        </section>
-        <!-- /.content -->
+        <!-- /.content-wrapper -->
     </div>
-    <!-- /.content-wrapper -->
-
-    <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
     <footer class="main-footer">
@@ -938,7 +923,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.tab-pane -->
             <!-- Settings tab content -->
             <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
+                <form id="settingForm" method="post">
                     <h3 class="control-sidebar-heading">General Settings</h3>
 
                     <div class="form-group">
@@ -964,8 +949,9 @@ immediately after the control sidebar -->
     <!-- ./wrapper -->
 
     <!-- REQUIRED JS SCRIPTS -->
-
-
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- jQuery 3 -->
     <script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
     <script src='https://cdn.bootcss.com/echarts/3.7.2/echarts.simple.js'></script>
@@ -977,9 +963,7 @@ immediately after the control sidebar -->
     <script src="../../style/bower_components/icheck/icheck.min.js"></script>
     <!-- AdminLTE App -->
 
-    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script src="../../style/dist/js/adminlte.min.js"></script>
 
     <script src="../../style/newstyle/js/star.js"></script>
@@ -1004,7 +988,6 @@ immediately after the control sidebar -->
             })
         })
     </script>
-
     <!-- Vue.js -->
     <script>
         var studentIdStr = '';
@@ -1135,8 +1118,6 @@ immediately after the control sidebar -->
                     studentIdStr = this.GetQueryString('id');
                 },
             },
-
-
             mounted() {
                 // this.myfun();
                 this.getPar();
@@ -1278,7 +1259,7 @@ immediately after the control sidebar -->
         }
     </script>
     <!-- Basic 图表 -->
-    <script>
+    <!-- <script>
         $(function () {
 
             // LINE CHART
@@ -1391,7 +1372,7 @@ immediately after the control sidebar -->
                     Math.round(series.percent) + '%</div>';
             }
         })
-    </script>
+    </script> -->
     <!-- 文件上传 -->
     <script>
         type = "text/javascript" >
