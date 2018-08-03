@@ -382,5 +382,43 @@ public class TeacherController {
 		return gson.toJson(res);
 
 	}
+
+	@RequestMapping(value= {"/findTeacherAndCourseByStudentId"} , method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+	@ResponseBody
+	public String findTeacherAndCourseByStudentId(String studentIdStr, HttpServletResponse response) {
+
+		response.setContentType("text/json;charset:UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+		boolean success = false;
+		if(studentIdStr != ""){
+			success = true;
+		}
+
+		int studentId = Integer.parseInt(studentIdStr);
+
+		List<Course> courses = courseBiz.findByStudentId(studentId);
+		List<Teacher> teachers = new ArrayList<>();
+
+		for(Course course : courses){
+
+			Teacher temp = teacherBiz.findById(course.getTeacher().getId());
+			teachers.add(temp);
+
+		}
+
+
+		Map<String,Object> data = new HashMap<>();
+		data.put("teachers",teachers);
+		data.put("courses",courses);
+
+		Map<String, Object> res = new HashMap<>();
+		res.put("data",data);
+		res.put("success",success);
+
+		return gson.toJson(res);
+	}
     
 }

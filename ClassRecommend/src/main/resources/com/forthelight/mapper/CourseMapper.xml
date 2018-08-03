@@ -158,8 +158,19 @@
 
 	<select id="findCourseOfAdmin" resultMap="CourseResultMap">
 		select * from Course
-		where ( level = #{arg0} and examiningForm = #{arg2} and courseName = #{arg3}) and deleteStatus = 0
-		and teacherId in ( select id from Teacher where teacherName = #{arg1} )
+		where deleteStatus = 0
+		<if test="courseType != null">
+			and level = #{courseType}
+		</if>
+		<if test="teacherName != null">
+			and teacherId in ( select id from Teacher where teacherName = #{teacherName} and deleteStatus = 0 )
+		</if>
+		<if test="examType != -1">
+			and examiningForm = #{examType}
+		</if>
+		<if test="courseName != null">
+			and courseName = #{courseName}
+		</if>
 	</select>
 
 </mapper>

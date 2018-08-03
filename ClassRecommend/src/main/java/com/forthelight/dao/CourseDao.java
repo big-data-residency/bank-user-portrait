@@ -48,5 +48,5 @@ public interface CourseDao {
 
     int setTime(@Param("course") Course course, @Param("lessonDay") int lessonDay, @Param("startTime") int startTime, @Param("endTime") int endTime);
 
-    List<Course> findCourseOfAdmin(String courseType,String teacherName , int examType, String courseName);
+    List<Course> findCourseOfAdmin(@Param("courseType") String courseType, @Param("teacherName") String teacherName , @Param("examType") int examType, @Param("courseName") String courseName);
 }

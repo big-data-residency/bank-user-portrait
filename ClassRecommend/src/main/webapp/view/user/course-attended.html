@@ -16,25 +16,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
-    
+
     <link rel="stylesheet" href="../../style/bower_components/bootstrap-daterangepicker/daterangepicker.css">
-  	<!-- bootstrap datepicker -->
- 	<link rel="stylesheet" href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  	<!-- iCheck for checkboxes and radio inputs -->
-  	<!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
-  	<link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
-  	<!-- Bootstrap Color Picker -->
-  	<link rel="stylesheet" href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  	<!-- Bootstrap time Picker -->
-  	<!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
-  	<!-- Select2 -->
-  <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">	
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet"
+          href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
+    <link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet"
+          href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
 
-	<!-- DataTables -->
-	<link rel="stylesheet" href="../../style/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../style/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
-	<link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
@@ -54,347 +56,310 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
-	<!--<link rel="stylesheet" type="text/css" href="../../style/newstyle/js/table_wow.min.js"/>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
+<!--<link rel="stylesheet" type="text/css" href="../../style/newstyle/js/table_wow.min.js"/>
 -->
 
 
-<body class="hold-transition skin-blue-light fixed" id="Asearch">
-<div class="wrapper">
+<body class="hold-transition skin-blue-light fixed">
+<div class="wrapper" id="Asearch">
 
-	<header class="main-header">
+    <header class="main-header">
 
-		<!-- Logo -->
-		<a href="#" class="logo navbar-fixed-top">
-			<!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>H</b>elper</span>
-			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>EAMIS-</b>Helper</span>
-		</a>
+        <!-- Logo -->
+        <a href="#" class="logo navbar-fixed-top">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>H</b>elper</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>EAMIS-</b>Helper</span>
+        </a>
 
-		<!-- Header Navbar -->
-		<nav class="navbar navbar-fixed-top" role="navigation">
-			<!-- Sidebar toggle button-->
-			<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-				<span class="sr-only">Toggle navigation</span>
-			</a>
-			<!-- Navbar Right Menu -->
-			<div class="navbar-custom-menu">
-				<ul class="nav navbar-nav">
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-fixed-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
 
-					<!-- Notifications Menu -->
+                    <!-- Notifications Menu -->
 
-					<!-- Tasks Menu -->
-					<li class="dropdown tasks-menu">
-						<!-- Menu Toggle Button -->
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="fa fa-flag-o"></i>
-							<span class="label label-danger">21</span>
-						</a>
-						<ul class="dropdown-menu">
-							<li class="header">有21门课未评价</li>
-							<li>
-								<!-- Inner menu: contains the tasks -->
-								<ul class="menu">
-									<li>
-										<!-- Task item -->
-										<a href="http://localhost:8080/view/user/course-attended.html?id={{studentId}}">
-											<!-- Task title and progress text -->
-											<h3>
-												已评课数
-												<small class="pull-right">9/30</small>
-											</h3>
-											<!-- The progress bar -->
-											<div class="progress xs">
-												<!-- Change the css width attribute to simulate progress -->
-												<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-													<!--<span class="sr-only">20% Complete</span>-->
-												</div>
-											</div>
-										</a>
-									</li>
-									<!-- end task item -->
-								</ul>
-							</li>
-							<li class="footer">
-								<a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentId}}">进入评课</a>
-							</li>
-						</ul>
-					</li>
-					<!-- User Account Menu -->
-					<li class="dropdown user user-menu">
-						<!-- Menu Toggle Button -->
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<!-- The user image in the navbar-->
-							<img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-							<!-- hidden-xs hides the username on small devices so only the image appears. -->
-							<span class="hidden-xs">Alexander Pierce</span>
-						</a>
-						<ul class="dropdown-menu">
-							<!-- The user image in the menu -->
-							<li class="user-header">
-								<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <!-- Tasks Menu -->
+                    <li class="dropdown tasks-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">21</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">有21门课未评价</li>
+                            <li>
+                                <!-- Inner menu: contains the tasks -->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- Task item -->
+                                        <a :href=" 'http://localhost:8080/view/user/course-attended.html?id='+'studentId'">
+                                            <!-- Task title and progress text -->
+                                            <h3>
+                                                已评课数
+                                                <small class="pull-right">9/30</small>
+                                            </h3>
+                                            <!-- The progress bar -->
+                                            <div class="progress xs">
+                                                <!-- Change the css width attribute to simulate progress -->
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
+                                                    <!--<span class="sr-only">20% Complete</span>-->
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a :href="'http://localhost:8080/view/user/classdetail-uploads.html?id='+'studentId'">进入评课</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">Alexander Pierce</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-								<p>
-									胖成球 - 信息安全
-									<small>学号：1611522</small>
-								</p>
-							</li>
-							<!-- Menu Body -->
+                                <p>
+                                    胖成球 - 信息安全
+                                    <small>学号：1611522</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
 
-							<!-- Menu Footer-->
-							<li class="user-footer">
-								<div class="pull-left">
-									<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
-								</div>
-								<div class="pull-right">
-									<a href="#" class="btn btn-default btn-flat">Sign out</a>
-								</div>
-							</li>
-						</ul>
-					</li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a :href="'studentinfo_new.html?id='+'studentId'" class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
 
-				</ul>
-			</div>
-		</nav>
-	</header>
-	<!-- Left side column. contains the logo and sidebar -->
-	<aside class="main-sidebar " style="position: fixed ">
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar " style="position: fixed ">
 
-		<!-- sidebar: style can be found in sidebar.less -->
-		<section class="sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
 
-			<!-- Sidebar user panel (optional) -->
-			<div class="user-panel" style="height: 65px;">
-				<div class="pull-left image">
-					<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-				</div>
-				<div class="pull-left info">
-					<p>Alexander Pierce</p>
-					<!-- Status -->
-					<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-				</div>
-			</div>
-
-
-
-			<!-- Sidebar Menu -->
-			<ul class="sidebar-menu" data-widget="tree">
-				<li class="header">EAMIS_HELPER</li>
-				<!-- Optionally you can add icons to the links -->
-				<li >
-					<a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
-				</li>
-				<li>
-					<a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查询所有课程</span></a>
-				</li>
-				<li class="active">
-					<a href="#"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
-				</li>
-				<li >
-					<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
-				</li>
-				<li>
-					<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
-				</li>
-				<!--<li class="treeview">
-<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-<span class="pull-right-container">
-    <i class="fa fa-angle-left pull-right"></i>
-  </span>
-</a>
-<ul class="treeview-menu">
-<li><a href="#">Link in level 2</a></li>
-<li><a href="#">Link in level 2</a></li>
-</ul>
-</li>-->
-			</ul>
-			<!-- /.sidebar-menu -->
-		</section>
-		<!-- /.sidebar -->
-	</aside>
-
-	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper ">
-		<!-- Content Header (Page header) -->
-		<section class="content-header">
-			<!--标题-->
-			<h1>
-				查看已修读课程
-				<small>Course Attended</small>
-			</h1>
-			<!--面包屑-->
-			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-bookmark"></i> 查看已修读课程</a></li>
-				<li class="active">Here</li>
-			</ol>
-		</section>
-		<!-- Main content -->
-		<section class="content container-fluid">
-			<div class=" newsletter">
-				<div class="social">
-					<ul>
-						<li><a href="#" class="link dblue" target="_parent"><span >A</span></a></li>
-						<li><a href="#" class="link lblue" target="_parent"><span >B</span></a></li>
-						<li><a href="#" class="link orange" target="_parent"><span>C</span></a></li>
-						<li><a href="#" class="link yellow" target="_parent"><span >D</span></a></li>
-						<li><a href="#" class="link dgreen" target="_parent"><span >E</span></a></li>
-					</ul>
-				</div>
-			</div>
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel" style="height: 65px;">
+                <div class="pull-left image">
+                    <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>Alexander Pierce</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
 
 
-			<div class="row">
-				<div class="col-md-12">
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">EAMIS_HELPER</li>
+                <!-- Optionally you can add icons to the links -->
+                <li>
+                    <a :href="'new_start.html?id='+'studentId'"><i class="fa fa-user"></i> <span>用户首页</span></a>
+                </li>
+                <li>
+                    <a :href="'new_start.html?id='+'studentId'"><i class="fa fa-book"></i> <span>查询所有课程</span></a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
+                </li>
+                <li>
+                    <a :href="'new_start.html?id='+'studentId'"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
+                </li>
+                <li>
+                    <a :href="'new_start.html?id='+'studentId'"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+                </li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
 
-					<div class="box box-warning">
-						<div class="box-header with-border">
-							<h3 class="box-title">SELECT</h3>
-							<div class="box-tools pull-right">
-								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-							</div>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<div class="row">
-								<div class="col-md-3">
-									<div class="form-group">
-										<label>课程编码</label>
-										<form action="#" method="post">
-											<div class="input-group">
-												<input type="text" name="message" placeholder="Type Message ..." class="form-control">
-												<!--<span class="input-group-btn">
-                                                  <button type="submit" class="btn btn-danger btn-flat">Send</button>
-                                                </span>-->
-												<span class="input-group-btn">
-													<button type="submit" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i></button>
-												</span>
-											</div>
-										</form>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<label>授课老师</label>
-										<select class="form-control select2" style="width: 100%;">
-											<option selected="selected">Alabama</option>
-											<option>Alaska</option>
-											<option>California</option>
-											<option>Delaware</option>
-											<option>Tennessee</option>
-											<option>Texas</option>
-											<option>Washington</option>
-										</select>
-									</div>
-								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<label>课程名称</label>
-										<select class="form-control select2" style="width: 100%;">
-											<option selected="selected">Alabama</option>
-											<option>Alaska</option>
-											<option>California</option>
-											<option>Delaware</option>
-											<option>Tennessee</option>
-											<option>Texas</option>
-											<option>Washington</option>
-										</select>
-									</div>
-								</div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper ">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <!--标题-->
+            <h1>
+                查看已修读课程
+                <small>Course Attended</small>
+            </h1>
+            <!--面包屑-->
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-bookmark"></i> 查看已修读课程</a></li>
+                <li class="active">Here</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content container-fluid">
 
-								<div class="col-md-3">
-									<label>开始查找！</label>
-									<button type="submit" class="btn btn-danger pull-right btn-block btn-sm">查找</button>
-								</div>
-							</div>
-						</div>
-						<!-- /.box-body -->
-					</div>
-					<!-- /.box -->
+            <div class="row">
+                <div class="col-md-12">
 
-					<div class="box box-primary">
-						<div class="box-header">
-							<h3 class="box-title">课程列表</h3>
-						</div>
-						<div class="box-body">
-							<table id="example1" class="table table-bordered table-striped">
-								<thead>
-								<tr>
-									<th scope="col">编号</th>
-									<th scope="col">课程</th>
-									<th scope="col">老师</th>
-									<th scope="col">考核方式</th>
-									<th scope="col">通过制</th>
-									<th scope="col" style="width: 50px"></th>
-								</tr>
-								</thead>
-								<tbody>
-								<tr>
-									<td>1</td>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-									<td>@mdo</td>
-									<td>
-										<a href="update.html">评价</a>
-									</td>
+                    <div class="box box-warning">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">SELECT</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                        class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>课程编码</label>
+                                        <form action="#" method="post">
+                                            <div class="input-group">
+                                                <input type="text" style="width: 170%" name="message"
+                                                       placeholder="Type Message ..." class="form-control">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>授课老师</label>
+                                        <select class="form-control select2" onchange="findCourseByTeacherName(this)"
+                                                id="teacherName" style="width: 100%;">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>课程名称</label>
+                                        <select class="form-control select2" id="courseName" style="width: 100%;">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
 
-								<tr>
-									<td>2</td>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-									<td>@fat</td>
-									<td>
-										<a href="update.html">评价</a>
-									</td>
+                                <div class="col-md-3">
+                                    <label>开始查找！</label>
+                                    <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">查找</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
 
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Larry </td>
-									<td>@twitter</td>
-									<td>@twitter</td>
-									<td>@twitter</td>
-									<td>
-										<a href="update.html">评价</a>
-									</td>
-								</tr>
-								</tbody>
-								<tfoot>
-								<tr>
-									<th>Rendering engine</th>
-									<th>Browser</th>
-									<th>Platform(s)</th>
-									<th>Engine version</th>
-									<th>CSS grade</th>
-								</tr>
-								</tfoot>
-							</table>
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3 class="box-title">课程列表</h3>
+                        </div>
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th scope="col">编号</th>
+                                    <th scope="col">课程</th>
+                                    <th scope="col">老师</th>
+                                    <th scope="col">考核方式</th>
+                                    <th scope="col">通过制</th>
+                                    <th scope="col" style="width: 50px"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                    <td>@mdo</td>
+                                    <td>
+                                        <a href="update.html">评价</a>
+                                    </td>
 
-						</div>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                    <td>@fat</td>
+                                    <td>
+                                        <a href="update.html">评价</a>
+                                    </td>
 
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Larry</td>
+                                    <td>@twitter</td>
+                                    <td>@twitter</td>
+                                    <td>@twitter</td>
+                                    <td>
+                                        <a href="update.html">评价</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Rendering engine</th>
+                                    <th>Browser</th>
+                                    <th>Platform(s)</th>
+                                    <th>Engine version</th>
+                                    <th>CSS grade</th>
+                                </tr>
+                                </tfoot>
+                            </table>
 
-
-					</div>
-
-
-				</div>
-
-			</div>
-
-		</section>
-		<!-- /.content -->
-	</div>
+                        </div>
 
 
-	<!-- Main Footer -->
-	<footer class="main-footer">
+                    </div>
 
-		<!-- Default to the left -->
-		<strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
-	</footer>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
+    </footer>
 
 
 </div>
@@ -422,47 +387,87 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../../style/dist/js/demo.js"></script>
 <!-- Page script -->
 
+
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 <script>
-  $(function () {
-      $('#example1').DataTable()
-      $('#example2').DataTable({
-          'paging'      : true,
-          'lengthChange': false,
-          'searching'   : false,
-          'ordering'    : true,
-          'info'        : true,
-          'autoWidth'   : false
-      });
-    //Initialize Select2 Elements
-    $('.select2').select2()
 
-  })
-  var Asearch = new Vue({
-      el: '#Asearch',
-      data: {
-          studentId: ''
-      },
-      methods: {
-          GetQueryString(name) {
-              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-              var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-              var context = "";
-              if(r != null)
-                  context = r[2];
-              reg = null;
-              r = null;
-              return context == null || context == "" || context == "undefined" ? "" : context;
-          },
-          getPar() {
-              Asearch.studentId = this.GetQueryString('id');
-          },
-      },
+    var studentId;
 
-      mounted() {
-          this.getPar();
-      }
+    $(
+        function () {
 
-  })
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            });
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            function GetQueryString(name) {
+
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                    context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            };
+
+            studentId = GetQueryString('id');
+
+            $.ajax({
+                url: 'http://localhost:8080/findTeacherAndCourseByStudentId',
+                data: {
+                    studentIdStr: studentId,
+                },
+                type: 'GET',
+                success: function (res) {
+                    if (res.success) {
+
+                        for (var teacher in res.data.teachers) {
+
+                            $('#teacherName').append(`<option> ${ teacher.teacherName } </option>`)
+                        }
+
+                        for(var course in res.data.courses){
+                            $('#courseName').append(`<option>${ course.courseName }</option>`)
+                        }
+                    }
+                },
+            })
+        }
+    )
+
+    function findCourseByTeacherName(obj) {
+        $.ajax({
+            url: 'http://localhost:8080/findCourseByTeacherName',
+            data: {
+                teacherName: obj.value
+            },
+            type: 'GET',
+            beforeSend: function () {
+                $('#courseName').html('')
+            },
+            success: function (res) {
+                if (res.success) {
+
+                    for (var course in res.data.courses)
+                        $('#courseName').append(`<option>${ course.courseName }</option>`)
+                }
+            }
+        })
+    }
 
 
 </script>

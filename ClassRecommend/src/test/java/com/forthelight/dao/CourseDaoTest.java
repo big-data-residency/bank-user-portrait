@@ -144,7 +144,7 @@ public class CourseDaoTest {
 
     @Test
     public void findCourseOfAdmin(){
-        List<Course> courses = courseDao.findCourseOfAdmin("A","袁晓洁",1,"数据库");
+        List<Course> courses = courseDao.findCourseOfAdmin("A",null,1,"数据库");
         System.out.print(courses.get(0).getCourseName());
     }
 

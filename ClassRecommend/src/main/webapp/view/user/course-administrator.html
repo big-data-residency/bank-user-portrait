@@ -16,16 +16,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="../../style/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
+    <link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <!-- Bootstrap time Picker -->
+    <!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">
+
     <!-- DataTables -->
     <link rel="stylesheet" href="../../style/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
     <!-- Bootstrap time Picker -->
-  	<!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
-  	<!-- Select2 -->
-  <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">	
+    <!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">
     <!-- Theme style -->
-    
-    
+
+
     <link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
@@ -43,11 +57,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
 
-<body class="hold-transition skin-blue fixed">
-<div class="wrapper">
+<body class="hold-transition skin-blue fixed"  >
+<div class="wrapper" id="adminCourse">
 
     <!-- Main Header -->
     <header class="main-header">
@@ -291,13 +305,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </section>
         <!-- Main content -->
         <section class="content container-fluid">
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-warning">
                         <div class="box-header with-border">
                             <h3 class="box-title">筛选条件</h3>
-
+                            <p>{{teacherInfo}}</p>
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                             </div>
@@ -308,8 +321,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>课程类型</label>
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">Alabama</option>
+                                        <select id="courseType" class="form-control select2"  style="width: 100%;">
+                                            <option selected="selected">全部</option>
                                             <option>A</option>
                                             <option>B</option>
                                             <option>C</option>
@@ -321,49 +334,44 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>授课老师</label>
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">Alabama</option>
-                                            <option>Alaska</option>
-                                            <option>California</option>
-                                            <option>Delaware</option>
-                                            <option>Tennessee</option>
-                                            <option>Texas</option>
-                                            <option>Washington</option>
+                                        <!--<select  id="teacherInfo" v-model="teacherInfo" class="form-control select2" style="width: 100%;">-->
+
+                                        <!--<option v-for=" (teacher,index) in teachers " v-if="index == 0" selected="selected" value="teacher.teacherName" label="teacher.teacherName"></option>-->
+                                        <!--<option v-else value="teacher.teacherName" label="teacher.teacherName"></option>-->
+
+                                        <!--</select>-->
+                                        <select v-model="teacherInfo" class="form-control select2" style="width: 100%;">
+                                            <option v-for="teacher in teachers" v-bind:value="teacher.id">{{teacher.name}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>考核方式</label>
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">Alabama</option>
-                                            <option>Alaska</option>
-                                            <option>California</option>
-                                            <option>Delaware</option>
-                                            <option>Tennessee</option>
-                                            <option>Texas</option>
-                                            <option>Washington</option>
+                                        <select class="form-control select2" id="examType" style="width: 100%;">
+                                            <option selected="selected">全部</option>
+                                            <option>闭卷考试</option>
+                                            <option>开卷考试</option>
+                                            <option>论文结课</option>
+                                            <option>其他</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>课程名称</label>
-                                        <form action="#" method="post">
+                                        <form action="#" method="post" id="searchClass" >
                                             <div class="input-group">
-                                                <input type="text" name="message" placeholder="class-number" class="form-control">
-                                                <!--<span class="input-group-btn">
-                                                  <button type="submit" class="btn btn-danger btn-flat">Send</button>
-                                                </span>-->
+                                                <input type="text" v-model="courseName"  placeholder="class-Name" class="form-control">
                                                 <span class="input-group-btn">
-                                                    <button type="submit" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i></button>
+                                                    <button type="button" v-on:click="findCourse()" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i></button>
                                                 </span>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                      </div>
+                        </div>
                     </div>
 
                     <div class="box box-primary">
@@ -384,33 +392,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>
-                                        <a href="update.html">评价</a>
-                                    </td>
-
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                    <td>
-                                        <a href="update.html">评价</a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry </td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
+                                <tr v-for="course in courses">
+                                    <td>{{ course.courseCode }}</td>
+                                    <td>{{ course.courseName }}</td>
+                                    <td>{{ course.teacherName }}</td>
+                                    <td>{{ course.examType }}</td>
+                                    <td>{{ course.passType }}</td>
                                     <td>
                                         <a href="update.html">评价</a>
                                     </td>
@@ -543,25 +530,85 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../../style/dist/js/demo.js"></script>
 <!-- Page script -->
 
-<script>
-  $(function () {
-      $('#example1').DataTable()
-      $('#example2').DataTable({
-          'paging'      : true,
-          'lengthChange': false,
-          'searching'   : false,
-          'ordering'    : true,
-          'info'        : true,
-          'autoWidth'   : false
-      });
-    //Initialize Select2 Elements
-    $('.select2').select2()
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
-  })
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+        });
+        //Initialize Select2 Elements
+        $('.select2').select2()
+    })
+    var adminCourse = new Vue({
+        el:'#adminCourse',
+        data:{
+            teachers:[{
+                id:1,
+                name:'aaa',
+            },{
+                id:2,
+                name:'bbb',
+            },{
+                id:3,
+                name:'ccc',
+            }],
+            courseType: document.getElementById("courseType").value,
+            teacherInfo:2,
+            examType:document.getElementById("examType").value,
+            courseName:'',
+            courses:''
+        },
+        methods:{
+            getAllTeachers() {
+                $.ajax({
+                    url:'http://localhost:8080/findAllTeachers',
+                    data:{
+                        teacherIdStr: '',
+                    },
+                    type:'GET',
+                    dataType:'json',
+                    success:function (res) {
+                        if(res.success){
+                            adminCourse.teachers = res.data.teachers
+                        }
+                    }
+                })
+            },
+            findCourse(){
+                $.ajax({
+                    url:'http://localhost:8080/findCourseOfAdmin',
+                    data:{
+                        courseType: adminCourse.courseType,
+                        teacherInfo: teacherInfo,
+                        examType: adminCourse.examType,
+                        courseName: adminCourse.courseName
+                    },
+                    type:'GET',
+                    dataType: 'json',
+                    success:function (res) {
+                        if(res.success){
+                            adminCourse.courses = res.data.courses
+                        }else{
+                            alert("没有查到相关结果")
+                        }
+                    }
+                })
+            }
+        },
+        mounted(){
+            this.getAllTeachers();
+        }
+    })
 </script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
 </body>
 </html>
