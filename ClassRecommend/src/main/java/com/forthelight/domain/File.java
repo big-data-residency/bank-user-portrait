@@ -10,9 +10,6 @@ public class File implements Serializable {
 	private String filePath;
 	private Timestamp updateTime;
 	private int downloadNum;
-	private String title;
-	private String description;
-
 	private int deleteStatus;
 
 	private transient Student student;
@@ -47,14 +44,6 @@ public class File implements Serializable {
 		this.filePath = filePath;
 	}
 
-	public int getDownloadNum() {
-		return downloadNum;
-	}
-
-	public void setDownloadNum(int downloadNum) {
-		this.downloadNum = downloadNum;
-	}
-
 	public Timestamp getUpdateTime() {
 		return updateTime;
 	}
@@ -79,21 +68,12 @@ public class File implements Serializable {
 		this.deleteStatus = deleteStatus;
 	}
 
-
-	public String getTitle() {
-		return title;
+	public int getDownloadNum() {
+		return downloadNum;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String note) {
-		this.description = note;
+	public void setDownloadNum(int downloadNum) {
+		this.downloadNum = downloadNum;
 	}
 
 	public Course getCourse() {

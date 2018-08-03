@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -346,41 +345,5 @@ public class TeacherController {
         
         return gson.toJson(res);
     }
-
-
-	@RequestMapping(value= {"/findAllTeachers"} , method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
-	@ResponseBody
-	public String findAllTeachers(String teacherIdStr, HttpServletResponse response) {
-
-		response.setContentType("text/json;charset:UTF-8");
-		response.setCharacterEncoding("UTF-8");
-
-		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-
-		boolean success = false;
-
-		if(teacherIdStr == ""){
-			success = true;
-		}
-
-		List<Teacher> teachers = teacherBiz.findAll();
-		Teacher teacher = new Teacher();
-
-		teacher.setTeacherName("所有教师");
-		teacher.setId(0);
-
-		teachers.add(0,teacher);
-
-		Map<String,Object> data = new HashMap<>();
-		data.put("teachers",teachers);
-
-
-		Map<String, Object> res = new HashMap<>();
-		res.put("data",data);
-		res.put("success",success);
-
-		return gson.toJson(res);
-
-	}
     
 }
