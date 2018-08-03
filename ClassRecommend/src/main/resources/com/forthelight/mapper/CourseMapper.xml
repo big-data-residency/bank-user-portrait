@@ -173,4 +173,26 @@
 		</if>
 	</select>
 
+	<select id="findByStudentIdAndTeacherName" resultMap="CourseResultMap">
+		select * from Course
+		where teacherId in ( select id from Teacher where teacherName = #{arg1} and deleteStatus = 0)
+		and id in ( select courseId from student_select_course where studentId = #{arg0} and deleteStatus = 0 )
+		and deleteStatus = 0
+	</select>
+
+	<select id="findByStudentIdAndCourseCode" resultMap="CourseResultMap">
+		select * from Course
+		where courseCode = #{arg1} and
+		id in ( select courseId from student_select_course where studentId = #{arg0}
+		 and deleteStatus = 0) and deleteStatus = 0
+	</select>
+
+	<select id="findByCourseAndTeacher" resultMap="CourseResultMap">
+		select * from Course
+		where courseName = #{arg1} and teacherId in
+		( select id from Teacher where teacherName = #{arg2} and deleteStatus = 0 )
+		and id in ( select courseId from student_select_course where studentId = #{arg0}
+		 and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
+
 </mapper>

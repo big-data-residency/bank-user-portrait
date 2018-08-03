@@ -29,4 +29,8 @@ public interface TeacherBiz {
 
 	List<Tag> tagList(int teacherId);
 
+	List<Teacher> findByStudentIdAndCourseName(int studentId,String courseName);
+
+	List<Teacher> findByStudentId(int studentId);
+
 }

@@ -243,35 +243,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>课程编码</label>
-                                        <form action="#" method="post">
                                             <div class="input-group">
-                                                <input type="text" style="width: 170%" name="message"
-                                                       placeholder="Type Message ..." class="form-control">
+                                                <input type="text" style="width: 170%" name="message" id="courseCode"
+                                                       placeholder="Type ClassNumber ..." class="form-control">
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>授课老师</label>
                                         <select class="form-control select2" onchange="findCourseByTeacherName(this)"
-                                                id="teacherName" style="width: 100%;">
-                                            <option></option>
+                                                id="teacherName" style="width: 100%;" >
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>课程名称</label>
-                                        <select class="form-control select2" id="courseName" style="width: 100%;">
-                                            <option></option>
+                                        <select class="form-control select2" id="courseName" onchange="findTeacherByCourseName(this)" style="width: 100%;">
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3">
                                     <label>开始查找！</label>
-                                    <button type="submit" class="btn btn-danger pull-right btn-block btn-sm">查找</button>
+                                    <button type="button" id="searchCourse" class="btn btn-danger pull-right btn-block btn-sm">查找</button>
                                 </div>
                             </div>
                         </div>
@@ -295,48 +291,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <th scope="col" style="width: 50px"></th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>
-                                        <a href="update.html">评价</a>
-                                    </td>
+                                <tbody id="courseList" >
 
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                    <td>
-                                        <a href="update.html">评价</a>
-                                    </td>
-
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Larry</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                    <td>
-                                        <a href="update.html">评价</a>
-                                    </td>
-                                </tr>
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                                </tfoot>
                             </table>
 
                         </div>
@@ -433,25 +390,55 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 success: function (res) {
                     if (res.success) {
 
-                        for (var teacher in res.data.teachers) {
+                        for (var teacher of res.data.teachers) {
 
                             $('#teacherName').append(`<option> ${ teacher.teacherName } </option>`)
                         }
 
-                        for(var course in res.data.courses){
+                        for(var course of res.data.courses){
                             $('#courseName').append(`<option>${ course.courseName }</option>`)
                         }
                     }
                 },
+            })
+
+            $.ajax({
+                url:'http://localhost:8080/findAllCourseByStudentId',
+                data:{
+                    studentIdStr:studentId
+                },
+                beforeSend:function () {
+                    $('#courseList').html('')
+                },
+                success:function (res) {
+                    if(res.success){
+                        for(var course of res.data.courses ){
+                            $('#courseList').append(`<tr>
+                                    <td>${ course.courseCode }</td>
+                                    <td>${ course.courseName }</td>
+                                    <td>${ course.teacherName }</td>
+                                    <td>${ course.examForm }</td>
+                                    <td>${ course.passingForm }</td>
+                                    <td>
+                                        <a href="#">评价</a>
+                                    </td>
+
+                                <tr>`)
+                        }
+                    }else {
+                        alert("没有查找到相关课程，请重试！")
+                    }
+                }
             })
         }
     )
 
     function findCourseByTeacherName(obj) {
         $.ajax({
-            url: 'http://localhost:8080/findCourseByTeacherName',
+            url: 'http://localhost:8080/findByStudentIdAndTeacherName',
             data: {
-                teacherName: obj.value
+                teacherName: obj.value,
+                studentIdStr:studentId,
             },
             type: 'GET',
             beforeSend: function () {
@@ -460,18 +447,70 @@ scratch. This page gets rid of all links and provides the needed markup only.
             success: function (res) {
                 if (res.success) {
 
-                    for (var course in res.data.courses)
+                    for (var course of res.data.courses)
                         $('#courseName').append(`<option>${ course.courseName }</option>`)
                 }
             }
         })
     }
 
+    function findTeacherByCourseName(obj) {
+        $.ajax({
+            url:'http://localhost:8080/findByStudentIdAndCourseName',
+            data:{
+                courseName:obj.value,
+                studentIdStr:studentId
+            },
+            type:'GET',
+            beforeSend:function () {
+                $('teacherName').html('')
+            },
+            success:function (res) {
+                if(res.success){
+                    for( var teacher of res.data.teachers){
+                        $('#teacherName').append(`<option>${ teacher.teacherName }</option>`)
+                    }
+                }
+            }
+        })
+    }
+
+    $('#searchCourse').click(function () {
+        $.ajax({
+            url:'http://localhost:8080/findByStudentIdAndCourseCode',
+            data:{
+                studentIdStr:studentId,
+                courseCode:document.getElementById("courseCode").value,
+                teacherName: document.getElementById("teacherName").value,
+                courseName: document.getElementById("courseName").value
+            },
+            type:'GET',
+            beforeSend:function () {
+                $('#courseList').html('')
+            },
+            success:function (res) {
+                if(res.success){
+                    for(var course of res.data.courses ){
+                        $('#courseList').append(`<tr>
+                                    <td>${ course.courseCode }</td>
+                                    <td>${ course.courseName }</td>
+                                    <td>${ course.teacherName }</td>
+                                    <td>${ course.examForm }</td>
+                                    <td>${ course.passingForm }</td>
+                                    <td>
+                                        <a href="#">评价</a>
+                                    </td>
+
+                                <tr>`)
+                    }
+                }else {
+                    alert("没有查找到相关课程，请重试！")
+                }
+            }
+        })
+    })
 
 </script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
 </body>
 </html>

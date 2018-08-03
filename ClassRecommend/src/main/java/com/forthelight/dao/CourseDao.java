@@ -49,4 +49,11 @@ public interface CourseDao {
     int setTime(@Param("course") Course course, @Param("lessonDay") int lessonDay, @Param("startTime") int startTime, @Param("endTime") int endTime);
 
     List<Course> findCourseOfAdmin(@Param("courseType") String courseType, @Param("teacherName") String teacherName , @Param("examType") int examType, @Param("courseName") String courseName);
+
+    List<Course> findByStudentIdAndTeacherName(int studentId, String teacherName);
+
+	List<Course> findByStudentIdAndCourseCode(int studentId,String courseCode);
+
+	List<Course> findByCourseAndTeacher(int studentId,String courseName,String teacherName);
+
 }
