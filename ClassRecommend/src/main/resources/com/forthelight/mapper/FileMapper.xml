@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="com.forthelight.dao.FileDao">
 
@@ -36,5 +36,13 @@
 	    select count(*) from file
 	    where courseId = #{courseId} and deleteStatus = 0
 	</select>
+
+	<insert id="insert" keyColumn="id" useGeneratedKeys="true">
+		INSERT INTO file
+		(FileName, FilePath, UpdateTime, StudentID, CourseID, DownloadNum, Title, Description)
+		VALUES
+			(#{fileName}, #{filePath}, #{updateTime}, #{student.id}, #{course.id}, #{downloadNum}, #{title},
+			 #{description});
+	</insert>
 
 </mapper>
