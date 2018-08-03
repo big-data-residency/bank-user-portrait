@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.forthelight.domain.Tag;
 import com.forthelight.domain.Teacher;
+import org.apache.ibatis.annotations.Param;
 
 public interface TeacherDao {
 
@@ -28,5 +29,8 @@ public interface TeacherDao {
 	String college(int collegeId);
 	
 	List<Tag> tagList(int teacherId);
-	
+
+	List<Teacher> findByStudentIdAndCourseName(int studentId,String courseName);
+
+	List<Teacher> findByStudentId(@Param("studentId") int studentId);
 }

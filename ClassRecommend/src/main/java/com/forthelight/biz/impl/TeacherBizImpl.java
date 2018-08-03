@@ -81,4 +81,14 @@ public class TeacherBizImpl implements TeacherBiz {
 		return teacherDao.tagList(teacherId);
 	}
 
+	@Override
+	public List<Teacher> findByStudentIdAndCourseName(int studentId,String courseName){
+    	return teacherDao.findByStudentIdAndCourseName(studentId,courseName);
+	}
+
+	@Override
+	public  List<Teacher> findByStudentId(int studentId){
+    	return  teacherDao.findByStudentId(studentId);
+	}
+
 }

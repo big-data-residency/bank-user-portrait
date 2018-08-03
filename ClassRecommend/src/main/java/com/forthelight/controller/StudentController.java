@@ -408,16 +408,16 @@ public class StudentController {
 		student.put("college", studentInfo.getCollege().getCollegeName());
 		student.put("major", studentInfo.getMajor().getMajorName());
 
-		if(studentInfo.getGrade() == 1){
+		if(studentInfo.getGrade() == 2017){
 			student.put("grade","大一");
 		}
-		if(studentInfo.getGrade() == 2){
+		if(studentInfo.getGrade() == 2016){
 			student.put("grade","大二");
 		}
-		if(studentInfo.getGrade() == 3){
+		if(studentInfo.getGrade() == 2015){
 			student.put("grade","大三");
 		}
-		if(studentInfo.getGrade() == 4){
+		if(studentInfo.getGrade() == 2014){
 			student.put("grade","大四");
 		}
 

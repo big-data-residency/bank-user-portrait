@@ -49,4 +49,10 @@ public interface CourseBiz {
     int setTime(Course course, int lessonDay, int startTime, int endTime);
 
     List<Course> findCourseOfAdmin(String courseType, String teacherName, int examType, String courseName);
+
+    List<Course> findByStudentIdAndTeacherName(int studentId, String teacherName);
+
+    List<Course> findByStudentIdAndCourseCode(int studentId, String courseCode);
+
+    List<Course> findByCourseAndTeacher(int studentId, String courseName, String teacherName);
 }
