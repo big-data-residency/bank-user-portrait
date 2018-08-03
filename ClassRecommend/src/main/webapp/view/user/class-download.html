@@ -10,27 +10,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>EAMIS_HELPER</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
+    
     <link rel="stylesheet" href="../../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="../../style/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-
-    <!-- Bootstrap time Picker -->
-  	<!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
-  	<!-- Select2 -->
-  <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">	
     <!-- Theme style -->
-    
-    
     <link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue.css">
     <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/starter_new.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -40,14 +31,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
-
 <body class="hold-transition skin-blue fixed">
-<div class="wrapper" id="admininfo">
+<div class="wrapper">
 
     <!-- Main Header -->
     <header class="main-header">
@@ -241,7 +232,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn1" class="btn btn-flat"><i class="fa fa-search"></i>
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
               </button>
             </span>
                 </div>
@@ -275,13 +266,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper ">
+    <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <!--标题-->
             <h1>
-                查看全部课程
-                <small>administrator</small>
+                Downloads
+                <small>course-downloads</small>
             </h1>
             <!--面包屑-->
             <ol class="breadcrumb">
@@ -292,154 +283,87 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <section class="content container-fluid">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-warning">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">筛选条件</h3>
 
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">下载课程文件</h3>
+
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>课程类型</label>
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">Alabama</option>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
-                                            <option>D</option>
-                                            <option>E</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>授课老师</label>
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">Alabama</option>
-                                            <option>Alaska</option>
-                                            <option>California</option>
-                                            <option>Delaware</option>
-                                            <option>Tennessee</option>
-                                            <option>Texas</option>
-                                            <option>Washington</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>考核方式</label>
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">Alabama</option>
-                                            <option>Alaska</option>
-                                            <option>California</option>
-                                            <option>Delaware</option>
-                                            <option>Tennessee</option>
-                                            <option>Texas</option>
-                                            <option>Washington</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>课程名称</label>
-                                        <form action="#" method="post">
-                                            <div class="input-group">
-                                                <input type="text" name="message" placeholder="class-number" class="form-control">
-                                                <!--<span class="input-group-btn">
-                                                  <button type="submit" class="btn btn-danger btn-flat">Send</button>
-                                                </span>-->
-                                                <span class="input-group-btn">
-                                                    <button type="submit" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i></button>
-                                                </span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                      </div>
-                    </div>
-
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <h3 class="box-title">课程列表</h3>
-                        </div>
-
-                        <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
                                 <tr>
-                                    <th scope="col">编号</th>
-                                    <th scope="col">课程</th>
-                                    <th scope="col">老师</th>
-                                    <th scope="col">考核方式</th>
-                                    <th scope="col">通过制</th>
-                                    <th scope="col" style="width: 50px"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>@mdo</td>
-                                    <td>
-                                        <a href="update.html">评价</a>
-                                    </td>
+                                    <th>课程编码</th>
+                                    <th>课程名称</th>
+                                    <th>任课教师</th>
 
-                                <tr>
-                                    <td>2</td>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                    <td>
-                                        <a href="update.html">评价</a>
-                                    </td>
 
                                 </tr>
                                 <tr>
-                                    <td>3</td>
-                                    <td>Larry </td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
+                                    <td>183</td>
+                                    <td>John Doe</td>
+                                    <td>11-7-2014</td>
                                     <td>
-                                        <a href="update.html">评价</a>
+                                        <a href="classdetail-uploads.html.html">下载</a>
                                     </td>
                                 </tr>
-                                </tbody>
-
+                                <tr>
+                                    <td>219</td>
+                                    <td>Alexander Pierce</td>
+                                    <td>11-7-2014</td>
+                                    <td>
+                                        <a href="classdetail-uploads.html.html">下载</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>657</td>
+                                    <td>Bob Doe</td>
+                                    <td>11-7-2014</td>
+                                    <td>
+                                    <a href="classdetail-uploads.html.html">下载</a>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>175</td>
+                                    <td>Mike Doe</td>
+                                    <td>11-7-2014</td>
+                                    <td>
+                                        <a href="classdetail-uploads.html.html">下载</a>
+                                    </td>
+                                </tr>
                             </table>
-
                         </div>
-
+                        <!-- /.box-body -->
                     </div>
+                    <!-- /.box -->
                 </div>
             </div>
+
 
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
-
-
-
-
     <!-- Main Footer -->
     <footer class="main-footer">
         <!-- To the right -->
-
+        <div class="pull-right hidden-xs">
+            CEO:XXX
+        </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
+        <strong>Copyright &copy; 2016 <a href="#">EAMIS_RECOMMEMDER</a>.</strong> All rights reserved.
     </footer>
 
     <!-- Control Sidebar -->
@@ -529,39 +453,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../style/dist/js/adminlte.min.js"></script>
-
-
-<script src="../../style/bower_components/select2/dist/js/select2.full.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../style/dist/js/adminlte.min.js"></script>
-
-<script src="../../style/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../style/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../style/dist/js/demo.js"></script>
-<!-- Page script -->
-
-<script>
-
-  $(function () {
-      $('#example1').DataTable()
-      $('#example2').DataTable({
-          'paging'      : true,
-          'lengthChange': false,
-          'searching'   : false,
-          'ordering'    : true,
-          'info'        : true,
-          'autoWidth'   : false
-      });
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-  })
-
-
-
-
-</script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
