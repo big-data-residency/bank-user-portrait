@@ -89,4 +89,16 @@ public class TeacherDaoTest {
 		System.out.println(tags);
 	}
 
+	@Test
+	public void findByStudentIdAndCourseName(){
+		List<Teacher> teachers = teacherDao.findByStudentIdAndCourseName(2,"数据库");
+		System.out.print(teachers);
+	}
+
+	@Test
+	public void  findByStudentId(){
+		List<Teacher> teachers = teacherDao.findByStudentId(2);
+		System.out.print(teachers);
+	}
+
 }

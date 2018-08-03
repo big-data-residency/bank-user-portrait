@@ -122,5 +122,18 @@ public class CourseBizImpl implements CourseBiz {
         return courseDao.findCourseOfAdmin(courseType,teacherName,examType,courseName);
     }
 
+    @Override
+    public List<Course> findByStudentIdAndTeacherName(int studentId,String teacherName){
+        return courseDao.findByStudentIdAndTeacherName(studentId,teacherName);
+    }
 
+    @Override
+    public List<Course> findByStudentIdAndCourseCode(int studentId,String courseCode){
+        return courseDao.findByStudentIdAndCourseCode(studentId,courseCode);
+    }
+
+    @Override
+    public List<Course> findByCourseAndTeacher(int studentId,String courseName,String teacherName){
+        return courseDao.findByCourseAndTeacher(studentId,courseName,teacherName);
+    }
 }
