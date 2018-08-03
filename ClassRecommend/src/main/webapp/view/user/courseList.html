@@ -34,8 +34,8 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue-light fixed">
-<div class="wrapper">
+<body class="hold-transition skin-blue-light fixed" >
+<div class="wrapper" id="sfind">
 
 				<!-- Main Header -->
 				<header class="main-header">
@@ -121,7 +121,7 @@
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="studentinfo.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+												<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
 											</div>
 											<div class="pull-right">
 												<a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -169,10 +169,10 @@
 							<li class="header">EAMIS_HELPER</li>
 							<!-- Optionally you can add icons to the links -->
 							<li >
-								<a href="#"><i class="fa fa-user"></i> <span>用户首页</span></a>
+								<a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
 							</li>
 							<li class="active">
-								<a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+								<a href="#"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
 							</li>
 							<li>
 								<a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
@@ -181,7 +181,7 @@
 								<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程页面</span></a>
 							</li>
 							<li>
-								<a href="studentinfo.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+								<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
 							</li>
 							<!--<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -213,8 +213,8 @@
             </h1>
             <!--面包屑-->
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-home"></i> 用户首页</a></li>
-                <li class="active">查看所有课程</li>
+                <li><a href="#"><i class="fa fa-book"></i> 查看所有课程</a></li>
+                <!--<li class="active">查看所有课程</li>-->
             </ol>
         </section>
 
@@ -248,7 +248,7 @@
                                     <div class="form-group">
                                         <label>课程编码</label>
                                         <div class="input-group" style="width: 100%;">
-                                            <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                                            <input type="text" name="message" placeholder="输入课程编码" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -797,27 +797,72 @@
             'ordering'    : true,
             'info'        : true,
             'autoWidth'   : false
-        })
+        });
         //Initialize Select2 Elements
         $('.select2').select2();
 
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-            checkboxClass: 'icheckbox_minimal-blue',
-            radioClass   : 'iradio_minimal-blue'
-        })
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-            checkboxClass: 'icheckbox_minimal-red',
-            radioClass   : 'iradio_minimal-red'
-        })
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            radioClass   : 'iradio_flat-green'
-        })
 
     })
+
+var sfind = new Vue({
+			el: '#sfind',
+			data: {
+				studentId: '',
+                Login:{},
+			},
+			methods: {
+				GetQueryString(name) {
+					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+					var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+					var context = "";
+					if(r != null)
+						context = r[2];
+					reg = null;
+					r = null;
+					return context == null || context == "" || context == "undefined" ? "" : context;
+				},
+				getPar() {
+					sfind.studentId = this.GetQueryString('id');
+				},
+                GetLogin(){
+                    $.ajax({
+                        url:'http://localhost:8080/getsession',
+                        type: 'Get',
+                        data : {},
+                        dataType:'json',
+                        success(json){
+                            if(json.success){
+                                this.Login=json.data;
+                                alert(this.Login.nickName);
+                            }else{
+                                alert(json.data);
+                                location.href="../login.html";
+                            }
+                        },
+                        error: function (XMLHttpRequest){
+                            alert(("输出错误信息")+XMLHttpRequest.responseText);
+                        }
+                    })
+
+                }
+			},
+
+			mounted() {
+				this.getPar();
+				this.GetLogin();
+			}
+
+		})
+		
+		
+    if(document.body.scrollWidth < 300){
+      document.getElementById('autoDis').style.display = 'none';
+    }
+    
+    
+    
+    
+    
 </script>
 </body>
 </html>

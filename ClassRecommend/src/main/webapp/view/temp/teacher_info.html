@@ -517,6 +517,8 @@ immediately after the control sidebar -->
   var teacherInfo = new Vue({
     el:'#teacherInfo',
     data:{
+        Login:{
+		},
       teacherIdStr:'',
       teacher:'',
       college:'',
@@ -525,6 +527,24 @@ immediately after the control sidebar -->
       tags:''
     },
     methods:{
+        GetLogin(){
+            $.ajax({
+                url: 'http://localhost:8080/getsession',
+                type: 'GET',
+                data: {},
+                dataType: 'json',
+                success(json) {
+                    if (json.success) {
+                    } else {
+                        alert(json.data);
+                        location.href = "../login.html";
+                    }
+                },
+                error: function (XMLHttpRequest) {
+                    alert("输出错误信息" + XMLHttpRequest.responseText);
+                }
+            });
+		},
       GetQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
         var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
@@ -683,6 +703,7 @@ immediately after the control sidebar -->
       }
     },
     mounted(){
+        this.GetLogin();
       this.getPar();
       this.getTeacherInfo();
     }

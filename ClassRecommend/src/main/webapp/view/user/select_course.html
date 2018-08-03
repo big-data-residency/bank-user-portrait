@@ -1,1125 +1,1139 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>AdminLTE 2 | Blank Page</title>
-		<!-- Tell the browser to be responsive to screen width -->
-		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-		<!-- Bootstrap 3.3.7 -->
-		<link rel="stylesheet" href="../../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
-		<!-- Font Awesome -->
-		<link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
-		<!-- Ionicons -->
-		<link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
-		<!-- Theme style -->
-		<link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
-		<!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-		<link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AdminLTE 2 | Blank Page</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 3.3.7 -->
+	<link rel="stylesheet" href="../../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+   folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
 
-		<link rel="stylesheet" href="../../style/newstyle/css/star.css">
-		<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/calendar.css"/>
-			
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+	<link rel="stylesheet" href="../../style/newstyle/css/star.css">
+	<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/calendar.css"/>
+	<link rel="stylesheet" href="../../style/newstyle/css/inputSpinner.css">
 
-		<!-- Google Font -->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	
-		<!--<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css'>-->
-		<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
 
-	
-	</head>
+	<!-- Google Font -->
+	<link rel="stylesheet"
+		  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-	<body class="hold-transition skin-blue sidebar-mini">
-		<!-- Site wrapper -->
-		<div class="wrapper">
+	<!--<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css'>-->
+	<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
 
-			<header class="main-header">
-				<!-- Logo -->
-				<a href="../../index2.html" class="logo">
-					<!-- mini logo for sidebar mini 50x50 pixels -->
-					<span class="logo-mini"><b>A</b>LT</span>
-					<!-- logo for regular state and mobile devices -->
-					<span class="logo-lg"><b>Admin</b>LTE</span>
-				</a>
-				<!-- Header Navbar: style can be found in header.less -->
-				<nav class="navbar navbar-static-top">
-					<!-- Sidebar toggle button-->
-					<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
 
-					<div class="navbar-custom-menu">
-						<ul class="nav navbar-nav">
-							<!-- Messages: style can be found in dropdown.less-->
-							<li class="dropdown messages-menu">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-envelope-o"></i>
-									<span class="label label-success">4</span>
-								</a>
-								<ul class="dropdown-menu">
-									<li class="header">You have 4 messages</li>
-									<li>
-										<!-- inner menu: contains the actual data -->
-										<ul class="menu">
-											<li>
-												<!-- start message -->
-												<a href="#">
-													<div class="pull-left">
-														<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-													</div>
-													<h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-													<p>Why not buy a new awesome theme?</p>
-												</a>
-											</li>
-											<!-- end message -->
-										</ul>
-									</li>
-									<li class="footer">
-										<a href="#">See All Messages</a>
-									</li>
-								</ul>
-							</li>
-							<!-- Notifications: style can be found in dropdown.less -->
-							<li class="dropdown notifications-menu">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-bell-o"></i>
-									<span class="label label-warning">10</span>
-								</a>
-								<ul class="dropdown-menu">
-									<li class="header">You have 10 notifications</li>
-									<li>
-										<!-- inner menu: contains the actual data -->
-										<ul class="menu">
-											<li>
-												<a href="#">
-													<i class="fa fa-users text-aqua"></i> 5 new members joined today
-												</a>
-											</li>
-										</ul>
-									</li>
-									<li class="footer">
-										<a href="#">View all</a>
-									</li>
-								</ul>
-							</li>
-							<!-- Tasks: style can be found in dropdown.less -->
-							<li class="dropdown tasks-menu">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="fa fa-flag-o"></i>
-									<span class="label label-danger">9</span>
-								</a>
-								<ul class="dropdown-menu">
-									<li class="header">You have 9 tasks</li>
-									<li>
-										<!-- inner menu: contains the actual data -->
-										<ul class="menu">
-											<li>
-												<!-- Task item -->
-												<a href="#">
-													<h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-													<div class="progress xs">
-														<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-															<span class="sr-only">20% Complete</span>
-														</div>
-													</div>
-												</a>
-											</li>
-											<!-- end task item -->
-										</ul>
-									</li>
-									<li class="footer">
-										<a href="#">View all tasks</a>
-									</li>
-								</ul>
-							</li>
-							<!-- User Account: style can be found in dropdown.less -->
-							<li class="dropdown user user-menu">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-									<span class="hidden-xs">Alexander Pierce</span>
-								</a>
-								<ul class="dropdown-menu">
-									<!-- User image -->
-									<li class="user-header">
-										<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+</head>
 
-										<p>
-											Alexander Pierce - Web Developer
-											<small>Member since Nov. 2012</small>
-										</p>
-									</li>
-									<!-- Menu Body -->
-									<li class="user-body">
-										<div class="row">
-											<div class="col-xs-4 text-center">
-												<a href="#">Followers</a>
-											</div>
-											<div class="col-xs-4 text-center">
-												<a href="#">Sales</a>
-											</div>
-											<div class="col-xs-4 text-center">
-												<a href="#">Friends</a>
-											</div>
-										</div>
-										<!-- /.row -->
-									</li>
-									<!-- Menu Footer-->
-									<li class="user-footer">
-										<div class="pull-left">
-											<a href="#" class="btn btn-default btn-flat">Profile</a>
-										</div>
-										<div class="pull-right">
-											<a href="#" class="btn btn-default btn-flat">Sign out</a>
-										</div>
-									</li>
-								</ul>
-							</li>
-							<!-- Control Sidebar Toggle Button -->
+<body class="hold-transition skin-blue-light sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper" id="courseInfo">
+
+	<header class="main-header">
+
+		<!-- Logo -->
+		<a href="#" class="logo navbar-fixed-top">
+			<!-- mini logo for sidebar mini 50x50 pixels -->
+			<span class="logo-mini"><b>H</b>elper</span>
+			<!-- logo for regular state and mobile devices -->
+			<span class="logo-lg"><b>EAMIS-</b>Helper</span>
+		</a>
+
+		<!-- Header Navbar -->
+		<nav class="navbar navbar-fixed-top" role="navigation">
+			<!-- Sidebar toggle button-->
+			<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+				<span class="sr-only">Toggle navigation</span>
+			</a>
+			<!-- Navbar Right Menu -->
+			<div class="navbar-custom-menu">
+				<ul class="nav navbar-nav">
+
+					<!-- Notifications Menu -->
+
+					<!-- Tasks Menu -->
+					<li class="dropdown tasks-menu">
+						<!-- Menu Toggle Button -->
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-flag-o"></i>
+							<span class="label label-danger">21</span>
+						</a>
+						<ul class="dropdown-menu">
+							<li class="header">有21门课未评价</li>
 							<li>
-								<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+								<!-- Inner menu: contains the tasks -->
+								<ul class="menu">
+									<li>
+										<!-- Task item -->
+										<a href="http://localhost:8080/view/user/course-attended.html?id={{studentIdStr}}">
+											<!-- Task title and progress text -->
+											<h3>
+												已评课数
+												<small class="pull-right">9/30</small>
+											</h3>
+											<!-- The progress bar -->
+											<div class="progress xs">
+												<!-- Change the css width attribute to simulate progress -->
+												<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+													<!--<span class="sr-only">20% Complete</span>-->
+												</div>
+											</div>
+										</a>
+									</li>
+									<!-- end task item -->
+								</ul>
+							</li>
+							<li class="footer">
+								<a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentId}}">进入评课</a>
 							</li>
 						</ul>
+					</li>
+					<!-- User Account Menu -->
+					<li class="dropdown user user-menu">
+						<!-- Menu Toggle Button -->
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<!-- The user image in the navbar-->
+							<img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+							<!-- hidden-xs hides the username on small devices so only the image appears. -->
+							<span class="hidden-xs">Alexander Pierce</span>
+						</a>
+						<ul class="dropdown-menu">
+							<!-- The user image in the menu -->
+							<li class="user-header">
+								<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+								<p>
+									胖成球 - 信息安全
+									<small>学号：1611522</small>
+								</p>
+							</li>
+							<!-- Menu Body -->
+
+							<!-- Menu Footer-->
+							<li class="user-footer">
+								<div class="pull-left">
+									<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+								</div>
+								<div class="pull-right">
+									<a href="#" class="btn btn-default btn-flat">Sign out</a>
+								</div>
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Left side column. contains the logo and sidebar -->
+	<aside class="main-sidebar " style="position: fixed ">
+
+		<!-- sidebar: style can be found in sidebar.less -->
+		<section class="sidebar">
+
+			<!-- Sidebar user panel (optional) -->
+			<div class="user-panel" style="height: 65px;">
+				<div class="pull-left image">
+					<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+				</div>
+				<div class="pull-left info">
+					<p>Alexander Pierce</p>
+					<!-- Status -->
+					<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+				</div>
+			</div>
+
+			<!-- search form (Optional) -->
+			<!--<form action="#" method="get" class="sidebar-form">
+<div class="input-group">
+<input type="text" name="q" class="form-control" placeholder="Search...">
+<span class="input-group-btn">
+  <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+  </button>
+</span>
+</div>
+</form>-->
+			<!-- /.search form -->
+
+			<!-- Sidebar Menu -->
+			<ul class="sidebar-menu" data-widget="tree">
+				<li class="header">EAMIS_HELPER</li>
+				<!-- Optionally you can add icons to the links -->
+				<li >
+					<a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
+				</li>
+				<li >
+					<a href="#"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+				</li>
+				<li>
+					<a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
+				</li>
+				<li class="active">
+					<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
+				</li>
+				<li>
+					<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+				</li>
+				<!--<li class="treeview">
+<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+<span class="pull-right-container">
+    <i class="fa fa-angle-left pull-right"></i>
+  </span>
+</a>
+<ul class="treeview-menu">
+<li><a href="#">Link in level 2</a></li>
+<li><a href="#">Link in level 2</a></li>
+</ul>
+</li>-->
+			</ul>
+			<!-- /.sidebar-menu -->
+		</section>
+		<!-- /.sidebar -->
+	</aside>
+
+	<!-- =============================================== -->
+
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				自定义课程推荐
+				<small>CHOOSE BY URSELF</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li>
+					<a href="#"><i class="fa fa-dashboard"></i> Home</a>
+				</li>
+				<li>
+					<a href="#">Examples</a>
+				</li>
+				<li class="active">自定义课程推荐</li>
+			</ol>
+		</section>
+		<!-- Main content -->
+		<section class="content">
+
+			<div style="width: 25%;display: inline-block">
+				<!-- Default box -->
+				<div class="box" style="display: inline-block;">
+					<div class="box-header with-border">
+						<h3 class="box-title">个人信息</h3>
+
+						<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+									title="Collapse">
+								<i class="fa fa-minus"></i></button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
+									title="Remove">
+								<i class="fa fa-times"></i></button>
+						</div>
 					</div>
-				</nav>
-			</header>
-
-			<!-- =============================================== -->
-
-			<!-- Left side column. contains the sidebar -->
-			<aside class="main-sidebar">
-				<!-- sidebar: style can be found in sidebar.less -->
-				<section class="sidebar">
-					<!-- Sidebar user panel -->
-					<div class="user-panel">
-						<div class="pull-left image">
-							<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+					<div class="box-body" id="studentBasicInfo">
+						<div>
+							<strong>姓名</strong>： {{ student.student.studentName }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<strong>年级</strong>： {{ student.grade }}
 						</div>
-						<div class="pull-left info">
-							<p>Alexander Pierce</p>
-							<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-						</div>
+						<br/>
+						<strong style="">学号</strong>：{{ student.student.studentNumber }}
+						<br/>
+						<br/>
+						<strong>专业</strong>： {{ student.major }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+						<strong>学院</strong>: {{ student.college }}
 					</div>
-					<!-- search form -->
-					<form action="#" method="get" class="sidebar-form">
-						<div class="input-group">
-							<input type="text" name="q" class="form-control" placeholder="Search...">
-							<span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-						</div>
-					</form>
-					<!-- /.search form -->
-					<!-- sidebar menu: : style can be found in sidebar.less -->
-					<ul class="sidebar-menu" data-widget="tree">
-						<li class="header">MAIN NAVIGATION</li>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-dashboard"></i> <span>Dashboard</span>
-								<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a>
-								</li>
-								<li>
-									<a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a>
-								</li>
-							</ul>
-						</li>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-files-o"></i>
-								<span>Layout Options</span>
-								<span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-								</span>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a>
-								</li>
-								<li>
-									<a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a>
-								</li>
-								<li>
-									<a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a>
-								</li>
-								<li>
-									<a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="../widgets.html">
-								<i class="fa fa-th"></i> <span>Widgets</span>
-								<span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
-            </span>
-							</a>
-						</li>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-pie-chart"></i>
-								<span>Charts</span>
-								<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a>
-								</li>
-								<li>
-									<a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a>
-								</li>
-								<li>
-									<a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a>
-								</li>
-								<li>
-									<a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a>
-								</li>
-							</ul>
-						</li>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-laptop"></i>
-								<span>UI Elements</span>
-								<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a>
-								</li>
-								<li>
-									<a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a>
-								</li>
-								<li>
-									<a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a>
-								</li>
-								<li>
-									<a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a>
-								</li>
-								<li>
-									<a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a>
-								</li>
-								<li>
-									<a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a>
-								</li>
-							</ul>
-						</li>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-edit"></i> <span>Forms</span>
-								<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a>
-								</li>
-								<li>
-									<a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a>
-								</li>
-								<li>
-									<a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a>
-								</li>
-							</ul>
-						</li>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-table"></i> <span>Tables</span>
-								<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a>
-								</li>
-								<li>
-									<a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="../calendar.html">
-								<i class="fa fa-calendar"></i> <span>Calendar</span>
-								<span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
-							</a>
-						</li>
-						<li>
-							<a href="../mailbox/mailbox.html">
-								<i class="fa fa-envelope"></i> <span>Mailbox</span>
-								<span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
-							</a>
-						</li>
-						<li class="treeview active">
-							<a href="#">
-								<i class="fa fa-folder"></i> <span>Examples</span>
-								<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a>
-								</li>
-								<li>
-									<a href="profile.html"><i class="fa fa-circle-o"></i> Profile</a>
-								</li>
-								<li>
-									<a href="login.html"><i class="fa fa-circle-o"></i> Login</a>
-								</li>
-								<li>
-									<a href="register.html"><i class="fa fa-circle-o"></i> Register</a>
-								</li>
-								<li>
-									<a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a>
-								</li>
-								<li>
-									<a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a>
-								</li>
-								<li>
-									<a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a>
-								</li>
-								<li class="active">
-									<a href="blank.html"><i class="fa fa-circle-o"></i> Blank Page</a>
-								</li>
-								<li>
-									<a href="pace.html"><i class="fa fa-circle-o"></i> Pace Page</a>
-								</li>
-							</ul>
-						</li>
-						<li class="treeview">
-							<a href="#">
-								<i class="fa fa-share"></i> <span>Multilevel</span>
-								<span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-							</a>
-							<ul class="treeview-menu">
-								<li>
-									<a href="#"><i class="fa fa-circle-o"></i> Level One</a>
-								</li>
-								<li class="treeview">
-									<a href="#"><i class="fa fa-circle-o"></i> Level One
-										<span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-									</a>
-									<ul class="treeview-menu">
-										<li>
-											<a href="#"><i class="fa fa-circle-o"></i> Level Two</a>
-										</li>
-										<li class="treeview">
-											<a href="#"><i class="fa fa-circle-o"></i> Level Two
-												<span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-											</a>
-											<ul class="treeview-menu">
-												<li>
-													<a href="#"><i class="fa fa-circle-o"></i> Level Three</a>
-												</li>
-												<li>
-													<a href="#"><i class="fa fa-circle-o"></i> Level Three</a>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-circle-o"></i> Level One</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a>
-						</li>
-						<li class="header">LABELS</li>
-						<li>
-							<a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a>
-						</li>
-						<li>
-							<a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a>
-						</li>
-					</ul>
-				</section>
-				<!-- /.sidebar -->
-			</aside>
-
-			<!-- =============================================== -->
-
-			<!-- Content Wrapper. Contains page content -->
-			<div class="content-wrapper">
-				<!-- Content Header (Page header) -->
-				<section class="content-header">
-					<h1>
-        自定义课程推荐
-        <small>CHOOSE BY URSELF</small>
-      </h1>
-					<ol class="breadcrumb">
-						<li>
-							<a href="#"><i class="fa fa-dashboard"></i> Home</a>
-						</li>
-						<li>
-							<a href="#">Examples</a>
-						</li>
-						<li class="active">自定义课程推荐</li>
-					</ol>
-				</section>
-
-				<!-- Main content -->
-				<section class="content">  
-					
-					
-					<div style="width: 25%;display: inline-block">
-						<!-- Default box --> 
-					<div class="box" style="display: inline-block;">
-						<div class="box-header with-border">
-							<h3 class="box-title">个人信息</h3>
-
-							<div class="box-tools pull-right">
-								<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fa fa-minus"></i></button>
-								<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-							</div>
-						</div>
-						<div class="box-body">
-							<div>
-								<strong>姓名</strong>： 陈婕 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<strong>年级</strong>： 大二
-							</div><br />
-							<strong style="">学号</strong>：1611522
-							<br />
-							<br />
-							<strong>专业</strong>： 信息安全 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<strong>学院</strong>: 计算机学院
-						</div>
-						<!-- /.box-body -->
-						<div class="box-footer">
-							MADE BY NKU_RECOMMENDER
-						</div>
-						<!-- /.box-footer-->
+					<!-- /.box-body -->
+					<div class="box-footer">
+						MADE BY NKU_RECOMMENDER
+					</div>
+					<!-- /.box-footer-->
 					<!-- /.box -->
+				</div>
+				<!---->
 
-					
+				<div class="box" style="display: inline-block;">
+					<div class="box-header with-border">
+						<h3 class="box-title">自定义添加</h3>
+						<div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+									title="Collapse">
+								<i class="fa fa-minus"></i></button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
+									title="Remove">
+								<i class="fa fa-times"></i></button>
+						</div>
 					</div>
-					
-					
-					
-					
-					<!---->
-					
-					<div class="box" style="display: inline-block;">
-						<div class="box-header with-border">
-							<h3 class="box-title">自定义添加</h3>
-							<div class="box-tools pull-right">
-								<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fa fa-minus"></i></button>
-								<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
+					<div class="box-body">
+
+						<form action="#" method="post" id="searchCourse">
+							请输入课程编号或名称：
+							<div class="input-group input-group" style="margin-top: 20px;">
+								<input type="text" class="form-control" name="courseKeyword">
+								<span class="input-group-btn">
+                                    <button type="submit" class="btn btn-info btn-flat">Go!</button>
+                                </span>
 							</div>
-						</div>
-						<div class="box-body">
+						</form>
 
-<!--<div class="component col l6 s12">-->
-					<!--<div class="body">-->
-	<form action="" method="post" id='search'>					
-				请输入课程编号或名称：
-				<div class="input-group input-group" style="margin-top: 20px;">
-   
-                <!-- /btn-group -->
-                
-                	 <input type="text" class="form-control" name="keywords" >
-                     <span class="input-group-btn" >
-                      <button type="submit" class="btn btn-info btn-flat">Go!</button>
-                    </span>
-                
-                </form>
-               
-              </div>
-						
-        <!--<div class="search">
-          <div class="search-bar card">
-            <input id="search-bar" style="">
-            <i class="material-icons search-icon">search</i>
-          </div>
-        </div>-->
-        <div class="search-results" id="result">
-          <div class="search-result">
-                 高等数学
-            <i class="material-icons add-icon" id='add' onclick="data('高等数学')">add</i>
-          </div>
-          <div class="search-result">
-            Search Result
-            <i class="material-icons add-icon">add</i>
-          </div>
-          <div class="search-result ">
-            Search Result
-            <i class="material-icons add-icon">add</i>
-          </div>
-          <div class="search-result">
-            Search Result
-            <i class="material-icons add-icon">add</i>
-          </div>
-          <div class="search-result">
-            Search Result
-            <i class="material-icons add-icon">add</i>
-          </div>
-        </div>
-      <!--</div>-->
- 				<!--</div>-->
-
-
-
-						</div>
-						
-						
-						<!-- /.box-body -->
-						<div class="box-footer">
-							MADE BY NKU_RECOMMENDER
-						</div>
-						<!-- /.box-footer-->
-					<!-- /.box -->
 					</div>
-					
+					<div class="search-results" id="searchCourseResult">
+
 					</div>
+					<!--</div>-->
+					<!--</div>-->
+				</div>
+				<!-- /.box-body -->
+				<div class="box-footer">
+					MADE BY NKU_RECOMMENDER
+				</div>
+				<!-- /.box-footer-->
+				<!-- /.box -->
+			</div>
 
-					
-					<!---->
 
-					<div class="box" style="width: 72%; float: right;display: inline-block;">
-						<div class="box-header with-border">
-							<h3 class="box-title">个性化定制</h3>
 
-							<div class="box-tools pull-right">
-								<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-              <i class="fa fa-minus"></i></button>
-								<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-							</div>
-						</div>
-						<div class="box-body">
-							<div style="display: inline-block;width: 15%;float: left;"><strong>修课要求：</strong></div>
-							<div style="display: inline-block;width: 30%;float: left;">
-								<div class="form-group">
-									<div class="checkbox"><label><input type="checkbox"> <strong>课程偏好(多选)</strong>
-          	    	<div class="form-group">
-                  	<div class="checkbox"><label><input type="checkbox">多选E类课</label></div>
+			<div class="box" style="width: 72%; float: right;display: inline-block;">
+				<div class="box-header with-border">
+					<h3 class="box-title">个性化定制</h3>
 
-									<div class="checkbox"><label><input type="checkbox">多选D类课</label> </div>
+					<div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+								title="Collapse">
+							<i class="fa fa-minus"></i></button>
+						<button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
+								title="Remove">
+							<i class="fa fa-times"></i></button>
+					</div>
+				</div>
 
-									<div class="checkbox"><label><input type="checkbox" >早选必修</label></div>
+				<form id="selfSetting" action="#" method="post" >
+					<div class="box-body" >
+						<div style="display: inline-block;width: 15%;float: left;"><strong>修课要求：</strong></div>
+
+						<div style="display: inline-block;width: 30%;float: left;">
+							<div class="form-group">
+								<div class="checkbox"><label><input type="checkbox" id="coursePreferD"
+																	onclick="selectCoursePreferD(this)">
+									<strong>D类课程偏好</strong></label>
+									<div class="form-group">
+										<div class="checkbox"><label><input type="checkbox" name="courseD" id="selectMoreD"
+																			onclick="preferRequestD(this)">多选D类课</label>
+										</div>
+
+										<div class="checkbox"><label><input type="checkbox" id="selectNumberD" name="courseD"
+																			onclick="preferRequestD(this)">选D类课数量
+											<input type="number" id="numberD" disabled="disabled" max="10" style="width: 20% ;height: 70%" ></label>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+
+						<div style="display: inline-block;width: 30%;float: left;">
+							<div class="form-group">
+								<div class="checkbox"><label><input type="checkbox" id="coursePreferE"
+																	onclick="selectCoursePreferE(this)">
+									<strong>E类课程偏好</strong></label>
+									<div class="form-group">
+										<div class="checkbox"><label><input type="checkbox" name="courseE" id="selectMoreE"
+																			onclick="preferRequestE(this)">多选E类课</label>
+										</div>
+
+										<div class="checkbox"><label><input type="checkbox" name="courseE" id="selectNumberE"
+																			onclick="preferRequestE(this)">选E类课数量
+											<input type="number" id="numberE" disabled="disabled" max="10" style="width: 20% ;height: 70%" >
+										</label>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div style="display: inline-block; width: 10%;">
+							<div class="checkbox"><label>
+								<strong></strong></label>
+								<div class="form-group">
+									<div class="checkbox"><label></label></div>
+
+									<div class="checkbox"><label></label></div>
+								</div>
+							</div>
+						</div>
+
+						<hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
+
+						<!---->
+
+						<div style="display: inline-block;width: 15%;float: left;"><strong>学分要求：</strong></div>
+
+						<div style="display: inline-block;width:85%;float: left;">
+							<div class="form-group">
+								<div class="checkbox"><label><input type="checkbox" id="selectCourseType"
+																	onclick="selectCourseType(this)"> <strong>课程类型:</strong></label>
+									<div class="form-group">
+										<div class="checkbox-inline"><label><input type="checkbox" name="selectOne" id="allCourse"
+																				   onclick="scoreRequest(this)">全部课程（出国党推荐）</label>
+										</div>
+										<div class="checkbox-inline"><label><input type="checkbox" name="selectOne" id="courseABCD"
+																				   onclick="scoreRequest(this)">ABCD类课（保研推荐）</label>
+										</div>
+									</div>
+								</div>
+								<!--</div>-->
+								<div style="display: inline-block; ">
+									<div class="checkbox"><label><input type="checkbox" id="preScoreRequest"
+																		onclick="requestScore(this)">
+										<strong>分数要求：</strong></label>
+										<label>课程历史平均分 >= <input style="width: 20%" type="text" id="preScore" disabled="disabled"
+																 onclick="requestScoreValue(this)"></label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br/>
+
+
+						<!--<div>-->
+
+
+						<div style="display: block;width: 100%;float: left;">
+							<hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
+						</div>
+
+
+						<div style="display: inline-block;width: 30%;float: left;"><strong>内容要求（多选）：</strong></div>
+
+						<!--</div>-->
+
+
+						<div style="display: inline-block;width: 80%; margin-left:10%">
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">手下留情</label>
+
+								<input id="bareScore" value=0 style="display: none" >
+
+								<div class='rating-stars'>
+									<ul id="stars1">
+
+										<li class='star' title='Poor' onclick="bareScore('1')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Fair'  onclick="bareScore('2')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Good'  onclick="bareScore('3')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Excellent'  onclick="bareScore('4')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='WOW!!!'  onclick="bareScore('5')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+
+									</ul>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">课堂有趣</label>
+
+								<input id="interestingScore" value=0 style="display: none" >
+
+								<div class='rating-stars '>
+									<ul id="stars2">
+
+										<li class='star' title='Poor' onclick="interScore('1')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Fair' onclick="interScore('2')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Good' onclick="interScore('3')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Excellent' onclick="interScore('4')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='WOW!!!' onclick="interScore('5')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+
+									</ul>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">划水程度</label>
+								<input id="easyScore" value=0 style="display: none" >
+								<div class='rating-stars '>
+									<ul id="stars3">
+
+										<li class='star' title='Poor' onclick="easilyScore('1')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Fair' onclick="easilyScore('2')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Good' onclick="easilyScore('3')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Excellent' onclick="easilyScore('4')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='WOW!!!' onclick="easilyScore('5')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+
+									</ul>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label class="col-sm-2 control-label">干货满满</label>
+								<input id="knowledgeScore" value=0 style="display: none" >
+								<div class='rating-stars '>
+									<ul id="stars4">
+
+										<li class='star' title='Poor' onclick="knowScore('1')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Fair' onclick="knowScore('2')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Good' onclick="knowScore('3')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='Excellent' onclick="knowScore('4')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+										<li class='star' title='WOW!!!' onclick="knowScore('5')">
+											<i class='fa fa-star fa-fw'></i>
+										</li>
+
+									</ul>
+
+								</div>
+							</div>
+
+							<!--</form>-->
+						</div>
+
+						<div style="display: block;width: 100%;float: left;">
+							<hr style="height:1px;border:none;border-top:1px dashed #0066CC;"/>
+							<strong>已添加的必选课程：</strong>
+							<br/><br/>
+							<div id="alreadySelectCourse">
+
+							</div>
+							<div style="float:right">
+								<div style="margin-right:20px;margin-bottom: 5%; margin-top: 5%;">
+									<td>
+										<button type="submit" class="btn btn-block btn-primary btn-lg"
+												style="width: 150px; ">submit
+										</button>
+									</td>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- /.box-body -->
+
+						<div class="box-footer">
+							made by NKU_RECOMMENDER
+						</div>
+						<!-- /.box-footer-->
 					</div>
-
-					<div style="display: inline-block; width: 40%;">
-						<div class="checkbox"><label><input type="checkbox"> <strong>课程数量（多选）：</strong>		
-                  <div class="form-group">
-                  	<div class="checkbox"><label><input type="checkbox">把课表填满</label></div>
-
-						<div class="checkbox"><label><input type="checkbox">选D类课数量</label> </div>
-
-						<div class="checkbox"><label><input type="checkbox" >选E类课数量</label></div>
-					</div>
-			</div>
-		</div>
-
-		<hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
-
-		<!---->
-
-		<div style="display: inline-block;width: 15%;float: left;"><strong>学分要求：</strong></div>
-
-		<div style="display: inline-block;width:85%;float: left;">
-			<div class="form-group">
-				<div class="checkbox"><label><input type="checkbox"> <strong>课程类型:</strong>
-          	    <div class="form-group">
-                  <div class="checkbox-inline"  ><label><input type="checkbox">全部课程（出国党推荐）</label></div>
-				<div class="checkbox-inline"><label><input type="checkbox">ABCD类课（保研推荐）</label> </div>
-			</div>
-		</div>
-		<!--</div>-->
-		<div style="display: inline-block; ">
-			<div class="checkbox"><label><input type="checkbox"> <strong>分数要求：</strong>		<label>课程历史平均分>=?</label></div>
-		</div>
-		</div>
-		</div>
-		<br />
-		
-
-		
-		<!--<div>-->
-		
-		
-		<div style="display: block;width: 100%;float: left;">
-			<hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />	
-		</div>
-			
-			
-			<div style="display: inline-block;width: 30%;float: left;"><strong>内容要求（多选）：</strong></div>
-
-		<!--</div>-->
-		
-		
-		
-		
-		<div style="display: inline-block;width: 80%; margin-left:10%">
-
-			<div class="form-group">
-				<label for="inputSkills" class="col-sm-2 control-label">手下留情</label>
-
-				<div class='rating-stars '>
-					<ul id='stars'>
-
-						<li class='star' title='Poor' data-value='1'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Fair' data-value='2'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Good' data-value='3'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Excellent' data-value='4'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='WOW!!!' data-value='5'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-
-					</ul>
-				</div>
+					<!-- /.box -->
+				</form>
+				<!-- /.content -->
 			</div>
 
-			<div class="form-group">
-				<label for="inputSkills" class="col-sm-2 control-label">课堂有趣</label>
-
-				<div class='rating-stars '>
-					<ul id='stars'>
-
-						<li class='star' title='Poor' data-value='1'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Fair' data-value='2'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Good' data-value='3'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Excellent' data-value='4'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='WOW!!!' data-value='5'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputSkills" class="col-sm-2 control-label">划水程度</label>
-
-				<div class='rating-stars '>
-					<ul id='stars'>
-
-						<li class='star' title='Poor' data-value='1'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Fair' data-value='2'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Good' data-value='3'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Excellent' data-value='4'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='WOW!!!' data-value='5'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-
-					</ul>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputSkills" class="col-sm-2 control-label">干货满满</label>
-
-				<div class='rating-stars '>
-					<ul id='stars'>
-
-						<li class='star' title='Poor' data-value='1'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Fair' data-value='2'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Good' data-value='3'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='Excellent' data-value='4'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-						<li class='star' title='WOW!!!' data-value='5'>
-							<i class='fa fa-star fa-fw'></i>
-						</li>
-
-					</ul>
-
-				</div>
-			</div>
-
-			<!--</form>-->
-		</div>
-
-		<div style="display: block;width: 100%;float: left;">
-			<hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />	
-		<strong>已添加的必选课程：</strong>
-		<br /><br />
-		
-		</div id='tag'>
-			<button type="button" class="btn btn-info" >
-                	信安数基
-             </button>
-			
-			<div>
-			
-			
-
-
-
-		<div style="margin-left: 65%;margin-bottom: 5%; margin-top: 5%;">
-			<td>
-				<button type="button" class="btn btn-block btn-primary btn-lg" style="width: 200px;">submit</button>
-			</td>
-			<!--</div>-->
-		</div>
-		</div>
-		<!-- /.box-body -->
-		
-		<div class="box-footer">
-			made by NKU_RECOMMENDER
-		</div>
-		<!-- /.box-footer-->
-		</div>
-		<!-- /.box -->
 
 		</section>
-	
-		<!-- /.content -->
+
+	</div>
+	<!-- /.content-wrapper -->
+
+	<footer class="main-footer">
+		<div class="pull-right hidden-xs">
+			<b>Version</b> 2.4.0
 		</div>
-		<!-- /.content-wrapper -->
+		<strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+		reserved.
+	</footer>
 
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.4.0
+	<!-- Control Sidebar -->
+	<aside class="control-sidebar control-sidebar-dark">
+		<!-- Create the tabs -->
+		<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+			<li>
+				<a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
+			</li>
+
+			<li>
+				<a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a>
+			</li>
+		</ul>
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<!-- Home tab content -->
+			<div class="tab-pane" id="control-sidebar-home-tab">
+				<h3 class="control-sidebar-heading">Recent Activity</h3>
+				<ul class="control-sidebar-menu">
+					<li>
+						<a href="javascript:void(0)">
+							<i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+							<div class="menu-info">
+								<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+								<p>Will be 23 on April 24th</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<i class="menu-icon fa fa-user bg-yellow"></i>
+
+							<div class="menu-info">
+								<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+								<p>New phone +1(800)555-1234</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+							<div class="menu-info">
+								<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+								<p>nora@example.com</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+							<div class="menu-info">
+								<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+								<p>Execution time 5 seconds</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!-- /.control-sidebar-menu -->
+
+				<h3 class="control-sidebar-heading">Tasks Progress</h3>
+				<ul class="control-sidebar-menu">
+					<li>
+						<a href="javascript:void(0)">
+							<h4 class="control-sidebar-subheading">
+								Custom Template Design
+								<span class="label label-danger pull-right">70%</span>
+							</h4>
+
+							<div class="progress progress-xxs">
+								<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<h4 class="control-sidebar-subheading">
+								Update Resume
+								<span class="label label-success pull-right">95%</span>
+							</h4>
+
+							<div class="progress progress-xxs">
+								<div class="progress-bar progress-bar-success" style="width: 95%"></div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<h4 class="control-sidebar-subheading">
+								Laravel Integration
+								<span class="label label-warning pull-right">50%</span>
+							</h4>
+
+							<div class="progress progress-xxs">
+								<div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">
+							<h4 class="control-sidebar-subheading">
+								Back End Framework
+								<span class="label label-primary pull-right">68%</span>
+							</h4>
+
+							<div class="progress progress-xxs">
+								<div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+							</div>
+						</a>
+					</li>
+				</ul>
+				<!-- /.control-sidebar-menu -->
+
 			</div>
-			<strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights reserved.
-		</footer>
+			<!-- /.tab-pane -->
+			<!-- Stats tab content -->
+			<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+			<!-- /.tab-pane -->
+			<!-- Settings tab content -->
+			<div class="tab-pane" id="control-sidebar-settings-tab">
+				<form method="post">
+					<h3 class="control-sidebar-heading">General Settings</h3>
 
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Create the tabs -->
-			<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-				<li>
-					<a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
-				</li>
+					<div class="form-group">
+						<label class="control-sidebar-subheading">
+							Report panel usage
+							<input type="checkbox" class="pull-right" checked>
+						</label>
 
-				<li>
-					<a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a>
-				</li>
-			</ul>
-			<!-- Tab panes -->
-			<div class="tab-content">
-				<!-- Home tab content -->
-				<div class="tab-pane" id="control-sidebar-home-tab">
-					<h3 class="control-sidebar-heading">Recent Activity</h3>
-					<ul class="control-sidebar-menu">
-						<li>
-							<a href="javascript:void(0)">
-								<i class="menu-icon fa fa-birthday-cake bg-red"></i>
+						<p>
+							Some information about this general settings option
+						</p>
+					</div>
+					<!-- /.form-group -->
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+					<div class="form-group">
+						<label class="control-sidebar-subheading">
+							Allow mail redirect
+							<input type="checkbox" class="pull-right" checked>
+						</label>
 
-									<p>Will be 23 on April 24th</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<i class="menu-icon fa fa-user bg-yellow"></i>
+						<p>
+							Other sets of options are available
+						</p>
+					</div>
+					<!-- /.form-group -->
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+					<div class="form-group">
+						<label class="control-sidebar-subheading">
+							Expose author name in posts
+							<input type="checkbox" class="pull-right" checked>
+						</label>
 
-									<p>New phone +1(800)555-1234</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+						<p>
+							Allow the user to show his name in blog posts
+						</p>
+					</div>
+					<!-- /.form-group -->
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+					<h3 class="control-sidebar-heading">Chat Settings</h3>
 
-									<p>nora@example.com</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<i class="menu-icon fa fa-file-code-o bg-green"></i>
+					<div class="form-group">
+						<label class="control-sidebar-subheading">
+							Show me as online
+							<input type="checkbox" class="pull-right" checked>
+						</label>
+					</div>
+					<!-- /.form-group -->
 
-								<div class="menu-info">
-									<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+					<div class="form-group">
+						<label class="control-sidebar-subheading">
+							Turn off notifications
+							<input type="checkbox" class="pull-right">
+						</label>
+					</div>
+					<!-- /.form-group -->
 
-									<p>Execution time 5 seconds</p>
-								</div>
-							</a>
-						</li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-					<h3 class="control-sidebar-heading">Tasks Progress</h3>
-					<ul class="control-sidebar-menu">
-						<li>
-							<a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-success" style="width: 95%"></div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="javascript:void(0)">
-								<h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-								<div class="progress progress-xxs">
-									<div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-								</div>
-							</a>
-						</li>
-					</ul>
-					<!-- /.control-sidebar-menu -->
-
-				</div>
-				<!-- /.tab-pane -->
-				<!-- Stats tab content -->
-				<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-				<!-- /.tab-pane -->
-				<!-- Settings tab content -->
-				<div class="tab-pane" id="control-sidebar-settings-tab">
-					<form method="post">
-						<h3 class="control-sidebar-heading">General Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-							<p>
-								Some information about this general settings option
-							</p>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-							<p>
-								Other sets of options are available
-							</p>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-							<p>
-								Allow the user to show his name in blog posts
-							</p>
-						</div>
-						<!-- /.form-group -->
-
-						<h3 class="control-sidebar-heading">Chat Settings</h3>
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-						</div>
-						<!-- /.form-group -->
-
-						<div class="form-group">
-							<label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-						</div>
-						<!-- /.form-group -->
-					</form>
-				</div>
-				<!-- /.tab-pane -->
+					<div class="form-group">
+						<label class="control-sidebar-subheading">
+							Delete chat history
+							<a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+						</label>
+					</div>
+					<!-- /.form-group -->
+				</form>
 			</div>
-		</aside>
-		<!-- /.control-sidebar -->
-		<!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-		<div class="control-sidebar-bg"></div>
+			<!-- /.tab-pane -->
 		</div>
-		<!-- ./wrapper -->
+	</aside>
+	<!-- /.control-sidebar -->
+	<!-- Add the sidebar's background. This div must be placed
+   immediately after the control sidebar -->
+	<div class="control-sidebar-bg"></div>
+</div>
 
-		<!-- jQuery 3 -->
-		<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap 3.3.7 -->
-		<script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- SlimScroll -->
-		<script src="../../style/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-		<!-- FastClick -->
-		<script src="../../style/bower_components/fastclick/lib/fastclick.js"></script>
-		<!-- AdminLTE App -->
-		<script src="../../style/dist/js/adminlte.min.js"></script>
-		<!-- AdminLTE for demo purposes -->
-		<script src="../../style/dist/js/demo.js"></script>
-		<script src="../../style/newstyle/js/star.js"></script>
-		<script>
-			$(document).ready(function() {
-				$('.sidebar-menu').tree()
-			})
-		</script>
-	</body>
-	
-	<script type="text/javascript">
-//		$('#tag').hide();
-//		$('#add').click(function(){
-//			
-//			$('#tag').html()
-//			$('#tag').show();
-//			
-//			
-//		})
-	     function data(tmp){
-//	     $('#tag').html(tmp);
-//	     $('#tag').append(``)
-//	      $('#tag').show();
-		$('#tag').append(`<button type="button" class="btn btn-info" >tmp </button>`)
-          
-	     }
-		
-		
-		$('#search').submit(function(e){
-			e.preventDefault();
-			$.ajax({
-				url:'',
-				data:$('#search').serialize(),
-				type:'post',
-				beforeSend:function(){
-					$('#result').html('');
-				},
-				
-				success: function(res){
-					if(res.success){
-						for(var course of res.data.courses){
-							$('#result').append(`<div class="search-result"> ${course.courseName}
-            <i class="material-icons add-icon" id='add' onclick="data('${course.courseName}')">add</i>
-          </div>`)
-							
-							
-						}
-					}
-				}
-			})
-			
-		})
-	</script>
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../style/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../style/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../style/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../style/dist/js/demo.js"></script>
+<script src="../../style/newstyle/js/star.js"></script>
+<script src="../../style/newstyle/js/inputSpinner.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.sidebar-menu').tree()
+    })
+</script>
+</body>
+<script>
+
+
+
+
+
+
+
+    function scoreRequest(obj) {
+
+        var checks = document.getElementsByName("selectOne");
+        var choose = document.getElementById("selectCourseType");
+
+        if (obj.checked && choose.checked) {
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].checked = false;
+            }
+            obj.checked = true;
+        } else {
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].checked = false;
+            }
+        }
+    }
+
+    function selectCourseType(obj) {
+
+        var checks = document.getElementsByName("selectOne");
+
+        if (!obj.checked) {
+
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].checked = false;
+            }
+        }
+    }
+
+    function selectCoursePreferD(obj) {
+
+        var coursePrefer = document.getElementsByName("courseD");
+
+        if (!obj.checked) {
+
+            for (var i = 0; i < coursePrefer.length; i++) {
+                coursePrefer[i].checked = false;
+            }
+
+            document.getElementById("numberD").setAttribute("disabled","disabled");
+        }
+
+    }
+
+    function selectCoursePreferE(obj) {
+
+        var coursePrefer = document.getElementsByName("courseE");
+
+        if (!obj.checked) {
+
+            for (var i = 0; i < coursePrefer.length; i++) {
+                coursePrefer[i].checked = false;
+            }
+
+            document.getElementById("numberE").setAttribute("disabled","disabled");
+        }
+
+    }
+
+    function preferRequestD(obj) {
+
+        var checks = document.getElementsByName("courseD");
+        var choose = document.getElementById("coursePreferD");
+
+        if(obj.getAttribute("id") == "selectNumberD" && obj.checked && choose.checked){
+
+            document.getElementById("numberD").removeAttribute("disabled");
+        }else{
+            document.getElementById("numberD").setAttribute("disabled","disabled");
+        }
+
+        if (obj.checked && choose.checked) {
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].checked = false;
+            }
+            obj.checked = true;
+        } else {
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].checked = false;
+            }
+        }
+    }
+
+    function preferRequestE(obj) {
+        var checks = document.getElementsByName("courseE");
+        var choose = document.getElementById("coursePreferE");
+
+        if(obj.getAttribute("id") == "selectNumberE" && obj.checked && choose.checked){
+
+            document.getElementById("numberE").removeAttribute("disabled");
+        }else{
+            document.getElementById("numberE").setAttribute("disabled","disabled");
+        }
+
+        if (obj.checked && choose.checked) {
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].checked = false;
+            }
+            obj.checked = true;
+        } else {
+            for (var i = 0; i < checks.length; i++) {
+                checks[i].checked = false;
+            }
+        }
+    }
+
+    function requestScore(obj) {
+
+        var preScore = document.getElementById("preScore");
+
+        if (obj.checked) {
+
+            preScore.removeAttribute("disabled");
+        } else {
+            preScore.setAttribute("value",'');
+            preScore.setAttribute("disabled", "disabled");
+        }
+
+    }
+
+    function requestScoreValue(obj) {
+
+        var preScoreRequest = document.getElementById("preScoreRequest");
+
+        if (!preScoreRequest.checked) {
+            obj.setAttributes("disabled", "disabled");
+        } else {
+            obj.setAttributes("disabled", "able");
+        }
+    }
+
+
+    var studentId;
+
+    var C = new Vue({
+        el: '#studentBasicInfo',
+        data: {
+            student: ''
+        },
+        methods: {
+            GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                    context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            },
+            getPar() {
+                studentId = this.GetQueryString('id');
+            },
+            getStudentBasicInfo() {
+                $.ajax({
+                        url: 'http://localhost:8080/studentBasicInfo',
+                        type: 'GET',
+                        data: {
+                            studentIdStr: studentId
+                        },
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.success) {
+                                studentBasicInfo.student = res.data.student;
+                            }
+                        }
+                    }
+                )
+            },
+        },
+        mounted() {
+            this.getPar();
+            this.getStudentBasicInfo();
+        }
+    });
+
+    $('#searchCourse').submit(function (e) {
+        e.preventDefault();
+        console.log($('#searchCourse').serialize().courseKeyword),
+            $.ajax({
+                url: 'http://localhost:8080/searchCourse',
+                data: $('#searchCourse').serialize(),
+                type: 'GET',
+                beforeSend: function () {
+                    $('#searchCourseResult').html('')
+                },
+                success: function (res) {
+                    if (res.success) {
+
+                        var indexSelect = new Array();
+                        var indexRemove = new Array();
+
+                        for (var course of res.data.courses) {
+
+                            var selectId = "select" + course.id;
+                            var removeId = "remove"+course.id;
+                            indexSelect[course.id] = course.courseName;
+
+
+
+                            $('#searchCourseResult').append(`<div class="search-result">
+                            ${ course.courseName }
+                            <i class='material-icons add-icon' id=` + selectId + ` value = `+ course.id + `>add</i>
+                        </div>`);
+
+                            var newSelectId = "#"+selectId;
+
+                            $('#searchCourseResult').on("click", newSelectId, this , function (obj) {
+
+                                var courseId = obj.valueOf().target.getAttribute("value")
+
+                                var isSelect = document.getElementsByName("selected");
+
+                                var i = 1;
+
+                                for (var selectCourse of isSelect) {
+
+                                    if (selectCourse.getAttribute("id") == "remove"+courseId) {
+                                        i = 0;
+                                    }
+                                }
+
+                                if (i) {
+
+                                    $('#alreadySelectCourse').append(`<input type="button" name="selected" class='btn btn-info' id="remove` + courseId + `" value=`+ indexSelect[courseId] +` />`);
+                                }
+
+                            });
+
+                            var newRemoveId = "#"+removeId;
+
+                            $('#alreadySelectCourse').on("click", newRemoveId, this , function (obj) {
+
+                                console.log(obj.valueOf().target);
+                                var remove = obj.valueOf().target.getAttribute("id")
+                                document.getElementById(remove).remove();
+                            })
+
+                        }
+                    }
+                }
+            })
+    });
+
+    function bareScore(number) {
+        document.getElementById("bareScore").setAttribute("value",number);
+    }
+
+    function interScore(number) {
+        document.getElementById("interestingScore").setAttribute("value",number);
+    }
+
+    function easilyScore(number) {
+        document.getElementById("easyScore").setAttribute("value",number);
+    }
+
+    function knowScore(number) {
+        document.getElementById("knowledgeScore").setAttribute("value",number);
+    }
+
+    $("#selfSetting").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url:'http://localhost:8080/rCourse',
+            data:{
+                preferD:document.getElementById("coursePreferD").valueOf().checked,
+                preferE:document.getElementById("coursePreferE").valueOf().checked,
+                selectMoreD:document.getElementById("selectMoreD").valueOf().checked,
+                selectMoreE:document.getElementById("selectMoreE").valueOf().checked,
+                selectNumberE:document.getElementById("selectNumberE").valueOf().checked,
+                numberC:document.getElementById("numberD").valueOf().value,
+                numberE:document.getElementById("numberE").valueOf().value,
+                selectCourseType:document.getElementById("selectCourseType").valueOf().checked,
+                allCourse:document.getElementById("allCourse").valueOf().checked,
+                courseABCD:document.getElementById("courseABCD").valueOf().checked,
+                preScoreRequest:document.getElementById("preScoreRequest").valueOf().checked,
+                preScore:document.getElementById("preScore").valueOf().value,
+                bareScore:document.getElementById("bareScore").valueOf().value,
+                interestingScore:document.getElementById("interestingScore").valueOf().value,
+                easyScore:document.getElementById("easyScore").valueOf().value,
+                knowledgeScore:document.getElementById("knowledgeScore").valueOf().value,
+                selectedCourses:document.getElementsByName("selected").values().value,
+            },
+            type:'POST',
+            success:function (res) {
+                if(res.success){
+                    alert('成功');
+                }
+            }
+        })
+    })
+    $(function (){
+        function GetLogin(){
+            $.ajax({
+                url:'http://localhost:8080/getsession',
+                type: 'Get',
+                data : {},
+                dataType:'json',
+                success(json){
+                    if(json.success){
+                        this.Login=json.data;
+                        alert(this.Login.nickName);
+                    }else{
+                        alert(json.data);
+                        location.href="../login.html";
+                    }
+                },
+                error: function (XMLHttpRequest){
+                    alert(("输出错误信息")+XMLHttpRequest.responseText);
+                }
+            })
+        }
+
+
+
+	})
+
+
+
+</script>
 </html>

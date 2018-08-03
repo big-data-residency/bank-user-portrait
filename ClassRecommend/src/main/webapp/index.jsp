@@ -1,5 +1,7 @@
 <html>
+<script>
+    location.href = "view/start_login.html";
+</script>
 <body>
-<h2>Hello World!</h2>
 </body>
 </html>

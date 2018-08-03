@@ -67,15 +67,15 @@
 
 	</head>
 
-	<body class="hold-transition skin-blue-light fixed sidebar-collapse" id="starter">
-		<div style="min-height: 600px; width: 100%;">
+	<body class="hold-transition skin-blue-light fixed sidebar-collapse">
+		<div style="min-height: 600px; width: 100%;" id="starter">
 			<div class="parent">
 				<div data-w-id="4146f678-8aab-d1fa-d19a-08985b74cfe1" class="hold-controls">
 					<div data-w-id="ebb1bf9c-8a6b-dd8b-b7e2-72879c9105bf" style="opacity:0" class="grey-block"></div>
 					<div data-w-id="563bcb60-4ea9-77e4-442e-b41a58239680" style="opacity:0" class="white-block">
 						<div class="top-panel">
 							<div data-w-id="b19a1fd2-36b1-6175-8e63-a3c70f02a408" style="opacity:0;-webkit-transform:translateX(-3VW) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(-3VW) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(-3VW) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(-3VW) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)" class="absolute-float"></div>
-							<a href="http://localhost:8080/view/user/studentinfo.html?id={{studentId}}">
+							<a href="http://localhost:8080/view/user/studentinfo_new.html?id={{studentId}}">
 								<div data-w-id="b0e65405-2dec-f076-bf21-ee90b6bd9841" style="opacity:0;-webkit-transform:translateX(-5VW) translateY(-2VW) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(-5VW) translateY(-2VW) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(-5VW) translateY(-2VW) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(-5VW) translateY(-2VW) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)" class="absolute-chart">
 									<div class="triangle"></div>
 
@@ -198,9 +198,8 @@ function tweet() {
 			<!--</div>-->
 
 			<!---->
-			<div class="wrapper" id="start">
+			<div class="wrapper" >
 
-				<!-- Main Header -->
 				<header class="main-header">
 
 					<!-- Logo -->
@@ -284,7 +283,7 @@ function tweet() {
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="studentinfo.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+												<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
 											</div>
 											<div class="pull-right">
 												<a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -335,16 +334,16 @@ function tweet() {
 								<a href="#"><i class="fa fa-user"></i> <span>用户首页</span></a>
 							</li>
 							<li>
-								<a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+								<a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查询所有课程</span></a>
 							</li>
 							<li>
 								<a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
 							</li>
-							<li>
-								<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程页面</span></a>
+							<li >
+								<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
 							</li>
 							<li>
-								<a href="studentinfo.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+								<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
 							</li>
 							<!--<li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -623,7 +622,7 @@ function tweet() {
 									<a href="javascript:;">
 										<h4 class="control-sidebar-subheading">
                 Custom Template Design
-                <span class="pull-right-container"
+                <span class="pull-right-container">
                     <span class="label label-danger pull-right">70%</span>
                   </span>
               </h4>
@@ -678,7 +677,8 @@ function tweet() {
 		var starter = new Vue({
 			el: '#starter',
 			data: {
-				studentId: ''
+				studentId: '',
+				Login:{},
 			},
 			methods: {
 				GetQueryString(name) {
@@ -694,15 +694,36 @@ function tweet() {
 				getPar() {
 					starter.studentId = this.GetQueryString('id');
 				},
+                GetLogin(){
+                    $.ajax({
+                        url:'http://localhost:8080/getsession',
+                        type: 'Get',
+                        data : {},
+                        dataType:'json',
+                        success(json){
+                            if(json.success){
+                                this.Login=json.data;
+                                alert(this.Login.nickName);
+                            }else{
+                                alert(json.data);
+                                location.href="../login.html";
+                            }
+                        },
+                        error: function (XMLHttpRequest){
+                            alert(("输出错误信息")+XMLHttpRequest.responseText);
+                        }
+
+                    })
+
+                }
 			},
 
 			mounted() {
 				this.getPar();
+				this.GetLogin();
 			}
 
 		})
-		
-		
     if(document.body.scrollWidth < 300){
       document.getElementById('autoDis').style.display = 'none';
     }

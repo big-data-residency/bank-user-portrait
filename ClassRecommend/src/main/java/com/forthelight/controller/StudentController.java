@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +54,9 @@ public class StudentController {
 		this.collegeBiz = collegeBiz;
 	}
 
+
+
+
 	@RequestMapping(value = "/login", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String login(HttpServletRequest request, HttpServletResponse response) {
@@ -62,19 +66,54 @@ public class StudentController {
 		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
 		Map<String, Object> rsp = new HashMap<>();
-		String studentNumber = request.getParameter("studentNumber");
+		String NickName = request.getParameter("NickName");
 		String password = request.getParameter("password");
 
-		String validateResult = studentBiz.loginValidate(studentNumber, password);
-		if (validateResult.equals("登录成功")) {
-			rsp.put("success", true);
-			rsp.put("data", validateResult);
+		Student student = studentBiz.loginValidate(NickName);
+		if (student != null && student.getPassword() != null){
+
+			if (student.getPassword().equals(password)){
+				rsp.put("success", true);
+				rsp.put("data", "登陆成功");
+				HttpSession session = request.getSession();
+				session.setAttribute("user",student);
+			} else {
+				rsp.put("success", false);
+				rsp.put("data", "密码错误");
+			}
 		} else {
-			rsp.put("success", false);
-			rsp.put("data", validateResult);
+			rsp.put("success",false);
+			rsp.put("data","用户不存在");
 		}
 		return gson.toJson(rsp);
 	}
+
+	@RequestMapping(value = "/getsession", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getsession(HttpServletRequest request, HttpServletResponse response){
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("json");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+		Map<String, Object> rsp = new HashMap<>();
+
+		HttpSession session  = request.getSession(false);
+		Student student = (Student)session.getAttribute("user");
+
+		if(student==null) {
+			rsp.put("success", false);
+			rsp.put("data","当前未登录");
+		}else{
+			rsp.put("success",true);
+			rsp.put("data",student);
+		}
+		return gson.toJson(rsp);
+	}
+
+
+
+
 
 	@RequestMapping(value = "/register", produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -135,6 +174,9 @@ public class StudentController {
 		rsp.put("data", "注册成功");
 		return gson.toJson(rsp);
 	}
+
+
+
 
 	@RequestMapping(value = "/studentInfo", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE
 			+ ";charset=utf-8")
@@ -200,6 +242,9 @@ public class StudentController {
 
 	}
 
+
+
+
 	@RequestMapping(value = "/editStudentInfo", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
 			+ ";charset=utf-8")
 	@ResponseBody
@@ -241,6 +286,9 @@ public class StudentController {
 		res.put("success", success);
 		return gson.toJson(res);
 	}
+
+
+
 
 	@RequestMapping(value = "/searchStudent", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
 			+ ";charset=utf-8")
@@ -301,6 +349,9 @@ public class StudentController {
 
 	}
 
+
+
+
     @RequestMapping(value = "/deleteStudent", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
     @ResponseBody
     public String deleteStudent(String studentIdStr, HttpServletResponse response) {
@@ -326,5 +377,57 @@ public class StudentController {
 	    return gson.toJson(res);
 	    
     }
+
+
+	@RequestMapping(value = "/studentBasicInfo", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+	@ResponseBody
+	public String studentBasicInfo(String studentIdStr, HttpServletResponse response) {
+
+		response.setContentType("text/json;charset:UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+		Map<String, Object> res = new HashMap<>();
+
+		int studentId = Integer.parseInt(studentIdStr);
+
+		boolean success = false;
+
+		if (studentIdStr != null) {
+			success = true;
+		}
+
+		Student studentInfo = studentBiz.findById(studentId);
+		if (studentInfo == null) {
+			success = false;
+		}
+
+		Map<String, Object> student = new HashMap<>();
+
+		student.put("student", studentInfo);
+		student.put("college", studentInfo.getCollege().getCollegeName());
+		student.put("major", studentInfo.getMajor().getMajorName());
+
+		if(studentInfo.getGrade() == 1){
+			student.put("grade","大一");
+		}
+		if(studentInfo.getGrade() == 2){
+			student.put("grade","大二");
+		}
+		if(studentInfo.getGrade() == 3){
+			student.put("grade","大三");
+		}
+		if(studentInfo.getGrade() == 4){
+			student.put("grade","大四");
+		}
+
+		Map<String, Object> data = new HashMap<>();
+		data.put("student",student);
+
+		res.put("data",data);
+		res.put("success",success);
+
+		return gson.toJson(res);
+	}
 
 }
