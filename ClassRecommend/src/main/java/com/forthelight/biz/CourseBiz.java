@@ -49,4 +49,6 @@ public interface CourseBiz {
     int setTime(Course course, int lessonDay, int startTime, int endTime);
 
     List<Course> findCourseOfAdmin(String courseType, String teacherName, int examType, String courseName);
+
+    List<Course> selectByShouldCheck(int Grade,int College,int Major);
 }

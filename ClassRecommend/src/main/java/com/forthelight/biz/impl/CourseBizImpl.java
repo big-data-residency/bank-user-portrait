@@ -122,5 +122,10 @@ public class CourseBizImpl implements CourseBiz {
         return courseDao.findCourseOfAdmin(courseType,teacherName,examType,courseName);
     }
 
+    @Override
+    public List<Course> selectByShouldCheck(int Grade, int College, int Major) {
+        return null;
+    }
+
 
 }
