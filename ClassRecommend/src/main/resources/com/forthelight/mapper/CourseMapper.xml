@@ -155,6 +155,11 @@
 		where ( courseCode like '%${_parameter}%' or courseName like '%${_parameter}%' )
 		and deleteStatus = 0
 	</select>
-	
+
+	<select id="findCourseOfAdmin" resultMap="CourseResultMap">
+		select * from Course
+		where ( level = #{arg0} and examiningForm = #{arg2} and courseName = #{arg3}) and deleteStatus = 0
+		and teacherId in ( select id from Teacher where teacherName = #{arg1} )
+	</select>
 
 </mapper>

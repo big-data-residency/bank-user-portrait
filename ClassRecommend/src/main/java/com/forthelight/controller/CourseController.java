@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -32,228 +34,303 @@ import com.google.gson.GsonBuilder;
 @Controller
 public class CourseController {
 
-	@Autowired
-	private CourseBiz courseBiz;
+    @Autowired
+    private CourseBiz courseBiz;
 
-	@Autowired
-	private FileBiz fileBiz;
+    @Autowired
+    private FileBiz fileBiz;
 
-	@Autowired
-	private StudentCommentCourseBiz studentCommentCourseBiz;
+    @Autowired
+    private StudentCommentCourseBiz studentCommentCourseBiz;
 
-	@Autowired
-	private TagBiz tagBiz;
+    @Autowired
+    private TagBiz tagBiz;
 
-	@Autowired
-	private StudentBiz studentBiz;
-	
-	
-	
+    @Autowired
+    private StudentBiz studentBiz;
+
+
     // ### classrecommend.html 显示课程基本信息、评论显示界面
-	@RequestMapping(value = "/courseInfo", produces = "text/json; charset=utf-8")
-	@ResponseBody
-	public String CourseInfo(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/courseInfo", produces = "text/json; charset=utf-8")
+    @ResponseBody
+    public String CourseInfo(HttpServletRequest request, HttpServletResponse response) {
 
-		response.setContentType("text/json;charset:UTF-8");
-		response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
-		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-		Map<String, Object> res = new HashMap<>();
+        Map<String, Object> res = new HashMap<>();
 
-		String courseIdStr = request.getParameter("courseId");
-		int courseId = Integer.parseInt(courseIdStr);
-		
-		boolean success = false;
-		
-		if(courseIdStr != null) {
-			success = true;
-		}
+        String courseIdStr = request.getParameter("courseId");
+        int courseId = Integer.parseInt(courseIdStr);
 
-		Course course = courseBiz.findById(courseId);
+        boolean success = false;
 
-		// ----------------- 左边栏数据 --------------------
-		String courseName = course.getCourseName();
-		String teacherName = course.getTeacher().getTeacherName();
-		int likeNumber = courseBiz.likeNumber(courseId);
-		int uploadsNumber = fileBiz.uploadsNumberOfCourse(courseId);
-		int commentNumber = studentCommentCourseBiz.commentNumberOfCourse(courseId);
+        if (courseIdStr != null) {
+            success = true;
+        }
 
-		// -------------------- 第一个标签数据 --------------------------
-		Map<String, Integer> TagsNumber = new HashMap<>();
-		List<Tag> tags = courseBiz.tagList(courseId);
-		for (Tag tag : tags) {
+        Course course = courseBiz.findById(courseId);
 
-			TagsNumber.put(tag.getTagName(), courseBiz.oneTagNumber(tag.getId(), courseId));
+        // ----------------- 左边栏数据 --------------------
+        String courseName = course.getCourseName();
+        String teacherName = course.getTeacher().getTeacherName();
+        int likeNumber = courseBiz.likeNumber(courseId);
+        int uploadsNumber = fileBiz.uploadsNumberOfCourse(courseId);
+        int commentNumber = studentCommentCourseBiz.commentNumberOfCourse(courseId);
 
-		}
+        // -------------------- 第一个标签数据 --------------------------
+        Map<String, Integer> TagsNumber = new HashMap<>();
+        List<Tag> tags = courseBiz.tagList(courseId);
+        for (Tag tag : tags) {
 
-		// ------------------- 第二个标签栏数据 --------------------------
-		List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
+            TagsNumber.put(tag.getTagName(), courseBiz.oneTagNumber(tag.getId(), courseId));
 
-		// ----------------------- 传输左边栏、第一二个标签Json数据 ----------------------------------
-		
-		Map<String, Object> data = new HashMap<>();
+        }
 
-		data.put("courseName", courseName);
-		data.put("teacherName", teacherName);
-		data.put("likeNumber", likeNumber);
-		data.put("uploadsNumber", uploadsNumber);
-		data.put("commentNumber", commentNumber);
-		data.put("TagsNumber", TagsNumber);
-		data.put("commentNumber", commentNumber);
-		data.put("comments", comments);
-		
-		res.put("data", data);
-		res.put("success", success);
+        // ------------------- 第二个标签栏数据 --------------------------
+        List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
 
-		return gson.toJson(res);
+        // ----------------------- 传输左边栏、第一二个标签Json数据 ----------------------------------
 
-	}
-	
-	
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("courseName", courseName);
+        data.put("teacherName", teacherName);
+        data.put("likeNumber", likeNumber);
+        data.put("uploadsNumber", uploadsNumber);
+        data.put("commentNumber", commentNumber);
+        data.put("TagsNumber", TagsNumber);
+        data.put("commentNumber", commentNumber);
+        data.put("comments", comments);
+
+        res.put("data", data);
+        res.put("success", success);
+
+        return gson.toJson(res);
+
+    }
+
+
     // ### classrecommend.html 课程评论界面
-	@RequestMapping(value = "/courseCommnet",  method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
-	@ResponseBody
-	public String courseComment(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/courseCommnet", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String courseComment(HttpServletRequest request, HttpServletResponse response) {
 
-		response.setContentType("text/json;charset:UTF-8");
-		response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
-		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-		Map<String, Object> res = new HashMap<>();
+        Map<String, Object> res = new HashMap<>();
 
-		String comment = request.getParameter("comments");
+        String comment = request.getParameter("comments");
 
-		String[] tagsIdStr = request.getParameterValues("tags");
+        String[] tagsIdStr = request.getParameterValues("tags");
 
-		String studentIdStr = request.getParameter("studentId");
-		int studentId = Integer.parseInt(studentIdStr);
+        String studentIdStr = request.getParameter("studentId");
+        int studentId = Integer.parseInt(studentIdStr);
 
-		String courseIdStr = request.getParameter("courseId");
-		int courseId = Integer.parseInt(courseIdStr);
+        String courseIdStr = request.getParameter("courseId");
+        int courseId = Integer.parseInt(courseIdStr);
 
-		String bearSoreStr = request.getParameter("bearSore");
-		int bearSore = Integer.parseInt(bearSoreStr);
+        String bearSoreStr = request.getParameter("bearSore");
+        int bearSore = Integer.parseInt(bearSoreStr);
 
-		String interestingScoreStr = request.getParameter("interestingScore");
-		int interestingScore = Integer.parseInt(interestingScoreStr);
+        String interestingScoreStr = request.getParameter("interestingScore");
+        int interestingScore = Integer.parseInt(interestingScoreStr);
 
-		String easyScoreStr = request.getParameter("easyScore");
-		int easyScore = Integer.parseInt(easyScoreStr);
+        String easyScoreStr = request.getParameter("easyScore");
+        int easyScore = Integer.parseInt(easyScoreStr);
 
-		String knowledgeScoreStr = request.getParameter("knowledgeScore");
-		int knowledgeScore = Integer.parseInt(knowledgeScoreStr);
+        String knowledgeScoreStr = request.getParameter("knowledgeScore");
+        int knowledgeScore = Integer.parseInt(knowledgeScoreStr);
 
-		String gradeScoreStr = request.getParameter("gradeScore");
-		int gradeScore = Integer.parseInt(gradeScoreStr);
+        String gradeScoreStr = request.getParameter("gradeScore");
+        int gradeScore = Integer.parseInt(gradeScoreStr);
 
-		String anonymousStr = request.getParameter("anonymous");
-		int anonymous = Integer.parseInt(anonymousStr);
+        String anonymousStr = request.getParameter("anonymous");
+        int anonymous = Integer.parseInt(anonymousStr);
 
-		int contentScore = interestingScore + easyScore + knowledgeScore + bearSore;
+        int contentScore = interestingScore + easyScore + knowledgeScore + bearSore;
 
-		List<Tag> tags = new ArrayList<Tag>();
+        List<Tag> tags = new ArrayList<Tag>();
 
-		for (String tagIdStr : tagsIdStr) {
+        for (String tagIdStr : tagsIdStr) {
 
-			int tagId = Integer.parseInt(tagIdStr);
-			tags.add(tagBiz.findById(tagId));
-		}
+            int tagId = Integer.parseInt(tagIdStr);
+            tags.add(tagBiz.findById(tagId));
+        }
 
-		Student student = studentBiz.findById(studentId);
-		Course course = courseBiz.findById(courseId);
-		Timestamp commentTime = new Timestamp(System.currentTimeMillis());
-		int selectId = studentCommentCourseBiz.getSelectIdByStudentIdAndCourseId(studentId, courseId);
+        Student student = studentBiz.findById(studentId);
+        Course course = courseBiz.findById(courseId);
+        Timestamp commentTime = new Timestamp(System.currentTimeMillis());
+        int selectId = studentCommentCourseBiz.getSelectIdByStudentIdAndCourseId(studentId, courseId);
 
-		StudentCommentCourse studentCommentCourse = new StudentCommentCourse();
+        StudentCommentCourse studentCommentCourse = new StudentCommentCourse();
 
-		studentCommentCourse.setAnonymous(anonymous);
-		studentCommentCourse.setBearScore(bearSore);
-		studentCommentCourse.setComment(comment);
-		studentCommentCourse.setCommentTime(commentTime);
-		studentCommentCourse.setContentScore(contentScore);
-		studentCommentCourse.setCourse(course);
-		studentCommentCourse.setEasyScore(easyScore);
-		studentCommentCourse.setGradeScore(gradeScore);
-		studentCommentCourse.setInterestingScore(interestingScore);
-		studentCommentCourse.setKnowledgeScore(knowledgeScore);
-		studentCommentCourse.setStudent(student);
-		studentCommentCourse.setTags(tags);
-		studentCommentCourse.setSelectId(selectId);
+        studentCommentCourse.setAnonymous(anonymous);
+        studentCommentCourse.setBearScore(bearSore);
+        studentCommentCourse.setComment(comment);
+        studentCommentCourse.setCommentTime(commentTime);
+        studentCommentCourse.setContentScore(contentScore);
+        studentCommentCourse.setCourse(course);
+        studentCommentCourse.setEasyScore(easyScore);
+        studentCommentCourse.setGradeScore(gradeScore);
+        studentCommentCourse.setInterestingScore(interestingScore);
+        studentCommentCourse.setKnowledgeScore(knowledgeScore);
+        studentCommentCourse.setStudent(student);
+        studentCommentCourse.setTags(tags);
+        studentCommentCourse.setSelectId(selectId);
 
-		int result = studentCommentCourseBiz.insert(studentCommentCourse);
-		String insertResult = "评论失败，请先选择此课程!";
-		if (result > 0)
-			insertResult = "评论成功,感谢您提出的宝贵意见";
-		
-		
-		if (insertResult.equals("评论成功,感谢您提出的宝贵意见")) {
-			res.put("success", "true");
-			res.put("data", insertResult);
-		} else {
-			res.put("success", "false");
-			res.put("data", insertResult);
-		}
-		
-		return gson.toJson(res);
-
-	}
+        int result = studentCommentCourseBiz.insert(studentCommentCourse);
+        String insertResult = "评论失败，请先选择此课程!";
+        if (result > 0)
+            insertResult = "评论成功,感谢您提出的宝贵意见";
 
 
-	@RequestMapping(value = "/searchCourse", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
-	@ResponseBody
-	public String studentBasicInfo(String courseKeyword, HttpServletResponse response) {
+        if (insertResult.equals("评论成功,感谢您提出的宝贵意见")) {
+            res.put("success", "true");
+            res.put("data", insertResult);
+        } else {
+            res.put("success", "false");
+            res.put("data", insertResult);
+        }
 
-		response.setContentType("text/json;charset:UTF-8");
-		response.setCharacterEncoding("UTF-8");
+        return gson.toJson(res);
 
-		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
-		Map<String, Object> res = new HashMap<>();
-
-		List<Course> courses;
-		if(courseKeyword == ""){
-			courses = courseBiz.findAll();
-		}else{
-			courses = courseBiz.selectByKeyword(courseKeyword);
-		}
-
-		boolean success = false;
-		if(courses.size() > 0){
-			success = true;
-		}
-
-		Map<String, Object> data = new HashMap<>();
-		data.put("courses",courses);
-
-		res.put("data",data);
-		res.put("success",success);
-
-		return gson.toJson(res);
-	}
+    }
 
 
-	@RequestMapping(value = "/rCourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
-			+ ";charset=utf-8")
-	@ResponseBody
-	public String recommendCourse(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/searchCourse", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String studentBasicInfo(String courseKeyword, HttpServletResponse response) {
 
-		response.setContentType("text/json;charset:UTF-8");
-		response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
-		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Map<String, Object> res = new HashMap<>();
 
-		System.out.print(request);
+        List<Course> courses;
+        if (courseKeyword == "") {
+            courses = courseBiz.findAll();
+        } else {
+            courses = courseBiz.selectByKeyword(courseKeyword);
+        }
 
-		Map<String, Object> res = new HashMap<>();
+        boolean success = false;
+        if (courses.size() > 0) {
+            success = true;
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("courses", courses);
+
+        res.put("data", data);
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
 
 
-		boolean success = true;
+    @RequestMapping(value = "/rCourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
+            + ";charset=utf-8")
+    @ResponseBody
+    public String recommendCourse(HttpServletRequest request, HttpServletResponse response) {
 
-		res.put("success", success);
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
-		return gson.toJson(res);
-	}
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        System.out.print(request);
+
+        Map<String, Object> res = new HashMap<>();
+
+
+        boolean success = true;
+
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = "/findCourseOfAdmin", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findCourseOfAdmin(String courseType, String teacherInfo, String examType, String courseName, HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Map<String, Object> res = new HashMap<>();
+
+        System.out.print(courseType + teacherInfo + examType + courseName);
+
+        int exam = 3;
+        if(examType == "闭卷考试"){
+            exam = 0;
+        }
+        if(examType == "开卷考试"){
+            exam = 1;
+        }
+        if(examType == "论文结课"){
+            exam = 2;
+        }
+        if(examType == "其他"){
+            exam = 3;
+        }
+
+        List<Course> courses = courseBiz.findCourseOfAdmin(courseType,teacherInfo,exam,courseName);
+
+        boolean success = false;
+        if(courses.size() > 0){
+            success = true;
+        }
+
+        JsonArray coursesInfo = new JsonArray();
+        for(Course course : courses){
+
+            JsonObject courseInfo = new JsonObject();
+            courseInfo.addProperty("courseId",course.getId());
+            courseInfo.addProperty("courseCode",course.getCourseCode());
+            courseInfo.addProperty("courseName",course.getCourseName());
+            courseInfo.addProperty("teacherName",course.getTeacher().getTeacherName());
+
+            int examMethod = course.getExaminingForm();
+            if(examMethod == 0){
+                courseInfo.addProperty("examType","闭卷考试");
+            }
+            if(examMethod == 1){
+                courseInfo.addProperty("examType","开卷考试");
+            }
+            if(examMethod == 2){
+                courseInfo.addProperty("examType","论文结课");
+            }
+            if(examMethod == 3){
+                courseInfo.addProperty("examType","其他");
+            }
+
+            int passMethod = course.getPassingCourse();
+            if(passMethod == 0){
+                courseInfo.addProperty("passType","否");
+            }
+            if(passMethod == 1){
+                courseInfo.addProperty("passType","是");
+            }
+
+            coursesInfo.add(courseInfo);
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("courses",coursesInfo);
+
+        res.put("data",data);
+        res.put("success",success);
+
+        return gson.toJson(res);
+    }
 
 }

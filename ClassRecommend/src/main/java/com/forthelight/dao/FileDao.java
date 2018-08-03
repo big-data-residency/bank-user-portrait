@@ -1,8 +1,8 @@
 package com.forthelight.dao;
 
-import java.util.List;
-
 import com.forthelight.domain.File;
+
+import java.util.List;
 
 public interface FileDao {
 
@@ -13,4 +13,6 @@ public interface FileDao {
 	List<File> findByCourseId(int courseId);
 
 	int uploadsNumberOfCourse(int courseId);
+
+	int insert(File file);
 }
