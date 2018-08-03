@@ -19,12 +19,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link rel="stylesheet" href="../../style/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+          href="../../style/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- iCheck for checkboxes and radio inputs -->
     <!--<link rel="stylesheet" href="../../plugins/iCheck/all.css">-->
     <link rel="stylesheet" href="../../style/newstyle/css/all-checkbox.css">
     <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet"
+          href="../../style/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
     <!-- Bootstrap time Picker -->
     <!--<link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">-->
     <!-- Select2 -->
@@ -57,13 +59,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
+
 
 <body class="hold-transition skin-blue-light fixed sidebar-mini"  >
 <div class="wrapper" id="adminCourse">
 
-     <div class="wrapper" id="classvue">
+    <div class="wrapper" id="classvue">
 
         <!-- Main Header -->
         <header class="main-header">
@@ -216,6 +220,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <i class="fa fa-bookmark"></i>
                             <span>查看已修课程</span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">You have 9 tasks</li>
+                            <li>
+                                <!-- Inner menu: contains the tasks -->
+                                <ul class="menu">
+                                    <li><!-- Task item -->
+                                        <a href="#">
+                                            <!-- Task title and progress text -->
+                                            <h3>
+                                                Design some buttons
+                                                <small class="pull-right">20%</small>
+                                            </h3>
+                                            <!-- The progress bar -->
+                                            <div class="progress xs">
+                                                <!-- Change the css width attribute to simulate progress -->
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar"
+                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                    <span class="sr-only">20% Complete</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="#">View all tasks</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="select_course.html?id={{studentIdStr}}">
@@ -246,250 +280,292 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.sidebar -->
         </aside>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper ">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <!--标题-->
-            <h1>
-                查看所有课程
-                <small>administrator</small>
-            </h1>
-            <!--面包屑-->
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-book"></i> 查看所有课程</a></li>
-                <li class="active">Here</li>
-            </ol>
-        </section>
-        <!-- Main content -->
-        <section class="content container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-warning">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">筛选条件</h3>
-                            <p>{{teacherInfo}}</p>
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                            </div>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>课程类型</label>
-                                        <select id="courseType" class="form-control select2"  style="width: 100%;">
-                                            <option selected="selected">全部</option>
-                                            <option>A</option>
-                                            <option>B</option>
-                                            <option>C</option>
-                                            <option>D</option>
-                                            <option>E</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>授课老师</label>
-                                        <!--<select  id="teacherInfo" v-model="teacherInfo" class="form-control select2" style="width: 100%;">-->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper ">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <!--标题-->
+                <h1>
+                    查看所有课程
+                    <small>administrator</small>
+                </h1>
+                <!--面包屑-->
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-book"></i> 查看所有课程</a></li>
+                    <li class="active">Here</li>
+                </ol>
+            </section>
+            <!-- Main content -->
+            <section class="content container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-warning">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">筛选条件</h3>
 
-                                        <!--<option v-for=" (teacher,index) in teachers " v-if="index == 0" selected="selected" value="teacher.teacherName" label="teacher.teacherName"></option>-->
-                                        <!--<option v-else value="teacher.teacherName" label="teacher.teacherName"></option>-->
-                                        <!--</select>-->
-                                        <select v-model="teacherInfo" class="form-control select2" style="width: 100%;">
-                                            <option v-for="teacher in teachers" v-bind:value="teacher.id">{{teacher.name}}</option>
-                                        </select>
-                                    </div>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i></button>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>考核方式</label>
-                                        <select class="form-control select2" id="examType" style="width: 100%;">
-                                            <option selected="selected">全部</option>
-                                            <option>闭卷考试</option>
-                                            <option>开卷考试</option>
-                                            <option>论文结课</option>
-                                            <option>其他</option>
-                                        </select>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>课程类型</label>
+                                            <select id="courseType" class="form-control select2" style="width: 100%;">
+                                                <option selected="selected">全部</option>
+                                                <option>A</option>
+                                                <option>B</option>
+                                                <option>C</option>
+                                                <option>D</option>
+                                                <option>E</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>课程名称</label>
-                                        <form action="#" method="post" id="searchClass" >
-                                            <div class="input-group">
-                                                <input type="text" v-model="courseName"  placeholder="class-Name" class="form-control">
-                                                <span class="input-group-btn">
-                                                    <button type="button" v-on:click="findCourse()" name="search" id="search-btn" class="btn btn-warning btn btn-flat"><i class="fa fa-search"></i></button>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>授课老师</label>
+                                            <select id="teacherInfo" class="form-control select2" style="width: 100%;">
+
+                                                <option v-for=" (teacher,index) in teachers " v-if="index == 0"
+                                                        selected="selected">{{ teacher.teacherName }}
+                                                </option>
+                                                <option v-else>{{ teacher.teacherName }}</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>考核方式</label>
+                                            <select class="form-control select2" id="examType" style="width: 100%;">
+                                                <option selected="selected">全部</option>
+                                                <option>闭卷考试</option>
+                                                <option>开卷考试</option>
+                                                <option>论文结课</option>
+                                                <option>其他</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>课程名称</label>
+                                            <form action="#" method="post" id="searchClass">
+                                                <div class="input-group">
+                                                    <input type="text" v-model="courseName" placeholder="class-Name"
+                                                           class="form-control">
+                                                    <span class="input-group-btn">
+                                                    <button type="button" v-on:click="findCourse()" name="search"
+                                                            id="search-btn" class="btn btn-warning btn btn-flat"><i
+                                                            class="fa fa-search"></i></button>
                                                 </span>
-                                            </div>
-                                        </form>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <h3 class="box-title">课程列表</h3>
+                        <div class="box box-primary">
+                            <div class="box-header">
+                                <h3 class="box-title">课程列表</h3>
+                            </div>
+
+                            <div class="box-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">编号</th>
+                                        <th scope="col">课程</th>
+                                        <th scope="col">老师</th>
+                                        <th scope="col">考核方式</th>
+                                        <th scope="col">通过制</th>
+                                        <th scope="col" style="width: 50px"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="course in courses">
+                                        <td>{{ course.courseCode }}</td>
+                                        <td>{{ course.courseName }}</td>
+                                        <td>{{ course.teacherName }}</td>
+                                        <td>{{ course.examType }}</td>
+                                        <td>{{ course.passType }}</td>
+                                        <td>
+                                            <a href="update.html">评价</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
                         </div>
-
-                        <div class="box-body">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th scope="col">编号</th>
-                                    <th scope="col">课程</th>
-                                    <th scope="col">老师</th>
-                                    <th scope="col">考核方式</th>
-                                    <th scope="col">通过制</th>
-                                    <th scope="col" style="width: 50px"></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="course in courses">
-                                    <td>{{ course.courseCode }}</td>
-                                    <td>{{ course.courseName }}</td>
-                                    <td>{{ course.teacherName }}</td>
-                                    <td>{{ course.examType }}</td>
-                                    <td>{{ course.passType }}</td>
-                                    <td>
-                                        <a href="update.html">评价</a>
-                                    </td>
-                                </tr>
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
                     </div>
                 </div>
-            </div>
 
-        </section>
-        <!-- /.content -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
+        </footer>
+
+
     </div>
-    <!-- /.content-wrapper -->
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 3 -->
+    <script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../style/dist/js/adminlte.min.js"></script>
 
 
+    <script src="../../style/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../../style/dist/js/adminlte.min.js"></script>
 
+    <script src="../../style/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../style/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../../style/dist/js/demo.js"></script>
+    <!-- Page script -->
 
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <!-- To the right -->
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
-    </footer>
+    <script>
 
-  
-</div>
-<!-- ./wrapper -->
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            });
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        })
 
-<!-- REQUIRED JS SCRIPTS -->
+        var adminCourse = new Vue({
 
-<!-- jQuery 3 -->
-<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../style/dist/js/adminlte.min.js"></script>
-
-
-<script src="../../style/bower_components/select2/dist/js/select2.full.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../style/dist/js/adminlte.min.js"></script>
-
-<script src="../../style/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="../../style/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../style/dist/js/demo.js"></script>
-<!-- Page script -->
-<script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
-        });
-        //Initialize Select2 Elements
-        $('.select2').select2()
-    })
-</script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
-<script>
-
-    var adminCourse = new Vue({
-        el:'#adminCourse',
-        data:{
-            teachers:[{
-                id:1,
-                name:'aaa',
-            },{
-                id:2,
-                name:'bbb',
-            },{
-                id:3,
-                name:'ccc',
-            }],
-            courseType: document.getElementById("courseType").value,
-            teacherInfo:2,
-            examType:document.getElementById("examType").value,
-            courseName:'',
-            courses:''
-        },
-        methods:{
-            getAllTeachers(){
-                $.ajax({
-                    url:'http://localhost:8080/findAllTeachers',
-                    data:{
-                        teacherIdStr: '',
-                    },
-                    type:'GET',
-                    dataType:'json',
-                    success:function (res) {
-                        if(res.success){
-                            adminCourse.teachers = res.data.teachers
-                        }
-                    }
-                })
+            el: '#adminCourse',
+            data: {
+                teachers: '',
+                courseType: document.getElementById("courseType").value,
+                teacherInfo: document.getElementById("teacherInfo").value,
+                examType: document.getElementById("examType").value,
+                courseName: '',
+                courses: ''
             },
-            findCourse(){
-                $.ajax({
-                    url:'http://localhost:8080/findCourseOfAdmin',
-                    data:{
-                        courseType: adminCourse.courseType,
-                        teacherInfo: teacherInfo,
-                        examType: adminCourse.examType,
-                        courseName: adminCourse.courseName
-                    },
-                    type:'GET',
-                    dataType: 'json',
-                    success:function (res) {
-                        if(res.success){
-                            adminCourse.courses = res.data.courses
-                        }else{
-                            alert("没有查到相关结果")
-                        }
-                    }
-                })
-            }
-        },
-        mounted(){
-            //this.getAllTeachers();
-        }
-    })
-</script>
+            methods: {
+                getAllTeachers() {
+                    $.ajax({
+                        url: 'http://localhost:8080/findAllTeachers',
+                        data: {
+                            teacherIdStr: '',
 
+                        },
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.success) {
+                                adminCourse.teachers = res.data.teachers
+                            }
+                        }
+                    })
+                },
+                findCourse() {
+                    $.ajax({
+                        url: 'http://localhost:8080/findCourseOfAdmin',
+                        data: {
+                            courseType: adminCourse.courseType,
+                            teacherInfo: adminCourse.teacherInfo,
+                            examType: adminCourse.examType,
+                            courseName: adminCourse.courseName
+                        },
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (res) {
+                            if (res.success) {
+                                adminCourse.courses = res.data.courses
+                            } else {
+                                alert("没有查到相关结果")
+                            }
+                        }
+                    })
+
+                },
+
+                GetQueryString(name) {
+                    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                    var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+                    var context = "";
+                    if (r != null)
+                        context = r[2];
+                    reg = null;
+                    r = null;
+                    return context == null || context == "" || context == "undefined" ? "" : context;
+                },
+                getPar() {
+                    var adminId = this.GetQueryString('id');
+                },
+
+                GetLogin() {
+                    $.ajax({
+                        url: 'http://localhost:8080/getsession',
+                        type: 'Get',
+                        data: {},
+                        dataType: 'json',
+                        success(json) {
+                            if (json.success) {
+                                this.Login = json.data;
+                                if (this.Login.privilege != 1 || this.Login.studentId != getPar()) {
+                                    location.href = "../user/no-access.html";
+                                }
+                                // alert(this.Login.nickName);
+                            } else {
+                                alert(json.data);
+                                location.href = "../login.html";
+                            }
+                        },
+                        error: function (XMLHttpRequest) {
+                            alert(("输出错误信息") + XMLHttpRequest.responseText);
+                        }
+
+                    })
+
+                }
+            },
+            mounted() {
+                this.getAllTeachers();
+                this.getPar();
+                this.GetLogin();
+            }
+        })
+
+    </script>
+
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. -->
 </body>
 </html>

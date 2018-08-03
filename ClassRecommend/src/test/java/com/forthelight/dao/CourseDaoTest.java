@@ -144,8 +144,27 @@ public class CourseDaoTest {
 
     @Test
     public void findCourseOfAdmin(){
-        List<Course> courses = courseDao.findCourseOfAdmin("A","袁晓洁",1,"数据库");
+        List<Course> courses = courseDao.findCourseOfAdmin("A",null,1,"数据库");
         System.out.print(courses.get(0).getCourseName());
+    }
+
+    @Test
+    public  void findByStudentIdAndTeacherName(){
+        List<Course> courses = courseDao.findByStudentIdAndTeacherName(2 ,"袁晓洁");
+        System.out.print(courses);
+
+    }
+
+    @Test
+    public  void  findByStudentIdAndCourseCode(){
+        List<Course> courses = courseDao.findByStudentIdAndCourseCode(2,"comp111");
+        System.out.print(courses);
+    }
+
+    @Test
+    public  void findByCourseAndTeacher(){
+        List<Course> courses = courseDao.findByCourseAndTeacher(2,"数据库","袁晓洁");
+        System.out.print(courses);
     }
 
 }

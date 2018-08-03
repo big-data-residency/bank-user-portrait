@@ -812,6 +812,11 @@
 </body>
 <script>
 
+
+	var grade='';
+	var college='';
+	var major='';
+
     function scoreRequest(obj) {
 
         var checks = document.getElementsByName("selectOne");
@@ -977,6 +982,9 @@
                         success: function (res) {
                             if (res.success) {
                                 studentBasicInfo.student = res.data.student;
+                                grade = studentBasicInfo.student.grade;
+                                college = studentBasicInfo.student.college;
+                                major = studentBasicInfo.student.major;
                             }
                         }
                     }
@@ -1078,9 +1086,10 @@
         var selectedCourses = new Array();
         var i = 0;
         for( var selected of document.getElementsByName("selectedCourses") ){
-            selectedCourses[i] = selected.value;
+
+            selectedCourses[i] = selected.id.substring(6);
             i++;
-        }
+		}
 
         e.preventDefault();
         $.ajax({
@@ -1104,6 +1113,10 @@
                 easyScore:document.getElementById("easyScore").valueOf().value,
                 knowledgeScore:document.getElementById("knowledgeScore").valueOf().value,
                 selectedCourses:selectedCourses,
+
+				grade:grade,
+				college:college,
+				major:major
 
             },
             type:'POST',
