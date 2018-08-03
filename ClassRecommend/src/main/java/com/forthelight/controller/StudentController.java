@@ -402,9 +402,13 @@ public class StudentController {
 			success = false;
 		}
 
+		JsonObject studentInformation = new JsonObject();
+		studentInformation.addProperty("studentName",studentInfo.getNickName());
+		studentInformation.addProperty("studentNumber",studentInfo.getStudentNumber());
+
 		Map<String, Object> student = new HashMap<>();
 
-		student.put("student", studentInfo);
+		student.put("student", studentInformation);
 		student.put("college", studentInfo.getCollege().getCollegeName());
 		student.put("major", studentInfo.getMajor().getMajorName());
 

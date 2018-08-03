@@ -140,6 +140,7 @@
 			</div>
 		</nav>
 	</header>
+
 	<!-- Left side column. contains the logo and sidebar -->
 	<aside class="main-sidebar " style="position: fixed ">
 
@@ -153,6 +154,7 @@
 				</div>
 				<div class="pull-left info">
 					<p>Alexander Pierce</p>
+
 					<!-- Status -->
 					<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 				</div>
@@ -201,7 +203,7 @@
 </ul>
 </li>-->
 			</ul>
-			<!-- /.sidebar-menu -->
+
 		</section>
 		<!-- /.sidebar -->
 	</aside>
@@ -801,8 +803,6 @@
 <script src="../../style/newstyle/js/star.js"></script>
 <script src="../../style/newstyle/js/inputSpinner.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
-
 
 <script>
     $(document).ready(function () {
@@ -811,12 +811,6 @@
 </script>
 </body>
 <script>
-
-
-
-
-
-
 
     function scoreRequest(obj) {
 
@@ -952,7 +946,8 @@
 
     var studentId;
 
-    var C = new Vue({
+    var studentBasicInfo = new Vue({
+
         el: '#studentBasicInfo',
         data: {
             student: ''
@@ -1008,7 +1003,7 @@
                     if (res.success) {
 
                         var indexSelect = new Array();
-                        var indexRemove = new Array();
+
 
                         for (var course of res.data.courses) {
 
@@ -1029,7 +1024,7 @@
 
                                 var courseId = obj.valueOf().target.getAttribute("value")
 
-                                var isSelect = document.getElementsByName("selected");
+                                var isSelect = document.getElementsByName("selectedCourses");
 
                                 var i = 1;
 
@@ -1042,7 +1037,8 @@
 
                                 if (i) {
 
-                                    $('#alreadySelectCourse').append(`<input type="button" name="selected" class='btn btn-info' id="remove` + courseId + `" value=`+ indexSelect[courseId] +` />`);
+                                    $('#alreadySelectCourse').append(`<input type="button" name="selectedCourses" class='btn btn-info' id="remove` + courseId + `" value=`+ indexSelect[courseId] +` />`);
+
                                 }
 
                             });
@@ -1079,6 +1075,13 @@
     }
 
     $("#selfSetting").submit(function (e) {
+        var selectedCourses = new Array();
+        var i = 0;
+        for( var selected of document.getElementsByName("selectedCourses") ){
+            selectedCourses[i] = selected.value;
+            i++;
+        }
+
         e.preventDefault();
         $.ajax({
             url:'http://localhost:8080/rCourse',
@@ -1087,8 +1090,9 @@
                 preferE:document.getElementById("coursePreferE").valueOf().checked,
                 selectMoreD:document.getElementById("selectMoreD").valueOf().checked,
                 selectMoreE:document.getElementById("selectMoreE").valueOf().checked,
+                selectNumberD:document.getElementById("selectNumberD").valueOf().checked,
                 selectNumberE:document.getElementById("selectNumberE").valueOf().checked,
-                numberC:document.getElementById("numberD").valueOf().value,
+                numberD:document.getElementById("numberD").valueOf().value,
                 numberE:document.getElementById("numberE").valueOf().value,
                 selectCourseType:document.getElementById("selectCourseType").valueOf().checked,
                 allCourse:document.getElementById("allCourse").valueOf().checked,
@@ -1099,16 +1103,19 @@
                 interestingScore:document.getElementById("interestingScore").valueOf().value,
                 easyScore:document.getElementById("easyScore").valueOf().value,
                 knowledgeScore:document.getElementById("knowledgeScore").valueOf().value,
-                selectedCourses:document.getElementsByName("selected").values().value,
+                selectedCourses:selectedCourses,
+
             },
             type:'POST',
             success:function (res) {
                 if(res.success){
                     alert('成功');
                 }
+                console.log(selectedCourses);
             }
         })
     })
+
     $(function (){
         function GetLogin(){
             $.ajax({
@@ -1133,7 +1140,7 @@
 
 
 
-	})
+    })
 
 
 
