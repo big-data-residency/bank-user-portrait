@@ -56,8 +56,13 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
+<<<<<<< HEAD
 <body class="hold-transition skin-blue-light fixed sidebar-mini">
 <div class="wrapper" id="studentInfo">
+=======
+<body class="hold-transition skin-blue-light fixed">
+<div class="wrapper" id="studentIdenti">
+>>>>>>> dev
 
     <!-- Main Header -->
 				<header class="main-header">
@@ -413,6 +418,8 @@ desired effect
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+
 <script>
   var studentIdStr = '';
   var StudentComment='';
@@ -426,73 +433,80 @@ desired effect
   el:'#studentInfo',
   data:{
     studentInfo:'',
-    Login:{},
+    // Login:{},
   },
-  methods:{
-    getQueryString(name) {
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-      var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-      var context = "";
-      if (r != null)
-        context = r[2];
-      reg = null;
-      r = null;
-      return context == null || context == "" || context == "undefined" ? "" : context;
-    },
-    getPar(){
-      studentIdStr = this.getQueryString('id');
-    },
-    getStudentInfo(){
-      $.ajax({
-          url:'http://localhost:8080/ClassRecommend/studentInfo',
-        type:'GET',
-        data:{
-          studentIdStr:studentIdStr,
-        },
-        dataType:'json',
-        success:function (res) {
-          if(res.success){
-            studentInfo.studentInfo = res.data.studentInfo;
-            StudentComment = res.data.comments;
-            studentComment.comments = StudentComment;
-          }
-        }
-      })
-    },
-      GetLogin(){
-        $.ajax({
-            url:'http://localhost:8080/getsession',
-            type: 'Get',
-            data : {},
-            dataType:'json',
-            success(json){
-                if(json.success){
-                    this.Login=json.data;
-
-                    if( this.Login.studentId != this.getPar()){
-                        location.href="no-access.html";
-                    }
-                    // alert(this.Login.nickName);
-                }else{
-                    alert(json.data);
-                    location.href="../login.html";
-                }
-            },
-            error: function (XMLHttpRequest){
-                alert(("输出错误信息")+XMLHttpRequest.responseText);
-            }
-
-        })
-
-      }
+  methods: {
+      getQueryString(name) {
+          var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+          var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+          var context = "";
+          if (r != null)
+              context = r[2];
+          reg = null;
+          r = null;
+          return context == null || context == "" || context == "undefined" ? "" : context;
+      },
+      getPar() {
+          studentIdStr = this.getQueryString('id');
+      },
+      getStudentInfo() {
+          console.log(2)
+          $.ajax({
+              url: 'http://localhost:8080/ClassRecommend/studentInfo',
+              type: 'GET',
+              data: {
+                  studentIdStr: studentIdStr,
+              },
+              dataType: 'json',
+              success: function (res) {
+                  if (res.success) {
+                      studentInfo.studentInfo = res.data.studentInfo;
+                      StudentComment = res.data.comments;
+                      studentComment.comments = StudentComment;
+                  }
+              }
+          })
+          alert(3)
+      },
   },
+
   mounted(){
-      this.GetLogin(),
       this.getPar(),
       this.getStudentInfo()
     },
 })
-
+  // var studentIdenti = new Vue({
+  //     el: '#studentIdenti',
+  //     data: {
+  //         Login: {}
+  //     },
+  //     methods: {
+  //         GetLogin() {
+  //             $.ajax({
+  //                 url: 'http://localhost:8080/getsession',
+  //                 type: 'GET',
+  //                 data: {},
+  //                 dataType: 'json',
+  //                 success(json) {
+  //                     if (json.success) {
+  //                     } else {
+  //                         alert(json.data);
+  //                         location.href = "../login.html";
+  //                     }
+  //                 },
+  //                 error: function (XMLHttpRequest) {
+  //                     alert("输出错误信息" + XMLHttpRequest.responseText);
+  //                 }
+  //             });
+  //         }
+  //
+  //     },
+  //     mounted(){
+  //         this.GetLogin();
+  //         // this.getPar();
+  //     }
+  // })
+  //
 
 $('#editStudentInfo').submit(function (e) {
   e.preventDefault();
