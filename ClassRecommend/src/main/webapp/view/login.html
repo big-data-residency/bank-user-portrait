@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Sliding Login Form</title>
+    <title>LOGIN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -134,13 +134,14 @@
                     url: 'http://localhost:8080/login',
                     type: 'POST',
                     data: {
-                        studentNumber: login.login_username,
+                        NickName: login.login_username,
                         password: login.login_password
                     },
                     dataType: 'json',
                     success(res) {
                         if (res.success) {
-                            location.href = "user/starter.html";
+                           // location.href = "user/starter.html";
+
                         }
                         else {
                             alert(res.data);

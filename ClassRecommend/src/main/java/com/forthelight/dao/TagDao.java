@@ -1,8 +1,10 @@
 package com.forthelight.dao;
 
-import java.util.List;
-
+import com.forthelight.domain.StudentCommentCourse;
 import com.forthelight.domain.Tag;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface TagDao {
 	
@@ -17,6 +19,6 @@ public interface TagDao {
 	int delete(int id);
 
 	int insert(Tag tag);
-	
 
+	int tagComment(@Param("tag") Tag tag, @Param("comment") StudentCommentCourse studentCommentCourse);
 }
