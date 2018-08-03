@@ -201,4 +201,35 @@ public class CourseController {
 
 	}
 
+
+
+    @RequestMapping(value = "/courseList",  method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+    @ResponseBody
+	public String courseList(HttpServletRequest request, HttpServletResponse response){
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        Map<String,Object> res = new HashMap<>();
+
+        String courseIdStr = request.getParameter("courseId");
+        int courseId = Integer.parseInt(courseIdStr);
+
+        boolean success = false;
+
+        if(courseIdStr != null){
+            success = true;
+        }
+
+        Course course = courseBiz.findById(courseId);
+
+        String teacherName = request.getParameter("teacherNameStr");
+        int teacherNameStr = Integer.parseInt(teacherName);
+
+
+
+        return gson.toJson(res);
+
+    }
 }
