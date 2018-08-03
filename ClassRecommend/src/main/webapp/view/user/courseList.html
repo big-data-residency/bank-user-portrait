@@ -34,8 +34,8 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue-light fixed" id="sfind">
-<div class="wrapper">
+<body class="hold-transition skin-blue-light fixed" >
+<div class="wrapper" id="sfind">
 
 				<!-- Main Header -->
 				<header class="main-header">
@@ -785,6 +785,7 @@
 <!-- page script -->
 
 <script src="../../style/bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 
 <script>
 
@@ -803,11 +804,11 @@
 
 
     })
-    
-    		var sfind = new Vue({
+    var studentId='';
+    var Courseinfo = new Vue({
 			el: '#sfind',
 			data: {
-				studentId: ''
+                Login:{},
 			},
 			methods: {
 				GetQueryString(name) {
@@ -821,14 +822,35 @@
 					return context == null || context == "" || context == "undefined" ? "" : context;
 				},
 				getPar() {
-					sfind.studentId = this.GetQueryString('id');
+					studentId = this.GetQueryString('id');
 				},
+                GetLogin(){
+                    $.ajax({
+                        url:'http://localhost:8080/getsession',
+                        type: 'Get',
+                        data : {},
+                        dataType:'json',
+                        success(json){
+                            if(json.success){
+                                // this.Login=json.data;
+                                // alert(this.Login.nickName);
+                            }else{
+                                alert(json.data);
+                                location.href="../login.html";
+                            }
+                        },
+                        error: function (XMLHttpRequest){
+                            alert(("输出错误信息")+XMLHttpRequest.responseText);
+                        }
+                    })
+
+                }
 			},
 
 			mounted() {
 				this.getPar();
+				this.GetLogin();
 			}
-
 		})
 		
 		

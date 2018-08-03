@@ -60,8 +60,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/table_new.css"/>
 
+<<<<<<< HEAD
 <body class="hold-transition skin-blue fixed"  >
 <div class="wrapper" id="adminCourse">
+=======
+<body class="hold-transition skin-blue fixed">
+<div class="wrapper" id="admininfo">
+>>>>>>> dev
 
     <!-- Main Header -->
     <header class="main-header">
@@ -535,79 +540,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
 <script>
-    $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
-            'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : true,
-            'info'        : true,
-            'autoWidth'   : false
-        });
-        //Initialize Select2 Elements
-        $('.select2').select2()
-    })
-    var adminCourse = new Vue({
-        el:'#adminCourse',
-        data:{
-            teachers:[{
-                id:1,
-                name:'aaa',
-            },{
-                id:2,
-                name:'bbb',
-            },{
-                id:3,
-                name:'ccc',
-            }],
-            courseType: document.getElementById("courseType").value,
-            teacherInfo:2,
-            examType:document.getElementById("examType").value,
-            courseName:'',
-            courses:''
-        },
-        methods:{
-            getAllTeachers() {
-                $.ajax({
-                    url:'http://localhost:8080/findAllTeachers',
-                    data:{
-                        teacherIdStr: '',
-                    },
-                    type:'GET',
-                    dataType:'json',
-                    success:function (res) {
-                        if(res.success){
-                            adminCourse.teachers = res.data.teachers
-                        }
-                    }
-                })
-            },
-            findCourse(){
-                $.ajax({
-                    url:'http://localhost:8080/findCourseOfAdmin',
-                    data:{
-                        courseType: adminCourse.courseType,
-                        teacherInfo: teacherInfo,
-                        examType: adminCourse.examType,
-                        courseName: adminCourse.courseName
-                    },
-                    type:'GET',
-                    dataType: 'json',
-                    success:function (res) {
-                        if(res.success){
-                            adminCourse.courses = res.data.courses
-                        }else{
-                            alert("没有查到相关结果")
-                        }
-                    }
-                })
-            }
-        },
-        mounted(){
-            this.getAllTeachers();
-        }
-    })
+
+
+  $(function () {
+      $('#example1').DataTable()
+      $('#example2').DataTable({
+          'paging'      : true,
+          'lengthChange': false,
+          'searching'   : false,
+          'ordering'    : true,
+          'info'        : true,
+          'autoWidth'   : false
+      });
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+  })
+
+
+
 </script>
 
 </body>

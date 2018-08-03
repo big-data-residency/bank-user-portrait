@@ -1369,6 +1369,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 			<script src="../../style/bower_components/raphael/raphael.min.js"></script>
 			<script src="../../style/bower_components/morris.js/morris.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
+
 
 <script>
 				$(function() {
@@ -1486,7 +1488,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <script>
-	var Vue = new Vue({  
+    var studentIdStr='';
+	var Vue = new Vue({
         el: '#classvue',
         data:{
         	
@@ -1500,6 +1503,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             	uploadsnum:'',
             	commentsnum:'',
             }
+
+            Login:{},
         },
         methods:{
             myfun() {
@@ -1578,8 +1583,46 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 // top.location.href = "lesson/"+this.MyID;
             }
         },
+        getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+            var context = "";
+            if (r != null)
+                context = r[2];
+            reg = null;
+            r = null;
+            return context == null || context == "" || context == "undefined" ? "" : context;
+        },
+        getPar(){
+            studentIdStr = this.getQueryString('id');
+        },
+        GetLogin(){
+            $.ajax({
+                url: 'http://localhost:8080/getsession',
+                type: 'GET',
+                data: {},
+                dataType: 'json',
+                success(json) {
+                    if (json.success) {
+                        this.Login = json.data;
+                         alert(this.Login.nickName);
+                    } else {
+                        alert(json.data);
+                        location.href="../login.html";
+                    }
+                },
+                error: function (XMLHttpRequest) {
+                    alert("输出错误信息" + XMLHttpRequest.responseText);
+                }
+            });
+        },
+
+
         mounted(){
         	// this.myfun();
+            this.GetLogin();
+            this.getPar();
+
         }
            
     })
