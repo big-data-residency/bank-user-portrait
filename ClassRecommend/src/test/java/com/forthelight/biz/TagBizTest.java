@@ -25,10 +25,15 @@ public class TagBizTest {
     public void tagComment() {
         Random random = new Random();
         List<Tag> tagList = tagDao.findAll();
-        for (int i = 1; i < 354; i += random.nextInt(4) + 1) {
-            StudentCommentCourse comment = studentCommentCourseDao.findById(i);
-            Tag tag = tagList.get(random.nextInt(tagList.size()));
-            tagDao.tagComment(tag, comment);
+        List<StudentCommentCourse> studentCommentList = studentCommentCourseDao.findAll();
+        if(tagList != null && studentCommentList != null) {
+            for (StudentCommentCourse studentComment : studentCommentList) {
+                int times = random.nextInt(tagList.size());
+                for (int i = 0; i < times; i++) {
+                    Tag tag = tagList.get(random.nextInt(tagList.size()));
+                    tagDao.tagComment(tag, studentComment);
+                }
+            }
         }
     }
 }

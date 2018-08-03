@@ -15,4 +15,5 @@ public interface FileDao {
 	int uploadsNumberOfCourse(int courseId);
 
 	int insert(File file);
+
 }

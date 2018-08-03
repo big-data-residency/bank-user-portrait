@@ -108,7 +108,7 @@
     </div>
 </div>
 <!--</div>-->
-
+</div>
 <!--Inspiration from: http://ertekinn.com/loginsignup/-->
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
@@ -140,8 +140,7 @@
                     dataType: 'json',
                     success(res) {
                         if (res.success) {
-                           // location.href = "user/starter.html";
-
+                           location.href = "user/starter.html";
                         }
                         else {
                             alert(res.data);
