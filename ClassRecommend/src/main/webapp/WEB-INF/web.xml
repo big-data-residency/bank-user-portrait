@@ -42,6 +42,7 @@
         <url-pattern>*.js</url-pattern>
         <url-pattern>*.html</url-pattern>
         <url-pattern>*.ttf</url-pattern>
+		<url-pattern>*.TTF</url-pattern>
         <url-pattern>*.woff2</url-pattern>
         <url-pattern>*.woff</url-pattern>
         <url-pattern>*.jpg</url-pattern>
@@ -58,7 +59,14 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
-
+	<error-page>
+		<error-code>404</error-code>
+		<location>/view/user/404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/view/user/500.html</location>
+	</error-page>
 
 	<servlet-mapping>
 		<servlet-name>spring</servlet-name>
