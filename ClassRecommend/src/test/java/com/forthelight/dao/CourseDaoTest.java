@@ -141,11 +141,4 @@ public class CourseDaoTest {
         List<Course> courses = courseDao.selectByKeyword("数据");
         System.out.println(courses.get(0).getCourseName());
     }
-
-    @Test
-    public void findCourseOfAdmin(){
-        List<Course> courses = courseDao.findCourseOfAdmin("A","袁晓洁",1,"数据库");
-        System.out.print(courses.get(0).getCourseName());
-    }
-
 }

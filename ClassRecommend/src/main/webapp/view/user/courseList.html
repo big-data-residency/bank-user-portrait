@@ -34,7 +34,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue-light fixed sidebar-mini" >
+<body class="hold-transition skin-blue-light fixed" >
 <div class="wrapper" id="sfind">
 
 				<!-- Main Header -->
@@ -43,7 +43,7 @@
 					<!-- Logo -->
 					<a href="#" class="logo navbar-fixed-top">
 						<!-- mini logo for sidebar mini 50x50 pixels -->
-						<span class="logo-mini"><b>E</b>-h</span>
+						<span class="logo-mini"><b>H</b>elper</span>
 						<!-- logo for regular state and mobile devices -->
 						<span class="logo-lg"><b>EAMIS-</b>Helper</span>
 					</a>
@@ -785,7 +785,6 @@
 <!-- page script -->
 
 <script src="../../style/bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 
 <script>
 
@@ -804,10 +803,11 @@
 
 
     })
-    var studentId='';
-    var Courseinfo = new Vue({
+
+var sfind = new Vue({
 			el: '#sfind',
 			data: {
+				studentId: '',
                 Login:{},
 			},
 			methods: {
@@ -822,7 +822,7 @@
 					return context == null || context == "" || context == "undefined" ? "" : context;
 				},
 				getPar() {
-					studentId = this.GetQueryString('id');
+					sfind.studentId = this.GetQueryString('id');
 				},
                 GetLogin(){
                     $.ajax({
@@ -832,8 +832,8 @@
                         dataType:'json',
                         success(json){
                             if(json.success){
-                                // this.Login=json.data;
-                                // alert(this.Login.nickName);
+                                this.Login=json.data;
+                                alert(this.Login.nickName);
                             }else{
                                 alert(json.data);
                                 location.href="../login.html";
@@ -851,6 +851,7 @@
 				this.getPar();
 				this.GetLogin();
 			}
+
 		})
 		
 		

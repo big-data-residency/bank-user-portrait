@@ -1,13 +1,9 @@
 package com.forthelight.controller;
 
-import com.forthelight.biz.CourseBiz;
-import com.forthelight.biz.FileBiz;
-import com.forthelight.biz.StudentBiz;
-import com.forthelight.domain.File;
 import com.forthelight.util.ImageSize;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,19 +14,13 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
 public class FileController {
-    @Autowired
-    FileBiz fileBiz;
-    @Autowired
-    StudentBiz studentBiz;
-    @Autowired
-    CourseBiz courseBiz;
 
     @RequestMapping(value = "/avatar_upload", produces = "application/json;charset=UTF-8")
     @ResponseBody
@@ -45,8 +35,8 @@ public class FileController {
                 ImageSize imageSize = gson.fromJson(request.getParameter("avatar_data"), ImageSize.class);
                 BufferedImage image = ImageIO.read(file.getInputStream()).getSubimage(imageSize.getIntX(), imageSize.getIntY(), imageSize.getIntHeight(), imageSize.getIntHeight());
                 // 生成目标文件夹
-                String dstPath = request.getServletContext().getRealPath("images" + java.io.File.separator + "avatar");
-                java.io.File dstFolder = new java.io.File(dstPath);
+                String dstPath = request.getServletContext().getRealPath("images" + File.separator + "avatar");
+                File dstFolder = new File(dstPath);
                 if (!dstFolder.exists()) {
                     dstFolder.mkdirs();
                     rsp.put("mkdirs", true);
@@ -56,19 +46,22 @@ public class FileController {
                 // 生成目标空文件
                 String dstFileName = fileName.substring(0, fileName.lastIndexOf("."));
                 String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-                java.io.File dstFile = new java.io.File(new java.io.File(dstPath) + java.io.File.separator + dstFileName + "." + fileExt);
+                File dstFile = new File(new File(dstPath) + File.separator + dstFileName + "." + fileExt);
                 // 拷贝文件
                 ImageIO.write(image, fileExt, dstFile);
 
                 rsp.put("success", true);
                 rsp.put("result", "../../images/avatar/" + file.getOriginalFilename());
             } else {
-                rsp.put("success", false);
+                rsp.put("success",false);
                 rsp.put("errorInfo", "empty file name");
             }
         } else {
             rsp.put("success", false);
         }
+
+
+
 
 
         return gson.toJson(rsp);
@@ -80,33 +73,35 @@ public class FileController {
         Map<String, Object> rsp = new HashMap<>();
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-        String title = request.getParameter("title");
-        String description = request.getParameter("notes");
 
-
-        if (files != null && files.length > 0) {
-            for (MultipartFile file : files) {
-                if (file != null && file.getSize() > 0) {
-                    String dstPath = request.getServletContext().getRealPath("files");
-                    if (fileBiz.saveFile(dstPath, file)) {
-
-                        File saveFile = new File();
-                        saveFile.setFilePath(dstPath);
-                        saveFile.setFileName(file.getOriginalFilename());
-                        saveFile.setDownloadNum(0);
-                        saveFile.setDescription(description);
-                        saveFile.setTitle(title);
-                        saveFile.setUpdateTime(new Timestamp(System.currentTimeMillis()));
-//                        Student student = studentBiz.findById(stduentId);
-//                        saveFile.setStudent(studentId);
-//                        Course course = courseBiz.findById(courseId);
-//                        saveFile.setCourse(course);
-                        fileBiz.insert(saveFile);
+        if(files != null && files.length > 0){
+            for(MultipartFile file: files){
+                if(file!=null && file.getSize() > 0){
+                    String fileName = file.getOriginalFilename();
+                    if(fileName != null) {
+                        // 生成目标文件夹
+                        String dstPath = request.getServletContext().getRealPath("files");
+                        File dstFolder = new File(dstPath);
+                        if (!dstFolder.exists()) {
+                            dstFolder.mkdirs();
+                            rsp.put("mkdirs", true);
+                        } else {
+                            rsp.put("mkdirs", false);
+                        }
+                        // 生成目标空文件
+                        File dstFile = new File(new File(dstPath) + File.separator + fileName);
+                        FileUtils.copyToFile(file.getInputStream(), dstFile);
+                        rsp.put("code", 200);
                         rsp.put("success", true);
                     }
+                } else {
+                    rsp.put("code", 404);
+                    rsp.put("success", false);
+                    rsp.put("errorInfo", "empty file");
                 }
             }
         } else {
+            rsp.put("code", 404);
             rsp.put("success", false);
             rsp.put("errorInfo", "no file accept");
         }
