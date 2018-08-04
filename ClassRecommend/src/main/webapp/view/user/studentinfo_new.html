@@ -414,7 +414,6 @@ desired effect
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 <script>
   var studentIdStr = '';
   var StudentComment='';
@@ -424,6 +423,7 @@ desired effect
       comments:''
     }
   });
+
   var studentInfo = new Vue({
   el:'#studentInfo',
   data:{
@@ -443,11 +443,13 @@ desired effect
       },
       getPar() {
           studentIdStr = this.getQueryString('id');
+          alert(1)
+
       },
       getStudentInfo() {
-          console.log(2)
+          alert(2)
           $.ajax({
-              url: 'http://localhost:8080/ClassRecommend/studentInfo',
+              url: 'http://localhost:8080/studentInfo',
               type: 'GET',
               data: {
                   studentIdStr: studentIdStr,
@@ -461,13 +463,12 @@ desired effect
                   }
               }
           })
-          alert(3)
       },
   },
 
   mounted(){
-      this.getPar(),
-      this.getStudentInfo()
+      this.getPar();
+      this.getStudentInfo();
     },
 })
   // var studentIdenti = new Vue({
@@ -507,7 +508,7 @@ $('#editStudentInfo').submit(function (e) {
   e.preventDefault();
   $('#studentIdStr').attr("value",studentIdStr);
   $.ajax({
-    url:'http://localhost:8080/ClassRecommend/editStudentInfo',
+    url:'http://localhost:8080/editStudentInfo',
     data:$('#editStudentInfo').serialize(),
     type:'POST',
     success:function (res) {

@@ -895,4 +895,46 @@ public class CourseController {
 
         return gson.toJson(res);
     }
+
+
+    @RequestMapping(value = "/getTop10Course", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String getTop10Course(String teacherName, String courseName, String passType, String examType, HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Map<String, Object> res = new HashMap<>();
+
+        List<Course> courses = courseBiz.orderByLike();
+
+        JsonArray top10Courses = new JsonArray();
+
+        for(int i=0;i<1;i++){
+            Course course = courses.get(i);
+            JsonObject topCourse = new JsonObject();
+
+            topCourse.addProperty("courseCode",course.getCourseCode());
+            topCourse.addProperty("courseName",course.getCourseName());
+            topCourse.addProperty("studentNumber",course.getStudentNumber());
+            topCourse.addProperty("likeNumber",courseBiz.likeNumber(course.getId()));
+
+            top10Courses.add(topCourse);
+        }
+
+        boolean success = false;
+        if(top10Courses.size() > 0){
+            success = true;
+        }
+
+        Map<String,Object> data = new HashMap<>();
+        data.put("courses",top10Courses);
+
+        res.put("data",data);
+        res.put("success",success);
+
+        return gson.toJson(res);
+    }
+
 }

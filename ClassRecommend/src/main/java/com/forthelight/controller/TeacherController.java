@@ -570,4 +570,45 @@ public class TeacherController {
 
         return gson.toJson(res);
     }
+
+    @RequestMapping(value = {"/getTop3Teacher"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findTop3Teacher(HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        boolean success = false;
+
+        List<Teacher> teachers = teacherBiz.OrderByLike();
+        JsonArray top3Teachers = new JsonArray();
+        for(int i=0;i<1;i++){
+            Teacher teacher = teachers.get(i);
+            JsonObject topTeacher = new JsonObject();
+
+            topTeacher.addProperty("teacherName",teacher.getTeacherName());
+            topTeacher.addProperty("email",teacher.getEmail());
+            topTeacher.addProperty("level",teacher.getLevel());
+            topTeacher.addProperty("likeNumber",teacherBiz.likeNumber(teacher.getId()));
+
+            top3Teachers.add(topTeacher);
+
+        }
+
+        if(top3Teachers.size() > 0){
+            success = true;
+        }
+
+        Map<String,Object> res = new HashMap<>();
+        Map<String,Object> data = new HashMap<>();
+        data.put("teachers",top3Teachers);
+
+        res.put("data",data);
+        res.put("success",success);
+
+        return gson.toJson(res);
+
+    }
 }
