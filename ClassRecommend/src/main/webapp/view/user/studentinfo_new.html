@@ -487,7 +487,11 @@ desired effect
   var studentInfo = new Vue({
   el:'#studentInfo',
   data:{
-    studentInfo:'',
+    studentInfo:{
+        student:{},
+        college:{},
+        major:{}
+    },
     // Login:{},
   },
   methods: {
