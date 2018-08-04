@@ -5,6 +5,7 @@ import com.forthelight.biz.CourseTimeBiz;
 import com.forthelight.biz.StudentBiz;
 import com.forthelight.biz.StudentCommentCourseBiz;
 import com.forthelight.domain.CourseTime;
+import com.forthelight.domain.StudentCommentCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.forthelight.domain.Course;
 
@@ -95,7 +96,7 @@ public class CourseSelect {
                 }
 
                 //检查选择课程是否有冲突
-                if(!checkCourseTime1(temp_course.getId())){
+                if(!checkCourseTime1(temp_course.getId(),1)){
                     success=false;
                     return false;
                 }
@@ -106,12 +107,17 @@ public class CourseSelect {
 
         //获取应该上的课
         shouldCheckCourses = courseBiz.selectByShouldCheck(stu_Grade,stu_College,stu_Major);
-        checkShouldCheckCourses();
+        //添加认为必须选的课程
+        checkShouldCheckLessons();
 
         return true;
     }
+    public boolean Recommend(){
+        
+        return true;
+    }
 
-    public boolean checkCourseTime1(int courseId){
+    public boolean checkCourseTime1(int courseId,int type){
         List<CourseTime> time;
         time = courseTimeBiz.findByClassId(courseId);
         for(int i=0;i<time.size();i++){
@@ -119,7 +125,11 @@ public class CourseSelect {
                 if(Time[time.get(i).getLessonDay()-1][x]==-1)
                     Time[time.get(i).getLessonDay()-1][x]=courseId;
                 else{
-                    courseCrash(courseId,Time[time.get(i).getLessonDay()-1][x]);
+                    if(type==1) {
+                        courseCrash(courseId, Time[time.get(i).getLessonDay() - 1][x]);
+                    }else if(type == 2){
+                        courseCover(courseId,Time[time.get(i).getLessonDay()-1][x]);
+                    }
                     return false;
                 }
             }
@@ -130,10 +140,17 @@ public class CourseSelect {
         Course course1,course2;
         course1=courseBiz.findById(i);
         course2=courseBiz.findById(j);
-        Worry+="您所选择的课程"+course1.getCourseName()+"和"+course2.getCourseName()+"冲突!\n";
+        Worry+="警告：您所选择的课程"+course1.getCourseName()+"和"+course2.getCourseName()+"冲突!\n";
+    }
+    public void courseCover(int i,int j){
+        Course course1,course2;
+        course1=courseBiz.findById(i);
+        course2=courseBiz.findById(j);
+        Worry+="提示：您所选择的课程"+course2.getCourseName()+"挤掉了课程"+course1.getCourseName()+"!\n";
+
     }
 
-    public void checkShouldCheckCourses(){
+    public void checkShouldCheckLessons(){
        Iterator<Course> iterator = shouldCheckCourses.iterator();
        while(iterator.hasNext()){
            Course course = iterator.next();
@@ -150,20 +167,40 @@ public class CourseSelect {
                continue;
            }
 
-           checkCourseTime2(course.getCourseName());
+           checkShouldCheckCourses(course.getCourseName());
        }
     }
-    public void checkCourseTime2(String courseName){
+    public void checkShouldCheckCourses(String courseName){
         List<Course> givenCourses = courseBiz.findByCourseName(courseName);
+        Course givencourse;
+        float max=0;
+        int maxi=0;
         if(givenCourses.size()>1){
-
+            float[] score = new float[20];
+            for(int i=0;i<givenCourses.size();i++){
+                score[i]=getShouldCheckCourseScore(givenCourses.get(i).getId());
+                if(score[i]>=max)maxi=i;
+            }
+            givencourse = givenCourses.get(maxi);
+        }else{
+            givencourse = givenCourses.get(0);
         }
 
+        if(checkCourseTime1(givencourse.getId(),2)){
+            checkedCourses.add(givencourse);
+        }
     }
-    public void getShouldCheckCourseScore(){
-        if(preScoreRequest){
-
+    public float getShouldCheckCourseScore(int courseId){
+        List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
+        float grade=0;
+        for(int i=0;i<comments.size();i++){
+            grade+=comments.get(i).getGradeScore()*0.2;
+            grade+=comments.get(i).getBearScore()*0.05;
+            grade+=comments.get(i).getInterestingScore()*0.05;
+            grade+=comments.get(i).getEasyScore()*0.05;
+            grade+=comments.get(i).getKnowledgeScore()*0.05;
         }
+        return grade;
     }
     public void checkifCrash(){
         hasD=hasE=0;
