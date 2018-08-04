@@ -63,4 +63,5 @@ public interface CourseBiz {
 
     List<Course> selectByShouldCheck(int Grade, int College, int Major);
 
+    List<Course> selectByRecommendCourse(int Grade,int College, int Major);
 }

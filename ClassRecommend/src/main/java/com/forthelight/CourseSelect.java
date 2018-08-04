@@ -69,8 +69,8 @@ public class CourseSelect {
         success=true;
         checkedCourses = new ArrayList<Course>();
 
-        for(int i=0;i<7;i++)
-            for(int j=0;j<14;j++)
+        for(int i=0;i<5;i++)
+            for(int j=0;j<2;j++)
                 Time[i][j]=-1;
         hasD=hasE=0;
 
@@ -96,7 +96,7 @@ public class CourseSelect {
                 }
 
                 //检查选择课程是否有冲突
-                if(!checkCourseTime1(temp_course.getId(),1)){
+                if(!checkCourseTime(temp_course.getId(),1)){
                     success=false;
                     return false;
                 }
@@ -112,26 +112,30 @@ public class CourseSelect {
 
         return true;
     }
+
     public boolean Recommend(){
-        
+        List<Course> recommendCourses = courseBiz.selectByRecommendCourse(stu_Grade,stu_College,stu_Major);
+
         return true;
     }
 
-    public boolean checkCourseTime1(int courseId,int type){
+    public boolean checkCourseTime(int courseId, int type){
         List<CourseTime> time;
         time = courseTimeBiz.findByClassId(courseId);
+        int lesson=0;
         for(int i=0;i<time.size();i++){
-            for(int x=time.get(i).getStartLesson()-1;x<time.get(i).getEndLesson();x++){
-                if(Time[time.get(i).getLessonDay()-1][x]==-1)
-                    Time[time.get(i).getLessonDay()-1][x]=courseId;
-                else{
-                    if(type==1) {
-                        courseCrash(courseId, Time[time.get(i).getLessonDay() - 1][x]);
-                    }else if(type == 2){
-                        courseCover(courseId,Time[time.get(i).getLessonDay()-1][x]);
-                    }
-                    return false;
+            if(time.get(i).getStartLesson()<5)
+                lesson=0;
+            else lesson=1;
+            if(Time[time.get(i).getLessonDay()-1][lesson]==-1)
+                Time[time.get(i).getLessonDay()-1][lesson]=courseId;
+            else{
+                if(type==1){
+                    courseCrash(courseId,Time[time.get(i).getLessonDay()-1][lesson]);
+                }else if(type==2){
+                    courseCover(courseId,Time[time.get(i).getLessonDay()-1][lesson]);
                 }
+                return false;
             }
         }
         return true;
@@ -186,7 +190,7 @@ public class CourseSelect {
             givencourse = givenCourses.get(0);
         }
 
-        if(checkCourseTime1(givencourse.getId(),2)){
+        if(checkCourseTime(givencourse.getId(),2)){
             checkedCourses.add(givencourse);
         }
     }

@@ -154,4 +154,9 @@ public class CourseBizImpl implements CourseBiz {
         return null;
     }
 
+    @Override
+    public List<Course> selectByRecommendCourse(int Grade,int College, int Major){
+        return null;
+    }
+
 }
