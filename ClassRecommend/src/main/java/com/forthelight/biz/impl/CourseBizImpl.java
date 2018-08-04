@@ -2,11 +2,14 @@ package com.forthelight.biz.impl;
 
 import com.forthelight.biz.CourseBiz;
 import com.forthelight.dao.CourseDao;
+import com.forthelight.dao.StudentCommentCourseDao;
 import com.forthelight.domain.Course;
+import com.forthelight.domain.StudentCommentCourse;
 import com.forthelight.domain.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,6 +18,8 @@ public class CourseBizImpl implements CourseBiz {
 
     @Autowired
     private CourseDao courseDao;
+    @Autowired
+    private StudentCommentCourseDao studentCommentCourseDao;
 
     @Override
     public Course findById(int id) {
@@ -150,8 +155,35 @@ public class CourseBizImpl implements CourseBiz {
     }
 
     @Override
-    public List<Course> selectByShouldCheck(int Grade, int College, int Major) {
-        return null;
+    public List<String> selectByShouldCheck(int grade, int collegeId, int majorId) {
+
+        List<Course> courses = courseDao.findRecommendCourse(collegeId,majorId);
+
+        List<String> recommendCourseName = new ArrayList<>();
+
+        for(Course course:courses){
+
+            List<StudentCommentCourse> comments = studentCommentCourseDao.findByCourseId(course.getId());
+
+            int total = comments.size();
+            int recommendGrade = 0;
+
+            for(StudentCommentCourse comment : comments){
+                if(comment.getRecommendGrade() == grade){
+                    recommendGrade++;
+                }
+            }
+
+            double totalDouble = (double) total;
+            double recommendGradeDouble =(double) recommendGrade;
+
+            if(recommendGradeDouble/totalDouble >0.8){
+                recommendCourseName.add(course.getCourseName());
+            }
+
+        }
+
+        return recommendCourseName;
     }
 
 }
