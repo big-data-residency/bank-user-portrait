@@ -163,8 +163,21 @@ public class CourseDaoTest {
 
     @Test
     public  void findByCourseAndTeacher(){
-        List<Course> courses = courseDao.findByCourseAndTeacher(2,"数据库","袁晓洁");
+        List<Course> courses = courseDao.findByCourseAndTeacher(2,null,"袁晓洁");
         System.out.print(courses);
     }
+
+    @Test
+    public void findByTeacherNameAndCourseName(){
+        Course course = courseDao.findByTeacherNameAndCourseName("袁晓洁","数据库");
+        System.out.print(course);
+    }
+
+    @Test
+    public void  findByTeacherCourseExamPass(){
+        List<Course> course = courseDao.findByTeacherCourseExamPass(null,null,-1,-1);
+        System.out.print(course);
+    }
+
 
 }

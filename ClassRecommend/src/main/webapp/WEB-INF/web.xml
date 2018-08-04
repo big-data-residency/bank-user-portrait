@@ -47,6 +47,7 @@
         <url-pattern>*.woff</url-pattern>
         <url-pattern>*.jpg</url-pattern>
         <url-pattern>*.png</url-pattern>
+		<url-pattern>*.pdf</url-pattern>
     </servlet-mapping>
 
 	<servlet>

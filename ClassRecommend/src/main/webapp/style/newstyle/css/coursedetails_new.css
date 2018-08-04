@@ -19,8 +19,9 @@
 .rating-stars ul li a {
         font-size: 30px;
 }
-#settings > form > div > div > label > p{
+#settings > form > div > div > label{
     font-size: 16px;
     padding-right: 20px;
+    padding-top: 3px;
 }
 

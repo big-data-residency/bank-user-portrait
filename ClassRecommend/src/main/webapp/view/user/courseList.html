@@ -425,11 +425,11 @@
         <div class=" newsletter" style="margin-top: 60px;">
             <div class="social">
                 <ul>
-                    <li><a @click="findList()" href="#" class="link dblue" target="_parent"><span >A</span></a></li>
-                    <li><a @click="findList()" href="#" class="link lblue" target="_parent"><span >B</span></a></li>
-                    <li><a @click="findList()" href="#" class="link orange" target="_parent"><span>C</span></a></li>
-                    <li><a @click="findList()" href="#" class="link yellow" target="_parent"><span >D</span></a></li>
-                    <li><a @click="findList()" href="#" class="link dgreen" target="_parent"><span >E</span></a></li>
+                    <li><a  href="#" class="link dblue" ><span onclick="findCourseByType('A')" >A</span></a></li>
+                    <li><a  href="#" class="link lblue" ><span onclick="findCourseByType('B')">B</span></a></li>
+                    <li><a  href="#" class="link orange"><span onclick="findCourseByType('C')">C</span></a></li>
+                    <li><a  href="#" class="link yellow"><span onclick="findCourseByType('D')">D</span></a></li>
+                    <li><a  href="#" class="link dgreen"><span onclick="findCourseByType('E')">E</span></a></li>
                 </ul>
             </div>
         </div>
@@ -460,7 +460,7 @@
 >>>>>>> dev
 =======
 
-                                            <input type="text" name="message" placeholder="输入课程编码" class="form-control">
+                                            <input type="text" id="courseCode" name="message" placeholder="输入课程编码" class="form-control">
 
 >>>>>>> dev
                                         </div>
@@ -469,28 +469,28 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>授课老师</label>
-                                        <select @change="findCourse" name="teacherName" v-model="value.teacherName" id="teacherInfo" class="form-control select2" style="width: 100%;">
+                                        <select name="teacherName" onchange="findCourseByTeacherName(this)" id="teacherName" class="form-control select2" style="width: 100%;">
 
-                                                        <option v-for="teacher in teachers" v-if="index == 0" selected="selected">{{teacher.teacherName}}</option>
-                                                        <option v-else>{{teacher.teacherName}}</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>课程名称</label>
-                                        <select name="courseName" v-model="value.courseName" id="courseInfo" class="form-control select2" style="width: 100%;">
-                                            <option v-for="course in courses" v-if="index == 0" selected="selected">{{course.courseName}}</option>
-                                            <option v-else>{{course.courseName}}</option>
+                                        <select name="courseName" onchange="findTeacherByCourseName(this)" id="courseName" class="form-control select2" style="width: 100%;">
+
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>考核方式</label>
-                                        <select @change="chooseenvaluation(value)" name="examType" v-model="value.envaluation" id="examenvaluation" class="form-control select2" style="width: 100%;">
-                                            <option v-for="envaluation in courses" v-if="index == 0" selected="selected">{{course.envaluation}}</option>
-                                            <option v-else>{{course.envaluation}}</option>
+                                        <select name="examType" id="examType" class="form-control select2" style="width: 100%;">
+                                            <option selected="selected" >全部</option>
+                                            <option>开卷</option>
+                                            <option>闭卷</option>
+                                            <option>论文结课</option>
+                                            <option>其他</option>
                                         </select>
                                     </div>
                                 </div>
@@ -499,15 +499,12 @@
                                 <div class="col-md-6" style="text-align: right;font-size: 20px;">
                                     <div  class="form-group">
                                         <label>是否通过制</label>
-
-                                            <input type="checkbox" class=" flat-red " checked v-model="picked" value="pass" @click="selectPass">
-                                        <!--<span>{{picked}}</span>-->
-
+                                            <input type="checkbox" class=" flat-red " id="passType">
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="text-align: left;font-size: 18px;">
                                     <div class="form-group">
-                                        <button @click="findCourse()" class="btn btn-primary" name="search" >
+                                        <button id="searchCourse" class="btn btn-primary" name="search" >
                                             <i class="fa fa-fw fa-search"></i>
                                             搜索
                                         </button>
@@ -532,26 +529,9 @@
                                     <th scope="col">通过制</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td>{{course.courseNum}}</td>
-                                    <td>{{course.courseName}}</td>
-                                    <td>{{teacher.teacherName}}</td>
-                                    <td> {{course.examType}}</td>
-                                    <td>{{course.passType}}</td>
-                                </tr>
-
+                                <tbody id="courseList">
 
                                 </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
-                                </tr>
-                                </tfoot>
                             </table>
                         </div>
                         <!-- /.box-body -->
@@ -605,65 +585,219 @@
         //Initialize Select2 Elements
         $('.select2').select2();
 
+        $.ajax({
+            url:'http://localhost:8080/findAllCourse',
+            type:'GET',
+            beforeSend: function () {
+                $('#courseList').html('')
+            },
+            data:{},
+            success:function (res) {
+                if (res.success) {
+                    for (var course of res.data.courses) {
+                        console.log(course)
+
+                        $('#courseList').append(`<tr>
+                                    <td>${course.courseCode}</td>
+                                    <td>${course.courseName}</td>
+                                    <td>${course.teacherName }</td>
+                                    <td>${course.examForm}</td>
+                                    <td>${course.passingForm}</td>
+                                    <td>
+                                        <a href="#">评价</a>
+                                    </td>
+                                </tr>`)
+                    }
+                }
+            }
+        })
+
+        $.ajax({
+            url: 'http://localhost:8080/findAllTeacherAndCourse',
+            data: {
+                studentIdStr: studentId,
+            },
+            type: 'GET',
+            success: function (res) {
+                if (res.success) {
+
+                    for (var teacher of res.data.teachers) {
+
+                        $('#teacherName').append(`<option> ${ teacher.teacherName } </option>`)
+                    }
+
+                    for(var course of res.data.courses){
+                        $('#courseName').append(`<option>${ course.courseName }</option>`)
+                    }
+                }
+            },
+        })
+
 
     })
     var studentId='';
-    var Courseinfo = new Vue({
-			el: '#sfind',
-			data: {
-                Login:{},
-			},
-			methods: {
-				GetQueryString(name) {
-					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-					var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-					var context = "";
-					if(r != null)
-						context = r[2];
-					reg = null;
-					r = null;
-					return context == null || context == "" || context == "undefined" ? "" : context;
-				},
-				getPar() {
-					studentId = this.GetQueryString('id');
-				},
-                GetLogin(){
-                    $.ajax({
-                        url:'http://localhost:8080/getsession',
-                        type: 'Get',
-                        data : {},
-                        dataType:'json',
-                        success(json){
-                            if(json.success){
-                                // this.Login=json.data;
-                                // alert(this.Login.nickName);
-                            }else{
-                                alert(json.data);
-                                location.href="../login.html";
-                            }
-                        },
-                        error: function (XMLHttpRequest){
-                            alert(("输出错误信息")+XMLHttpRequest.responseText);
-                        }
-                    })
-
-                }
-			},
-
-			mounted() {
-				this.getPar();
-				this.GetLogin();
-			}
-		})
+    // var Courseinfo = new Vue({
+	// 		el: '#sfind',
+	// 		data: {
+    //             Login:{},
+	// 		},
+	// 		methods: {
+	// 			GetQueryString(name) {
+	// 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+	// 				var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+	// 				var context = "";
+	// 				if(r != null)
+	// 					context = r[2];
+	// 				reg = null;
+	// 				r = null;
+	// 				return context == null || context == "" || context == "undefined" ? "" : context;
+	// 			},
+	// 			getPar() {
+	// 				studentId = this.GetQueryString('id');
+	// 			},
+    //             GetLogin(){
+    //                 $.ajax({
+    //                     url:'http://localhost:8080/getsession',
+    //                     type: 'Get',
+    //                     data : {},
+    //                     dataType:'json',
+    //                     success(json){
+    //                         if(json.success){
+    //                             // this.Login=json.data;
+    //                             // alert(this.Login.nickName);
+    //                         }else{
+    //                             alert(json.data);
+    //                             location.href="../login.html";
+    //                         }
+    //                     },
+    //                     error: function (XMLHttpRequest){
+    //                         alert(("输出错误信息")+XMLHttpRequest.responseText);
+    //                     }
+    //                 })
+    //
+    //             }
+	// 		},
+    //
+	// 		mounted() {
+	// 			this.getPar();
+	// 			this.GetLogin();
+	// 		}
+	// 	})
 		
 		
     if(document.body.scrollWidth < 300){
       document.getElementById('autoDis').style.display = 'none';
     }
-    
-    
-    
-    
+
+    function findCourseByType(obj) {
+        $.ajax({
+            url:'http://localhost:8080/findByType',
+            data:{
+                courseType:obj
+            },
+            type:'GET',
+            beforeSend: function () {
+                $('#courseList').html('')
+            },
+            success:function (res) {
+                if(res.success){
+                    for(var course of res.data.courses ){
+                        $('#courseList').append(`<tr>
+                                    <td>${ course.courseCode }</td>
+                                    <td>${ course.courseName }</td>
+                                    <td>${ course.teacherName }</td>
+                                    <td>${ course.examForm }</td>
+                                    <td>${ course.passingForm }</td>
+                                    <td>
+                                        <a href="#">评价</a>
+                                    </td>
+
+                                <tr>`)
+                    }
+                }else {
+                    alert("没有查找到相关课程，请重试！")
+                }
+            }
+        })
+    }
+
+    function findCourseByTeacherName(obj) {
+        $.ajax({
+            url: 'http://localhost:8080/findByTeacherName',
+            data: {
+                teacherName: obj.value,
+            },
+            type: 'GET',
+            beforeSend: function () {
+                $('#courseName').html('')
+            },
+            success: function (res) {
+                if (res.success) {
+
+                    for (var course of res.data.courses)
+                        $('#courseName').append(`<option>${ course.courseName }</option>`)
+                }
+            }
+        })
+    }
+
+    function findTeacherByCourseName(obj) {
+        $.ajax({
+            url:'http://localhost:8080/findByCourseName',
+            data:{
+                courseName:obj.value,
+            },
+            type:'GET',
+            beforeSend:function () {
+                $('#teacherName').html('')
+            },
+            success:function (res) {
+                if(res.success){
+                    for( var teacher of res.data.teachers){
+                        console.log(teacher.teacherName)
+                        $('#teacherName').append(`<option>${ teacher.teacherName }</option>`)
+                    }
+                }
+            }
+        })
+    }
+
+    $('#searchCourse').click(function () {
+        $.ajax({
+            url:'http://localhost:8080/findByCourseCode',
+            data:{
+                courseCode:document.getElementById("courseCode").value,
+                teacherName: document.getElementById("teacherName").value,
+                courseName: document.getElementById("courseName").value,
+                passType:document.getElementById("passType").checked,
+                examType: document.getElementById("examType").value
+            },
+            type:'GET',
+            beforeSend:function () {
+                $('#courseList').html('')
+            },
+            success:function (res) {
+                if(res.success){
+                        for(var course of res.data.courses ){
+                            $('#courseList').append(`<tr>
+                                    <td>${ course.courseCode }</td>
+                                    <td>${ course.courseName }</td>
+                                    <td>${ course.teacherName }</td>
+                                    <td>${ course.examForm }</td>
+                                    <td>${ course.passingForm }</td>
+                                    <td>
+                                        <a href="#">评价</a>
+                                    </td>
+
+                                <tr>`)
+                        }
+
+                }else {
+                    alert("没有查找到相关课程，请重试！")
+                }
+            }
+        })
+    })
     
 </script>
 
@@ -674,132 +808,6 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-
-<script>
-
-    var courseList = new Vue({
-        el: '#courseList',
-        data: {
-            SelectValue:{
-                CourseCode:'',
-                TID:-1,
-                CourseID:-1,
-                ExamType:'',
-            },
-            CourseType:'A',
-            picked: '',
-            teachers: [{
-             id:-1,
-             teacherName:'所有老师'
-            }],
-            courseType: document.getElementById("courseType").value,
-            teacherInfo: '',
-            examType: document.getElementById("examType").value,
-            courseName: '',
-            courses: ''
-            AllTeacehr:{
-                id:-1,
-                TeacherName:'所有老师',
-            }
-        },
-        methods: {
-            GetQueryString(name) {
-                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-                var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-                var context = "";
-                if (r != null)
-                    context = r[2];
-                reg = null;
-                r = null;
-                return context == null || context == "" || context == "undefined" ? "" : context;
-            },
-            selectPass(){
-                alert(this.picked)
-            },
-            searchBtn() {
-                // `this` 在方法里指向当前 Vue 实例
-                alert('Hello ' + this.name + '!')
-                // `event` 是原生 DOM 事件
-                if (event) {
-                    alert(event.target.tagName)
-                }
-            },
-            findTeacher(){
-              //获取所有老师列表，并加入“所有老师”选项
-                $.ajax({
-                    url: 'http://localhost:8080/findCourseOfAdmin',
-                    data:{
-                        TID:'-1',
-
-                    },
-                    type:'GET',
-                    dataType:'json',
-                    success:function (res) {
-                        if(res.success){
-                            courseList.teachers = res.data.teachers
-                        }
-                    }
-                })
-            },
-            findCourse() {
-                //根据老师id获取课程，id=-1时获取所有课程
-                $.ajax({
-                    url: 'http://localhost:8080/findCourseOfAdmin',
-                    data: {
-                        TID:this.SelectValue.TID===-1?'':this.SelectValue.TID,
-                        courseType: courseList.courseType,
-                        teacherInfo: teacherInfo,
-                        examType: courseList.examType,
-                        courseName: courseList.courseName,
-                        courseNum: courseList.courseNum
-                    },
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function (res) {
-                        if (res.success) {
-                            courseList.courses = res.data.courses
-                        } else {
-                            alert("没有查到相关结果")
-                        }
-                    }
-                })
-            },
-
-            findList(){
-
-                $.ajax({
-                    url: 'http://localhost:8080/findCourseOfAdmin',
-                    data: {
-                        TID:this.SelectValue.TID===-1?'':this.SelectValue.TID,
-                        courseType: courseList.courseType,
-                        teacherInfo: teacherInfo,
-                        examType: courseList.examType,
-                        courseName: courseList.courseName,
-                        courseNum: courseList.courseNum
-                    },
-                    type:'GET',
-                    dataType:'json',
-                    success:function (res) {
-                        if(res.success){
-                            courseList.courses = res.course.courses
-                        }
-                    }
-                })
-
-            },
-
-
-
-        },
-
-        mounted() {
-            this.findTeacher();
-            this.findList();
-        }
-    })
-
-</script>
-
 
 
 </body>
