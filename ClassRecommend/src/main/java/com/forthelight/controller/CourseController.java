@@ -76,7 +76,7 @@ public class CourseController {
         Map<Integer, Object> courseTimes = new HashMap<>();
         String[] day = "日,一,二,三,四,五,六".split(",");
         int i = 0;
-        for(CourseTime time: course.getCourseTimes()){
+        for (CourseTime time : course.getCourseTimes()) {
             Map<String, Object> courseTime = new HashMap();
             courseTime.put("startTime", time.getStartLesson());
             courseTime.put("endTime", time.getEndLesson());
@@ -85,19 +85,15 @@ public class CourseController {
             i++;
         }
         Integer likeNumber = courseBiz.likeNumber(courseId);
-        likeNumber = likeNumber == null?0:likeNumber;
+        likeNumber = likeNumber == null ? 0 : likeNumber;
         Integer uploadsNumber = fileBiz.uploadsNumberOfCourse(courseId);
         Integer commentNumber = studentCommentCourseBiz.commentNumberOfCourse(courseId);
 
         // -------------------- 第一个标签数据 --------------------------
-//        Map<String, Integer> TagsNumber = new HashMap<>();
-//        List<Tag> tags = courseBiz.tagList(courseId);
-//        for (Tag tag : tags) {
-//            TagsNumber.put(tag.getTagName(), courseBiz.oneTagNumber(tag.getId(), courseId));
-//        }
+        Map<String, Integer> TagsNumber = tagBiz.sumTagByCourseId(courseId);
 
         // ------------------- 第二个标签栏数据 --------------------------
-        List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
+//        List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
 
         // ----------------------- 传输左边栏、第一二个标签Json数据 ----------------------------------
 
@@ -117,7 +113,7 @@ public class CourseController {
         data.put("likeNumber", likeNumber);
         data.put("uploadsNumber", uploadsNumber);
         data.put("commentNumber", commentNumber);
-//        data.put("TagsNumber", TagsNumber);
+        data.put("TagsNumber", TagsNumber);
         data.put("commentNumber", commentNumber);
 //        expand to commentsMap
 //        data.put("comments", comments);
@@ -632,4 +628,4 @@ public class CourseController {
         return gson.toJson(res);
     }
 
-    }
+}

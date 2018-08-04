@@ -141,13 +141,18 @@
 	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
 	</select>
 	
-	<!--<select id="tagList" parameterType="int" resultMap="Tag" >-->
-	    <!--#select * from tag-->
-	    <!--#where id in ( select tagId from comment_tag where -->
-	    <!--#commentId in ( select id from student_comment_course where-->
-	    <!--#( select id from student_select_course where courseId = #{courseId} -->
-	    <!--#and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0-->
-	<!--</select>-->
+	<select id="tagList" parameterType="int" resultType="Tag" >
+	    select * from tag
+	    where id in (
+			select tagId from comment_tag where
+	    	commentId in (
+				select id from student_comment_course where selectId in (
+					select id from student_select_course where courseId = #{courseId}
+	    			and student_select_course.DeleteStatus = 0
+					) and student_comment_course.deleteStatus = 0
+			) and comment_tag.DeleteStatus = 0
+	) and deleteStatus = 0
+	</select>
 
 
 	<select id="selectByKeyword" resultMap="CourseResultMap">

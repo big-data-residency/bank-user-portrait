@@ -4,6 +4,7 @@ import com.forthelight.domain.StudentCommentCourse;
 import com.forthelight.domain.Tag;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TagBiz {
 	
@@ -20,4 +21,6 @@ public interface TagBiz {
 	int insert(Tag tag);
 
 	int tagComment(Tag tag, StudentCommentCourse studentCommentCourse);
+
+	Map<String, Integer> sumTagByCourseId(Integer courseId);
 }

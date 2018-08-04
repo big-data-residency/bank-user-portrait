@@ -601,7 +601,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </td>
                                             <td class="mailbox-name">
                                                 <a :href="file.filePath + '/' + file.fileName" :download="file.fileName">
-                                                    <p style="vertical-align:middle;;">{{ file.fileName }}</p>
+                                                    <p style="vertical-alimgn:middle;;">{{ file.fileName }}</p>
                                                 </a>
                                             </td>
                                             <td class="mailbox-subject">
@@ -1039,6 +1039,7 @@ immediately after the control sidebar -->
 <script>
     var studentIdStr = '';
     var courseIdStr = '';
+    var tagSum;
     var classDetail = new Vue({
         el: '#classvue',
         data: {
@@ -1085,9 +1086,11 @@ immediately after the control sidebar -->
                             classDetail.courseEndTimes = res.data.courseEndTimes;
                             classDetail.Comments = res.data.comments;
                             classDetail.Basic.tags = res.data.TagsNumber;
+                            tagSum = res.data.TagsNumber;
                             classDetail.classInfo.likeNumber = res.data.likeNumber;
                             classDetail.classInfo.uploadsNumber = res.data.uploadsNumber;
                             classDetail.classInfo.commentsNumber = res.data.commentNumber;
+                            wordCloud();
                         } else {
                             alert("do other thing");
                         }
@@ -1196,7 +1199,7 @@ immediately after the control sidebar -->
                 courseIdStr = this.GetQueryString('courseId');
             },
         },
-        mounted() {
+         mounted() {
             // this.myfun();
             this.getPar();
             this.getInfo();
@@ -1209,133 +1212,57 @@ immediately after the control sidebar -->
 </script>
 <!-- 字符云  -->
 <script>
-    var chart = echarts.init(document.getElementById('wordCloud'));
-    var keywords = {
-        "visualMap": 22199,
-        "continuous": 10288,
-        "contoller": 620,
-        "series": 274470,
-        "gauge": 12311,
-        "detail": 1206,
-        "piecewise": 4885,
-        "textStyle": 32294,
-        "markPoint": 18574,
-        "pie": 38929,
-        "roseType": 969,
-        "label": 37517,
-        "emphasis": 12053,
-        "yAxis": 57299,
-        "name": 15418,
-        "type": 22905,
-        "gridIndex": 5146,
-        "normal": 49487,
-        "itemStyle": 33837,
-        "min": 4500,
-        "silent": 5744,
-        "animation": 4840,
-        "offsetCenter": 232,
-        "inverse": 3706,
-        "borderColor": 4812,
-        "markLine": 16578,
-        "line": 76970,
-        "radiusAxis": 6704,
-        "radar": 15964,
-        "data": 60679,
-        "dataZoom": 24347,
-        "tooltip": 43420,
-        "toolbox": 25222,
-        "geo": 16904,
-        "parallelAxis": 4029,
-        "parallel": 5319,
-        "max": 3393,
-        "bar": 43066,
-        "heatmap": 3110,
-        "map": 20285,
-        "animationDuration": 3425,
-        "animationDelay": 2431,
-        "splitNumber": 5175,
-        "axisLine": 12738,
-        "lineStyle": 19601,
-        "splitLine": 7133,
-        "axisTick": 8831,
-        "axisLabel": 17516,
-        "pointer": 590,
-        "color": 23426,
-        "title": 38497,
-        "formatter": 15214,
-        "slider": 7236,
-        "legend": 66514,
-        "grid": 28516,
-        "smooth": 1295,
-        "smoothMonotone": 696,
-        "sampling": 757,
-        "feature": 12815,
-        "saveAsImage": 2616,
-        "polar": 6279,
-        "calculable": 879,
-        "inactiveOpacity": 4,
-        "activeOpacity": 4,
-        "showPrevBtn": 19,
-        "playIcon": 26,
-        "ellipsis": 19,
-        "gapWidth": 19,
-        "borderColorSaturation": 10,
-        "handleIcon": 2,
-        "handleStyle": 6,
-        "borderType": 1,
-        "constantSpeed": 1,
-        "polyline": 2,
-        "blendMode": 1,
-        "dataBackground": 1,
-        "textAlign": 1,
-        "textBaseline": 1,
-        "brush": 3
-    };
-    var data = [];
-    for (var name in keywords) {
-        data.push({
-            name: name,
-            value: Math.sqrt(keywords[name])
-        })
-    }
-    var maskImage = new Image();
-    var option = {
-        series: [{
-            type: 'wordCloud',
-            sizeRange: [10, 100],
-            rotationRange: [-90, 90],
-            rotationStep: 45,
-            gridSize: 2,
-            shape: 'pentagon',
-            maskImage: maskImage,
-            drawOutOfBound: false,
-            textStyle: {
-                normal: {
-                    color: function () {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160)
-                        ].join(',') + ')';
+    var wordCloud = function () {
+        var chart = echarts.init(document.getElementById('wordCloud'));
+        var keywords = tagSum;
+        var data = [];
+        for (var name in keywords) {
+            data.push({
+                name: name,
+                value: Math.sqrt(keywords[name])
+            })
+        }
+        var maskImage = new Image();
+
+        var option = {
+            series: [{
+                type: 'wordCloud',
+                sizeRange: [10, 100],
+                rotationRange: [-90, 90],
+                rotationStep: 45,
+                gridSize: 2,
+                shape: 'pentagon',
+                maskImage: maskImage,
+                drawOutOfBound: false,
+                textStyle: {
+                    normal: {
+                        color: function () {
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160)
+                            ].join(',') + ')';
+                        }
+                    },
+                    emphasis: {
+                        color: 'red'
                     }
                 },
-                emphasis: {
-                    color: 'red'
-                }
-            },
-            data: data.sort(function (a, b) {
-                return b.value - a.value;
-            })
-        }]
-    };
-    maskImage.onload = function () {
-        option.series[0].maskImage
-        chart.setOption(option);
-    };
-    maskImage.src = '../../style/newstyle/images/wordcloud.png';
+                data: data.sort(function (a, b) {
+                    return b.value - a.value;
+                })
+            }]
+        };
+        maskImage.onload = function () {
+            option.series[0].maskImage
+            chart.setOption(option);
+        };
 
-    window.onresize = function () {
-        chart.resize();
+        maskImage.src = '../../../style/newstyle/images/wordcloud.png';
+
+        window.onresize = function () {
+            chart.resize();
+        }
     }
 </script>
 <!-- Basic 图表 -->

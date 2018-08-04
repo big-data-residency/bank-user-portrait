@@ -15,8 +15,8 @@
 		<association property="course" column="courseId" javaType="Course" autoMapping="true"
 			select="com.forthelight.dao.CourseDao.findById" />
 			
-		<collection property="tags" ofType="Tag" column="tagId" autoMapping="true"
-			select="com.forthelight.dao.TagDao.findByTagId" />
+		<collection property="tags" ofType="Tag" column="id" autoMapping="true"
+			select="com.forthelight.dao.TagDao.findByCommentId" />
 			
 	</resultMap>
 	<select id="findAll" resultMap="StudentCommentCourseResultMap">

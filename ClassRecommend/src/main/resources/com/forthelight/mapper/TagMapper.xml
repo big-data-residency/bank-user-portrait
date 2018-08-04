@@ -16,7 +16,10 @@
 	</resultMap>
 
 
-
+	<select id="findByCommentId" resultMap="TagResultMap">
+		SELECT * FROM tag JOIN comment_tag on tag.id = comment_tag.TagID
+		WHERE comment_tag.DeleteStatus=0 AND tag.DeleteStatus=0 AND comment_tag.CommentID=#{commentId};
+	</select>
 
 	<select id="findById" parameterType="int" resultMap="TagResultMap">
 	    select * from Tag
