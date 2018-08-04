@@ -35,6 +35,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Morris charts -->
     <link rel="stylesheet" href="../../style/bower_components/morris.js/morris.css">
 
+    <link rel="stylesheet" href="../../style/bower_components/select2/dist/css/select2.min.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -229,6 +231,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </li>
 </ul>
 <!-- /.sidebar-menu -->
+                </ul>
             </section>
             <!-- /.sidebar -->
         </aside>
@@ -700,6 +703,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                        <label class="col-sm-2 control-label">推荐选课年级</label>
+                                        <div class="col-sm-10">
+                                        <select id="grade" class="form-control select2" style="width: 100%;">
+                                            <option selected="selected">年级</option>
+                                            <option>大一</option>
+                                            <option>大二</option>
+                                            <option>大三</option>
+                                            <option>大四</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">
                                                 得分区间
                                             </label>
@@ -825,6 +840,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <li class="star" title='WOW!!!' data-value='5'>
                                                         <i class='fa fa-star fa-fw'></i>
                                                     </li>
+                                                </ul>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -841,8 +857,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <label for="commentUploadBtn" class="col-sm-2 control-label"></label>
                                             <button id="commentUpload" type="submit" class="btn btn-danger">提交</button>
                                         </div> -->
+                                    </form>
                                 </div>
-                                </form>
+
 
                             </div>
 
@@ -855,9 +872,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 </div>
                 <!-- /.col -->
+            </section>
         </div>
         <!-- /.row -->
-        </section>
+
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -992,6 +1010,9 @@ immediately after the control sidebar -->
     <!-- Morris.js charts -->
     <script src="../../style/bower_components/raphael/raphael.min.js"></script>
     <script src="../../style/bower_components/morris.js/morris.min.js"></script>
+
+
+    <script src="../../style/bower_components/select2/dist/js/select2.full.min.js"></script>
 
     <!-- iCheck check图标样式 -->
     <script>
@@ -1423,6 +1444,24 @@ immediately after the control sidebar -->
                 })
             })
     </script>
+<script>
+    var grade = document.getElementById('grade').value;
+    var value;
+    if(grade ==="大一"){
+        value = 1;
+
+    }
+    if (grade ==="大二"){
+        value = 2;
+    }
+    if (grade ==="大三"){
+        value = 3;
+    }
+    if (grade ==="大四"){
+        value = 4;
+    }
+
+</script>
 
 </body>
 
