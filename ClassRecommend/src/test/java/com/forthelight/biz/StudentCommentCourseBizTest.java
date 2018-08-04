@@ -34,8 +34,7 @@ public class StudentCommentCourseBizTest {
         for (Student student : studentList) {
             List<Course> courseList = student.getCourses();
             if (courseList != null && courseList.size() != 0) {
-                int commentTimes = random.nextInt(courseList.size());
-                for (int i = 0; i < commentTimes; i++) {
+                for (int i = 0; i < courseList.size(); i++) {
                     StudentCommentCourse studentCommentCourse = new StudentCommentCourse();
                     Course course = courseList.get(random.nextInt(courseList.size()));
                     studentCommentCourse.setCourse(course);
@@ -47,7 +46,7 @@ public class StudentCommentCourseBizTest {
 
                     long timeStamp = System.currentTimeMillis() - random.nextInt(9999999) + 10000;
                     while (timeStamp <= 0) {
-                        timeStamp = System.currentTimeMillis() - random.nextInt(9999999) + 10000;
+                        timeStamp = System.currentTimeMillis() - random.nextInt(999999999) + 10000;
                     }
                     studentCommentCourse.setCommentTime(new Timestamp(timeStamp));
                     studentCommentCourse.setBearScore(random.nextInt(5) + 1);
