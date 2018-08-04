@@ -228,4 +228,13 @@
 		</if>
 	</select>
 
+	<select id="findRecommendCourse" resultMap="CourseResultMap">
+		select * from Course
+		where
+		( collegeId = 7 or
+		( collegeId = #{collegeId} and majorId = null ) or
+		( collegeId = #{collegeId} and majorId = #{majorId} ) )
+		and deleteStatus = 0
+	</select>
+
 </mapper>

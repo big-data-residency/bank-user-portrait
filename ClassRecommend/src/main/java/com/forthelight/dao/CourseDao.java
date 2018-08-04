@@ -60,4 +60,6 @@ public interface CourseDao {
 
 	List<Course> findByTeacherCourseExamPass(@Param("courseName")String courseName,@Param("teacherName") String teacherName,@Param("examType")int examType,@Param("passType")int passType);
 
+	List<Course> findRecommendCourse(@Param("collegeId")int collegeId,@Param("majorId")int majorId);
+
 }
