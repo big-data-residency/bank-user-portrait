@@ -188,7 +188,9 @@ public class CourseBizImpl implements CourseBiz {
 
     @Override
     public List<Course> selectByRecommendCourse(int Grade,int College, int Major){
-        return null;
+        List<Course> courses = courseDao.findSelectCourse(College,Major);
+
+        return courses;
     }
 
 }
