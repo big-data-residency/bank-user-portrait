@@ -39,13 +39,14 @@ public class StudentBizTest {
     @Test
     public void selectCourse() {
         Random random = new Random();
-        for (int i = 320; i <= 456 + 5; i++) {
-            Student student = studentDao.findById(i);
+        List<Student> studentList = studentDao.findAll();
+        for (Student student: studentList) {
 //             每一个用户选numberOfClass 节课
             int numberOfClass = random.nextInt(6);
             for (int j = 0; j < numberOfClass; ) {
                 List<Course> studentCourses = student.getCourses();
-                Course course_to_insert = courseDao.findById(random.nextInt(647) + 1);
+                List<Course> courseList = courseDao.findAll();
+                Course course_to_insert = courseList.get(random.nextInt(courseList.size()));
                 // 验证课程时间
                 boolean flag = true;
                 for (Course course : studentCourses) {
@@ -68,7 +69,6 @@ public class StudentBizTest {
                     studentDao.selectCourse(student, course_to_insert);
                     j++;
                     System.out.println("success");
-                    System.out.println(String.format("%d, %d", i, j));
                 }
 
             }

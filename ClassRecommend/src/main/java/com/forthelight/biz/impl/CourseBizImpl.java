@@ -92,7 +92,7 @@ public class CourseBizImpl implements CourseBiz {
     }
 
     @Override
-    public int likeNumber(int id) {
+    public Integer likeNumber(int id) {
         return courseDao.likeNumber(id);
     }
 
@@ -103,6 +103,7 @@ public class CourseBizImpl implements CourseBiz {
 
     @Override
     public List<Tag> tagList(int courseId) {
+
         return courseDao.tagList(courseId);
     }
 

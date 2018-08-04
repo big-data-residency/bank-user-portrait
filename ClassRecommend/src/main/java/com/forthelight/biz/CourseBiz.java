@@ -37,7 +37,7 @@ public interface CourseBiz {
 
     List<Course> orderByLike();
 
-    int likeNumber(int id);
+    Integer likeNumber(int id);
 
     int oneTagNumber(int tagId, int id);
 

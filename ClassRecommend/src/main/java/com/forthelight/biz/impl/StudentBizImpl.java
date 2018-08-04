@@ -34,8 +34,7 @@ public class StudentBizImpl implements StudentBiz {
 
     @Override
     public Student loginValidate(String NickName) {
-        Student student = studentDao.findByNickName(NickName);
-        return student;
+		return studentDao.findByNickName(NickName);
     }
 
     @Override
@@ -50,7 +49,6 @@ public class StudentBizImpl implements StudentBiz {
 
 	@Override
 	public List<Student> findByCourseId(int courseId) {
-		// TODO Auto-generated method stub
 		return studentDao.findByCourseId(courseId);
 	}
 
@@ -61,19 +59,16 @@ public class StudentBizImpl implements StudentBiz {
 
 	@Override
 	public int update(Student student) {
-		// TODO Auto-generated method stub
 		return studentDao.update(student);
 	}
 
 	@Override
 	public List<Student> findAll() {
-		// TODO Auto-generated method stub
 		return studentDao.findAll();
 	}
 
 	@Override
 	public List<Student> findByKeyword(String keyword) {
-		// TODO Auto-generated method stub
 		return studentDao.findByKeyword(keyword);
 	}
 
