@@ -84,7 +84,7 @@
 											</ul>
 										</li>
 										<li class="footer">
-											<a href="'http://localhost:8080/view/user/classdetail-uploads.html?id'+'studentId'">进入评课</a>
+											<a : href="'http://localhost:8080/view/user/classdetail-uploads.html?id'+'studentId'">进入评课</a:>
 										</li>
 									</ul>
 								</li>
@@ -112,7 +112,7 @@
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="'http://localhost:8080/view/user/studentinfo_new.html?id='+'studentId'" class="btn btn-default btn-flat">Profile</a>
+												<a : href="'http://localhost:8080/view/user/studentinfo_new.html?id='+'studentId'" class="btn btn-default btn-flat">Profile</a:>
 											</div>
 											<div class="pull-right">
 												<a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -168,6 +168,15 @@
 </div>
 <!-- ./wrapper -->
 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
+
+
+
 <!-- jQuery 3 -->
 <script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -182,11 +191,12 @@
 
 <script type="text/javascript">
 	
-	   
+	        var studentId='';
+
     		var Pwrong = new Vue({
 			el: '#Pwrong',
 			data: {
-				studentId: ''
+
 			},
 			methods: {
 				GetQueryString(name) {
@@ -200,7 +210,7 @@
 					return context == null || context == "" || context == "undefined" ? "" : context;
 				},
 				getPar() {
-					Pwrong.studentId = this.GetQueryString('id');
+					studentId = this.GetQueryString('id');
 				},
 			},
 
