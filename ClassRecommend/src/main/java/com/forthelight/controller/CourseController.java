@@ -9,7 +9,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import com.forthelight.CourseSelect;
+
 import com.forthelight.domain.*;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +34,8 @@ import com.google.gson.GsonBuilder;
 
 @Controller
 public class CourseController {
+
+    private CourseSelect courseSelect = new CourseSelect();
 
     @Autowired
     private CourseBiz courseBiz;
@@ -237,13 +243,21 @@ public class CourseController {
             courses = courseBiz.selectByKeyword(courseKeyword);
         }
 
+        JsonArray coursesList = new JsonArray();
+        for(Course course : courses){
+            JsonObject courseList = new JsonObject();
+            courseList.addProperty("id",course.getId());
+            courseList.addProperty("courseName",course.getCourseName());
+            coursesList.add(courseList);
+        }
+
         boolean success = false;
         if (courses.size() > 0) {
             success = true;
         }
 
         Map<String, Object> data = new HashMap<>();
-        data.put("courses", courses);
+        data.put("courses", coursesList);
 
         res.put("data", data);
         res.put("success", success);
@@ -262,10 +276,41 @@ public class CourseController {
 
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-        System.out.print(request);
+        courseSelect.preferD=request.getParameter("preferD").equals("true");
+        System.out.println(courseSelect.preferD);
+        courseSelect.preferE=request.getParameter("preferE").equals("true");
+        System.out.println(courseSelect.preferE);
+        courseSelect.selectMoreD=request.getParameter("selectMoreD").equals("true");
+        courseSelect.selectMoreE=request.getParameter("selectMoreE").equals("true");
+        courseSelect.selectNumberD=request.getParameter("selectNumberD").equals("true");
+        courseSelect.selectNumberE=request.getParameter("selectNumberE").equals("true");
+        if(courseSelect.selectNumberD) {
+            courseSelect.numberD = Integer.parseInt(request.getParameter("numberD"));
+            System.out.println(courseSelect.numberD);
+        }
+        if(courseSelect.selectNumberE) {
+            courseSelect.numberE = Integer.parseInt(request.getParameter("numberE"));
+            System.out.println(courseSelect.numberE);
+        }
+
+        courseSelect.selectCourseType=request.getParameter("selectCourseType").equals("true");
+        courseSelect.allCourse=request.getParameter("allCourse").equals("true");
+        courseSelect.courseABCD=request.getParameter("courseABCD").equals("true");
+        courseSelect.preScoreRequest=request.getParameter("preScoreRequest").equals("true");
+        if(courseSelect.preScoreRequest) {
+            courseSelect.preScore = Integer.parseInt(request.getParameter("preScore"));
+        }
+
+        courseSelect.selectMoreD=request.getParameter("selectMoreD").equals("true");
+        courseSelect.selectMoreD=request.getParameter("selectMoreD").equals("true");
+        courseSelect.bareScore=Integer.parseInt(request.getParameter("bareScore"));
+        courseSelect.interestingScore=Integer.parseInt(request.getParameter("interestingScore"));
+        courseSelect.easyScore=Integer.parseInt(request.getParameter("easyScore"));
+        courseSelect.knowledgeScore=Integer.parseInt(request.getParameter("knowledgeScore"));
+
+        courseSelect.selectedCourses=request.getParameterValues("selectedCourses[]");
 
         Map<String, Object> res = new HashMap<>();
-
 
         boolean success = true;
 

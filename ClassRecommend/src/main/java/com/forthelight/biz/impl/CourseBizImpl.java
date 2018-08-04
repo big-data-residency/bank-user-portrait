@@ -118,7 +118,6 @@ public class CourseBizImpl implements CourseBiz {
     }
 
     @Override
-
    public List<Course> findCourseOfAdmin(String courseType,String teacherName , int examType, String courseName){
         return courseDao.findCourseOfAdmin(courseType,teacherName,examType,courseName);
     }
@@ -137,4 +136,10 @@ public class CourseBizImpl implements CourseBiz {
     public List<Course> findByCourseAndTeacher(int studentId,String courseName,String teacherName){
         return courseDao.findByCourseAndTeacher(studentId,courseName,teacherName);
     }
+
+    @Override
+    public List<Course> selectByShouldCheck(int Grade, int College, int Major) {
+        return null;
+    }
+
 }

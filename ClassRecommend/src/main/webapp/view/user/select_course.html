@@ -812,6 +812,7 @@
 </body>
 <script>
 
+
 	var grade='';
 	var college='';
 	var major='';
@@ -1085,6 +1086,7 @@
         var selectedCourses = new Array();
         var i = 0;
         for( var selected of document.getElementsByName("selectedCourses") ){
+
             selectedCourses[i] = selected.id.substring(6);
             i++;
 		}
@@ -1097,8 +1099,9 @@
                 preferE:document.getElementById("coursePreferE").valueOf().checked,
                 selectMoreD:document.getElementById("selectMoreD").valueOf().checked,
                 selectMoreE:document.getElementById("selectMoreE").valueOf().checked,
+                selectNumberD:document.getElementById("selectNumberD").valueOf().checked,
                 selectNumberE:document.getElementById("selectNumberE").valueOf().checked,
-                numberC:document.getElementById("numberD").valueOf().value,
+                numberD:document.getElementById("numberD").valueOf().value,
                 numberE:document.getElementById("numberE").valueOf().value,
                 selectCourseType:document.getElementById("selectCourseType").valueOf().checked,
                 allCourse:document.getElementById("allCourse").valueOf().checked,
@@ -1110,15 +1113,18 @@
                 easyScore:document.getElementById("easyScore").valueOf().value,
                 knowledgeScore:document.getElementById("knowledgeScore").valueOf().value,
                 selectedCourses:selectedCourses,
+
 				grade:grade,
 				college:college,
 				major:major
+
             },
             type:'POST',
             success:function (res) {
                 if(res.success){
                     alert('成功');
                 }
+                console.log(selectedCourses);
             }
         })
     })
@@ -1147,7 +1153,7 @@
 
 
 
-	})
+    })
 
 
 

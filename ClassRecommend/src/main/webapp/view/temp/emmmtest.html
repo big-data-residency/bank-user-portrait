@@ -18,12 +18,15 @@
     <p v-else>错误</p>
     <el-input v-model="wtf" placeholder="请输入内容"></el-input>
     <p>{{wtf}}</p>
+    <select v-model="ots">
+        <option v-for="teacher in teachers" v-bind:value="teacher.id">{{teacher.name}}</option>
+    </select>
+    <p>{{ots}}</p>
 </div>
 </body>
 <!-- import Vue before Element -->
 
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <!-- import JavaScript -->
@@ -37,7 +40,18 @@
             MyID: 1,
             sus: 'ewq',
             dat: '',
+            ots:'',
             args:['123'],
+            teachers:[{
+                id:1,
+                name:'aaa',
+            },{
+                id:2,
+                name:'bbb',
+            },{
+                id:3,
+                name:'ccc',
+            }]
         },
         methods: {
             myfun() {
@@ -70,26 +84,12 @@
             },
             jump(url) {
                 //本层跳转
-                //location.href = "lesson/" + this.MyID;  //一般这个就可以了
+                location.href = "lesson/" + this.MyID;  //一般这个就可以了
                 // window.location.href = "lesson/"+this.MyID;
                 //上一层跳转
                 // parent.location.href = "lesson/"+this.MyID;
                 //顶层跳转
                 // top.location.href = "lesson/"+this.MyID;
-
-                        var body = $(document.body),
-                            form = $("<form method='post'></form>"),
-                            input;
-                        form.attr({"action":"testjump.html"});
-                        $.each(this.args,function(key,value){
-                            input = $("<input type='hidden'>");
-                            input.attr({"name":key});
-                            input.val(value);
-                            form.append(input);
-                        });
-                        form.appendTo(document.body);
-                        form.submit();
-                        document.body.removeChild(form[0]);
 
             },
             textout(){
