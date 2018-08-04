@@ -118,23 +118,35 @@ public class CourseBizImpl implements CourseBiz {
     }
 
     @Override
-   public List<Course> findCourseOfAdmin(String courseType,String teacherName , int examType, String courseName){
-        return courseDao.findCourseOfAdmin(courseType,teacherName,examType,courseName);
+
+    public List<Course> findCourseOfAdmin(String courseType, String teacherName, int examType, String courseName) {
+        return courseDao.findCourseOfAdmin(courseType, teacherName, examType, courseName);
     }
 
     @Override
-    public List<Course> findByStudentIdAndTeacherName(int studentId,String teacherName){
-        return courseDao.findByStudentIdAndTeacherName(studentId,teacherName);
+    public List<Course> findByStudentIdAndTeacherName(int studentId, String teacherName) {
+        return courseDao.findByStudentIdAndTeacherName(studentId, teacherName);
     }
 
     @Override
-    public List<Course> findByStudentIdAndCourseCode(int studentId,String courseCode){
-        return courseDao.findByStudentIdAndCourseCode(studentId,courseCode);
+    public List<Course> findByStudentIdAndCourseCode(int studentId, String courseCode) {
+        return courseDao.findByStudentIdAndCourseCode(studentId, courseCode);
     }
 
     @Override
-    public List<Course> findByCourseAndTeacher(int studentId,String courseName,String teacherName){
-        return courseDao.findByCourseAndTeacher(studentId,courseName,teacherName);
+    public List<Course> findByCourseAndTeacher(int studentId, String courseName, String teacherName) {
+        return courseDao.findByCourseAndTeacher(studentId, courseName, teacherName);
+    }
+
+    @Override
+    public Course findByTeacherNameAndCourseName(String teacherName, String courseName) {
+        return courseDao.findByTeacherNameAndCourseName(teacherName, courseName);
+    }
+
+    @Override
+    public List<Course> findByTeacherCourseExamPass(String courseName, String teacherName, int examType,
+                                                    int passType) {
+        return courseDao.findByTeacherCourseExamPass(courseName, teacherName, examType, passType);
     }
 
     @Override
