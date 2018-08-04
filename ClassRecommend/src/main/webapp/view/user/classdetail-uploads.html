@@ -32,6 +32,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../../style/newstyle/css/star.css">
     <link rel="stylesheet" href="../../style/newstyle/css/radiobox.css">
+
+    <script src='https://cdn.bootcss.com/echarts/3.7.2/echarts.simple.js'></script>
+    <script type="text/javascript" src="../../style/newstyle/js/echarts-wordcloud.js"></script>
+    <!-- Morris charts -->
     <!-- Morris charts -->
     <link rel="stylesheet" href="../../style/bower_components/morris.js/morris.css">
 
@@ -51,7 +55,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 <body class="hold-transition skin-blue-light fixed sidebar-mini">
-    <div class="wrapper" id="classvue">
+<div class="wrapper" id="classvue">
     <!-- Main Header -->
     <header class="main-header">
 
@@ -689,25 +693,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <div class="col-md-6">
                                         <!-- DONUT CHART -->
 
+                                        <!-- BAR CHART -->
                                         <div class="box box-success">
                                             <div class="box-header with-border">
-                                                <h3 class="box-title">成绩分布</h3>
+                                                <h3 class="box-title">成绩占比</h3>
 
                                                 <div class="box-tools pull-right">
-                                                    <button type="button" class="btn btn-box-tool"
-                                                            data-widget="collapse">
-                                                        <i class="fa fa-minus"></i>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-box-tool" data-widget="remove">
-                                                        <i class="fa fa-times"></i>
-                                                    </button>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
                                             <div class="box-body chart-responsive">
-                                                <div class="chart" id="bar-chart" style="height: 300px;"></div>
+                                                <div class="chart" id="bar-chart" style="height: 300px;width: 300px;"></div>
                                             </div>
                                             <!-- /.box-body -->
                                         </div>
+                                        <!-- /.box -->
 
 
                                     </div>
@@ -900,57 +902,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.content-wrapper -->
 </div>
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <!-- To the right -->
+<!-- Main Footer -->
+<footer class="main-footer">
+    <!-- To the right -->
 
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2018
-            <a href="#">EAMIS_HELPER</a>.</strong> All rights reserved.
-    </footer>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2018
+        <a href="#">EAMIS_HELPER</a>.</strong> All rights reserved.
+</footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class="active">
-                <a href="#control-sidebar-home-tab" data-toggle="tab">
-                    <i class="fa fa-home"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#control-sidebar-settings-tab" data-toggle="tab">
-                    <i class="fa fa-gears"></i>
-                </a>
-            </li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <!-- Home tab content -->
-            <div class="tab-pane active" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li class="active">
+            <a href="#control-sidebar-home-tab" data-toggle="tab">
+                <i class="fa fa-home"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#control-sidebar-settings-tab" data-toggle="tab">
+                <i class="fa fa-gears"></i>
+            </a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane active" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
-                                <p>Will be 23 on April 24th</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
 
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:">
-                            <h4 class="control-sidebar-subheading">
-                                Custom Template Design
-                                <span class="pull-right-container">
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:">
+                        <h4 class="control-sidebar-subheading">
+                            Custom Template Design
+                            <span class="pull-right-container">
                                     <span class="label label-danger pull-right">70%</span>
                                 </span>
                         </h4>
@@ -1339,100 +1341,48 @@ immediately after the control sidebar -->
     }
 </script>
 <!-- Basic 图表 -->
-<!-- <script>
+<script>
     $(function () {
-
-        // LINE CHART
-        var line = new Morris.Line({
-            element: 'line-chart',
+        "use strict";
+        //DONUT CHART
+        var donut = new Morris.Donut({
+            element: 'sales-chart',
             resize: true,
-            data: [{
-                    y: '2011 Q1',
-                    item1: 2666
-                },
-                {
-                    y: '2011 Q2',
-                    item1: 2778
-                },
-                {
-                    y: '2011 Q3',
-                    item1: 4912
-                },
-                {
-                    y: '2011 Q4',
-                    item1: 3767
-                },
-                {
-                    y: '2012 Q1',
-                    item1: 6810
-                },
-                {
-                    y: '2012 Q2',
-                    item1: 5670
-                },
-                {
-                    y: '2012 Q3',
-                    item1: 4820
-                },
-                {
-                    y: '2012 Q4',
-                    item1: 15073
-                },
-                {
-                    y: '2013 Q1',
-                    item1: 10687
-                },
-                {
-                    y: '2013 Q2',
-                    item1: 8432
-                }
+            colors: ["#3c8dbc", "#f56954", "#00a65a"],
+            data: [
+                {label: "期中考核占比", value: 12},
+                {label: "平时占比        ", value: 30},
+                {label: "最终考核占比", value: 20}
             ],
-            xkey: 'y',
-            ykeys: ['item1'],
-            labels: ['Item 1'],
-            lineColors: ['#3c8dbc'],
             hideHover: 'auto'
         });
 
+//      //DONUT CHART
+//  var donut = new Morris.Donut({
+//    element: 'score-chart',
+//    resize: true,
+//    colors: ["#3c8dbc", "#f56954", "#00a65a"],
+//    data: [
+//      {label: "5分", value: 12},
+//      {label: "4分        ", value: 30},
+//      {label: "3分", value: 20},
+//      {label: "2分", value: 20},
+//      {label: "1分", value: 3}
+//    ],
+//    hideHover: 'auto'
+//  });
         //BAR CHART
         var bar = new Morris.Bar({
             element: 'bar-chart',
             resize: true,
-            data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
-                },
-                {
-                    y: '2007',
-                    a: 75,
-                    b: 65
-                },
-                {
-                    y: '2008',
-                    a: 50,
-                    b: 40
-                },
-                {
-                    y: '2009',
-                    a: 75,
-                    b: 65
-                },
-                {
-                    y: '2010',
-                    a: 50,
-                    b: 40
-                },
-                {
-                    y: '2011',
-                    a: 75,
-                    b: 65
-                },
-                {
-                    y: '2012',
-                    a: 100,
-                    b: 90
-                }
+            data: [
+                {y: '2006', a: 100, b: 90},
+                {y: '2007', a: 75, b: 65},
+                {y: '2008', a: 50, b: 40},
+                {y: '2009', a: 75, b: 65},
+                {y: '2010', a: 50, b: 40},
+                {y: '2011', a: 75, b: 65},
+                {y: '2012', a: 100, b: 90}
             ],
             barColors: ['#00a65a', '#f56954'],
             xkey: 'y',
@@ -1441,17 +1391,7 @@ immediately after the control sidebar -->
             hideHover: 'auto'
         });
 
-        /*
-         * Custom Label formatter
-         * ----------------------
-         */
-        function labelFormatter(label, series) {
-            return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">' +
-                label +
-                '<br>' +
-                Math.round(series.percent) + '%</div>';
-        }
-    })
+    });
 </script>
 <!-- 文件上传 -->
 <script>
