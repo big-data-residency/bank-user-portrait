@@ -55,4 +55,9 @@ public interface CourseBiz {
     List<Course> findByStudentIdAndCourseCode(int studentId, String courseCode);
 
     List<Course> findByCourseAndTeacher(int studentId, String courseName, String teacherName);
+
+    Course findByTeacherNameAndCourseName(String teacherName,String courseName);
+
+    List<Course> findByTeacherCourseExamPass(String courseName,String teacherName,int examType,int passType);
+
 }
