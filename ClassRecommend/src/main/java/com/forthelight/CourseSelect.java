@@ -61,6 +61,7 @@ public class CourseSelect {
 
     public String Worry;
     public boolean success;
+
     public boolean Initialize(){
         Course temp_course ;
         Worry="";
@@ -93,24 +94,24 @@ public class CourseSelect {
                     }
                 }
 
-                checkedCourses.add(temp_course);
-
                 //检查选择课程是否有冲突
-                if(!checkCourseTime(temp_course.getId())){
+                if(!checkCourseTime1(temp_course.getId())){
                     success=false;
                     return false;
                 }
+
+                checkedCourses.add(temp_course);
             }
         }
 
         //获取应该上的课
         shouldCheckCourses = courseBiz.selectByShouldCheck(stu_Grade,stu_College,stu_Major);
-
-
+        checkShouldCheckCourses();
 
         return true;
     }
-    public boolean checkCourseTime(int courseId){
+
+    public boolean checkCourseTime1(int courseId){
         List<CourseTime> time;
         time = courseTimeBiz.findByClassId(courseId);
         for(int i=0;i<time.size();i++){
@@ -130,6 +131,39 @@ public class CourseSelect {
         course1=courseBiz.findById(i);
         course2=courseBiz.findById(j);
         Worry+="您所选择的课程"+course1.getCourseName()+"和"+course2.getCourseName()+"冲突!\n";
+    }
+
+    public void checkShouldCheckCourses(){
+       Iterator<Course> iterator = shouldCheckCourses.iterator();
+       while(iterator.hasNext()){
+           Course course = iterator.next();
+           //判断是否有和已选课程重复的课程
+           int t=0;
+           for(int i=0;i<checkedCourses.size();i++){
+               if(course.getCourseName().equals(checkedCourses.get(i).getCourseName())){
+                   t=1;
+                   break;
+               }
+           }
+           if(t==1) {
+               iterator.remove();
+               continue;
+           }
+
+           checkCourseTime2(course.getCourseName());
+       }
+    }
+    public void checkCourseTime2(String courseName){
+        List<Course> givenCourses = courseBiz.findByCourseName(courseName);
+        if(givenCourses.size()>1){
+
+        }
+
+    }
+    public void getShouldCheckCourseScore(){
+        if(preScoreRequest){
+
+        }
     }
     public void checkifCrash(){
         hasD=hasE=0;
