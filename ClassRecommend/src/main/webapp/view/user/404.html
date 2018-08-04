@@ -28,8 +28,8 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue-light fixed" id="Pnotfound">
-<div class="wrapper" >
+<body class="hold-transition skin-blue-light fixed layout-top-nav">
+<div class="wrapper" id="Pnotfound">
 
 				<!-- Main Header -->
 				<header class="main-header">
@@ -37,7 +37,7 @@
 					<!-- Logo -->
 					<a href="#" class="logo navbar-fixed-top">
 						<!-- mini logo for sidebar mini 50x50 pixels -->
-						<span class="logo-mini"><b>H</b>elper</span>
+						<span class="logo-mini"><b>E</b>-h</span>
 						<!-- logo for regular state and mobile devices -->
 						<span class="logo-lg"><b>EAMIS-</b>Helper</span>
 					</a>
@@ -45,9 +45,7 @@
 					<!-- Header Navbar -->
 					<nav class="navbar navbar-fixed-top" role="navigation">
 						<!-- Sidebar toggle button-->
-						<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-							<span class="sr-only">Toggle navigation</span>
-						</a>
+
 						<!-- Navbar Right Menu -->
 						<div class="navbar-custom-menu">
 							<ul class="nav navbar-nav">
@@ -128,71 +126,6 @@
 						</div>
 					</nav>
 				</header>
-				<!-- Left side column. contains the logo and sidebar -->
-				<aside class="main-sidebar " style="position: fixed ">
-
-					<!-- sidebar: style can be found in sidebar.less -->
-					<section class="sidebar">
-
-						<!-- Sidebar user panel (optional) -->
-						<div class="user-panel" style="height: 65px;">
-							<div class="pull-left image">
-								<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-							</div>
-							<div class="pull-left info">
-								<p>Alexander Pierce</p>
-								<!-- Status -->
-								<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-							</div>
-						</div>
-
-						<!-- search form (Optional) -->
-						<!--<form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>-->
-						<!-- /.search form -->
-
-						<!-- Sidebar Menu -->
-						<ul class="sidebar-menu" data-widget="tree">
-							<li class="header">EAMIS_HELPER</li>
-							<!-- Optionally you can add icons to the links -->
-							<li>
-								<a href="#"><i class="fa fa-user"></i> <span>用户首页</span></a>
-							</li>
-							<li>
-								<a href="starter.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
-							</li>
-							<li>
-								<a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
-							</li>
-							<li>
-								<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程页面</span></a>
-							</li>
-							<li>
-								<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
-							</li>
-							<!--<li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>-->
-						</ul>
-						<!-- /.sidebar-menu -->
-					</section>
-					<!-- /.sidebar -->
-				</aside>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -210,14 +143,15 @@
     <!-- Main content -->
     <section class="content">
       <div class="error-page">
-        <h2 class="headline text-yellow"> 404</h2>
+		  <img src="../../style/newstyle/images/404.png" style="height: 40%;width: 100%" >
+
+		  <!--<h2 class="headline text-yellow" > 404</h2>-->
 
         <div class="error-content">
           <h3><i class="fa fa-warning text-yellow"></i> Oops! Page not found.</h3>
-
-          <p>
+			<p>
             We could not find the page you were looking for.
-            Meanwhile, you may <a href="new_start.html?id={{studengId}}">return to starter</a> or try using the search form.
+            Meanwhile, you may <a :href=" 'http://localhost:8080/view/user/new_start.html?id='+'studentId'">return to starter</a> or try using the search form.
           </p>
 
           <!--<form class="search-form">
@@ -241,12 +175,24 @@
   <!-- /.content-wrapper -->
   <footer class="main-footer">
 
-    <strong>Copyright &copy; 2018 EAMIS-HELPER</a>.</strong> All rights
+    <strong>Copyright &copy; 2018 EAMIS-HELPER.</strong> All rights
     reserved.
   </footer>
 
 </div>
 <!-- ./wrapper -->
+
+
+<!-- import Vue before Element -->
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
+
+
 
 <!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
@@ -258,13 +204,23 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+
+
+
+
+
 </body>
 
+
+
+
 <script type="text/javascript">
+    		var studentId='';
+
 	   		var Pnotfound = new Vue({
 			el: '#Pnotfound',
 			data: {
-				studentId: ''
 			},
 			methods: {
 				GetQueryString(name) {
@@ -278,7 +234,7 @@
 					return context == null || context == "" || context == "undefined" ? "" : context;
 				},
 				getPar() {
-					Pnotfound.studentId = this.GetQueryString('id');
+					studentId = this.GetQueryString('id');
 				},
 			},
 
