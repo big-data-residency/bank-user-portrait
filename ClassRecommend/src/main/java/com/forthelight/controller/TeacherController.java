@@ -167,33 +167,11 @@ public class TeacherController {
 
         }
 
-        JsonArray tagsPercent = new JsonArray();
-
-        JsonObject TagsWithColor1 = new JsonObject();
-        TagsWithColor1.addProperty("label", "手下留情");
-        TagsWithColor1.addProperty("data", allCoursesBearScore);
-        TagsWithColor1.addProperty("color", "#3c8dbc");
-
-        JsonObject TagsWithColor2 = new JsonObject();
-        TagsWithColor2.addProperty("label", "课堂有趣");
-        TagsWithColor2.addProperty("data", allCoursesInterestingScore);
-        TagsWithColor2.addProperty("color", "#0073b7");
-
-        JsonObject TagsWithColor3 = new JsonObject();
-        TagsWithColor3.addProperty("label", "划水程度");
-        TagsWithColor3.addProperty("data", allCoursesEasyScore);
-        TagsWithColor3.addProperty("color", "#00c0ef");
-
-        JsonObject TagsWithColor4 = new JsonObject();
-        TagsWithColor4.addProperty("label", "干货满满");
-        TagsWithColor4.addProperty("data", allCoursesKnowledgeScore);
-        TagsWithColor4.addProperty("color", "#B2DFEE");
-
-        tagsPercent.add(TagsWithColor1);
-        tagsPercent.add(TagsWithColor2);
-        tagsPercent.add(TagsWithColor3);
-        tagsPercent.add(TagsWithColor4);
-
+        int[] tagsPercent = new int[4];
+        tagsPercent[0]=allCoursesBearScore;
+        tagsPercent[1]=allCoursesInterestingScore;
+        tagsPercent[2]=allCoursesEasyScore;
+        tagsPercent[3]=allCoursesKnowledgeScore;
 
         JsonArray preExamScore = new JsonArray();
 

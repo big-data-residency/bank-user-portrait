@@ -429,10 +429,9 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">手下留情</label>
 
-								<input id="bareScore" value=0 style="display: none" >
 
-								<div class='rating-stars'>
-									<ul id="stars1" class="stars1">
+								<div class='rating-stars' id="bearScore" >
+									<ul  class="stars">
 
 										<li class='star' title='Poor'data-value="1">
 											<i class='fa fa-star fa-fw'></i>
@@ -457,10 +456,8 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">课堂有趣</label>
 
-								<input id="interestingScore" value=0 style="display: none" >
-
-								<div class='rating-stars'>
-									<ul id="stars2" class="stars2">
+								<div class='rating-stars' id="interestingScore">
+									<ul id="stars2" class="stars">
 
 										<li class='star' title='Poor' data-value="1">
 											<i class='fa fa-star fa-fw'></i>
@@ -484,9 +481,9 @@
 
 							<div class="form-group">
 								<label class="col-sm-2 control-label">划水程度</label>
-								<input id="easyScore" value=0 style="display: none" >
-								<div class='rating-stars'>
-									<ul id="stars3" class="stars3">
+
+								<div class='rating-stars' id="easyScore">
+									<ul id="stars3" class="stars">
 
 										<li class='star' title='Poor'data-value="1">
 											<i class='fa fa-star fa-fw'></i>
@@ -510,9 +507,9 @@
 
 							<div class="form-group">
 								<label class="col-sm-2 control-label">干货满满</label>
-								<input id="knowledgeScore" value=0 style="display: none" >
-								<div class='rating-stars '>
-									<ul id="stars4" class="stars4">
+
+								<div class='rating-stars ' id="knowledgeScore">
+									<ul id="stars4" class="stars">
 
 										<li class='star' title='Poor'data-value="1" >
 											<i class='fa fa-star fa-fw'></i>
@@ -1071,6 +1068,63 @@
     var interestingScore;
     var easyScore;
     var knowledgeScore;
+
+    $(document).ready(function () {
+        /* 1. Visualizing things on Hover - See next part for action on click */
+        $('.stars li').on('mouseover', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+            // Now highlight all the stars that's not after the current hovered star
+            $(this).parent().children('li.star').each(function (e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                }
+                else {
+                    $(this).removeClass('hover');
+                }
+            });
+
+        }).on('mouseout', function () {
+            $(this).parent().children('li.star').each(function (e) {
+                $(this).removeClass('hover');
+            });
+        });
+
+
+        /* 2. Action to perform on click */
+        $('.stars li').on('click', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            var ratingValue = $(this).parent().children('.selected').last().data('value');
+            console.log($(this).parent().children('.selected').last().data('value'));
+            console.log($(this).parent().parent().attr("id"));
+            if ($(this).parent().parent().attr("id") === "bearScore") {
+                // 这里填写你要赋值的 Vue内data
+                bearScore = ratingValue;
+            }
+            if ($(this).parent().parent().attr("id") === "interestingScore") {
+                // classDetail.comment.score.interestingScore = ratingValue;
+                interestingScore = ratingValue;
+            }
+            if ($(this).parent().parent().attr("id") === "easyScore") {
+                // classDetail.comment.score.easyScore = ratingValue;
+                easyScore = ratingValue
+            }
+            if ($(this).parent().parent().attr("id") === "knowledgeScore") {
+                // classDetail.comment.score.knowledgeScore = ratingValue;
+                knowledgeScore = ratingValue;
+            }
+            // console.log(classDetail.comment.score);
+        });
+    })
 
     // function bareScore(number) {
     //     document.getElementById("bareScore").setAttribute("value",number);

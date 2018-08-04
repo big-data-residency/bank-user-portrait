@@ -58,7 +58,7 @@ public class CourseSelect {
     public Integer hasE;
     public int[][] Time;
     public List<Course> checkedCourses;
-    public List<Course> shouldCheckCourses;
+    public List<String> shouldCheckCourses;
 
     public String Worry;
     public boolean success;
@@ -151,13 +151,13 @@ public class CourseSelect {
     }
 
     public void checkShouldCheckLessons(){
-       Iterator<Course> iterator = shouldCheckCourses.iterator();
+       Iterator<String> iterator = shouldCheckCourses.iterator();
        while(iterator.hasNext()){
-           Course course = iterator.next();
+           String courseName = iterator.next();
            //判断是否有和已选课程重复的课程
            int t=0;
            for(int i=0;i<checkedCourses.size();i++){
-               if(course.getCourseName().equals(checkedCourses.get(i).getCourseName())){
+               if(courseName.equals(checkedCourses.get(i).getCourseName())){
                    t=1;
                    break;
                }
@@ -167,7 +167,7 @@ public class CourseSelect {
                continue;
            }
 
-           checkShouldCheckCourses(course.getCourseName());
+           checkShouldCheckCourses(courseName);
        }
     }
     public void checkShouldCheckCourses(String courseName){
