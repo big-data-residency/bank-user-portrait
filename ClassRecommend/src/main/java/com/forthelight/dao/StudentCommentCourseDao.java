@@ -31,5 +31,6 @@ public interface StudentCommentCourseDao {
 	List<StudentCommentCourse> findByStudentId(int studentId);
 
 	List<StudentCommentCourse> findAll();
+
 	
 }
