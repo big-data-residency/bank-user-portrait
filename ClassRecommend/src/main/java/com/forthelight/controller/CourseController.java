@@ -284,70 +284,352 @@ public class CourseController {
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         Map<String, Object> res = new HashMap<>();
 
-        System.out.print(courseType + teacherInfo + examType + courseName);
+        System.out.println(courseType + teacherInfo + examType + courseName);
 
-        int exam = 3;
-        if(examType == "闭卷考试"){
+        int exam = -1;
+        if (examType.equals("闭卷考试")) {
             exam = 0;
         }
-        if(examType == "开卷考试"){
+        if (examType.equals("开卷考试")) {
             exam = 1;
         }
-        if(examType == "论文结课"){
+        if (examType.equals("论文结课")) {
             exam = 2;
         }
-        if(examType == "其他"){
+        if (examType.equals("其他")) {
             exam = 3;
         }
 
-        List<Course> courses = courseBiz.findCourseOfAdmin(courseType,teacherInfo,exam,courseName);
+        if (courseType.equals("全部")) {
+            courseType = null;
+        }
+        if (teacherInfo.equals("全部教师")) {
+            teacherInfo = null;
+        }
+        if (courseName == "") {
+            courseName = null;
+        }
+
+        System.out.print(courseType + teacherInfo + exam + courseName);
+
+        List<Course> courses = courseBiz.findCourseOfAdmin(courseType, teacherInfo, exam, courseName);
 
         boolean success = false;
-        if(courses.size() > 0){
+        if (courses.size() > 0) {
             success = true;
         }
 
         JsonArray coursesInfo = new JsonArray();
-        for(Course course : courses){
+        for (Course course : courses) {
 
             JsonObject courseInfo = new JsonObject();
-            courseInfo.addProperty("courseId",course.getId());
-            courseInfo.addProperty("courseCode",course.getCourseCode());
-            courseInfo.addProperty("courseName",course.getCourseName());
-            courseInfo.addProperty("teacherName",course.getTeacher().getTeacherName());
+            courseInfo.addProperty("courseId", course.getId());
+            courseInfo.addProperty("courseCode", course.getCourseCode());
+            courseInfo.addProperty("courseName", course.getCourseName());
+            courseInfo.addProperty("teacherName", course.getTeacher().getTeacherName());
 
             int examMethod = course.getExaminingForm();
-            if(examMethod == 0){
-                courseInfo.addProperty("examType","闭卷考试");
+            if (examMethod == 0) {
+                courseInfo.addProperty("examType", "闭卷考试");
             }
-            if(examMethod == 1){
-                courseInfo.addProperty("examType","开卷考试");
+            if (examMethod == 1) {
+                courseInfo.addProperty("examType", "开卷考试");
             }
-            if(examMethod == 2){
-                courseInfo.addProperty("examType","论文结课");
+            if (examMethod == 2) {
+                courseInfo.addProperty("examType", "论文结课");
             }
-            if(examMethod == 3){
-                courseInfo.addProperty("examType","其他");
+            if (examMethod == 3) {
+                courseInfo.addProperty("examType", "其他");
             }
 
             int passMethod = course.getPassingCourse();
-            if(passMethod == 0){
-                courseInfo.addProperty("passType","否");
+            if (passMethod == 0) {
+                courseInfo.addProperty("passType", "否");
             }
-            if(passMethod == 1){
-                courseInfo.addProperty("passType","是");
+            if (passMethod == 1) {
+                courseInfo.addProperty("passType", "是");
             }
 
             coursesInfo.add(courseInfo);
         }
 
         Map<String, Object> data = new HashMap<>();
-        data.put("courses",coursesInfo);
+        data.put("courses", coursesInfo);
 
-        res.put("data",data);
-        res.put("success",success);
+        res.put("data", data);
+        res.put("success", success);
 
         return gson.toJson(res);
     }
 
-}
+
+    @RequestMapping(value = "/courseList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String courseList(HttpServletRequest request, HttpServletResponse response) {
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        Map<String, Object> res = new HashMap<>();
+
+        String courseIdStr = request.getParameter("courseId");
+        int courseId = Integer.parseInt(courseIdStr);
+
+        boolean success = false;
+
+        if (courseIdStr != null) {
+            success = true;
+        }
+
+        Course course = courseBiz.findById(courseId);
+
+        String teacherName = request.getParameter("teacherNameStr");
+        int teacherNameStr = Integer.parseInt(teacherName);
+
+
+        return gson.toJson(res);
+
+    }
+
+    @RequestMapping(value = "/findByStudentIdAndTeacherName", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findByStudentIdAndTeacherName(String teacherName, String studentIdStr, HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        boolean success = false;
+        if (teacherName != "") {
+            success = true;
+        }
+        if (studentIdStr == "") {
+            success = false;
+        }
+        int studentId = Integer.parseInt(studentIdStr);
+
+        JsonObject allCourse = new JsonObject();
+        allCourse.addProperty("courseName", "全部课程");
+
+        List<Course> courses = new ArrayList<>();
+
+        if (teacherName == "全部教师") {
+            courses = courseBiz.findByStudentId(studentId);
+        } else {
+            courses = courseBiz.findByStudentIdAndTeacherName(studentId, teacherName);
+        }
+
+        JsonArray coursesList = new JsonArray();
+        coursesList.add(allCourse);
+
+        for (Course course : courses) {
+            JsonObject courseList = new JsonObject();
+            courseList.addProperty("courseName", course.getCourseName());
+            coursesList.add(courseList);
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("courses", coursesList);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("data", data);
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = "/findAllCourseByStudentId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findAllCourseByStudentId(String studentIdStr, HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        Map<String, Object> res = new HashMap<>();
+
+        boolean success = false;
+        if (studentIdStr != "") {
+            success = true;
+        }
+
+        int studentId = Integer.parseInt(studentIdStr);
+        List<Course> courses = courseBiz.findByStudentId(studentId);
+
+        JsonArray coursesList = new JsonArray();
+
+        for (Course course : courses) {
+            JsonObject courseList = new JsonObject();
+
+            courseList.addProperty("courseId", course.getId());
+            courseList.addProperty("courseCode", course.getCourseCode());
+            courseList.addProperty("courseName", course.getCourseName());
+            courseList.addProperty("teacherName", course.getTeacher().getTeacherName());
+            if (course.getExaminingForm() == 0) {
+                courseList.addProperty("examForm", "闭卷");
+            }
+            if (course.getExaminingForm() == 1) {
+                courseList.addProperty("examForm", "开卷");
+            }
+            if (course.getExaminingForm() == 2) {
+                courseList.addProperty("examForm", "论文结课");
+            }
+            if (course.getExaminingForm() == 3) {
+                courseList.addProperty("examForm", "其他");
+            }
+
+            if (course.getPassingCourse() == 0) {
+                courseList.addProperty("passingForm", "否");
+            }
+            if (course.getPassingCourse() == 1) {
+                courseList.addProperty("passForm", "是");
+            }
+
+            coursesList.add(courseList);
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("courses", coursesList);
+
+        if (coursesList.size() < 1) {
+            success = false;
+        }
+
+        res.put("data", data);
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = "/findByStudentIdAndCourseCode", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findByStudentIdAndCourseCode(String studentIdStr, String courseCode, String teacherName, String coursName, HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        boolean success = false;
+        if (studentIdStr != "") {
+            success = true;
+        }
+
+        List<Course> courses = new ArrayList<>();
+
+        int studentId = Integer.parseInt(studentIdStr);
+        if (courseCode == "") {
+            courses = courseBiz.findByCourseAndTeacher(studentId, coursName, teacherName);
+        } else {
+            courses = courseBiz.findByStudentIdAndCourseCode(studentId, courseCode);
+        }
+
+        JsonArray coursesList = new JsonArray();
+        for (Course course : courses) {
+            JsonObject courseList = new JsonObject();
+
+            courseList.addProperty("courseId", course.getId());
+            courseList.addProperty("courseCode", course.getCourseCode());
+            courseList.addProperty("courseName", course.getCourseName());
+            courseList.addProperty("teacherName", course.getTeacher().getTeacherName());
+            if (course.getExaminingForm() == 0) {
+                courseList.addProperty("examForm", "闭卷");
+            }
+            if (course.getExaminingForm() == 1) {
+                courseList.addProperty("examForm", "开卷");
+            }
+            if (course.getExaminingForm() == 2) {
+                courseList.addProperty("examForm", "论文结课");
+            }
+            if (course.getExaminingForm() == 3) {
+                courseList.addProperty("examForm", "其他");
+            }
+
+            if (course.getPassingCourse() == 0) {
+                courseList.addProperty("passingForm", "否");
+            }
+            if (course.getPassingCourse() == 1) {
+                courseList.addProperty("passForm", "是");
+            }
+
+            coursesList.add(courseList);
+        }
+
+        Map<String, Object> res = new HashMap<>();
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("courses", coursesList);
+
+        if (coursesList.size() < 1) {
+            success = false;
+        }
+
+        res.put("data", data);
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = "/findAllCourse", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findAllCourse(HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        boolean success = true;
+
+        List<Course> courses = courseBiz.findAll();
+
+        JsonArray coursesList = new JsonArray();
+        for (Course course : courses) {
+            JsonObject courseList = new JsonObject();
+
+            courseList.addProperty("courseId", course.getId());
+            courseList.addProperty("courseCode", course.getCourseCode());
+            courseList.addProperty("courseName", course.getCourseName());
+            courseList.addProperty("teacherName", course.getTeacher().getTeacherName());
+            if (course.getExaminingForm() == 0) {
+                courseList.addProperty("examForm", "闭卷");
+            }
+            if (course.getExaminingForm() == 1) {
+                courseList.addProperty("examForm", "开卷");
+            }
+            if (course.getExaminingForm() == 2) {
+                courseList.addProperty("examForm", "论文结课");
+            }
+            if (course.getExaminingForm() == 3) {
+                courseList.addProperty("examForm", "其他");
+            }
+
+            if (course.getPassingCourse() == 0) {
+                courseList.addProperty("passingForm", "否");
+            }
+            if (course.getPassingCourse() == 1) {
+                courseList.addProperty("passForm", "是");
+            }
+
+            coursesList.add(courseList);
+        }
+
+        Map<String, Object> res = new HashMap<>();
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("courses", coursesList);
+
+        if (coursesList.size() < 1) {
+            success = false;
+        }
+
+        res.put("data", data);
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
+
+    }

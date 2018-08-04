@@ -95,6 +95,22 @@
 	    ( select courseId from course where teacherId = #{teacherId} 
 	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
 	</select>
-	
+
+	<select id="findByStudentIdAndCourseName" resultMap="TeacherResultMap">
+		select * from Teacher
+		where id in
+		( select teacherId from course
+		where courseName = #{arg1} and id in
+		( select courseId from student_select_course where studentId = #{arg0} and deleteStatus = 0 )
+		and deleteStatus = 0 )
+		and deleteStatus = 0
+	</select>
+
+	<select id="findByStudentId" parameterType="int" resultMap="TeacherResultMap">
+		select * from Teacher
+		where id in ( select teacherId from Course
+		where id in ( select courseId from student_select_course where studentId = #{studentId}
+		and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
 
 </mapper>
