@@ -66,7 +66,7 @@
 											<ul class="menu">
 												<li>
 													<!-- Task item -->
-													<a :href="http://localhost:8080/view/user/course-attended.html?id={{studentId}}">
+													<a :href=" 'http://localhost:8080/view/user/course-attended.html?id='+'studentId'">
 														<!-- Task title and progress text -->
 														<h3>
                                                      已评课数
@@ -85,7 +85,7 @@
 											</ul>
 										</li>
 										<li class="footer">
-											<a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentId}}">进入评课</a>
+											<a : href=" 'http://localhost:8080/view/user/classdetail-uploads.html?id='+'studentId' ">进入评课</a>
 										</li>
 									</ul>
 								</li>
@@ -113,7 +113,7 @@
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+												<a :href="'http://localhost:8080/view/user/studentinfo_new.html?id='+'studentId' " class="btn btn-default btn-flat">Profile</a>
 											</div>
 											<div class="pull-right">
 												<a href="#" class="btn btn-default btn-flat">Sign out</a>
