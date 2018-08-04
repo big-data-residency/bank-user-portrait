@@ -128,10 +128,10 @@
 	    order by LikeNumber desc
 	</select>
 	
-	<select id="likeNumber" parameterType="int" resultType="int" >
+	<select id="likeNumber" parameterType="int" resultType="Integer">
 	    select sum(likeNumber) from student_comment_course
 	    where selectId in ( select id from student_select_course where courseId = #{id}
-	     and deleteStatus = 0 ) and deleteStatus = 0
+	     and student_select_course.DeleteStatus = 0 ) and student_comment_course.deleteStatus = 0
 	</select>
 	
 	<select id="oneTagNumber"  resultType="int" >
@@ -141,13 +141,13 @@
 	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
 	</select>
 	
-	<select id="tagList" parameterType="int" resultType="Tag" >
-	    select * from tag
-	    where id in ( select tagId from comment_tag where 
-	    commentId in ( select id from student_comment_course where
-	    ( select id from student_select_course where courseId = #{courseId} 
-	    and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0
-	</select>
+	<!--<select id="tagList" parameterType="int" resultMap="Tag" >-->
+	    <!--#select * from tag-->
+	    <!--#where id in ( select tagId from comment_tag where -->
+	    <!--#commentId in ( select id from student_comment_course where-->
+	    <!--#( select id from student_select_course where courseId = #{courseId} -->
+	    <!--#and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0 ) and deleteStatus = 0-->
+	<!--</select>-->
 
 
 	<select id="selectByKeyword" resultMap="CourseResultMap">
@@ -189,10 +189,43 @@
 
 	<select id="findByCourseAndTeacher" resultMap="CourseResultMap">
 		select * from Course
+		where deleteStatus = 0
+		<if test="courseName != null">
+			and courseName = #{courseName}
+		</if>
+		<if test="teacherName != null">
+			and teacherId in
+			( select id from Teacher where teacherName = #{teacherName} and deleteStatus = 0 )
+		</if>
+		<if test="studentId > 0">
+			and id in ( select courseId from student_select_course where studentId = #{studentId}
+			and deleteStatus = 0 )
+		</if>
+	</select>
+
+	<select id="findByTeacherNameAndCourseName" resultMap="CourseResultMap">
+		select * from Course
 		where courseName = #{arg1} and teacherId in
-		( select id from Teacher where teacherName = #{arg2} and deleteStatus = 0 )
-		and id in ( select courseId from student_select_course where studentId = #{arg0}
-		 and deleteStatus = 0 ) and deleteStatus = 0
+		( select id from Teacher where teacherName = #{arg0} and deleteStatus = 0 )
+		and deleteStatus = 0
+	</select>
+	
+	<select id="findByTeacherCourseExamPass" resultMap="CourseResultMap">
+		select * from Course
+		where deleteStatus = 0
+		<if test="courseName != null">
+			and courseName = #{courseName}
+		</if>
+		<if test="teacherName != null">
+			and teacherId in
+			( select id from Teacher where teacherName = #{teacherName} and deleteStatus = 0 )
+		</if>
+		<if test="examType != -1">
+			and examiningForm = #{examType}
+		</if>
+		<if test="passType != -1">
+			and passingCourse = #{passType}
+		</if>
 	</select>
 
 </mapper>
