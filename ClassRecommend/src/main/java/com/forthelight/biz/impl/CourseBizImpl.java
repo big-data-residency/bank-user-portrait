@@ -92,7 +92,7 @@ public class CourseBizImpl implements CourseBiz {
     }
 
     @Override
-    public int likeNumber(int id) {
+    public Integer likeNumber(int id) {
         return courseDao.likeNumber(id);
     }
 
@@ -103,6 +103,7 @@ public class CourseBizImpl implements CourseBiz {
 
     @Override
     public List<Tag> tagList(int courseId) {
+
         return courseDao.tagList(courseId);
     }
 
@@ -143,8 +144,14 @@ public class CourseBizImpl implements CourseBiz {
     }
 
     @Override
-    public List<Course> findByTeacherCourseExamPass(String courseName, String teacherName, int examType, int passType) {
-        return courseDao.findByTeacherCourseExamPass(courseName,teacherName,examType,passType);
+    public List<Course> findByTeacherCourseExamPass(String courseName, String teacherName, int examType,
+                                                    int passType) {
+        return courseDao.findByTeacherCourseExamPass(courseName, teacherName, examType, passType);
+    }
+
+    @Override
+    public List<Course> selectByShouldCheck(int Grade, int College, int Major) {
+        return null;
     }
 
 }

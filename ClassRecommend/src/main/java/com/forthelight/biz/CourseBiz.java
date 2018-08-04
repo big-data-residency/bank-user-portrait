@@ -37,7 +37,7 @@ public interface CourseBiz {
 
     List<Course> orderByLike();
 
-    int likeNumber(int id);
+    Integer likeNumber(int id);
 
     int oneTagNumber(int tagId, int id);
 
@@ -50,14 +50,17 @@ public interface CourseBiz {
 
     List<Course> findCourseOfAdmin(String courseType, String teacherName, int examType, String courseName);
 
+
     List<Course> findByStudentIdAndTeacherName(int studentId, String teacherName);
 
     List<Course> findByStudentIdAndCourseCode(int studentId, String courseCode);
 
     List<Course> findByCourseAndTeacher(int studentId, String courseName, String teacherName);
 
-    Course findByTeacherNameAndCourseName(String teacherName,String courseName);
+    Course findByTeacherNameAndCourseName(String teacherName, String courseName);
 
-    List<Course> findByTeacherCourseExamPass(String courseName,String teacherName,int examType,int passType);
+    List<Course> findByTeacherCourseExamPass(String courseName, String teacherName, int examType, int passType);
+
+    List<Course> selectByShouldCheck(int Grade, int College, int Major);
 
 }

@@ -38,7 +38,7 @@ public interface CourseDao {
 	
 	List<Course> orderByLike();
 	
-	int likeNumber(int id);
+	Integer likeNumber(int id);
 	
 	int oneTagNumber(int tagId , int id);
 	

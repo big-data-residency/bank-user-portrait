@@ -19,7 +19,9 @@
 			select="com.forthelight.dao.TagDao.findByTagId" />
 			
 	</resultMap>
-
+	<select id="findAll" resultMap="StudentCommentCourseResultMap">
+		SELECT * FROM student_comment_course;
+	</select>
 
 
 
