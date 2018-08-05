@@ -306,6 +306,9 @@ public class CourseController {
 
         Map<String, Object> res = new HashMap<>();
 
+        courseSelect.Initialize();
+        courseSelect.Recommend();
+
         boolean success = true;
 
         res.put("success", success);
