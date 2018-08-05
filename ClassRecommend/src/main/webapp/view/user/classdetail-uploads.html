@@ -356,7 +356,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <div class="post" v-for="(comment, index) in comments">
                                     <div class="user-block">
                                         <img class="img-circle img-bordered-sm"
-                                             src="../../style/dist/img/user1-128x128.jpg" alt="user image">
+                                             :src="comment.student.studentPortrait" alt="user image">
                                         <span class="username">
                                                 <a href="#">{{ comment.student.studentName }}</a>
                                                 <a href="#" class="pull-right btn-box-tool">
@@ -375,8 +375,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <i class="fa fa-share margin-r-5"></i> Share</a>
                                         </li>
                                         <li>
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                            <span class="link-black text-sm like">
+                                                <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</span>
                                         </li>
                                         <li class="pull-right">
                                             <a href="#" class="link-black text-sm">
@@ -402,107 +402,106 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                                 <!--&lt;!&ndash; Post &ndash;&gt;-->
                                 <!--<div class="post clearfix">-->
-                                    <!--<div class="user-block">-->
-                                        <!--<img class="img-circle img-bordered-sm"-->
-                                             <!--src="../../style/dist/img/user7-128x128.jpg" alt="User Image">-->
-                                        <!--<span class="username">-->
-                                                <!--<a href="#">Sarah Ross</a>-->
-                                                <!--<a href="#" class="pull-right btn-box-tool">-->
-                                                    <!--<i class="fa fa-times"></i>-->
-                                                <!--</a>-->
-                                            <!--</span>-->
-                                        <!--<span class="description">Sent you a message - 3 days ago</span>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash; /.user-block &ndash;&gt;-->
-                                    <!--<p>-->
-                                        <!--Lorem ipsum represents a long-held tradition for designers, typographers and the-->
-                                        <!--like. Some people hate it and argue for-->
-                                        <!--its demise, but others ignore the hate as they create awesome tools to help-->
-                                        <!--create-->
-                                        <!--filler text for everyone from bacon lovers to Charlie Sheen fans.-->
-                                    <!--</p>-->
+                                <!--<div class="user-block">-->
+                                <!--<img class="img-circle img-bordered-sm"-->
+                                <!--src="../../style/dist/img/user7-128x128.jpg" alt="User Image">-->
+                                <!--<span class="username">-->
+                                <!--<a href="#">Sarah Ross</a>-->
+                                <!--<a href="#" class="pull-right btn-box-tool">-->
+                                <!--<i class="fa fa-times"></i>-->
+                                <!--</a>-->
+                                <!--</span>-->
+                                <!--<span class="description">Sent you a message - 3 days ago</span>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.user-block &ndash;&gt;-->
+                                <!--<p>-->
+                                <!--Lorem ipsum represents a long-held tradition for designers, typographers and the-->
+                                <!--like. Some people hate it and argue for-->
+                                <!--its demise, but others ignore the hate as they create awesome tools to help-->
+                                <!--create-->
+                                <!--filler text for everyone from bacon lovers to Charlie Sheen fans.-->
+                                <!--</p>-->
 
-                                    <!--<form id="responseForm" class="form-horizontal">-->
-                                        <!--<div class="form-group margin-bottom-none">-->
-                                            <!--<div class="col-sm-9">-->
-                                                <!--<input class="form-control input-sm" placeholder="Response">-->
-                                            <!--</div>-->
-                                            <!--<div class="col-sm-3">-->
-                                                <!--<button type="submit"-->
-                                                        <!--class="btn btn-danger pull-right btn-block btn-sm">Send-->
-                                                <!--</button>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                    <!--</form>-->
+                                <!--<form id="responseForm" class="form-horizontal">-->
+                                <!--<div class="form-group margin-bottom-none">-->
+                                <!--<div class="col-sm-9">-->
+                                <!--<input class="form-control input-sm" placeholder="Response">-->
+                                <!--</div>-->
+                                <!--<div class="col-sm-3">-->
+                                <!--<button type="submit"-->
+                                <!--class="btn btn-danger pull-right btn-block btn-sm">Send-->
+                                <!--</button>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</form>-->
                                 <!--</div>-->
                                 <!--&lt;!&ndash; /.post &ndash;&gt;-->
 
                                 <!--&lt;!&ndash; Post &ndash;&gt;-->
                                 <!--<div class="post">-->
-                                    <!--<div class="user-block">-->
-                                        <!--<img class="img-circle img-bordered-sm"-->
-                                             <!--src="../../style/dist/img/user6-128x128.jpg" alt="User Image">-->
-                                        <!--<span class="username">-->
-                                                <!--<a href="#">Adam Jones</a>-->
-                                                <!--<a href="#" class="pull-right btn-box-tool">-->
-                                                    <!--<i class="fa fa-times"></i>-->
-                                                <!--</a>-->
-                                            <!--</span>-->
-                                        <!--<span class="description">Posted 5 photos - 5 days ago</span>-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash; /.user-block &ndash;&gt;-->
-                                    <!--<div class="row margin-bottom">-->
-                                        <!--<div class="col-sm-6">-->
-                                            <!--<img class="img-responsive" src="../../style/dist/img/photo1.png"-->
-                                                 <!--alt="Photo">-->
-                                        <!--</div>-->
-                                        <!--&lt;!&ndash; /.col &ndash;&gt;-->
-                                        <!--<div class="col-sm-6">-->
-                                            <!--<div class="row">-->
-                                                <!--<div class="col-sm-6">-->
-                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo2.png"-->
-                                                         <!--alt="Photo">-->
-                                                    <!--<br>-->
-                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo3.jpg"-->
-                                                         <!--alt="Photo">-->
-                                                <!--</div>-->
-                                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
-                                                <!--<div class="col-sm-6">-->
-                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo4.jpg"-->
-                                                         <!--alt="Photo">-->
-                                                    <!--<br>-->
-                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo1.png"-->
-                                                         <!--alt="Photo">-->
-                                                <!--</div>-->
-                                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
-                                            <!--</div>-->
-                                            <!--&lt;!&ndash; /.row &ndash;&gt;-->
-                                        <!--</div>-->
-                                        <!--&lt;!&ndash; /.col &ndash;&gt;-->
-                                    <!--</div>-->
-                                    <!--&lt;!&ndash; /.row &ndash;&gt;-->
+                                <!--<div class="user-block">-->
+                                <!--<img class="img-circle img-bordered-sm"-->
+                                <!--src="../../style/dist/img/user6-128x128.jpg" alt="User Image">-->
+                                <!--<span class="username">-->
+                                <!--<a href="#">Adam Jones</a>-->
+                                <!--<a href="#" class="pull-right btn-box-tool">-->
+                                <!--<i class="fa fa-times"></i>-->
+                                <!--</a>-->
+                                <!--</span>-->
+                                <!--<span class="description">Posted 5 photos - 5 days ago</span>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.user-block &ndash;&gt;-->
+                                <!--<div class="row margin-bottom">-->
+                                <!--<div class="col-sm-6">-->
+                                <!--<img class="img-responsive" src="../../style/dist/img/photo1.png"-->
+                                <!--alt="Photo">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                <!--<div class="col-sm-6">-->
+                                <!--<div class="row">-->
+                                <!--<div class="col-sm-6">-->
+                                <!--<img class="img-responsive" src="../../style/dist/img/photo2.png"-->
+                                <!--alt="Photo">-->
+                                <!--<br>-->
+                                <!--<img class="img-responsive" src="../../style/dist/img/photo3.jpg"-->
+                                <!--alt="Photo">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                <!--<div class="col-sm-6">-->
+                                <!--<img class="img-responsive" src="../../style/dist/img/photo4.jpg"-->
+                                <!--alt="Photo">-->
+                                <!--<br>-->
+                                <!--<img class="img-responsive" src="../../style/dist/img/photo1.png"-->
+                                <!--alt="Photo">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.row &ndash;&gt;-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.row &ndash;&gt;-->
 
-                                    <!--<ul class="list-inline">-->
-                                        <!--<li>-->
-                                            <!--<a href="#" class="link-black text-sm">-->
-                                                <!--<i class="fa fa-share margin-r-5"></i> Share</a>-->
-                                        <!--</li>-->
-                                        <!--<li>-->
-                                            <!--<a href="#" class="link-black text-sm">-->
-                                                <!--<i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>-->
-                                        <!--</li>-->
-                                        <!--<li class="pull-right">-->
-                                            <!--<a href="#" class="link-black text-sm">-->
-                                                <!--<i class="fa fa-comments-o margin-r-5"></i> Comments (5)-->
-                                            <!--</a>-->
-                                        <!--</li>-->
-                                    <!--</ul>-->
+                                <!--<ul class="list-inline">-->
+                                <!--<li>-->
+                                <!--<a href="#" class="link-black text-sm">-->
+                                <!--<i class="fa fa-share margin-r-5"></i> Share</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                <!--<a href="#" class="link-black text-sm">-->
+                                <!--<i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>-->
+                                <!--</li>-->
+                                <!--<li class="pull-right">-->
+                                <!--<a href="#" class="link-black text-sm">-->
+                                <!--<i class="fa fa-comments-o margin-r-5"></i> Comments (5)-->
+                                <!--</a>-->
+                                <!--</li>-->
+                                <!--</ul>-->
 
-                                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
+                                <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
                                 <!--</div>-->
                                 <!--&lt;!&ndash; /.post &ndash;&gt;-->
                             </div>
-
 
                             <div class="tab-pane" id="uploads">
                                 <div class="table-responsive mailbox-messages">
@@ -1033,8 +1032,7 @@ immediately after the control sidebar -->
                 recommendGrade: '0',
             },
             scoreRate: {},
-            comments: {
-            },
+            comments: {},
         },
         methods: {
             getInfo() {
@@ -1192,10 +1190,6 @@ immediately after the control sidebar -->
                     alert("请输入大于4个字节的内容");
                     return;
                 }
-                if (classDetail.comment.recommendGrade === "0") {
-                    alert("请选择推荐年级");
-                    return;
-                }
                 $.ajax({
                     url: '/commentUpload',
                     type: 'post',
@@ -1236,21 +1230,24 @@ immediately after the control sidebar -->
                     }
                 })
             },
-            getComments(){
+            getComments() {
                 $.ajax({
                     url: "/getCommentsByCourseId",
                     method: "get",
-                    data:{
+                    data: {
                         courseId: courseIdStr
                     },
-                    success(res){
-                        if(res.success){
+                    success(res) {
+                        if (res.success) {
                             classDetail.comments = res.data.comments;
                         } else {
 
                         }
                     }
                 })
+            },
+            likeComment() {
+                console.log($(this));
             }
         },
         mounted() {
@@ -1264,6 +1261,22 @@ immediately after the control sidebar -->
 
         }
 
+    })
+</script>
+<script type="text/javascript">
+    $('span.like').click(function () {
+        console.log("click");
+        var thumb = $(this).children();
+        if(thumb.hasClass("fa-thumbs-o-up")){
+            thumb.removeClass("fa-thumbs-o-up");
+            thumb.addClass("thumbs-up");
+            classDetail.likeNumber++;
+        }
+        if(thumb.hasClass("thumbs-up")){
+            thumb.removeClass("thumbs-up");
+            thumb.addClass("fa-thumbs-o-up");
+            classDetail.likeNumber--;
+        }
     })
 </script>
 <!-- 字符云  -->
@@ -1375,37 +1388,37 @@ immediately after the control sidebar -->
     });
 </script>
 <!-- 文件上传 -->
-<script>
-    type = "text/javascript" >
-        $('#uploadBtn').click(function () {
-            var file = document.getElementById("fileInput").files[0];
-            if (typeof (file) === "undefined") {
-                alert("请选择文件");
-                return;
-            }
-            var formFile = new FormData();
-            formFile.append("action", "uploadFiles");
-            formFile.append("file", file);
-            formFile.append("title", $('#uploadFileTitle').val());
-            formFile.append("notes", $('#uploadFileNotes').val());
-            // formFile.append("studentId", );
-            // formFile.append("classId", );
+<script type="text/javascript">
+    $('#uploadBtn').click(function () {
+        var file = document.getElementById("fileInput").files[0];
+        if (typeof (file) === "undefined") {
+            alert("请选择文件");
+            return;
+        }
+        var formFile = new FormData();
+        formFile.append("action", "uploadFiles");
+        formFile.append("file", file);
+        formFile.append("title", $('#uploadFileTitle').val());
+        formFile.append("notes", $('#uploadFileNotes').val());
+        formFile.append("courseId", courseIdStr);
+        formFile.append("studentId", studentIdStr);
 
-            $.ajax({
-                url: "/fileUpload",
-                data: formFile,
-                type: "post",
-                dataType: "json",
-                cache: false,
-                processData: false,
-                contentType: false,
-                success: function (rsp) {
-                    if (rsp.success) {
-                        alert("上传成功");
-                    }
+        $.ajax({
+            url: "/fileUpload",
+            data: formFile,
+            type: "post",
+            dataType: "json",
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (rsp) {
+                if (rsp.success) {
+                    alert("上传成功");
+                    history.go(0);
                 }
-            })
+            }
         })
+    })
 </script>
 <!-- star.js -->
 <script>
@@ -1465,6 +1478,8 @@ immediately after the control sidebar -->
         });
     })
 </script>
+<!-- like -->
+
 </body>
 
 </html>

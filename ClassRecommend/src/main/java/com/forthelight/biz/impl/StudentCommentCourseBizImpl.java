@@ -46,8 +46,7 @@ public class StudentCommentCourseBizImpl implements StudentCommentCourseBiz {
 	}
 
 	@Override
-	public int getSelectIdByStudentIdAndCourseId(int studentId, int courseId) {
-		// TODO Auto-generated method stub
+	public Integer getSelectIdByStudentIdAndCourseId(int studentId, int courseId) {
 		return studentCommentCourseDao.getSelectIdByStudentIdAndCourseId(studentId, courseId);
 	}
 

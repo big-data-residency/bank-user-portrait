@@ -3,6 +3,7 @@ package com.forthelight.controller;
 import com.forthelight.biz.CourseBiz;
 import com.forthelight.biz.FileBiz;
 import com.forthelight.biz.StudentBiz;
+import com.forthelight.domain.Course;
 import com.forthelight.domain.File;
 import com.forthelight.domain.Student;
 import com.forthelight.util.ImageSize;
@@ -84,13 +85,18 @@ public class FileController {
 
         String title = request.getParameter("title");
         String description = request.getParameter("notes");
-
+        String studentId = request.getParameter("studentId");
+        String courseId = request.getParameter("courseId");
+        Student student = studentBiz.findById(Integer.parseInt(studentId));
+        Course course = courseBiz.findById(Integer.parseInt(courseId));
 
         if (file != null && file.getSize() > 0) {
             String dstPath = request.getContextPath() + java.io.File.separator + "files";
             if (fileBiz.saveFile(dstPath, file)) {
 
                 File saveFile = new File();
+                saveFile.setStudent(student);
+                saveFile.setCourse(course);
                 saveFile.setFilePath(dstPath);
                 saveFile.setFileName(file.getOriginalFilename());
                 saveFile.setDownloadNum(0);

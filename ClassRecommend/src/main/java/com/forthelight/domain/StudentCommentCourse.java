@@ -19,7 +19,7 @@ public class StudentCommentCourse implements Serializable {
 	private int interestingScore;
 	private int easyScore;
 	private int knowledgeScore;
-	private int selectId;
+	private Integer selectId;
 	private int recommendGrade;
 
 
@@ -169,11 +169,11 @@ public class StudentCommentCourse implements Serializable {
 		this.knowledgeScore = knowledgeScore;
 	}
 
-	public int getSelectId() {
+	public Integer getSelectId() {
 		return selectId;
 	}
 
-	public void setSelectId(int selectId) {
+	public void setSelectId(Integer selectId) {
 		this.selectId = selectId;
 	}
 

@@ -5,6 +5,7 @@ import com.forthelight.dao.StudentDao;
 import com.forthelight.domain.Course;
 import com.forthelight.domain.CourseTime;
 import com.forthelight.domain.Student;
+import com.forthelight.util.RandomGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,4 +76,12 @@ public class StudentBizTest {
         }
     }
 
+    @Test
+    public void update() {
+        List<Student> studentList = studentDao.findAll();
+        for(Student student: studentList){
+            student.setStudentPortrait(RandomGenerator.getAvatarPath());
+            studentDao.update(student);
+        }
+    }
 }
