@@ -206,13 +206,13 @@ public class StudentController {
 			success = false;
 		}
 
-		Map<String, Object> studentInfo = new HashMap<>();
+		JsonObject studentInfo = new JsonObject();
 
-		studentInfo.put("student", student);
-		studentInfo.put("college", student.getCollege());
-		studentInfo.put("major", student.getMajor());
-		studentInfo.put("courses", student.getCourses());
-
+		studentInfo.addProperty("studentName", student.getStudentName());
+		studentInfo.addProperty("nickName",student.getNickName());
+		studentInfo.addProperty("studentNumber",student.getStudentNumber());
+		studentInfo.addProperty("college", student.getCollege().getCollegeName());
+		studentInfo.addProperty("major", student.getMajor().getMajorName());
 		// ------------------ 第一个标签栏数据 ---------------------
 		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseBiz.findByStudentId(studentId);
 		JsonArray comments = new JsonArray();
@@ -272,12 +272,24 @@ public class StudentController {
 		int studentId = Integer.parseInt(studentIdStr);
 
 		student.setId(studentId);
-		student.setNickName(nickName);
+		if(nickName== "")
+			student.setNickName(studentBiz.findById(studentId).getNickName());
+		else
+			student.setNickName(nickName);
 		student.setGender(gender);
 		student.setStudentPortrait(studentBiz.findById(studentId).getStudentPortrait());
 		student.setPassword(password);
-		student.setCollege(collegeBiz.findByName(college));
-		student.setMajor(majorBiz.findByName(major));
+//		if(college == ""){
+//			college = collegeBiz.findByName(studentBiz.findById(studentId).getCollege().getCollegeName()).getCollegeName();
+//		}
+		if(college == ""){
+			student.setCollege(studentBiz.findById(studentId).getCollege());
+		}else
+			student.setCollege(collegeBiz.findByName(college));
+		if(major == ""){
+			student.setMajor((studentBiz.findById(studentId).getMajor()));
+		}else
+			student.setMajor(majorBiz.findByName(major));
 
 		int result = studentBiz.update(student);
 

@@ -114,6 +114,7 @@ public class CourseSelect {
     }
 
     public boolean Recommend(){
+
         List<Course> recommendCourses = courseBiz.selectByRecommendCourse(stu_Grade,stu_College,stu_Major);
 
         //删去冲突的课程
@@ -256,6 +257,7 @@ public class CourseSelect {
     }
 
     public void checkShouldCheckLessons(){
+
        Iterator<String> iterator = shouldCheckCourses.iterator();
        while(iterator.hasNext()){
            String course = iterator.next();
