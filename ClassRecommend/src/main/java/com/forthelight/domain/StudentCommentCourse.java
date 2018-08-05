@@ -20,23 +20,11 @@ public class StudentCommentCourse implements Serializable {
 	private int easyScore;
 	private int knowledgeScore;
 	private int selectId;
-<<<<<<< HEAD
-	private String recommendGrade;
-	private StudentCommentCourse replyTo;
-=======
 	private int recommendGrade;
 
-	public int getRecommendGrade() {
-		return recommendGrade;
-	}
 
-	public void setRecommendGrade(int recommendGrade) {
-		this.recommendGrade = recommendGrade;
-	}
-
-
->>>>>>> 17512de995ca0076aec77d15b5eeb4285bb4111e
-
+	
+	private transient StudentCommentCourse replyTo;
 	private transient Student student;
 	private transient Course course;
 	private transient List<Tag> tags = new ArrayList<Tag>();
@@ -53,20 +41,20 @@ public class StudentCommentCourse implements Serializable {
 		this.replyTo = replyTo;
 	}
 
+	public int getRecommendGrade() {
+		return recommendGrade;
+	}
+
+	public void setRecommendGrade(int recommendGrade) {
+		this.recommendGrade = recommendGrade;
+	}
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getRecommendTerm() {
-		return recommendGrade;
-	}
-
-	public void setRecommendTerm(String recommendGrade) {
-		this.recommendGrade = recommendGrade;
 	}
 
 	public String getComment() {
