@@ -60,7 +60,7 @@
 			  student_select_course.DeleteStatus = 0
 	</select>
 	
-	<select id="getSelectIdByStudentIdAndCourseId" resultType="int" >
+	<select id="getSelectIdByStudentIdAndCourseId" resultType="Integer" >
 	    select id from student_select_course 
 	    where studentId = #{arg0} and courseId = #{arg1} and deleteStatus = 0
 	</select>
