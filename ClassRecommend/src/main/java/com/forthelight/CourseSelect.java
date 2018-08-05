@@ -273,6 +273,7 @@ public class CourseSelect {
            }
 
            checkShouldCheckCourses(course);
+
        }
     }
     public void checkShouldCheckCourses(String courseName){
