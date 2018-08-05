@@ -1,10 +1,7 @@
 package com.forthelight.controller;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -479,6 +476,84 @@ public class CourseController {
             int studentId = Integer.parseInt(studentIdStr);
             List<Course> courses = courseBiz.findByStudentId(studentId);
 
+            JsonArray coursesList = new JsonArray();
+
+            for (Course course : courses) {
+                JsonObject courseList = new JsonObject();
+
+                courseList.addProperty("courseId", course.getId());
+                courseList.addProperty("courseCode", course.getCourseCode());
+                courseList.addProperty("courseName", course.getCourseName());
+                courseList.addProperty("teacherName", course.getTeacher().getTeacherName());
+                if (course.getExaminingForm() == 0) {
+                    courseList.addProperty("examForm", "闭卷");
+                }
+                if (course.getExaminingForm() == 1) {
+                    courseList.addProperty("examForm", "开卷");
+                }
+                if (course.getExaminingForm() == 2) {
+                    courseList.addProperty("examForm", "论文结课");
+                }
+                if (course.getExaminingForm() == 3) {
+                    courseList.addProperty("examForm", "其他");
+                }
+
+                if (course.getPassingCourse() == 0) {
+                    courseList.addProperty("passingForm", "否");
+                }
+                if (course.getPassingCourse() == 1) {
+                    courseList.addProperty("passForm", "是");
+                }
+
+                coursesList.add(courseList);
+            }
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("courses", coursesList);
+
+            if (coursesList.size() < 1) {
+                success = false;
+            }
+
+            res.put("data", data);
+        }
+
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = "/noCheckingCourseList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findNoCheckingCourseList(String studentIdStr, HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        Map<String, Object> res = new HashMap<>();
+
+        boolean success = false;
+        if (studentIdStr != "") {
+            success = true;
+        }
+
+        if (success) {
+            int studentId = Integer.parseInt(studentIdStr);
+            List<Course> courses = courseBiz.findByStudentId(studentId);
+
+            List<StudentCommentCourse> checkedCourses = studentCommentCourseBiz.findByStudentId(studentId);
+
+            Iterator<Course> iterator = courses.iterator();
+            while(iterator.hasNext()){
+                Course course = iterator.next();
+                for(int i=0;i<checkedCourses.size();i++){
+                    if(course.getId().equals(checkedCourses.get(i).getCourse().getId())){
+                        iterator.remove();
+                    }
+                }
+            }
             JsonArray coursesList = new JsonArray();
 
             for (Course course : courses) {

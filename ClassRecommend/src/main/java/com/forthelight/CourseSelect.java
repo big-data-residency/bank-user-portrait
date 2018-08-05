@@ -132,6 +132,39 @@ public class CourseSelect {
             }
         }
 
+        int Dnumber=0;
+        int Enumber=0;
+        if(selectMoreD){
+            if(selectNumberD){
+                Dnumber=numberD-hasD;
+            }else{
+                Dnumber=100;
+            }
+        }
+
+        if(selectMoreE){
+            if(selectNumberE){
+                Enumber=numberE-hasE;
+            }else {
+                Enumber=100;
+            }
+        }
+
+
+        for(int i=0;i<recommendCourses.size();i++){
+            if(checkCourseTime3(recommendCourses.get(i).getId())){
+                if(recommendCourses.get(i).getLevel().equals("E")&& Enumber>0){
+                    checkedCourses.add(recommendCourses.get(i));
+                    Enumber--;
+                }else if(recommendCourses.get(i).getLevel().equals("D") && Dnumber>0){
+                    checkedCourses.add(recommendCourses.get(i));
+                    Dnumber--;
+                }else {
+                    checkedCourses.add(recommendCourses.get(i));
+                }
+            }
+        }
+
         float count[] = new float[200];
         for(int i=0;i<recommendCourses.size();i++){
             if(recommendCourses.get(i).getLevel().equals("E"))
@@ -271,7 +304,6 @@ public class CourseSelect {
                iterator.remove();
                continue;
            }
-
            checkShouldCheckCourses(course);
 
        }
