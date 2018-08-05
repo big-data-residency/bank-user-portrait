@@ -6,16 +6,17 @@ import com.forthelight.biz.StudentCommentCourseBiz;
 import com.forthelight.domain.Course;
 import com.forthelight.domain.Student;
 import com.forthelight.domain.StudentCommentCourse;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.gson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -53,5 +54,34 @@ public class CommentController {
 
         rsp.put("success", true);
         return gson.toJson(rsp);
+    }
+
+    @RequestMapping(value = "/getCommentsByCourseId", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String getCommentsByCourseId(@RequestParam("courseId") String courseId){
+        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+        JsonObject rsp = new JsonObject();
+        JsonObject comments = new JsonObject();
+
+
+        List<StudentCommentCourse> commentList = studentCommentCourseBiz.findByCourseId(Integer.parseInt(courseId));
+        if(commentList != null && commentList.size() > 0) {
+            int i=0;
+            for (StudentCommentCourse comment : commentList) {
+                JsonObject element = gson.toJsonTree(comment, StudentCommentCourse.class).getAsJsonObject();
+                element.add("student", gson.toJsonTree(comment.getStudent(), Student.class));
+                comments.add(String.valueOf(i),element);
+                i++;
+            }
+        } else {
+            rsp.addProperty("success", false);
+            return gson.toJson(rsp);
+        }
+        JsonObject data = new JsonObject();
+        data.add("comments", comments);
+        rsp.add("data", data);
+        rsp.addProperty("success", true);
+        return gson.toJson(rsp);
+
     }
 }

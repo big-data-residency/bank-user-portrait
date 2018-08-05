@@ -353,21 +353,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="tab-content">
                             <div class="tab-pane" id="activity">
                                 <!-- Post -->
-                                <div class="post">
+                                <div class="post" v-for="(comment, index) in comments">
                                     <div class="user-block">
                                         <img class="img-circle img-bordered-sm"
                                              src="../../style/dist/img/user1-128x128.jpg" alt="user image">
                                         <span class="username">
-                                                <a href="#">胖成球</a>
+                                                <a href="#">{{ comment.student.studentName }}</a>
                                                 <a href="#" class="pull-right btn-box-tool">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </span>
-                                        <span class="description">Shared publicly - 7:30 PM today</span>
+                                        <span class="description">Shared publicly - {{ comment.commentTime }}</span>
                                     </div>
                                     <!-- /.user-block -->
                                     <p>
-                                        启发式教学
+                                        {{ comment.comment }}
                                     </p>
                                     <ul class="list-inline">
                                         <li>
@@ -384,32 +384,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </a>
                                         </li>
                                     </ul>
-                                    <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                                </div>
-                                <!-- /.post -->
-
-                                <!-- Post -->
-                                <div class="post clearfix">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm"
-                                             src="../../style/dist/img/user7-128x128.jpg" alt="User Image">
-                                        <span class="username">
-                                                <a href="#">Sarah Ross</a>
-                                                <a href="#" class="pull-right btn-box-tool">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </span>
-                                        <span class="description">Sent you a message - 3 days ago</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <p>
-                                        Lorem ipsum represents a long-held tradition for designers, typographers and the
-                                        like. Some people hate it and argue for
-                                        its demise, but others ignore the hate as they create awesome tools to help
-                                        create
-                                        filler text for everyone from bacon lovers to Charlie Sheen fans.
-                                    </p>
-
                                     <form id="responseForm" class="form-horizontal">
                                         <div class="form-group margin-bottom-none">
                                             <div class="col-sm-9">
@@ -422,73 +396,111 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                         </div>
                                     </form>
+                                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
                                 </div>
                                 <!-- /.post -->
 
-                                <!-- Post -->
-                                <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm"
-                                             src="../../style/dist/img/user6-128x128.jpg" alt="User Image">
-                                        <span class="username">
-                                                <a href="#">Adam Jones</a>
-                                                <a href="#" class="pull-right btn-box-tool">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </span>
-                                        <span class="description">Posted 5 photos - 5 days ago</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <div class="row margin-bottom">
-                                        <div class="col-sm-6">
-                                            <img class="img-responsive" src="../../style/dist/img/photo1.png"
-                                                 alt="Photo">
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-6">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <img class="img-responsive" src="../../style/dist/img/photo2.png"
-                                                         alt="Photo">
-                                                    <br>
-                                                    <img class="img-responsive" src="../../style/dist/img/photo3.jpg"
-                                                         alt="Photo">
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col-sm-6">
-                                                    <img class="img-responsive" src="../../style/dist/img/photo4.jpg"
-                                                         alt="Photo">
-                                                    <br>
-                                                    <img class="img-responsive" src="../../style/dist/img/photo1.png"
-                                                         alt="Photo">
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.row -->
-                                        </div>
-                                        <!-- /.col -->
-                                    </div>
-                                    <!-- /.row -->
+                                <!--&lt;!&ndash; Post &ndash;&gt;-->
+                                <!--<div class="post clearfix">-->
+                                    <!--<div class="user-block">-->
+                                        <!--<img class="img-circle img-bordered-sm"-->
+                                             <!--src="../../style/dist/img/user7-128x128.jpg" alt="User Image">-->
+                                        <!--<span class="username">-->
+                                                <!--<a href="#">Sarah Ross</a>-->
+                                                <!--<a href="#" class="pull-right btn-box-tool">-->
+                                                    <!--<i class="fa fa-times"></i>-->
+                                                <!--</a>-->
+                                            <!--</span>-->
+                                        <!--<span class="description">Sent you a message - 3 days ago</span>-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash; /.user-block &ndash;&gt;-->
+                                    <!--<p>-->
+                                        <!--Lorem ipsum represents a long-held tradition for designers, typographers and the-->
+                                        <!--like. Some people hate it and argue for-->
+                                        <!--its demise, but others ignore the hate as they create awesome tools to help-->
+                                        <!--create-->
+                                        <!--filler text for everyone from bacon lovers to Charlie Sheen fans.-->
+                                    <!--</p>-->
 
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-share margin-r-5"></i> Share</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                                        </li>
-                                        <li class="pull-right">
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-comments-o margin-r-5"></i> Comments (5)
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <!--<form id="responseForm" class="form-horizontal">-->
+                                        <!--<div class="form-group margin-bottom-none">-->
+                                            <!--<div class="col-sm-9">-->
+                                                <!--<input class="form-control input-sm" placeholder="Response">-->
+                                            <!--</div>-->
+                                            <!--<div class="col-sm-3">-->
+                                                <!--<button type="submit"-->
+                                                        <!--class="btn btn-danger pull-right btn-block btn-sm">Send-->
+                                                <!--</button>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.post &ndash;&gt;-->
 
-                                    <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                                </div>
-                                <!-- /.post -->
+                                <!--&lt;!&ndash; Post &ndash;&gt;-->
+                                <!--<div class="post">-->
+                                    <!--<div class="user-block">-->
+                                        <!--<img class="img-circle img-bordered-sm"-->
+                                             <!--src="../../style/dist/img/user6-128x128.jpg" alt="User Image">-->
+                                        <!--<span class="username">-->
+                                                <!--<a href="#">Adam Jones</a>-->
+                                                <!--<a href="#" class="pull-right btn-box-tool">-->
+                                                    <!--<i class="fa fa-times"></i>-->
+                                                <!--</a>-->
+                                            <!--</span>-->
+                                        <!--<span class="description">Posted 5 photos - 5 days ago</span>-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash; /.user-block &ndash;&gt;-->
+                                    <!--<div class="row margin-bottom">-->
+                                        <!--<div class="col-sm-6">-->
+                                            <!--<img class="img-responsive" src="../../style/dist/img/photo1.png"-->
+                                                 <!--alt="Photo">-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                        <!--<div class="col-sm-6">-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="col-sm-6">-->
+                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo2.png"-->
+                                                         <!--alt="Photo">-->
+                                                    <!--<br>-->
+                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo3.jpg"-->
+                                                         <!--alt="Photo">-->
+                                                <!--</div>-->
+                                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                                <!--<div class="col-sm-6">-->
+                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo4.jpg"-->
+                                                         <!--alt="Photo">-->
+                                                    <!--<br>-->
+                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo1.png"-->
+                                                         <!--alt="Photo">-->
+                                                <!--</div>-->
+                                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                            <!--</div>-->
+                                            <!--&lt;!&ndash; /.row &ndash;&gt;-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash; /.row &ndash;&gt;-->
+
+                                    <!--<ul class="list-inline">-->
+                                        <!--<li>-->
+                                            <!--<a href="#" class="link-black text-sm">-->
+                                                <!--<i class="fa fa-share margin-r-5"></i> Share</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="#" class="link-black text-sm">-->
+                                                <!--<i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="pull-right">-->
+                                            <!--<a href="#" class="link-black text-sm">-->
+                                                <!--<i class="fa fa-comments-o margin-r-5"></i> Comments (5)-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+
+                                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.post &ndash;&gt;-->
                             </div>
 
 
@@ -1001,12 +1013,12 @@ immediately after the control sidebar -->
             Basic: {
                 tags: '#'
             },
+            Login: {},
             classInfo: {
                 likeNumber: '#',
                 uploadsNumber: '#',
                 commentsNumber: '#',
             },
-            Login: {},
             files: {},
             comment: {
                 interestingScore: '0',
@@ -1021,6 +1033,8 @@ immediately after the control sidebar -->
                 recommendGrade: '0',
             },
             scoreRate: {},
+            comments: {
+            },
         },
         methods: {
             getInfo() {
@@ -1222,12 +1236,29 @@ immediately after the control sidebar -->
                     }
                 })
             },
+            getComments(){
+                $.ajax({
+                    url: "/getCommentsByCourseId",
+                    method: "get",
+                    data:{
+                        courseId: courseIdStr
+                    },
+                    success(res){
+                        if(res.success){
+                            classDetail.comments = res.data.comments;
+                        } else {
+
+                        }
+                    }
+                })
+            }
         },
         mounted() {
             // this.myfun();
             this.getPar();
             this.getInfo();
             this.getScoreRate();
+            this.getComments();
             this.getFiles();
             // this.GetLogin();
 
