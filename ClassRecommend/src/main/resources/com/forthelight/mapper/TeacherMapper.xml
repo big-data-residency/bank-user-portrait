@@ -38,10 +38,11 @@
 	</select>
 
 	<select id="OrderByLike" resultMap="TeacherResultMap">
-		select * from
-		( ( Teacher inner join Course on Teacher.id = teacherId )
-		inner join student_select_course on Course.id = courseId )
-		inner join student_comment_course on selectId = student_select_course.id
+		select *
+		from(
+			( Teacher inner join Course on Teacher.id = teacherId )
+			inner join student_select_course on Course.id = courseId )
+			inner join student_comment_course on selectId = student_select_course.id
 		group by teacher.id
 		having teacher.deleteStatus = 0 and course.deleteStatus = 0 and student_select_course.deleteStatus = 0 and student_comment_course.deleteStatus = 0
 		order by sum(likeNumber) desc
