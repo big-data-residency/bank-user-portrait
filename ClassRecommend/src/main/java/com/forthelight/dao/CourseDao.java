@@ -62,4 +62,6 @@ public interface CourseDao {
 
 	List<Course> findRecommendCourse(@Param("collegeId")int collegeId,@Param("majorId")int majorId);
 
+	List<Course> findSelectCourse(@Param("collegeId")int collegeId,@Param("majorId")int majorId);
+
 }

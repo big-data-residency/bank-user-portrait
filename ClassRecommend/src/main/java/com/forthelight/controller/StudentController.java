@@ -101,12 +101,16 @@ public class StudentController {
 		HttpSession session  = request.getSession(false);
 		Student student = (Student)session.getAttribute("user");
 
+		JsonObject studentInfo = new JsonObject();
+		studentInfo.addProperty("studentId",student.getId());
+		studentInfo.addProperty("privilege",student.getPrivilege());
+
 		if(student==null) {
 			rsp.put("success", false);
 			rsp.put("data","当前未登录");
 		}else{
 			rsp.put("success",true);
-			rsp.put("data",student);
+			rsp.put("data",studentInfo);
 		}
 		return gson.toJson(rsp);
 	}
