@@ -62,4 +62,14 @@ public class StudentCommentCourseBizTest {
             }
         }
     }
+
+    @Test
+    public void update() {
+        Random random = new Random();
+        List<StudentCommentCourse> commentList = studentCommentCourseDao.findAll();
+        for(StudentCommentCourse comment: commentList){
+            comment.setRecommendGrade(random.nextInt(5));
+            studentCommentCourseDao.update(comment);
+        }
+    }
 }

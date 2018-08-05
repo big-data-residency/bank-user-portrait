@@ -69,11 +69,19 @@
 		insert into student_comment_course
 			(Comment, GradeScore, ContentScore, CommentTime,
 			 BearScore, InterestingScore, EasyScore, KnowledgeScore,
-			 RecommendTerm, ReplyTo, Anonymous, SelectID) VALUES
+			 RecommendGrade, ReplyTo, Anonymous, SelectID) VALUES
 			(#{comment}, #{gradeScore}, #{contentScore}, current_timestamp(),
 			 #{bearScore}, #{interestingScore}, #{easyScore}, #{knowledgeScore},
 			 #{recommendGrade}, #{replyTo.id}, #{anonymous}, #{selectId});
 	</insert>
+
+    <update id="update" parameterType="StudentCommentCourse">
+        UPDATE student_comment_course
+        SET Comment=#{comment}, GradeScore=#{gradeScore}, ContentScore=#{contentScore}, CommentTime=#{commentTime},
+            BearScore=#{bearScore}, InterestingScore=#{interestingScore}, EasyScore=#{easyScore}, KnowledgeScore=#{knowledgeScore},
+            RecommendGrade=#{recommendGrade}, ReplyTo=#{replyTo.id}, Anonymous=#{anonymous}, SelectID=#{selectId}
+        WHERE id=#{id}
+    </update>
 	
 	<select id="getScoreByGrade"  resultType="int" >
 	    select sum(gradeScore) from student_comment_course
