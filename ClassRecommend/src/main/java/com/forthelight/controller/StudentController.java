@@ -415,19 +415,8 @@ public class StudentController {
 		student.put("student", studentInformation);
 		student.put("college", studentInfo.getCollege().getCollegeName());
 		student.put("major", studentInfo.getMajor().getMajorName());
+		student.put("grade",studentInfo.getGrade());
 
-		if(studentInfo.getGrade() == 2017){
-			student.put("grade","大一");
-		}
-		if(studentInfo.getGrade() == 2016){
-			student.put("grade","大二");
-		}
-		if(studentInfo.getGrade() == 2015){
-			student.put("grade","大三");
-		}
-		if(studentInfo.getGrade() == 2014){
-			student.put("grade","大四");
-		}
 
 		Map<String, Object> data = new HashMap<>();
 		data.put("student",student);
