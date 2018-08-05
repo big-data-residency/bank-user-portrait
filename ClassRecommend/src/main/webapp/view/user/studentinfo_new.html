@@ -251,7 +251,7 @@ desired effect
             <div class="box-body box-profile">
               <img class="profile-user-img img-responsive img-circle" src="../../style/dist/img/user4-128x128.jpg" alt="User profile picture">
 
-              <h3 class="profile-username text-center">{{ studentInfo.student.nickName }}</h3>
+              <h3 class="profile-username text-center">{{ studentInfo.nickName }}</h3>
               <a href="#" class="btn btn-primary btn-block"><b>Change Photo</b></a>
             </div>
             <!-- /.box-body -->
@@ -268,15 +268,15 @@ desired effect
               <strong><i class="fa fa-book margin-r-5"></i> More information </strong>
 
               <p class="text-muted">
-                {{ studentInfo.student.studentNumber }}  {{ studentInfo.student.studentName }}
+                {{ studentInfo.studentNumber }}  {{ studentInfo.studentName }}
               </p>
 
               <hr>
 
               <strong><i class="fa fa-file-text-o margin-r-5"></i> College And Major </strong>
 
-              <p>南开大学{{ studentInfo.college.collegeName }}<br/>
-                {{ studentInfo.major.majorName }}专业</p>
+              <p>南开大学{{ studentInfo.college }}<br/>
+                {{ studentInfo.major}}专业</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -309,7 +309,6 @@ desired effect
                     {{ comment.commentContent }}
                   </p>
                   <ul class="list-inline">
-                    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
                     <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like {{ comment.likeNumber }} </a>
                     </li>
                     <li class="pull-right">
@@ -322,7 +321,7 @@ desired effect
                 <!-- /.post -->
               </div>
               <!-- /.tab-pane -->
-              <div class="tab-pane">
+              <div class="tab-pane" id="courseList">
                       <div class="box-body table-responsive no-padding">
                           <table class="table table-hover">
                               <thead>
@@ -336,9 +335,9 @@ desired effect
                               </thead>
                               <tbody>
                               <tr v-for="course in courseList">
-                                  <td>{{course.CourseCode}}</td>
-                                  <td>{{course.CourseName}}</td>
-                                  <td>{{course.TeacherName}}</td>
+                                  <td>{{course.courseCode}}</td>
+                                  <td>{{course.courseName}}</td>
+                                  <td>{{course.teacherName}}</td>
                                   <td>
                                       <a href="classdetail-uploads.html">评分</a>
                                   </td>
@@ -451,18 +450,14 @@ desired effect
   var studentInfo = new Vue({
   el:'#studentInfo',
   data:{
-    studentInfo:{
-        student:{},
-        college:{},
-        major:{},
-        comments:'',
-        courseList:[{
-            CourseCode:123,
-            CourseId:'',
-            CourseName:'课程名称',
-            TeacherName:'老师名称',
-        }],
-    },
+    studentInfo:{},
+      comments:'',
+      courseList:[{
+          CourseCode:123,
+          CourseId:'',
+          CourseName:'课程名称',
+          TeacherName:'老师名称',
+      }],
     // Login:{},
   },
   methods: {
@@ -493,22 +488,22 @@ desired effect
                   if (res.success) {
                       studentInfo.studentInfo = res.data.studentInfo;
                       StudentComment = res.data.comments;
-                      studentComment.comments = StudentComment;
+                      studentInfo.comments = StudentComment;
                   }
               }
           })
       },
       getNoCheckingCourseList(){
-          $ajax({
+          $.ajax({
               url:'http://localhost:8080/noCheckingCourseList',
               type:'GET',
               data:{
-                  StudentIdStr:studentIdStr,
+                  studentIdStr:studentIdStr,
               },
               dataType:'json',
               success:function (res) {
                   if(res.success){
-                      this.courseList=res.data;
+                      studentInfo.courseList=res.data.courses;
                   }else{
                       alert(res.data);
                   }
