@@ -7,8 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import com.forthelight.CourseSelect;
-
+import com.forthelight.biz.*;
 import com.forthelight.domain.*;
 
 import com.google.gson.JsonArray;
@@ -21,11 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.forthelight.biz.CourseBiz;
-import com.forthelight.biz.FileBiz;
-import com.forthelight.biz.StudentBiz;
-import com.forthelight.biz.StudentCommentCourseBiz;
-import com.forthelight.biz.TagBiz;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -33,10 +27,13 @@ import com.google.gson.GsonBuilder;
 @Controller
 public class CourseController {
 
-    private CourseSelect courseSelect = new CourseSelect();
+    private CourseSelectController courseSelectController = new CourseSelectController();
 
     @Autowired
     private CourseBiz courseBiz;
+
+    @Autowired
+    private CourseTimeBiz courseTimeBiz;
 
     @Autowired
     private FileBiz fileBiz;
@@ -50,6 +47,46 @@ public class CourseController {
     @Autowired
     private StudentBiz studentBiz;
 
+    @Autowired
+    private MajorBiz majorBiz;
+
+    @Autowired CollegeBiz collegeBiz;
+
+    public int stu_Grade;
+    public int stu_College;
+    public int stu_Major;
+
+    public boolean preferD;
+    public boolean preferE;
+    public boolean selectMoreD;
+    public boolean selectMoreE;
+    public boolean selectNumberD;
+    public boolean selectNumberE;
+    public Integer numberD;
+    public Integer numberE;
+
+    public boolean selectCourseType;
+    public boolean allCourse;
+    public boolean courseABCD;
+    public boolean preScoreRequest;
+    public int preScore;
+
+    public int bareScore;
+    public int interestingScore;
+    public int easyScore;
+    public int knowledgeScore;
+
+    public String[] selectedCourses;
+    public int[] selectedcourses = new int [20];
+
+    public Integer hasD;
+    public Integer hasE;
+    public int[][] Time = new int [10][10];
+    public List<Course> checkedCourses;
+    public List<String> shouldCheckCourses;
+
+    public String Worry;
+    public boolean success;
 
     // ### classrecommend.html 显示课程基本信息、评论显示界面
     @RequestMapping(value = "/courseInfo", produces = "text/json; charset=utf-8")
@@ -271,58 +308,245 @@ public class CourseController {
 
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-        courseSelect.preferD = request.getParameter("preferD").equals("true");
-        System.out.println(courseSelect.preferD);
-        courseSelect.preferE = request.getParameter("preferE").equals("true");
-        System.out.println(courseSelect.preferE);
-        courseSelect.selectMoreD = request.getParameter("selectMoreD").equals("true");
-        courseSelect.selectMoreE = request.getParameter("selectMoreE").equals("true");
-        courseSelect.selectNumberD = request.getParameter("selectNumberD").equals("true");
-        courseSelect.selectNumberE = request.getParameter("selectNumberE").equals("true");
-        if (courseSelect.selectNumberD) {
-            courseSelect.numberD = Integer.parseInt(request.getParameter("numberD"));
-            System.out.println(courseSelect.numberD);
+        preferD = request.getParameter("preferD").equals("true");
+        System.out.println(preferD);
+        preferE = request.getParameter("preferE").equals("true");
+        System.out.println(preferE);
+        selectMoreD = request.getParameter("selectMoreD").equals("true");
+        selectMoreE = request.getParameter("selectMoreE").equals("true");
+        selectNumberD = request.getParameter("selectNumberD").equals("true");
+        selectNumberE = request.getParameter("selectNumberE").equals("true");
+        if (selectNumberD) {
+            numberD = Integer.parseInt(request.getParameter("numberD"));
+            System.out.println(numberD);
         }
-        if (courseSelect.selectNumberE) {
-            courseSelect.numberE = Integer.parseInt(request.getParameter("numberE"));
-            System.out.println(courseSelect.numberE);
-        }
-
-        courseSelect.selectCourseType = request.getParameter("selectCourseType").equals("true");
-        courseSelect.allCourse = request.getParameter("allCourse").equals("true");
-        courseSelect.courseABCD = request.getParameter("courseABCD").equals("true");
-        courseSelect.preScoreRequest = request.getParameter("preScoreRequest").equals("true");
-        if (courseSelect.preScoreRequest) {
-            courseSelect.preScore = Integer.parseInt(request.getParameter("preScore"));
+        if (selectNumberE) {
+            numberE = Integer.parseInt(request.getParameter("numberE"));
+            System.out.println(numberE);
         }
 
-        courseSelect.selectMoreD = request.getParameter("selectMoreD").equals("true");
-        courseSelect.selectMoreD = request.getParameter("selectMoreD").equals("true");
-        courseSelect.bareScore = Integer.parseInt(request.getParameter("bearScore"));
-        courseSelect.interestingScore = Integer.parseInt(request.getParameter("interestingScore"));
-        courseSelect.easyScore = Integer.parseInt(request.getParameter("easyScore"));
-        courseSelect.knowledgeScore = Integer.parseInt(request.getParameter("knowledgeScore"));
+        selectCourseType = request.getParameter("selectCourseType").equals("true");
+        allCourse = request.getParameter("allCourse").equals("true");
+        courseABCD = request.getParameter("courseABCD").equals("true");
+        preScoreRequest = request.getParameter("preScoreRequest").equals("true");
+        if (preScoreRequest) {
+            preScore = Integer.parseInt(request.getParameter("preScore"));
+        }
 
-        courseSelect.selectedCourses = request.getParameterValues("selectedCourses[]");
+        selectMoreD = request.getParameter("selectMoreD").equals("true");
+        selectMoreD = request.getParameter("selectMoreD").equals("true");
+        bareScore = Integer.parseInt(request.getParameter("bearScore"));
+        interestingScore = Integer.parseInt(request.getParameter("interestingScore"));
+        easyScore = Integer.parseInt(request.getParameter("easyScore"));
+        knowledgeScore = Integer.parseInt(request.getParameter("knowledgeScore"));
 
+        stu_Grade=Integer.parseInt(request.getParameter("grade"))*-1+19;
+        stu_College=collegeBiz.findByName(request.getParameter("college")).getId();
+        stu_Major=majorBiz.findByName(request.getParameter("major")).getId();
+
+        selectedCourses = request.getParameterValues("selectedCourses[]");
+        for(int i = 0; i< selectedCourses.length; i++){
+            selectedcourses[i]=Integer.parseInt(selectedCourses[i]);
+        }
         Map<String, Object> res = new HashMap<>();
-
-        courseSelect.Initialize();
-        courseSelect.Recommend();
-
         boolean success = true;
 
-        if(!courseSelect.Initialize()){
+        if(!Initialize()){
             success = false;
-            res.put("data",courseSelect.Worry);
+            res.put("data", Worry);
         }
 
 
-        courseSelect.Recommend();
+        Recommend();
 
         res.put("success", success);
 
         return gson.toJson(res);
+    }
+
+    public boolean Initialize(){
+        Course temp_course ;
+        Worry="";
+        success=true;
+        checkedCourses = new ArrayList<Course>();
+
+        for(int i=0;i<5;i++) {
+            for (int j = 0; j < 2; j++) {
+                Time[i][j] = -1;
+            }
+        }
+        hasD=hasE=0;
+
+        //预处理已选课程
+        if(selectedcourses!=null) {
+            for (int i = 0; selectedcourses[i]!=0; i++) {
+                temp_course = courseBiz.findById(selectedcourses[i]);
+                //检查选择课程是否超过预期DE类课上限
+                if(temp_course.getLevel().equals("D")){
+                    hasD++;
+                    if(selectNumberD && hasD>numberD){
+                        Worry="您选择的D类课数量超过了您设定的修读D类课上限!";
+                        success=false;
+                        return false;
+                    }
+                }else if(temp_course.getLevel().equals("E")){
+                    hasE++;
+                    if(selectNumberE && hasE>numberE){
+                        Worry="您选择的E类课数量超过了您设定的修读E类课上限!";
+                        success=false;
+                        return false;
+                    }
+                }
+
+                //检查选择课程是否有冲突
+                int wtf = temp_course.getId();
+                if(!checkCourseTime1(wtf,1)){
+                    success=false;
+                    return false;
+                }
+
+                checkedCourses.add(temp_course);
+            }
+        }
+
+        //获取应该上的课
+        shouldCheckCourses = courseBiz.selectByShouldCheck(stu_Grade,stu_College,stu_Major);
+        //添加认为必须选的课程
+        checkShouldCheckLessons();
+
+        return true;
+    }
+
+
+    private boolean checkCourseTime3(int courseId){
+        List<CourseTime> time;
+        time = courseTimeBiz.findByClassId(courseId);
+        int lesson =0 ;
+        for(int i=0;i<time.size();i++){
+            if(time.get(i).getStartLesson()<5)
+                lesson=0;
+            else lesson=1;
+            if(Time[time.get(i).getLessonDay()-1][lesson]!=-1)
+                return false;
+        }
+        for(int i=0;i<time.size();i++){
+            Time[time.get(i).getLessonDay()-1][lesson]=courseId;
+        }
+        return true;
+    }
+
+    private boolean checkCourseTime1(int courseId, int type){
+        List<CourseTime> time;
+        time = courseTimeBiz.findByClassId(courseId);
+        int lesson=0;
+        for(int i=0;i<time.size();i++){
+            if(time.get(i).getStartLesson()<5)
+                lesson=0;
+            else lesson=1;
+            if(Time[time.get(i).getLessonDay()-1][lesson]==-1)
+                Time[time.get(i).getLessonDay()-1][lesson]=courseId;
+            else{
+                if(type==1){
+                    courseCrash(courseId,Time[time.get(i).getLessonDay()-1][lesson]);
+                }else if(type==2){
+                    courseCover(courseId,Time[time.get(i).getLessonDay()-1][lesson]);
+                }
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean checkCourseTime2(int courseId){
+        List<CourseTime> time;
+        time = courseTimeBiz.findByClassId(courseId);
+        int lesson=0;
+        for(int i=0;i<time.size();i++){
+            if(time.get(i).getStartLesson()<5)
+                lesson=0;
+            else lesson=1;
+            if(Time[time.get(i).getLessonDay()-1][lesson]!=-1){
+                return false;
+            }
+        }
+        return true;
+    }
+    private void courseCrash(int i,int j){
+        Course course1,course2;
+        course1=courseBiz.findById(i);
+        course2=courseBiz.findById(j);
+        Worry+="警告：您所选择的课程"+course1.getCourseName()+"和"+course2.getCourseName()+"冲突!\n";
+    }
+    private void courseCover(int i,int j){
+        Course course1,course2;
+        course1=courseBiz.findById(i);
+        course2=courseBiz.findById(j);
+        Worry+="提示：您所选择的课程"+course2.getCourseName()+"挤掉了课程"+course1.getCourseName()+"!\n";
+
+    }
+
+    private void checkShouldCheckLessons(){
+        Iterator<String> iterator = shouldCheckCourses.iterator();
+        while(iterator.hasNext()){
+            String course = iterator.next();
+            //判断是否有和已选课程重复的课程
+            int t=0;
+            for(int i=0;i<checkedCourses.size();i++){
+                if(course.equals(checkedCourses.get(i).getCourseName())){
+                    t=1;
+                    break;
+                }
+            }
+            if(t==1) {
+                iterator.remove();
+                continue;
+            }
+            checkShouldCheckCourses(course);
+
+        }
+    }
+    private void checkShouldCheckCourses(String courseName){
+        List<Course> givenCourses = courseBiz.findByCourseName(courseName);
+        Course givencourse;
+        float max=0;
+        int maxi=0;
+        if(givenCourses.size()>1){
+            float[] score = new float[20];
+            for(int i=0;i<givenCourses.size();i++){
+                score[i]=getShouldCheckCourseScore(givenCourses.get(i).getId());
+                if(score[i]>=max)maxi=i;
+            }
+            givencourse = givenCourses.get(maxi);
+        }else{
+            givencourse = givenCourses.get(0);
+        }
+
+        if(checkCourseTime1(givencourse.getId(),2)){
+            checkedCourses.add(givencourse);
+        }
+    }
+    private float getShouldCheckCourseScore(int courseId){
+        List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
+        float grade=0;
+        for(int i=0;i<comments.size();i++){
+            grade+=comments.get(i).getGradeScore()*0.2;
+            grade+=comments.get(i).getBearScore()*0.05;
+            grade+=comments.get(i).getInterestingScore()*0.05;
+            grade+=comments.get(i).getEasyScore()*0.05;
+            grade+=comments.get(i).getKnowledgeScore()*0.05;
+        }
+        return grade;
+    }
+    private float getCourseScore(int courseId){
+        List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
+        float grade = 0;
+        for(int i=0;i<comments.size();i++){
+            grade+=comments.get(i).getBearScore()*0.05;
+            grade+=comments.get(i).getInterestingScore()*0.05;
+            grade+=comments.get(i).getEasyScore()*0.05;
+            grade+=comments.get(i).getKnowledgeScore()*0.05;
+            grade+=0.3;
+        }
+        return grade;
     }
 
     @RequestMapping(value = "/findCourseOfAdmin", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
@@ -413,6 +637,116 @@ public class CourseController {
         return gson.toJson(res);
     }
 
+    private boolean Recommend(){
+        List<Course> recommendCourses = courseBiz.selectByRecommendCourse(stu_Grade,stu_College,stu_Major);
+
+        //删去冲突的课程
+        Iterator<Course> iterator = recommendCourses.iterator();
+        while(iterator.hasNext()){
+            Course course = iterator.next();
+            int t=0;
+            for(int i=0;i<checkedCourses.size();i++){
+                String shit =checkedCourses.get(i).getCourseName();
+                String holyshit = course.getCourseName();
+                if(holyshit.equals(shit)){
+                    t=1;
+                    break;
+                }
+            }
+            if(t==1 || !checkCourseTime2(course.getId())){
+                iterator.remove();
+            }
+        }
+
+        int Dnumber=0;
+        int Enumber=0;
+        if(selectMoreD){
+            if(selectNumberD){
+                Dnumber=numberD-hasD;
+            }else{
+                Dnumber=100;
+            }
+        }
+
+        if(selectMoreE){
+            if(selectNumberE){
+                Enumber=numberE-hasE;
+            }else {
+                Enumber=100;
+            }
+        }
+
+
+        for(int i=0;i<recommendCourses.size();i++){
+            if(checkCourseTime3(recommendCourses.get(i).getId())){
+                if(recommendCourses.get(i).getLevel().equals("E")&& Enumber>0){
+                    checkedCourses.add(recommendCourses.get(i));
+                    Enumber--;
+                }else if(recommendCourses.get(i).getLevel().equals("D") && Dnumber>0){
+                    checkedCourses.add(recommendCourses.get(i));
+                    Dnumber--;
+                }else {
+                    checkedCourses.add(recommendCourses.get(i));
+                }
+            }
+        }
+
+        float count[] = new float[200];
+        for(int i=0;i<recommendCourses.size();i++){
+            if(recommendCourses.get(i).getLevel().equals("E"))
+                count[i]=getCourseScore(recommendCourses.get(i).getId());
+            else
+                count[i]=getShouldCheckCourseScore(recommendCourses.get(i).getId());
+            if(checkCourseTime3(recommendCourses.get(i).getId())){
+                checkedCourses.add(recommendCourses.get(i));
+            }
+        }
+
+        //初始化背包过程数组长度
+//        int TM[][] = new int [10][5];
+//        for(int i=0;i<5;i++) {
+//            for (int j = 0; j < 2; j++) {
+//                if (Time[i][j] == -1)
+//                    TM[i][j] = 1;
+//                else
+//                    TM[i][j] = 0;
+//            }
+//        }
+//        int Dnumber = numberD-hasD;
+//        int Enumber = numberE-hasE;
+//        int count[][][][][][][][][][][][][] = new int[200][5][5][2][2][2][2][2][2][2][2][2][2];
+//        count[0][0][0][0][0][0][0][0][0][0][0][0][0]=0;
+//        for(int courseNum=0;courseNum<recommendCourses.size();courseNum++){
+//            for(int D=0;D<Dnumber;D++){
+//                for(int E=0;E<Enumber;E++){
+//                    for(int T00=0;T00<TM[0][0];T00++){
+//                        for(int T01=0;T01<TM[0][1];T01++){
+//                            for(int T10=0;T10<TM[1][0];T10++){
+//                                for(int T11=0;T11<TM[1][1];T11++){
+//                                    for(int T20=0;T20<TM[2][0];T20++){
+//                                        for(int T21=0;T21<TM[2][1];T21++){
+//                                            for(int T30=0;T30<TM[3][0];T30++){
+//                                                for(int T31=0;T31<TM[3][1];T31++){
+//                                                    for(int T40=0;T40<TM[4][0];T40++){
+//                                                        for(int T41=0;T41<TM[4][1];T41++){
+//
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
+
+        return true;
+    }
 
     @RequestMapping(value = "/findByStudentIdAndTeacherName", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
@@ -1053,7 +1387,7 @@ public class CourseController {
 
         JsonArray recommendCourses = new JsonArray();
 
-        for (Course course : courseSelect.checkedCourses) {
+        for (Course course : courseSelectController.checkedCourses) {
             JsonObject recommend = new JsonObject();
             recommend.addProperty("courseName", course.getCourseName());
             recommend.addProperty("courseCode", course.getCourseCode());
