@@ -47,7 +47,7 @@ public class CommentController {
         comment.setKnowledgeScore(Integer.parseInt(request.getParameter("knowledgeScore")));
         comment.setEasyScore(Integer.parseInt(request.getParameter("easyScore")));
         comment.setInterestingScore(Integer.parseInt(request.getParameter("interestingScore")));
-        comment.setRecommendTerm(request.getParameter("recommendTerm"));
+        comment.setRecommendTerm(request.getParameter("recommendGrade"));
         studentCommentCourseBiz.insert(comment);
 
 

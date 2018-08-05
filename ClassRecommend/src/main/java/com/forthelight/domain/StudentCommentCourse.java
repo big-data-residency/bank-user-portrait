@@ -20,7 +20,7 @@ public class StudentCommentCourse implements Serializable {
 	private int easyScore;
 	private int knowledgeScore;
 	private int selectId;
-	private String recommendTerm;
+	private String recommendGrade;
 	private StudentCommentCourse replyTo;
 
 	private transient Student student;
@@ -48,11 +48,11 @@ public class StudentCommentCourse implements Serializable {
 	}
 
 	public String getRecommendTerm() {
-		return recommendTerm;
+		return recommendGrade;
 	}
 
-	public void setRecommendTerm(String recommendTerm) {
-		this.recommendTerm = recommendTerm;
+	public void setRecommendTerm(String recommendGrade) {
+		this.recommendGrade = recommendGrade;
 	}
 
 	public String getComment() {
