@@ -72,7 +72,7 @@
 			 RecommendTerm, ReplyTo, Anonymous, SelectID) VALUES
 			(#{comment}, #{gradeScore}, #{contentScore}, current_timestamp(),
 			 #{bearScore}, #{interestingScore}, #{easyScore}, #{knowledgeScore},
-			 #{recommendTerm}, #{replyTo.id}, #{anonymous}, #{selectId});
+			 #{recommendGrade}, #{replyTo.id}, #{anonymous}, #{selectId});
 	</insert>
 	
 	<select id="getScoreByGrade"  resultType="int" >
