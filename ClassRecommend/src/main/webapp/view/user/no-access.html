@@ -22,7 +22,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue.css">
+    <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue-light.css">
     <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/starter_new.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -38,7 +38,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 
-<body class="hold-transition skin-blue-light fixed">
+<body class="hold-transition skin-blue-light fixed layout-top-nav">
 <div class="wrapper">
 
 				<header class="main-header">
@@ -51,12 +51,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
 						<span class="logo-lg"><b>EAMIS-</b>Helper</span>
 					</a>
 
-					<!-- Header Navbar -->
 					<nav class="navbar navbar-fixed-top" role="navigation">
 						<!-- Sidebar toggle button-->
-						<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-							<span class="sr-only">Toggle navigation</span>
-						</a>
+
 						<!-- Navbar Right Menu -->
 						<div class="navbar-custom-menu">
 							<ul class="nav navbar-nav">
@@ -77,12 +74,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											<ul class="menu">
 												<li>
 													<!-- Task item -->
-													<a href="http://localhost:8080/view/user/course-attended.html?id={{studentId}}">
+													<a :href=" 'http://localhost:8080/view/user/course-attended.html?id='+'studentId'">
 														<!-- Task title and progress text -->
 														<h3>
-                                                     已评课数
-                        <small class="pull-right">9/30</small>
-                      </h3>
+															已评课数
+															<small class="pull-right">9/30</small>
+														</h3>
 														<!-- The progress bar -->
 														<div class="progress xs">
 															<!-- Change the css width attribute to simulate progress -->
@@ -96,7 +93,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 											</ul>
 										</li>
 										<li class="footer">
-											<a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentId}}">进入评课</a>
+											<a : href=" 'http://localhost:8080/view/user/classdetail-uploads.html?id='+'studentId' ">进入评课</a>
 										</li>
 									</ul>
 								</li>
@@ -124,7 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+												<a :href="'http://localhost:8080/view/user/studentinfo_new.html?id='+'studentId' " class="btn btn-default btn-flat">Profile</a>
 											</div>
 											<div class="pull-right">
 												<a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -138,110 +135,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
 					</nav>
 				</header>
 				<!-- Left side column. contains the logo and sidebar -->
-				<aside class="main-sidebar " style="position: fixed ">
+	<div class="content-wrapper">
 
-					<!-- sidebar: style can be found in sidebar.less -->
-					<section class="sidebar">
+<section class="content">
 
-						<!-- Sidebar user panel (optional) -->
-						<div class="user-panel" style="height: 65px;">
-							<div class="pull-left image">
-								<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-							</div>
-							<div class="pull-left info">
-								<p>Alexander Pierce</p>
-								<!-- Status -->
-								<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-							</div>
-						</div>
+		<div class="error-page" >
+			<h2 class="headline text-yellow" style="width: 100%" >NO ACCESS</h2>
 
-						<!-- search form (Optional) -->
-						<!--<form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>-->
-						<!-- /.search form -->
-
-						<!-- Sidebar Menu -->
-						<ul class="sidebar-menu" data-widget="tree">
-							<li class="header">EAMIS_HELPER</li>
-							<!-- Optionally you can add icons to the links -->
-							<li >
-								<a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
-							</li>
-							<li>
-								<a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查询所有课程</span></a>
-							</li>
-							<li>
-								<a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
-							</li>
-							<li class="active">
-								<a href="#"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
-							</li>
-							<li>
-								<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
-							</li>
-							<!--<li class="treeview">
-          <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#">Link in level 2</a></li>
-            <li><a href="#">Link in level 2</a></li>
-          </ul>
-        </li>-->
-						</ul>
-						<!-- /.sidebar-menu -->
-					</section>
-					<!-- /.sidebar -->
-				</aside>
-
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-
-        <!-- Main content -->
-        <section class="content container-fluid">
- <section class="content">
-      <div class="error-page">
-        <h2 class="headline text-yellow">NO ACCESS </h2>
-
-        <div class="error-content">
-          <h3><i class="fa fa-warning text-yellow"></i> Oops! You don't have access.</h3>
-
-          <p>
-            We could not find the page you were looking for.
-            Meanwhile, you may <a href="new_start.html">return to starter</a> or try using the search form.
-          </p>
-
-         
-        </div>
-        <!-- /.error-content -->
-      </div>
-      <!-- /.error-page -->
-    </section>
+			<div class="error-content">
+				<h3><i class="fa fa-warning text-yellow"></i> Oops! Something went wrong.</h3>
+				<p>
+					We could not find the page you were looking for.
+					Meanwhile, you may <a href="new_start.html">return to starter</a> or try using the search form.
+				</p>
 
 
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
+			</div>
+		</div>
+	<!-- /.error-page -->
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<footer class="main-footer">
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
- 
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
-    </footer>
+	<strong>Copyright &copy; 2018 EAMIS-HELPER.</strong> All rights
+	reserved.
+</footer>
 
 </div>
+
+
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
