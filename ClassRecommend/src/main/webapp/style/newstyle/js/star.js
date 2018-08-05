@@ -1,58 +1,10 @@
-$(document).ready(function(){
-  
-  /* 1. Visualizing things on Hover - See next part for action on click */
-  $('.stars li').on('mouseover', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
-   
-    // Now highlight all the stars that's not after the current hovered star
-    $(this).parent().children('li.star').each(function(e){
-      if (e < onStar) {
-        $(this).addClass('hover');
-      }
-      else {
-        $(this).removeClass('hover');
-      }
-    });
-    
-  }).on('mouseout', function(){
-    $(this).parent().children('li.star').each(function(e){
-      $(this).removeClass('hover');
-    });
-  });
-  
-  
-  /* 2. Action to perform on click */
-  $('.stars li').on('click', function(){
-    var onStar = parseInt($(this).data('value'), 10); // The star currently selected
-    var stars = $(this).parent().children('li.star');
-    
-    for (i = 0; i < stars.length; i++) {
-      $(stars[i]).removeClass('selected');
-    }
-    
-    for (i = 0; i < onStar; i++) {
-      $(stars[i]).addClass('selected');
-    }
-   
-    // JUST RESPONSE (Not needed)
-    var ratingValue = parseInt($('.stars li.selected').last().data('value'), 10);
-    var msg = "";
-    if (ratingValue > 1) {
-        msg = "Thanks! You rated this " + ratingValue + " stars.";
-    }
-    else {
-        msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
-    }
-    responseMessage(msg);
-    
-  });
+$(document).ready(function () {
 
     /* 1. Visualizing things on Hover - See next part for action on click */
-    $('#stars2 li').on('mouseover', function(){
+    $('.stars li').on('mouseover', function () {
         var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
-
         // Now highlight all the stars that's not after the current hovered star
-        $(this).parent().children('li.star').each(function(e){
+        $(this).parent().children('li.star').each(function (e) {
             if (e < onStar) {
                 $(this).addClass('hover');
             }
@@ -61,15 +13,83 @@ $(document).ready(function(){
             }
         });
 
-    }).on('mouseout', function(){
-        $(this).parent().children('li.star').each(function(e){
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
             $(this).removeClass('hover');
         });
     });
 
 
     /* 2. Action to perform on click */
-    $('#stars2 li').on('click', function(){
+
+    $('.stars li').on('click', function () {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+        var stars = $(this).parent().children('li.star');
+
+        for (i = 0; i < stars.length; i++) {
+            $(stars[i]).removeClass('selected');
+        }
+
+        for (i = 0; i < onStar; i++) {
+            $(stars[i]).addClass('selected');
+        }
+
+        // JUST RESPONSE (Not needed)
+        // console.log($('.stars li.selected'));
+        // var ratingValue = parseInt($('.stars li.selected').last().data('value'), 10);
+        // var msg = "";
+        // if (ratingValue > 1) {
+        //     msg = "Thanks! You rated this " + ratingValue + " stars.";
+        // }
+        // else {
+        //     msg = "We will improve ourselves. You rated this " + ratingValue + " stars.";
+        // }
+        // responseMessage(msg);
+        // console.log(ratingValue);
+        var ratingValue = $(this).parent().children('.selected').last().data('value');
+        console.log($(this).parent().children('.selected').last().data('value'));
+        if ($(this).parent().parent().attr("id") === "bearScore") {
+            // classDetail.comment.score.bearScore = ratingValue;
+            $(this).parent().parent().parent().children('input').attr("value", ratingValue);
+            starNumbers.bearScore = ratingValue
+        }
+        if ($(this).parent().parent().attr("id") === "interestingScore") {
+            // classDetail.comment.score.interestingScore = ratingValue;
+            starNumbers.interestingScore = ratingValue;
+        }
+        if ($(this).parent().parent().attr("id") === "easyScore") {
+            // classDetail.comment.score.easyScore = ratingValue;
+            starNumbers.easyScore = ratingValue
+        }
+        if ($(this).parent().parent().attr("id") === "knowledgeScore") {
+            // classDetail.comment.score.knowledgeScore = ratingValue;
+            starNumbers.knowledgeScore = ratingValue;
+        }
+        // console.log(classDetail.comment.score);
+    });
+    /* 1. Visualizing things on Hover - See next part for action on click */
+    $('#stars2 li').on('mouseover', function () {
+        var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+
+        // Now highlight all the stars that's not after the current hovered star
+        $(this).parent().children('li.star').each(function (e) {
+            if (e < onStar) {
+                $(this).addClass('hover');
+            }
+            else {
+                $(this).removeClass('hover');
+            }
+        });
+
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
+            $(this).removeClass('hover');
+        });
+    });
+
+
+    /* 2. Action to perform on click */
+    $('#stars2 li').on('click', function () {
         var onStar = parseInt($(this).data('value'), 10); // The star currently selected
         var stars = $(this).parent().children('li.star');
 
@@ -84,11 +104,11 @@ $(document).ready(function(){
     });
 
     /* 1. Visualizing things on Hover - See next part for action on click */
-    $('#stars3 li').on('mouseover', function(){
+    $('#stars3 li').on('mouseover', function () {
         var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
 
         // Now highlight all the stars that's not after the current hovered star
-        $(this).parent().children('li.star').each(function(e){
+        $(this).parent().children('li.star').each(function (e) {
             if (e < onStar) {
                 $(this).addClass('hover');
             }
@@ -97,15 +117,15 @@ $(document).ready(function(){
             }
         });
 
-    }).on('mouseout', function(){
-        $(this).parent().children('li.star').each(function(e){
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
             $(this).removeClass('hover');
         });
     });
 
 
     /* 2. Action to perform on click */
-    $('#stars3 li').on('click', function(){
+    $('#stars3 li').on('click', function () {
         var onStar = parseInt($(this).data('value'), 10); // The star currently selected
         var stars = $(this).parent().children('li.star');
 
@@ -120,11 +140,11 @@ $(document).ready(function(){
     });
 
     /* 1. Visualizing things on Hover - See next part for action on click */
-    $('#stars4 li').on('mouseover', function(){
+    $('#stars4 li').on('mouseover', function () {
         var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
 
         // Now highlight all the stars that's not after the current hovered star
-        $(this).parent().children('li.star').each(function(e){
+        $(this).parent().children('li.star').each(function (e) {
             if (e < onStar) {
                 $(this).addClass('hover');
             }
@@ -133,15 +153,15 @@ $(document).ready(function(){
             }
         });
 
-    }).on('mouseout', function(){
-        $(this).parent().children('li.star').each(function(e){
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
             $(this).removeClass('hover');
         });
     });
 
 
     /* 2. Action to perform on click */
-    $('#stars4 li').on('click', function(){
+    $('#stars4 li').on('click', function () {
         var onStar = parseInt($(this).data('value'), 10); // The star currently selected
         var stars = $(this).parent().children('li.star');
 
@@ -154,6 +174,6 @@ $(document).ready(function(){
         }
 
     });
-  
-  
+
+
 });

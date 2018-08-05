@@ -20,7 +20,8 @@ public class StudentCommentCourse implements Serializable {
 	private int easyScore;
 	private int knowledgeScore;
 	private int selectId;
-
+	private String recommendTerm;
+	private StudentCommentCourse replyTo;
 
 	private transient Student student;
 	private transient Course course;
@@ -30,12 +31,28 @@ public class StudentCommentCourse implements Serializable {
 		super();
 	}
 
+	public StudentCommentCourse getReplyTo() {
+		return replyTo;
+	}
+
+	public void setReplyTo(StudentCommentCourse replyTo) {
+		this.replyTo = replyTo;
+	}
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getRecommendTerm() {
+		return recommendTerm;
+	}
+
+	public void setRecommendTerm(String recommendTerm) {
+		this.recommendTerm = recommendTerm;
 	}
 
 	public String getComment() {

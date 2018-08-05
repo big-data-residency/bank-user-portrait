@@ -66,7 +66,7 @@ public class TagBizImpl implements TagBiz {
             for (Tag tag : tags) {
                 String tagName = tag.getTagName();
                 if (result.containsKey(tagName)) {
-                    result.put("tagName", result.get(tagName)+1);
+                    result.put(tagName, result.get(tagName)+1);
                 } else {
                     result.put(tagName, 1);
                 }

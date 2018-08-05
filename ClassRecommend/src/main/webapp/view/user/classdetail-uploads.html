@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -28,12 +28,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
 
     <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/starter_new.css"/>
-    <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/coursedetails_new.css"/>
     <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../../style/newstyle/css/star.css">
     <link rel="stylesheet" href="../../style/newstyle/css/radiobox.css">
     <!-- Morris charts -->
     <link rel="stylesheet" href="../../style/bower_components/morris.js/morris.css">
+    <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/coursedetails_new.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -50,8 +50,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 
-<body class="hold-transition skin-blue-light fixed sidebar-mini">
-    <div class="wrapper" id="classvue">
+<body class="hold-transition skin-blue-light fixed sidebar-mini" style="overflow-y: scroll; overflow-x: hidden">
+<div class="wrapper" id="classvue">
     <!-- Main Header -->
     <header class="main-header">
 
@@ -600,7 +600,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </a>
                                             </td>
                                             <td class="mailbox-name">
-                                                <a :href="file.filePath + '/' + file.fileName" :download="file.fileName">
+                                                <a :href="file.filePath + '/' + file.fileName"
+                                                   :download="file.fileName">
                                                     <p style="vertical-alimgn:middle;;">{{ file.fileName }}</p>
                                                 </a>
                                             </td>
@@ -721,58 +722,124 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
 
                             <div class="tab-pane" id="settings">
-                                <form id="evaluateForm" class="form-horizontal">
+                                <div class="form-wrapper">
+                                    <form id="evaluateForm" class="form-horizontal">
 
-                                    <div class="form-group">
-                                        <label for="inputExperience" class="col-sm-2 control-label">课程评价</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" id="inputExperience"
+                                        <div class="form-group">
+                                            <label for="inputExperience" class="col-sm-2 control-label">课程评价</label>
+                                            <div class="col-sm-10">
+                                            <textarea v-model="comment.description" class="form-control"
+                                                      name="comment" id="inputExperience"
                                                       placeholder="Experience"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="evaluationNotes" class="col-sm-2 control-label">备注</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="evaluationNotes"
-                                                   placeholder="Notes">
+
+                                        <div class="form-group">
+                                            <label for="recommendTerm" class="col-sm-2 control-label">推荐年级</label>
+                                            <div class="col-sm-10">
+                                                <select id="recommendTerm" class="form-control"
+                                                        v-model="comment.recommendTerm"
+                                                        name="recommendTerm">
+                                                    <option value="1">
+                                                        大一
+                                                    </option>
+                                                    <option value="2">
+                                                        大二
+                                                    </option>
+                                                    <option value="3">
+                                                        大三
+                                                    </option>
+                                                    <option value="4">
+                                                        大四
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">
-                                            得分区间
-                                        </label>
-                                        <div class="col-sm-10 control-radio">
-                                            <input id="radio-90+" class="radio-inline" type="radio" name="radio"
-                                                   checked="checked"/>
-                                            <label for="radio-90+">
-                                                90~100
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">
+                                                得分区间
                                             </label>
+                                            <div class="col-sm-10 control-radio">
+                                                <input id="radio-90+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="95"/>
+                                                <label for="radio-90+">
+                                                    90~100
+                                                </label>
 
-                                            <input id="radio-80+" class="radio-inline" type="radio" name="radio"/>
-                                            <label for="radio-80+">
-                                                80~90
-                                            </label>
+                                                <input id="radio-80+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="85"/>
+                                                <label for="radio-80+">
+                                                    80~90
+                                                </label>
 
-                                            <input id="radio-70+" class="radio-inline" type="radio" name="radio"/>
-                                            <label for="radio-70+">
-                                                70~80
-                                            </label>
+                                                <input id="radio-70+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="75"/>
+                                                <label for="radio-70+">
+                                                    70~80
+                                                </label>
 
-                                            <input id="radio-60+" class="radio-inline" type="radio" name="radio"/>
-                                            <label for="radio-60+">
-                                                60~70
-                                            </label>
+                                                <input id="radio-60+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="65"/>
+                                                <label for="radio-60+">
+                                                    60~70
+                                                </label>
 
-                                            <input id="radio-50+" class="radio-inline" type="radio" name="radio"/>
-                                            <label for="radio-50+">
-                                                ~60
-                                            </label>
+                                                <input id="radio-50+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="55"/>
+                                                <label for="radio-50+">
+                                                    ~60
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">手下留情</label>
-                                        <div id="bearRate" class="rating-stars">
-                                            <div>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">手下留情</label>
+                                            <div id="bearScore" class="rating-stars">
+                                                <ul class="stars col-sm-10">
+                                                    <li class="star" title='Poor' data-value='1'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Fair' data-value='2'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Good' data-value='3'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Excellent' data-value='4'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='WOW!!!' data-value='5'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">课堂有趣</label>
+                                            <div id="interestingScore" class="rating-stars">
+                                                <ul class="stars col-sm-10">
+                                                    <li class="star" title='Poor' data-value='1'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Fair' data-value='2'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Good' data-value='3'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Excellent' data-value='4'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='WOW!!!' data-value='5'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">划水程度</label>
+                                            <div id="easyScore" class="rating-stars">
                                                 <ul class="stars col-sm-10">
 
                                                     <li class="star" title='Poor' data-value='1'>
@@ -794,103 +861,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">课堂有趣</label>
-                                        <div id="interestingRate" class="rating-stars">
-                                            <ul class="stars col-sm-10">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">干货满满</label>
+                                            <div id="knowledgeScore" class="rating-stars">
+                                                <ul class="stars col-sm-10">
 
-                                                <li class="star" title='Poor' data-value='1'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Fair' data-value='2'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Good' data-value='3'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Excellent' data-value='4'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='WOW!!!' data-value='5'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-
-                                            </ul>
+                                                    <li class="star" title='Poor' data-value='1'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Fair' data-value='2'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Good' data-value='3'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Excellent' data-value='4'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='WOW!!!' data-value='5'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">划水程度</label>
-                                        <div id="easyRate" class="rating-stars">
-                                            <ul class="stars col-sm-10">
-
-                                                <li class="star" title='Poor' data-value='1'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Fair' data-value='2'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Good' data-value='3'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Excellent' data-value='4'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='WOW!!!' data-value='5'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-
-                                            </ul>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label for="anonymous" class="col-sm-2 control-label">是否匿名</label>
+                                            <div class="col-sm-2" style="vertical-align: middle">
+                                                <input id="anonymous" v-model="comment.Anonymous" type="checkbox"
+                                                       name="Anonymous" checked="checked"/>
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;匿名</label>
+                                            </div>
+                                            <div>
+                                                <button id="commentUploadBtn" v-on:click="uploadComment" type="button"
+                                                        class="btn btn-danger">提交
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">干货满满</label>
-                                        <div id="knowledgeScore" class="rating-stars">
-                                            <ul class="stars col-sm-10">
-
-                                                <li class="star" title='Poor' data-value='1'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Fair' data-value='2'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Good' data-value='3'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Excellent' data-value='4'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='WOW!!!' data-value='5'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="anonymous" class="col-sm-2 control-label">是否匿名</label>
-                                        <div class="col-sm-2">
-                                            <input id="anonymous" type="checkbox" checked="checked"/>
-                                            <label>匿名</label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <button id="commentUpload" type="submit" class="btn btn-danger">提交</button>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-group">
-                                            <label for="commentUploadBtn" class="col-sm-2 control-label"></label>
-                                        <button id="commentUpload" type="submit" class="btn btn-danger">提交</button>
-                                    </div> -->
-                                </form>
+                                    </form>
+                                </div>
                             </div>
-
                         </div>
-
-
                     </div>
                     <!-- /.tab-pane -->
                 </div>
-
-
             </div>
             <!-- /.col -->
             <!-- /.row -->
@@ -900,57 +914,57 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.content-wrapper -->
 </div>
 
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <!-- To the right -->
+<!-- Main Footer -->
+<footer class="main-footer">
+    <!-- To the right -->
 
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2018
-            <a href="#">EAMIS_HELPER</a>.</strong> All rights reserved.
-    </footer>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2018
+        <a href="#">EAMIS_HELPER</a>.</strong> All rights reserved.
+</footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class="active">
-                <a href="#control-sidebar-home-tab" data-toggle="tab">
-                    <i class="fa fa-home"></i>
-                </a>
-            </li>
-            <li>
-                <a href="#control-sidebar-settings-tab" data-toggle="tab">
-                    <i class="fa fa-gears"></i>
-                </a>
-            </li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <!-- Home tab content -->
-            <div class="tab-pane active" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li class="active">
+            <a href="#control-sidebar-home-tab" data-toggle="tab">
+                <i class="fa fa-home"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#control-sidebar-settings-tab" data-toggle="tab">
+                <i class="fa fa-gears"></i>
+            </a>
+        </li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane active" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
-                                <p>Will be 23 on April 24th</p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
 
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:">
-                            <h4 class="control-sidebar-subheading">
-                                Custom Template Design
-                                <span class="pull-right-container">
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:">
+                        <h4 class="control-sidebar-subheading">
+                            Custom Template Design
+                            <span class="pull-right-container">
                                     <span class="label label-danger pull-right">70%</span>
                                 </span>
                         </h4>
@@ -997,9 +1011,9 @@ immediately after the control sidebar -->
 
 <!-- REQUIRED JS SCRIPTS -->
 <!-- Vue.js -->
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
+<script src="../../plugins/vue.js"></script>
+<!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 <!-- jQuery 3 -->
 <script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -1009,7 +1023,7 @@ immediately after the control sidebar -->
 <!-- AdminLTE App -->
 <script src="../../style/dist/js/adminlte.min.js"></script>
 <!-- stars -->
-<script src="../../style/newstyle/js/star.js"></script>
+<!--<script src="../../style/newstyle/js/star.js"></script>-->
 <!-- echarts -->
 <script src="../../style/newstyle/js/echarts.min.js"></script>
 <script src="../../style/newstyle/js/echarts-wordcloud.js"></script>
@@ -1027,14 +1041,14 @@ immediately after the control sidebar -->
 <script src="../../style/bower_components/morris.js/morris.min.js"></script>
 
 <!-- iCheck check图标样式 -->
-<script>
-    $(document).ready(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue'
-        })
-    })
-</script>
+<!--<script>-->
+<!--$(document).ready(function () {-->
+<!--$('input').iCheck({-->
+<!--checkboxClass: 'icheckbox_square-blue',-->
+<!--radioClass: 'iradio_square-blue'-->
+<!--})-->
+<!--})-->
+<!--</script>-->
 <!-- Vue.js -->
 <script>
     var studentIdStr = '';
@@ -1057,7 +1071,20 @@ immediately after the control sidebar -->
                 commentsNumber: '#',
             },
             Login: {},
-            files: {}
+            files: {},
+            comment: {
+                interestingScore: '0',
+                easyScore: '0',
+                knowledgeScore: '0',
+                bearScore: '0',
+                anonymous: false,
+                gradeScore: '0',
+                courseId: '',
+                studentId: '',
+                description: '',
+                recommendTerm: '0',
+            },
+
         },
         methods: {
             getInfo() {
@@ -1068,8 +1095,8 @@ immediately after the control sidebar -->
                         teacherId: '1',
                         comments: '你很优秀',
                         tags: '优秀',
-                        studentId: '2',
-                        courseId: '11',
+                        studentId: studentIdStr,
+                        courseId: courseIdStr,
                         bearScore: '5',
                         interestingScore: '5',
                         easyScore: '',
@@ -1101,20 +1128,20 @@ immediately after the control sidebar -->
                     }
                 });
             },
-            getFiles(){
+            getFiles() {
                 $.ajax({
                     url: '/getFilesByCourseId',
                     type: 'get',
                     data: {
-                        courseId:11
+                        courseId: 11
                     },
                     dataType: 'json',
-                    success: function(res){
-                        if(res.success){
-                            classDetail.files=res.data.files;
+                    success: function (res) {
+                        if (res.success) {
+                            classDetail.files = res.data.files;
                         }
                     },
-                    errors: function(){
+                    errors: function () {
                         alert("get files failed!");
                     }
                 })
@@ -1197,9 +1224,44 @@ immediately after the control sidebar -->
             getPar() {
                 studentIdStr = this.GetQueryString('id');
                 courseIdStr = this.GetQueryString('courseId');
+                // classDetail.comment.studentId = this.GetQueryString('id');
+                // classDetail.comment.courseId = this.GetQueryString('courseId');
             },
+            uploadComment() {
+                classDetail.comment.courseId = courseIdStr;
+                classDetail.comment.studentId = studentIdStr;
+                if (classDetail.comment.courseId == null) {
+                    alert("请先登录");
+                }
+                if (classDetail.comment.studentId == null) {
+                    alert("请选择要怕评价的课程")
+                }
+                if(classDetail.comment.description.length < 4){
+                    alert("请输入大于4个字节的内容");
+                    return;
+                }
+                if(classDetail.comment.recommendTerm === "0"){
+                    alert("请选择推荐年级");
+                }
+                $.ajax({
+                    url: '/commentUpload',
+                    type: 'post',
+                    data: classDetail.comment,
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.success) {
+                            alert("评论成功");
+                        } else {
+                            alert("评论失败");
+                        }
+                    },
+                    error: function () {
+                        alert("评论失败");
+                    }
+                })
+            }
         },
-         mounted() {
+        mounted() {
             // this.myfun();
             this.getPar();
             this.getInfo();
@@ -1413,7 +1475,64 @@ immediately after the control sidebar -->
             })
         })
 </script>
+<!-- star.js -->
+<script>
+    $(document).ready(function () {
+        /* 1. Visualizing things on Hover - See next part for action on click */
+        $('.stars li').on('mouseover', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+            // Now highlight all the stars that's not after the current hovered star
+            $(this).parent().children('li.star').each(function (e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                }
+                else {
+                    $(this).removeClass('hover');
+                }
+            });
 
+        }).on('mouseout', function () {
+            $(this).parent().children('li.star').each(function (e) {
+                $(this).removeClass('hover');
+            });
+        });
+
+
+        /* 2. Action to perform on click */
+        $('.stars li').on('click', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            var ratingValue = $(this).parent().children('.selected').last().data('value');
+            console.log($(this).parent().children('.selected').last().data('value'));
+            if ($(this).parent().parent().attr("id") === "bearScore") {
+                // 这里填写你要赋值的 Vue内data
+                classDetail.comment.bearScore = ratingValue;
+            }
+            if ($(this).parent().parent().attr("id") === "interestingScore") {
+                // classDetail.comment.score.interestingScore = ratingValue;
+                classDetail.comment.interestingScore = ratingValue;
+            }
+            if ($(this).parent().parent().attr("id") === "easyScore") {
+                // classDetail.comment.score.easyScore = ratingValue;
+                classDetail.comment.easyScore = ratingValue
+            }
+            if ($(this).parent().parent().attr("id") === "knowledgeScore") {
+                // classDetail.comment.score.knowledgeScore = ratingValue;
+                classDetail.comment.knowledgeScore = ratingValue;
+            }
+            // console.log(classDetail.comment.score);
+        });
+    })
+</script>
 </body>
 
 </html>
