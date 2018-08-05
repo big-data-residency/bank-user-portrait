@@ -449,7 +449,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     for (var teacher of res.data.teachers) {
 
                         if (i == 0) {
-                            $('#teacherInfo').append(`<option selected="selected">全部教师</option>`)
+                            $('#teacherInfo').append(`<option selected="selected">${ teacher.teacherName }</option>`)
                         }
                         $('#teacherInfo').append(`<option>${ teacher.teacherName }</option>`)
                         i++;
