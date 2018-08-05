@@ -237,4 +237,12 @@
 		and deleteStatus = 0
 	</select>
 
+	<select id="findSelectCourse" resultMap="CourseResultMap">
+		select * from Course
+		where
+		( level = "e" or
+		( level = "D" and
+		( ( collegeId = #{collegeId} and MajorId = null ) or
+		( collegeId = {#collegeId} and majorId = #{majorId} ) ) ) )
+	</select>
 </mapper>
