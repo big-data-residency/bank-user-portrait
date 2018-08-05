@@ -7,7 +7,6 @@ public class TeacherWithLikeNumber {
 
 	public TeacherWithLikeNumber() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Teacher getTeacher() {

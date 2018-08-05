@@ -40,12 +40,28 @@ public class StudentCommentCourse implements Serializable {
 		super();
 	}
 
+	public StudentCommentCourse getReplyTo() {
+		return replyTo;
+	}
+
+	public void setReplyTo(StudentCommentCourse replyTo) {
+		this.replyTo = replyTo;
+	}
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getRecommendTerm() {
+		return recommendTerm;
+	}
+
+	public void setRecommendTerm(String recommendTerm) {
+		this.recommendTerm = recommendTerm;
 	}
 
 	public String getComment() {
