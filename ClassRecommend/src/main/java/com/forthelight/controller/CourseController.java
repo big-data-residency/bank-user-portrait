@@ -238,10 +238,11 @@ public class CourseController {
         }
 
         JsonArray coursesList = new JsonArray();
-        for(Course course : courses){
+        for (Course course : courses) {
             JsonObject courseList = new JsonObject();
-            courseList.addProperty("id",course.getId());
-            courseList.addProperty("courseName",course.getCourseName());
+            courseList.addProperty("id", course.getId());
+            courseList.addProperty("courseName", course.getCourseName());
+            courseList.addProperty("courseCode",course.getCourseCode());
             coursesList.add(courseList);
         }
 
@@ -270,39 +271,39 @@ public class CourseController {
 
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-        courseSelect.preferD=request.getParameter("preferD").equals("true");
+        courseSelect.preferD = request.getParameter("preferD").equals("true");
         System.out.println(courseSelect.preferD);
-        courseSelect.preferE=request.getParameter("preferE").equals("true");
+        courseSelect.preferE = request.getParameter("preferE").equals("true");
         System.out.println(courseSelect.preferE);
-        courseSelect.selectMoreD=request.getParameter("selectMoreD").equals("true");
-        courseSelect.selectMoreE=request.getParameter("selectMoreE").equals("true");
-        courseSelect.selectNumberD=request.getParameter("selectNumberD").equals("true");
-        courseSelect.selectNumberE=request.getParameter("selectNumberE").equals("true");
-        if(courseSelect.selectNumberD) {
+        courseSelect.selectMoreD = request.getParameter("selectMoreD").equals("true");
+        courseSelect.selectMoreE = request.getParameter("selectMoreE").equals("true");
+        courseSelect.selectNumberD = request.getParameter("selectNumberD").equals("true");
+        courseSelect.selectNumberE = request.getParameter("selectNumberE").equals("true");
+        if (courseSelect.selectNumberD) {
             courseSelect.numberD = Integer.parseInt(request.getParameter("numberD"));
             System.out.println(courseSelect.numberD);
         }
-        if(courseSelect.selectNumberE) {
+        if (courseSelect.selectNumberE) {
             courseSelect.numberE = Integer.parseInt(request.getParameter("numberE"));
             System.out.println(courseSelect.numberE);
         }
 
-        courseSelect.selectCourseType=request.getParameter("selectCourseType").equals("true");
-        courseSelect.allCourse=request.getParameter("allCourse").equals("true");
-        courseSelect.courseABCD=request.getParameter("courseABCD").equals("true");
-        courseSelect.preScoreRequest=request.getParameter("preScoreRequest").equals("true");
-        if(courseSelect.preScoreRequest) {
+        courseSelect.selectCourseType = request.getParameter("selectCourseType").equals("true");
+        courseSelect.allCourse = request.getParameter("allCourse").equals("true");
+        courseSelect.courseABCD = request.getParameter("courseABCD").equals("true");
+        courseSelect.preScoreRequest = request.getParameter("preScoreRequest").equals("true");
+        if (courseSelect.preScoreRequest) {
             courseSelect.preScore = Integer.parseInt(request.getParameter("preScore"));
         }
 
-        courseSelect.selectMoreD=request.getParameter("selectMoreD").equals("true");
-        courseSelect.selectMoreD=request.getParameter("selectMoreD").equals("true");
-        courseSelect.bareScore=Integer.parseInt(request.getParameter("bareScore"));
-        courseSelect.interestingScore=Integer.parseInt(request.getParameter("interestingScore"));
-        courseSelect.easyScore=Integer.parseInt(request.getParameter("easyScore"));
-        courseSelect.knowledgeScore=Integer.parseInt(request.getParameter("knowledgeScore"));
+        courseSelect.selectMoreD = request.getParameter("selectMoreD").equals("true");
+        courseSelect.selectMoreD = request.getParameter("selectMoreD").equals("true");
+        courseSelect.bareScore = Integer.parseInt(request.getParameter("bearScore"));
+        courseSelect.interestingScore = Integer.parseInt(request.getParameter("interestingScore"));
+        courseSelect.easyScore = Integer.parseInt(request.getParameter("easyScore"));
+        courseSelect.knowledgeScore = Integer.parseInt(request.getParameter("knowledgeScore"));
 
-        courseSelect.selectedCourses=request.getParameterValues("selectedCourses[]");
+        courseSelect.selectedCourses = request.getParameterValues("selectedCourses[]");
 
         Map<String, Object> res = new HashMap<>();
 
@@ -310,6 +311,14 @@ public class CourseController {
         courseSelect.Recommend();
 
         boolean success = true;
+
+        if(!courseSelect.Initialize()){
+            success = false;
+            res.put("data",courseSelect.Worry);
+        }
+
+
+        courseSelect.Recommend();
 
         res.put("success", success);
 
@@ -615,10 +624,10 @@ public class CourseController {
         if (studentIdStr != "") {
             success = true;
         }
-        if(courseName.equals("全部课程")){
+        if (courseName.equals("全部课程")) {
             courseName = null;
         }
-        if(teacherName.equals("全部教师")){
+        if (teacherName.equals("全部教师")) {
             teacherName = null;
         }
 
@@ -816,11 +825,11 @@ public class CourseController {
             success = true;
         }
 
-        if(success){
+        if (success) {
             List<Course> courses = new ArrayList<>();
-            if(teacherName.equals("全部教师")){
+            if (teacherName.equals("全部教师")) {
                 courses = courseBiz.findAll();
-            }else {
+            } else {
                 courses = courseBiz.findByTeacherName(teacherName);
             }
 
@@ -838,10 +847,10 @@ public class CourseController {
 
             Map<String, Object> data = new HashMap<>();
             data.put("courses", coursesList);
-            res.put("data",data);
+            res.put("data", data);
         }
 
-        res.put("success",success);
+        res.put("success", success);
         return gson.toJson(res);
     }
 
@@ -857,10 +866,10 @@ public class CourseController {
         Map<String, Object> res = new HashMap<>();
         boolean success = false;
 
-        if(courseName.equals("全部课程")){
+        if (courseName.equals("全部课程")) {
             courseName = null;
         }
-        if(teacherName.equals("全部教师")){
+        if (teacherName.equals("全部教师")) {
             teacherName = null;
         }
         int exam = -1;
@@ -877,24 +886,24 @@ public class CourseController {
             exam = 3;
         }
         int pass = -1;
-        if(passType.equals("true")){
+        if (passType.equals("true")) {
             pass = 1;
         }
-        if(passType.equals("false")){
+        if (passType.equals("false")) {
             pass = 0;
         }
 
         List<Course> courses = new ArrayList<>();
         Course courseOfCode = new Course();
         if (courseCode == "") {
-            courses = courseBiz.findByTeacherCourseExamPass(courseName,teacherName,exam,pass);
+            courses = courseBiz.findByTeacherCourseExamPass(courseName, teacherName, exam, pass);
         } else {
             courseOfCode = courseBiz.findByCode(courseCode);
         }
 
-        Map<String,Object> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
 
-        if(courses.size() > 0){
+        if (courses.size() > 0) {
 
             JsonArray coursesList = new JsonArray();
             for (Course course : courses) {
@@ -926,12 +935,11 @@ public class CourseController {
 
                 coursesList.add(courseList);
             }
-            if(coursesList.size()>0 ){
+            if (coursesList.size() > 0) {
                 success = true;
             }
-            data.put("courses",coursesList);
-        }
-        else {
+            data.put("courses", coursesList);
+        } else {
 
             JsonObject course = new JsonObject();
             if (courseOfCode.getExaminingForm() == 0) {
@@ -958,15 +966,15 @@ public class CourseController {
             course.addProperty("courseName", courseOfCode.getCourseName());
             course.addProperty("teacherName", courseOfCode.getTeacher().getTeacherName());
 
-            if(course.size() > 0){
+            if (course.size() > 0) {
                 success = true;
             }
 
-            data.put("courses",course);
+            data.put("courses", course);
         }
 
-        res.put("data",data);
-        res.put("success",success);
+        res.put("data", data);
+        res.put("success", success);
 
         return gson.toJson(res);
     }
@@ -986,40 +994,40 @@ public class CourseController {
 
         JsonArray top10Courses = new JsonArray();
 
-        for(int i=0;i<1;i++){
+        for (int i = 0; i < 1; i++) {
             Course course = courses.get(i);
             JsonObject topCourse = new JsonObject();
 
-            topCourse.addProperty("courseCode",course.getCourseCode());
-            topCourse.addProperty("courseName",course.getCourseName());
-            topCourse.addProperty("studentNumber",course.getStudentNumber());
-            topCourse.addProperty("likeNumber",courseBiz.likeNumber(course.getId()));
+            topCourse.addProperty("courseCode", course.getCourseCode());
+            topCourse.addProperty("courseName", course.getCourseName());
+            topCourse.addProperty("studentNumber", course.getStudentNumber());
+            topCourse.addProperty("likeNumber", courseBiz.likeNumber(course.getId()));
 
             top10Courses.add(topCourse);
         }
 
         boolean success = false;
-        if(top10Courses.size() > 0){
+        if (top10Courses.size() > 0) {
             success = true;
         }
 
-        Map<String,Object> data = new HashMap<>();
-        data.put("courses",top10Courses);
+        Map<String, Object> data = new HashMap<>();
+        data.put("courses", top10Courses);
 
-        res.put("data",data);
-        res.put("success",success);
+        res.put("data", data);
+        res.put("success", success);
 
         return gson.toJson(res);
     }
 
     @RequestMapping(value = "/getScoreRate", produces = "text/json; charset=utf-8")
     @ResponseBody
-    public String getScoreRate(@RequestParam("courseId") String courseId){
+    public String getScoreRate(@RequestParam("courseId") String courseId) {
         Map<String, Object> rsp = new HashMap<>();
         Map<String, Object> data = new HashMap<>();
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         Course course = courseBiz.findById(Integer.parseInt(courseId));
-        if(course == null){
+        if (course == null) {
             rsp.put("success", false);
             rsp.put("errorInfo", "没有找到id为" + courseId + "的课程");
         } else {
@@ -1032,4 +1040,54 @@ public class CourseController {
 
         return gson.toJson(rsp);
     }
+
+    @RequestMapping(value = "/getRecommend", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String getRecommend(HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Map<String, Object> res = new HashMap<>();
+
+        JsonArray recommendCourses = new JsonArray();
+
+        for (Course course : courseSelect.checkedCourses) {
+            JsonObject recommend = new JsonObject();
+            recommend.addProperty("courseName", course.getCourseName());
+            recommend.addProperty("courseCode", course.getCourseCode());
+            recommend.addProperty("teacherName", course.getTeacher().getTeacherName());
+            recommend.addProperty("studentNumber", course.getStudentNumber());
+            recommend.addProperty("courseId", course.getId());
+            int i = 0;
+            for (CourseTime courseTime : course.getCourseTimes()) {
+                recommend.addProperty("courseDay" + i, courseTime.getLessonDay());
+                int startLesson = courseTime.getStartLesson();
+                int endLesson = courseTime.getEndLesson();
+                if (startLesson > 4) {
+                    startLesson = startLesson + 2;
+                }
+                if (endLesson > 4) {
+                    endLesson = endLesson + 2;
+                }
+
+                recommend.addProperty("courseStartLesson" + i, startLesson);
+                recommend.addProperty("courseEndLesson" + i,endLesson);
+                i++;
+            }
+            recommend.addProperty("courseNumber", i);
+
+            recommendCourses.add(recommend);
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("courseInfo", recommendCourses);
+
+        res.put("data", data);
+        res.put("success", true);
+
+        return gson.toJson(res);
+    }
+
 }

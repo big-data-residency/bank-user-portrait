@@ -56,7 +56,7 @@ public class CourseSelect {
 
     public Integer hasD;
     public Integer hasE;
-    public int[][] Time;
+    public int[][] Time = new int [10][10];
     public List<Course> checkedCourses;
     public List<String> shouldCheckCourses;
 
