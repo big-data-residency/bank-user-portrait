@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -31,7 +31,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
 
     <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/starter_new.css"/>
-    <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/coursedetails_new.css"/>
     <link rel='stylesheet' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="../../style/newstyle/css/star.css">
     <link rel="stylesheet" href="../../style/newstyle/css/radiobox.css">
@@ -41,6 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Morris charts -->
     <!-- Morris charts -->
     <link rel="stylesheet" href="../../style/bower_components/morris.js/morris.css">
+    <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/coursedetails_new.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -57,7 +57,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 </head>
 
 
-<body class="hold-transition skin-blue-light fixed sidebar-mini">
+<body class="hold-transition skin-blue-light fixed sidebar-mini" style="overflow-y: scroll; overflow-x: hidden">
 <div class="wrapper" id="classvue">
     <!-- Main Header -->
     <header class="main-header">
@@ -353,21 +353,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="tab-content">
                             <div class="tab-pane" id="activity">
                                 <!-- Post -->
-                                <div class="post">
+                                <div class="post" v-for="(comment, index) in comments">
                                     <div class="user-block">
                                         <img class="img-circle img-bordered-sm"
                                              src="../../style/dist/img/user1-128x128.jpg" alt="user image">
                                         <span class="username">
-                                                <a href="#">胖成球</a>
+                                                <a href="#">{{ comment.student.studentName }}</a>
                                                 <a href="#" class="pull-right btn-box-tool">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </span>
-                                        <span class="description">Shared publicly - 7:30 PM today</span>
+                                        <span class="description">Shared publicly - {{ comment.commentTime }}</span>
                                     </div>
                                     <!-- /.user-block -->
                                     <p>
-                                        启发式教学
+                                        {{ comment.comment }}
                                     </p>
                                     <ul class="list-inline">
                                         <li>
@@ -384,32 +384,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </a>
                                         </li>
                                     </ul>
-                                    <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                                </div>
-                                <!-- /.post -->
-
-                                <!-- Post -->
-                                <div class="post clearfix">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm"
-                                             src="../../style/dist/img/user7-128x128.jpg" alt="User Image">
-                                        <span class="username">
-                                                <a href="#">Sarah Ross</a>
-                                                <a href="#" class="pull-right btn-box-tool">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </span>
-                                        <span class="description">Sent you a message - 3 days ago</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <p>
-                                        Lorem ipsum represents a long-held tradition for designers, typographers and the
-                                        like. Some people hate it and argue for
-                                        its demise, but others ignore the hate as they create awesome tools to help
-                                        create
-                                        filler text for everyone from bacon lovers to Charlie Sheen fans.
-                                    </p>
-
                                     <form id="responseForm" class="form-horizontal">
                                         <div class="form-group margin-bottom-none">
                                             <div class="col-sm-9">
@@ -422,187 +396,137 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             </div>
                                         </div>
                                     </form>
+                                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
                                 </div>
                                 <!-- /.post -->
 
-                                <!-- Post -->
-                                <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm"
-                                             src="../../style/dist/img/user6-128x128.jpg" alt="User Image">
-                                        <span class="username">
-                                                <a href="#">Adam Jones</a>
-                                                <a href="#" class="pull-right btn-box-tool">
-                                                    <i class="fa fa-times"></i>
-                                                </a>
-                                            </span>
-                                        <span class="description">Posted 5 photos - 5 days ago</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <div class="row margin-bottom">
-                                        <div class="col-sm-6">
-                                            <img class="img-responsive" src="../../style/dist/img/photo1.png"
-                                                 alt="Photo">
-                                        </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-6">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <img class="img-responsive" src="../../style/dist/img/photo2.png"
-                                                         alt="Photo">
-                                                    <br>
-                                                    <img class="img-responsive" src="../../style/dist/img/photo3.jpg"
-                                                         alt="Photo">
-                                                </div>
-                                                <!-- /.col -->
-                                                <div class="col-sm-6">
-                                                    <img class="img-responsive" src="../../style/dist/img/photo4.jpg"
-                                                         alt="Photo">
-                                                    <br>
-                                                    <img class="img-responsive" src="../../style/dist/img/photo1.png"
-                                                         alt="Photo">
-                                                </div>
-                                                <!-- /.col -->
-                                            </div>
-                                            <!-- /.row -->
-                                        </div>
-                                        <!-- /.col -->
-                                    </div>
-                                    <!-- /.row -->
+                                <!--&lt;!&ndash; Post &ndash;&gt;-->
+                                <!--<div class="post clearfix">-->
+                                    <!--<div class="user-block">-->
+                                        <!--<img class="img-circle img-bordered-sm"-->
+                                             <!--src="../../style/dist/img/user7-128x128.jpg" alt="User Image">-->
+                                        <!--<span class="username">-->
+                                                <!--<a href="#">Sarah Ross</a>-->
+                                                <!--<a href="#" class="pull-right btn-box-tool">-->
+                                                    <!--<i class="fa fa-times"></i>-->
+                                                <!--</a>-->
+                                            <!--</span>-->
+                                        <!--<span class="description">Sent you a message - 3 days ago</span>-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash; /.user-block &ndash;&gt;-->
+                                    <!--<p>-->
+                                        <!--Lorem ipsum represents a long-held tradition for designers, typographers and the-->
+                                        <!--like. Some people hate it and argue for-->
+                                        <!--its demise, but others ignore the hate as they create awesome tools to help-->
+                                        <!--create-->
+                                        <!--filler text for everyone from bacon lovers to Charlie Sheen fans.-->
+                                    <!--</p>-->
 
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-share margin-r-5"></i> Share</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                                        </li>
-                                        <li class="pull-right">
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-comments-o margin-r-5"></i> Comments (5)
-                                            </a>
-                                        </li>
-                                    </ul>
+                                    <!--<form id="responseForm" class="form-horizontal">-->
+                                        <!--<div class="form-group margin-bottom-none">-->
+                                            <!--<div class="col-sm-9">-->
+                                                <!--<input class="form-control input-sm" placeholder="Response">-->
+                                            <!--</div>-->
+                                            <!--<div class="col-sm-3">-->
+                                                <!--<button type="submit"-->
+                                                        <!--class="btn btn-danger pull-right btn-block btn-sm">Send-->
+                                                <!--</button>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.post &ndash;&gt;-->
 
-                                    <input class="form-control input-sm" type="text" placeholder="Type a comment">
-                                </div>
-                                <!-- /.post -->
+                                <!--&lt;!&ndash; Post &ndash;&gt;-->
+                                <!--<div class="post">-->
+                                    <!--<div class="user-block">-->
+                                        <!--<img class="img-circle img-bordered-sm"-->
+                                             <!--src="../../style/dist/img/user6-128x128.jpg" alt="User Image">-->
+                                        <!--<span class="username">-->
+                                                <!--<a href="#">Adam Jones</a>-->
+                                                <!--<a href="#" class="pull-right btn-box-tool">-->
+                                                    <!--<i class="fa fa-times"></i>-->
+                                                <!--</a>-->
+                                            <!--</span>-->
+                                        <!--<span class="description">Posted 5 photos - 5 days ago</span>-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash; /.user-block &ndash;&gt;-->
+                                    <!--<div class="row margin-bottom">-->
+                                        <!--<div class="col-sm-6">-->
+                                            <!--<img class="img-responsive" src="../../style/dist/img/photo1.png"-->
+                                                 <!--alt="Photo">-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                        <!--<div class="col-sm-6">-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="col-sm-6">-->
+                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo2.png"-->
+                                                         <!--alt="Photo">-->
+                                                    <!--<br>-->
+                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo3.jpg"-->
+                                                         <!--alt="Photo">-->
+                                                <!--</div>-->
+                                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                                <!--<div class="col-sm-6">-->
+                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo4.jpg"-->
+                                                         <!--alt="Photo">-->
+                                                    <!--<br>-->
+                                                    <!--<img class="img-responsive" src="../../style/dist/img/photo1.png"-->
+                                                         <!--alt="Photo">-->
+                                                <!--</div>-->
+                                                <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                            <!--</div>-->
+                                            <!--&lt;!&ndash; /.row &ndash;&gt;-->
+                                        <!--</div>-->
+                                        <!--&lt;!&ndash; /.col &ndash;&gt;-->
+                                    <!--</div>-->
+                                    <!--&lt;!&ndash; /.row &ndash;&gt;-->
+
+                                    <!--<ul class="list-inline">-->
+                                        <!--<li>-->
+                                            <!--<a href="#" class="link-black text-sm">-->
+                                                <!--<i class="fa fa-share margin-r-5"></i> Share</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="#" class="link-black text-sm">-->
+                                                <!--<i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="pull-right">-->
+                                            <!--<a href="#" class="link-black text-sm">-->
+                                                <!--<i class="fa fa-comments-o margin-r-5"></i> Comments (5)-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+
+                                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash; /.post &ndash;&gt;-->
                             </div>
 
 
                             <div class="tab-pane" id="uploads">
                                 <div class="table-responsive mailbox-messages">
-                                    <table id="example2" class="table table-hover table-striped">
+                                    <table id="fileTable" class="table table-hover table-striped">
                                         <thead>
                                         <tr>
                                             <th scope="col">选择</th>
-                                            <th scope="col"></th>
                                             <th scope="col">文件名称</th>
                                             <th scope="col">文件描述</th>
-                                            <th scope="col"></th>
                                             <th scope="col">上传时间</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    <input type="checkbox">
-                                                </label>
-                                            </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                </a>
-                                            </td>
-                                            <td class="mailbox-name">
-                                                <a href="#">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-attachment"></td>
-                                            <td class="mailbox-date">5 mins ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    <input type="checkbox">
-                                                </label>
-                                            </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star-o text-yellow"></i>
-                                                </a>
-                                            </td>
-                                            <td class="mailbox-name">
-                                                <a href="#">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-attachment">
-                                                <i class="fa fa-paperclip"></i>
-                                            </td>
-                                            <td class="mailbox-date">28 mins ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    <input type="checkbox">
-                                                </label>
-                                            </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star-o text-yellow"></i>
-                                                </a>
-                                            </td>
-                                            <td class="mailbox-name">
-                                                <a href="#">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-attachment">
-                                                <i class="fa fa-paperclip"></i>
-                                            </td>
-                                            <td class="mailbox-date">11 hours ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    <input type="checkbox">
-                                                </label>
-                                            </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                </a>
-                                            </td>
-                                            <td class="mailbox-name">
-                                                <a href="#">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-attachment"></td>
-                                            <td class="mailbox-date">15 hours ago</td>
-                                        </tr>
+
                                         <tr v-for="(file, index) in files">
                                             <td>
                                                 <label>
                                                     <input type="checkbox">
                                                 </label>
                                             </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                </a>
-                                            </td>
+
                                             <td class="mailbox-name">
-                                                <a :href="file.filePath + '/' + file.fileName" :download="file.fileName">
+                                                <a :href="file.filePath + '/' + file.fileName"
+                                                   :download="file.fileName">
                                                     <p style="vertical-align:middle;;">{{ file.fileName }}</p>
                                                 </a>
                                             </td>
@@ -610,7 +534,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <b>{{ file.title }}</b><br/>
                                                 - {{ file.description }}
                                             </td>
-                                            <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">{{ file.updateTime }}</td>
                                         </tr>
                                         </tbody>
@@ -697,13 +620,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <h3 class="box-title">成绩占比</h3>
 
                                                 <div class="box-tools pull-right">
-                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                    <button type="button" class="btn btn-box-tool"
+                                                            data-widget="collapse"><i class="fa fa-minus"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                                        <i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
                                             <div class="box-body chart-responsive">
-                                                <div class="chart" id="bar-chart" style="height: 300px;width: 300px;"></div>
+                                                <div class="chart" id="bar-chart"
+                                                     style="height: 300px;width: 300px;"></div>
                                             </div>
                                             <!-- /.box-body -->
                                         </div>
@@ -721,58 +647,127 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
 
                             <div class="tab-pane" id="settings">
-                                <form id="evaluateForm" class="form-horizontal">
+                                <div class="form-wrapper">
+                                    <form id="evaluateForm" class="form-horizontal">
 
-                                    <div class="form-group">
-                                        <label for="inputExperience" class="col-sm-2 control-label">课程评价</label>
-                                        <div class="col-sm-10">
-                                            <textarea class="form-control" id="inputExperience"
+                                        <div class="form-group">
+                                            <label for="inputExperience" class="col-sm-2 control-label">课程评价</label>
+                                            <div class="col-sm-10">
+                                            <textarea v-model="comment.description" class="form-control"
+                                                      name="comment" id="inputExperience"
                                                       placeholder="Experience"></textarea>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="evaluationNotes" class="col-sm-2 control-label">备注</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="evaluationNotes"
-                                                   placeholder="Notes">
+
+                                        <div class="form-group">
+                                            <label for="recommendGrade" class="col-sm-2 control-label">推荐年级</label>
+                                            <div class="col-sm-10">
+                                                <select id="recommendGrade" class="form-control"
+                                                        v-model="comment.recommendGrade"
+                                                        name="recommendGrade">
+                                                    <option value="0" selected="selected">
+                                                        都行
+                                                    </option>
+                                                    <option value="1">
+                                                        大一
+                                                    </option>
+                                                    <option value="2">
+                                                        大二
+                                                    </option>
+                                                    <option value="3">
+                                                        大三
+                                                    </option>
+                                                    <option value="4">
+                                                        大四
+                                                    </option>
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">
-                                            得分区间
-                                        </label>
-                                        <div class="col-sm-10 control-radio">
-                                            <input id="radio-90+" class="radio-inline" type="radio" name="radio"
-                                                   checked="checked"/>
-                                            <label for="radio-90+">
-                                                90~100
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">
+                                                得分区间
                                             </label>
+                                            <div class="col-sm-10 control-radio">
+                                                <input id="radio-90+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="95"/>
+                                                <label for="radio-90+">
+                                                    90~100
+                                                </label>
 
-                                            <input id="radio-80+" class="radio-inline" type="radio" name="radio"/>
-                                            <label for="radio-80+">
-                                                80~90
-                                            </label>
+                                                <input id="radio-80+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="85"/>
+                                                <label for="radio-80+">
+                                                    80~90
+                                                </label>
 
-                                            <input id="radio-70+" class="radio-inline" type="radio" name="radio"/>
-                                            <label for="radio-70+">
-                                                70~80
-                                            </label>
+                                                <input id="radio-70+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="75"/>
+                                                <label for="radio-70+">
+                                                    70~80
+                                                </label>
 
-                                            <input id="radio-60+" class="radio-inline" type="radio" name="radio"/>
-                                            <label for="radio-60+">
-                                                60~70
-                                            </label>
+                                                <input id="radio-60+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="65"/>
+                                                <label for="radio-60+">
+                                                    60~70
+                                                </label>
 
-                                            <input id="radio-50+" class="radio-inline" type="radio" name="radio"/>
-                                            <label for="radio-50+">
-                                                ~60
-                                            </label>
+                                                <input id="radio-50+" v-model="comment.gradeScore" class="radio-inline"
+                                                       name="gradeScore" type="radio" value="55"/>
+                                                <label for="radio-50+">
+                                                    ~60
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">手下留情</label>
-                                        <div id="bearRate" class="rating-stars">
-                                            <div>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">手下留情</label>
+                                            <div id="bearScore" class="rating-stars">
+                                                <ul class="stars col-sm-10">
+                                                    <li class="star" title='Poor' data-value='1'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Fair' data-value='2'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Good' data-value='3'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Excellent' data-value='4'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='WOW!!!' data-value='5'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">课堂有趣</label>
+                                            <div id="interestingScore" class="rating-stars">
+                                                <ul class="stars col-sm-10">
+                                                    <li class="star" title='Poor' data-value='1'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Fair' data-value='2'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Good' data-value='3'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Excellent' data-value='4'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='WOW!!!' data-value='5'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">划水程度</label>
+                                            <div id="easyScore" class="rating-stars">
                                                 <ul class="stars col-sm-10">
 
                                                     <li class="star" title='Poor' data-value='1'>
@@ -794,103 +789,50 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">课堂有趣</label>
-                                        <div id="interestingRate" class="rating-stars">
-                                            <ul class="stars col-sm-10">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">干货满满</label>
+                                            <div id="knowledgeScore" class="rating-stars">
+                                                <ul class="stars col-sm-10">
 
-                                                <li class="star" title='Poor' data-value='1'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Fair' data-value='2'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Good' data-value='3'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Excellent' data-value='4'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='WOW!!!' data-value='5'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-
-                                            </ul>
+                                                    <li class="star" title='Poor' data-value='1'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Fair' data-value='2'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Good' data-value='3'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='Excellent' data-value='4'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                    <li class="star" title='WOW!!!' data-value='5'>
+                                                        <i class='fa fa-star fa-fw'></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">划水程度</label>
-                                        <div id="easyRate" class="rating-stars">
-                                            <ul class="stars col-sm-10">
-
-                                                <li class="star" title='Poor' data-value='1'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Fair' data-value='2'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Good' data-value='3'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Excellent' data-value='4'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='WOW!!!' data-value='5'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-
-                                            </ul>
+                                        <br/>
+                                        <div class="form-group">
+                                            <label for="anonymous" class="col-sm-2 control-label">是否匿名</label>
+                                            <div class="col-sm-2" style="vertical-align: middle">
+                                                <input id="anonymous" v-model="comment.Anonymous" type="checkbox"
+                                                       name="Anonymous" checked="checked"/>
+                                                <label>&nbsp;&nbsp;&nbsp;&nbsp;匿名</label>
+                                            </div>
+                                            <div>
+                                                <button id="commentUploadBtn" v-on:click="uploadComment" type="button"
+                                                        class="btn btn-danger">提交
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">干货满满</label>
-                                        <div id="knowledgeScore" class="rating-stars">
-                                            <ul class="stars col-sm-10">
-
-                                                <li class="star" title='Poor' data-value='1'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Fair' data-value='2'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Good' data-value='3'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='Excellent' data-value='4'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                                <li class="star" title='WOW!!!' data-value='5'>
-                                                    <i class='fa fa-star fa-fw'></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="anonymous" class="col-sm-2 control-label">是否匿名</label>
-                                        <div class="col-sm-2">
-                                            <input id="anonymous" type="checkbox" checked="checked"/>
-                                            <label>匿名</label>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <button id="commentUpload" type="submit" class="btn btn-danger">提交</button>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-group">
-                                            <label for="commentUploadBtn" class="col-sm-2 control-label"></label>
-                                        <button id="commentUpload" type="submit" class="btn btn-danger">提交</button>
-                                    </div> -->
-                                </form>
+                                    </form>
+                                </div>
                             </div>
-
                         </div>
-
-
                     </div>
                     <!-- /.tab-pane -->
                 </div>
-
-
             </div>
             <!-- /.col -->
             <!-- /.row -->
@@ -997,9 +939,9 @@ immediately after the control sidebar -->
 
 <!-- REQUIRED JS SCRIPTS -->
 <!-- Vue.js -->
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!--<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
+<script src="../../plugins/vue.js"></script>
+<!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 <!-- jQuery 3 -->
 <script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -1009,7 +951,7 @@ immediately after the control sidebar -->
 <!-- AdminLTE App -->
 <script src="../../style/dist/js/adminlte.min.js"></script>
 <!-- stars -->
-<script src="../../style/newstyle/js/star.js"></script>
+<!--<script src="../../style/newstyle/js/star.js"></script>-->
 <!-- echarts -->
 <script src="../../style/newstyle/js/echarts.min.js"></script>
 <script src="../../style/newstyle/js/echarts-wordcloud.js"></script>
@@ -1031,30 +973,35 @@ immediately after the control sidebar -->
 
 <script>
     $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
+        $('#example1').DataTable();
+        $('#fileTable').DataTable({
             'paging': true,
             'lengthChange': false,
             'searching': false,
             'ordering': true,
             'info': true,
-            'autoWidth': false
+            'autoWidth': false,
+            "language": {
+                "emptyTable": "现在还没有上传的文件，快来上传第一个吧"
+            }
         });
     });
 </script>
 <!-- iCheck check图标样式 -->
-<script>
-    $(document).ready(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue'
-        })
-    })
-</script>
+<!--<script>-->
+<!--$(document).ready(function () {-->
+<!--$('input').iCheck({-->
+<!--checkboxClass: 'icheckbox_square-blue',-->
+<!--radioClass: 'iradio_square-blue'-->
+<!--})-->
+<!--})-->
+<!--</script>-->
+
 <!-- Vue.js -->
 <script>
     var studentIdStr = '';
     var courseIdStr = '';
+    var tagSum;
     var classDetail = new Vue({
         el: '#classvue',
         data: {
@@ -1066,13 +1013,28 @@ immediately after the control sidebar -->
             Basic: {
                 tags: '#'
             },
+            Login: {},
             classInfo: {
                 likeNumber: '#',
                 uploadsNumber: '#',
                 commentsNumber: '#',
             },
-            Login: {},
-            files: {}
+            files: {},
+            comment: {
+                interestingScore: '0',
+                easyScore: '0',
+                knowledgeScore: '0',
+                bearScore: '0',
+                anonymous: false,
+                gradeScore: '0',
+                courseId: '',
+                studentId: '',
+                description: '',
+                recommendGrade: '0',
+            },
+            scoreRate: {},
+            comments: {
+            },
         },
         methods: {
             getInfo() {
@@ -1083,8 +1045,8 @@ immediately after the control sidebar -->
                         teacherId: '1',
                         comments: '你很优秀',
                         tags: '优秀',
-                        studentId: '2',
-                        courseId: '11',
+                        studentId: studentIdStr,
+                        courseId: courseIdStr,
                         bearScore: '5',
                         interestingScore: '5',
                         easyScore: '',
@@ -1101,9 +1063,11 @@ immediately after the control sidebar -->
                             classDetail.courseEndTimes = res.data.courseEndTimes;
                             classDetail.Comments = res.data.comments;
                             classDetail.Basic.tags = res.data.TagsNumber;
+                            tagSum = res.data.TagsNumber;
                             classDetail.classInfo.likeNumber = res.data.likeNumber;
                             classDetail.classInfo.uploadsNumber = res.data.uploadsNumber;
                             classDetail.classInfo.commentsNumber = res.data.commentNumber;
+                            wordCloud();
                         } else {
                             alert("do other thing");
                         }
@@ -1114,20 +1078,20 @@ immediately after the control sidebar -->
                     }
                 });
             },
-            getFiles(){
+            getFiles() {
                 $.ajax({
                     url: '/getFilesByCourseId',
                     type: 'get',
                     data: {
-                        courseId:11
+                        courseId: courseIdStr
                     },
                     dataType: 'json',
-                    success: function(res){
-                        if(res.success){
-                            classDetail.files=res.data.files;
+                    success: function (res) {
+                        if (res.success) {
+                            classDetail.files = res.data.files;
                         }
                     },
-                    errors: function(){
+                    errors: function () {
                         alert("get files failed!");
                     }
                 })
@@ -1210,12 +1174,91 @@ immediately after the control sidebar -->
             getPar() {
                 studentIdStr = this.GetQueryString('id');
                 courseIdStr = this.GetQueryString('courseId');
+                // classDetail.comment.studentId = this.GetQueryString('id');
+                // classDetail.comment.courseId = this.GetQueryString('courseId');
             },
+            uploadComment() {
+                classDetail.comment.courseId = courseIdStr;
+                classDetail.comment.studentId = studentIdStr;
+                if (classDetail.comment.courseId == null) {
+                    alert("请先登录");
+                    return;
+                }
+                if (classDetail.comment.studentId == null) {
+                    alert("请选择要怕评价的课程");
+                    return;
+                }
+                if (classDetail.comment.description.length < 4) {
+                    alert("请输入大于4个字节的内容");
+                    return;
+                }
+                if (classDetail.comment.recommendGrade === "0") {
+                    alert("请选择推荐年级");
+                    return;
+                }
+                $.ajax({
+                    url: '/commentUpload',
+                    type: 'post',
+                    data: classDetail.comment,
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.success) {
+                            alert("评论成功");
+                        } else {
+                            alert("评论失败");
+                        }
+                    },
+                    error: function () {
+                        alert("评论失败");
+                    }
+                })
+            },
+            getScoreRate() {
+                $.ajax({
+                    url: "/getScoreRate",
+                    type: "get",
+                    data: {
+                        courseId: courseIdStr,
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        if (res.success) {
+                            classDetail.scoreRate.finalExamWeight = res.data.finalExamWeight;
+                            classDetail.scoreRate.midExamWeight = res.data.midExamWeight;
+                            classDetail.scoreRate.otherWeight = res.data.otherWeight;
+                            console.log(res.data);
+                        } else {
+                            alert(res.errorInfo);
+                        }
+                    },
+                    error: function () {
+                        alert("getScoreRate Failed!")
+                    }
+                })
+            },
+            getComments(){
+                $.ajax({
+                    url: "/getCommentsByCourseId",
+                    method: "get",
+                    data:{
+                        courseId: courseIdStr
+                    },
+                    success(res){
+                        if(res.success){
+                            classDetail.comments = res.data.comments;
+                        } else {
+
+                        }
+                    }
+                })
+            }
         },
         mounted() {
             // this.myfun();
             this.getPar();
             this.getInfo();
+            this.getScoreRate();
+            this.getComments();
             this.getFiles();
             // this.GetLogin();
 
@@ -1225,133 +1268,57 @@ immediately after the control sidebar -->
 </script>
 <!-- 字符云  -->
 <script>
-    var chart = echarts.init(document.getElementById('wordCloud'));
-    var keywords = {
-        "visualMap": 22199,
-        "continuous": 10288,
-        "contoller": 620,
-        "series": 274470,
-        "gauge": 12311,
-        "detail": 1206,
-        "piecewise": 4885,
-        "textStyle": 32294,
-        "markPoint": 18574,
-        "pie": 38929,
-        "roseType": 969,
-        "label": 37517,
-        "emphasis": 12053,
-        "yAxis": 57299,
-        "name": 15418,
-        "type": 22905,
-        "gridIndex": 5146,
-        "normal": 49487,
-        "itemStyle": 33837,
-        "min": 4500,
-        "silent": 5744,
-        "animation": 4840,
-        "offsetCenter": 232,
-        "inverse": 3706,
-        "borderColor": 4812,
-        "markLine": 16578,
-        "line": 76970,
-        "radiusAxis": 6704,
-        "radar": 15964,
-        "data": 60679,
-        "dataZoom": 24347,
-        "tooltip": 43420,
-        "toolbox": 25222,
-        "geo": 16904,
-        "parallelAxis": 4029,
-        "parallel": 5319,
-        "max": 3393,
-        "bar": 43066,
-        "heatmap": 3110,
-        "map": 20285,
-        "animationDuration": 3425,
-        "animationDelay": 2431,
-        "splitNumber": 5175,
-        "axisLine": 12738,
-        "lineStyle": 19601,
-        "splitLine": 7133,
-        "axisTick": 8831,
-        "axisLabel": 17516,
-        "pointer": 590,
-        "color": 23426,
-        "title": 38497,
-        "formatter": 15214,
-        "slider": 7236,
-        "legend": 66514,
-        "grid": 28516,
-        "smooth": 1295,
-        "smoothMonotone": 696,
-        "sampling": 757,
-        "feature": 12815,
-        "saveAsImage": 2616,
-        "polar": 6279,
-        "calculable": 879,
-        "inactiveOpacity": 4,
-        "activeOpacity": 4,
-        "showPrevBtn": 19,
-        "playIcon": 26,
-        "ellipsis": 19,
-        "gapWidth": 19,
-        "borderColorSaturation": 10,
-        "handleIcon": 2,
-        "handleStyle": 6,
-        "borderType": 1,
-        "constantSpeed": 1,
-        "polyline": 2,
-        "blendMode": 1,
-        "dataBackground": 1,
-        "textAlign": 1,
-        "textBaseline": 1,
-        "brush": 3
-    };
-    var data = [];
-    for (var name in keywords) {
-        data.push({
-            name: name,
-            value: Math.sqrt(keywords[name])
-        })
-    }
-    var maskImage = new Image();
-    var option = {
-        series: [{
-            type: 'wordCloud',
-            sizeRange: [10, 100],
-            rotationRange: [-90, 90],
-            rotationStep: 45,
-            gridSize: 2,
-            shape: 'pentagon',
-            maskImage: maskImage,
-            drawOutOfBound: false,
-            textStyle: {
-                normal: {
-                    color: function () {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160),
-                            Math.round(Math.random() * 160)
-                        ].join(',') + ')';
+    var wordCloud = function () {
+        var chart = echarts.init(document.getElementById('wordCloud'));
+        var keywords = tagSum;
+        var data = [];
+        for (var name in keywords) {
+            data.push({
+                name: name,
+                value: Math.sqrt(keywords[name])
+            })
+        }
+        var maskImage = new Image();
+
+        var option = {
+            series: [{
+                type: 'wordCloud',
+                sizeRange: [10, 100],
+                rotationRange: [-90, 90],
+                rotationStep: 45,
+                gridSize: 2,
+                shape: 'pentagon',
+                maskImage: maskImage,
+                drawOutOfBound: false,
+                textStyle: {
+                    normal: {
+                        color: function () {
+                            return 'rgb(' + [
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160)
+                            ].join(',') + ')';
+                        }
+                    },
+                    emphasis: {
+                        color: 'red'
                     }
                 },
-                emphasis: {
-                    color: 'red'
-                }
-            },
-            data: data.sort(function (a, b) {
-                return b.value - a.value;
-            })
-        }]
-    };
-    maskImage.onload = function () {
-        option.series[0].maskImage
-        chart.setOption(option);
-    };
-    maskImage.src = '../../style/newstyle/images/wordcloud.png';
+                data: data.sort(function (a, b) {
+                    return b.value - a.value;
+                })
+            }]
+        };
+        maskImage.onload = function () {
+            option.series[0].maskImage
+            chart.setOption(option);
+        };
 
-    window.onresize = function () {
-        chart.resize();
+        maskImage.src = '../../../style/newstyle/images/wordcloud.png';
+
+        window.onresize = function () {
+            chart.resize();
+        }
     }
 </script>
 <!-- Basic 图表 -->
@@ -1364,9 +1331,9 @@ immediately after the control sidebar -->
             resize: true,
             colors: ["#3c8dbc", "#f56954", "#00a65a"],
             data: [
-                {label: "期中考核占比", value: 12},
-                {label: "平时占比        ", value: 30},
-                {label: "最终考核占比", value: 20}
+                {label: "期中考核占比", value: classDetail.scoreRate.midExamWeight},
+                {label: "平时占比        ", value: classDetail.scoreRate.otherWeight},
+                {label: "最终考核占比", value: classDetail.scoreRate.finalExamWeight}
             ],
             hideHover: 'auto'
         });
@@ -1440,7 +1407,64 @@ immediately after the control sidebar -->
             })
         })
 </script>
+<!-- star.js -->
+<script>
+    $(document).ready(function () {
+        /* 1. Visualizing things on Hover - See next part for action on click */
+        $('.stars li').on('mouseover', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+            // Now highlight all the stars that's not after the current hovered star
+            $(this).parent().children('li.star').each(function (e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                }
+                else {
+                    $(this).removeClass('hover');
+                }
+            });
 
+        }).on('mouseout', function () {
+            $(this).parent().children('li.star').each(function (e) {
+                $(this).removeClass('hover');
+            });
+        });
+
+
+        /* 2. Action to perform on click */
+        $('.stars li').on('click', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            var ratingValue = $(this).parent().children('.selected').last().data('value');
+            console.log($(this).parent().children('.selected').last().data('value'));
+            if ($(this).parent().parent().attr("id") === "bearScore") {
+                // 这里填写你要赋值的 Vue内data
+                classDetail.comment.bearScore = ratingValue;
+            }
+            if ($(this).parent().parent().attr("id") === "interestingScore") {
+                // classDetail.comment.score.interestingScore = ratingValue;
+                classDetail.comment.interestingScore = ratingValue;
+            }
+            if ($(this).parent().parent().attr("id") === "easyScore") {
+                // classDetail.comment.score.easyScore = ratingValue;
+                classDetail.comment.easyScore = ratingValue
+            }
+            if ($(this).parent().parent().attr("id") === "knowledgeScore") {
+                // classDetail.comment.score.knowledgeScore = ratingValue;
+                classDetail.comment.knowledgeScore = ratingValue;
+            }
+            // console.log(classDetail.comment.score);
+        });
+    })
+</script>
 </body>
 
 </html>

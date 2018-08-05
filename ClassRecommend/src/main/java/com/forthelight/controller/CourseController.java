@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.forthelight.biz.CourseBiz;
@@ -79,7 +80,7 @@ public class CourseController {
         Map<Integer, Object> courseTimes = new HashMap<>();
         String[] day = "日,一,二,三,四,五,六".split(",");
         int i = 0;
-        for(CourseTime time: course.getCourseTimes()){
+        for (CourseTime time : course.getCourseTimes()) {
             Map<String, Object> courseTime = new HashMap();
             courseTime.put("startTime", time.getStartLesson());
             courseTime.put("endTime", time.getEndLesson());
@@ -88,19 +89,15 @@ public class CourseController {
             i++;
         }
         Integer likeNumber = courseBiz.likeNumber(courseId);
-        likeNumber = likeNumber == null?0:likeNumber;
+        likeNumber = likeNumber == null ? 0 : likeNumber;
         Integer uploadsNumber = fileBiz.uploadsNumberOfCourse(courseId);
         Integer commentNumber = studentCommentCourseBiz.commentNumberOfCourse(courseId);
 
         // -------------------- 第一个标签数据 --------------------------
-//        Map<String, Integer> TagsNumber = new HashMap<>();
-//        List<Tag> tags = courseBiz.tagList(courseId);
-//        for (Tag tag : tags) {
-//            TagsNumber.put(tag.getTagName(), courseBiz.oneTagNumber(tag.getId(), courseId));
-//        }
+        Map<String, Integer> TagsNumber = tagBiz.sumTagByCourseId(courseId);
 
         // ------------------- 第二个标签栏数据 --------------------------
-        List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
+//        List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
 
         // ----------------------- 传输左边栏、第一二个标签Json数据 ----------------------------------
 
@@ -120,7 +117,7 @@ public class CourseController {
         data.put("likeNumber", likeNumber);
         data.put("uploadsNumber", uploadsNumber);
         data.put("commentNumber", commentNumber);
-//        data.put("TagsNumber", TagsNumber);
+        data.put("TagsNumber", TagsNumber);
         data.put("commentNumber", commentNumber);
 //        expand to commentsMap
 //        data.put("comments", comments);
@@ -1012,4 +1009,24 @@ public class CourseController {
         return gson.toJson(res);
     }
 
+    @RequestMapping(value = "/getScoreRate", produces = "text/json; charset=utf-8")
+    @ResponseBody
+    public String getScoreRate(@RequestParam("courseId") String courseId){
+        Map<String, Object> rsp = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Course course = courseBiz.findById(Integer.parseInt(courseId));
+        if(course == null){
+            rsp.put("success", false);
+            rsp.put("errorInfo", "没有找到id为" + courseId + "的课程");
+        } else {
+            data.put("midExamWeight", course.getMidExamWeight());
+            data.put("finalExamWeight", course.getFinalExamWeight());
+            data.put("otherWeight", 100 - course.getMidExamWeight() - course.getFinalExamWeight());
+            rsp.put("data", data);
+            rsp.put("success", true);
+        }
+
+        return gson.toJson(rsp);
+    }
 }

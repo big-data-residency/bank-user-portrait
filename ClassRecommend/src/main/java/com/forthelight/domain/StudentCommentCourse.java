@@ -22,22 +22,31 @@ public class StudentCommentCourse implements Serializable {
 	private int selectId;
 	private int recommendGrade;
 
-	public int getRecommendGrade() {
-		return recommendGrade;
-	}
 
-	public void setRecommendGrade(int recommendGrade) {
-		this.recommendGrade = recommendGrade;
-	}
-
-
-
+	
+	private transient StudentCommentCourse replyTo;
 	private transient Student student;
 	private transient Course course;
 	private transient List<Tag> tags = new ArrayList<Tag>();
 
 	public StudentCommentCourse() {
 		super();
+	}
+
+	public StudentCommentCourse getReplyTo() {
+		return replyTo;
+	}
+
+	public void setReplyTo(StudentCommentCourse replyTo) {
+		this.replyTo = replyTo;
+	}
+
+	public int getRecommendGrade() {
+		return recommendGrade;
+	}
+
+	public void setRecommendGrade(int recommendGrade) {
+		this.recommendGrade = recommendGrade;
 	}
 
 	public Integer getId() {
