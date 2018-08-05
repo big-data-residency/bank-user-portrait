@@ -57,6 +57,11 @@ public class StudentCommentCourseBizImpl implements StudentCommentCourseBiz {
 	}
 
 	@Override
+	public Integer update(StudentCommentCourse studentCommentCourse) {
+		return studentCommentCourseDao.update(studentCommentCourse);
+	}
+
+	@Override
 	public int getScoreByGrade(String studentNumber, int courseId) {
 		// TODO Auto-generated method stub
 		return studentCommentCourseDao.getScoreByGrade(studentNumber, courseId);
