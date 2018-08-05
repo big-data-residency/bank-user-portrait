@@ -3,6 +3,7 @@ package com.forthelight.dao;
 import java.util.List;
 
 import com.forthelight.domain.Tag;
+import com.forthelight.util.RandomGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,11 +59,11 @@ public class TeacherDaoTest {
 	
 	@Test
 	public void TestUpdate() {
-		Teacher teacher = new Teacher();
-		teacher.setTeacherName("TestTeacher1");
-		teacher.setId(7);
-		int result = teacherDao.update(teacher);
-		System.out.println(result);
+		List<Teacher> teacherList = teacherDao.findAll();
+		for(Teacher teacher: teacherList){
+			teacher.setTeacherPortrait(RandomGenerator.getAvatarPath());
+			teacherDao.update(teacher);
+		}
 	}
 	
 	@Test

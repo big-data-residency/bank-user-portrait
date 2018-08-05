@@ -46,8 +46,7 @@ public class StudentCommentCourseBizImpl implements StudentCommentCourseBiz {
 	}
 
 	@Override
-	public int getSelectIdByStudentIdAndCourseId(int studentId, int courseId) {
-		// TODO Auto-generated method stub
+	public Integer getSelectIdByStudentIdAndCourseId(int studentId, int courseId) {
 		return studentCommentCourseDao.getSelectIdByStudentIdAndCourseId(studentId, courseId);
 	}
 
@@ -55,6 +54,11 @@ public class StudentCommentCourseBizImpl implements StudentCommentCourseBiz {
 	public int insert(StudentCommentCourse studentCommentCourse) {
 		// TODO Auto-generated method stub
 		return studentCommentCourseDao.insert(studentCommentCourse);
+	}
+
+	@Override
+	public Integer update(StudentCommentCourse studentCommentCourse) {
+		return studentCommentCourseDao.update(studentCommentCourse);
 	}
 
 	@Override

@@ -14,10 +14,13 @@
 			
 		<association property="course" column="courseId" javaType="Course" autoMapping="true"
 			select="com.forthelight.dao.CourseDao.findById" />
-			
-		<collection property="tags" ofType="Tag" column="tagId" autoMapping="true"
-			select="com.forthelight.dao.TagDao.findByTagId" />
-			
+
+		<association property="replyTo" column="replayTo" javaType="StudentCommentCourse" autoMapping="false"
+					 select="findById"/>
+
+		<collection property="tags" ofType="Tag" column="id" autoMapping="true"
+			select="com.forthelight.dao.TagDao.findByCommentId" />
+
 	</resultMap>
 	<select id="findAll" resultMap="StudentCommentCourseResultMap">
 		SELECT * FROM student_comment_course;
@@ -57,18 +60,28 @@
 			  student_select_course.DeleteStatus = 0
 	</select>
 	
-	<select id="getSelectIdByStudentIdAndCourseId" resultType="int" >
+	<select id="getSelectIdByStudentIdAndCourseId" resultType="Integer" >
 	    select id from student_select_course 
 	    where studentId = #{arg0} and courseId = #{arg1} and deleteStatus = 0
 	</select>
 	
 	<insert id="insert" parameterType="StudentCommentCourse" >
 		insert into student_comment_course
-		(id, SelectID, Comment, GradeScore, ContentScore, LikeNumber, DeleteStatus, Anonymous, CommentTime, BearScore, InterestingScore, EasyScore, KnowledgeScore)
-		VALUES
-			(null, #{selectId}, #{comment}, #{gradeScore}, #{contentScore}, #{likeNumber}, #{deleteStatus},
-				   #{anonymous}, #{commentTime}, #{bearScore}, #{interestingScore}, #{easyScore}, #{knowledgeScore});
+			(Comment, GradeScore, ContentScore, CommentTime,
+			 BearScore, InterestingScore, EasyScore, KnowledgeScore,
+			 RecommendGrade, ReplyTo, Anonymous, SelectID) VALUES
+			(#{comment}, #{gradeScore}, #{contentScore}, current_timestamp(),
+			 #{bearScore}, #{interestingScore}, #{easyScore}, #{knowledgeScore},
+			 #{recommendGrade}, #{replyTo.id}, #{anonymous}, #{selectId});
 	</insert>
+
+    <update id="update" parameterType="StudentCommentCourse">
+        UPDATE student_comment_course
+        SET Comment=#{comment}, GradeScore=#{gradeScore}, ContentScore=#{contentScore}, CommentTime=#{commentTime},
+            BearScore=#{bearScore}, InterestingScore=#{interestingScore}, EasyScore=#{easyScore}, KnowledgeScore=#{knowledgeScore},
+            RecommendGrade=#{recommendGrade}, ReplyTo=#{replyTo.id}, Anonymous=#{anonymous}, SelectID=#{selectId}
+        WHERE id=#{id}
+    </update>
 	
 	<select id="getScoreByGrade"  resultType="int" >
 	    select sum(gradeScore) from student_comment_course

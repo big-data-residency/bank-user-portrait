@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @ContextConfiguration("classpath:applicationContext.xml")
@@ -35,5 +37,24 @@ public class TagBizTest {
                 }
             }
         }
+    }
+
+    @Test
+    public void sumTagByCourseId(){
+//        Map<String, Integer> result = new HashMap<>();
+//
+//        List<StudentCommentCourse> comments = studentCommentCourseDao.findByCourseId(317);
+//        for (StudentCommentCourse comment : comments) {
+//            List<Tag> tags = comment.getTags();
+//            for (Tag tag : tags) {
+//                String tagName = tag.getTagName();
+//                if (result.containsKey(tagName)) {
+//                    result.put("tagName", result.get(tagName)+1);
+//                } else {
+//                    result.put(tagName, 1);
+//                }
+//            }
+//        }
+//        System.out.println(result);
     }
 }

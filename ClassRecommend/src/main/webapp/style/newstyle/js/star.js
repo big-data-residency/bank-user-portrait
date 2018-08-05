@@ -1,5 +1,3 @@
-// import {configFromStringAndArray as classDetail} from "../../bower_components/moment/src/lib/create/from-string-and-array";
-
 $(document).ready(function(){
   
   /* 1. Visualizing things on Hover - See next part for action on click */
@@ -24,7 +22,7 @@ $(document).ready(function(){
     $('.stars2 li').on('mouseover', function(){
         var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
         // Now highlight all the stars that's not after the current hovered star
-        $(this).parent().children('li.star').each(function(e){
+        $(this).parent().children('li.star').each(function (e) {
             if (e < onStar) {
                 $(this).addClass('hover');
             }
@@ -33,8 +31,8 @@ $(document).ready(function(){
             }
         });
 
-    }).on('mouseout', function(){
-        $(this).parent().children('li.star').each(function(e){
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
             $(this).removeClass('hover');
         });
     });
@@ -42,7 +40,7 @@ $(document).ready(function(){
     $('.stars3 li').on('mouseover', function(){
         var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
         // Now highlight all the stars that's not after the current hovered star
-        $(this).parent().children('li.star').each(function(e){
+        $(this).parent().children('li.star').each(function (e) {
             if (e < onStar) {
                 $(this).addClass('hover');
             }
@@ -51,8 +49,8 @@ $(document).ready(function(){
             }
         });
 
-    }).on('mouseout', function(){
-        $(this).parent().children('li.star').each(function(e){
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
             $(this).removeClass('hover');
         });
     });
@@ -60,7 +58,7 @@ $(document).ready(function(){
     $('.stars4 li').on('mouseover', function(){
         var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
         // Now highlight all the stars that's not after the current hovered star
-        $(this).parent().children('li.star').each(function(e){
+        $(this).parent().children('li.star').each(function (e) {
             if (e < onStar) {
                 $(this).addClass('hover');
             }
@@ -69,12 +67,11 @@ $(document).ready(function(){
             }
         });
 
-    }).on('mouseout', function(){
-        $(this).parent().children('li.star').each(function(e){
+    }).on('mouseout', function () {
+        $(this).parent().children('li.star').each(function (e) {
             $(this).removeClass('hover');
         });
     });
-
 
 
 
@@ -119,7 +116,4 @@ $(document).ready(function(){
 
     });
 
-
-  
-  
 });

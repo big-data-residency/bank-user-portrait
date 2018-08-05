@@ -21,4 +21,6 @@ public interface TagDao {
 	int insert(Tag tag);
 
 	int tagComment(@Param("tag") Tag tag, @Param("comment") StudentCommentCourse studentCommentCourse);
+
+	List<Tag> findByCommentId(Integer commentId);
 }

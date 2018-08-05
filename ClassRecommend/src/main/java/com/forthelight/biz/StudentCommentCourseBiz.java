@@ -16,9 +16,11 @@ public interface StudentCommentCourseBiz {
 
 	int commentNumberOfCourse(int courseId);
 
-	int getSelectIdByStudentIdAndCourseId(int studentId, int courseId);
+	Integer getSelectIdByStudentIdAndCourseId(int studentId, int courseId);
 
 	int insert(StudentCommentCourse studentCommentCourse);
+
+	Integer update(StudentCommentCourse studentCommentCourse);
 
 	int getScoreByGrade(String studentNumber, int courseId);
 

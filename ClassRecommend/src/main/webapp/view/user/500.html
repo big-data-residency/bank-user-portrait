@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | 500 Error</title>
+  <title> 500 Error</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -28,8 +28,8 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-blue-light fixed layout-top-nav">
-<div class="wrapper" id="Pwrong">
+<body class="hold-transition skin-blue-light fixed layout-top-nav" id="Pwrong">
+<div class="wrapper">
 
  				<!-- Main Header -->
 				<header class="main-header">
@@ -42,9 +42,11 @@
 						<span class="logo-lg"><b>EAMIS-</b>Helper</span>
 					</a>
 
+
 					<!-- Header Navbar -->
 					<nav class="navbar navbar-fixed-top" role="navigation">
 						<!-- Sidebar toggle button-->
+
 						<!-- Navbar Right Menu -->
 						<div class="navbar-custom-menu">
 							<ul class="nav navbar-nav">
@@ -65,7 +67,7 @@
 											<ul class="menu">
 												<li>
 													<!-- Task item -->
-													<a : href=" 'http://localhost:8080/view/user/course-attended.html?id'+'studentId' ">
+													<a :href=" 'http://localhost:8080/view/user/course-attended.html?id='+'studentId'">
 														<!-- Task title and progress text -->
 														<h3>
                                                      已评课数
@@ -84,7 +86,7 @@
 											</ul>
 										</li>
 										<li class="footer">
-											<a : href="'http://localhost:8080/view/user/classdetail-uploads.html?id'+'studentId'">进入评课</a:>
+											<a : href=" 'http://localhost:8080/view/user/classdetail-uploads.html?id='+'studentId' ">进入评课</a>
 										</li>
 									</ul>
 								</li>
@@ -112,7 +114,7 @@
 										<!-- Menu Footer-->
 										<li class="user-footer">
 											<div class="pull-left">
-												<a : href="'http://localhost:8080/view/user/studentinfo_new.html?id='+'studentId'" class="btn btn-default btn-flat">Profile</a:>
+												<a :href="'http://localhost:8080/view/user/studentinfo_new.html?id='+'studentId' " class="btn btn-default btn-flat">Profile</a>
 											</div>
 											<div class="pull-right">
 												<a href="#" class="btn btn-default btn-flat">Sign out</a>
