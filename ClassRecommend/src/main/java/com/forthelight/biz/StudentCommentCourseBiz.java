@@ -22,7 +22,7 @@ public interface StudentCommentCourseBiz {
 
 	Integer update(StudentCommentCourse studentCommentCourse);
 
-	int getScoreByGrade(String studentNumber, int courseId);
+	Integer getScoreByGrade(String studentNumber, int courseId);
 
 	int numberOfGetScoreByGrade(String studentNumber, int courseId);
 

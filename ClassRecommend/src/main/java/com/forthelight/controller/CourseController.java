@@ -633,6 +633,7 @@ public class CourseController {
             if (course.getExaminingForm() == 0) {
                 courseList.addProperty("examForm", "闭卷");
             }
+            System.out.print(course.getId());
             if (course.getExaminingForm() == 1) {
                 courseList.addProperty("examForm", "开卷");
             }
