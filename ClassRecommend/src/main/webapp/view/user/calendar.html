@@ -1,1082 +1,1075 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | 自定义课程推荐</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="../../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- fullCalendar -->
-  <link rel="stylesheet" href="../../style/bower_components/fullcalendar/dist/fullcalendar.min.css">
-  <link rel="stylesheet" href="../../style/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/calendar.css"/>
-  <!-- Google Font -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 2 | 自定义课程推荐</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="../../style/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="../../style/bower_components/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" href="../../style/bower_components/fullcalendar/dist/fullcalendar.print.min.css"
+          media="print">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../style/dist/css/skins/_all-skins.min.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/calendar.css"/>
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue-light fixed sidebar-mini" id="DIY">
 <div class="wrapper">
-				<!-- Main Header -->
-  <header class="main-header">
+    <!-- Main Header -->
+    <header class="main-header">
 
-    <!-- Logo -->
-    <a href="#" class="logo navbar-fixed-top">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>H</b>elper</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>EAMIS-</b>Helper</span>
-    </a>
+        <!-- Logo -->
+        <a href="#" class="logo navbar-fixed-top">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>H</b>elper</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>EAMIS-</b>Helper</span>
+        </a>
 
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-fixed-top" role="navigation">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-
-          <!-- Notifications Menu -->
-
-          <!-- Tasks Menu -->
-          <li class="dropdown tasks-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">21</span>
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-fixed-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
             </a>
-            <ul class="dropdown-menu">
-              <li class="header">有21门课未评价</li>
-              <li>
-                <!-- Inner menu: contains the tasks -->
-                <ul class="menu">
-                  <li>
-                    <!-- Task item -->
-                    <a href="http://localhost:8080/view/user/course-attended.html?id={{studentId}}">
-                      <!-- Task title and progress text -->
-                      <h3>
-                        已评课数
-                        <small class="pull-right">9/30</small>
-                      </h3>
-                      <!-- The progress bar -->
-                      <div class="progress xs">
-                        <!-- Change the css width attribute to simulate progress -->
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <!--<span class="sr-only">20% Complete</span>-->
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+
+                    <!-- Notifications Menu -->
+
+                    <!-- Tasks Menu -->
+                    <li class="dropdown tasks-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-flag-o"></i>
+                            <span class="label label-danger">21</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="header">有21门课未评价</li>
+                            <li>
+                                <!-- Inner menu: contains the tasks -->
+                                <ul class="menu">
+                                    <li>
+                                        <!-- Task item -->
+                                        <a href="http://localhost:8080/view/user/course-attended.html?id={{studentId}}">
+                                            <!-- Task title and progress text -->
+                                            <h3>
+                                                已评课数
+                                                <small class="pull-right">9/30</small>
+                                            </h3>
+                                            <!-- The progress bar -->
+                                            <div class="progress xs">
+                                                <!-- Change the css width attribute to simulate progress -->
+                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                     role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                     aria-valuemax="100">
+                                                    <!--<span class="sr-only">20% Complete</span>-->
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- end task item -->
+                                </ul>
+                            </li>
+                            <li class="footer">
+                                <a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentId}}">进入评课</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">Alexander Pierce</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+                                <p>
+                                    胖成球 - 信息安全
+                                    <small>学号：1611522</small>
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="studentinfo.html?id={{studentId}}"
+                                       class="btn btn-default btn-flat">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
-              </li>
-              <li class="footer">
-                <a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentId}}">进入评课</a>
-              </li>
-            </ul>
-          </li>
-          <!-- User Account Menu -->
-          <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- The user image in the navbar-->
-              <img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Alexander Pierce</span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- The user image in the menu -->
-              <li class="user-header">
-                <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                  胖成球 - 信息安全
-                  <small>学号：1611522</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="studentinfo.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-
-        </ul>
-      </div>
-    </nav>
-  </header>
-				<!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar " style="position: fixed ">
-
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel" style="height: 65px;">
-        <div class="pull-left image">
-          <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-
-      <!-- search form (Optional) -->
-      <!--<form action="#" method="get" class="sidebar-form">
-<div class="input-group">
-<input type="text" name="q" class="form-control" placeholder="Search...">
-<span class="input-group-btn">
-<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-</button>
-</span>
-</div>
-</form>-->
-      <!-- /.search form -->
-
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">EAMIS_HELPER</li>
-        <!-- Optionally you can add icons to the links -->
-        <li >
-          <a href="new_start.html?id={{studentId}}""><i class="fa fa-user"></i> <span>用户首页</span></a>
-        </li>
-        <li>
-          <a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查询所有课程</span></a>
-        </li>
-        <li>
-          <a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
-        </li>
-        <li class="active">
-          <a href="#"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
-        </li>
-        <li>
-          <a href="studentinfo.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
-        </li>
-        <!--<li class="treeview">
-<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-<span class="pull-right-container">
-<i class="fa fa-angle-left pull-right"></i>
-</span>
-</a>
-<ul class="treeview-menu">
-<li><a href="#">Link in level 2</a></li>
-<li><a href="#">Link in level 2</a></li>
-</ul>
-</li>-->
-      </ul>
-      <!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-        <section class="content-header">
-      <h1>
-        自定义课程推荐
-        <small>Schedule table</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> 推荐课程</a></li>
-        <li class="active">自定义课程推荐</li>
-      </ol>
-    </section>
-   <!-- Main content -->
-    <section class="content">
-      <div class="row">
-        <div class="col-md-3">
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h4 class="box-title">搜索课程</h4>
             </div>
-            <div style="margin: 10px;">
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar " style="position: fixed ">
 
-              <form action="" method="post" name="search">
-                <div class="input-group input-group" style="margin-top: 20px;">
-                  <!-- /btn-group -->
-                  <input type="text" class="form-control" name='keywords'>
-                  <span class="input-group-btn">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel" style="height: 65px;">
+                <div class="pull-left image">
+                    <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>Alexander Pierce</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
+
+            <!-- search form (Optional) -->
+            <!--<form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+      <input type="text" name="q" class="form-control" placeholder="Search...">
+      <span class="input-group-btn">
+      <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+      </button>
+      </span>
+      </div>
+      </form>-->
+            <!-- /.search form -->
+
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">EAMIS_HELPER</li>
+                <!-- Optionally you can add icons to the links -->
+                <li>
+                    <a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
+                </li>
+                <li>
+                    <a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查询所有课程</span></a>
+                </li>
+                <li>
+                    <a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i>
+                        <span>查看已修课程</span></a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
+                </li>
+                <li>
+                    <a href="studentinfo.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+                </li>
+                <!--<li class="treeview">
+        <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+        <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+        </span>
+        </a>
+        <ul class="treeview-menu">
+        <li><a href="#">Link in level 2</a></li>
+        <li><a href="#">Link in level 2</a></li>
+        </ul>
+        </li>-->
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                自定义课程推荐
+                <small>Schedule table</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 推荐课程</a></li>
+                <li class="active">自定义课程推荐</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h4 class="box-title">搜索课程</h4>
+                        </div>
+                        <div style="margin: 10px;">
+
+                            <form action="" method="post" name="search">
+                                <div class="input-group input-group" style="margin-top: 20px;">
+                                    <!-- /btn-group -->
+                                    <input type="text" class="form-control" name='keywords'>
+                                    <span class="input-group-btn">
                       <button type="submit" class="btn btn-info btn-flat">Go!</button>
                     </span>
+                                </div>
+                            </form>
+                            <table class="table table-bordered" style="margin-top: 10px;">
+                                <tbody style="margin-bottom: 20px;" id='table'>
+                                <tr>
+                                    <th>课程编号</th>
+                                    <th>课程名称</th>
+                                    <th>教师</th>
+                                    <th>点赞数</th>
+                                </tr>
+                                <tr onclick="add()" id='result'>
+                                    <td>comp1111</td>
+                                    <td>信安数基</td>
+                                    <td>贾春福</td>
+                                    <td><span class="badge bg-red">1028</span></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <br/>
+                        </div>
+
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /. box -->
+
+
                 </div>
-              </form>
-              <table class="table table-bordered" style="margin-top: 10px;">
-                <tbody style="margin-bottom: 20px;" id='table'>
-                <tr>
-                  <th>课程编号</th>
-                  <th>课程名称</th>
-                  <th >教师</th>
-                  <th >点赞数</th>
-                </tr>
-                <tr onclick="add()" id='result'>
-                  <td>comp1111</td>
-                  <td>信安数基</td>
-                  <td>贾春福</td>
-                  <td><span class="badge bg-red">1028</span></td>
-                </tr>
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="box box-primary">
+                        <div class="box-body no-padding">
+                            <!-- THE CALENDAR -->
+                            <!--<div id="calendar"></div>-->
+                            <div class="section no-pad-bot" id="index-banner">
+                                <div class="container" style="width: 100%;">
+                                    <!--<br><br>
+                        <div class="row center" id="react-schedule"></div>
+                        <br><br>-->
+                                    <div data-reactroot="" class="schedule">
+                                        <div class="schedule-header">
+                                            <div class="text">2018Schedule</div>
+                                        </div>
+                                        <div class="schedule-main">
+                                            <div class="schedule-pane pane-time">
+                                                <div class="pane-header">
+                                                    <div class="text">Times</div>
+                                                </div>
+                                                <div class="times">
+                                                    <div class="time-block">
+                                                        <div class="text">第一节课</div>
+                                                        <!-- react-text: 11 -->
 
-                </tbody>
-              </table>
-				<br />
-					</div>
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第二节课</div>
 
-            <!-- /.box-body -->
-          </div>
-          <!-- /. box -->
-	
+                                                        <!-- react-text: 13 -->
 
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="box box-primary">
-            <div class="box-body no-padding">
-              <!-- THE CALENDAR -->
-              <!--<div id="calendar"></div>-->
-              <div class="section no-pad-bot" id="index-banner">
-			<div class="container" style="width: 100%;">
-				<!--<br><br>
-    <div class="row center" id="react-schedule"></div>
-    <br><br>-->
-				<div data-reactroot="" class="schedule">
-					<div class="schedule-header">
-						<div class="text">2018Schedule</div>
-					</div>
-					<div class="schedule-main">
-						<div class="schedule-pane pane-time">
-							<div class="pane-header">
-								<div class="text">Times</div>
-							</div>
-							<div class="times">
-								<div class="time-block">
-									<div class="text">第一节课</div>
-									<!-- react-text: 11 -->
+                                                        <!-- /react-text -->
 
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第二节课</div>
+                                                        <!-- react-text: 14 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第三节课</div>
 
-									<!-- react-text: 13 -->
+                                                        <!-- react-text: 17 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第四节课</div>
 
-									<!-- /react-text -->
+                                                        <!-- react-text: 19 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 20 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第五节课</div>
 
-									<!-- react-text: 14 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第三节课</div>
+                                                        <!-- react-text: 23 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第六节课</div>
 
-									<!-- react-text: 17 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第四节课</div>
+                                                        <!-- react-text: 25 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 26 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第七节课</div>
 
-									<!-- react-text: 19 -->
-									<!-- /react-text -->
-									<!-- react-text: 20 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第五节课</div>
+                                                        <!-- react-text: 29 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第八节课</div>
 
-									<!-- react-text: 23 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第六节课</div>
+                                                        <!-- react-text: 31 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 32 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第九节课</div>
 
-									<!-- react-text: 25 -->
-									<!-- /react-text -->
-									<!-- react-text: 26 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第七节课</div>
+                                                        <!-- react-text: 35 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第十节课</div>
+                                                        <!-- react-text: 37 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 38 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第十一节课</div>
 
-									<!-- react-text: 29 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第八节课</div>
+                                                        <!-- react-text: 41 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第十二节课</div>
 
-									<!-- react-text: 31 -->
-									<!-- /react-text -->
-									<!-- react-text: 32 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第九节课</div>
+                                                        <!-- react-text: 43 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 44 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第十三节课</div>
 
-									<!-- react-text: 35 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第十节课</div>
-									<!-- react-text: 37 -->
-									<!-- /react-text -->
-									<!-- react-text: 38 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第十一节课</div>
+                                                        <!-- react-text: 47 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block">
+                                                        <div class="text">第十四节课</div>
 
-									<!-- react-text: 41 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第十二节课</div>
+                                                        <!-- react-text: 49 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 50 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <!--<div class="time-block">-->
+                                                    <!--<div class="text">第十二节课</div>-->
 
-									<!-- react-text: 43 -->
-									<!-- /react-text -->
-									<!-- react-text: 44 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第十三节课</div>
+                                                    <!-- react-text: 53 -->
+                                                    <!-- /react-text -->
+                                                    <!--</div>-->
+                                                </div>
+                                            </div>
+                                            <div class="schedule-pane pane-day">
+                                                <div class="pane-header">
+                                                    <div class="text">周一</div>
+                                                </div>
+                                                <div class="times">
+                                                    <div class="time-block" id="course11">
+                                                        <div class="coursebar" onclick="delete33()" id="add11">
+                                                            信安数基 <br/>贾春福
+                                                        </div>
 
-									<!-- react-text: 47 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block">
-									<div class="text">第十四节课</div>
+                                                    </div>
+                                                    <div class="time-block" id="course12">
 
-									<!-- react-text: 49 -->
-									<!-- /react-text -->
-									<!-- react-text: 50 -->
-									<!-- /react-text -->
-								</div>
-								<!--<div class="time-block">-->
-									<!--<div class="text">第十二节课</div>-->
+                                                        <!-- react-text: 62 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 63 -->
+                                                        <!-- /react-text -->
 
-									<!-- react-text: 53 -->
-									<!-- /react-text -->
-								<!--</div>-->
-							</div>
-						</div>
-						<div class="schedule-pane pane-day">
-							<div class="pane-header">
-								<div class="text">周一</div>
-							</div>
-							<div class="times">
-								<div class="time-block"  id="course11" >
-										<div class="coursebar" onclick="delete33()" id="add11">
-											信安数基 <br />贾春福
-										</div>
-								
-								</div>
-								<div class="time-block" id="course12">
+                                                    </div>
+                                                    <div class="time-block" id="course13">
+                                                        <!-- react-text: 65 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 66 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course14">
 
-									<!-- react-text: 62 -->
-									<!-- /react-text -->
-									<!-- react-text: 63 -->
-									<!-- /react-text -->
+                                                        <!-- react-text: 68 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 69 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course15">
+                                                        <!-- react-text: 71 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 72 -->
+                                                        <!-- /react-text -->
 
-								</div>
-								<div class="time-block" id="course13">
-									<!-- react-text: 65 -->
-									<!-- /react-text -->
-									<!-- react-text: 66 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course14">
+                                                    </div>
+                                                    <div class="time-block" id="course16">
+                                                        <!-- react-text: 74 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 75 -->
+                                                        <!-- /react-text -->
 
-									<!-- react-text: 68 -->
-									<!-- /react-text -->
-									<!-- react-text: 69 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course15">
-									<!-- react-text: 71 -->
-									<!-- /react-text -->
-									<!-- react-text: 72 -->
-									<!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course17">
+                                                        <!-- react-text: 77 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 78 -->
+                                                        <!-- /react-text -->
 
-								</div>
-								<div class="time-block" id="course16">
-									<!-- react-text: 74 -->
-									<!-- /react-text -->
-									<!-- react-text: 75 -->
-									<!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course18">
+                                                        <!-- react-text: 80 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 81 -->
+                                                        <!-- /react-text -->
 
-								</div>
-								<div class="time-block" id="course17">
-									<!-- react-text: 77 -->
-									<!-- /react-text -->
-									<!-- react-text: 78 -->
-									<!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course19">
+                                                        <!-- react-text: 83 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 84 -->
+                                                        <!-- /react-text -->
 
-								</div>
-								<div class="time-block" id="course18">
-									<!-- react-text: 80 -->
-									<!-- /react-text -->
-									<!-- react-text: 81 -->
-									<!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course110">
+                                                        <!-- react-text: 86 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 87 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course111">
+                                                        <!-- react-text: 89 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 90 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course112">
+                                                        <!-- react-text: 92 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 93 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course113">
+                                                        <!-- react-text: 95 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 96 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course114">
+                                                        <!-- react-text: 98 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 99 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-pane pane-day">
+                                                <div class="pane-header">
+                                                    <div class="text">周二</div>
+                                                </div>
+                                                <div class="times">
+                                                    <div class="time-block" id="course21">
+                                                        <!-- react-text: 111 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 112 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course22">
+                                                        <!-- react-text: 114 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 115 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course23">
+                                                        <!-- react-text: 117 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 118 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course24">
+                                                        <!-- react-text: 120 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 121 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course25">
+                                                        <!-- react-text: 123 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 124 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course26">
+                                                        <!-- react-text: 126 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 127 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course27">
+                                                        <!-- react-text: 129 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 130 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course28">
+                                                        <!-- react-text: 132 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 133 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course29">
+                                                        <!-- react-text: 135 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 136 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course210">
+                                                        <!-- react-text: 138 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 139 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course211">
+                                                        <!-- react-text: 141 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 142 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course212">
+                                                        <!-- react-text: 144 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 145 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course213">
+                                                        <!-- react-text: 147 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 148 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course114">
+                                                        <!-- react-text: 150 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 151 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-pane pane-day">
+                                                <div class="pane-header">
+                                                    <div class="text">周三</div>
+                                                </div>
+                                                <div class="times">
 
-								</div>
-								<div class="time-block" id="course19">
-									<!-- react-text: 83 -->
-									<!-- /react-text -->
-									<!-- react-text: 84 -->
-									<!-- /react-text -->
+                                                    <div class="time-block" id="course31">
+                                                        <!-- react-text: 160 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 161 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course32">
+                                                        <!-- react-text: 163 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 164 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course33">
+                                                        <!-- react-text: 166 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 167 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course34">
+                                                        <!-- react-text: 169 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 170 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course35">
+                                                        <!-- react-text: 172 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 173 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course36">
+                                                        <!-- react-text: 175 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 176 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course37">
+                                                        <!-- react-text: 178 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 179 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course38">
+                                                        <!-- react-text: 181 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 182 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course39">
+                                                        <!-- react-text: 184 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 185 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course310">
+                                                        <!-- react-text: 187 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 188 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course311">
+                                                        <!-- react-text: 190 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 191 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course312">
+                                                        <!-- react-text: 193 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 194 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course313">
+                                                        <!-- react-text: 196 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 197 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course314">
+                                                        <!-- react-text: 199 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 200 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-pane pane-day">
+                                                <div class="pane-header">
+                                                    <div class="text">周四</div>
+                                                </div>
+                                                <div class="times">
 
-								</div>
-								<div class="time-block" id="course110">
-									<!-- react-text: 86 -->
-									<!-- /react-text -->
-									<!-- react-text: 87 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course111">
-									<!-- react-text: 89 -->
-									<!-- /react-text -->
-									<!-- react-text: 90 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course112">
-									<!-- react-text: 92 -->
-									<!-- /react-text -->
-									<!-- react-text: 93 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course113">
-									<!-- react-text: 95 -->
-									<!-- /react-text -->
-									<!-- react-text: 96 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course114">
-									<!-- react-text: 98 -->
-									<!-- /react-text -->
-									<!-- react-text: 99 -->
-									<!-- /react-text -->
-								</div>
-							</div>
-						</div>
-						<div class="schedule-pane pane-day" >
-							<div class="pane-header">
-								<div class="text">周二</div>
-							</div>
-							<div class="times">
-								<div class="time-block" id="course21">
-									<!-- react-text: 111 -->
-									<!-- /react-text -->
-									<!-- react-text: 112 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course22">
-									<!-- react-text: 114 -->
-									<!-- /react-text -->
-									<!-- react-text: 115 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course23">
-									<!-- react-text: 117 -->
-									<!-- /react-text -->
-									<!-- react-text: 118 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course24">
-									<!-- react-text: 120 -->
-									<!-- /react-text -->
-									<!-- react-text: 121 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course25">
-									<!-- react-text: 123 -->
-									<!-- /react-text -->
-									<!-- react-text: 124 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course26">
-									<!-- react-text: 126 -->
-									<!-- /react-text -->
-									<!-- react-text: 127 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course27">
-									<!-- react-text: 129 -->
-									<!-- /react-text -->
-									<!-- react-text: 130 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course28">
-									<!-- react-text: 132 -->
-									<!-- /react-text -->
-									<!-- react-text: 133 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course29">
-									<!-- react-text: 135 -->
-									<!-- /react-text -->
-									<!-- react-text: 136 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course210">
-									<!-- react-text: 138 -->
-									<!-- /react-text -->
-									<!-- react-text: 139 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course211">
-									<!-- react-text: 141 -->
-									<!-- /react-text -->
-									<!-- react-text: 142 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course212">
-									<!-- react-text: 144 -->
-									<!-- /react-text -->
-									<!-- react-text: 145 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course213">
-									<!-- react-text: 147 -->
-									<!-- /react-text -->
-									<!-- react-text: 148 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course114">
-									<!-- react-text: 150 -->
-									<!-- /react-text -->
-									<!-- react-text: 151 -->
-									<!-- /react-text -->
-								</div>
-							</div>
-						</div>
-						<div class="schedule-pane pane-day">
-							<div class="pane-header">
-								<div class="text">周三</div>
-							</div>
-							<div class="times">
+                                                    <div class="time-block" id="course41">
+                                                        <!-- react-text: 209 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 210 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course42">
+                                                        <!-- react-text: 212 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 213 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course43">
+                                                        <!-- react-text: 215 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 216 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course44">
+                                                        <!-- react-text: 218 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 219 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course45">
+                                                        <!-- react-text: 221 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 222 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course46">
+                                                        <!-- react-text: 224 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 225 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course47">
+                                                        <!-- react-text: 227 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 228 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course48">
+                                                        <!-- react-text: 230 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 231 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course49">
+                                                        <!-- react-text: 233 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 234 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course410">
+                                                        <!-- react-text: 236 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 237 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course411">
+                                                        <!-- react-text: 239 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 240 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course412">
+                                                        <!-- react-text: 242 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 243 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course413">
+                                                        <!-- react-text: 245 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 246 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course414">
+                                                        <!-- react-text: 248 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 249 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-pane pane-day">
+                                                <div class="pane-header">
+                                                    <div class="text">周五</div>
+                                                </div>
+                                                <div class="times">
 
-								<div class="time-block" id="course31">
-									<!-- react-text: 160 -->
-									<!-- /react-text -->
-									<!-- react-text: 161 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course32">
-									<!-- react-text: 163 -->
-									<!-- /react-text -->
-									<!-- react-text: 164 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course33">
-									<!-- react-text: 166 -->
-									<!-- /react-text -->
-									<!-- react-text: 167 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course34">
-									<!-- react-text: 169 -->
-									<!-- /react-text -->
-									<!-- react-text: 170 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course35">
-									<!-- react-text: 172 -->
-									<!-- /react-text -->
-									<!-- react-text: 173 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course36">
-									<!-- react-text: 175 -->
-									<!-- /react-text -->
-									<!-- react-text: 176 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course37">
-									<!-- react-text: 178 -->
-									<!-- /react-text -->
-									<!-- react-text: 179 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course38">
-									<!-- react-text: 181 -->
-									<!-- /react-text -->
-									<!-- react-text: 182 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course39">
-									<!-- react-text: 184 -->
-									<!-- /react-text -->
-									<!-- react-text: 185 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course310" >
-									<!-- react-text: 187 -->
-									<!-- /react-text -->
-									<!-- react-text: 188 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course311">
-									<!-- react-text: 190 -->
-									<!-- /react-text -->
-									<!-- react-text: 191 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course312">
-									<!-- react-text: 193 -->
-									<!-- /react-text -->
-									<!-- react-text: 194 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course313">
-									<!-- react-text: 196 -->
-									<!-- /react-text -->
-									<!-- react-text: 197 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course314">
-									<!-- react-text: 199 -->
-									<!-- /react-text -->
-									<!-- react-text: 200 -->
-									<!-- /react-text -->
-								</div>
-							</div>
-						</div>
-						<div class="schedule-pane pane-day">
-							<div class="pane-header">
-								<div class="text">周四</div>
-							</div>
-							<div class="times">
+                                                    <div class="time-block" id="course51">
+                                                        <!-- react-text: 258 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 259 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course52">
+                                                        <!-- react-text: 261 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 262 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course53">
+                                                        <!-- react-text: 264 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 265 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course54">
+                                                        <!-- react-text: 267 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 268 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course55">
+                                                        <!-- react-text: 270 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 271 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course56">
+                                                        <!-- react-text: 273 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 274 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course57">
+                                                        <!-- react-text: 276 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 277 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course58">
+                                                        <!-- react-text: 279 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 280 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course59">
+                                                        <!-- react-text: 282 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 283 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course510">
+                                                        <!-- react-text: 285 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 286 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course511">
+                                                        <!-- react-text: 288 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 289 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course512">
+                                                        <!-- react-text: 291 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 292 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course513">
+                                                        <!-- react-text: 294 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 295 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course514">
+                                                        <!-- react-text: 297 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 298 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-pane pane-weekend">
+                                                <div class="pane-header">
+                                                    <div class="text">周六</div>
+                                                </div>
+                                                <div class="times">
 
-								<div class="time-block" id="course41">
-									<!-- react-text: 209 -->
-									<!-- /react-text -->
-									<!-- react-text: 210 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course42" >
-									<!-- react-text: 212 -->
-									<!-- /react-text -->
-									<!-- react-text: 213 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course43">
-									<!-- react-text: 215 -->
-									<!-- /react-text -->
-									<!-- react-text: 216 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block"id="course44">
-									<!-- react-text: 218 -->
-									<!-- /react-text -->
-									<!-- react-text: 219 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course45">
-									<!-- react-text: 221 -->
-									<!-- /react-text -->
-									<!-- react-text: 222 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block"id="course46">
-									<!-- react-text: 224 -->
-									<!-- /react-text -->
-									<!-- react-text: 225 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course47">
-									<!-- react-text: 227 -->
-									<!-- /react-text -->
-									<!-- react-text: 228 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course48">
-									<!-- react-text: 230 -->
-									<!-- /react-text -->
-									<!-- react-text: 231 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course49">
-									<!-- react-text: 233 -->
-									<!-- /react-text -->
-									<!-- react-text: 234 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course410">
-									<!-- react-text: 236 -->
-									<!-- /react-text -->
-									<!-- react-text: 237 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course411">
-									<!-- react-text: 239 -->
-									<!-- /react-text -->
-									<!-- react-text: 240 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course412">
-									<!-- react-text: 242 -->
-									<!-- /react-text -->
-									<!-- react-text: 243 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course413">
-									<!-- react-text: 245 -->
-									<!-- /react-text -->
-									<!-- react-text: 246 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course414">
-									<!-- react-text: 248 -->
-									<!-- /react-text -->
-									<!-- react-text: 249 -->
-									<!-- /react-text -->
-								</div>
-							</div>
-						</div>
-						<div class="schedule-pane pane-day">
-							<div class="pane-header">
-								<div class="text">周五</div>
-							</div>
-							<div class="times">
+                                                    <div class="time-block" id="course61">
+                                                        <!-- react-text: 307 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 308 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course62">
+                                                        <!-- react-text: 310 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 311 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course63">
+                                                        <!-- react-text: 313 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 314 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course64">
+                                                        <!-- react-text: 316 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 317 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course65">
+                                                        <!-- react-text: 319 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 320 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course66">
+                                                        <!-- react-text: 322 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 323 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course67">
+                                                        <!-- react-text: 325 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 326 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course68">
+                                                        <!-- react-text: 328 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 329 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course69">
+                                                        <!-- react-text: 331 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 332 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course610">
+                                                        <!-- react-text: 334 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 335 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course611">
+                                                        <!-- react-text: 337 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 338 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course612">
+                                                        <!-- react-text: 340 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 341 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course613">
+                                                        <!-- react-text: 343 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 344 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course614">
+                                                        <!-- react-text: 346 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 347 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="schedule-pane pane-weekend">
+                                                <div class="pane-header">
+                                                    <div class="text">周日</div>
+                                                </div>
+                                                <div class="times">
 
-								<div class="time-block" id="course51">
-									<!-- react-text: 258 -->
-									<!-- /react-text -->
-									<!-- react-text: 259 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course52">
-									<!-- react-text: 261 -->
-									<!-- /react-text -->
-									<!-- react-text: 262 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course53">
-									<!-- react-text: 264 -->
-									<!-- /react-text -->
-									<!-- react-text: 265 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course54">
-									<!-- react-text: 267 -->
-									<!-- /react-text -->
-									<!-- react-text: 268 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course55">
-									<!-- react-text: 270 -->
-									<!-- /react-text -->
-									<!-- react-text: 271 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course56">
-									<!-- react-text: 273 -->
-									<!-- /react-text -->
-									<!-- react-text: 274 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course57">
-									<!-- react-text: 276 -->
-									<!-- /react-text -->
-									<!-- react-text: 277 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course58">
-									<!-- react-text: 279 -->
-									<!-- /react-text -->
-									<!-- react-text: 280 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course59">
-									<!-- react-text: 282 -->
-									<!-- /react-text -->
-									<!-- react-text: 283 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course510">
-									<!-- react-text: 285 -->
-									<!-- /react-text -->
-									<!-- react-text: 286 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course511">
-									<!-- react-text: 288 -->
-									<!-- /react-text -->
-									<!-- react-text: 289 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course512">
-									<!-- react-text: 291 -->
-									<!-- /react-text -->
-									<!-- react-text: 292 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course513">
-									<!-- react-text: 294 -->
-									<!-- /react-text -->
-									<!-- react-text: 295 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course514">
-									<!-- react-text: 297 -->
-									<!-- /react-text -->
-									<!-- react-text: 298 -->
-									<!-- /react-text -->
-								</div>
-							</div>
-						</div>
-						<div class="schedule-pane pane-weekend">
-							<div class="pane-header">
-								<div class="text">周六</div>
-							</div>
-							<div class="times">
+                                                    <div class="time-block" id="course71">
+                                                        <!-- react-text: 356 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 357 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course72">
+                                                        <!-- react-text: 359 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 360 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course73">
+                                                        <!-- react-text: 362 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 363 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course74">
+                                                        <!-- react-text: 365 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 366 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course75">
+                                                        <!-- react-text: 368 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 369 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course76">
+                                                        <!-- react-text: 371 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 372 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course77">
+                                                        <!-- react-text: 374 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 375 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course78">
+                                                        <!-- react-text: 377 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 378 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course79">
+                                                        <!-- react-text: 380 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 381 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course710">
+                                                        <!-- react-text: 383 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 384 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course711">
+                                                        <!-- react-text: 386 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 387 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course712">
+                                                        <!-- react-text: 389 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 390 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course713">
+                                                        <!-- react-text: 392 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 393 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="time-block" id="course714">
+                                                        <!-- react-text: 395 -->
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 396 -->
+                                                        <!-- /react-text -->
 
-								<div class="time-block" id="course61">
-									<!-- react-text: 307 -->
-									<!-- /react-text -->
-									<!-- react-text: 308 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course62">
-									<!-- react-text: 310 -->
-									<!-- /react-text -->
-									<!-- react-text: 311 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course63">
-									<!-- react-text: 313 -->
-									<!-- /react-text -->
-									<!-- react-text: 314 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course64">
-									<!-- react-text: 316 -->
-									<!-- /react-text -->
-									<!-- react-text: 317 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course65">
-									<!-- react-text: 319 -->
-									<!-- /react-text -->
-									<!-- react-text: 320 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course66">
-									<!-- react-text: 322 -->
-									<!-- /react-text -->
-									<!-- react-text: 323 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course67">
-									<!-- react-text: 325 -->
-									<!-- /react-text -->
-									<!-- react-text: 326 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course68">
-									<!-- react-text: 328 -->
-									<!-- /react-text -->
-									<!-- react-text: 329 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course69">
-									<!-- react-text: 331 -->
-									<!-- /react-text -->
-									<!-- react-text: 332 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course610">
-									<!-- react-text: 334 -->
-									<!-- /react-text -->
-									<!-- react-text: 335 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course611">
-									<!-- react-text: 337 -->
-									<!-- /react-text -->
-									<!-- react-text: 338 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course612">
-									<!-- react-text: 340 -->
-									<!-- /react-text -->
-									<!-- react-text: 341 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course613">
-									<!-- react-text: 343 -->
-									<!-- /react-text -->
-									<!-- react-text: 344 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course614">
-									<!-- react-text: 346 -->
-									<!-- /react-text -->
-									<!-- react-text: 347 -->
-									<!-- /react-text -->
-								</div>
-							</div>
-						</div>
-						<div class="schedule-pane pane-weekend">
-							<div class="pane-header">
-								<div class="text">周日</div>
-							</div>
-							<div class="times">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-								<div class="time-block" id="course71">
-									<!-- react-text: 356 -->
-									<!-- /react-text -->
-									<!-- react-text: 357 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course72">
-									<!-- react-text: 359 -->
-									<!-- /react-text -->
-									<!-- react-text: 360 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course73">
-									<!-- react-text: 362 -->
-									<!-- /react-text -->
-									<!-- react-text: 363 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course74">
-									<!-- react-text: 365 -->
-									<!-- /react-text -->
-									<!-- react-text: 366 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course75">
-									<!-- react-text: 368 -->
-									<!-- /react-text -->
-									<!-- react-text: 369 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course76">
-									<!-- react-text: 371 -->
-									<!-- /react-text -->
-									<!-- react-text: 372 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course77">
-									<!-- react-text: 374 -->
-									<!-- /react-text -->
-									<!-- react-text: 375 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course78">
-									<!-- react-text: 377 -->
-									<!-- /react-text -->
-									<!-- react-text: 378 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course79">
-									<!-- react-text: 380 -->
-									<!-- /react-text -->
-									<!-- react-text: 381 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course710">
-									<!-- react-text: 383 -->
-									<!-- /react-text -->
-									<!-- react-text: 384 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course711">
-									<!-- react-text: 386 -->
-									<!-- /react-text -->
-									<!-- react-text: 387 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course712">
-									<!-- react-text: 389 -->
-									<!-- /react-text -->
-									<!-- react-text: 390 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course713">
-									<!-- react-text: 392 -->
-									<!-- /react-text -->
-									<!-- react-text: 393 -->
-									<!-- /react-text -->
-								</div>
-								<div class="time-block" id="course714">
-									<!-- react-text: 395 -->
-									<!-- /react-text -->
-									<!-- react-text: 396 -->
-									<!-- /react-text -->
+                                </div>
+                            </div>
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-			</div>
-		</div>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /. box -->
+                </div>
+                <!-- /.col -->
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /. box -->
-        </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
     </div>
-    <strong>Copyright &copy;2018 EAMIS-HELPER</strong> All rights
-    reserved.
-  </footer>
+    <!-- /.content-wrapper -->
 
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>  
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.4.0
+        </div>
+        <strong>Copyright &copy;2018 EAMIS-HELPER</strong> All rights
+        reserved.
+    </footer>
+
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -1099,119 +1092,131 @@
 <script src="../../style/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 <!-- Page specific script -->
 <script>
-//  function add(tmp){
-//  	   var col,row0,row1,j;
-//  	   j=0;
-//  	for( var day of tmp.lessonDay){
-//  		for(var i=0;i<7;i++){
-//  		if （day == i+1){
-//  			   col[j]=i+1;
-//  			   j++;
-//  			}
-//  		}
-//  	}
-//  	
-//  	j=0;
-//  	for(var start of tmp.startLesson){
-//  		for(var i =0;i<14;i++){
-//  			 if(start==i+1){
-//  			 	row0[j]=i+1;
-//  			 	j++;
-//  			 }
-//  		}
-//  	}
-//  	j=0;
-//  	for(var end of tmp.endLesson){
-//  			for(var i =0;i<14;i++){
-//  			 if(end==i+1){
-//  			 	row1[j]=i+1;
-//  			 	j++;
-//  			 }
-//  		}
-//  	}
-//  	var tag;
-//  	for(var i=0;i<col.length;i++){
-//  		tag='course'+col[i]+row0[i];  
-//  		$("#"+tag).append(`<div class="coursebar" id=add`  +col[i]+rol0[i]+` onclick="delete()">
-//											tmp.courseName <br />tmp.teacherName
-//										</div>`)
-//  	}
-//
-//  	
-//  for(var i=0;i<col.length;i++){
-//  		tag='course'+col[i]+row1[i];
-//  		$("#"+tag).append(`<div class="coursebar" id=add`  +col[i]+rol1[i]+` onclick="delete()">
-//											tmp.courseName <br />tmp.teacherName
-//										</div>`)
-//  }
-//  }
-//
-//
-    
-//  $("#search").submit(function(e)){
-//  	e.preventDefault();
-//  	$.ajax({
-//  		url:'http://localhost:8080/ClassRecommend/calendar',
-//  		data:$('#search').serialize(),
-//  		type:post,
-//  		beforeSend:function(){
-//					$('#'+tag).html('');
-//				},
-//				
-//				success: function(res){
-//					if(res.success){
-//						for(var course of res.data.courses){
-//							$('#result').append(`<tr onclick="add()" id='result'>
-//                <td>course.courseNum</td>
-//                <td>course.courseName</td>
-//                <td>course.courseTeacher</td>
-//                <td><span class="badge bg-red">点赞数??</span></td>
-//              </tr>`)
-//  				}
-//			}
-//				}
-//				})
-//  }
-    function delete33(){
-    		if(confirm("确定删除吗")){
-    				$(this).getParent().removeChild();
-					
-    		}
-    		else return false;
+    //  function add(tmp){
+    //  	   var col,row0,row1,j;
+    //  	   j=0;
+    //  	for( var day of tmp.lessonDay){
+    //  		for(var i=0;i<7;i++){
+    //  		if （day == i+1){
+    //  			   col[j]=i+1;
+    //  			   j++;
+    //  			}
+    //  		}
+    //  	}
+    //
+    //  	j=0;
+    //  	for(var start of tmp.startLesson){
+    //  		for(var i =0;i<14;i++){
+    //  			 if(start==i+1){
+    //  			 	row0[j]=i+1;
+    //  			 	j++;
+    //  			 }
+    //  		}
+    //  	}
+    //  	j=0;
+    //  	for(var end of tmp.endLesson){
+    //  			for(var i =0;i<14;i++){
+    //  			 if(end==i+1){
+    //  			 	row1[j]=i+1;
+    //  			 	j++;
+    //  			 }
+    //  		}
+    //  	}
+    //  	var tag;
+    //  	for(var i=0;i<col.length;i++){
+    //  		tag='course'+col[i]+row0[i];
+    //  		$("#"+tag).append(`<div class="coursebar" id=add`  +col[i]+rol0[i]+` onclick="delete()">
+    //											tmp.courseName <br />tmp.teacherName
+    //										</div>`)
+    //  	}
+    //
+    //
+    //  for(var i=0;i<col.length;i++){
+    //  		tag='course'+col[i]+row1[i];
+    //  		$("#"+tag).append(`<div class="coursebar" id=add`  +col[i]+rol1[i]+` onclick="delete()">
+    //											tmp.courseName <br />tmp.teacherName
+    //										</div>`)
+    //  }
+    //  }
+    //
+    //
+
+    //  $("#search").submit(function(e)){
+    //  	e.preventDefault();
+    //  	$.ajax({
+    //  		url:'http://localhost:8080/ClassRecommend/calendar',
+    //  		data:$('#search').serialize(),
+    //  		type:post,
+    //  		beforeSend:function(){
+    //					$('#'+tag).html('');
+    //				},
+    //
+    //				success: function(res){
+    //					if(res.success){
+    //						for(var course of res.data.courses){
+    //							$('#result').append(`<tr onclick="add()" id='result'>
+    //                <td>course.courseNum</td>
+    //                <td>course.courseName</td>
+    //                <td>course.courseTeacher</td>
+    //                <td><span class="badge bg-red">点赞数??</span></td>
+    //              </tr>`)
+    //  				}
+    //			}
+    //				}
+    //				})
+    //  }
+    function delete33() {
+        if (confirm("确定删除吗")) {
+            $(this).getParent().removeChild();
+
+        }
+        else return false;
     }
-    
-    
-    
-       		var DIY = new Vue({
-			el: '#DIY',
-			data: {
-				studentId: ''
-			},
-			methods: {
-				GetQueryString(name) {
-					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-					var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-					var context = "";
-					if(r != null)
-						context = r[2];
-					reg = null;
-					r = null;
-					return context == null || context == "" || context == "undefined" ? "" : context;
-				},
-				getPar() {
-					DIY.studentId = this.GetQueryString('id');
-				},
-			},
 
-			mounted() {
-				this.getPar();
-			}
 
-		})
-		
-		
-    
-    
+    var DIY = new Vue({
+        el: '#DIY',
+        data: {
+            studentId: ''
+        },
+        methods: {
+            GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                    context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            },
+            getPar() {
+                DIY.studentId = this.GetQueryString('id');
+            },
+        },
+
+        mounted() {
+            this.getPar();
+        }
+
+    })
+
+
+
+    $(function () {
+        $.ajax({
+            url:'http://localhost:8080/getRecommend',
+            data:{},
+            type:'GET',
+            success:function (res) {
+                if(res.success){
+                    alert(1);
+                }
+            }
+        })
+    })
+
+
 </script>
 </body>
 </html>
