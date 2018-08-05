@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="../../style/newstyle/css/star.css">
 	<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/calendar.css"/>
 	<link rel="stylesheet" href="../../style/newstyle/css/inputSpinner.css">
+	<link rel="stylesheet" type="text/css" href="../../style/newstyle/css/coursedetails_new.css"/>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -248,7 +249,7 @@
 					</div>
 					<div class="box-body" id="studentBasicInfo">
 						<div>
-							<strong>姓名</strong>： {{ student.student.studentName }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<!--<strong>姓名</strong>： {{ student.student.studentName }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
 							<strong>年级</strong>： {{ student.grade }}
 						</div>
 						<br/>
@@ -428,24 +429,23 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">手下留情</label>
 
-								<input id="bareScore" value=0 style="display: none" >
 
-								<div class='rating-stars'>
-									<ul id="stars1">
+								<div class='rating-stars' id="bearScore" >
+									<ul  class="stars">
 
-										<li class='star' title='Poor' onclick="bareScore('1')">
+										<li class='star' title='Poor'data-value="1">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Fair'  onclick="bareScore('2')">
+										<li class='star' title='Fair' data-value="2" >
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Good'  onclick="bareScore('3')">
+										<li class='star' title='Good' data-value="3" >
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Excellent'  onclick="bareScore('4')">
+										<li class='star' title='Excellent' data-value="4" >
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='WOW!!!'  onclick="bareScore('5')">
+										<li class='star' title='WOW!!!' data-value="5">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
 
@@ -456,24 +456,22 @@
 							<div class="form-group">
 								<label class="col-sm-2 control-label">课堂有趣</label>
 
-								<input id="interestingScore" value=0 style="display: none" >
+								<div class='rating-stars' id="interestingScore">
+									<ul id="stars2" class="stars">
 
-								<div class='rating-stars '>
-									<ul id="stars2">
-
-										<li class='star' title='Poor' onclick="interScore('1')">
+										<li class='star' title='Poor' data-value="1">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Fair' onclick="interScore('2')">
+										<li class='star' title='Fair' data-value="2">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Good' onclick="interScore('3')">
+										<li class='star' title='Good' data-value="3">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Excellent' onclick="interScore('4')">
+										<li class='star' title='Excellent'data-value="4">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='WOW!!!' onclick="interScore('5')">
+										<li class='star' title='WOW!!!' data-value="5">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
 
@@ -483,23 +481,23 @@
 
 							<div class="form-group">
 								<label class="col-sm-2 control-label">划水程度</label>
-								<input id="easyScore" value=0 style="display: none" >
-								<div class='rating-stars '>
-									<ul id="stars3">
 
-										<li class='star' title='Poor' onclick="easilyScore('1')">
+								<div class='rating-stars' id="easyScore">
+									<ul id="stars3" class="stars">
+
+										<li class='star' title='Poor'data-value="1">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Fair' onclick="easilyScore('2')">
+										<li class='star' title='Fair' data-value="2">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Good' onclick="easilyScore('3')">
+										<li class='star' title='Good'data-value="3">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Excellent' onclick="easilyScore('4')">
+										<li class='star' title='Excellent'data-value="4">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='WOW!!!' onclick="easilyScore('5')">
+										<li class='star' title='WOW!!!'data-value="5">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
 
@@ -509,23 +507,23 @@
 
 							<div class="form-group">
 								<label class="col-sm-2 control-label">干货满满</label>
-								<input id="knowledgeScore" value=0 style="display: none" >
-								<div class='rating-stars '>
-									<ul id="stars4">
 
-										<li class='star' title='Poor' onclick="knowScore('1')">
+								<div class='rating-stars ' id="knowledgeScore">
+									<ul id="stars4" class="stars">
+
+										<li class='star' title='Poor'data-value="1" >
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Fair' onclick="knowScore('2')">
+										<li class='star' title='Fair' data-value="2">
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Good' onclick="knowScore('3')">
+										<li class='star' title='Good'data-value="3" >
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='Excellent' onclick="knowScore('4')">
+										<li class='star' title='Excellent'data-value="4" >
 											<i class='fa fa-star fa-fw'></i>
 										</li>
-										<li class='star' title='WOW!!!' onclick="knowScore('5')">
+										<li class='star' title='WOW!!!'data-value="5" >
 											<i class='fa fa-star fa-fw'></i>
 										</li>
 
@@ -812,6 +810,7 @@
 </body>
 <script>
 
+
 	var grade='';
 	var college='';
 	var major='';
@@ -1065,26 +1064,89 @@
             })
     });
 
-    function bareScore(number) {
-        document.getElementById("bareScore").setAttribute("value",number);
-    }
+    var bearScore;
+    var interestingScore;
+    var easyScore;
+    var knowledgeScore;
 
-    function interScore(number) {
-        document.getElementById("interestingScore").setAttribute("value",number);
-    }
+    $(document).ready(function () {
+        /* 1. Visualizing things on Hover - See next part for action on click */
+        $('.stars li').on('mouseover', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
+            // Now highlight all the stars that's not after the current hovered star
+            $(this).parent().children('li.star').each(function (e) {
+                if (e < onStar) {
+                    $(this).addClass('hover');
+                }
+                else {
+                    $(this).removeClass('hover');
+                }
+            });
 
-    function easilyScore(number) {
-        document.getElementById("easyScore").setAttribute("value",number);
-    }
+        }).on('mouseout', function () {
+            $(this).parent().children('li.star').each(function (e) {
+                $(this).removeClass('hover');
+            });
+        });
 
-    function knowScore(number) {
-        document.getElementById("knowledgeScore").setAttribute("value",number);
-    }
+
+        /* 2. Action to perform on click */
+        $('.stars li').on('click', function () {
+            var onStar = parseInt($(this).data('value'), 10); // The star currently selected
+            var stars = $(this).parent().children('li.star');
+
+            for (i = 0; i < stars.length; i++) {
+                $(stars[i]).removeClass('selected');
+            }
+
+            for (i = 0; i < onStar; i++) {
+                $(stars[i]).addClass('selected');
+            }
+
+            var ratingValue = $(this).parent().children('.selected').last().data('value');
+            console.log($(this).parent().children('.selected').last().data('value'));
+            console.log($(this).parent().parent().attr("id"));
+            if ($(this).parent().parent().attr("id") === "bearScore") {
+                // 这里填写你要赋值的 Vue内data
+                bearScore = ratingValue;
+            }
+            if ($(this).parent().parent().attr("id") === "interestingScore") {
+                // classDetail.comment.score.interestingScore = ratingValue;
+                interestingScore = ratingValue;
+            }
+            if ($(this).parent().parent().attr("id") === "easyScore") {
+                // classDetail.comment.score.easyScore = ratingValue;
+                easyScore = ratingValue
+            }
+            if ($(this).parent().parent().attr("id") === "knowledgeScore") {
+                // classDetail.comment.score.knowledgeScore = ratingValue;
+                knowledgeScore = ratingValue;
+            }
+            // console.log(classDetail.comment.score);
+        });
+    })
+
+    // function bareScore(number) {
+    //     document.getElementById("bareScore").setAttribute("value",number);
+    // }
+	//
+    // function interScore(number) {
+    //     document.getElementById("interestingScore").setAttribute("value",number);
+    // }
+	//
+    // function easilyScore(number) {
+    //     document.getElementById("easyScore").setAttribute("value",number);
+    // }
+	//
+    // function knowScore(number) {
+    //     document.getElementById("knowledgeScore").setAttribute("value",number);
+    // }
 
     $("#selfSetting").submit(function (e) {
         var selectedCourses = new Array();
         var i = 0;
         for( var selected of document.getElementsByName("selectedCourses") ){
+
             selectedCourses[i] = selected.id.substring(6);
             i++;
 		}
@@ -1097,28 +1159,32 @@
                 preferE:document.getElementById("coursePreferE").valueOf().checked,
                 selectMoreD:document.getElementById("selectMoreD").valueOf().checked,
                 selectMoreE:document.getElementById("selectMoreE").valueOf().checked,
+                selectNumberD:document.getElementById("selectNumberD").valueOf().checked,
                 selectNumberE:document.getElementById("selectNumberE").valueOf().checked,
-                numberC:document.getElementById("numberD").valueOf().value,
+                numberD:document.getElementById("numberD").valueOf().value,
                 numberE:document.getElementById("numberE").valueOf().value,
                 selectCourseType:document.getElementById("selectCourseType").valueOf().checked,
                 allCourse:document.getElementById("allCourse").valueOf().checked,
                 courseABCD:document.getElementById("courseABCD").valueOf().checked,
                 preScoreRequest:document.getElementById("preScoreRequest").valueOf().checked,
                 preScore:document.getElementById("preScore").valueOf().value,
-                bareScore:document.getElementById("bareScore").valueOf().value,
-                interestingScore:document.getElementById("interestingScore").valueOf().value,
-                easyScore:document.getElementById("easyScore").valueOf().value,
-                knowledgeScore:document.getElementById("knowledgeScore").valueOf().value,
+                bareScore:bearScore,
+                interestingScore:interestingScore,
+                easyScore:easyScore,
+                knowledgeScore:knowledgeScore,
                 selectedCourses:selectedCourses,
+
 				grade:grade,
 				college:college,
 				major:major
+
             },
             type:'POST',
             success:function (res) {
                 if(res.success){
                     alert('成功');
                 }
+                console.log(selectedCourses);
             }
         })
     })
@@ -1147,7 +1213,7 @@
 
 
 
-	})
+    })
 
 
 

@@ -50,9 +50,18 @@ public interface CourseBiz {
 
     List<Course> findCourseOfAdmin(String courseType, String teacherName, int examType, String courseName);
 
+
     List<Course> findByStudentIdAndTeacherName(int studentId, String teacherName);
 
     List<Course> findByStudentIdAndCourseCode(int studentId, String courseCode);
 
     List<Course> findByCourseAndTeacher(int studentId, String courseName, String teacherName);
+
+    Course findByTeacherNameAndCourseName(String teacherName, String courseName);
+
+    List<Course> findByTeacherCourseExamPass(String courseName, String teacherName, int examType, int passType);
+
+    List<String> selectByShouldCheck(int grade, int collegeId, int majorId);
+
+    List<Course> selectByRecommendCourse(int Grade,int College, int Major);
 }

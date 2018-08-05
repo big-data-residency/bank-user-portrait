@@ -20,8 +20,22 @@ public class StudentCommentCourse implements Serializable {
 	private int easyScore;
 	private int knowledgeScore;
 	private int selectId;
+<<<<<<< HEAD
 	private String recommendGrade;
 	private StudentCommentCourse replyTo;
+=======
+	private int recommendGrade;
+
+	public int getRecommendGrade() {
+		return recommendGrade;
+	}
+
+	public void setRecommendGrade(int recommendGrade) {
+		this.recommendGrade = recommendGrade;
+	}
+
+
+>>>>>>> 17512de995ca0076aec77d15b5eeb4285bb4111e
 
 	private transient Student student;
 	private transient Course course;
