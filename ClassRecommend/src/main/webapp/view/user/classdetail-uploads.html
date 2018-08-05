@@ -1033,6 +1033,7 @@ immediately after the control sidebar -->
             },
             scoreRate: {},
             comments: {},
+            avgScoreByYear: [],
         },
         methods: {
             getInfo() {
@@ -1246,8 +1247,24 @@ immediately after the control sidebar -->
                     }
                 })
             },
-            likeComment() {
-                console.log($(this));
+            getScoreGroupByYear(){
+                $.ajax({
+                    url: "/getScoreGroupByYear",
+                    type: "get",
+                    data: {
+                        courseId: courseIdStr
+                    },
+                    success(res){
+                        if(res.success){
+                            classDetail.avgScoreByYear = res.data
+                        } else {
+                            this.error();
+                        }
+                    },
+                    error(){
+                        alert("接收平均成绩失败");
+                    }
+                })
             }
         },
         mounted() {
@@ -1255,6 +1272,7 @@ immediately after the control sidebar -->
             this.getPar();
             this.getInfo();
             this.getScoreRate();
+            this.getScoreGroupByYear();
             this.getComments();
             this.getFiles();
             // this.GetLogin();
@@ -1263,6 +1281,7 @@ immediately after the control sidebar -->
 
     })
 </script>
+<!-- 点赞 -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('a.like').on('click', function () {
@@ -1350,39 +1369,35 @@ immediately after the control sidebar -->
             hideHover: 'auto'
         });
 
-//      //DONUT CHART
-//  var donut = new Morris.Donut({
-//    element: 'score-chart',
-//    resize: true,
-//    colors: ["#3c8dbc", "#f56954", "#00a65a"],
-//    data: [
-//      {label: "5分", value: 12},
-//      {label: "4分        ", value: 30},
-//      {label: "3分", value: 20},
-//      {label: "2分", value: 20},
-//      {label: "1分", value: 3}
-//    ],
-//    hideHover: 'auto'
-//  });
-        //BAR CHART
+        // //BAR CHART
         var bar = new Morris.Bar({
             element: 'bar-chart',
             resize: true,
-            data: [
-                {y: '2006', a: 100, b: 90},
-                {y: '2007', a: 75, b: 65},
-                {y: '2008', a: 50, b: 40},
-                {y: '2009', a: 75, b: 65},
-                {y: '2010', a: 50, b: 40},
-                {y: '2011', a: 75, b: 65},
-                {y: '2012', a: 100, b: 90}
-            ],
+            data: classDetail.avgScoreByYear,
             barColors: ['#00a65a', '#f56954'],
-            xkey: 'y',
-            ykeys: ['a', 'b'],
-            labels: ['CPU', 'DISK'],
+            xkey: 'year',
+            ykeys: ['avgScore'],
+            labels: 'avgScore',
             hideHover: 'auto'
         });
+        // var bar = new Morris.Bar({
+        //     element: 'bar-chart',
+        //     resize: true,
+        //     data: [
+        //         {y: '2006', a: 100, b: 90},
+        //         {y: '2007', a: 75, b: 65},
+        //         {y: '2008', a: 50, b: 40},
+        //         {y: '2009', a: 75, b: 65},
+        //         {y: '2010', a: 50, b: 40},
+        //         {y: '2011', a: 75, b: 65},
+        //         {y: '2012', a: 100, b: 90}
+        //     ],
+        //     barColors: ['#00a65a', '#f56954'],
+        //     xkey: 'y',
+        //     ykeys: ['a', 'b'],
+        //     labels: ['CPU', 'DISK'],
+        //     hideHover: 'auto'
+        // });
 
     });
 </script>

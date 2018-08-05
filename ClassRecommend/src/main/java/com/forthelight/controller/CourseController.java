@@ -14,8 +14,7 @@ import com.forthelight.CourseSelect;
 
 import com.forthelight.domain.*;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -29,8 +28,6 @@ import com.forthelight.biz.FileBiz;
 import com.forthelight.biz.StudentBiz;
 import com.forthelight.biz.StudentCommentCourseBiz;
 import com.forthelight.biz.TagBiz;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
 @Controller
@@ -543,7 +540,7 @@ public class CourseController {
         Map<String, Object> res = new HashMap<>();
 
         boolean success = false;
-        if (studentIdStr != "") {
+        if (!studentIdStr.equals("")) {
             success = true;
         }
         if (courseName.equals("全部课程")) {
@@ -960,6 +957,49 @@ public class CourseController {
             rsp.put("success", true);
         }
 
+        return gson.toJson(rsp);
+    }
+
+    @RequestMapping(value = "/getScoreGroupByYear", produces = "text/json; charset=utf-8")
+    @ResponseBody
+    public String getScoreGroupByYear(@RequestParam("courseId")String courseId){
+        Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+        JsonObject rsp = new JsonObject();
+
+        List<StudentCommentCourse> commentList = studentCommentCourseBiz.findByCourseId(Integer.parseInt(courseId));
+        HashMap<Integer, List<Integer>> gradeMap = new HashMap<>();
+        gradeMap.clear();
+        for(StudentCommentCourse comment: commentList){
+            Integer grade = comment.getStudent().getGrade();
+            Integer score = comment.getGradeScore();
+            List<Integer> temp = gradeMap.get(grade);
+            if(temp != null) {
+                temp.add(score);
+                gradeMap.put(grade, temp);
+            } else {
+                List<Integer> newArray = new ArrayList<>();
+                newArray.add(score);
+                gradeMap.put(grade, newArray);
+            }
+        }
+
+
+        Map<Integer, Integer>avgScore = new HashMap<>();
+        JsonArray data = new JsonArray();
+        for(Integer key: gradeMap.keySet()){
+            Integer sumScore = 0;
+            List<Integer> scores = gradeMap.get(key);
+            for(Integer score: scores){
+                sumScore+=score;
+            }
+            JsonElement element = new JsonObject();
+            element.getAsJsonObject().addProperty("year", "20" + String.valueOf(key));
+            element.getAsJsonObject().addProperty("avgScore", sumScore/scores.size());
+            data.add(element);
+        }
+
+        rsp.add("data", data);
+        rsp.addProperty("success", true);
         return gson.toJson(rsp);
     }
 
