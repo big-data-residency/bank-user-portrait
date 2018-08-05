@@ -248,6 +248,6 @@
 		( level = "e" or
 		( level = "D" and
 		( ( collegeId = #{collegeId} and MajorId = null ) or
-		( collegeId = {#collegeId} and majorId = #{majorId} ) ) ) )
+		( collegeId = #{collegeId} and majorId = #{majorId} ) ) ) )
 	</select>
 </mapper>
