@@ -58,7 +58,7 @@ public class CourseSelect {
     public Integer hasE;
     public int[][] Time;
     public List<Course> checkedCourses;
-    public List<Course> shouldCheckCourses;
+    public List<String> shouldCheckCourses;
 
     public String Worry;
     public boolean success;
@@ -113,7 +113,7 @@ public class CourseSelect {
         return true;
     }
     public boolean Recommend(){
-        
+
         return true;
     }
 
@@ -151,24 +151,24 @@ public class CourseSelect {
     }
 
     public void checkShouldCheckLessons(){
-       Iterator<Course> iterator = shouldCheckCourses.iterator();
-       while(iterator.hasNext()){
-           Course course = iterator.next();
-           //判断是否有和已选课程重复的课程
-           int t=0;
-           for(int i=0;i<checkedCourses.size();i++){
-               if(course.getCourseName().equals(checkedCourses.get(i).getCourseName())){
-                   t=1;
-                   break;
-               }
-           }
-           if(t==1) {
-               iterator.remove();
-               continue;
-           }
+        Iterator<String> iterator = shouldCheckCourses.iterator();
+        while(iterator.hasNext()){
+            String courseName = iterator.next();
+            //判断是否有和已选课程重复的课程
+            int t=0;
+            for(int i=0;i<checkedCourses.size();i++){
+                if(courseName.equals(checkedCourses.get(i).getCourseName())){
+                    t=1;
+                    break;
+                }
+            }
+            if(t==1) {
+                iterator.remove();
+                continue;
+            }
 
-           checkShouldCheckCourses(course.getCourseName());
-       }
+            checkShouldCheckCourses(courseName);
+        }
     }
     public void checkShouldCheckCourses(String courseName){
         List<Course> givenCourses = courseBiz.findByCourseName(courseName);
