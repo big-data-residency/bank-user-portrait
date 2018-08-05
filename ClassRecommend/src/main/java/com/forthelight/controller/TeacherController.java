@@ -67,12 +67,32 @@ public class TeacherController {
 
             success = false;
         }
-        College college = teacher.getCollege();
+
+        JsonObject teacherInfo = new JsonObject();
+        teacherInfo.addProperty("teacherName",teacher.getTeacherName());
+        teacherInfo.addProperty("email",teacher.getEmail());
+        teacherInfo.addProperty("gender",teacher.getGender());
+        teacherInfo.addProperty("telPhone",teacher.getTelPhone());
+        teacherInfo.addProperty("officeAddress",teacher.getOfficeAddress());
+
+        String college = teacher.getCollege().getCollegeName();
 
         // --------------- 第一个标签栏数据 -------------------
         List<Tag> tags = teacherBiz.tagList(teacherId);
         Map<String, Object> keywords = new HashMap<>();
         List<Course> courses = courseBiz.findByTeacherId(teacherId);
+
+        JsonArray coursesInfo = new JsonArray();
+        for(Course course : courses){
+            JsonObject courseInfo = new JsonObject();
+            courseInfo.addProperty("courseName",course.getCourseName());
+            courseInfo.addProperty("courseCode",course.getCourseCode());
+            courseInfo.addProperty("credit",course.getCredit());
+            courseInfo.addProperty("level",course.getLevel());
+
+            coursesInfo.add(courseInfo);
+        }
+
         for (Tag tag : tags) {
 
             int tagId = tag.getId();
@@ -112,22 +132,22 @@ public class TeacherController {
         int allCoursesEasyScore = 0;
         int allCoursesKnowledgeScore = 0;
 
-        int gradeScore08 = 0;
-        int gradeScore09 = 0;
-        int gradeScore10 = 0;
-        int gradeScore11 = 0;
-        int gradeScore12 = 0;
+//        int gradeScore08 = 0;
+//        int gradeScore09 = 0;
+//        int gradeScore10 = 0;
+//        int gradeScore11 = 0;
+//        int gradeScore12 = 0;
         int gradeScore13 = 0;
         int gradeScore14 = 0;
         int gradeScore15 = 0;
         int gradeScore16 = 0;
         int gradeScore17 = 0;
 
-        int gradeNumber08 = 0;
-        int gradeNumber09 = 0;
-        int gradeNumber10 = 0;
-        int gradeNumber11 = 0;
-        int gradeNumber12 = 0;
+//        int gradeNumber08 = 0;
+//        int gradeNumber09 = 0;
+//        int gradeNumber10 = 0;
+//        int gradeNumber11 = 0;
+//        int gradeNumber12 = 0;
         int gradeNumber13 = 0;
         int gradeNumber14 = 0;
         int gradeNumber15 = 0;
@@ -143,22 +163,32 @@ public class TeacherController {
             allCoursesEasyScore = allCoursesEasyScore + studentCommentCourse.getEasyScore();
             allCoursesKnowledgeScore = allCoursesKnowledgeScore + studentCommentCourse.getKnowledgeScore();
 
-            gradeScore08 = gradeScore08 + studentCommentCourseBiz.getScoreByGrade("08", courseId);
-            gradeScore09 = gradeScore09 + studentCommentCourseBiz.getScoreByGrade("09", courseId);
-            gradeScore10 = gradeScore10 + studentCommentCourseBiz.getScoreByGrade("10", courseId);
-            gradeScore11 = gradeScore11 + studentCommentCourseBiz.getScoreByGrade("11", courseId);
-            gradeScore12 = gradeScore12 + studentCommentCourseBiz.getScoreByGrade("12", courseId);
-            gradeScore13 = gradeScore13 + studentCommentCourseBiz.getScoreByGrade("13", courseId);
-            gradeScore14 = gradeScore14 + studentCommentCourseBiz.getScoreByGrade("14", courseId);
-            gradeScore15 = gradeScore15 + studentCommentCourseBiz.getScoreByGrade("15", courseId);
-            gradeScore16 = gradeScore16 + studentCommentCourseBiz.getScoreByGrade("16", courseId);
-            gradeScore17 = gradeScore17 + studentCommentCourseBiz.getScoreByGrade("17", courseId);
+//            gradeScore08 = gradeScore08 + studentCommentCourseBiz.getScoreByGrade("08", courseId);
+//            gradeScore09 = gradeScore09 + studentCommentCourseBiz.getScoreByGrade("09", courseId);
+//            gradeScore10 = gradeScore10 + studentCommentCourseBiz.getScoreByGrade("10", courseId);
+//            gradeScore11 = gradeScore11 + studentCommentCourseBiz.getScoreByGrade("11", courseId);
+//            gradeScore12 = gradeScore12 + studentCommentCourseBiz.getScoreByGrade("12", courseId);
+            if(studentCommentCourseBiz.getScoreByGrade("13", courseId) != null){
+                gradeScore13 = gradeScore13 + studentCommentCourseBiz.getScoreByGrade("13", courseId);
+            }
+            if(studentCommentCourseBiz.getScoreByGrade("14", courseId) != null){
+                gradeScore13 = gradeScore13 + studentCommentCourseBiz.getScoreByGrade("14", courseId);
+            }
+            if(studentCommentCourseBiz.getScoreByGrade("15", courseId) != null){
+                gradeScore13 = gradeScore13 + studentCommentCourseBiz.getScoreByGrade("15", courseId);
+            }
+            if(studentCommentCourseBiz.getScoreByGrade("16", courseId) != null){
+                gradeScore13 = gradeScore13 + studentCommentCourseBiz.getScoreByGrade("16", courseId);
+            }
+            if(studentCommentCourseBiz.getScoreByGrade("17", courseId) != null){
+                gradeScore13 = gradeScore13 + studentCommentCourseBiz.getScoreByGrade("17", courseId);
+            }
 
-            gradeNumber08 = gradeNumber08 + studentCommentCourseBiz.numberOfGetScoreByGrade("08", courseId);
-            gradeNumber09 = gradeNumber09 + studentCommentCourseBiz.numberOfGetScoreByGrade("09", courseId);
-            gradeNumber10 = gradeNumber10 + studentCommentCourseBiz.numberOfGetScoreByGrade("10", courseId);
-            gradeNumber11 = gradeNumber11 + studentCommentCourseBiz.numberOfGetScoreByGrade("11", courseId);
-            gradeNumber12 = gradeNumber12 + studentCommentCourseBiz.numberOfGetScoreByGrade("12", courseId);
+//            gradeNumber08 = gradeNumber08 + studentCommentCourseBiz.numberOfGetScoreByGrade("08", courseId);
+//            gradeNumber09 = gradeNumber09 + studentCommentCourseBiz.numberOfGetScoreByGrade("09", courseId);
+//            gradeNumber10 = gradeNumber10 + studentCommentCourseBiz.numberOfGetScoreByGrade("10", courseId);
+//            gradeNumber11 = gradeNumber11 + studentCommentCourseBiz.numberOfGetScoreByGrade("11", courseId);
+//            gradeNumber12 = gradeNumber12 + studentCommentCourseBiz.numberOfGetScoreByGrade("12", courseId);
             gradeNumber13 = gradeNumber13 + studentCommentCourseBiz.numberOfGetScoreByGrade("13", courseId);
             gradeNumber14 = gradeNumber14 + studentCommentCourseBiz.numberOfGetScoreByGrade("14", courseId);
             gradeNumber15 = gradeNumber15 + studentCommentCourseBiz.numberOfGetScoreByGrade("15", courseId);
@@ -167,59 +197,89 @@ public class TeacherController {
 
         }
 
-        int[] tagsPercent = new int[4];
-        tagsPercent[0]=allCoursesBearScore;
-        tagsPercent[1]=allCoursesInterestingScore;
-        tagsPercent[2]=allCoursesEasyScore;
-        tagsPercent[3]=allCoursesKnowledgeScore;
+        double[] tagsPercent = new double[4];
+        tagsPercent[0]=(double)allCoursesBearScore/(double)studentCommentCourses.size();
+        tagsPercent[1]=(double) allCoursesInterestingScore/(double)studentCommentCourses.size();
+        tagsPercent[2]=(double) allCoursesEasyScore/(double)studentCommentCourses.size();
+        tagsPercent[3]=(double) allCoursesKnowledgeScore/(double)studentCommentCourses.size();
 
         JsonArray preExamScore = new JsonArray();
 
         JsonObject ave08 = new JsonObject();
-        ave08.addProperty("y", "2008");
-        ave08.addProperty("item1", gradeScore08 / gradeNumber08);
-
-        JsonObject ave09 = new JsonObject();
-        ave09.addProperty("y", "2009");
-        ave09.addProperty("item1", gradeScore09 / gradeNumber09);
-
-        JsonObject ave10 = new JsonObject();
-        ave10.addProperty("y", "2010");
-        ave10.addProperty("item1", gradeScore10 / gradeNumber10);
-
-        JsonObject ave11 = new JsonObject();
-        ave11.addProperty("y", "2011");
-        ave11.addProperty("item1", gradeScore11 / gradeNumber11);
-
-        JsonObject ave12 = new JsonObject();
-        ave12.addProperty("y", "2012");
-        ave12.addProperty("item1", gradeScore12 / gradeNumber12);
+//        ave08.addProperty("y", "2008");
+//        ave08.addProperty("item1", gradeScore08 / gradeNumber08);
+//
+//        JsonObject ave09 = new JsonObject();
+//        ave09.addProperty("y", "2009");
+//        ave09.addProperty("item1", gradeScore09 / gradeNumber09);
+//
+//        JsonObject ave10 = new JsonObject();
+//        ave10.addProperty("y", "2010");
+//        ave10.addProperty("item1", gradeScore10 / gradeNumber10);
+//
+//        JsonObject ave11 = new JsonObject();
+//        ave11.addProperty("y", "2011");
+//        ave11.addProperty("item1", gradeScore11 / gradeNumber11);
+//
+//        JsonObject ave12 = new JsonObject();
+//        ave12.addProperty("y", "2012");
+//        ave12.addProperty("item1", gradeScore12 / gradeNumber12);
 
         JsonObject ave13 = new JsonObject();
-        ave13.addProperty("y", "2013");
-        ave13.addProperty("item1", gradeScore13 / gradeNumber13);
+        if(gradeNumber13 == 0){
+            ave13.addProperty("y", "2013");
+            ave13.addProperty("item1", 0);
+        }
+        else{
+            ave13.addProperty("y", "2013");
+            ave13.addProperty("item1", gradeScore13 / gradeNumber13);
+        }
 
         JsonObject ave14 = new JsonObject();
-        ave14.addProperty("y", "2014");
-        ave14.addProperty("item1", gradeScore14 / gradeNumber14);
+        if(gradeNumber14 == 0){
+            ave14.addProperty("y", "2014");
+            ave14.addProperty("item1", 0);
+        }else{
+            ave14.addProperty("y", "2014");
+            ave14.addProperty("item1", gradeScore14 / gradeNumber14);
+        }
+
 
         JsonObject ave15 = new JsonObject();
-        ave15.addProperty("y", "2015");
-        ave15.addProperty("item1", gradeScore15 / gradeNumber15);
+        if(gradeNumber15 == 0){
+            ave15.addProperty("y", "2015");
+            ave15.addProperty("item1", 0);
+        }else {
+            ave15.addProperty("y", "2015");
+            ave15.addProperty("item1", gradeScore15 / gradeNumber15);
+        }
+
 
         JsonObject ave16 = new JsonObject();
-        ave16.addProperty("y", "2016");
-        ave16.addProperty("item1", gradeScore16 / gradeNumber16);
+        if(gradeNumber15 == 0){
+            ave16.addProperty("y", "2016");
+            ave16.addProperty("item1", 0);
+        }else{
+            ave16.addProperty("y", "2016");
+            ave16.addProperty("item1", gradeScore16 / gradeNumber16);
+        }
+
 
         JsonObject ave17 = new JsonObject();
-        ave17.addProperty("y", "2017");
-        ave17.addProperty("item1", gradeScore17 / gradeNumber17);
+        if(gradeNumber17 == 0){
+            ave17.addProperty("y", "2017");
+            ave17.addProperty("item1", 0);
+        }else {
+            ave17.addProperty("y", "2017");
+            ave17.addProperty("item1", gradeScore17 / gradeNumber17);
+        }
 
-        preExamScore.add(ave08);
-        preExamScore.add(ave09);
-        preExamScore.add(ave10);
-        preExamScore.add(ave11);
-        preExamScore.add(ave12);
+
+//        preExamScore.add(ave08);
+//        preExamScore.add(ave09);
+//        preExamScore.add(ave10);
+//        preExamScore.add(ave11);
+//        preExamScore.add(ave12);
         preExamScore.add(ave13);
         preExamScore.add(ave14);
         preExamScore.add(ave15);
@@ -227,22 +287,22 @@ public class TeacherController {
         preExamScore.add(ave17);
 
 
-        int contentScore08 = studentCommentCourseBiz.getContentScoreByGrade("08");
-        int contentScore09 = studentCommentCourseBiz.getContentScoreByGrade("09");
-        int contentScore10 = studentCommentCourseBiz.getContentScoreByGrade("10");
-        int contentScore11 = studentCommentCourseBiz.getContentScoreByGrade("11");
-        int contentScore12 = studentCommentCourseBiz.getContentScoreByGrade("12");
+//        int contentScore08 = studentCommentCourseBiz.getContentScoreByGrade("08");
+//        int contentScore09 = studentCommentCourseBiz.getContentScoreByGrade("09");
+//        int contentScore10 = studentCommentCourseBiz.getContentScoreByGrade("10");
+//        int contentScore11 = studentCommentCourseBiz.getContentScoreByGrade("11");
+//        int contentScore12 = studentCommentCourseBiz.getContentScoreByGrade("12");
         int contentScore13 = studentCommentCourseBiz.getContentScoreByGrade("13");
         int contentScore14 = studentCommentCourseBiz.getContentScoreByGrade("14");
         int contentScore15 = studentCommentCourseBiz.getContentScoreByGrade("15");
         int contentScore16 = studentCommentCourseBiz.getContentScoreByGrade("16");
         int contentScore17 = studentCommentCourseBiz.getContentScoreByGrade("17");
 
-        int contentScoreNumber08 = studentCommentCourseBiz.getContentScoreByGrade("08");
-        int contentScoreNumber09 = studentCommentCourseBiz.getContentScoreByGrade("09");
-        int contentScoreNumber10 = studentCommentCourseBiz.getContentScoreByGrade("10");
-        int contentScoreNumber11 = studentCommentCourseBiz.getContentScoreByGrade("11");
-        int contentScoreNumber12 = studentCommentCourseBiz.getContentScoreByGrade("12");
+//        int contentScoreNumber08 = studentCommentCourseBiz.getContentScoreByGrade("08");
+//        int contentScoreNumber09 = studentCommentCourseBiz.getContentScoreByGrade("09");
+//        int contentScoreNumber10 = studentCommentCourseBiz.getContentScoreByGrade("10");
+//        int contentScoreNumber11 = studentCommentCourseBiz.getContentScoreByGrade("11");
+//        int contentScoreNumber12 = studentCommentCourseBiz.getContentScoreByGrade("12");
         int contentScoreNumber13 = studentCommentCourseBiz.getContentScoreByGrade("13");
         int contentScoreNumber14 = studentCommentCourseBiz.getContentScoreByGrade("14");
         int contentScoreNumber15 = studentCommentCourseBiz.getContentScoreByGrade("15");
@@ -251,51 +311,51 @@ public class TeacherController {
 
         JsonArray preContentScore = new JsonArray();
 
-        JsonObject content08 = new JsonObject();
-        content08.addProperty("y", "2008");
-        content08.addProperty("a", contentScore08 / contentScoreNumber08);
-
-        JsonObject content09 = new JsonObject();
-        content09.addProperty("y", "2009");
-        content09.addProperty("a", contentScore09 / contentScoreNumber09);
-
-        JsonObject content10 = new JsonObject();
-        content10.addProperty("y", "2010");
-        content10.addProperty("a", contentScore10 / contentScoreNumber10);
-
-        JsonObject content11 = new JsonObject();
-        content11.addProperty("y", "2011");
-        content11.addProperty("a", contentScore11 / contentScoreNumber11);
-
-        JsonObject content12 = new JsonObject();
-        content12.addProperty("y", "2012");
-        content12.addProperty("a", contentScore12 / contentScoreNumber12);
+//        JsonObject content08 = new JsonObject();
+//        content08.addProperty("y", "2008");
+//        content08.addProperty("a", contentScore08 / contentScoreNumber08);
+//
+//        JsonObject content09 = new JsonObject();
+//        content09.addProperty("y", "2009");
+//        content09.addProperty("a", contentScore09 / contentScoreNumber09);
+//
+//        JsonObject content10 = new JsonObject();
+//        content10.addProperty("y", "2010");
+//        content10.addProperty("a", contentScore10 / contentScoreNumber10);
+//
+//        JsonObject content11 = new JsonObject();
+//        content11.addProperty("y", "2011");
+//        content11.addProperty("a", contentScore11 / contentScoreNumber11);
+//
+//        JsonObject content12 = new JsonObject();
+//        content12.addProperty("y", "2012");
+//        content12.addProperty("a", contentScore12 / contentScoreNumber12);
 
         JsonObject content13 = new JsonObject();
         content13.addProperty("y", "2013");
-        content13.addProperty("a", contentScore13 / contentScoreNumber13);
+        content13.addProperty("a", (double)contentScore13 / (double)contentScoreNumber13);
 
         JsonObject content14 = new JsonObject();
         content14.addProperty("y", "2014");
-        content14.addProperty("a", contentScore14 / contentScoreNumber14);
+        content14.addProperty("a", (double)contentScore14 / (double)contentScoreNumber14);
 
         JsonObject content15 = new JsonObject();
         content15.addProperty("y", "2015");
-        content15.addProperty("a", contentScore15 / contentScoreNumber15);
+        content15.addProperty("a", (double)contentScore15 / (double)contentScoreNumber15);
 
         JsonObject content16 = new JsonObject();
         content16.addProperty("y", "2016");
-        content16.addProperty("a", contentScore16 / contentScoreNumber16);
+        content16.addProperty("a", (double)contentScore16 / (double)contentScoreNumber16);
 
         JsonObject content17 = new JsonObject();
         content17.addProperty("y", "2017");
-        content17.addProperty("a", contentScore17 / contentScoreNumber17);
+        content17.addProperty("a", (double)contentScore17 / (double)contentScoreNumber17);
 
-        preContentScore.add(content08);
-        preContentScore.add(content09);
-        preContentScore.add(content10);
-        preContentScore.add(content11);
-        preContentScore.add(content12);
+//        preContentScore.add(content08);
+//        preContentScore.add(content09);
+//        preContentScore.add(content10);
+//        preContentScore.add(content11);
+//        preContentScore.add(content12);
         preContentScore.add(content13);
         preContentScore.add(content14);
         preContentScore.add(content15);
@@ -305,10 +365,10 @@ public class TeacherController {
 
         Map<String, Object> data = new HashMap<>();
 
-        data.put("teacher", teacher);
+        data.put("teacher", teacherInfo);
         data.put("college", college);
         data.put("keywords", keywords);
-        data.put("courses", courses);
+        data.put("courses", coursesInfo);
         data.put("comments", comments);
         data.put("preExamScore", preExamScore);
         data.put("preContentScore", preContentScore);
@@ -346,7 +406,16 @@ public class TeacherController {
         teachers.add(0, teacher);
 
         Map<String, Object> data = new HashMap<>();
-        data.put("teachers", teachers);
+
+        JsonArray teachersInfo = new JsonArray();
+        for(Teacher teacher1 : teachers){
+            JsonObject teacherInfo = new JsonObject();
+            teacherInfo.addProperty("teacherName",teacher1.getTeacherName());
+
+            teachersInfo.add(teacherInfo);
+        }
+
+        data.put("teachers", teachersInfo);
 
 
         Map<String, Object> res = new HashMap<>();
