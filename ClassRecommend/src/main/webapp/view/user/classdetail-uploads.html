@@ -494,124 +494,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <div class="tab-pane" id="uploads">
                                 <div class="table-responsive mailbox-messages">
-                                    <table id="example2" class="table table-hover table-striped">
+                                    <table id="fileTable" class="table table-hover table-striped">
                                         <thead>
                                         <tr>
                                             <th scope="col">选择</th>
-                                            <th scope="col"></th>
                                             <th scope="col">文件名称</th>
                                             <th scope="col">文件描述</th>
-                                            <th scope="col"></th>
                                             <th scope="col">上传时间</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    <input type="checkbox">
-                                                </label>
-                                            </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                </a>
-                                            </td>
-                                            <td class="mailbox-name">
-                                                <a href="#">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-attachment"></td>
-                                            <td class="mailbox-date">5 mins ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    <input type="checkbox">
-                                                </label>
-                                            </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star-o text-yellow"></i>
-                                                </a>
-                                            </td>
-                                            <td class="mailbox-name">
-                                                <a href="#">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-attachment">
-                                                <i class="fa fa-paperclip"></i>
-                                            </td>
-                                            <td class="mailbox-date">28 mins ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    <input type="checkbox">
-                                                </label>
-                                            </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star-o text-yellow"></i>
-                                                </a>
-                                            </td>
-                                            <td class="mailbox-name">
-                                                <a href="#">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-attachment">
-                                                <i class="fa fa-paperclip"></i>
-                                            </td>
-                                            <td class="mailbox-date">11 hours ago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    <input type="checkbox">
-                                                </label>
-                                            </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                </a>
-                                            </td>
-                                            <td class="mailbox-name">
-                                                <a href="#">Alexander Pierce</a>
-                                            </td>
-                                            <td class="mailbox-subject">
-                                                <b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
-                                            </td>
-                                            <td class="mailbox-attachment"></td>
-                                            <td class="mailbox-date">15 hours ago</td>
-                                        </tr>
+
                                         <tr v-for="(file, index) in files">
                                             <td>
                                                 <label>
                                                     <input type="checkbox">
                                                 </label>
                                             </td>
-                                            <td class="mailbox-star">
-                                                <a href="#">
-                                                    <i class="fa fa-star text-yellow"></i>
-                                                </a>
-                                            </td>
+
                                             <td class="mailbox-name">
                                                 <a :href="file.filePath + '/' + file.fileName"
                                                    :download="file.fileName">
-                                                    <p style="vertical-alimgn:middle;;">{{ file.fileName }}</p>
+                                                    <p style="vertical-align:middle;;">{{ file.fileName }}</p>
                                                 </a>
                                             </td>
                                             <td class="mailbox-subject">
                                                 <b>{{ file.title }}</b><br/>
                                                 - {{ file.description }}
                                             </td>
-                                            <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">{{ file.updateTime }}</td>
                                         </tr>
                                         </tbody>
@@ -698,13 +608,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <h3 class="box-title">成绩占比</h3>
 
                                                 <div class="box-tools pull-right">
-                                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                                    <button type="button" class="btn btn-box-tool"
+                                                            data-widget="collapse"><i class="fa fa-minus"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                                    <button type="button" class="btn btn-box-tool" data-widget="remove">
+                                                        <i class="fa fa-times"></i></button>
                                                 </div>
                                             </div>
                                             <div class="box-body chart-responsive">
-                                                <div class="chart" id="bar-chart" style="height: 300px;width: 300px;"></div>
+                                                <div class="chart" id="bar-chart"
+                                                     style="height: 300px;width: 300px;"></div>
                                             </div>
                                             <!-- /.box-body -->
                                         </div>
@@ -1045,14 +958,17 @@ immediately after the control sidebar -->
 
 <script>
     $(function () {
-        $('#example1').DataTable()
-        $('#example2').DataTable({
+        $('#example1').DataTable();
+        $('#fileTable').DataTable({
             'paging': true,
             'lengthChange': false,
             'searching': false,
             'ordering': true,
             'info': true,
-            'autoWidth': false
+            'autoWidth': false,
+            "language": {
+                "emptyTable": "现在还没有上传的文件，快来上传第一个吧"
+            }
         });
     });
 </script>
@@ -1065,6 +981,7 @@ immediately after the control sidebar -->
 <!--})-->
 <!--})-->
 <!--</script>-->
+
 <!-- Vue.js -->
 <script>
     var studentIdStr = '';
@@ -1100,7 +1017,7 @@ immediately after the control sidebar -->
                 description: '',
                 recommendGrade: '0',
             },
-
+            scoreRate: {},
         },
         methods: {
             getInfo() {
@@ -1149,7 +1066,7 @@ immediately after the control sidebar -->
                     url: '/getFilesByCourseId',
                     type: 'get',
                     data: {
-                        courseId: 11
+                        courseId: courseIdStr
                     },
                     dataType: 'json',
                     success: function (res) {
@@ -1248,16 +1165,19 @@ immediately after the control sidebar -->
                 classDetail.comment.studentId = studentIdStr;
                 if (classDetail.comment.courseId == null) {
                     alert("请先登录");
+                    return;
                 }
                 if (classDetail.comment.studentId == null) {
-                    alert("请选择要怕评价的课程")
+                    alert("请选择要怕评价的课程");
+                    return;
                 }
-                if(classDetail.comment.description.length < 4){
+                if (classDetail.comment.description.length < 4) {
                     alert("请输入大于4个字节的内容");
                     return;
                 }
-                if(classDetail.comment.recommendGrade === "0"){
+                if (classDetail.comment.recommendGrade === "0") {
                     alert("请选择推荐年级");
+                    return;
                 }
                 $.ajax({
                     url: '/commentUpload',
@@ -1275,12 +1195,36 @@ immediately after the control sidebar -->
                         alert("评论失败");
                     }
                 })
-            }
+            },
+            getScoreRate() {
+                $.ajax({
+                    url: "/getScoreRate",
+                    type: "get",
+                    data: {
+                        courseId: courseIdStr,
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        if (res.success) {
+                            classDetail.scoreRate.finalExamWeight = res.data.finalExamWeight;
+                            classDetail.scoreRate.midExamWeight = res.data.midExamWeight;
+                            classDetail.scoreRate.otherWeight = res.data.otherWeight;
+                            console.log(res.data);
+                        } else {
+                            alert(res.errorInfo);
+                        }
+                    },
+                    error: function () {
+                        alert("getScoreRate Failed!")
+                    }
+                })
+            },
         },
         mounted() {
             // this.myfun();
             this.getPar();
             this.getInfo();
+            this.getScoreRate();
             this.getFiles();
             // this.GetLogin();
 
@@ -1353,9 +1297,9 @@ immediately after the control sidebar -->
             resize: true,
             colors: ["#3c8dbc", "#f56954", "#00a65a"],
             data: [
-                {label: "期中考核占比", value: 12},
-                {label: "平时占比        ", value: 30},
-                {label: "最终考核占比", value: 20}
+                {label: "期中考核占比", value: classDetail.scoreRate.midExamWeight},
+                {label: "平时占比        ", value: classDetail.scoreRate.otherWeight},
+                {label: "最终考核占比", value: classDetail.scoreRate.finalExamWeight}
             ],
             hideHover: 'auto'
         });

@@ -21,6 +21,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.forthelight.biz.CourseBiz;
@@ -933,4 +934,24 @@ public class CourseController {
         return gson.toJson(res);
     }
 
+    @RequestMapping(value = "/getScoreRate", produces = "text/json; charset=utf-8")
+    @ResponseBody
+    public String getScoreRate(@RequestParam("courseId") String courseId){
+        Map<String, Object> rsp = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Course course = courseBiz.findById(Integer.parseInt(courseId));
+        if(course == null){
+            rsp.put("success", false);
+            rsp.put("errorInfo", "没有找到id为" + courseId + "的课程");
+        } else {
+            data.put("midExamWeight", course.getMidExamWeight());
+            data.put("finalExamWeight", course.getFinalExamWeight());
+            data.put("otherWeight", 100 - course.getMidExamWeight() - course.getFinalExamWeight());
+            rsp.put("data", data);
+            rsp.put("success", true);
+        }
+
+        return gson.toJson(rsp);
+    }
 }
