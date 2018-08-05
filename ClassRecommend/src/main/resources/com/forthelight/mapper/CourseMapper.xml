@@ -125,7 +125,7 @@
 	    ( ( Course inner join student_select_course on Course.id = courseId ) )
 	    inner join student_comment_course on selectId = student_select_course.id
 	    group by Course.id 
-	    order by LikeNumber desc
+	    order by sum(LikeNumber) desc
 	</select>
 	
 	<select id="likeNumber" parameterType="int" resultType="Integer">

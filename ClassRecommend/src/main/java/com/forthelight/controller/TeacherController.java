@@ -584,7 +584,7 @@ public class TeacherController {
 
         List<Teacher> teachers = teacherBiz.OrderByLike();
         JsonArray top3Teachers = new JsonArray();
-        for(int i=0;i<1;i++){
+        for(int i=0;i<5;i++){
             Teacher teacher = teachers.get(i);
             JsonObject topTeacher = new JsonObject();
 
