@@ -167,33 +167,11 @@ public class TeacherController {
 
         }
 
-        JsonArray tagsPercent = new JsonArray();
-
-        JsonObject TagsWithColor1 = new JsonObject();
-        TagsWithColor1.addProperty("label", "手下留情");
-        TagsWithColor1.addProperty("data", allCoursesBearScore);
-        TagsWithColor1.addProperty("color", "#3c8dbc");
-
-        JsonObject TagsWithColor2 = new JsonObject();
-        TagsWithColor2.addProperty("label", "课堂有趣");
-        TagsWithColor2.addProperty("data", allCoursesInterestingScore);
-        TagsWithColor2.addProperty("color", "#0073b7");
-
-        JsonObject TagsWithColor3 = new JsonObject();
-        TagsWithColor3.addProperty("label", "划水程度");
-        TagsWithColor3.addProperty("data", allCoursesEasyScore);
-        TagsWithColor3.addProperty("color", "#00c0ef");
-
-        JsonObject TagsWithColor4 = new JsonObject();
-        TagsWithColor4.addProperty("label", "干货满满");
-        TagsWithColor4.addProperty("data", allCoursesKnowledgeScore);
-        TagsWithColor4.addProperty("color", "#B2DFEE");
-
-        tagsPercent.add(TagsWithColor1);
-        tagsPercent.add(TagsWithColor2);
-        tagsPercent.add(TagsWithColor3);
-        tagsPercent.add(TagsWithColor4);
-
+        int[] tagsPercent = new int[4];
+        tagsPercent[0]=allCoursesBearScore;
+        tagsPercent[1]=allCoursesInterestingScore;
+        tagsPercent[2]=allCoursesEasyScore;
+        tagsPercent[3]=allCoursesKnowledgeScore;
 
         JsonArray preExamScore = new JsonArray();
 
@@ -452,42 +430,185 @@ public class TeacherController {
         List<Teacher> teachers = new ArrayList<>();
 
         boolean success = false;
-        if(courseName != "" ){
+        if (courseName != "") {
             success = true;
         }
-        if(studentIdStr == ""){
+        if (studentIdStr == "") {
             success = false;
         }
 
         int studentId = Integer.parseInt(studentIdStr);
 
-        if(courseName == "全部课程"){
+        if (courseName.equals("全部课程")) {
             teachers = teacherBiz.findByStudentId(studentId);
-        }else {
-            teachers = teacherBiz.findByStudentIdAndCourseName(studentId,courseName);
+        } else {
+            teachers = teacherBiz.findByStudentIdAndCourseName(studentId, courseName);
         }
 
         JsonArray teachersList = new JsonArray();
         JsonObject allTeacher = new JsonObject();
-        allTeacher.addProperty("teacherName","全部教师");
+        allTeacher.addProperty("teacherName", "全部教师");
 
-        for(Teacher teacher : teachers){
+        for (Teacher teacher : teachers) {
 
             JsonObject teacherList = new JsonObject();
-            teacherList.addProperty("teacherName",teacher.getTeacherName());
+            teacherList.addProperty("teacherName", teacher.getTeacherName());
             teachersList.add(teacherList);
         }
 
-        Map<String,Object> data = new HashMap<>();
-        data.put("teachers",teachersList);
+        Map<String, Object> data = new HashMap<>();
+        data.put("teachers", teachersList);
 
         Map<String, Object> res = new HashMap<>();
-        res.put("data",data);
-        res.put("success",success);
+        res.put("data", data);
+        res.put("success", success);
 
 
         return gson.toJson(res);
     }
 
+    @RequestMapping(value = "/findByCourseName", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findByCourseName(String courseName, HttpServletResponse response) {
 
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Map<String, Object> res = new HashMap<>();
+
+        boolean success = false;
+        if (courseName != "") {
+            success = true;
+        }
+
+        if (success) {
+            List<Teacher> teachers = new ArrayList<>();
+
+            if (courseName.equals("全部课程")) {
+                teachers = teacherBiz.findAll();
+            } else {
+                List<Course> courses = courseBiz.findByCourseName(courseName);
+                for (Course course : courses) {
+                    teachers.add(course.getTeacher());
+                }
+            }
+
+            JsonArray teachersList = new JsonArray();
+            JsonObject allTeacher = new JsonObject();
+            allTeacher.addProperty("teacherName", "全部教师");
+
+            for (Teacher teacher : teachers) {
+
+                JsonObject teacherList = new JsonObject();
+                teacherList.addProperty("teacherName", teacher.getTeacherName());
+                teachersList.add(teacherList);
+            }
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("teachers", teachersList);
+            res.put("data", data);
+
+        }
+
+        res.put("success", success);
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = {"/findAllTeacherAndCourse"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findAllTeacherAndCourse(HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        boolean success = true;
+
+        JsonObject allCourse = new JsonObject();
+        allCourse.addProperty("courseName", "全部课程");
+
+        JsonObject allTeacher = new JsonObject();
+        allTeacher.addProperty("teacherName", "全部教师");
+
+        List<Course> courses = courseBiz.findAll();
+
+        JsonArray coursesList = new JsonArray();
+        coursesList.add(allCourse);
+
+        List<Teacher> teachers = new ArrayList<>();
+
+        for (Course course : courses) {
+
+            JsonObject courseList = new JsonObject();
+            courseList.addProperty("courseName", course.getCourseName());
+            coursesList.add(courseList);
+
+            Teacher temp = teacherBiz.findById(course.getTeacher().getId());
+            teachers.add(temp);
+        }
+
+        JsonArray teachersList = new JsonArray();
+        teachersList.add(allTeacher);
+
+        for (Teacher teacher : teachers) {
+
+            JsonObject teacherList = new JsonObject();
+            teacherList.addProperty("teacherName", teacher.getTeacherName());
+            teachersList.add(teacherList);
+        }
+
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("teachers", teachersList);
+        data.put("courses", coursesList);
+
+        Map<String, Object> res = new HashMap<>();
+        res.put("data", data);
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = {"/getTop3Teacher"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findTop3Teacher(HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+
+        boolean success = false;
+
+        List<Teacher> teachers = teacherBiz.OrderByLike();
+        JsonArray top3Teachers = new JsonArray();
+        for(int i=0;i<1;i++){
+            Teacher teacher = teachers.get(i);
+            JsonObject topTeacher = new JsonObject();
+
+            topTeacher.addProperty("teacherName",teacher.getTeacherName());
+            topTeacher.addProperty("email",teacher.getEmail());
+            topTeacher.addProperty("level",teacher.getLevel());
+            topTeacher.addProperty("likeNumber",teacherBiz.likeNumber(teacher.getId()));
+
+            top3Teachers.add(topTeacher);
+
+        }
+
+        if(top3Teachers.size() > 0){
+            success = true;
+        }
+
+        Map<String,Object> res = new HashMap<>();
+        Map<String,Object> data = new HashMap<>();
+        data.put("teachers",top3Teachers);
+
+        res.put("data",data);
+        res.put("success",success);
+
+        return gson.toJson(res);
+
+    }
 }

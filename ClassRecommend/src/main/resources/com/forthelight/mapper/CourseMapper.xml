@@ -194,10 +194,60 @@
 
 	<select id="findByCourseAndTeacher" resultMap="CourseResultMap">
 		select * from Course
-		where courseName = #{arg1} and teacherId in
-		( select id from Teacher where teacherName = #{arg2} and deleteStatus = 0 )
-		and id in ( select courseId from student_select_course where studentId = #{arg0}
-		 and deleteStatus = 0 ) and deleteStatus = 0
+		where deleteStatus = 0
+		<if test="courseName != null">
+			and courseName = #{courseName}
+		</if>
+		<if test="teacherName != null">
+			and teacherId in
+			( select id from Teacher where teacherName = #{teacherName} and deleteStatus = 0 )
+		</if>
+		<if test="studentId > 0">
+			and id in ( select courseId from student_select_course where studentId = #{studentId}
+			and deleteStatus = 0 )
+		</if>
 	</select>
 
+	<select id="findByTeacherNameAndCourseName" resultMap="CourseResultMap">
+		select * from Course
+		where courseName = #{arg1} and teacherId in
+		( select id from Teacher where teacherName = #{arg0} and deleteStatus = 0 )
+		and deleteStatus = 0
+	</select>
+	
+	<select id="findByTeacherCourseExamPass" resultMap="CourseResultMap">
+		select * from Course
+		where deleteStatus = 0
+		<if test="courseName != null">
+			and courseName = #{courseName}
+		</if>
+		<if test="teacherName != null">
+			and teacherId in
+			( select id from Teacher where teacherName = #{teacherName} and deleteStatus = 0 )
+		</if>
+		<if test="examType != -1">
+			and examiningForm = #{examType}
+		</if>
+		<if test="passType != -1">
+			and passingCourse = #{passType}
+		</if>
+	</select>
+
+	<select id="findRecommendCourse" resultMap="CourseResultMap">
+		select * from Course
+		where
+		( collegeId = 7 or
+		( collegeId = #{collegeId} and majorId = null ) or
+		( collegeId = #{collegeId} and majorId = #{majorId} ) )
+		and deleteStatus = 0
+	</select>
+
+	<select id="findSelectCourse" resultMap="CourseResultMap">
+		select * from Course
+		where
+		( level = "e" or
+		( level = "D" and
+		( ( collegeId = #{collegeId} and MajorId = null ) or
+		( collegeId = {#collegeId} and majorId = #{majorId} ) ) ) )
+	</select>
 </mapper>
