@@ -20,6 +20,8 @@ public interface StudentCommentCourseBiz {
 
 	int insert(StudentCommentCourse studentCommentCourse);
 
+	Integer update(StudentCommentCourse studentCommentCourse);
+
 	int getScoreByGrade(String studentNumber, int courseId);
 
 	int numberOfGetScoreByGrade(String studentNumber, int courseId);

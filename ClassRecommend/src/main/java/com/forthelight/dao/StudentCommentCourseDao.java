@@ -15,6 +15,8 @@ public interface StudentCommentCourseDao {
 	List<StudentCommentCourse> orderByLikeNumber(int teacherId);
 
 	int commentNumberOfCourse(int courseId);
+
+	Integer update(StudentCommentCourse studentCommentCourse);
 	
 	int getSelectIdByStudentIdAndCourseId(int studentId, int courseId);
 	
