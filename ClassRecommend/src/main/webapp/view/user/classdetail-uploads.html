@@ -375,8 +375,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <i class="fa fa-share margin-r-5"></i> Share</a>
                                         </li>
                                         <li>
-                                            <span class="link-black text-sm like">
-                                                <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</span>
+                                            <a href="#" class="link-black text-sm like">
+                                                <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                                         </li>
                                         <li class="pull-right">
                                             <a href="#" class="link-black text-sm">
@@ -1264,19 +1264,18 @@ immediately after the control sidebar -->
     })
 </script>
 <script type="text/javascript">
-    $('span.like').click(function () {
-        console.log("click");
-        var thumb = $(this).children();
-        if(thumb.hasClass("fa-thumbs-o-up")){
-            thumb.removeClass("fa-thumbs-o-up");
-            thumb.addClass("thumbs-up");
-            classDetail.likeNumber++;
-        }
-        if(thumb.hasClass("thumbs-up")){
-            thumb.removeClass("thumbs-up");
-            thumb.addClass("fa-thumbs-o-up");
-            classDetail.likeNumber--;
-        }
+    $(document).ready(function () {
+        $('a.like').on('click', function () {
+            if ($(this).children().hasClass('fa-thumbs-o-up')){
+                $(this).children().removeClass('fa-thumbs-o-up').addClass('fa-thumbs-up')
+                classDetail.classInfo.likeNumber++;
+            } else {
+                $(this).children().removeClass('fa-thumbs-up').addClass('fa-thumbs-o-up');
+                classDetail.classInfo.likeNumber--;
+
+            }
+
+        })
     })
 </script>
 <!-- 字符云  -->
