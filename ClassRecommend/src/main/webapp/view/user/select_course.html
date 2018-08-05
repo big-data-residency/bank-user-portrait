@@ -249,8 +249,8 @@
 					</div>
 					<div class="box-body" id="studentBasicInfo">
 						<div>
-							<!--<strong>姓名</strong>： {{ student.student.studentName }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-							<strong>年级</strong>： {{ student.grade }}
+							<strong>姓名</strong>： {{ student.student.studentName }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<strong>年级</strong>： {{ student.grade }} 级
 						</div>
 						<br/>
 						<strong style="">学号</strong>：{{ student.student.studentNumber }}
@@ -953,7 +953,15 @@
 
         el: '#studentBasicInfo',
         data: {
-            student: ''
+            student: {
+                student:{
+                    studentName:'',
+					studentNumber:'',
+				},
+				college:'',
+				major:'',
+				grade:'',
+			}
         },
         methods: {
             GetQueryString(name) {
@@ -1017,10 +1025,10 @@
                             var removeId = "remove"+course.id;
                             indexSelect[course.id] = course.courseName;
 
-
+                            var courseName = course.courseCode + " " + course.courseName;
 
                             $('#searchCourseResult').append(`<div class="search-result">
-                            ${ course.courseName }
+                            ${ courseName }
                             <i class='material-icons add-icon' id=` + selectId + ` value = `+ course.id + `>add</i>
                         </div>`);
 
@@ -1064,10 +1072,10 @@
             })
     });
 
-    var bearScore;
-    var interestingScore;
-    var easyScore;
-    var knowledgeScore;
+    var bearScore = 0;
+    var interestingScore = 0;
+    var easyScore = 0;
+    var knowledgeScore = 0;
 
     $(document).ready(function () {
         /* 1. Visualizing things on Hover - See next part for action on click */
@@ -1168,7 +1176,7 @@
                 courseABCD:document.getElementById("courseABCD").valueOf().checked,
                 preScoreRequest:document.getElementById("preScoreRequest").valueOf().checked,
                 preScore:document.getElementById("preScore").valueOf().value,
-                bareScore:bearScore,
+                bearScore:bearScore,
                 interestingScore:interestingScore,
                 easyScore:easyScore,
                 knowledgeScore:knowledgeScore,
@@ -1182,12 +1190,14 @@
             type:'POST',
             success:function (res) {
                 if(res.success){
-                    alert('成功');
+                    window.location.href='http://localhost:8080/view/user/calendar.html';
                 }
+                else{
+                    alert(res.data)
+				}
                 console.log(selectedCourses);
             }
         })
-		window.location.href='http://localhost:8080/view/user/calendar.html'
     })
 
     $(function (){

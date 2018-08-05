@@ -245,6 +245,7 @@ public class CourseController {
             JsonObject courseList = new JsonObject();
             courseList.addProperty("id", course.getId());
             courseList.addProperty("courseName", course.getCourseName());
+            courseList.addProperty("courseCode",course.getCourseCode());
             coursesList.add(courseList);
         }
 
@@ -300,7 +301,7 @@ public class CourseController {
 
         courseSelect.selectMoreD = request.getParameter("selectMoreD").equals("true");
         courseSelect.selectMoreD = request.getParameter("selectMoreD").equals("true");
-        courseSelect.bareScore = Integer.parseInt(request.getParameter("bareScore"));
+        courseSelect.bareScore = Integer.parseInt(request.getParameter("bearScore"));
         courseSelect.interestingScore = Integer.parseInt(request.getParameter("interestingScore"));
         courseSelect.easyScore = Integer.parseInt(request.getParameter("easyScore"));
         courseSelect.knowledgeScore = Integer.parseInt(request.getParameter("knowledgeScore"));
@@ -311,7 +312,12 @@ public class CourseController {
 
         boolean success = true;
 
-        courseSelect.Initialize();
+        if(!courseSelect.Initialize()){
+            success = false;
+            res.put("data",courseSelect.Worry);
+        }
+
+
         courseSelect.Recommend();
 
         res.put("success", success);
@@ -999,7 +1005,6 @@ public class CourseController {
 
         Map<String, Object> data = new HashMap<>();
         data.put("courseInfo", recommendCourses);
-        data.put("warning", courseSelect.Worry);
 
         res.put("data", data);
         res.put("success", true);
