@@ -131,7 +131,7 @@
 									<a :href="'studentinfo_new.html?id='+studentIdStr" class="btn btn-default btn-flat">Profile</a>
 								</div>
 								<div class="pull-right">
-									<a href="#" class="btn btn-default btn-flat">Sign out</a>
+									<a v-on:click="out()" class="btn btn-default btn-flat">Sign out</a>
 								</div>
 							</li>
 						</ul>
@@ -190,7 +190,7 @@
 				<li class="active">
 					<a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
 				</li>
-				<li>
+				<li v-if="privilege == 1">
 					<a :href="'../admin/manageStudent.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>查看所有用户信息</span></a>
 				</li>
 				<li>
@@ -650,7 +650,20 @@ m
                     }
 				})
 
-			}
+			},
+            out(){
+                $.ajax({
+                    url:'http://localhost:8080/out',
+                    data:{},
+                    type:'GET',
+                    dataType:'json',
+                    success(res){
+                        alert(res.data);
+                        location.href = "../login.html";
+                    }
+                })
+            }
+            ,
 		},
 		mounted(){
 		    this.getPar();
