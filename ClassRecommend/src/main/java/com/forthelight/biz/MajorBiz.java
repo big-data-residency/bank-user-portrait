@@ -8,7 +8,7 @@ public interface MajorBiz {
 
 	Major findById(int id);
 
-	List<Major> findByCollegeId(int collegeId);
+	List<Major> findByCollegeId(Integer collegeId);
 
 	Major findByName(String majorName);
 }
