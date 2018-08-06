@@ -657,10 +657,12 @@ public class TeacherController {
             Teacher teacher = teachers.get(i);
             JsonObject topTeacher = new JsonObject();
 
+            topTeacher.addProperty("teacherId",teacher.getId());
             topTeacher.addProperty("teacherName",teacher.getTeacherName());
             topTeacher.addProperty("email",teacher.getEmail());
             topTeacher.addProperty("level",teacher.getLevel());
             topTeacher.addProperty("likeNumber",teacherBiz.likeNumber(teacher.getId()));
+            topTeacher.addProperty("portrait",teacher.getTeacherPortrait());
 
             top3Teachers.add(topTeacher);
 
