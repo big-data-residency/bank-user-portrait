@@ -193,4 +193,9 @@ public class CourseBizImpl implements CourseBiz {
         return courses;
     }
 
+    @Override
+    public List<Course> findByTeacherAndCode(String keyword){
+        return courseDao.findByTeacherAndCode(keyword);
+    }
+
 }

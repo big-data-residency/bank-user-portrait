@@ -48,4 +48,17 @@ public class StudentDaoTest {
             ;
         }
     }
+
+    @Test
+    public void selectCourseNumber(){
+        int result = studentDao.selectCourseNumber(10);
+        System.out.print(result);
+    }
+
+    @Test
+    public void commentCourseNumber(){
+        int result = studentDao.commentCourseNumber(10);
+        System.out.print(result);
+    }
+
 }

@@ -439,4 +439,34 @@ public class StudentController {
 		return gson.toJson(res);
 	}
 
-}
+
+	@RequestMapping(value = "/studentPagesInfo", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+	@ResponseBody
+	public String studentPagesInfo(String studentIdStr, HttpServletResponse response) {
+
+		response.setContentType("text/json;charset:UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+		Map<String, Object> res = new HashMap<>();
+
+		int studentId = Integer.parseInt(studentIdStr);
+		Student student = studentBiz.findById(studentId);
+
+		JsonObject studentInfo = new JsonObject();
+		studentInfo.addProperty("nickName",student.getNickName());
+		studentInfo.addProperty("major",student.getMajor().getMajorName());
+		studentInfo.addProperty("studentNumber",student.getStudentNumber());
+		studentInfo.addProperty("selectNumber",studentBiz.selectCourseNumber(studentId));
+		studentInfo.addProperty("commentNumber",studentBiz.commentCourseNumber(studentId));
+		studentInfo.addProperty("portrait",student.getStudentPortrait());
+
+		Map<String,Object> data = new HashMap<>();
+		data.put("student",studentInfo);
+
+		res.put("data",data);
+
+		return gson.toJson(res);
+	}
+
+	}

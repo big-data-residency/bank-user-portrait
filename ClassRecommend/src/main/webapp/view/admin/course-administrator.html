@@ -423,8 +423,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
 
-    $(function () {
-        $('#example1').DataTable()
+    function pageSlip(){
         $('#example2').DataTable({
             'paging': true,
             'lengthChange': false,
@@ -435,6 +434,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         });
         //Initialize Select2 Elements
         $('.select2').select2()
+    }
+
+    $(function () {
 
         $.ajax({
             url: 'http://localhost:8080/findAllTeachers',
@@ -481,6 +483,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </td>
                                 </tr>`)
                     }
+                    pageSlip();
                 }
             }
         })

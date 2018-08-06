@@ -63,5 +63,7 @@ public interface CourseBiz {
 
     List<String> selectByShouldCheck(int grade, int collegeId, int majorId);
 
-    List<Course> selectByRecommendCourse(int Grade,int College, int Major);
+    List<Course> selectByRecommendCourse(int Grade, int College, int Major);
+
+    List<Course> findByTeacherAndCode(String keyword);
 }
