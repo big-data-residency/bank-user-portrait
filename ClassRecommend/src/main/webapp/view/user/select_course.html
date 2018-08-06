@@ -181,14 +181,17 @@
 					<a :href="'new_start.html?id='+studentIdStr"><i class="fa fa-user"></i> <span>用户首页</span></a>
 				</li>
 				<li >
-					<a v-if="studentPageInfo.privilege == 0" :href="'courseList.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+					<a v-if="studentPageInfo.privilege == 0" :href="'http://localhost:8080/view/user/courseList.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
 					<a v-else :href="'../admin/course-administrator.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
 				</li>
 				<li>
 					<a :href="'course-attended.html?id='+studentIdStr"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
 				</li>
 				<li class="active">
-					<a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
+					<a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
+				</li>
+				<li>
+					<a :href="'studentinfo_new.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>查看所有用户信息</span></a>
 				</li>
 				<li>
 					<a :href="'studentinfo_new.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>个人信息</span></a>
@@ -598,7 +601,6 @@ m
 <script src="../../style/dist/js/demo.js"></script>
 <script src="../../style/newstyle/js/star.js"></script>
 <script src="../../style/newstyle/js/inputSpinner.js"></script>
-
 
 <script>
     $(document).ready(function () {
@@ -1066,12 +1068,12 @@ m
             type:'POST',
             success:function (res) {
                 if(res.success){
-                    window.location.href='http://localhost:8080/view/user/calendar.html';
+                    var target='http://localhost:8080/view/user/calendar.html?id='+studentIdStr;
+                    window.location.href=target;
                 }
                 else{
                     alert(res.data)
 				}
-                console.log(selectedCourses);
             }
         })
     })

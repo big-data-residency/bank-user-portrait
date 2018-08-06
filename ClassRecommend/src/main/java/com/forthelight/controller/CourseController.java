@@ -1348,6 +1348,7 @@ public class CourseController {
             Course course = courses.get(i);
             JsonObject topCourse = new JsonObject();
 
+            topCourse.addProperty("courseId",course.getId());
             topCourse.addProperty("courseCode", course.getCourseCode());
             topCourse.addProperty("courseName", course.getCourseName());
             topCourse.addProperty("studentNumber", course.getStudentNumber());

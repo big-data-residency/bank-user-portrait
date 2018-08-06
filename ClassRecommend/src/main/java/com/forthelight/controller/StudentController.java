@@ -213,6 +213,7 @@ public class StudentController {
 		studentInfo.addProperty("studentNumber",student.getStudentNumber());
 		studentInfo.addProperty("college", student.getCollege().getCollegeName());
 		studentInfo.addProperty("major", student.getMajor().getMajorName());
+		studentInfo.addProperty("portrait",student.getStudentPortrait());
 		// ------------------ 第一个标签栏数据 ---------------------
 		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseBiz.findByStudentId(studentId);
 		JsonArray comments = new JsonArray();

@@ -126,7 +126,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </ul>
                                 </li>
                                 <li class="footer">
-                                    <a href="'http://localhost:8080/view/user/classdetail-uploads.html?id='+studentId">进入评课</a>
+                                    <a :href="'http://localhost:8080/view/user/classdetail-uploads.html?id='+studentIdStr">进入评课</a>
                                 </li>
                             </ul>
                         </li>
@@ -206,18 +206,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <li >
                         <a :href="'new_start.html?id='+studentIdStr"><i class="fa fa-user"></i> <span>用户首页</span></a>
                     </li>
-                    <li >
-                        <a v-if="studentPageInfo.privilege == 0" :href="'courseList.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+                    <li class="active">
+                        <a v-if="studentPageInfo.privilege == 0" :href="'http://localhost:8080/view/user/courseList.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
                         <a v-else :href="'../admin/course-administrator.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
                     </li>
                     <li>
-                        <a :href="'course-attended.html?id='+studentIdStr"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
-                    </li>
-                    <li class="active">
-                        <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
+                        <a :href="'../user/course-attended.html?id='+studentIdStr"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
                     </li>
                     <li>
-                        <a :href="'studentinfo_new.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+                        <a :href="'../user/select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
+                    </li>
+                    <li>
+                        <a :href="'../user/studentinfo_new.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>查看所有用户信息</span></a>
+                    </li>
+                    <li>
+                        <a :href="'..user/studentinfo_new.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>个人信息</span></a>
                     </li>
                     <!--<li class="treeview">
     <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -589,6 +592,87 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
 
+    var studentIdStr='';
+
+    var headerStudentInfo = new Vue({
+        el:'#headerStudentInfo',
+        data:{
+            studentPageInfo:{
+
+            },
+            sub:'',
+            studentIdStr:'',
+        },
+        methods:{
+            GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                    context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            },
+            getPar() {
+                studentIdStr = this.GetQueryString('id');
+            },
+            getPageStudentInfo(){
+                $.ajax({
+                    url:'http://localhost:8080/studentPagesInfo',
+                    data:{
+                        studentIdStr:studentIdStr,
+                    },
+                    type:'GET',
+                    dataType:'json',
+                    success:function (res) {
+                        headerStudentInfo.studentPageInfo = res.data.student;
+                        headerStudentInfo.sub = res.data.student.selectNumber - res.data.student.commentNumber;
+                        headerStudentInfo.studentIdStr = studentIdStr;
+                    }
+                })
+
+            }
+        },
+        mounted(){
+            this.getPar();
+            this.getPageStudentInfo();
+        }
+    })
+
+    var asideStudentInfo = new Vue({
+        el:'#asideStudentInfo',
+        data:{
+            studentPageInfo:{
+
+            },
+            sub:'',
+            studentIdStr:'',
+        },
+        methods:{
+            getPageStudentInfo(){
+                $.ajax({
+                    url:'http://localhost:8080/studentPagesInfo',
+                    data:{
+                        studentIdStr:studentIdStr,
+                    },
+                    type:'GET',
+                    dataType:'json',
+                    success:function (res) {
+                        asideStudentInfo.studentPageInfo = res.data.student;
+                        asideStudentInfo.sub = res.data.student.selectNumber - res.data.student.commentNumber;
+                        asideStudentInfo.studentIdStr = studentIdStr;
+                    }
+                })
+
+            }
+        },
+        mounted(){
+            this.getPageStudentInfo();
+        }
+    })
+
+
     function pageSlip() {
         $('#example2').DataTable({
             'paging': true,
@@ -644,7 +728,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <td>${course.examForm}</td>
                                     <td>${course.passingForm}</td>
                                     <td>
-                                        <a href="#">评价</a>
+                                        <a href="href="classdetail-uploads.html?id=${studentIdStr}&&courseId=${course.courseId}"">评价</a>
                                     </td>
                                 </tr>`)
                     }
@@ -679,7 +763,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <td>${ course.examType }</td>
                                     <td>${ course.passType }</td>
                                     <td>
-                                        <a href="#">评价</a>
+                                        <a href="href="classdetail-uploads.html?id=${studentIdStr}&&courseId=${course.courseId}"">评价</a>
                                     </td>
                                 </tr>`)
                     }
