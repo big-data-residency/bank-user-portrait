@@ -708,10 +708,8 @@ user experience. -->
             },
             getPar() {
                 starter.studentId = this.GetQueryString('id');
-                alert(starter.studentId+"sd");
             },
             GetLogin() {
-                alert(3);
                 $.ajax({
                     url: 'http://localhost:8080/getsession',
                     type: 'Get',
@@ -734,7 +732,6 @@ user experience. -->
 
             },
             getTop3Teacher() {
-                alert(1);
                 $.ajax({
                     url: 'http://localhost:8080/getTop3Teacher',
                     data: {},
