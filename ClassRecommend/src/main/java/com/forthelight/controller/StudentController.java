@@ -65,7 +65,7 @@ public class StudentController {
 
 		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
 
-		Map<String, Object> rsp = new HashMap<>();
+		JsonObject rsp =new JsonObject();
 		String NickName = request.getParameter("NickName");
 		String password = request.getParameter("password");
 
@@ -73,17 +73,17 @@ public class StudentController {
 		if (student != null && student.getPassword() != null){
 
 			if (student.getPassword().equals(password)){
-				rsp.put("success", true);
-				rsp.put("data", "登陆成功");
+				rsp.addProperty("success", true);
+				rsp.add("data",gson.toJsonTree(student,Student.class));
 				HttpSession session = request.getSession();
 				session.setAttribute("user",student);
 			} else {
-				rsp.put("success", false);
-				rsp.put("data", "密码错误");
+				rsp.addProperty("success", false);
+				rsp.addProperty("data", "密码错误");
 			}
 		} else {
-			rsp.put("success",false);
-			rsp.put("data","用户不存在");
+			rsp.addProperty("success",false);
+			rsp.addProperty("data","用户不存在");
 		}
 		return gson.toJson(rsp);
 	}

@@ -677,9 +677,7 @@ user experience. -->
 
 
 <!-- import Vue before Element -->
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="../../plugins/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 
@@ -688,7 +686,7 @@ user experience. -->
         el: '#starter',
         data: {
             studentId: '',
-            Login: {},
+            privilege: '',
             teachers: '',
             courses: '',
             studentPageInfo:{
@@ -698,42 +696,45 @@ user experience. -->
             studentIdStr:'',
         },
         methods: {
-            // GetQueryString(name) {
-            //     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-            //     var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
-            //     var context = "";
-            //     if (r != null)
-            //         context = r[2];
-            //     reg = null;
-            //     r = null;
-            //     return context == null || context == "" || context == "undefined" ? "" : context;
-            // },
-            // getPar() {
-            //     starter.studentId = this.GetQueryString('id');
-            // },
-            // GetLogin() {
-            //     $.ajax({
-            //         url: 'http://localhost:8080/getsession',
-            //         type: 'Get',
-            //         data: {},
-            //         dataType: 'json',
-            //         success(json) {
-            //             if (json.success) {
-            //                 this.Login = json.data;
-            //                 alert(this.Login.nickName);
-            //             } else {
-            //                 alert(json.data);
-            //                 location.href = "../login.html";
-            //             }
-            //         },
-            //         error: function (XMLHttpRequest) {
-            //             alert(("输出错误信息") + XMLHttpRequest.responseText);
-            //         }
-            //
-            //     })
-            //
-            // },
+            GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                    context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            },
+            getPar() {
+                starter.studentId = this.GetQueryString('id');
+                alert(starter.studentId+"sd");
+            },
+            GetLogin() {
+                alert(3);
+                $.ajax({
+                    url: 'http://localhost:8080/getsession',
+                    type: 'Get',
+                    data: {},
+                    dataType: 'json',
+                    success(json) {
+                        if (json.success) {
+                            if(json.data.id===starter.studentId)
+                            starter.privilege = json.data.privilege;
+                        } else {
+                            alert(json.data);
+                            location.href = "../login.html";
+                        }
+                    },
+                    error: function (XMLHttpRequest) {
+                        alert(("输出错误信息") + XMLHttpRequest.responseText);
+                    }
+
+                })
+
+            },
             getTop3Teacher() {
+                alert(1);
                 $.ajax({
                     url: 'http://localhost:8080/getTop3Teacher',
                     data: {},
@@ -792,7 +793,7 @@ user experience. -->
 
         mounted() {
             this.getPar();
-            // this.GetLogin();
+            this.GetLogin();
             this.getTop3Teacher();
             this.getTop10Course();
             this.getPageStudentInfo();

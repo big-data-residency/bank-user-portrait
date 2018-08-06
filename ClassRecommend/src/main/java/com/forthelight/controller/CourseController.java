@@ -1,15 +1,7 @@
 package com.forthelight.controller;
 
-import java.sql.Timestamp;
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-
 import com.forthelight.biz.*;
 import com.forthelight.domain.*;
-
 import com.google.gson.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,49 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import com.forthelight.biz.CourseBiz;
-import com.forthelight.biz.FileBiz;
-import com.forthelight.biz.StudentBiz;
-import com.forthelight.biz.StudentCommentCourseBiz;
-import com.forthelight.biz.TagBiz;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Controller
 public class CourseController {
 
-    private CourseSelectController courseSelectController = new CourseSelectController();
-
-    @Autowired
-    private CourseBiz courseBiz;
-
-    @Autowired
-    private CourseTimeBiz courseTimeBiz;
-
-    @Autowired
-    private FileBiz fileBiz;
-
-    @Autowired
-    private StudentCommentCourseBiz studentCommentCourseBiz;
-
-    @Autowired
-    private TagBiz tagBiz;
-
-    @Autowired
-    private StudentBiz studentBiz;
-
-    @Autowired
-    private MajorBiz majorBiz;
-
-    @Autowired
-    CollegeBiz collegeBiz;
-
     public int stu_Grade;
     public int stu_College;
     public int stu_Major;
-
     public boolean preferD;
     public boolean preferE;
     public boolean selectMoreD;
@@ -70,29 +30,41 @@ public class CourseController {
     public boolean selectNumberE;
     public Integer numberD;
     public Integer numberE;
-
     public boolean selectCourseType;
     public boolean allCourse;
     public boolean courseABCD;
     public boolean preScoreRequest;
     public int preScore;
-
     public int bareScore;
     public int interestingScore;
     public int easyScore;
     public int knowledgeScore;
-
     public String[] selectedCourses;
     public int[] selectedcourses = new int[20];
-
     public Integer hasD;
     public Integer hasE;
     public int[][] Time = new int[10][10];
     public List<Course> checkedCourses;
     public List<String> shouldCheckCourses;
-
     public String Worry;
     public boolean success;
+    @Autowired
+    CollegeBiz collegeBiz;
+    private CourseSelectController courseSelectController = new CourseSelectController();
+    @Autowired
+    private CourseBiz courseBiz;
+    @Autowired
+    private CourseTimeBiz courseTimeBiz;
+    @Autowired
+    private FileBiz fileBiz;
+    @Autowired
+    private StudentCommentCourseBiz studentCommentCourseBiz;
+    @Autowired
+    private TagBiz tagBiz;
+    @Autowired
+    private StudentBiz studentBiz;
+    @Autowired
+    private MajorBiz majorBiz;
 
     // ### classrecommend.html 显示课程基本信息、评论显示界面
     @RequestMapping(value = "/courseInfo", produces = "text/json; charset=utf-8")
@@ -304,8 +276,7 @@ public class CourseController {
     }
 
 
-    @RequestMapping(value = "/rCourse", produces = MediaType.APPLICATION_JSON_VALUE
-            + ";charset=utf-8")
+    @RequestMapping(value = "/rCourse", produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
     public String recommendCourse(HttpServletRequest request, HttpServletResponse response) {
 
@@ -1204,7 +1175,6 @@ public class CourseController {
         return gson.toJson(res);
     }
 
-
     @RequestMapping(value = "/findByCourseCode", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
     public String findByCourseCode(String courseCode, String teacherName, String courseName, String passType, String examType, HttpServletResponse response) {
@@ -1328,7 +1298,6 @@ public class CourseController {
 
         return gson.toJson(res);
     }
-
 
     @RequestMapping(value = "/getTop10Course", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
@@ -1483,7 +1452,7 @@ public class CourseController {
         Map<String, Object> data = new HashMap<>();
         data.put("courseInfo", recommendCourses);
         data.put("courseTable", recommendCoursesTime);
-        data.put("warning",Worry);
+        data.put("warning", Worry);
 
         res.put("data", data);
         res.put("success", true);
@@ -1567,20 +1536,52 @@ public class CourseController {
             coursesTime.add(time);
         }
 
-        Map<String,Object> data = new HashMap<>();
-        data.put("coursesTime",coursesTime);
-        data.put("courseName",courseBiz.findById(id).getCourseName());
-        data.put("courseId",courseBiz.findById(id).getId());
+        Map<String, Object> data = new HashMap<>();
+        data.put("coursesTime", coursesTime);
+        data.put("courseName", courseBiz.findById(id).getCourseName());
+        data.put("courseId", courseBiz.findById(id).getId());
 
         boolean success = false;
-        if(coursesTime.size() > 0){
+        if (coursesTime.size() > 0) {
             success = true;
         }
 
-        res.put("data",data);
-        res.put("success",success);
+        res.put("data", data);
+        res.put("success", success);
 
         return gson.toJson(res);
     }
 
+    @RequestMapping(value = "/getCourseInfo", produces = "text/json; charset=utf-8")
+    @ResponseBody
+    public String getCourseInfo(@RequestParam("courseId") String courseId) {
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        JsonObject rsp = new JsonObject();
+
+        Course course = courseBiz.findById(Integer.parseInt(courseId));
+        if (course == null) {
+            rsp.addProperty("success", false);
+            rsp.addProperty("data", "没有id为" + courseId + "的课程");
+            return gson.toJson(rsp);
+        }
+
+        JsonElement data = new JsonObject();
+        data.getAsJsonObject().add("course", gson.toJsonTree(course, Course.class));
+
+        rsp.add("data", data);
+        rsp.addProperty("success", true);
+
+        return gson.toJson(rsp);
+
+    }
+
+    @RequestMapping(value = "/updateCourseInfo", produces = "text/json; charset=utf-8")
+    @ResponseBody
+    public String updateCourseInfo(@RequestParam("course") Course course) {
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        JsonObject rsp = new JsonObject();
+        courseBiz.update(course);
+        rsp.addProperty("success", true);
+        return gson.toJson(rsp);
+    }
 }

@@ -21,7 +21,15 @@
 		<collection property="tags" ofType="Tag" column="id" autoMapping="true"
 			select="com.forthelight.dao.TagDao.findByCommentId" />
 
+        <collection property="subComment" ofType="StudentCommentCourse" column="id" autoMapping="true"
+                    select="findByReplyTo"/>
+
 	</resultMap>
+
+    <select id="findByReplyTo" parameterType="int" resultMap="StudentCommentCourseResultMap">
+        SELECT * FROM student_comment_course WHERE DeleteStatus=0 AND ReplyTo=#{replyTo}
+    </select>
+
 	<select id="findAll" resultMap="StudentCommentCourseResultMap">
 		SELECT * FROM student_comment_course;
 	</select>

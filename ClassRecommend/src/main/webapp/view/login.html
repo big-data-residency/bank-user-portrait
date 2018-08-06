@@ -110,7 +110,7 @@
 <!--</div>-->
 </div>
 <!--Inspiration from: http://ertekinn.com/loginsignup/-->
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='../../style/bower_components/jquery/dist/jquery.js'></script>
 
 <!-- Vue.js -->
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
@@ -130,23 +130,27 @@
         },
         methods: {
             validate() {
-                $.ajax({
-                    url: 'http://localhost:8080/login',
-                    type: 'POST',
-                    data: {
-                        NickName: login.login_username,
-                        password: login.login_password
-                    },
-                    dataType: 'json',
-                    success(res) {
-                        if (res.success) {
-                           location.href = "user/new_start.html";
+                if(login.login_username==="")
+                    alert("请输入用户名");
+                else {
+                    $.ajax({
+                        url: 'http://localhost:8080/login',
+                        type: 'POST',
+                        data: {
+                            NickName: login.login_username,
+                            password: login.login_password
+                        },
+                        dataType: 'json',
+                        success(res) {
+                            if (res.success) {
+                                location.href = "user/new_start.html?id="+res.data.id;
+                            }
+                            else {
+                                alert(res.data);
+                            }
                         }
-                        else {
-                            alert(res.data);
-                        }
-                    }
-                })
+                    })
+                }
             }
         }
     });
