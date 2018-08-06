@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50560
 File Encoding         : 65001
 
-Date: 2018-08-06 09:31:03
+Date: 2018-08-06 23:41:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2137,14 +2137,6 @@ CREATE TABLE `course` (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` VALUES ('1', 'test', null, '126', null, null, null, '0', '1.0', '3', '5', '15', 'D', '1', '50', '30', '0', '0');
-INSERT INTO `course` VALUES ('2', 'tses', null, '176', null, null, null, '0', '0.0', '0', '5', '15', 'A', '0', '50', '0', '0', '0');
-INSERT INTO `course` VALUES ('3', 'tes', null, '50', null, null, null, '0', '3.0', '2', '6', '6', 'D', '0', '20', '40', '0', '0');
-INSERT INTO `course` VALUES ('4', 'se', null, '93', null, null, null, '0', '1.0', '1', '2', '21', 'C', '0', '50', '30', '0', '0');
-INSERT INTO `course` VALUES ('5', 'es', null, '238', null, null, null, '0', '3.0', '0', '2', '19', 'E', '1', '0', '30', '0', '0');
-INSERT INTO `course` VALUES ('6', 'es', null, '186', null, null, null, '0', '1.0', '2', '1', '4', 'A', '1', '20', '0', '0', '0');
-INSERT INTO `course` VALUES ('7', 'es', null, '67', null, null, null, '0', '0.0', '3', '5', '11', 'D', '1', '20', '20', '0', '0');
-INSERT INTO `course` VALUES ('8', 'etes', null, '229', null, null, null, '0', '1.0', '3', '6', '6', 'A', '1', '30', '20', '0', '0');
 INSERT INTO `course` VALUES ('9', '0001', '中华国学', '16', '150', '1', '16', '0', '3.0', '0', '3', '17', 'A', '1', '40', '30', '0', '0');
 INSERT INTO `course` VALUES ('10', '0002', '现代商务文案策划', '4', '40', '1', '16', '1', '3.0', '2', '1', '2', 'C', '1', '30', '0', '0', '0');
 INSERT INTO `course` VALUES ('11', '0003', '现代商务文案策划', '230', '40', '1', '16', '0', '5.0', '3', '3', '16', 'A', '0', '20', '10', '0', '0');
@@ -2411,20 +2403,6 @@ CREATE TABLE `course_time` (
 -- ----------------------------
 -- Records of course_time
 -- ----------------------------
-INSERT INTO `course_time` VALUES ('1', '1', '6', '8', '4', '0');
-INSERT INTO `course_time` VALUES ('2', '1', '5', '7', '3', '0');
-INSERT INTO `course_time` VALUES ('3', '2', '2', '4', '5', '0');
-INSERT INTO `course_time` VALUES ('4', '2', '1', '3', '1', '0');
-INSERT INTO `course_time` VALUES ('5', '3', '6', '8', '5', '0');
-INSERT INTO `course_time` VALUES ('6', '3', '5', '7', '2', '0');
-INSERT INTO `course_time` VALUES ('7', '4', '6', '8', '5', '0');
-INSERT INTO `course_time` VALUES ('8', '4', '5', '7', '4', '0');
-INSERT INTO `course_time` VALUES ('9', '5', '5', '8', '5', '0');
-INSERT INTO `course_time` VALUES ('10', '5', '5', '7', '4', '0');
-INSERT INTO `course_time` VALUES ('11', '6', '1', '4', '4', '0');
-INSERT INTO `course_time` VALUES ('12', '7', '6', '8', '5', '0');
-INSERT INTO `course_time` VALUES ('13', '7', '5', '7', '4', '0');
-INSERT INTO `course_time` VALUES ('14', '8', '5', '8', '3', '0');
 INSERT INTO `course_time` VALUES ('16', '9', '5', '8', '4', '0');
 INSERT INTO `course_time` VALUES ('18', '10', '5', '8', '1', '0');
 INSERT INTO `course_time` VALUES ('20', '11', '2', '4', '4', '0');
@@ -2753,14 +2731,14 @@ CREATE TABLE `file` (
 -- ----------------------------
 -- Records of file
 -- ----------------------------
-INSERT INTO `file` VALUES ('2', '身份证复印件.pdf', '\\files', '2018-08-03 00:17:51', null, '11', '0', '标题', '描述', '0');
-INSERT INTO `file` VALUES ('3', '第四章  社会主义建设道路初步探索的理论成果.ppt', '\\files', '2018-08-03 00:21:03', null, '11', '0', '标题', '描述', '0');
-INSERT INTO `file` VALUES ('4', '身份证复印件.pdf', '\\files', '2018-08-03 00:21:03', null, '11', '0', '标题', '描述', '0');
-INSERT INTO `file` VALUES ('5', '第四章  社会主义建设道路初步探索的理论成果.ppt', '\\files', '2018-08-03 00:21:44', null, '11', '0', '标题', '描述', '0');
-INSERT INTO `file` VALUES ('6', '第四章  社会主义建设道路初步探索的理论成果.ppt', '\\files', '2018-08-03 00:23:49', null, null, '0', '标题', '描述', '0');
-INSERT INTO `file` VALUES ('7', '身份证复印件 - 副本.pdf', '', '2018-08-04 00:24:14', null, null, '0', '标题', '描述', '0');
-INSERT INTO `file` VALUES ('8', '身份证复印件 - 副本.pdf', '\\files', '2018-08-04 00:25:07', null, null, '0', '标题', '描述', '0');
-INSERT INTO `file` VALUES ('9', '身份证复印件 - 副本.pdf', '\\files', '2018-08-04 15:02:33', null, null, '0', '标题', '描述', '0');
+INSERT INTO `file` VALUES ('2', '身份证复印件.pdf', '\\files', '2018-08-06 19:29:52', '4', '11', '0', '标题', '描述', '0');
+INSERT INTO `file` VALUES ('3', '第四章  社会主义建设道路初步探索的理论成果.ppt', '\\files', '2018-08-06 19:30:26', '18', '11', '0', '标题', '描述', '0');
+INSERT INTO `file` VALUES ('4', '身份证复印件.pdf', '\\files', '2018-08-06 19:30:24', '19', '11', '0', '标题', '描述', '0');
+INSERT INTO `file` VALUES ('5', '第四章  社会主义建设道路初步探索的理论成果.ppt', '\\files', '2018-08-06 19:30:22', '17', '11', '0', '标题', '描述', '0');
+INSERT INTO `file` VALUES ('6', '第四章  社会主义建设道路初步探索的理论成果.ppt', '\\files', '2018-08-06 19:30:40', '18', '41', '0', '标题', '描述', '0');
+INSERT INTO `file` VALUES ('7', '身份证复印件 - 副本.pdf', '', '2018-08-06 19:30:43', '18', '42', '0', '标题', '描述', '0');
+INSERT INTO `file` VALUES ('8', '身份证复印件 - 副本.pdf', '\\files', '2018-08-06 19:30:47', '18', '42', '0', '标题', '描述', '0');
+INSERT INTO `file` VALUES ('9', '身份证复印件 - 副本.pdf', '\\files', '2018-08-06 19:30:50', '18', '42', '0', '标题', '描述', '0');
 INSERT INTO `file` VALUES ('10', 'SQL必知必会（第4版）_2014.4.pdf', '\\files', '2018-08-05 14:40:26', '19', '11', '0', '标题1', '描述1', '0');
 INSERT INTO `file` VALUES ('11', 'SQL必知必会（第4版）_2014.4.pdf', '\\files', '2018-08-05 14:41:52', '19', '11', '0', '标题2', '描述2', '0');
 INSERT INTO `file` VALUES ('12', 'SQL必知必会（第4版）_2014.4.pdf', '\\files', '2018-08-05 15:43:48', '19', '11', '0', '标题3', '描述3', '0');
@@ -2832,9 +2810,9 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('1', null, '0', 'batman', '123', '123', '16', '1', '2', '/images/avatar/avatar6.jpg', '0', '0');
-INSERT INTO `student` VALUES ('4', 'TestStudent', null, null, null, null, '0', null, null, '/images/avatar/avatar2.png', '0', '0');
-INSERT INTO `student` VALUES ('5', 'TestStudent', null, null, null, null, '0', null, null, '/images/avatar/avatar1.png', '0', '0');
+INSERT INTO `student` VALUES ('1', 'zhangsan', '1', '大王', '111111', '1611521', '16', '1', '2', '/images/avatar/avatar6.jpg', '0', '0');
+INSERT INTO `student` VALUES ('4', 'lisi', '2', 'TFGirls', '222222', '1611522', '0', '1', '3', '/images/avatar/avatar2.png', '0', '0');
+INSERT INTO `student` VALUES ('5', 'TestStudent', '2', '小可爱', '333333', '1611538', '0', '1', '3', '/images/avatar/avatar1.png', '0', '0');
 INSERT INTO `student` VALUES ('8', '邱新竹', '1', 'Brady Nixon', '903050', '1368577', '13', '1', '3', '/images/avatar/avatar1.png', '0', '0');
 INSERT INTO `student` VALUES ('9', '邓雪曼', '2', 'Susie Camp', '508682', '1384372', '13', '2', '20', '/images/avatar/avatar1.jpg', '0', '0');
 INSERT INTO `student` VALUES ('10', '银振国', '1', 'Kirk Russell', '771614', '1695593', '16', '6', '10', '/images/avatar/avatar2.jpg', '0', '0');
@@ -6141,7 +6119,7 @@ INSERT INTO `teacher` VALUES ('3', '刘晓光', '1', null, null, null, '1', '/im
 INSERT INTO `teacher` VALUES ('4', '杨巨峰', '1', null, null, null, '1', '/images/avatar/avatar3.jpg', null, '0');
 INSERT INTO `teacher` VALUES ('5', '辛运帏', '2', null, null, null, '1', '/images/avatar/avatar3.jpg', null, '0');
 INSERT INTO `teacher` VALUES ('6', '苏明', '1', null, null, null, '1', '/images/avatar/avatar7.jpg', null, '0');
-INSERT INTO `teacher` VALUES ('7', 'TestTeacher1', null, null, null, null, null, null, null, '1');
+INSERT INTO `teacher` VALUES ('7', 'TestTeacher1', '0', null, null, null, '1', null, null, '1');
 INSERT INTO `teacher` VALUES ('8', '瑞长娟', '1', '13804757075', 'fvioga@3721.net', '高唐街130号-8-3', '2', '/images/avatar/avatar6.jpg', '研究员', '0');
 INSERT INTO `teacher` VALUES ('9', '甘芳蔼', '2', '15304943528', 'h6pd3d1@qq.com', '宁阳广场130号-8-1', '1', '/images/avatar/avatar1.jpg', '副教授', '0');
 INSERT INTO `teacher` VALUES ('10', '代浩浩', '1', '13306097157', '0q9pvw@163.com', '青大一街130号-8-8', '4', '/images/avatar/avatar2.png', '副教授', '0');
