@@ -33,5 +33,5 @@ public interface StudentBiz {
 
     int selectCourse(Student student, Course course);
 
-    int getSelectId(Student student, Course course);
+    Integer getSelectId(Student student, Course course);
 }
