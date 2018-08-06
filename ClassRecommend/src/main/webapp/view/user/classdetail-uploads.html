@@ -368,7 +368,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                 <img class="img-circle img-bordered-sm"
                                                      :src="comment.student.studentPortrait" alt="user image">
                                                 <span class="username">
-                                                <a href="#">{{ comment.student.studentName }}</a>
+                                                <a href="#">{{ comment.student.nickName }}</a>
                                                 <a href="#" class="pull-right btn-box-tool">
                                                     <!--<i class="fa fa-times"></i>-->
                                                 </a>
@@ -1279,7 +1279,7 @@ immediately after the control sidebar -->
                     success: function (res) {
                         if (res.success) {
                             alert("评论成功")
-                            this.getComments();
+                            classDetail.getComments();
                         } else {
                             alert(res.data);
                         }

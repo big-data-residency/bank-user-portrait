@@ -717,7 +717,7 @@ user experience. -->
                     dataType: 'json',
                     success(json) {
                         if (json.success) {
-                            if(json.data.id===starter.studentId)
+                            if(json.data.id === starter.studentId)
                             starter.privilege = json.data.privilege;
                         } else {
                             alert(json.data);
@@ -725,7 +725,7 @@ user experience. -->
                         }
                     },
                     error: function (XMLHttpRequest) {
-                        alert(("输出错误信息") + XMLHttpRequest.responseText);
+                        // alert(("输出错误信息") + XMLHttpRequest.responseText);
                     }
 
                 })
@@ -796,7 +796,7 @@ user experience. -->
             this.getPageStudentInfo();
         }
 
-    })
+    });
     if (document.body.scrollWidth < 300) {
         document.getElementById('autoDis').style.display = 'none';
     }
