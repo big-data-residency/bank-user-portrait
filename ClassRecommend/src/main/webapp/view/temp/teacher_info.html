@@ -191,7 +191,7 @@
                 <li>
                     <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
                 </li>
-                <li>
+                <li v-if="privilege == 1">
                     <a :href="'../admin/manageStudent.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>查看所有用户信息</span></a>
                 </li>
                 <li>
@@ -243,7 +243,7 @@
                     <div class="box box-primary">
                         <div class="box-body box-profile">
                             <img class="profile-user-img img-responsive img-circle"
-                                 src="../../style/dist/img/user4-128x128.jpg" alt="User profile picture">
+                                 :src="teacher.portrait" alt="User profile picture">
 
                             <h3 class="profile-username text-center">{{ teacher.teacherName }}</h3>
 
