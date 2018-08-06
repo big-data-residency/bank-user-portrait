@@ -460,6 +460,7 @@ public class StudentController {
 		studentInfo.addProperty("selectNumber",studentBiz.selectCourseNumber(studentId));
 		studentInfo.addProperty("commentNumber",studentBiz.commentCourseNumber(studentId));
 		studentInfo.addProperty("portrait",student.getStudentPortrait());
+		studentInfo.addProperty("privilege",student.getPrivilege());
 
 		Map<String,Object> data = new HashMap<>();
 		data.put("student",studentInfo);
