@@ -303,7 +303,7 @@ public class CourseController {
     }
 
 
-    @RequestMapping(value = "/rCourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
+    @RequestMapping(value = "/rCourse", produces = MediaType.APPLICATION_JSON_VALUE
             + ";charset=utf-8")
     @ResponseBody
     public String recommendCourse(HttpServletRequest request, HttpServletResponse response) {
