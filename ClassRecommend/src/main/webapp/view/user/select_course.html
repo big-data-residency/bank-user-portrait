@@ -100,7 +100,7 @@
 								</ul>
 							</li>
 							<li class="footer">
-								<a href="'http://localhost:8080/view/user/classdetail-uploads.html?id='+'studentId'">进入评课</a>
+								<a :href="'http://localhost:8080/view/user/classdetail-uploads.html?id='+studentIdStr">进入评课</a>
 							</li>
 						</ul>
 					</li>
@@ -181,7 +181,8 @@
 					<a :href="'new_start.html?id='+studentIdStr"><i class="fa fa-user"></i> <span>用户首页</span></a>
 				</li>
 				<li >
-					<a href="#"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+					<a v-if="studentPageInfo.privilege == 0" :href="'courseList.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+					<a v-else :href="'../admin/course-administrator.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
 				</li>
 				<li>
 					<a :href="'course-attended.html?id='+studentIdStr"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>

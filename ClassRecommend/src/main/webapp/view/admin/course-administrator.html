@@ -70,16 +70,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper" id="classvue">
 
         <!-- Main Header -->
-        <header class="main-header">
+
+        <header class="main-header" id="headerStudentInfo" >
 
             <!-- Logo -->
             <a href="#" class="logo navbar-fixed-top">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini">
-                    <b>E</b>-h</span>
+                <span class="logo-mini"><b>E</b>-h</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">
-                    <b>EAMIS-</b>Helper</span>
+                <span class="logo-lg"><b>EAMIS-</b>Helper</span>
             </a>
 
             <!-- Header Navbar -->
@@ -99,27 +98,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">21</span>
+                                <span class="label label-danger" id="pagesNotCommentCourses">{{ sub }}</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">有21门课未评价</li>
+                                <li class="header" id="pagesAlert">有{{ sub }}门课未评价</li>
                                 <li>
                                     <!-- Inner menu: contains the tasks -->
                                     <ul class="menu">
                                         <li>
                                             <!-- Task item -->
-                                            <a href="http://localhost:8080/view/user/course-attended.html?id={{studentIdStr}}">
+                                            <a :href="'http://localhost:8080/view/user/course-attended.html?id='+studentIdStr">
                                                 <!-- Task title and progress text -->
                                                 <h3>
                                                     已评课数
-                                                    <small class="pull-right">9/30</small>
+                                                    <small class="pull-right" id="pagesCourses" >{{ studentPageInfo.commentNumber }}/{{ studentPageInfo.selectNumber }}</small>
                                                 </h3>
                                                 <!-- The progress bar -->
                                                 <div class="progress xs">
                                                     <!-- Change the css width attribute to simulate progress -->
-                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%"
-                                                         role="progressbar" aria-valuenow="20" aria-valuemin="0"
-                                                         aria-valuemax="100">
+                                                    <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                                                         <!--<span class="sr-only">20% Complete</span>-->
                                                     </div>
                                                 </div>
@@ -129,7 +126,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </ul>
                                 </li>
                                 <li class="footer">
-                                    <a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentIdStr}}">进入评课</a>
+                                    <a href="'http://localhost:8080/view/user/classdetail-uploads.html?id='+studentId">进入评课</a>
                                 </li>
                             </ul>
                         </li>
@@ -138,19 +135,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <img :src="studentPageInfo.portrait" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs" id="pagesStudentName">{{ studentPageInfo.nickName }}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle"
-                                         alt="User Image">
+                                    <img :src="studentPageInfo.portrait" class="img-circle" alt="User Image">
 
-                                    <p>
-                                        胖成球 - 信息安全
-                                        <small>学号：1611522</small>
+                                    <p id="pagesStudentMajor">
+                                        {{ studentPageInfo.nickName }} - {{ studentPageInfo.major }}
+                                        <small id="pagesStudentNumber">学号：{{ studentPageInfo.studentNumber }}</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -158,8 +154,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="studentinfo_new.html?id={{studentIdStr}}"
-                                           class="btn btn-default btn-flat">Profile</a>
+                                        <a :href="'studentinfo_new.html?id='+studentIdStr" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -172,8 +167,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
             </nav>
         </header>
+
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar " style="position: fixed ">
+        <aside class="main-sidebar " style="position: fixed " id="asideStudentInfo">
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
@@ -181,85 +177,255 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel" style="height: 65px;">
                     <div class="pull-left image">
-                        <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img :src="studentPageInfo.portrait" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Alexander Pierce</p>
+                        <p>{{ studentPageInfo.nickName }}</p>
+
                         <!-- Status -->
-                        <a href="#">
-                            <i class="fa fa-circle text-success"></i> Online</a>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
 
+                <!-- search form (Optional) -->
+                <!--<form action="#" method="get" class="sidebar-form">
+    <div class="input-group">
+    <input type="text" name="q" class="form-control" placeholder="Search...">
+    <span class="input-group-btn">
+      <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+      </button>
+    </span>
+    </div>
+    </form>-->
+                <!-- /.search form -->
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">EAMIS_HELPER</li>
                     <!-- Optionally you can add icons to the links -->
+                    <li >
+                        <a :href="'new_start.html?id='+studentIdStr"><i class="fa fa-user"></i> <span>用户首页</span></a>
+                    </li>
+                    <li >
+                        <a v-if="studentPageInfo.privilege == 0" :href="'courseList.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+                        <a v-else :href="'../admin/course-administrator.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+                    </li>
                     <li>
-                        <a href="new_start.html?id={{studentIdStr}}">
-                            <i class="fa fa-user"></i>
-                            <span>用户首页</span>
-                        </a>
+                        <a :href="'course-attended.html?id='+studentIdStr"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
                     </li>
                     <li class="active">
-                        <a href="#">
-                            <i class="fa fa-book"></i>
-                            <span>查看所有课程</span>
-                        </a>
+                        <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
                     </li>
                     <li>
-                        <a href="course-attended.html?id={{studentIdStr}}">
-                            <i class="fa fa-bookmark"></i>
-                            <span>查看已修课程</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">You have 9 tasks</li>
-                            <li>
-                                <!-- Inner menu: contains the tasks -->
-                                <ul class="menu">
-                                    <li><!-- Task item -->
-                                        <a href="#">
-                                            <!-- Task title and progress text -->
-                                            <h3>
-                                                Design some buttons
-                                                <small class="pull-right">20%</small>
-                                            </h3>
-                                            <!-- The progress bar -->
-                                            <div class="progress xs">
-                                                <!-- Change the css width attribute to simulate progress -->
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
-                                                     role="progressbar"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                                                    <span class="sr-only">20% Complete</span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <!-- end task item -->
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="#">View all tasks</a>
-                            </li>
-                        </ul>
+                        <a :href="'studentinfo_new.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>个人信息</span></a>
                     </li>
-                    <li>
-                        <a href="select_course.html?id={{studentIdStr}}">
-                            <i class="fa fa-heart"></i>
-                            <span>推荐课程页面</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="studentinfo_new.html?id={{studentIdStr}}">
-                            <i class="fa fa-edit"></i>
-                            <span>个人信息</span>
-                        </a>
-                    </li>
+                    <!--<li class="treeview">
+    <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
+    <span class="pull-right-container">
+        <i class="fa fa-angle-left pull-right"></i>
+      </span>
+    </a>
+    <ul class="treeview-menu">
+    <li><a href="#">Link in level 2</a></li>
+    <li><a href="#">Link in level 2</a></li>
+    </ul>
+    </li>-->
                 </ul>
+
             </section>
             <!-- /.sidebar -->
         </aside>
+
+        <!--<header class="main-header">-->
+
+            <!--&lt;!&ndash; Logo &ndash;&gt;-->
+            <!--<a href="#" class="logo navbar-fixed-top">-->
+                <!--&lt;!&ndash; mini logo for sidebar mini 50x50 pixels &ndash;&gt;-->
+                <!--<span class="logo-mini">-->
+                    <!--<b>E</b>-h</span>-->
+                <!--&lt;!&ndash; logo for regular state and mobile devices &ndash;&gt;-->
+                <!--<span class="logo-lg">-->
+                    <!--<b>EAMIS-</b>Helper</span>-->
+            <!--</a>-->
+
+            <!--&lt;!&ndash; Header Navbar &ndash;&gt;-->
+            <!--<nav class="navbar navbar-fixed-top" role="navigation">-->
+                <!--&lt;!&ndash; Sidebar toggle button&ndash;&gt;-->
+                <!--<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">-->
+                    <!--<span class="sr-only">Toggle navigation</span>-->
+                <!--</a>-->
+                <!--&lt;!&ndash; Navbar Right Menu &ndash;&gt;-->
+                <!--<div class="navbar-custom-menu">-->
+                    <!--<ul class="nav navbar-nav">-->
+
+                        <!--&lt;!&ndash; Notifications Menu &ndash;&gt;-->
+
+                        <!--&lt;!&ndash; Tasks Menu &ndash;&gt;-->
+                        <!--<li class="dropdown tasks-menu">-->
+                            <!--&lt;!&ndash; Menu Toggle Button &ndash;&gt;-->
+                            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+                                <!--<i class="fa fa-flag-o"></i>-->
+                                <!--<span class="label label-danger">21</span>-->
+                            <!--</a>-->
+                            <!--<ul class="dropdown-menu">-->
+                                <!--<li class="header">有21门课未评价</li>-->
+                                <!--<li>-->
+                                    <!--&lt;!&ndash; Inner menu: contains the tasks &ndash;&gt;-->
+                                    <!--<ul class="menu">-->
+                                        <!--<li>-->
+                                            <!--&lt;!&ndash; Task item &ndash;&gt;-->
+                                            <!--<a href="http://localhost:8080/view/user/course-attended.html?id={{studentIdStr}}">-->
+                                                <!--&lt;!&ndash; Task title and progress text &ndash;&gt;-->
+                                                <!--<h3>-->
+                                                    <!--已评课数-->
+                                                    <!--<small class="pull-right">9/30</small>-->
+                                                <!--</h3>-->
+                                                <!--&lt;!&ndash; The progress bar &ndash;&gt;-->
+                                                <!--<div class="progress xs">-->
+                                                    <!--&lt;!&ndash; Change the css width attribute to simulate progress &ndash;&gt;-->
+                                                    <!--<div class="progress-bar progress-bar-aqua" style="width: 20%"-->
+                                                         <!--role="progressbar" aria-valuenow="20" aria-valuemin="0"-->
+                                                         <!--aria-valuemax="100">-->
+                                                        <!--&lt;!&ndash;<span class="sr-only">20% Complete</span>&ndash;&gt;-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                        <!--&lt;!&ndash; end task item &ndash;&gt;-->
+                                    <!--</ul>-->
+                                <!--</li>-->
+                                <!--<li class="footer">-->
+                                    <!--<a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentIdStr}}">进入评课</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                        <!--&lt;!&ndash; User Account Menu &ndash;&gt;-->
+                        <!--<li class="dropdown user user-menu">-->
+                            <!--&lt;!&ndash; Menu Toggle Button &ndash;&gt;-->
+                            <!--<a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
+                                <!--&lt;!&ndash; The user image in the navbar&ndash;&gt;-->
+                                <!--<img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+                                <!--&lt;!&ndash; hidden-xs hides the username on small devices so only the image appears. &ndash;&gt;-->
+                                <!--<span class="hidden-xs">Alexander Pierce</span>-->
+                            <!--</a>-->
+                            <!--<ul class="dropdown-menu">-->
+                                <!--&lt;!&ndash; The user image in the menu &ndash;&gt;-->
+                                <!--<li class="user-header">-->
+                                    <!--<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle"-->
+                                         <!--alt="User Image">-->
+
+                                    <!--<p>-->
+                                        <!--胖成球 - 信息安全-->
+                                        <!--<small>学号：1611522</small>-->
+                                    <!--</p>-->
+                                <!--</li>-->
+                                <!--&lt;!&ndash; Menu Body &ndash;&gt;-->
+
+                                <!--&lt;!&ndash; Menu Footer&ndash;&gt;-->
+                                <!--<li class="user-footer">-->
+                                    <!--<div class="pull-left">-->
+                                        <!--<a href="studentinfo_new.html?id={{studentIdStr}}"-->
+                                           <!--class="btn btn-default btn-flat">Profile</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="pull-right">-->
+                                        <!--<a href="#" class="btn btn-default btn-flat">Sign out</a>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</nav>-->
+        <!--</header>-->
+        <!--&lt;!&ndash; Left side column. contains the logo and sidebar &ndash;&gt;-->
+        <!--<aside class="main-sidebar " style="position: fixed ">-->
+
+            <!--&lt;!&ndash; sidebar: style can be found in sidebar.less &ndash;&gt;-->
+            <!--<section class="sidebar">-->
+
+                <!--&lt;!&ndash; Sidebar user panel (optional) &ndash;&gt;-->
+                <!--<div class="user-panel" style="height: 65px;">-->
+                    <!--<div class="pull-left image">-->
+                        <!--<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
+                    <!--</div>-->
+                    <!--<div class="pull-left info">-->
+                        <!--<p>Alexander Pierce</p>-->
+                        <!--&lt;!&ndash; Status &ndash;&gt;-->
+                        <!--<a href="#">-->
+                            <!--<i class="fa fa-circle text-success"></i> Online</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+
+                <!--&lt;!&ndash; Sidebar Menu &ndash;&gt;-->
+                <!--<ul class="sidebar-menu" data-widget="tree">-->
+                    <!--<li class="header">EAMIS_HELPER</li>-->
+                    <!--&lt;!&ndash; Optionally you can add icons to the links &ndash;&gt;-->
+                    <!--<li>-->
+                        <!--<a href="new_start.html?id={{studentIdStr}}">-->
+                            <!--<i class="fa fa-user"></i>-->
+                            <!--<span>用户首页</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li class="active">-->
+                        <!--<a href="#">-->
+                            <!--<i class="fa fa-book"></i>-->
+                            <!--<span>查看所有课程</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="course-attended.html?id={{studentIdStr}}">-->
+                            <!--<i class="fa fa-bookmark"></i>-->
+                            <!--<span>查看已修课程</span>-->
+                        <!--</a>-->
+                        <!--<ul class="dropdown-menu">-->
+                            <!--<li class="header">You have 9 tasks</li>-->
+                            <!--<li>-->
+                                <!--&lt;!&ndash; Inner menu: contains the tasks &ndash;&gt;-->
+                                <!--<ul class="menu">-->
+                                    <!--<li>&lt;!&ndash; Task item &ndash;&gt;-->
+                                        <!--<a href="#">-->
+                                            <!--&lt;!&ndash; Task title and progress text &ndash;&gt;-->
+                                            <!--<h3>-->
+                                                <!--Design some buttons-->
+                                                <!--<small class="pull-right">20%</small>-->
+                                            <!--</h3>-->
+                                            <!--&lt;!&ndash; The progress bar &ndash;&gt;-->
+                                            <!--<div class="progress xs">-->
+                                                <!--&lt;!&ndash; Change the css width attribute to simulate progress &ndash;&gt;-->
+                                                <!--<div class="progress-bar progress-bar-aqua" style="width: 20%"-->
+                                                     <!--role="progressbar"-->
+                                                     <!--aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">-->
+                                                    <!--<span class="sr-only">20% Complete</span>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                    <!--&lt;!&ndash; end task item &ndash;&gt;-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--<li class="footer">-->
+                                <!--<a href="#">View all tasks</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="select_course.html?id={{studentIdStr}}">-->
+                            <!--<i class="fa fa-heart"></i>-->
+                            <!--<span>推荐课程页面</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="studentinfo_new.html?id={{studentIdStr}}">-->
+                            <!--<i class="fa fa-edit"></i>-->
+                            <!--<span>个人信息</span>-->
+                        <!--</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</section>-->
+            <!--&lt;!&ndash; /.sidebar &ndash;&gt;-->
+        <!--</aside>-->
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper ">
@@ -380,19 +546,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.content -->
         </div>
 
-            </section>
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <!-- To the right -->
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
-        </footer>
-
+        </section>
+        <!-- /.content -->
     </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2018 EAMIS_HELPER.</strong> All rights reserved.
+    </footer>
+
+</div>
 </div>
 <!-- ./wrapper -->
 
@@ -423,7 +589,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 <script>
 
-    function pageSlip(){
+    function pageSlip() {
         $('#example2').DataTable({
             'paging': true,
             'lengthChange': false,
@@ -461,16 +627,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         })
 
         $.ajax({
-            url:'http://localhost:8080/findAllCourse',
-            type:'GET',
+            url: 'http://localhost:8080/findAllCourse',
+            type: 'GET',
             beforeSend: function () {
                 $('#courseList').html('')
             },
-            data:{},
-            success:function (res) {
+            data: {},
+            success: function (res) {
                 if (res.success) {
                     for (var course of res.data.courses) {
-                        console.log(course)
 
                         $('#courseList').append(`<tr>
                                     <td>${course.courseCode}</td>
