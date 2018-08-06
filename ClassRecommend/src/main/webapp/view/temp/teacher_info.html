@@ -132,7 +132,7 @@
                                     <a :href="'studentinfo_new.html?id='+studentIdStr" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a v-on:click="out()" class="btn btn-default btn-flat">Sign out</a>
                                 </div>
                             </li>
                         </ul>
@@ -613,6 +613,19 @@ immediately after the control sidebar -->
                 teacherId = this.GetQueryString('teacherId');
                 studentIdStr = this.GetQueryString('id');
             },
+            out(){
+                $.ajax({
+                    url:'http://localhost:8080/out',
+                    data:{},
+                    type:'GET',
+                    dataType:'json',
+                    success(res){
+                        alert(res.data);
+                        location.href = "../login.html";
+                    }
+                })
+            }
+            ,
             getTeacherInfo() {
                 var _self = this;
                 $.ajax({

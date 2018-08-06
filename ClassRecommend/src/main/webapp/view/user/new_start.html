@@ -64,10 +64,13 @@
 
 </head>
 
+
+
 <body class="hold-transition skin-blue-light fixed sidebar-collapse">
 
 <div style="min-height: 600px; width: 100%;">
-    <div class="parent">
+
+    <div class="parent" id="parent">
         <div data-w-id="4146f678-8aab-d1fa-d19a-08985b74cfe1" class="hold-controls">
             <div data-w-id="ebb1bf9c-8a6b-dd8b-b7e2-72879c9105bf" style="opacity:0" class="grey-block"></div>
             <div data-w-id="563bcb60-4ea9-77e4-442e-b41a58239680" style="opacity:0" class="white-block">
@@ -75,16 +78,18 @@
                     <div data-w-id="b19a1fd2-36b1-6175-8e63-a3c70f02a408"
                          style="opacity:0;-webkit-transform:translateX(-3VW) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(-3VW) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(-3VW) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(-3VW) translateY(0) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)"
                          class="absolute-float"></div>
-                    <a :href="'http://localhost:8080/view/user/studentinfo_new.html?id='+'studentId'">
                         <div data-w-id="b0e65405-2dec-f076-bf21-ee90b6bd9841"
                              style="opacity:0;-webkit-transform:translateX(-5VW) translateY(-2VW) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(-5VW) translateY(-2VW) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(-5VW) translateY(-2VW) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(-5VW) translateY(-2VW) translateZ(0) scaleX(1) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)"
                              class="absolute-chart">
                             <div class="triangle"></div>
 
                         </div>
-                    </a>
+
                     <div style="font-size: 25px;">
+                        <a :href="'http://localhost:8080/view/user/studentinfo_new.html?id='+studentIdStr">
+
                         个人中心
+                        </a>
                     </div>
                     <div data-w-id="2f8e9643-fc09-d455-a5e6-a6c4a434f9ff"
                          style="-webkit-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(0) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(0) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(0) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(0) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)"
@@ -139,8 +144,7 @@
                     <div class="bar-order-details"></div>
                     <div data-w-id="78d02a64-61cc-87cb-2428-1ce9ab9a4122" style="opacity:0"
                          class="short-bar not-blurred combo">
-                        <a :href="'http://localhost:8080/view/user/select_course.html?id='+'studentId'">
-                            <div data-w-id="9a50dfc9-9d48-0f9c-6e6d-ec8190b11e54" style="opacity:0"
+                        <div data-w-id="9a50dfc9-9d48-0f9c-6e6d-ec8190b11e54" style="opacity:0"
                                  class="absolute-vw w-clearfix">
                                 <div data-w-id="bb64782c-d7cf-6db8-a621-57636450a0b9"
                                      style="-webkit-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(1) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)"
@@ -156,9 +160,12 @@
                                      class="white-line"></div>
                                 <div class="triangle v2"></div>
                             </div>
-                        </a><br/>
+                        <br/>
                         <div style="font-size: 25px;">
+                            <a :href="'http://localhost:8080/view/user/select_course.html?id='+studentIdStr">
+
                             课程<br/>推荐
+                            </a>
                         </div>
                     </div>
                     <div class="short-bar blurred"></div>
@@ -181,15 +188,16 @@
                              class="absolute-float right"></div>
                         <div style="-webkit-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(0) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-moz-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(0) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);-ms-transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(0) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0);transform:translateX(0) translateY(0) translateZ(0) scaleX(0) scaleY(0) scaleZ(1) rotateX(0) rotateY(0) rotateZ(0) skewX(0) skewY(0)"
                              class="info-bar-button"></div>
-                        <a :href="'http://localhost:8080/view/user/courseList.html?id='+'studentId'">
                             <div data-w-id="70613c26-7b55-41e9-2239-1f49ef811c1b" style="opacity:0"
                                  class="absolute-chart _2">
                                 <div class="triangle"></div>
                             </div>
-                        </a>
+
                     </div>
                     <div style="font-size: 25px;">
-                        检索
+                        <a :href="'http://localhost:8080/view/user/courseList.html?id='+studentIdStr">
+                            检索
+                        </a>
                     </div>
                 </div>
                 <div data-w-id="0cac16f5-ae44-ea06-a8f6-84f316becd4f" style="opacity:0" class="hold-panel-bar">
@@ -235,16 +243,14 @@
         </div>
     </div>
 
+    <!--</div>-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="../../style/newstyle/js/webflow.js" type="text/javascript"></script>
     <!-- [if lte IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
-
-    <!--</div>-->
-
     <!---->
-    <div class="wrapper" id="starter">
+    <div class="wrapper" id="starter" >
 
         <header class="main-header" id="headerStudentInfo" >
 
@@ -386,7 +392,7 @@
                         <a v-else :href="'../admin/course-administrator.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
                     </li>
                     <li>
-                        <a :href="'course-attended.html?id='+studentIdStr"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
+                        <a :href="'course-attended.html?id='+studentIdStr"><i cl9ass="fa fa-bookmark"></i> <span>查看已修课程</span></a>
                     </li>
                     <li>
                         <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
@@ -663,6 +669,7 @@ immediately after the control sidebar -->
 
 <!-- REQUIRED JS SCRIPTS -->
 
+
 <!-- jQuery 3 -->
 <script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -682,6 +689,33 @@ user experience. -->
 </body>
 
 <script>
+var studentId;
+    var parent = new Vue({
+        el:'#parent',
+        data:{
+            studentIdStr:5
+        },
+        methods:{
+            GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                    context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            },
+            getPar() {
+                studentId = this.GetQueryString('id');
+                parent.studentIdStr = studentId;
+            },
+        },
+        mounted(){
+            this.getPar();
+        }
+    })
+
     var starter = new Vue({
         el: '#starter',
         data: {
