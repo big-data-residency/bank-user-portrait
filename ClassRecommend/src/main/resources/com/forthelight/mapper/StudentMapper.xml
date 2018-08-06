@@ -69,7 +69,7 @@
 	    and student.deleteStatus = 0 and college.deleteStatus = 0 and major.deleteStatus = 0
 	</select>
 
-    <select id="getSelectId" resultType="int">
+    <select id="getSelectId" resultType="Integer">
         SELECT student_select_course.id
         FROM student_select_course
         WHERE StudentID = #{student.id} AND CourseID = #{course.id}

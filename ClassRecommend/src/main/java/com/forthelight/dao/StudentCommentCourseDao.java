@@ -34,5 +34,6 @@ public interface StudentCommentCourseDao {
 
 	List<StudentCommentCourse> findAll();
 
+	List<StudentCommentCourse> findByReplyTo(Integer replyTo);
 	
 }

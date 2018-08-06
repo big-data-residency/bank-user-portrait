@@ -23,17 +23,26 @@ public class StudentCommentCourse implements Serializable {
 	private int recommendGrade;
 
 
-	
+
 	private transient StudentCommentCourse replyTo;
-	private transient Student student;
-	private transient Course course;
-	private transient List<Tag> tags = new ArrayList<Tag>();
+    private transient Student student;
+    private transient Course course;
+    private transient List<Tag> tags = new ArrayList<Tag>();
+    private transient List<StudentCommentCourse> subComment = new ArrayList<>();
 
 	public StudentCommentCourse() {
 		super();
 	}
 
-	public StudentCommentCourse getReplyTo() {
+    public List<StudentCommentCourse> getSubComment() {
+        return subComment;
+    }
+
+    public void setSubComment(List<StudentCommentCourse> subComment) {
+        this.subComment = subComment;
+    }
+
+    public StudentCommentCourse getReplyTo() {
 		return replyTo;
 	}
 

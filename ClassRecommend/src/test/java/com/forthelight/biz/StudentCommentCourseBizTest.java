@@ -14,8 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @ContextConfiguration("classpath:applicationContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -67,9 +66,17 @@ public class StudentCommentCourseBizTest {
     public void update() {
         Random random = new Random();
         List<StudentCommentCourse> commentList = studentCommentCourseDao.findAll();
+
         for(StudentCommentCourse comment: commentList){
-            comment.setRecommendGrade(random.nextInt(5));
+            comment.setGradeScore(random.nextInt(40)+ 60);
             studentCommentCourseDao.update(comment);
         }
+    }
+
+    @Test
+    public void findById() {
+        StudentCommentCourse comment = studentCommentCourseDao.findById(2737);
+        List<StudentCommentCourse> subComments = comment.getSubComment();
+        System.out.println("====");
     }
 }

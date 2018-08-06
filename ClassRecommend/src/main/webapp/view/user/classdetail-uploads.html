@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -353,51 +353,98 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="tab-content">
                             <div class="tab-pane" id="activity">
                                 <!-- Post -->
-                                <div class="post" v-for="(comment, index) in comments">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm"
-                                             :src="comment.student.studentPortrait" alt="user image">
-                                        <span class="username">
+                                <template v-for="(comment, index) in comments">
+                                    <div class="post">
+                                        <template v-if="comment.Anonymous == 0">
+                                            <div class="user-block">
+                                                <img class="img-circle img-bordered-sm"
+                                                     :src="comment.student.studentPortrait" alt="user image">
+                                                <span class="username">
                                                 <a href="#">{{ comment.student.studentName }}</a>
                                                 <a href="#" class="pull-right btn-box-tool">
-                                                    <i class="fa fa-times"></i>
+                                                    <!--<i class="fa fa-times"></i>-->
                                                 </a>
                                             </span>
-                                        <span class="description">Shared publicly - {{ comment.commentTime }}</span>
+                                                <span class="description">Shared publicly - {{ comment.commentTime }}</span>
+                                            </div>
+                                        </template>
+
+                                        <template v-else>
+                                            <div class="user-block">
+                                                <img class="img-circle img-bordered-sm"
+                                                     src="/images/avatar/anonymous.jpg" alt="user image">
+                                                <span class="username">
+                                                <a href="#">Anonymous</a>
+                                                <a href="#" class="pull-right btn-box-tool">
+                                                    <!--<i class="fa fa-times"></i>-->
+                                                </a>
+                                            </span>
+                                                <span class="description">Shared publicly - {{ comment.commentTime }}</span>
+                                            </div>
+                                        </template>
+                                        <!-- /.user-block -->
+                                        <p>
+                                            {{ comment.comment }}
+                                        </p>
+                                        <ul class="list-inline">
+                                            <li>
+                                                <a href="#" class="link-black text-sm">
+                                                    <i class="fa fa-share margin-r-5"></i> Share</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0);" class="link-black text-sm like">
+                                                    <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                            </li>
+                                            <!--<li class="pull-right">-->
+                                                <!--<a href="#" class="link-black text-sm">-->
+                                                    <!--<i class="fa fa-comments-o margin-r-5"></i> Comments ({{len(comment.subComments)}})-->
+                                                <!--</a>-->
+                                            <!--</li>-->
+                                        </ul>
+
+
+
+
+                                        <template v-for="(subComment,idx) in comment.subComments">
+                                            <hr style="margin-top: 0;"/>
+                                            <div class="col-sm-offset-0">
+                                                <div class="user-block" style="margin-bottom: 0;">
+                                                    <img class="img-circle img-bordered-sm"
+                                                         src="/images/avatar/append.jpg" alt="user image">
+                                                    <span class="username">
+                                                <a href="#">追评{{idx}}</a>
+                                                <a href="#" class="pull-right btn-box-tool">
+                                                    <!--<i class="fa fa-times"></i>-->
+                                                </a>
+                                            </span>
+                                                    <span class="description pull-right">Shared publicly - {{ subComment.commentTime }}</span>
+                                                    <p class="col-sm-offset-1">
+                                                        {{ subComment.comment }}
+                                                    </p>
+                                                </div>
+
+
+                                            </div>
+                                        </template>
+                                        <form class="form-horizontal">
+                                            <div class="form-group margin-bottom-none">
+                                                <div class="col-sm-9">
+                                                    <input :id="'content' + index"
+                                                           class="form-control input-sm append-content"
+                                                           placeholder="Response"/>
+                                                    <input :id="'commentId' + index" class="append-commentId"
+                                                           type="hidden"
+                                                           readonly="readonly" v-bind:value="comment.id"/>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <button v-on:click="appendComment(index)" type="button"
+                                                            class="btn btn-danger pull-right btn-block btn-sm">Send
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <!-- /.user-block -->
-                                    <p>
-                                        {{ comment.comment }}
-                                    </p>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-share margin-r-5"></i> Share</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="link-black text-sm like">
-                                                <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-                                        </li>
-                                        <li class="pull-right">
-                                            <a href="#" class="link-black text-sm">
-                                                <i class="fa fa-comments-o margin-r-5"></i> Comments (5)
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <form id="responseForm" class="form-horizontal">
-                                        <div class="form-group margin-bottom-none">
-                                            <div class="col-sm-9">
-                                                <input class="form-control input-sm" placeholder="Response">
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <button type="submit"
-                                                        class="btn btn-danger pull-right btn-block btn-sm">Send
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!--<input class="form-control input-sm" type="text" placeholder="Type a comment">-->
-                                </div>
+                                </template>
                                 <!-- /.post -->
 
                                 <!--&lt;!&ndash; Post &ndash;&gt;-->
@@ -942,7 +989,7 @@ immediately after the control sidebar -->
 <script src="../../plugins/vue.js"></script>
 <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
 <!-- jQuery 3 -->
-<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../style/bower_components/jquery/dist/jquery.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- iCheck -->
@@ -971,20 +1018,21 @@ immediately after the control sidebar -->
 <script src="../../style/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
 <script>
-    $(function () {
-        $('#example1').DataTable();
-        $('#fileTable').DataTable({
-            'paging': true,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': true,
-            'info': true,
-            'autoWidth': false,
-            "language": {
-                "emptyTable": "现在还没有上传的文件，快来上传第一个吧"
-            }
+    $(document).ready(function () {
+        $(function () {
+            $('#fileTable').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false,
+                "language": {
+                    "emptyTable": "现在还没有上传的文件，快来上传第一个吧"
+                }
+            });
         });
-    });
+    })
 </script>
 <!-- iCheck check图标样式 -->
 <!--<script>-->
@@ -1034,6 +1082,7 @@ immediately after the control sidebar -->
             scoreRate: {},
             comments: {},
             avgScoreByYear: [],
+            addedComment: {},
         },
         methods: {
             getInfo() {
@@ -1198,9 +1247,10 @@ immediately after the control sidebar -->
                     dataType: 'json',
                     success: function (res) {
                         if (res.success) {
-                            alert("评论成功");
+                            alert("评论成功")
+                            this.getComments();
                         } else {
-                            alert("评论失败");
+                            alert(res.data);
                         }
                     },
                     error: function () {
@@ -1247,22 +1297,54 @@ immediately after the control sidebar -->
                     }
                 })
             },
-            getScoreGroupByYear(){
+            getScoreGroupByYear() {
                 $.ajax({
                     url: "/getScoreGroupByYear",
                     type: "get",
                     data: {
                         courseId: courseIdStr
                     },
-                    success(res){
-                        if(res.success){
+                    success(res) {
+                        if (res.success) {
                             classDetail.avgScoreByYear = res.data
                         } else {
                             this.error();
                         }
                     },
-                    error(){
+                    error() {
                         alert("接收平均成绩失败");
+                    }
+                })
+            },
+            appendComment(index) {
+                var appendForm = new FormData();
+                // appendForm.append("content", targetForm.children('.append-content').value());
+                // appendForm.append("commentId", targetForm.children('.append-commentId').value());
+                var content = $("#content" + index).val();
+                var commentId = $("#commentId" + index).val();
+                console.log(content);
+                console.log(commentId);
+                appendForm.append("content", content);
+                appendForm.append("commentId", commentId);
+                console.log(appendForm);
+                $.ajax({
+                    url: '/appendComment',
+                    method: 'post',
+                    data: {
+                        content: content,
+                        commentId: commentId,
+                        studentId: studentIdStr,
+                        courseId: courseIdStr
+                    },
+                    dataType: 'json',
+                    success(res) {
+                        if (res.success) {
+                            classDetail.getComments();
+                            $("#content" + index).val("");
+                        }
+                    },
+                    error() {
+                        alert("追评失败");
                     }
                 })
             }
@@ -1285,7 +1367,7 @@ immediately after the control sidebar -->
 <script type="text/javascript">
     $(document).ready(function () {
         $('a.like').on('click', function () {
-            if ($(this).children().hasClass('fa-thumbs-o-up')){
+            if ($(this).children().hasClass('fa-thumbs-o-up')) {
                 $(this).children().removeClass('fa-thumbs-o-up').addClass('fa-thumbs-up')
                 classDetail.classInfo.likeNumber++;
             } else {
@@ -1428,7 +1510,6 @@ immediately after the control sidebar -->
             success: function (rsp) {
                 if (rsp.success) {
                     alert("上传成功");
-                    history.go(0);
                 }
             }
         })
@@ -1493,6 +1574,16 @@ immediately after the control sidebar -->
     })
 </script>
 <!-- like -->
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '',
+            type: ''
+        })
+
+    })
+</script>
 
 </body>
 

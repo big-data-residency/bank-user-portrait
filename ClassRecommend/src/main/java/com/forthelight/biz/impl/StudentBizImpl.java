@@ -83,7 +83,7 @@ public class StudentBizImpl implements StudentBiz {
 	}
 
 	@Override
-	public int getSelectId(Student student, Course course) {
+	public Integer getSelectId(Student student, Course course) {
 		return studentDao.getSelectId(student, course);
 	}
 
