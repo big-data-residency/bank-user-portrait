@@ -60,7 +60,7 @@ desired effect
 <div class="wrapper" id="studentIdenti">
 
     <!-- Main Header -->
-    <header class="main-header">
+    <header class="main-header" id="headerStudentInfo" >
 
         <!-- Logo -->
         <a href="#" class="logo navbar-fixed-top">
@@ -87,20 +87,20 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-flag-o"></i>
-                            <span class="label label-danger">21</span>
+                            <span class="label label-danger" id="pagesNotCommentCourses">{{ sub }}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="header">有21门课未评价</li>
+                            <li class="header" id="pagesAlert">有{{ sub }}门课未评价</li>
                             <li>
                                 <!-- Inner menu: contains the tasks -->
                                 <ul class="menu">
                                     <li>
                                         <!-- Task item -->
-                                        <a href="http://localhost:8080/view/user/course-attended.html?id={{studentId}}">
+                                        <a :href="'http://localhost:8080/view/user/course-attended.html?id='+studentIdStr">
                                             <!-- Task title and progress text -->
                                             <h3>
                                                 已评课数
-                                                <small class="pull-right">9/30</small>
+                                                <small class="pull-right" id="pagesCourses" >{{ studentPageInfo.commentNumber }}/{{ studentPageInfo.selectNumber }}</small>
                                             </h3>
                                             <!-- The progress bar -->
                                             <div class="progress xs">
@@ -115,7 +115,7 @@ desired effect
                                 </ul>
                             </li>
                             <li class="footer">
-                                <a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentId}}">进入评课</a>
+                                <a :href="'http://localhost:8080/view/user/classdetail-uploads.html?id='+studentIdStr">进入评课</a>
                             </li>
                         </ul>
                     </li>
@@ -124,18 +124,18 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img :src="studentPageInfo.portrait" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs" id="pagesStudentName">{{ studentPageInfo.nickName }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img :src="studentPageInfo.portrait" class="img-circle" alt="User Image">
 
-                                <p>
-                                    胖成球 - 信息安全
-                                    <small>学号：1611522</small>
+                                <p id="pagesStudentMajor">
+                                    {{ studentPageInfo.nickName }} - {{ studentPageInfo.major }}
+                                    <small id="pagesStudentNumber">学号：{{ studentPageInfo.studentNumber }}</small>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -143,7 +143,7 @@ desired effect
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+                                    <a :href="'studentinfo_new.html?id='+studentIdStr" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -156,8 +156,9 @@ desired effect
             </div>
         </nav>
     </header>
+
     <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar " style="position: fixed ">
+    <aside class="main-sidebar " style="position: fixed " id="asideStudentInfo">
 
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
@@ -165,10 +166,11 @@ desired effect
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel" style="height: 65px;">
                 <div class="pull-left image">
-                    <img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img :src="studentPageInfo.portrait" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>{{ studentPageInfo.nickName }}</p>
+
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -191,19 +193,23 @@ desired effect
                 <li class="header">EAMIS_HELPER</li>
                 <!-- Optionally you can add icons to the links -->
                 <li >
-                    <a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
+                    <a :href="'new_start.html?id='+studentIdStr"><i class="fa fa-user"></i> <span>用户首页</span></a>
+                </li>
+                <li >
+                    <a v-if="studentPageInfo.privilege == 0" :href="'http://localhost:8080/view/user/courseList.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+                    <a v-else :href="'../admin/course-administrator.html?id='+studentIdStr"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
                 </li>
                 <li>
-                    <a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+                    <a :href="'course-attended.html?id='+studentIdStr"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
                 </li>
                 <li>
-                    <a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
+                    <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
                 </li>
                 <li>
-                    <a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程页面</span></a>
+                    <a :href="'studentinfo_new.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>查看所有用户信息</span></a>
                 </li>
                 <li class="active">
-                    <a href="#"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+                    <a :href="'studentinfo_new.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>个人信息</span></a>
                 </li>
                 <!--<li class="treeview">
 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -217,7 +223,7 @@ desired effect
 </ul>
 </li>-->
             </ul>
-            <!-- /.sidebar-menu -->
+
         </section>
         <!-- /.sidebar -->
     </aside>
@@ -249,7 +255,7 @@ desired effect
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../style/dist/img/user4-128x128.jpg" alt="User profile picture">
+              <img class="profile-user-img img-responsive img-circle" :src="studentInfo.portrait" alt="User profile picture">
 
               <h3 class="profile-username text-center">{{ studentInfo.nickName }}</h3>
               <a href="#" class="btn btn-primary btn-block"><b>Change Photo</b></a>
@@ -289,7 +295,7 @@ desired effect
             <ul class="nav nav-tabs">
               <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
               <li><a href="#courseList" data-toggle="tab">Coursetable</a></li>
-              <li><a href="#settings" data-toggle="tab">Settings</a></li>
+              <li id="setting" ><a href="#settings" data-toggle="tab">Settings</a></li>
             </ul>
             <div class="tab-content">
 
@@ -297,7 +303,7 @@ desired effect
                 <!-- Post -->
                 <div class="post" v-for=" comment in comments">
                   <div class="user-block">
-                    <img class="img-circle img-bordered-sm" src="../../style/dist/img/user1-128x128.jpg" alt="user image">
+                    <img class="img-circle img-bordered-sm" :src="studentInfo.portrait" alt="user image">
                         <span class="username">
                           我分享了<a href="#">{{ comment.courseName }}</a>
                           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -432,9 +438,7 @@ desired effect
 <!-- AdminLTE App -->
 <script src="../../style/dist/js/adminlte.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="../../plugins/vue.js" ></script>
 
 
 <script>
@@ -446,6 +450,89 @@ desired effect
   //     comments:''
   //   }
   // });
+
+
+  var headerStudentInfo = new Vue({
+      el:'#headerStudentInfo',
+      data:{
+          studentPageInfo:{
+
+          },
+          sub:'',
+          studentIdStr:'',
+      },
+      methods:{
+          GetQueryString(name) {
+              var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+              var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+              var context = "";
+              if (r != null)
+                  context = r[2];
+              reg = null;
+              r = null;
+              return context == null || context == "" || context == "undefined" ? "" : context;
+          },
+          getPar() {
+              studentIdStr = this.GetQueryString('id');
+          },
+          getPageStudentInfo(){
+              $.ajax({
+                  url:'http://localhost:8080/studentPagesInfo',
+                  data:{
+                      studentIdStr:studentIdStr,
+                  },
+                  type:'GET',
+                  dataType:'json',
+                  success:function (res) {
+                      headerStudentInfo.studentPageInfo = res.data.student;
+                      headerStudentInfo.sub = res.data.student.selectNumber - res.data.student.commentNumber;
+                      headerStudentInfo.studentIdStr = studentIdStr;
+                      if(res.studentPageInfo.portrait){
+                          $(document.getElementById("setting")).attr("class","hidden");
+                          $(document.getElementById("settings")).attr("class","hidden");
+                      }
+                  }
+              })
+
+          }
+      },
+      mounted(){
+          this.getPar();
+          this.getPageStudentInfo();
+      }
+  })
+
+  var asideStudentInfo = new Vue({
+      el:'#asideStudentInfo',
+      data:{
+          studentPageInfo:{
+
+          },
+          sub:'',
+          studentIdStr:'',
+      },
+      methods:{
+          getPageStudentInfo(){
+              $.ajax({
+                  url:'http://localhost:8080/studentPagesInfo',
+                  data:{
+                      studentIdStr:studentIdStr,
+                  },
+                  type:'GET',
+                  dataType:'json',
+                  success:function (res) {
+                      asideStudentInfo.studentPageInfo = res.data.student;
+                      asideStudentInfo.sub = res.data.student.selectNumber - res.data.student.commentNumber;
+                      asideStudentInfo.studentIdStr = studentIdStr;
+                  }
+              })
+
+          }
+      },
+      mounted(){
+          this.getPageStudentInfo();
+      }
+  })
 
   var studentInfo = new Vue({
   el:'#studentInfo',
