@@ -55,7 +55,8 @@ public class CourseController {
     @Autowired
     private MajorBiz majorBiz;
 
-    @Autowired CollegeBiz collegeBiz;
+    @Autowired
+    CollegeBiz collegeBiz;
 
     public int stu_Grade;
     public int stu_College;
@@ -82,11 +83,11 @@ public class CourseController {
     public int knowledgeScore;
 
     public String[] selectedCourses;
-    public int[] selectedcourses = new int [20];
+    public int[] selectedcourses = new int[20];
 
     public Integer hasD;
     public Integer hasE;
-    public int[][] Time = new int [10][10];
+    public int[][] Time = new int[10][10];
     public List<Course> checkedCourses;
     public List<String> shouldCheckCourses;
 
@@ -284,7 +285,7 @@ public class CourseController {
             JsonObject courseList = new JsonObject();
             courseList.addProperty("id", course.getId());
             courseList.addProperty("courseName", course.getCourseName());
-            courseList.addProperty("courseCode",course.getCourseCode());
+            courseList.addProperty("courseCode", course.getCourseCode());
             coursesList.add(courseList);
         }
 
@@ -303,7 +304,7 @@ public class CourseController {
     }
 
 
-    @RequestMapping(value = "/rCourse", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE
+    @RequestMapping(value = "/rCourse", produces = MediaType.APPLICATION_JSON_VALUE
             + ";charset=utf-8")
     @ResponseBody
     public String recommendCourse(HttpServletRequest request, HttpServletResponse response) {
@@ -345,18 +346,21 @@ public class CourseController {
         easyScore = Integer.parseInt(request.getParameter("easyScore"));
         knowledgeScore = Integer.parseInt(request.getParameter("knowledgeScore"));
 
-        stu_Grade=Integer.parseInt(request.getParameter("grade"))*-1+19;
-        stu_College=collegeBiz.findByName(request.getParameter("college")).getId();
-        stu_Major=majorBiz.findByName(request.getParameter("major")).getId();
+        stu_Grade = Integer.parseInt(request.getParameter("grade")) * -1 + 19;
+        stu_College = collegeBiz.findByName(request.getParameter("college")).getId();
+        stu_Major = majorBiz.findByName(request.getParameter("major")).getId();
 
+        selectedcourses = new int[20];
         selectedCourses = request.getParameterValues("selectedCourses[]");
-        for(int i = 0; i< selectedCourses.length; i++){
-            selectedcourses[i]=Integer.parseInt(selectedCourses[i]);
+        if (selectedCourses != null) {
+            for (int i = 0; i < selectedCourses.length; i++) {
+                selectedcourses[i] = Integer.parseInt(selectedCourses[i]);
+            }
         }
         Map<String, Object> res = new HashMap<>();
         boolean success = true;
 
-        if(!Initialize()){
+        if (!Initialize()) {
             success = false;
             res.put("data", Worry);
         }
@@ -369,44 +373,44 @@ public class CourseController {
         return gson.toJson(res);
     }
 
-    public boolean Initialize(){
-        Course temp_course ;
-        Worry="";
-        success=true;
+    public boolean Initialize() {
+        Course temp_course;
+        Worry = "";
+        success = true;
         checkedCourses = new ArrayList<Course>();
 
-        for(int i=0;i<5;i++) {
+        for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 2; j++) {
                 Time[i][j] = -1;
             }
         }
-        hasD=hasE=0;
+        hasD = hasE = 0;
 
         //预处理已选课程
-        if(selectedcourses!=null) {
-            for (int i = 0; selectedcourses[i]!=0; i++) {
+        if (selectedcourses != null) {
+            for (int i = 0; selectedcourses[i] != 0; i++) {
                 temp_course = courseBiz.findById(selectedcourses[i]);
                 //检查选择课程是否超过预期DE类课上限
-                if(temp_course.getLevel().equals("D")){
+                if (temp_course.getLevel().equals("D")) {
                     hasD++;
-                    if(selectNumberD && hasD>numberD){
-                        Worry="您选择的D类课数量超过了您设定的修读D类课上限!";
-                        success=false;
+                    if (selectNumberD && hasD > numberD) {
+                        Worry = "您选择的D类课数量超过了您设定的修读D类课上限!";
+                        success = false;
                         return false;
                     }
-                }else if(temp_course.getLevel().equals("E")){
+                } else if (temp_course.getLevel().equals("E")) {
                     hasE++;
-                    if(selectNumberE && hasE>numberE){
-                        Worry="您选择的E类课数量超过了您设定的修读E类课上限!";
-                        success=false;
+                    if (selectNumberE && hasE > numberE) {
+                        Worry = "您选择的E类课数量超过了您设定的修读E类课上限!";
+                        success = false;
                         return false;
                     }
                 }
 
                 //检查选择课程是否有冲突
                 int wtf = temp_course.getId();
-                if(!checkCourseTime1(wtf,1)){
-                    success=false;
+                if (!checkCourseTime1(wtf, 1)) {
+                    success = false;
                     return false;
                 }
 
@@ -415,7 +419,7 @@ public class CourseController {
         }
 
         //获取应该上的课
-        shouldCheckCourses = courseBiz.selectByShouldCheck(stu_Grade,stu_College,stu_Major);
+        shouldCheckCourses = courseBiz.selectByShouldCheck(stu_Grade, stu_College, stu_Major);
         //添加认为必须选的课程
         checkShouldCheckLessons();
 
@@ -423,85 +427,88 @@ public class CourseController {
     }
 
 
-    private boolean checkCourseTime3(int courseId){
+    private boolean checkCourseTime3(int courseId) {
         List<CourseTime> time;
         time = courseTimeBiz.findByClassId(courseId);
-        int lesson =0 ;
-        for(int i=0;i<time.size();i++){
-            if(time.get(i).getStartLesson()<5)
-                lesson=0;
-            else lesson=1;
-            if(Time[time.get(i).getLessonDay()-1][lesson]!=-1)
+        int lesson = 0;
+        for (int i = 0; i < time.size(); i++) {
+            if (time.get(i).getStartLesson() < 5)
+                lesson = 0;
+            else lesson = 1;
+            if (Time[time.get(i).getLessonDay() - 1][lesson] != -1)
                 return false;
         }
-        for(int i=0;i<time.size();i++){
-            Time[time.get(i).getLessonDay()-1][lesson]=courseId;
+        for (int i = 0; i < time.size(); i++) {
+            Time[time.get(i).getLessonDay() - 1][lesson] = courseId;
         }
         return true;
     }
 
-    private boolean checkCourseTime1(int courseId, int type){
+    private boolean checkCourseTime1(int courseId, int type) {
         List<CourseTime> time;
         time = courseTimeBiz.findByClassId(courseId);
-        int lesson=0;
-        for(int i=0;i<time.size();i++){
-            if(time.get(i).getStartLesson()<5)
-                lesson=0;
-            else lesson=1;
-            if(Time[time.get(i).getLessonDay()-1][lesson]==-1)
-                Time[time.get(i).getLessonDay()-1][lesson]=courseId;
-            else{
-                if(type==1){
-                    courseCrash(courseId,Time[time.get(i).getLessonDay()-1][lesson]);
-                }else if(type==2){
-                    courseCover(courseId,Time[time.get(i).getLessonDay()-1][lesson]);
+        int lesson = 0;
+        for (int i = 0; i < time.size(); i++) {
+            if (time.get(i).getStartLesson() < 5)
+                lesson = 0;
+            else lesson = 1;
+            if (Time[time.get(i).getLessonDay() - 1][lesson] == -1)
+                Time[time.get(i).getLessonDay() - 1][lesson] = courseId;
+            else {
+                if (type == 1) {
+                    courseCrash(courseId, Time[time.get(i).getLessonDay() - 1][lesson]);
+                } else if (type == 2) {
+                    courseCover(courseId, Time[time.get(i).getLessonDay() - 1][lesson]);
                 }
                 return false;
             }
         }
         return true;
     }
-    private boolean checkCourseTime2(int courseId){
+
+    private boolean checkCourseTime2(int courseId) {
         List<CourseTime> time;
         time = courseTimeBiz.findByClassId(courseId);
-        int lesson=0;
-        for(int i=0;i<time.size();i++){
-            if(time.get(i).getStartLesson()<5)
-                lesson=0;
-            else lesson=1;
-            if(Time[time.get(i).getLessonDay()-1][lesson]!=-1){
+        int lesson = 0;
+        for (int i = 0; i < time.size(); i++) {
+            if (time.get(i).getStartLesson() < 5)
+                lesson = 0;
+            else lesson = 1;
+            if (Time[time.get(i).getLessonDay() - 1][lesson] != -1) {
                 return false;
             }
         }
         return true;
     }
-    private void courseCrash(int i,int j){
-        Course course1,course2;
-        course1=courseBiz.findById(i);
-        course2=courseBiz.findById(j);
-        Worry+="警告：您所选择的课程"+course1.getCourseName()+"和"+course2.getCourseName()+"冲突!\n";
+
+    private void courseCrash(int i, int j) {
+        Course course1, course2;
+        course1 = courseBiz.findById(i);
+        course2 = courseBiz.findById(j);
+        Worry += "警告：您所选择的课程" + course1.getCourseName() + "和" + course2.getCourseName() + "冲突!\n";
     }
-    private void courseCover(int i,int j){
-        Course course1,course2;
-        course1=courseBiz.findById(i);
-        course2=courseBiz.findById(j);
-        Worry+="提示：您所选择的课程"+course2.getCourseName()+"挤掉了课程"+course1.getCourseName()+"!\n";
+
+    private void courseCover(int i, int j) {
+        Course course1, course2;
+        course1 = courseBiz.findById(i);
+        course2 = courseBiz.findById(j);
+        Worry += "提示：您所选择的课程" + course2.getCourseName() + "挤掉了课程" + course1.getCourseName() + "!\n";
 
     }
 
-    private void checkShouldCheckLessons(){
+    private void checkShouldCheckLessons() {
         Iterator<String> iterator = shouldCheckCourses.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             String course = iterator.next();
             //判断是否有和已选课程重复的课程
-            int t=0;
-            for(int i=0;i<checkedCourses.size();i++){
-                if(course.equals(checkedCourses.get(i).getCourseName())){
-                    t=1;
+            int t = 0;
+            for (int i = 0; i < checkedCourses.size(); i++) {
+                if (course.equals(checkedCourses.get(i).getCourseName())) {
+                    t = 1;
                     break;
                 }
             }
-            if(t==1) {
+            if (t == 1) {
                 iterator.remove();
                 continue;
             }
@@ -509,47 +516,50 @@ public class CourseController {
 
         }
     }
-    private void checkShouldCheckCourses(String courseName){
+
+    private void checkShouldCheckCourses(String courseName) {
         List<Course> givenCourses = courseBiz.findByCourseName(courseName);
         Course givencourse;
-        float max=0;
-        int maxi=0;
-        if(givenCourses.size()>1){
+        float max = 0;
+        int maxi = 0;
+        if (givenCourses.size() > 1) {
             float[] score = new float[20];
-            for(int i=0;i<givenCourses.size();i++){
-                score[i]=getShouldCheckCourseScore(givenCourses.get(i).getId());
-                if(score[i]>=max)maxi=i;
+            for (int i = 0; i < givenCourses.size(); i++) {
+                score[i] = getShouldCheckCourseScore(givenCourses.get(i).getId());
+                if (score[i] >= max) maxi = i;
             }
             givencourse = givenCourses.get(maxi);
-        }else{
+        } else {
             givencourse = givenCourses.get(0);
         }
 
-        if(checkCourseTime1(givencourse.getId(),2)){
+        if (checkCourseTime1(givencourse.getId(), 2)) {
             checkedCourses.add(givencourse);
         }
     }
-    private float getShouldCheckCourseScore(int courseId){
+
+    private float getShouldCheckCourseScore(int courseId) {
         List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
-        float grade=0;
-        for(int i=0;i<comments.size();i++){
-            grade+=comments.get(i).getGradeScore()*0.2;
-            grade+=comments.get(i).getBearScore()*0.05;
-            grade+=comments.get(i).getInterestingScore()*0.05;
-            grade+=comments.get(i).getEasyScore()*0.05;
-            grade+=comments.get(i).getKnowledgeScore()*0.05;
+        float grade = 0;
+        for (int i = 0; i < comments.size(); i++) {
+            grade += comments.get(i).getGradeScore() * 0.2;
+            grade += comments.get(i).getBearScore() * 0.05;
+            grade += comments.get(i).getInterestingScore() * 0.05;
+            grade += comments.get(i).getEasyScore() * 0.05;
+            grade += comments.get(i).getKnowledgeScore() * 0.05;
         }
         return grade;
     }
-    private float getCourseScore(int courseId){
+
+    private float getCourseScore(int courseId) {
         List<StudentCommentCourse> comments = studentCommentCourseBiz.findByCourseId(courseId);
         float grade = 0;
-        for(int i=0;i<comments.size();i++){
-            grade+=comments.get(i).getBearScore()*0.05;
-            grade+=comments.get(i).getInterestingScore()*0.05;
-            grade+=comments.get(i).getEasyScore()*0.05;
-            grade+=comments.get(i).getKnowledgeScore()*0.05;
-            grade+=0.3;
+        for (int i = 0; i < comments.size(); i++) {
+            grade += comments.get(i).getBearScore() * 0.05;
+            grade += comments.get(i).getInterestingScore() * 0.05;
+            grade += comments.get(i).getEasyScore() * 0.05;
+            grade += comments.get(i).getKnowledgeScore() * 0.05;
+            grade += 0.3;
         }
         return grade;
     }
@@ -642,67 +652,67 @@ public class CourseController {
         return gson.toJson(res);
     }
 
-    private boolean Recommend(){
-        List<Course> recommendCourses = courseBiz.selectByRecommendCourse(stu_Grade,stu_College,stu_Major);
+    private boolean Recommend() {
+        List<Course> recommendCourses = courseBiz.selectByRecommendCourse(stu_Grade, stu_College, stu_Major);
 
         //删去冲突的课程
         Iterator<Course> iterator = recommendCourses.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             Course course = iterator.next();
-            int t=0;
-            for(int i=0;i<checkedCourses.size();i++){
-                String shit =checkedCourses.get(i).getCourseName();
+            int t = 0;
+            for (int i = 0; i < checkedCourses.size(); i++) {
+                String shit = checkedCourses.get(i).getCourseName();
                 String holyshit = course.getCourseName();
-                if(holyshit.equals(shit)){
-                    t=1;
+                if (holyshit.equals(shit)) {
+                    t = 1;
                     break;
                 }
             }
-            if(t==1 || !checkCourseTime2(course.getId())){
+            if (t == 1 || !checkCourseTime2(course.getId())) {
                 iterator.remove();
             }
         }
 
-        int Dnumber=0;
-        int Enumber=0;
-        if(selectMoreD){
-            if(selectNumberD){
-                Dnumber=numberD-hasD;
-            }else{
-                Dnumber=100;
+        int Dnumber = 0;
+        int Enumber = 0;
+        if (selectMoreD) {
+            if (selectNumberD) {
+                Dnumber = numberD - hasD;
+            } else {
+                Dnumber = 100;
             }
         }
 
-        if(selectMoreE){
-            if(selectNumberE){
-                Enumber=numberE-hasE;
-            }else {
-                Enumber=100;
+        if (selectMoreE) {
+            if (selectNumberE) {
+                Enumber = numberE - hasE;
+            } else {
+                Enumber = 100;
             }
         }
 
 
-        for(int i=0;i<recommendCourses.size();i++){
-            if(checkCourseTime3(recommendCourses.get(i).getId())){
-                if(recommendCourses.get(i).getLevel().equals("E")&& Enumber>0){
+        for (int i = 0; i < recommendCourses.size(); i++) {
+            if (checkCourseTime3(recommendCourses.get(i).getId())) {
+                if (recommendCourses.get(i).getLevel().equals("E") && Enumber > 0) {
                     checkedCourses.add(recommendCourses.get(i));
                     Enumber--;
-                }else if(recommendCourses.get(i).getLevel().equals("D") && Dnumber>0){
+                } else if (recommendCourses.get(i).getLevel().equals("D") && Dnumber > 0) {
                     checkedCourses.add(recommendCourses.get(i));
                     Dnumber--;
-                }else {
+                } else {
                     checkedCourses.add(recommendCourses.get(i));
                 }
             }
         }
 
         float count[] = new float[200];
-        for(int i=0;i<recommendCourses.size();i++){
-            if(recommendCourses.get(i).getLevel().equals("E"))
-                count[i]=getCourseScore(recommendCourses.get(i).getId());
+        for (int i = 0; i < recommendCourses.size(); i++) {
+            if (recommendCourses.get(i).getLevel().equals("E"))
+                count[i] = getCourseScore(recommendCourses.get(i).getId());
             else
-                count[i]=getShouldCheckCourseScore(recommendCourses.get(i).getId());
-            if(checkCourseTime3(recommendCourses.get(i).getId())){
+                count[i] = getShouldCheckCourseScore(recommendCourses.get(i).getId());
+            if (checkCourseTime3(recommendCourses.get(i).getId())) {
                 checkedCourses.add(recommendCourses.get(i));
             }
         }
@@ -894,10 +904,10 @@ public class CourseController {
             List<StudentCommentCourse> checkedCourses = studentCommentCourseBiz.findByStudentId(studentId);
 
             Iterator<Course> iterator = courses.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Course course = iterator.next();
-                for(int i=0;i<checkedCourses.size();i++){
-                    if(course.getId().equals(checkedCourses.get(i).getCourse().getId())){
+                for (int i = 0; i < checkedCourses.size(); i++) {
+                    if (course.getId().equals(checkedCourses.get(i).getCourse().getId())) {
                         iterator.remove();
                     }
                 }
@@ -1383,18 +1393,18 @@ public class CourseController {
 
     @RequestMapping(value = "/getScoreGroupByYear", produces = "text/json; charset=utf-8")
     @ResponseBody
-    public String getScoreGroupByYear(@RequestParam("courseId")String courseId){
+    public String getScoreGroupByYear(@RequestParam("courseId") String courseId) {
         Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
         JsonObject rsp = new JsonObject();
 
         List<StudentCommentCourse> commentList = studentCommentCourseBiz.findByCourseId(Integer.parseInt(courseId));
         HashMap<Integer, List<Integer>> gradeMap = new HashMap<>();
         gradeMap.clear();
-        for(StudentCommentCourse comment: commentList){
+        for (StudentCommentCourse comment : commentList) {
             Integer grade = comment.getStudent().getGrade();
             Integer score = comment.getGradeScore();
             List<Integer> temp = gradeMap.get(grade);
-            if(temp != null) {
+            if (temp != null) {
                 temp.add(score);
                 gradeMap.put(grade, temp);
             } else {
@@ -1405,17 +1415,17 @@ public class CourseController {
         }
 
 
-        Map<Integer, Integer>avgScore = new HashMap<>();
+        Map<Integer, Integer> avgScore = new HashMap<>();
         JsonArray data = new JsonArray();
-        for(Integer key: gradeMap.keySet()){
+        for (Integer key : gradeMap.keySet()) {
             Integer sumScore = 0;
             List<Integer> scores = gradeMap.get(key);
-            for(Integer score: scores){
-                sumScore+=score;
+            for (Integer score : scores) {
+                sumScore += score;
             }
             JsonElement element = new JsonObject();
             element.getAsJsonObject().addProperty("year", "20" + String.valueOf(key));
-            element.getAsJsonObject().addProperty("avgScore", sumScore/scores.size());
+            element.getAsJsonObject().addProperty("avgScore", sumScore / scores.size());
             data.add(element);
         }
 
@@ -1435,17 +1445,21 @@ public class CourseController {
         Map<String, Object> res = new HashMap<>();
 
         JsonArray recommendCourses = new JsonArray();
+        JsonArray recommendCoursesTime = new JsonArray();
 
-        for (Course course : courseSelectController.checkedCourses) {
+        for (Course course : checkedCourses) {
             JsonObject recommend = new JsonObject();
             recommend.addProperty("courseName", course.getCourseName());
             recommend.addProperty("courseCode", course.getCourseCode());
             recommend.addProperty("teacherName", course.getTeacher().getTeacherName());
             recommend.addProperty("studentNumber", course.getStudentNumber());
             recommend.addProperty("courseId", course.getId());
-            int i = 0;
+
+            JsonArray courseTimeTables = new JsonArray();
             for (CourseTime courseTime : course.getCourseTimes()) {
-                recommend.addProperty("courseDay" + i, courseTime.getLessonDay());
+
+                JsonObject courseTimeTable = new JsonObject();
+                courseTimeTable.addProperty("lessonDay", courseTime.getLessonDay());
                 int startLesson = courseTime.getStartLesson();
                 int endLesson = courseTime.getEndLesson();
                 if (startLesson > 4) {
@@ -1454,21 +1468,116 @@ public class CourseController {
                 if (endLesson > 4) {
                     endLesson = endLesson + 2;
                 }
+                courseTimeTable.addProperty("courseStartLesson", startLesson);
+                courseTimeTable.addProperty("courseEndLesson", endLesson);
 
-                recommend.addProperty("courseStartLesson" + i, startLesson);
-                recommend.addProperty("courseEndLesson" + i,endLesson);
-                i++;
+                courseTimeTables.add(courseTimeTable);
             }
-            recommend.addProperty("courseNumber", i);
+
+            recommendCoursesTime.add(courseTimeTables);
 
             recommendCourses.add(recommend);
         }
 
         Map<String, Object> data = new HashMap<>();
         data.put("courseInfo", recommendCourses);
+        data.put("courseTable", recommendCoursesTime);
+        data.put("warning",Worry);
 
         res.put("data", data);
         res.put("success", true);
+
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = "/findByTeacherOrCode", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findByTeacherAndCode(String keyword, HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Map<String, Object> data = new HashMap<>();
+
+        boolean success = false;
+        if (keyword != "") {
+            success = true;
+        }
+
+        if (success) {
+            List<Course> courses = courseBiz.findByTeacherAndCode(keyword);
+
+            JsonArray coursesList = new JsonArray();
+
+            for (Course course : courses) {
+                JsonObject courseList = new JsonObject();
+                courseList.addProperty("courseId", course.getId());
+                courseList.addProperty("courseCode", course.getCourseCode());
+                courseList.addProperty("courseName", course.getCourseName());
+                courseList.addProperty("teacherName", course.getTeacher().getTeacherName());
+                courseList.addProperty("studentNumber", course.getStudentNumber());
+
+                coursesList.add(courseList);
+            }
+
+            data.put("courses", coursesList);
+
+            if (coursesList.size() < 1) {
+                success = false;
+            }
+        }
+
+
+        Map<String, Object> res = new HashMap<>();
+
+        res.put("data", data);
+        res.put("success", success);
+
+        return gson.toJson(res);
+    }
+
+    @RequestMapping(value = "/findCourseTime", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
+    @ResponseBody
+    public String findCourseTime(String idStr, HttpServletResponse response) {
+
+        response.setContentType("text/json;charset:UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        Map<String, Object> res = new HashMap<>();
+
+        JsonArray coursesTime = new JsonArray();
+
+        int id = Integer.parseInt(idStr);
+        for (CourseTime courseTime : courseBiz.findById(id).getCourseTimes()) {
+            JsonObject time = new JsonObject();
+            time.addProperty("lessonDay", courseTime.getLessonDay());
+
+            if (courseTime.getStartLesson() > 4) {
+                time.addProperty("startLesson", courseTime.getStartLesson() + 2);
+            } else
+                time.addProperty("startLesson", courseTime.getStartLesson());
+
+            if (courseTime.getEndLesson() > 4) {
+                time.addProperty("endLesson", courseTime.getEndLesson() + 2);
+            } else time.addProperty("endLesson", courseTime.getEndLesson());
+
+            coursesTime.add(time);
+        }
+
+        Map<String,Object> data = new HashMap<>();
+        data.put("coursesTime",coursesTime);
+        data.put("courseName",courseBiz.findById(id).getCourseName());
+        data.put("courseId",courseBiz.findById(id).getId());
+
+        boolean success = false;
+        if(coursesTime.size() > 0){
+            success = true;
+        }
+
+        res.put("data",data);
+        res.put("success",success);
 
         return gson.toJson(res);
     }

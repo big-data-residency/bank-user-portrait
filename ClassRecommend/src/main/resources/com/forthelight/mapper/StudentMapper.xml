@@ -103,5 +103,18 @@
 	    update student set deleteStatus = 1
 	    where id = #{id}
 	</update>
+
+	<select id="selectCourseNumber" resultType="int" parameterType="int">
+		select count(*) from
+		student_select_course where studentId = #{studentId} and deleteStatus = 0
+	</select>
+
+	<select id="commentCourseNumber" resultType="int" parameterType="int">
+		select count(*) from
+		student_comment_course
+		where selectId in
+		(select studentId from student_select_course
+		where studentId = #{studentId} and deleteStatus = 0 ) and deleteStatus = 0
+	</select>
 	
 </mapper>
