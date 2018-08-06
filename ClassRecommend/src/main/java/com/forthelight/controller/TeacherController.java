@@ -74,6 +74,7 @@ public class TeacherController {
         teacherInfo.addProperty("gender",teacher.getGender());
         teacherInfo.addProperty("telPhone",teacher.getTelPhone());
         teacherInfo.addProperty("officeAddress",teacher.getOfficeAddress());
+        teacherInfo.addProperty("portrait",teacher.getTeacherPortrait());
 
         String college = teacher.getCollege().getCollegeName();
 
