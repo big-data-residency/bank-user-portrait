@@ -45,7 +45,7 @@
 <!-- Site wrapper -->
 <div class="wrapper" id="courseInfo">
 
-	<header class="main-header">
+	<header class="main-header" id="headerStudentInfo" >
 
 		<!-- Logo -->
 		<a href="#" class="logo navbar-fixed-top">
@@ -72,20 +72,20 @@
 						<!-- Menu Toggle Button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<i class="fa fa-flag-o"></i>
-							<span class="label label-danger">21</span>
+							<span class="label label-danger" id="pagesNotCommentCourses">{{ sub }}</span>
 						</a>
 						<ul class="dropdown-menu">
-							<li class="header">有21门课未评价</li>
+							<li class="header" id="pagesAlert">有{{ sub }}门课未评价</li>
 							<li>
 								<!-- Inner menu: contains the tasks -->
 								<ul class="menu">
 									<li>
 										<!-- Task item -->
-										<a href="http://localhost:8080/view/user/course-attended.html?id={{studentIdStr}}">
+										<a :href="'http://localhost:8080/view/user/course-attended.html?id='+studentIdStr">
 											<!-- Task title and progress text -->
 											<h3>
 												已评课数
-												<small class="pull-right">9/30</small>
+												<small class="pull-right" id="pagesCourses" >{{ studentPageInfo.commentNumber }}/{{ studentPageInfo.selectNumber }}</small>
 											</h3>
 											<!-- The progress bar -->
 											<div class="progress xs">
@@ -100,7 +100,7 @@
 								</ul>
 							</li>
 							<li class="footer">
-								<a href="http://localhost:8080/view/user/classdetail-uploads.html?id={{studentId}}">进入评课</a>
+								<a href="'http://localhost:8080/view/user/classdetail-uploads.html?id='+'studentId'">进入评课</a>
 							</li>
 						</ul>
 					</li>
@@ -109,18 +109,18 @@
 						<!-- Menu Toggle Button -->
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<!-- The user image in the navbar-->
-							<img src="../../style/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+							<img :src="studentPageInfo.portrait" class="user-image" alt="User Image">
 							<!-- hidden-xs hides the username on small devices so only the image appears. -->
-							<span class="hidden-xs">Alexander Pierce</span>
+							<span class="hidden-xs" id="pagesStudentName">{{ studentPageInfo.nickName }}</span>
 						</a>
 						<ul class="dropdown-menu">
 							<!-- The user image in the menu -->
 							<li class="user-header">
-								<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+								<img :src="studentPageInfo.portrait" class="img-circle" alt="User Image">
 
-								<p>
-									胖成球 - 信息安全
-									<small>学号：1611522</small>
+								<p id="pagesStudentMajor">
+									{{ studentPageInfo.nickName }} - {{ studentPageInfo.major }}
+									<small id="pagesStudentNumber">学号：{{ studentPageInfo.studentNumber }}</small>
 								</p>
 							</li>
 							<!-- Menu Body -->
@@ -128,7 +128,7 @@
 							<!-- Menu Footer-->
 							<li class="user-footer">
 								<div class="pull-left">
-									<a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+									<a :href="'studentinfo_new.html?id='+studentIdStr" class="btn btn-default btn-flat">Profile</a>
 								</div>
 								<div class="pull-right">
 									<a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -143,7 +143,7 @@
 	</header>
 
 	<!-- Left side column. contains the logo and sidebar -->
-	<aside class="main-sidebar " style="position: fixed ">
+	<aside class="main-sidebar " style="position: fixed " id="asideStudentInfo">
 
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
@@ -151,10 +151,10 @@
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel" style="height: 65px;">
 				<div class="pull-left image">
-					<img src="../../style/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+					<img :src="studentPageInfo.portrait" class="img-circle" alt="User Image">
 				</div>
 				<div class="pull-left info">
-					<p>Alexander Pierce</p>
+					<p>{{ studentPageInfo.nickName }}</p>
 
 					<!-- Status -->
 					<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -178,19 +178,19 @@
 				<li class="header">EAMIS_HELPER</li>
 				<!-- Optionally you can add icons to the links -->
 				<li >
-					<a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
+					<a :href="'new_start.html?id='+studentIdStr"><i class="fa fa-user"></i> <span>用户首页</span></a>
 				</li>
 				<li >
 					<a href="#"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
 				</li>
 				<li>
-					<a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
+					<a :href="'course-attended.html?id='+studentIdStr"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
 				</li>
 				<li class="active">
-					<a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
+					<a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
 				</li>
 				<li>
-					<a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+					<a :href="'studentinfo_new.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>个人信息</span></a>
 				</li>
 				<!--<li class="treeview">
 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -607,6 +607,85 @@
 </body>
 <script>
 
+	var studentIdStr='';
+
+	var headerStudentInfo = new Vue({
+		el:'#headerStudentInfo',
+		data:{
+		    studentPageInfo:{
+
+			},
+			sub:'',
+			studentIdStr:'',
+		},
+		methods:{
+            GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+                var context = "";
+                if (r != null)
+                    context = r[2];
+                reg = null;
+                r = null;
+                return context == null || context == "" || context == "undefined" ? "" : context;
+            },
+            getPar() {
+                studentIdStr = this.GetQueryString('id');
+            },
+		    getPageStudentInfo(){
+		        $.ajax({
+                    url:'http://localhost:8080/studentPagesInfo',
+					data:{
+                        studentIdStr:studentIdStr,
+					},
+					type:'GET',
+					dataType:'json',
+					success:function (res) {
+                        headerStudentInfo.studentPageInfo = res.data.student;
+                        headerStudentInfo.sub = res.data.student.selectNumber - res.data.student.commentNumber;
+                        headerStudentInfo.studentIdStr = studentIdStr;
+                    }
+				})
+
+			}
+		},
+		mounted(){
+		    this.getPar();
+		    this.getPageStudentInfo();
+		}
+	})
+
+	var asideStudentInfo = new Vue({
+		el:'#asideStudentInfo',
+        data:{
+            studentPageInfo:{
+
+            },
+            sub:'',
+            studentIdStr:'',
+        },
+        methods:{
+            getPageStudentInfo(){
+                $.ajax({
+                    url:'http://localhost:8080/studentPagesInfo',
+                    data:{
+                        studentIdStr:studentIdStr,
+                    },
+                    type:'GET',
+                    dataType:'json',
+                    success:function (res) {
+                        asideStudentInfo.studentPageInfo = res.data.student;
+                        asideStudentInfo.sub = res.data.student.selectNumber - res.data.student.commentNumber;
+                        asideStudentInfo.studentIdStr = studentIdStr;
+                    }
+                })
+
+            }
+        },
+        mounted(){
+            this.getPageStudentInfo();
+        }
+	})
 
 	var grade='';
 	var college='';
@@ -858,7 +937,6 @@
 
                             $('#alreadySelectCourse').on("click", newRemoveId, this , function (obj) {
 
-                                console.log(obj.valueOf().target);
                                 var remove = obj.valueOf().target.getAttribute("id")
                                 document.getElementById(remove).remove();
                             })
@@ -995,7 +1073,6 @@
                 console.log(selectedCourses);
             }
         })
-		win
     })
 
     $(function (){
