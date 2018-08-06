@@ -1567,6 +1567,28 @@ public class CourseController {
 
         JsonElement data = new JsonObject();
         data.getAsJsonObject().add("course", gson.toJsonTree(course, Course.class));
+        data.getAsJsonObject().add("teacher", gson.toJsonTree(course.getTeacher(), Teacher.class));
+        data.getAsJsonObject().add("major", gson.toJsonTree(course.getMajor(), Major.class));
+        data.getAsJsonObject().add("college", gson.toJsonTree(course.getCollege(), College.class));
+
+
+        JsonElement teachers = new JsonArray();
+        for( Teacher teacher: course.getCollege().getTeachers()){
+            teachers.getAsJsonArray().add(gson.toJsonTree(teacher, Teacher.class));
+        }
+        data.getAsJsonObject().add("teachers", teachers);
+
+        JsonElement colleges = new JsonArray();
+        for(College college: collegeBiz.findAll()){
+            colleges.getAsJsonArray().add(gson.toJsonTree(college, College.class));
+        }
+        data.getAsJsonObject().add("colleges", colleges);
+
+        JsonElement majors = new JsonArray();
+        for(Major major: course.getCollege().getMajors()){
+            majors.getAsJsonArray().add(gson.toJsonTree(major, Major.class));
+        }
+        data.getAsJsonObject().add("majors", majors);
 
         rsp.add("data", data);
         rsp.addProperty("success", true);

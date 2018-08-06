@@ -28,7 +28,7 @@
 		WHERE id=#{id} AND DeleteStatus=0;
 	</select>
 	
-	<select id="findByCollegeId" parameterType="int" resultMap="MajorResultMap" >
+	<select id="findByCollegeId" parameterType="Integer" resultMap="MajorResultMap" >
 	    select * from Major 
 	    where collegeId = #{collegeId} and deleteStatus = 0
 	</select>

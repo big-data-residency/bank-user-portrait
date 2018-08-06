@@ -21,9 +21,8 @@ public class MajorBizImpl implements MajorBiz {
 	}
 
 	@Override
-	public List<Major> findByCollegeId(int collegeId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Major> findByCollegeId(Integer collegeId) {
+		return majorDao.findByCollegeId(collegeId);
 	}
 
 	@Override
