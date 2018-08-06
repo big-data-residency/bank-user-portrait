@@ -22,7 +22,7 @@ public interface StudentCommentCourseDao {
 	
 	int insert(StudentCommentCourse studentCommentCourse);
 	
-	int getScoreByGrade(String studentNumber , int courseId);
+	Integer getScoreByGrade(String studentNumber , int courseId);
 	
 	int numberOfGetScoreByGrade(String studentNumber , int courseId);
 	

@@ -24,7 +24,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
-    <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue.css">
+    <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue-light.min.css">
     <link rel="stylesheet" type="text/css" href="../../style/newstyle/css/starter_new.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,13 +39,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
+<body class="hold-transition skin-blue-light fixed sidebar-mini">
 
-<body class="hold-transition skin-blue-light fixed">
 <div class="wrapper">
 
-    <!-- Main Header -->
     <header class="main-header">
-
         <!-- Logo -->
         <a href="#" class="logo navbar-fixed-top">
             <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -127,7 +125,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="studentinfo_new.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="studentinfo.html?id={{studentId}}" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="#" class="btn btn-default btn-flat">Sign out</a>
@@ -163,11 +161,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <div class="input-group">
 <input type="text" name="q" class="form-control" placeholder="Search...">
 <span class="input-group-btn">
-<<<<<<< HEAD
->>>>>>> dev
-=======
-
->>>>>>> dev
   <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
   </button>
 </span>
@@ -182,17 +175,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li >
                     <a href="new_start.html?id={{studentId}}"><i class="fa fa-user"></i> <span>用户首页</span></a>
                 </li>
-                <li class="active">
-                    <a href="#"><i class="fa fa-book"></i> <span>查看所有课程</span></a>
+                <li>
+                    <a href="courseList.html?id={{studentId}}"><i class="fa fa-book"></i> <span>查询所有课程</span></a>
                 </li>
                 <li>
                     <a href="course-attended.html?id={{studentId}}"><i class="fa fa-bookmark"></i> <span>查看已修课程</span></a>
                 </li>
-                <li>
-                    <a href="select_course.html?id={{studentId}}"><i class="fa fa-heart"></i> <span>推荐课程页面</span></a>
+                <li class="active">
+                    <a href="#"><i class="fa fa-heart"></i> <span>推荐课程</span></a>
                 </li>
                 <li>
-                    <a href="studentinfo_new.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
+                    <a href="studentinfo.html?id={{studentId}}"><i class="fa fa-edit"></i> <span>个人信息</span></a>
                 </li>
                 <!--<li class="treeview">
 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
@@ -299,19 +292,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Main Footer -->
     <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
-            CEO:XXX
-        </div>
+
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2016 <a href="#">EAMIS_RECOMMEMDER</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2018 <a href="#">EAMIS_HELPER</a>.</strong> All rights reserved.
     </footer>
 
-    <!-- Control Sidebar -->
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 

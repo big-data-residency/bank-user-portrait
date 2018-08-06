@@ -86,4 +86,16 @@ public class StudentBizImpl implements StudentBiz {
 	public Integer getSelectId(Student student, Course course) {
 		return studentDao.getSelectId(student, course);
 	}
+
+
+	@Override
+	public Integer selectCourseNumber(int studentId){
+		return studentDao.selectCourseNumber(studentId);
+	}
+
+	@Override
+	public Integer commentCourseNumber(int studentId){
+		return  studentDao.commentCourseNumber(studentId);
+	}
+
 }

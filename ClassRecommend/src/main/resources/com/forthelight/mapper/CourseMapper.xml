@@ -248,6 +248,16 @@
 		( level = "e" or
 		( level = "D" and
 		( ( collegeId = #{collegeId} and MajorId = null ) or
-		( collegeId = {#collegeId} and majorId = #{majorId} ) ) ) )
+		( collegeId = #{collegeId} and majorId = #{majorId} ) ) ) )
+		and deleteStatus = 0
+	</select>
+
+
+	<select id="findByTeacherAndCode" resultMap="CourseResultMap">
+		select * from Course
+		where
+		(teacherId in
+		( select id from Teacher where teacherName = #{keyword} and deleteStatus =0 )
+		or courseCode = #{keyword} ) and deleteStatus = 0
 	</select>
 </mapper>

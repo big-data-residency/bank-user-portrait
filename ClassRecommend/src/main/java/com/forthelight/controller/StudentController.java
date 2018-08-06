@@ -206,13 +206,13 @@ public class StudentController {
 			success = false;
 		}
 
-		Map<String, Object> studentInfo = new HashMap<>();
+		JsonObject studentInfo = new JsonObject();
 
-		studentInfo.put("student", student);
-		studentInfo.put("college", student.getCollege());
-		studentInfo.put("major", student.getMajor());
-		studentInfo.put("courses", student.getCourses());
-
+		studentInfo.addProperty("studentName", student.getStudentName());
+		studentInfo.addProperty("nickName",student.getNickName());
+		studentInfo.addProperty("studentNumber",student.getStudentNumber());
+		studentInfo.addProperty("college", student.getCollege().getCollegeName());
+		studentInfo.addProperty("major", student.getMajor().getMajorName());
 		// ------------------ 第一个标签栏数据 ---------------------
 		List<StudentCommentCourse> studentCommentCourses = studentCommentCourseBiz.findByStudentId(studentId);
 		JsonArray comments = new JsonArray();
@@ -272,12 +272,24 @@ public class StudentController {
 		int studentId = Integer.parseInt(studentIdStr);
 
 		student.setId(studentId);
-		student.setNickName(nickName);
+		if(nickName== "")
+			student.setNickName(studentBiz.findById(studentId).getNickName());
+		else
+			student.setNickName(nickName);
 		student.setGender(gender);
 		student.setStudentPortrait(studentBiz.findById(studentId).getStudentPortrait());
 		student.setPassword(password);
-		student.setCollege(collegeBiz.findByName(college));
-		student.setMajor(majorBiz.findByName(major));
+//		if(college == ""){
+//			college = collegeBiz.findByName(studentBiz.findById(studentId).getCollege().getCollegeName()).getCollegeName();
+//		}
+		if(college == ""){
+			student.setCollege(studentBiz.findById(studentId).getCollege());
+		}else
+			student.setCollege(collegeBiz.findByName(college));
+		if(major == ""){
+			student.setMajor((studentBiz.findById(studentId).getMajor()));
+		}else
+			student.setMajor(majorBiz.findByName(major));
 
 		int result = studentBiz.update(student);
 
@@ -427,4 +439,35 @@ public class StudentController {
 		return gson.toJson(res);
 	}
 
-}
+
+	@RequestMapping(value = "/studentPagesInfo", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+	@ResponseBody
+	public String studentPagesInfo(String studentIdStr, HttpServletResponse response) {
+
+		response.setContentType("text/json;charset:UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+		Map<String, Object> res = new HashMap<>();
+
+		int studentId = Integer.parseInt(studentIdStr);
+		Student student = studentBiz.findById(studentId);
+
+		JsonObject studentInfo = new JsonObject();
+		studentInfo.addProperty("nickName",student.getNickName());
+		studentInfo.addProperty("major",student.getMajor().getMajorName());
+		studentInfo.addProperty("studentNumber",student.getStudentNumber());
+		studentInfo.addProperty("selectNumber",studentBiz.selectCourseNumber(studentId));
+		studentInfo.addProperty("commentNumber",studentBiz.commentCourseNumber(studentId));
+		studentInfo.addProperty("portrait",student.getStudentPortrait());
+		studentInfo.addProperty("privilege",student.getPrivilege());
+
+		Map<String,Object> data = new HashMap<>();
+		data.put("student",studentInfo);
+
+		res.put("data",data);
+
+		return gson.toJson(res);
+	}
+
+	}

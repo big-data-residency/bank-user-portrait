@@ -35,4 +35,8 @@ public interface StudentDao {
     int selectCourse(@Param("student") Student student, @Param("course") Course course);
 
     Integer getSelectId(@Param("student") Student student, @Param("course") Course course);
+
+	Integer selectCourseNumber(int studentId);
+
+	Integer commentCourseNumber(int studentId);
 }

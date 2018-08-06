@@ -224,29 +224,24 @@
                         </div>
                         <div style="margin: 10px;">
 
-                            <form action="" method="post" name="search">
+                            <form action="" method="post" id="searchCourse">
                                 <div class="input-group input-group" style="margin-top: 20px;">
                                     <!-- /btn-group -->
-                                    <input type="text" class="form-control" name='keywords'>
+                                    <input type="text" class="form-control" name="keyword">
                                     <span class="input-group-btn">
-                      <button type="submit" class="btn btn-info btn-flat">Go!</button>
-                    </span>
+                                    <button type="submit" class="btn btn-info btn-flat">Go!</button></span>
                                 </div>
                             </form>
                             <table class="table table-bordered" style="margin-top: 10px;">
-                                <tbody style="margin-bottom: 20px;" id='table'>
+                                <thead>
                                 <tr>
                                     <th>课程编号</th>
                                     <th>课程名称</th>
                                     <th>教师</th>
-                                    <th>点赞数</th>
+                                    <th>课程人数</th>
                                 </tr>
-                                <tr onclick="add()" id='result'>
-                                    <td>comp1111</td>
-                                    <td>信安数基</td>
-                                    <td>贾春福</td>
-                                    <td><span class="badge bg-red">1028</span></td>
-                                </tr>
+                                </thead>
+                                <tbody style="margin-bottom: 20px;" id="searchResult">
 
                                 </tbody>
                             </table>
@@ -392,10 +387,8 @@
                                                     <div class="text">周一</div>
                                                 </div>
                                                 <div class="times">
-                                                    <div class="time-block" id="course11">
-                                                        <div class="coursebar" onclick="delete33()" id="add11">
-                                                            信安数基 <br/>贾春福
-                                                        </div>
+                                                    <div class="time-block" id="course11" data-value="0">
+
 
                                                     </div>
                                                     <div class="time-block" id="course12">
@@ -569,7 +562,7 @@
                                                         <!-- react-text: 148 -->
                                                         <!-- /react-text -->
                                                     </div>
-                                                    <div class="time-block" id="course114">
+                                                    <div class="time-block" id="course214">
                                                         <!-- react-text: 150 -->
                                                         <!-- /react-text -->
                                                         <!-- react-text: 151 -->
@@ -1202,17 +1195,125 @@
     // })
 
 
-
     $(function () {
         $.ajax({
-            url:'http://localhost:8080/getRecommend',
-            data:{},
-            type:'GET',
-            success:function (res) {
-                if(res.success){
-                    alert(1);
+            url: 'http://localhost:8080/getRecommend',
+            data: {},
+            type: 'GET',
+            success: function (res) {
+                if (res.success) {
+
+                    var i =0;
+                    for (var course of res.data.courseInfo) {
+
+                        var selectId = "select" + course.courseId;
+                        var removeId = "remove" + course.courseId;
+                        for (var courseTime of res.data.courseTable[i]) {
+
+                            for (var j = courseTime.courseStartLesson; j < courseTime.courseEndLesson; j++) {
+                                var courseTable = "course" + courseTime.lessonDay + j;
+                                $('#' + courseTable).append(`<div class="coursebar" name=courseId` + course.courseId + ` id=add`
+                                    + course.courseId + j +
+                                    `>${course.courseName}</div>`)
+                                document.getElementById(courseTable).setAttribute("data-value", '1');
+
+                                $('#' + courseTable).on("click", '#add' + course.courseId + j, this, function (obj) {
+                                    var remove = obj.valueOf().target.getAttribute("name");
+                                    for (var i = 0; i < document.getElementsByName(remove).length;) {
+                                        $($(document.getElementsByName(remove)[i]).parent()[0]).attr("data-value",0);
+                                        $(document.getElementsByName(remove)[i]).remove();
+
+                                    }
+                                })
+                            }
+                        }
+
+                        i++;
+
+                    }
                 }
             }
+        })
+    })
+
+    $('#searchCourse').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'http://localhost:8080/findByTeacherOrCode',
+            data: $('#searchCourse').serialize(),
+            type: 'GET',
+            beforeSend: function () {
+                $('#searchResult').html('')
+            },
+            success: function (res) {
+                if (res.success) {
+                    for (var course of res.data.courses) {
+                        $('#searchResult').append(`<tr id="courseId` + course.courseId + `" name="courseList" >
+                                    <td>${course.courseCode}</td>
+                                    <td>${course.courseName}</td>
+                                    <td>${course.teacherName}</td>
+                                    <td><span class="badge bg-red">${course.studentNumber}</span></td>
+                                </tr>`)
+
+                        $('#searchResult').on("click", "#courseId" + course.courseId, this, function (obj) {
+                            console.log($(obj.valueOf().currentTarget).attr("id").substring(8));
+                                var id = $(obj.valueOf().currentTarget).attr("id").substring(8)
+                                $.ajax({
+                                    url: 'http://localhost:8080/findCourseTime',
+                                    data: {
+                                        idStr: id
+                                    },
+                                    type: 'GET',
+                                    success: function (res) {
+                                        if (res.success) {
+                                            var indexSelect = new Array();
+                                            var courseId = res.data.courseId;
+                                            var courseName = res.data.courseName;
+                                            for (var courseTime of res.data.coursesTime) {
+                                                var selectId = "select" + course.courseId;
+                                                var removeId = "remove" + course.courseId;
+                                                indexSelect[courseId] = courseName;
+                                                var conflict = 1;
+                                                for (var i = courseTime.startLesson; i <= courseTime.endLesson; i++) {
+                                                    var courseTable = "course" + courseTime.lessonDay + i;
+                                                    if (document.getElementById(courseTable).getAttribute("data-value") == 1) {
+                                                        conflict = 0;
+                                                        alert("您选的课程与" + $(document.getElementById(courseTable)).children().html() + "冲突,请重新选择，或者先退课");
+                                                        break;
+                                                    }
+                                                }
+                                                if (conflict == 1) {
+                                                    for (var i = courseTime.startLesson; i <= courseTime.endLesson; i++) {
+                                                        var courseTable = "course" + courseTime.lessonDay + i;
+                                                        $('#' + courseTable).append(`<div class="coursebar" name=courseId` + course.courseId + ` id=add`
+                                                            + course.courseId + i +
+                                                            `>${course.courseName}</div>`)
+                                                        document.getElementById(courseTable).setAttribute("data-value", '1');
+
+                                                        $('#' + courseTable).on("click", '#add' + course.courseId + i, this, function (obj) {
+                                                            var remove = obj.valueOf().target.getAttribute("name");
+                                                            for (var i = 0; i < document.getElementsByName(remove).length;) {
+                                                                $($(document.getElementsByName(remove)[i]).parent()[0]).attr("data-value",0);
+                                                                $(document.getElementsByName(remove)[i]).remove();
+
+                                                            }
+                                                        })
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                })
+                            }
+                        )
+                    }
+
+                }
+                else{
+                    alert("没有搜索到相关结果，请重新查找！")
+                }
+            }
+
         })
     })
 

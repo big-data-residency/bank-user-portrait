@@ -179,5 +179,9 @@ public class CourseDaoTest {
         System.out.print(course);
     }
 
+    @Test
+    public void findByTeacherAndCode(){
+        List<Course> courses =  courseDao.findByTeacherAndCode("00067");
+    }
 
 }
