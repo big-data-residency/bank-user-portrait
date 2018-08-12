@@ -44,7 +44,13 @@ public class CommentController {
             return gson.toJson(rsp);
         }
         comment.setComment(request.getParameter("description"));
-        comment.setAnonymous(request.getParameter("anonymous").equals("true") ? 1 : 0);
+        String anonymous = request.getParameter("Anonymous");
+        if(anonymous == null || anonymous.equals("false")) {
+            comment.setAnonymous(0);
+        } else {
+            comment.setAnonymous(1);
+        }
+
         comment.setCourse(course);
         comment.setStudent(student);
         comment.setSelectId(selectId);

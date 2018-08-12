@@ -205,7 +205,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li>
                     <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
                 </li>
-                <li v-if="privilege == 1">
+                <li v-if="studentPageInfo.privilege == 1">
                     <a :href="'../admin/manageStudent.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>查看所有用户信息</span></a>
                 </li>
                 <li>
@@ -400,7 +400,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                                     <i class="fa fa-share margin-r-5"></i> Share</a>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0);" class="link-black text-sm like">
+                                                <a class="link-black text-sm like" style=":hover">
                                                     <i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
                                             </li>
                                             <!--<li class="pull-right">-->
@@ -1019,8 +1019,8 @@ immediately after the control sidebar -->
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="../../style/bower_components/Flot/jquery.flot.categories.js"></script>
 <!-- Morris.js charts -->
-<script src="../../style/bower_components/raphael/raphael.min.js"></script>
-<script src="../../style/bower_components/morris.js/morris.min.js"></script>
+<script src="../../style/bower_components/raphael/raphael.js"></script>
+<script src="../../style/bower_components/morris.js/morris.js"></script>
 
 <script src="../../style/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="../../style/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -1222,9 +1222,11 @@ immediately after the control sidebar -->
                     dataType: 'json',
                     success(json) {
                         if (json.success) {
-                            this.Login = json.data;
-                            if (this.Login.studentId !== this.getPar()) {
-                                location.href = "no-access.html";
+                            classDetail.Login = json.data;
+                            console.log(json);
+                            if (classDetail.Login.studentId !== studentIdStr) {
+                                console.log(classDetail.Login);
+                                // location.href = "no-access.html";
                             }
 
                         } else {
@@ -1291,8 +1293,9 @@ immediately after the control sidebar -->
                     dataType: 'json',
                     success: function (res) {
                         if (res.success) {
-                            alert("评论成功")
+                            alert("评论成功");
                             classDetail.getComments();
+                            classDetail.classInfo.uploadsNumber++;
                         } else {
                             alert(res.data);
                         }
@@ -1397,12 +1400,12 @@ immediately after the control sidebar -->
             // this.myfun();
             this.getPar();
             this.getInfo();
+            this.GetLogin();
             this.getScoreRate();
             this.getScoreGroupByYear();
             this.getComments();
             this.getFiles();
             this.getPageStudentInfo();
-            this.GetLogin();
 
         }
 
@@ -1412,9 +1415,11 @@ immediately after the control sidebar -->
 <!-- 点赞 -->
 <script type="text/javascript">
     $(document).ready(function () {
+        console.log(2);
         $('a.like').on('click', function () {
+            console.log(1);
             if ($(this).children().hasClass('fa-thumbs-o-up')) {
-                $(this).children().removeClass('fa-thumbs-o-up').addClass('fa-thumbs-up')
+                $(this).children().removeClass('fa-thumbs-o-up').addClass('fa-thumbs-up');
                 classDetail.classInfo.likeNumber++;
             } else {
                 $(this).children().removeClass('fa-thumbs-up').addClass('fa-thumbs-o-up');
@@ -1434,8 +1439,9 @@ immediately after the control sidebar -->
         for (var name in keywords) {
             data.push({
                 name: name,
-                value: Math.sqrt(keywords[name])
-            })
+                // value: Math.sqrt(keywords[name])
+                value: keywords[name]
+            });
         }
         var maskImage = new Image();
 
@@ -1505,7 +1511,7 @@ immediately after the control sidebar -->
             barColors: ['#00a65a', '#f56954'],
             xkey: 'year',
             ykeys: ['avgScore'],
-            labels: 'avgScore',
+            labels: "avgScore",
             hideHover: 'auto'
         });
         // var bar = new Morris.Bar({
@@ -1555,9 +1561,11 @@ immediately after the control sidebar -->
             contentType: false,
             success: function (rsp) {
                 if (rsp.success) {
-                    alert("上传成功");
+                    // alert("上传成功");
+                    classDetail.classInfo.uploadsNumber++;
+                    classDetail.getFiles();
                 }
-                classDetail.getFiles();
+
             }
         })
     })

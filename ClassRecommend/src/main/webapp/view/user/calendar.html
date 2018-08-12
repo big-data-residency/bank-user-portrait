@@ -180,7 +180,7 @@
                 <li class="active">
                     <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
                 </li>
-                <li v-if="privilege == 1">
+                <li v-if="studentPageInfo.privilege == 1">
                     <a :href="'../admin/manageStudent.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>查看所有用户信息</span></a>
                 </li>
                 <li>
@@ -271,7 +271,7 @@
                                         <div class="schedule-header">
                                             <div class="text">2018Schedule</div>
                                         </div>
-                                        <div class="schedule-main">
+                                        <div class="schedule-main row" style="overflow-y: hidden">
                                             <div class="schedule-pane pane-time">
                                                 <div class="pane-header">
                                                     <div class="text">Times</div>
@@ -1295,7 +1295,7 @@
 
     $(function () {
         $.ajax({
-            url: 'http://localhost:8080/getRecommend',
+            url: '/getRecommend',
             data: {},
             type: 'GET',
             success: function (res) {
@@ -1391,7 +1391,7 @@
                                                         $('#' + courseTable).on("click", '#add' + course.courseId + i, this, function (obj) {
                                                             var remove = obj.valueOf().target.getAttribute("name");
                                                             for (var i = 0; i < document.getElementsByName(remove).length;) {
-                                                                $($(document.getElementsByName(remove)[i]).parent()[0]).attr("data-value",0);
+                                                                $($(document.getElementsByName(remove)[i]).parent()[0]).attr("data-value",'0');
                                                                 $(document.getElementsByName(remove)[i]).remove();
 
                                                             }

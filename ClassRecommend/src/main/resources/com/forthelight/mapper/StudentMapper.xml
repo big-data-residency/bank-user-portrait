@@ -81,7 +81,7 @@
         (id, StudentName, Gender, NickName, Password, StudentNumber, Grade, CollegeID, MajorID, Privilege, DeleteStatus, studentPortrait)
         VALUES
             (NULL, #{studentName}, #{gender}, #{nickName}, #{password}, #{studentNumber}, #{grade}, #{college.id},
-                   #{major.id}, #{privilege}, 0, #{studentPortrait});
+                   #{major.id}, #{privilege}, 0, '/images/avatar/anonymous.jpg');
     </insert>
 
     <insert id="selectCourse" keyColumn="id" useGeneratedKeys="true">

@@ -29,6 +29,10 @@
         this.$avatarWrapper = this.$avatarModal.find('.avatar-wrapper');
         this.$avatarPreview = this.$avatarModal.find('.avatar-preview');
         this.$avatarUploadBtn = this.$container.find('#avatar-upload-btn');
+        console.log($element);
+        console.log(this.$container);
+        console.log("jifdji");
+        console.log(this.$avatarUploadBtn);
         this.init();
     }
     CropAvatar.prototype = {
@@ -46,8 +50,8 @@
             this.initTooltip();
             this.initModal();
             this.addListener();
-            console.log(this.$avatarForm);
-            console.log(this.$avatarData);
+            // console.log(this.$avatarForm);
+            // console.log(this.$avatarData);
         },
         addListener: function() {
             this.$avatarView.on('click', $.proxy(this.click, this));
@@ -260,6 +264,7 @@
             this.$avatar.attr('src', this.url);
             this.stopCropper();
             this.$avatarModal.modal('hide');
+            history.go(0);
         },
         alert: function(msg) {
             var $alert = ['<div class="alert alert-danger avater-alert">', '<button type="button" class="close" data-dismiss="alert">&times;</button>', msg, '</div>'].join('');

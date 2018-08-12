@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,13 +17,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="../../style/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="../../style/bower_components/Ionicons/css/ionicons.min.css">
+    <link href="../temp/temp/avatarUpload/css/cropper.min.css" rel="stylesheet">
     <!-- Theme style -->
     <link rel="stylesheet" href="../../style/dist/css/AdminLTE.min.css">
+    <!-- 头像上传相关 -->
+    <link rel="stylesheet" href="../temp/temp/avatarUpload/css/sitelogo.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
 
     <link rel="stylesheet" href="../../style/dist/css/skins/skin-blue-light.min.css">
+    <link rel="">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -100,14 +104,13 @@ desired effect
                                             <!-- Task title and progress text -->
                                             <h3>
                                                 已评课数
-                                                <small class="pull-right" id="pagesCourses">{{
-                                                    studentPageInfo.commentNumber }}/{{ studentPageInfo.selectNumber }}
+                                                <small class="pull-right" id="pagesCourses">{{ studentPageInfo.selectNumber - studentPageInfo.commentNumber }}/{{ studentPageInfo.selectNumber }}
                                                 </small>
                                             </h3>
                                             <!-- The progress bar -->
                                             <div class="progress xs">
                                                 <!-- Change the css width attribute to simulate progress -->
-                                                <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                <div class="progress-bar progress-bar-aqua" v-bind:style="{'width':(studentPageInfo.selectNumber - studentPageInfo.commentNumber)*100/studentPageInfo.selectNumber + '%'}"
                                                      role="progressbar" aria-valuenow="20" aria-valuemin="0"
                                                      aria-valuemax="100">
                                                     <!--<span class="sr-only">20% Complete</span>-->
@@ -213,7 +216,7 @@ desired effect
                 <li>
                     <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
                 </li>
-                <li v-if="privilege == 1">
+                <li v-if="studentPageInfo.privilege == 1">
                     <a :href="'../admin/manageStudent.html?id='+studentIdStr"><i class="fa fa-heart"></i>
                         <span>查看所有用户信息</span></a>
                 </li>
@@ -255,16 +258,74 @@ desired effect
                         <div class="col-md-3">
                             <!-- Profile Image -->
                             <div class="box box-primary">
-                                <div class="box-body box-profile">
-                                    <img class="profile-user-img img-responsive img-circle" :src="studentInfo.portrait"
+                                <div class="box-body box-profile" id="crop-avatar">
+
+                                    <img class="avatar-view profile-user-img img-responsive img-circle" :src="studentInfo.portrait"
                                          alt="User profile picture">
 
                                     <h3 class="profile-username text-center">{{ studentInfo.nickName }}</h3>
-                                    <a href="#" class="btn btn-primary btn-block"><b>Change Photo</b></a>
+                                    <button id="avatar-upload-btn" class="btn btn-primary btn-block"><b>Change Photo</b></button>
                                 </div>
                                 <!-- /.box-body -->
                             </div>
                             <!-- /.box -->
+
+                            <!-- 模态窗口 -->
+                            <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label"
+                                 role="dialog" tabindex="-1">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <form id="avatar-form" class="avatar-form" method="post" enctype="multipart/form-data"
+                                              action="http://localhost:8080/avatar_upload">
+
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <h4 class="modal-title">更换头像</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="row">
+
+                                                    <div class="col-md-9">
+                                                        <div class="avatar-upload">
+                                                            <input class="avatar-src" name="avatar_src" type="hidden">
+                                                            <input class="avatar-data" name="avatar_data" type="hidden">
+                                                            <label for="avatarInput">头像上传</label>
+                                                            <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+                                                            <input type="hidden" name="studentId" v-bind:value="studentInfo.id">
+                                                        </div>
+                                                        <div class="avatar-wrapper"></div>
+                                                    </div>
+
+                                                    <div class="col-md-3">
+                                                        <div class="avatar-preview preview-lg"></div>
+                                                        <div class="avatar-preview preview-md"></div>
+                                                        <div class="avatar-preview preview-sm"></div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
+
+
+
+
 
                             <!-- About Me Box -->
                             <div class="box box-primary">
@@ -444,11 +505,15 @@ desired effect
 
 <!-- jQuery 3 -->
 
-<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>
+<!--<script src="../../style/bower_components/jquery/dist/jquery.min.js"></script>-->
+<script src="../../plugins/jquery-3.3.1.js"></script>
+<script src="../temp/temp/avatarUpload/js/cropper.js"></script>
+<script type="text/javascript" src="../temp/temp/avatarUpload/js/sitelogo.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../style/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../style/dist/js/adminlte.min.js"></script>
+
 
 <script src="../../plugins/vue.js"></script>
 
@@ -456,6 +521,7 @@ desired effect
 <script>
     var studentIdStr = '';
     var StudentComment = '';
+    var manageId='';
     // var studentComment=new Vue({
     //   el:'#activity',
     //   data:{
@@ -488,19 +554,23 @@ desired effect
             },
             getPageStudentInfo() {
                 $.ajax({
-                    url: 'http://localhost:8080/studentPagesInfo',
+                    url: '/studentPagesInfo',
                     data: {
-                        studentIdStr: studentIdStr,
+                        studentIdStr: manageId,
                     },
                     type: 'GET',
                     dataType: 'json',
                     success: function (res) {
                         headerStudentInfo.studentPageInfo = res.data.student;
-                        headerStudentInfo.sub = res.data.student.selectNumber - res.data.student.commentNumber;
-                        headerStudentInfo.studentIdStr = studentIdStr;
-                        if (res.studentPageInfo.portrait) {
-                            $(document.getElementById("setting")).attr("class", "hidden");
-                            $(document.getElementById("settings")).attr("class", "hidden");
+                        headerStudentInfo.sub = res.data.student.commentNumber;//res.data.student.selectNumber -
+                        headerStudentInfo.studentIdStr = manageId;
+                        console.log("to yes");
+                        if (res.data.student.privilege === 1) {
+                            console.log("yes");
+                            $(document.getElementById("setting")).addClass("hidden");
+                            $(document.getElementById("settings")).addClass("hidden");
+                            // $('#setting').addClass("hidden");
+
                         }
                     }
                 })
@@ -516,13 +586,15 @@ desired effect
                         if (json.success) {
                             if (json.data.studentId == studentIdStr) {
                                 $('#header').append(`<h1>个人具体信息<small>Information</small></h1><ol class="breadcrumb">
-                <li><i class="fa fa-home"></i> 用户首页</li>
-                <li class="active">个人信息</li></ol>`)
+                                                        <li><i class="fa fa-home"></i> 用户首页</li>
+                                                        <li class="active">个人信息</li></ol>`);
+                                manageId = studentIdStr;
                             } else {
                                 if (json.data.privilege == 1) {
                                     $('#header').append(`<h1>用户具体信息<small>Information</small></h1><ol class="breadcrumb">
-                <li><i class="fa fa-home"></i> 用户首页</li>
-                <li class="active">用户信息</li></ol>`)
+                                                        <li><i class="fa fa-home"></i> 用户首页</li>
+                                                        <li class="active">用户信息</li></ol>`);
+                                    manageId = json.data.studentId;
                                 } else {
                                     location.href = "../user/no-access.html"
                                 }
@@ -531,9 +603,11 @@ desired effect
                             alert(json.data);
                             location.href = "../login.html";
                         }
+                        headerStudentInfo.getPageStudentInfo();
+                        asideStudentInfo.getPageStudentInfo();
                     },
                     error: function (XMLHttpRequest) {
-                        alert(("输出错误信息") + XMLHttpRequest.responseText);
+                        // alert(("输出错误信息") + XMLHttpRequest.responseText);
                     }
 
                 })
@@ -555,10 +629,10 @@ desired effect
         },
         mounted() {
             this.getPar();
-            this.getPageStudentInfo();
             this.GetLogin();
+
         }
-    })
+    });
 
     var asideStudentInfo = new Vue({
         el: '#asideStudentInfo',
@@ -572,21 +646,22 @@ desired effect
                 $.ajax({
                     url: 'http://localhost:8080/studentPagesInfo',
                     data: {
-                        studentIdStr: studentIdStr,
+                        studentIdStr: manageId,
                     },
                     type: 'GET',
                     dataType: 'json',
                     success: function (res) {
                         asideStudentInfo.studentPageInfo = res.data.student;
-                        asideStudentInfo.sub = res.data.student.selectNumber - res.data.student.commentNumber;
-                        asideStudentInfo.studentIdStr = studentIdStr;
+                        asideStudentInfo.sub =  res.data.student.commentNumber;//res.data.student.selectNumber -
+                        asideStudentInfo.studentIdStr = manageId;
+
                     }
                 })
 
             }
         },
         mounted() {
-            this.getPageStudentInfo();
+
         }
     })
 
@@ -633,7 +708,7 @@ desired effect
             },
             getNoCheckingCourseList() {
                 $.ajax({
-                    url: 'http://localhost:8080/noCheckingCourseList',
+                    url: '/noCheckingCourseList',
                     type: 'GET',
                     data: {
                         studentIdStr: studentIdStr,

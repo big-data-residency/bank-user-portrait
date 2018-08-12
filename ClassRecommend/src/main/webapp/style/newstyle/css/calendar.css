@@ -31,7 +31,7 @@
 
 /* Schedule-Pane CSS */
 .schedule-pane {
-    --width: 150px;
+    --width: 120px;
     width: var(--width);
     margin-left: 5px;
 }
@@ -45,7 +45,7 @@
 }
 
 .pane-weekend {
-    --width: 100px;
+    --width: 120px;
 }
 
 .pane-header {

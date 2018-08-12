@@ -24,3 +24,6 @@
     padding-right: 20px;
     padding-top: 3px;
 }
+a:hover{
+    cursor: pointer;
+}

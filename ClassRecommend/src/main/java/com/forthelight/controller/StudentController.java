@@ -227,6 +227,7 @@ public class StudentController {
         studentInfo.addProperty("college", student.getCollege().getCollegeName());
         studentInfo.addProperty("major", student.getMajor().getMajorName());
         studentInfo.addProperty("portrait", student.getStudentPortrait());
+        studentInfo.addProperty("id", studentId);
         // ------------------ 第一个标签栏数据 ---------------------
         List<StudentCommentCourse> studentCommentCourses = studentCommentCourseBiz.findByStudentId(studentId);
         JsonArray comments = new JsonArray();
@@ -468,6 +469,7 @@ public class StudentController {
         studentInfo.addProperty("commentNumber", studentBiz.commentCourseNumber(studentId));
         studentInfo.addProperty("portrait", student.getStudentPortrait());
         studentInfo.addProperty("privilege", student.getPrivilege());
+        studentInfo.addProperty("id", student.getId());
 
         Map<String, Object> data = new HashMap<>();
         data.put("student", studentInfo);

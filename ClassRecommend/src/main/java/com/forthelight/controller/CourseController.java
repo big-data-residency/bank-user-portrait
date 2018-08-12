@@ -854,7 +854,7 @@ public class CourseController {
 
     @RequestMapping(value = "/noCheckingCourseList", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE + ";charset=utf-8")
     @ResponseBody
-    public String findNoCheckingCourseList(String studentIdStr, HttpServletResponse response) {
+    public String findNoCheckingCourseList(@RequestParam("studentIdStr")String studentIdStr, HttpServletResponse response) {
 
         response.setContentType("text/json;charset:UTF-8");
         response.setCharacterEncoding("UTF-8");
@@ -864,7 +864,7 @@ public class CourseController {
         Map<String, Object> res = new HashMap<>();
 
         boolean success = false;
-        if (studentIdStr != "") {
+        if (!studentIdStr.equals("")) {
             success = true;
         }
 
@@ -878,11 +878,13 @@ public class CourseController {
             while (iterator.hasNext()) {
                 Course course = iterator.next();
                 for (int i = 0; i < checkedCourses.size(); i++) {
+                    if(courses.size() <= 0 || iterator.hasNext() ){break;}
                     if (course.getId().equals(checkedCourses.get(i).getCourse().getId())) {
                         iterator.remove();
                     }
                 }
             }
+
             JsonArray coursesList = new JsonArray();
 
             for (Course course : courses) {
@@ -918,7 +920,7 @@ public class CourseController {
             Map<String, Object> data = new HashMap<>();
             data.put("courses", coursesList);
 
-            if (coursesList.size() < 1) {
+            if (coursesList.size() < 0) {
                 success = false;
             }
 

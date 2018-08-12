@@ -62,7 +62,9 @@ public class FileController {
                 java.io.File dstFile = new java.io.File(new java.io.File(dstPath) + java.io.File.separator + dstFileName + "." + fileExt);
                 // 拷贝文件
                 ImageIO.write(image, fileExt, dstFile);
-
+                Student student = studentBiz.findById(Integer.parseInt(request.getParameter("studentId")));
+                student.setStudentPortrait("/images/avatar/" + file.getOriginalFilename());
+                studentBiz.update(student);
                 rsp.put("success", true);
                 rsp.put("result", "../../images/avatar/" + file.getOriginalFilename());
             } else {
@@ -91,13 +93,13 @@ public class FileController {
         Course course = courseBiz.findById(Integer.parseInt(courseId));
 
         if (file != null && file.getSize() > 0) {
-            String dstPath = request.getContextPath() + java.io.File.separator + "files";
+            String dstPath = request.getServletContext().getRealPath("files");
+//            String tgtPath = request.getContextPath()
             if (fileBiz.saveFile(dstPath, file)) {
-
                 File saveFile = new File();
                 saveFile.setStudent(student);
                 saveFile.setCourse(course);
-                saveFile.setFilePath(dstPath);
+                saveFile.setFilePath(java.io.File.separator + "files");
                 saveFile.setFileName(file.getOriginalFilename());
                 saveFile.setDownloadNum(0);
                 saveFile.setDescription(description);

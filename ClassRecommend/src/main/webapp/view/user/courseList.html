@@ -184,7 +184,7 @@
                 <li>
                     <a :href="'select_course.html?id='+studentIdStr"><i class="fa fa-edit"></i> <span>推荐课程</span></a>
                 </li>
-                <li v-if="privilege == 1">
+                <li v-if="studentPageInfo.privilege == 1">
                     <a :href="'../admin/manageStudent.html?id='+studentIdStr"><i class="fa fa-heart"></i> <span>查看所有用户信息</span></a>
                 </li>
                 <li>

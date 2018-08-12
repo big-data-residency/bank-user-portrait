@@ -48,6 +48,8 @@
         <url-pattern>*.jpg</url-pattern>
         <url-pattern>*.png</url-pattern>
 		<url-pattern>*.pdf</url-pattern>
+		<url-pattern>*.ppt</url-pattern>
+		<url-pattern>*.doc</url-pattern>
     </servlet-mapping>
 
 	<servlet>
